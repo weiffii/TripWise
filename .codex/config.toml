@@ -1,0 +1,30 @@
+
+[features]
+multi_agent = true
+
+[agents]
+max_concurrent_threads_per_session = 3
+
+[agents.analyst]
+description = "Анализ требований, планирование задач и подготовка промптов."
+config_file = "agents/analyst.toml"
+
+[agents.architect]
+description = "Архитектура TripWise, API-контракты и совместимость компонентов."
+config_file = "agents/architect.toml"
+
+[agents.qa_agent]
+description = "Тестирование TripWise, диагностика ошибок и проверка интеграции."
+config_file = "agents/qa_agent.toml"
+
+[agents.data_agent]
+description = "Получение и проверка туристических данных."
+config_file = "agents/data_agent.toml"
+
+[agents.recommendation_agent]
+description = "Разработка и проверка персонализированных рекомендаций."
+config_file = "agents/recommendation_agent.toml"
+
+[agents.routing_agent]
+description = "Оптимизация маршрутов и разработка Route Assistant."
+config_file = "agents/routing_agent.toml"
