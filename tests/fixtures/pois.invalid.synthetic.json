@@ -1,0 +1,351 @@
+[
+  {
+    "id": "",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:invalid-1",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 91,
+      "longitude": 0
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:invalid-2",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "invalid"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:invalid-3",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 9,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:invalid-4",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": true,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:invalid-5",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": -1,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:missing",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:duplicate",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:duplicate",
+    "name": "Тестовый объект 01",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums",
+      "history"
+    ],
+    "rating": {
+      "value": 3.0,
+      "scale_min": 0,
+      "scale_max": 5
+    },
+    "popularity": {
+      "value": 20,
+      "metric": "review_count"
+    },
+    "visit_duration_minutes": 30,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "opening_hours": null,
+    "availability": "available",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "fixture-01",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "routing_context": {
+    "day_start": "2026-11-17T09:00:00+03:00",
+    "day_end": "2026-11-17T12:00:00+03:00",
+    "endpoint_policy": "first_last_poi",
+    "declared_pace": "balanced",
+    "max_active_seconds": 9000,
+    "rest_after_visit_seconds": 900
+  },
+  "travel_times": {
+    "mode": "walking",
+    "basis": "test_matrix",
+    "source_id": "synthetic_route_fixture",
+    "pairs": [
+      {"from_poi_id": "synthetic:museums-01", "to_poi_id": "synthetic:museums-09", "status": "known", "duration_seconds": 600, "distance_meters": 700},
+      {"from_poi_id": "synthetic:museums-09", "to_poi_id": "synthetic:museums-01", "status": "known", "duration_seconds": 900, "distance_meters": 850},
+      {"from_poi_id": "synthetic:museums-09", "to_poi_id": "synthetic:history-02", "status": "known", "duration_seconds": 600, "distance_meters": null},
+      {"from_poi_id": "synthetic:history-02", "to_poi_id": "synthetic:museums-09", "status": "known", "duration_seconds": 1200, "distance_meters": 1300}
+    ]
+  }
+}

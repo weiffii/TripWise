@@ -1,0 +1,412 @@
+{
+  "schema_version": "0.1",
+  "summary": {
+    "input_count": 16,
+    "accepted_count": 16,
+    "rejected_count": 0,
+    "records_with_warnings": 16,
+    "records_without_issues": 0,
+    "issue_count": 55
+  },
+  "source_ids": [
+    "synthetic_fixture"
+  ],
+  "data_kind": "synthetic",
+  "issues": [
+    {
+      "index": 0,
+      "poi_id": "synthetic:museums-01",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 0,
+      "poi_id": "synthetic:museums-01",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 0,
+      "poi_id": "synthetic:museums-01",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 1,
+      "poi_id": "synthetic:history-02",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 1,
+      "poi_id": "synthetic:history-02",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 1,
+      "poi_id": "synthetic:history-02",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 2,
+      "poi_id": "synthetic:nature-03",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 2,
+      "poi_id": "synthetic:nature-03",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 2,
+      "poi_id": "synthetic:nature-03",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 3,
+      "poi_id": "synthetic:cafes-04",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 3,
+      "poi_id": "synthetic:cafes-04",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 3,
+      "poi_id": "synthetic:cafes-04",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 4,
+      "poi_id": "synthetic:entertainment-05",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 4,
+      "poi_id": "synthetic:entertainment-05",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 4,
+      "poi_id": "synthetic:entertainment-05",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 5,
+      "poi_id": "synthetic:shopping-06",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 5,
+      "poi_id": "synthetic:shopping-06",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 5,
+      "poi_id": "synthetic:shopping-06",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 6,
+      "poi_id": "synthetic:viewpoints-07",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 6,
+      "poi_id": "synthetic:viewpoints-07",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 6,
+      "poi_id": "synthetic:viewpoints-07",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 7,
+      "poi_id": "synthetic:unusual-08",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 7,
+      "poi_id": "synthetic:unusual-08",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 7,
+      "poi_id": "synthetic:unusual-08",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 8,
+      "poi_id": "synthetic:museums-09",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 8,
+      "poi_id": "synthetic:museums-09",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 8,
+      "poi_id": "synthetic:museums-09",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 9,
+      "poi_id": "synthetic:history-10",
+      "field": "rating",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 9,
+      "poi_id": "synthetic:history-10",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 9,
+      "poi_id": "synthetic:history-10",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 9,
+      "poi_id": "synthetic:history-10",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 10,
+      "poi_id": "synthetic:nature-11",
+      "field": "popularity",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 10,
+      "poi_id": "synthetic:nature-11",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 10,
+      "poi_id": "synthetic:nature-11",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 10,
+      "poi_id": "synthetic:nature-11",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 11,
+      "poi_id": "synthetic:cafes-12",
+      "field": "coordinates",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 11,
+      "poi_id": "synthetic:cafes-12",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 11,
+      "poi_id": "synthetic:cafes-12",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 11,
+      "poi_id": "synthetic:cafes-12",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 12,
+      "poi_id": "synthetic:entertainment-13",
+      "field": "visit_duration_minutes",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 12,
+      "poi_id": "synthetic:entertainment-13",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 12,
+      "poi_id": "synthetic:entertainment-13",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 12,
+      "poi_id": "synthetic:entertainment-13",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 13,
+      "poi_id": "synthetic:shopping-14",
+      "field": "estimated_cost",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 13,
+      "poi_id": "synthetic:shopping-14",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 13,
+      "poi_id": "synthetic:shopping-14",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 13,
+      "poi_id": "synthetic:shopping-14",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 14,
+      "poi_id": "synthetic:viewpoints-15",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 14,
+      "poi_id": "synthetic:viewpoints-15",
+      "field": "availability",
+      "code": "AVAILABILITY_UNKNOWN",
+      "severity": "warning"
+    },
+    {
+      "index": 14,
+      "poi_id": "synthetic:viewpoints-15",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 14,
+      "poi_id": "synthetic:viewpoints-15",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    },
+    {
+      "index": 15,
+      "poi_id": "synthetic:unusual-16",
+      "field": "opening_hours",
+      "code": "UNKNOWN_VALUE",
+      "severity": "warning"
+    },
+    {
+      "index": 15,
+      "poi_id": "synthetic:unusual-16",
+      "field": "availability",
+      "code": "AVAILABILITY_UNAVAILABLE",
+      "severity": "warning"
+    },
+    {
+      "index": 15,
+      "poi_id": "synthetic:unusual-16",
+      "field": "provenance.is_synthetic",
+      "code": "SYNTHETIC_DATA",
+      "severity": "info"
+    },
+    {
+      "index": 15,
+      "poi_id": "synthetic:unusual-16",
+      "field": "provenance.verified_at",
+      "code": "NOT_VERIFIED",
+      "severity": "warning"
+    }
+  ],
+  "routing_without_coordinates": [
+    "synthetic:cafes-12"
+  ],
+  "limitations": [
+    "Географическое соответствие городу не проверено",
+    "Часы работы, актуальность фактов и выполнимость маршрута не проверены",
+    "Пригодность признаков для модели ранжирования не оценена"
+  ],
+  "checked_at": "2026-11-16T22:24:29.874500+03:00",
+  "input_path": "data\\fixtures\\pois.synthetic.json"
+}
