@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "source": "openstreetmap",
+  "rules": [
+    {"key": "tourism", "values": ["museum", "gallery"], "category": "museums"},
+    {"key": "historic", "values": ["monument", "memorial", "archaeological_site", "castle", "ruins", "tomb", "citywalls"], "category": "history"},
+    {"key": "leisure", "values": ["park", "garden", "nature_reserve"], "category": "nature"},
+    {"key": "amenity", "values": ["cafe"], "category": "cafes"},
+    {"key": "tourism", "values": ["theme_park", "zoo", "aquarium"], "category": "entertainment"},
+    {"key": "shop", "values": ["mall", "department_store", "books"], "category": "shopping"},
+    {"key": "tourism", "values": ["viewpoint"], "category": "viewpoints"}
+  ],
+  "limitations": [
+    "unusual не назначается автоматически",
+    "Категории выводятся только из перечисленных тегов, не из названия",
+    "way/relation center является представительной точкой, не входом"
+  ]
+}
