@@ -1,0 +1,11 @@
+# Локальное Python-окружение и временные файлы
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Секреты и локальное хранилище приложения
+.env
+.env.*
+!.env.example
+/runtime/

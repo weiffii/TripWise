@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Мои поездки — TripWise</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/trips.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="/trips" aria-label="TripWise — мои поездки"><span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span></a>
+      <button id="logout-button" class="outline-button" type="button">Выйти</button>
+    </header>
+    <main class="trips-main">
+      <p class="eyebrow">ВАШИ ПУТЕШЕСТВИЯ</p>
+      <h1 class="trips-heading">Мои поездки</h1>
+      <p id="account-email" class="account-email">Проверяем аккаунт…</p>
+      <section class="empty-trips" aria-labelledby="empty-title">
+        <span class="empty-icon" aria-hidden="true">↗</span>
+        <h2 id="empty-title">У вас пока нет поездок</h2>
+        <p>Здесь будут ваши маршруты, любимые места<br>и планы на новые открытия.</p>
+        <button class="submit-button create-trip-button" type="button" disabled aria-describedby="coming-next"><span>Создать поездку</span><span aria-hidden="true">↗</span></button>
+        <p id="coming-next" class="field-hint">Создание поездок станет доступно на следующем этапе проекта.</p>
+      </section>
+      <p id="trips-message" class="form-message" role="status" hidden></p>
+    </main>
+    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span>Планируйте с любопытством.</span></footer>
+  </body>
+</html>

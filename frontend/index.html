@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TripWise — персональные маршруты для ваших путешествий.">
+    <title>Вход — TripWise</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="./index.html" aria-label="TripWise — начало">
+        <span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span>
+      </a>
+      <span class="header-caption">Меньше планов. Больше впечатлений.</span>
+    </header>
+
+    <main class="layout">
+      <section class="intro" aria-labelledby="intro-title">
+        <p class="eyebrow"><span aria-hidden="true">✳</span> ПУТЕШЕСТВИЯ В ВАШЕМ РИТМЕ</p>
+        <h1 id="intro-title">Ваш город.<br> Ваш ритм.<br> <span>Ваш маршрут.</span></h1>
+        <p class="intro-copy">Места, которые вам интересны. Время на то, что вы любите. Соберите свою следующую поездку с TripWise.</p>
+
+        <div class="journey" aria-hidden="true">
+          <div class="journey-top"><span>Маленький план большого дня</span><span>↗</span></div>
+          <div class="journey-stops">
+            <div><span class="stop-icon">☕</span><span>Не спеша<br><strong>Начать с кофе</strong></span></div>
+            <span class="connection"></span>
+            <div><span class="stop-icon">✳</span><span>С интересом<br><strong>Открыть новое</strong></span></div>
+            <span class="connection"></span>
+            <div><span class="stop-icon">☀</span><span>В своём ритме<br><strong>Поймать момент</strong></span></div>
+          </div>
+          <p class="journey-note">Вдохновение для поездки · не рассчитанный маршрут</p>
+        </div>
+        <p class="intro-footnote">От первой идеи до любимых воспоминаний.</p>
+      </section>
+
+      <section class="auth-card" aria-labelledby="auth-title">
+        <span class="card-label">ВАША СЛЕДУЮЩАЯ ПОЕЗДКА НАЧИНАЕТСЯ ЗДЕСЬ</span>
+        <h2 id="auth-title">С возвращением!</h2>
+        <p id="auth-description" class="card-description">Войдите, чтобы планировать новые поездки и возвращаться к сохранённым.</p>
+
+        <div class="mode-switch" role="group" aria-label="Вход или регистрация">
+          <button id="login-mode" type="button" class="mode-button selected" aria-pressed="true">Вход</button>
+          <button id="register-mode" type="button" class="mode-button" aria-pressed="false">Регистрация</button>
+        </div>
+
+        <form id="auth-form" method="post" action="/api/auth/login">
+          <div class="field">
+            <label for="email">Электронная почта</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="254">
+          </div>
+          <div class="field">
+            <label for="password">Пароль</label>
+            <div class="password-field">
+              <input id="password" name="password" type="password" placeholder="Введите пароль" autocomplete="current-password" required maxlength="128">
+              <button id="toggle-password" type="button" class="show-password" aria-controls="password" aria-pressed="false">Показать</button>
+            </div>
+            <p id="password-hint" class="field-hint" hidden>От 8 до 128 символов. Для проверки учебного проекта используйте вымышленный пароль.</p>
+          </div>
+          <div id="confirm-field" class="field" hidden>
+            <label for="confirm-password">Повторите пароль</label>
+            <input id="confirm-password" name="confirm_password" type="password" placeholder="Ещё раз, чтобы не ошибиться" autocomplete="new-password" maxlength="128" disabled>
+          </div>
+          <button id="submit-button" class="submit-button" type="submit"><span id="submit-label">Войти</span><span aria-hidden="true">↗</span></button>
+          <p id="form-message" class="form-message" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <div class="prototype-note"><span class="prototype-mark" aria-hidden="true">i</span><p><strong>Учебный проект.</strong> Аккаунт сохраняется на сервере TripWise. Для тестирования используйте вымышленную почту и отдельный тестовый пароль. Подтверждение почты пока не подключено.</p></div>
+      </section>
+    </main>
+    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span>Планируйте с любопытством.</span></footer>
+  </body>
+</html>
