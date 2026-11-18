@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-18",
+  "method_version": "minimum-hour-planning-assumption-v0.1",
+  "user_decision": "At least one hour per place; entertainment90 retained from proposal",
+  "kind": "planning_assumptions_not_verified_facts",
+  "snapshots": [
+    {
+      "city": "moscow",
+      "estimated_count": 579,
+      "skipped": [
+        {
+          "poi_id": "geoapify:51c28b193ca7cf424059242b1ac638e14b40f00103f901d123434801000000920335d0a6d0b5d0bdd182d180d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d09cd0a7d0a120d0a0d0bed181d181d0b8d0b8",
+          "code": "EXPLICITLY_EXCLUDED"
+        }
+      ],
+      "source_sha256": "de7360048b17f1c5c9b947a49cd9784acd3e6afbbf4de937b590e9bd71898d10",
+      "original_unchanged": true
+    },
+    {
+      "city": "saint-petersburg",
+      "estimated_count": 627,
+      "skipped": [],
+      "source_sha256": "a8013c3c0633732f572753286252ad74528679e9c31f2bcc1a8fe27e1b6794e4",
+      "original_unchanged": true
+    },
+    {
+      "city": "tokyo",
+      "estimated_count": 851,
+      "skipped": [],
+      "source_sha256": "25abadbd2f98d9669656280ae674878780858f216418b4af1fe5dfbf44e38d00",
+      "original_unchanged": true
+    }
+  ]
+}

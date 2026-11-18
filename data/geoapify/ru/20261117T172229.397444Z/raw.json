@@ -1,0 +1,2090 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Грановитая палата",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "103073",
+        "suburb": "Tverskoy District",
+        "quarter": "19",
+        "street": "Cathedral Square",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6167066,
+        "lat": 55.7505101,
+        "formatted": "Palace of the Facets, Cathedral Square, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Palace of the Facets",
+        "address_line2": "Cathedral Square, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75051342115356,
+            "lon": 37.61669342304547,
+            "name": "Грановитая палата",
+            "height": 21,
+            "osm_id": 7679578,
+            "window": "no",
+            "name:ca": "Palau de les Facetes",
+            "name:de": "Facettenpalast",
+            "name:en": "Palace of the Facets",
+            "name:es": "Palacio de las Facetas",
+            "name:fr": "Palais à Facettes",
+            "name:it": "Palazzo delle Faccette",
+            "name:pt": "Palácio das Facetas",
+            "name:ru": "Грановитая палата",
+            "name:zh": "多棱宫",
+            "tourism": "museum",
+            "osm_type": "r",
+            "wikidata": "Q2307647",
+            "wikipedia": "ru:Грановитая палата",
+            "building:part": "yes",
+            "building:colour": "white"
+          }
+        },
+        "name_international": {
+          "ca": "Palau de les Facetes",
+          "de": "Facettenpalast",
+          "en": "Palace of the Facets",
+          "es": "Palacio de las Facetas",
+          "fr": "Palais à Facettes",
+          "it": "Palazzo delle Faccette",
+          "pt": "Palácio das Facetas",
+          "ru": "Грановитая палата",
+          "zh": "多棱宫"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q2307647",
+          "wikipedia": "ru:Грановитая палата"
+        },
+        "distance": 49,
+        "place_id": "51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61669342304547,
+          55.75051342115356
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Патриаршие палаты",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "119019",
+        "district": "Kitay-gorod",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "street": "Kremlin Embankment",
+        "housenumber": "1 с14",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6167168,
+        "lat": 55.7511524,
+        "formatted": "Patriarch's Palace, Kremlin Embankment 1 с14, Tverskoy District, Moscow, Russia, 119019",
+        "address_line1": "Patriarch's Palace",
+        "address_line2": "Kremlin Embankment 1 с14, Tverskoy District, Moscow, Russia, 119019",
+        "categories": [
+          "building",
+          "building.tourism",
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [
+          "details",
+          "details.building"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.751201595566535,
+            "lon": 37.61670292672185,
+            "name": "Патриаршие палаты",
+            "museum": "person",
+            "osm_id": 1359248,
+            "street": "Кремлёвская набережная",
+            "window": "no",
+            "name:de": "Patriarchenpalast",
+            "name:en": "Patriarch's Palace",
+            "name:fr": "Église des Douze Apôtres",
+            "name:hr": "Palača patrijarha",
+            "name:ml": "പാത്രിയർക്കീസ് കൊട്ടാരം",
+            "name:pl": "Pałac patriarchy",
+            "name:ru": "Патриаршие палаты",
+            "name:tr": "Patrik Sarayı",
+            "tourism": "museum",
+            "building": "yes",
+            "operator": "Музеи Московского Кремля",
+            "osm_type": "r",
+            "roof:shape": "gabled",
+            "housenumber": "1 с14",
+            "roof:colour": "grey",
+            "building:colour": "lightgrey"
+          }
+        },
+        "operator": "Музеи Московского Кремля",
+        "name_international": {
+          "de": "Patriarchenpalast",
+          "en": "Patriarch's Palace",
+          "fr": "Église des Douze Apôtres",
+          "hr": "Palača patrijarha",
+          "ml": "പാത്രിയർക്കീസ് കൊട്ടാരം",
+          "pl": "Pałac patriarchy",
+          "ru": "Патриаршие палаты",
+          "tr": "Patrik Sarayı"
+        },
+        "building": {
+          "color": "lightgrey",
+          "roof": {
+            "shape": "gabled",
+            "color": "grey"
+          }
+        },
+        "distance": 88,
+        "place_id": "5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61670292672185,
+          55.751201595566535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Большой Кремлёвский дворец",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "postcode": "103073",
+        "suburb": "Tverskoy District",
+        "housenumber": "5",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6162129,
+        "lat": 55.7502042,
+        "formatted": "Grand Kremlin Palace, 5, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Grand Kremlin Palace",
+        "address_line2": "5, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.castle"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75022483892692,
+            "lon": 37.61575341821598,
+            "city": "Москва",
+            "name": "Большой Кремлёвский дворец",
+            "place": "Кремль",
+            "osm_id": 225033,
+            "name:br": "Palez Meur ar C'hremlin",
+            "name:ca": "Gran Palau del Kremlin",
+            "name:de": "Großer Kremlpalast",
+            "name:en": "Grand Kremlin Palace",
+            "name:es": "Gran Palacio del Kremlin",
+            "name:fr": "Grand Palais du Kremlin",
+            "name:hr": "Velika kremeljska palača",
+            "name:it": "Gran Palazzo del Cremlino",
+            "name:kk": "Үлкен Кремль сарайы",
+            "name:ml": "മഹാ ക്രെംലിൻ കൊട്ടാരം",
+            "name:pl": "Wielki Pałac Kremlowski",
+            "name:pt": "Grande Palácio do Kremlin",
+            "name:ru": "Большой Кремлёвский дворец",
+            "name:zh": "大克里姆林宫",
+            "building": "palace",
+            "historic": "castle",
+            "osm_type": "r",
+            "postcode": 103073,
+            "wikidata": "Q1370087",
+            "wikipedia": "ru:Большой Кремлёвский дворец",
+            "start_date": "1838..1849",
+            "alt_name:en": "Great Kremlin Palace",
+            "castle_type": "palace",
+            "housenumber": 5,
+            "building:part": "no",
+            "_unlisted_place": "Кремль",
+            "wikimedia_commons": "Category:Grand Kremlin Palace"
+          }
+        },
+        "name_international": {
+          "br": "Palez Meur ar C'hremlin",
+          "ca": "Gran Palau del Kremlin",
+          "de": "Großer Kremlpalast",
+          "en": "Grand Kremlin Palace",
+          "es": "Gran Palacio del Kremlin",
+          "fr": "Grand Palais du Kremlin",
+          "hr": "Velika kremeljska palača",
+          "it": "Gran Palazzo del Cremlino",
+          "kk": "Үлкен Кремль сарайы",
+          "ml": "മഹാ ക്രെംലിൻ കൊട്ടാരം",
+          "pl": "Wielki Pałac Kremlowski",
+          "pt": "Grande Palácio do Kremlin",
+          "ru": "Большой Кремлёвский дворец",
+          "zh": "大克里姆林宫"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q1370087",
+          "wikipedia": "ru:Большой Кремлёвский дворец",
+          "wikimedia_commons": "Category:Grand Kremlin Palace"
+        },
+        "historic": {
+          "type": "castle",
+          "start_date": "1838..1849",
+          "castle_type": "palace"
+        },
+        "building": {
+          "type": "palace",
+          "start_date": "1838..1849"
+        },
+        "distance": 114,
+        "place_id": "51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61575341821598,
+          55.75022483892692
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Теремной дворец",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "postcode": "103073",
+        "suburb": "Tverskoy District",
+        "housenumber": "5",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6156276,
+        "lat": 55.7505837,
+        "formatted": "Terem Palace, 5, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Terem Palace",
+        "address_line2": "5, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.castle"
+        ],
+        "details": [
+          "details",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7505837,
+            "lon": 37.6156276,
+            "city": "Москва",
+            "name": "Теремной дворец",
+            "place": "Кремль",
+            "osm_id": 2368886164,
+            "name:de": "Terem-Palast",
+            "name:en": "Terem Palace",
+            "name:fr": "Palais des Térems",
+            "name:it": "Palazzo Terem",
+            "name:pt": "Palácio dos Terems",
+            "name:ru": "Теремной дворец",
+            "name:zh": "特雷姆宫",
+            "historic": "castle",
+            "osm_type": "n",
+            "postcode": 103073,
+            "wikidata": "Q2548788",
+            "wikipedia": "ru:Теремной дворец",
+            "_inherited": "",
+            "castle_type": "palace",
+            "housenumber": 5,
+            "_unlisted_place": "Кремль"
+          }
+        },
+        "name_international": {
+          "de": "Terem-Palast",
+          "en": "Terem Palace",
+          "fr": "Palais des Térems",
+          "it": "Palazzo Terem",
+          "pt": "Palácio dos Terems",
+          "ru": "Теремной дворец",
+          "zh": "特雷姆宫"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q2548788",
+          "wikipedia": "ru:Теремной дворец"
+        },
+        "historic": {
+          "type": "castle",
+          "castle_type": "palace"
+        },
+        "distance": 116,
+        "place_id": "51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6156276,
+          55.7505837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Тайницкий Сад",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.620649,
+        "lat": 55.7504167,
+        "formatted": "Tainitsky Garden, Tverskoy District, Moscow, Russia",
+        "address_line1": "Tainitsky Garden",
+        "address_line2": "Tverskoy District, Moscow, Russia",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75017520645997,
+            "lon": 37.61925766778485,
+            "name": "Тайницкий Сад",
+            "osm_id": 1360677,
+            "leisure": "park",
+            "name:de": "Geheimgangsgarten",
+            "name:en": "Tainitsky Garden",
+            "name:ru": "Тайницкий Сад",
+            "name:zh": "泰尼茨基花园",
+            "osm_type": "r",
+            "wikidata": "Q2580102",
+            "wikipedia": "ru:Тайницкий сад"
+          }
+        },
+        "name_international": {
+          "de": "Geheimgangsgarten",
+          "en": "Tainitsky Garden",
+          "ru": "Тайницкий Сад",
+          "zh": "泰尼茨基花园"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q2580102",
+          "wikipedia": "ru:Тайницкий сад"
+        },
+        "distance": 119,
+        "place_id": "517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61925766778485,
+          55.75017520645997
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Чудов монастырь",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "103073",
+        "suburb": "Tverskoy District",
+        "quarter": "19",
+        "street": "Cathedral Square",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6189195,
+        "lat": 55.7516634,
+        "formatted": "Чудов монастырь, Cathedral Square, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Чудов монастырь",
+        "address_line2": "Cathedral Square, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75166343076104,
+            "lon": 37.618919431336735,
+            "name": "Чудов монастырь",
+            "osm_id": 534095533,
+            "name:de": "Chudov-Kloster",
+            "name:ru": "Чудов монастырь",
+            "historic": "archaeological_site",
+            "osm_type": "w",
+            "wikidata": "Q1950863",
+            "wikipedia": "ru:Чудов монастырь",
+            "archaeological_site": "building"
+          }
+        },
+        "name_international": {
+          "de": "Chudov-Kloster",
+          "ru": "Чудов монастырь"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q1950863",
+          "wikipedia": "ru:Чудов монастырь"
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "distance": 154,
+        "place_id": "51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.618919431336735,
+          55.75166343076104
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Малый Николаевский дворец",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109548",
+        "district": "Kitay-gorod",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "street": "Spasskaya Street",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6192977,
+        "lat": 55.7515387,
+        "formatted": "Малый Николаевский дворец, Spasskaya Street, Tverskoy District, Moscow, Russia, 109548",
+        "address_line1": "Малый Николаевский дворец",
+        "address_line2": "Spasskaya Street, Tverskoy District, Moscow, Russia, 109548",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7515387,
+            "lon": 37.619297700000004,
+            "name": "Малый Николаевский дворец",
+            "osm_id": 534095532,
+            "historic": "archaeological_site",
+            "osm_type": "w",
+            "archaeological_site": "building"
+          }
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "distance": 159,
+        "place_id": "5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.619297700000004,
+          55.7515387
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Большой Кремлёвский сквер",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6206296,
+        "lat": 55.7512234,
+        "formatted": "Grand Kremlin Square, Tverskoy District, Moscow, Russia",
+        "address_line1": "Grand Kremlin Square",
+        "address_line2": "Tverskoy District, Moscow, Russia",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75104042409033,
+            "lon": 37.62030719039332,
+            "name": "Большой Кремлёвский сквер",
+            "osm_id": 1360699,
+            "leisure": "park",
+            "name:de": "Großer Kremlplatz",
+            "name:en": "Grand Kremlin Square",
+            "name:ru": "Большой Кремлёвский сквер",
+            "name:zh": "克里姆林宫大广场",
+            "osm_type": "r"
+          }
+        },
+        "name_international": {
+          "de": "Großer Kremlplatz",
+          "en": "Grand Kremlin Square",
+          "ru": "Большой Кремлёвский сквер",
+          "zh": "克里姆林宫大广场"
+        },
+        "distance": 186,
+        "place_id": "51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.62030719039332,
+          55.75104042409033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Потешный дворец",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "postcode": "103073",
+        "suburb": "Tverskoy District",
+        "housenumber": "7",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6143998,
+        "lat": 55.7512272,
+        "formatted": "Amusement Palace, 7, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Amusement Palace",
+        "address_line2": "7, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "building",
+          "building.historic",
+          "building.tourism",
+          "entertainment",
+          "entertainment.museum",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.751241187606915,
+            "lon": 37.61441395024666,
+            "city": "Москва",
+            "name": "Потешный дворец",
+            "place": "Кремль",
+            "museum": "history",
+            "osm_id": 1359337,
+            "name:de": "Lustpalast",
+            "name:en": "Amusement Palace",
+            "name:fr": "Palais des Menus Plaisirs",
+            "name:pl": "Pałac Rozrywki",
+            "name:ru": "Потешный дворец",
+            "name:zh": "欢乐宫",
+            "tourism": "museum",
+            "building": "yes",
+            "historic": "palace",
+            "osm_type": "r",
+            "postcode": 103073,
+            "wikidata": "Q1877773",
+            "wikipedia": "ru:Потешный дворец",
+            "start_date": 1651,
+            "housenumber": 7,
+            "_unlisted_place": "Кремль",
+            "building:colour": "#fdbf97"
+          }
+        },
+        "name_international": {
+          "de": "Lustpalast",
+          "en": "Amusement Palace",
+          "fr": "Palais des Menus Plaisirs",
+          "pl": "Pałac Rozrywki",
+          "ru": "Потешный дворец",
+          "zh": "欢乐宫"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q1877773",
+          "wikipedia": "ru:Потешный дворец"
+        },
+        "historic": {
+          "type": "palace",
+          "start_date": 1651
+        },
+        "building": {
+          "color": "#fdbf97",
+          "start_date": 1651
+        },
+        "distance": 208,
+        "place_id": "51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61441395024666,
+          55.751241187606915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Храм Чуда Архистратига Михаила в Хонех",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "103073",
+        "district": "Kitay-gorod",
+        "suburb": "Tverskoy District",
+        "quarter": "18",
+        "street": "Chudovskaya Street",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.619202,
+        "lat": 55.752283,
+        "formatted": "Храм Чуда Архистратига Михаила в Хонех, Chudovskaya Street, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Храм Чуда Архистратига Михаила в Хонех",
+        "address_line2": "Chudovskaya Street, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.752286908403825,
+            "lon": 37.61919870577999,
+            "name": "Храм Чуда Архистратига Михаила в Хонех",
+            "osm_id": 534095314,
+            "barrier": "fence",
+            "name:de": "Kirche des Wunders des Erzengels Michael in Khonekh",
+            "name:ru": "Храм Чуда Архистратига Михаила в Хонех",
+            "historic": "archaeological_site",
+            "osm_type": "w",
+            "archaeological_site": "building"
+          }
+        },
+        "name_international": {
+          "de": "Kirche des Wunders des Erzengels Michael in Khonekh",
+          "ru": "Храм Чуда Архистратига Михаила в Хонех"
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "distance": 222,
+        "place_id": "517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61919870577999,
+          55.752286908403825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "suburb": "Tverskoy District",
+        "quarter": "18",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6199463,
+        "lat": 55.7523738,
+        "formatted": "Tverskoy District, Moscow, Russia",
+        "address_line1": "Tverskoy District",
+        "address_line2": "Moscow, Russia",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75232972091141,
+            "lon": 37.61985947673542,
+            "osm_id": 7669508,
+            "leisure": "park",
+            "osm_type": "r"
+          }
+        },
+        "distance": 249,
+        "place_id": "51df582a8e57cf424059c98f1d574ce04b40f00101f9010407750000000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61985947673542,
+          55.75232972091141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Алмазный фонд",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "119072",
+        "suburb": "Tverskoy District",
+        "quarter": "39",
+        "street": "Манежная улица",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.613758,
+        "lat": 55.749614,
+        "formatted": "Diamond Fund, Манежная улица, Tverskoy District, Moscow, Russia, 119072",
+        "address_line1": "Diamond Fund",
+        "address_line2": "Манежная улица, Tverskoy District, Moscow, Russia, 119072",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 55.749614,
+            "lon": 37.613758,
+            "name": "Алмазный фонд",
+            "phone": "+7 495 6292036",
+            "osm_id": 4988219028,
+            "street": "Манежная улица",
+            "name:ca": "Fons de Diamants",
+            "name:en": "Diamond Fund",
+            "name:ru": "Алмазный фонд",
+            "name:zh": "钻石馆",
+            "tourism": "museum",
+            "website": "http://www.gokhran.ru",
+            "osm_type": "n",
+            "wikidata": "Q2628618",
+            "wikipedia": "ru:Алмазный фонд",
+            "opening_hours": "Fr-We 10:00-13:00,14:00-17:00"
+          }
+        },
+        "website": "http://www.gokhran.ru",
+        "opening_hours": "Fr-We 10:00-13:00,14:00-17:00",
+        "name_international": {
+          "ca": "Fons de Diamants",
+          "en": "Diamond Fund",
+          "ru": "Алмазный фонд",
+          "zh": "钻石馆"
+        },
+        "contact": {
+          "phone": "+7 495 6292036"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q2628618",
+          "wikipedia": "ru:Алмазный фонд"
+        },
+        "distance": 255,
+        "place_id": "5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.613758,
+          55.749614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Оружейная палата",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "103073",
+        "suburb": "Tverskoy District",
+        "quarter": "39",
+        "street": "Kremlin Embankment",
+        "housenumber": "1 с3",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6134241,
+        "lat": 55.7495644,
+        "formatted": "Armoury, Kremlin Embankment 1 с3, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Armoury",
+        "address_line2": "Kremlin Embankment 1 с3, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "building",
+          "building.tourism",
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 55.749582778020155,
+            "lon": 37.613434827686405,
+            "city": "Москва",
+            "name": "Оружейная палата",
+            "museum": "history",
+            "osm_id": 1359335,
+            "street": "Кремлёвская набережная",
+            "name:de": "Rüstkammer",
+            "name:en": "Armoury",
+            "name:fr": "Palais des Armures",
+            "name:hr": "Palača oružja",
+            "name:ru": "Оружейная палата",
+            "name:zh": "军械库",
+            "tourism": "museum",
+            "building": "museum",
+            "operator": "Музеи Московского Кремля",
+            "osm_type": "r",
+            "postcode": 103073,
+            "wikidata": "Q1304121",
+            "wikipedia": "ru:Оружейная палата",
+            "start_date": 1851,
+            "housenumber": "1 с3",
+            "roof:colour": "green",
+            "building:colour": "gold",
+            "fee:icom_member": "no"
+          }
+        },
+        "operator": "Музеи Московского Кремля",
+        "name_international": {
+          "de": "Rüstkammer",
+          "en": "Armoury",
+          "fr": "Palais des Armures",
+          "hr": "Palača oružja",
+          "ru": "Оружейная палата",
+          "zh": "军械库"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q1304121",
+          "wikipedia": "ru:Оружейная палата"
+        },
+        "building": {
+          "type": "museum",
+          "color": "gold",
+          "start_date": 1851,
+          "roof": {
+            "color": "green"
+          }
+        },
+        "distance": 275,
+        "place_id": "51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.613434827686405,
+          55.749582778020155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Церковь Св. Екатерины",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109548",
+        "district": "Kitay-gorod",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "street": "Spasskaya Street",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6208138,
+        "lat": 55.7522077,
+        "formatted": "Церковь Св. Екатерины, Spasskaya Street, Tverskoy District, Moscow, Russia, 109548",
+        "address_line1": "Церковь Св. Екатерины",
+        "address_line2": "Spasskaya Street, Tverskoy District, Moscow, Russia, 109548",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.752185442794364,
+            "lon": 37.620762489078366,
+            "name": "Церковь Св. Екатерины",
+            "osm_id": 7672547,
+            "name:de": "Kirche St. Katharina",
+            "name:ru": "Церковь Св. Екатерины",
+            "historic": "archaeological_site",
+            "osm_type": "r",
+            "archaeological_site": "building"
+          }
+        },
+        "name_international": {
+          "de": "Kirche St. Katharina",
+          "ru": "Церковь Св. Екатерины"
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "distance": 276,
+        "place_id": "516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.620762489078366,
+          55.752185442794364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Вознесенский собор",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109548",
+        "district": "Kitay-gorod",
+        "suburb": "Tverskoy District",
+        "quarter": "18",
+        "street": "Трубецкая улица",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.620298,
+        "lat": 55.7524643,
+        "formatted": "Вознесенский собор, Трубецкая улица, Tverskoy District, Moscow, Russia, 109548",
+        "address_line1": "Вознесенский собор",
+        "address_line2": "Трубецкая улица, Tverskoy District, Moscow, Russia, 109548",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75247010636479,
+            "lon": 37.62029979095186,
+            "name": "Вознесенский собор",
+            "osm_id": 7672548,
+            "name:de": "Christi-Himmelfahrt-Kathedrale",
+            "name:ru": "Вознесенский собор",
+            "historic": "archaeological_site",
+            "osm_type": "r",
+            "archaeological_site": "building"
+          }
+        },
+        "name_international": {
+          "de": "Christi-Himmelfahrt-Kathedrale",
+          "ru": "Вознесенский собор"
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "distance": 278,
+        "place_id": "514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.62029979095186,
+          55.75247010636479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Александровский сад",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "suburb": "Tverskoy District",
+        "quarter": "19",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6135068,
+        "lat": 55.7521461,
+        "formatted": "Alexander Garden, Tverskoy District, Moscow, Russia",
+        "address_line1": "Alexander Garden",
+        "address_line2": "Tverskoy District, Moscow, Russia",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75197523436096,
+            "lon": 37.61352952994985,
+            "name": "Александровский сад",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Alexander_Garden_Gates.JPG",
+            "osm_id": 1362325,
+            "leisure": "park",
+            "name:de": "Alexandergarten",
+            "name:en": "Alexander Garden",
+            "name:it": "Giardini di Alessandro",
+            "name:ml": "അലക്സാണ്ടർ പൂന്തോട്ടം",
+            "name:ru": "Александровский сад",
+            "name:sv": "Alexanderträdgården",
+            "name:vi": "Vườn Aleksandr",
+            "name:zh": "亞歷山大花園",
+            "int_name": "Aleksandrovskiy sad",
+            "osm_type": "r",
+            "wikidata": "Q1472498",
+            "wikipedia": "ru:Александровский сад (Москва)"
+          }
+        },
+        "name_international": {
+          "de": "Alexandergarten",
+          "en": "Alexander Garden",
+          "it": "Giardini di Alessandro",
+          "ml": "അലക്സാണ്ടർ പൂന്തോട്ടം",
+          "ru": "Александровский сад",
+          "sv": "Alexanderträdgården",
+          "vi": "Vườn Aleksandr",
+          "zh": "亞歷山大花園"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q1472498",
+          "wikipedia": "ru:Александровский сад (Москва)",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Alexander_Garden_Gates.JPG"
+        },
+        "distance": 295,
+        "place_id": "51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.61352952994985,
+          55.75197523436096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Сенатский дворец",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "postcode": "103073",
+        "suburb": "Tverskoy District",
+        "housenumber": "3",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6193264,
+        "lat": 55.7532318,
+        "formatted": "Kremlin Senate, 3, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "Kremlin Senate",
+        "address_line2": "3, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "building",
+          "building.historic",
+          "building.office",
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.castle"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75323718126065,
+            "lon": 37.618576998723434,
+            "city": "Москва",
+            "name": "Сенатский дворец",
+            "place": "Кремль",
+            "osm_id": 1359233,
+            "name:ca": "Palau del Senat",
+            "name:de": "Senatspalast",
+            "name:en": "Kremlin Senate",
+            "name:es": "Palacio del Senado",
+            "name:fr": "Palais du Sénat",
+            "name:hr": "Palača Senata",
+            "name:ml": "ക്രെംലിൻ സെനറ്റ്",
+            "name:ru": "Сенатский дворец",
+            "name:tr": "Senato Sarayı",
+            "name:zh": "克里姆林宫参议院",
+            "building": "office",
+            "historic": "castle",
+            "osm_type": "r",
+            "postcode": 103073,
+            "wikidata": "Q930376",
+            "wikipedia": "ru:Сенатский дворец",
+            "government": "president",
+            "start_date": 1787,
+            "castle_type": "palace",
+            "housenumber": 3,
+            "roof:colour": "darkslategrey",
+            "building:part": "no",
+            "_unlisted_place": "Кремль",
+            "building:colour": "gold",
+            "building:levels": 4,
+            "building:architecture": "neoclassicism"
+          }
+        },
+        "name_international": {
+          "ca": "Palau del Senat",
+          "de": "Senatspalast",
+          "en": "Kremlin Senate",
+          "es": "Palacio del Senado",
+          "fr": "Palais du Sénat",
+          "hr": "Palača Senata",
+          "ml": "ക്രെംലിൻ സെനറ്റ്",
+          "ru": "Сенатский дворец",
+          "tr": "Senato Sarayı",
+          "zh": "克里姆林宫参议院"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q930376",
+          "wikipedia": "ru:Сенатский дворец"
+        },
+        "historic": {
+          "type": "castle",
+          "start_date": 1787,
+          "castle_type": "palace"
+        },
+        "building": {
+          "levels": 4,
+          "type": "office",
+          "color": "gold",
+          "start_date": 1787,
+          "architecture": "neoclassicism",
+          "roof": {
+            "color": "darkslategrey"
+          }
+        },
+        "distance": 308,
+        "place_id": "5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.618576998723434,
+          55.75323718126065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "София",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109548",
+        "suburb": "Yakimanka District",
+        "street": "Sofiyskaya Embankment",
+        "housenumber": "32 с13",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6215668,
+        "lat": 55.7481639,
+        "formatted": "София, Sofiyskaya Embankment 32 с13, Yakimanka District, Moscow, Russia, 109548",
+        "address_line1": "София",
+        "address_line2": "Sofiyskaya Embankment 32 с13, Yakimanka District, Moscow, Russia, 109548",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7481639,
+            "lon": 37.6215668,
+            "name": "София",
+            "osm_id": 13657113601,
+            "street": "Софийская набережная",
+            "amenity": "cafe",
+            "osm_type": "n",
+            "housenumber": "32 с13",
+            "opening_hours": "Mo-Su 08:30-20:30"
+          }
+        },
+        "opening_hours": "Mo-Su 08:30-20:30",
+        "distance": 369,
+        "place_id": "51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6215668,
+          55.7481639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Грот «Руины»",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "103073",
+        "district": "Kitay-gorod",
+        "suburb": "Tverskoy District",
+        "quarter": "19",
+        "street": "Troitskaya Street",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6153707,
+        "lat": 55.7537642,
+        "formatted": "\"Ruins\" Grotto, Troitskaya Street, Tverskoy District, Moscow, Russia, 103073",
+        "address_line1": "\"Ruins\" Grotto",
+        "address_line2": "Troitskaya Street, Tverskoy District, Moscow, Russia, 103073",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.sights",
+          "tourism.sights.ruines"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7537642,
+            "lon": 37.6153707,
+            "name": "Грот «Руины»",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Grotto_\"ruins\"_in_Aleksandr_Garden_(19956291912).jpg",
+            "osm_id": 1666070895,
+            "name:en": "\"Ruins\" Grotto",
+            "name:es": "ruinas de grotto",
+            "name:ru": "Грот «Руины»",
+            "name:zh": "洞穴“遗址”",
+            "tourism": "attraction",
+            "alt_name": "Итальянский грот",
+            "historic": "ruins",
+            "osm_type": "n",
+            "wikidata": "Q21639958",
+            "wikipedia": "ru:Итальянский грот",
+            "alt_name:en": "Itallian Grotto",
+            "description:en": "Reminder of the War of 1812, lined with debris of Moscow buildings destroyed by Napoleon's army."
+          }
+        },
+        "description_international": {
+          "en": "Reminder of the War of 1812, lined with debris of Moscow buildings destroyed by Napoleon's army."
+        },
+        "name_other": {
+          "alt_name": "Итальянский грот"
+        },
+        "name_international": {
+          "en": "\"Ruins\" Grotto",
+          "es": "ruinas de grotto",
+          "ru": "Грот «Руины»",
+          "zh": "洞穴“遗址”"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q21639958",
+          "wikipedia": "ru:Итальянский грот",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Grotto_\"ruins\"_in_Aleksandr_Garden_(19956291912).jpg"
+        },
+        "historic": {
+          "type": "ruins"
+        },
+        "distance": 382,
+        "place_id": "5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6153707,
+          55.7537642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "119019",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "street": "Kremlin Embankment",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6241003,
+        "lat": 55.7494892,
+        "formatted": "Kremlin Embankment, Tverskoy District, Moscow, Russia, 119019",
+        "address_line1": "Kremlin Embankment",
+        "address_line2": "Tverskoy District, Moscow, Russia, 119019",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7494892,
+            "lon": 37.6241003,
+            "layer": 1,
+            "osm_id": 5106870672,
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "wheelchair": "yes"
+          }
+        },
+        "facilities": {
+          "wheelchair": true
+        },
+        "distance": 432,
+        "place_id": "513ff6c484e2cf424059445a1943efdf4b40f00103f90190a9643001000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6241003,
+          55.7494892
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Plasenn Ruz",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109012",
+        "district": "Kitay-gorod",
+        "suburb": "Tverskoy District",
+        "quarter": "4",
+        "street": "Red Square",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6204643,
+        "lat": 55.75408,
+        "formatted": "Plasenn Ruz, Red Square, Tverskoy District, Moscow, Russia, 109012",
+        "address_line1": "Plasenn Ruz",
+        "address_line2": "Red Square, Tverskoy District, Moscow, Russia, 109012",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.75408,
+            "lon": 37.6204643,
+            "osm_id": 4595636709,
+            "name:br": "Plasenn Ruz",
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "direction": "0-360",
+            "wheelchair": "yes",
+            "description": "Красная площадь",
+            "description:de": "Roter Platz",
+            "description:it": "Piazza Rossa",
+            "description:ru": "Красная площадь",
+            "description:zh": "紅場"
+          }
+        },
+        "description": "Красная площадь",
+        "description_international": {
+          "de": "Roter Platz",
+          "it": "Piazza Rossa",
+          "ru": "Красная площадь",
+          "zh": "紅場"
+        },
+        "name_international": {
+          "br": "Plasenn Ruz"
+        },
+        "facilities": {
+          "wheelchair": true
+        },
+        "distance": 436,
+        "place_id": "51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6204643,
+          55.75408
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dостоевский",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "103009",
+        "suburb": "Tverskoy District",
+        "quarter": "39",
+        "street": "улица Воздвиженка",
+        "housenumber": "1",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6110659,
+        "lat": 55.7523012,
+        "formatted": "Dостоевский, улица Воздвиженка 1, Tverskoy District, Moscow, Russia, 103009",
+        "address_line1": "Dостоевский",
+        "address_line2": "улица Воздвиженка 1, Tverskoy District, Moscow, Russia, 103009",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "commercial",
+          "commercial.books"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7523012,
+            "lon": 37.6110659,
+            "name": "Dостоевский",
+            "shop": "books",
+            "osm_id": 12098446602,
+            "street": "улица Воздвиженка",
+            "amenity": "cafe",
+            "osm_type": "n",
+            "_inherited": "",
+            "check_date": "2025-12-20",
+            "housenumber": 1,
+            "opening_hours": "Mo-Su 10:00-22:00",
+            "contact:website": "https://dostoevsky-club.ru/"
+          }
+        },
+        "website": "https://dostoevsky-club.ru/",
+        "opening_hours": "Mo-Su 10:00-22:00",
+        "commercial": {
+          "type": "books"
+        },
+        "distance": 448,
+        "place_id": "51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6110659,
+          55.7523012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "119019",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "street": "Kremlin Embankment",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6242313,
+        "lat": 55.7491198,
+        "formatted": "Kremlin Embankment, Tverskoy District, Moscow, Russia, 119019",
+        "address_line1": "Kremlin Embankment",
+        "address_line2": "Tverskoy District, Moscow, Russia, 119019",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7491198,
+            "lon": 37.6242313,
+            "osm_id": 4595636712,
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "direction": "0-360",
+            "wheelchair": "yes"
+          }
+        },
+        "facilities": {
+          "wheelchair": true
+        },
+        "distance": 453,
+        "place_id": "51dd51adcfe6cf4240599ee45828e3df4b40f00103f901e8d9eb1101000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6242313,
+          55.7491198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109548",
+        "suburb": "Yakimanka District",
+        "street": "Sofiyskaya Embankment",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6241867,
+        "lat": 55.7486159,
+        "formatted": "Sofiyskaya Embankment, Yakimanka District, Moscow, Russia, 109548",
+        "address_line1": "Sofiyskaya Embankment",
+        "address_line2": "Yakimanka District, Moscow, Russia, 109548",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7486159,
+            "lon": 37.6241867,
+            "layer": 1,
+            "osm_id": 5106870690,
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "wheelchair": "yes"
+          }
+        },
+        "facilities": {
+          "wheelchair": true
+        },
+        "distance": 473,
+        "place_id": "51918c8b59e5cf424059ffe153a5d2df4b40f00103f901a2a9643001000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6241867,
+          55.7486159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109548",
+        "suburb": "Tverskoy District",
+        "quarter": "15",
+        "street": "Moskvoretskaya Embankment",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6248612,
+        "lat": 55.7495104,
+        "formatted": "Moskvoretskaya Embankment, Tverskoy District, Moscow, Russia, 109548",
+        "address_line1": "Moskvoretskaya Embankment",
+        "address_line2": "Tverskoy District, Moscow, Russia, 109548",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7495104,
+            "lon": 37.6248612,
+            "layer": 1,
+            "osm_id": 5106870673,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "distance": 478,
+        "place_id": "510845a973fbcf4240598501f0f4efdf4b40f00103f90191a9643001000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6248612,
+          55.7495104
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "119019",
+        "suburb": "Tverskoy District",
+        "quarter": "40",
+        "street": "Манежная улица",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6133379,
+        "lat": 55.7542908,
+        "formatted": "Манежная улица, Tverskoy District, Moscow, Russia, 119019",
+        "address_line1": "Манежная улица",
+        "address_line2": "Tverskoy District, Moscow, Russia, 119019",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7542908,
+            "lon": 37.6133379,
+            "osm_id": 2459967935,
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "direction": "12-160",
+            "description": "На коней со струями воды"
+          }
+        },
+        "description": "На коней со струями воды",
+        "distance": 492,
+        "place_id": "51dbf236db81ce4240593bd6d6998ce04b40f00103f901bf21a09200000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6133379,
+          55.7542908
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "121019",
+        "suburb": "Arbat District",
+        "quarter": "39",
+        "street": "Mokhovaya Street",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6097522,
+        "lat": 55.7515898,
+        "formatted": "Mokhovaya Street, Arbat District, Moscow, Russia, 121019",
+        "address_line1": "Mokhovaya Street",
+        "address_line2": "Arbat District, Moscow, Russia, 121019",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7515898,
+            "lon": 37.6097522,
+            "indoor": "yes",
+            "osm_id": 2769588352,
+            "amenity": "cafe",
+            "covered": "yes",
+            "osm_type": "n"
+          }
+        },
+        "distance": 499,
+        "place_id": "5100d52e5c0cce424059eb80351834e04b40f00103f901809014a500000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6097522,
+          55.7515898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "103009",
+        "suburb": "Tverskoy District",
+        "quarter": "40",
+        "street": "Mokhovaya Street",
+        "housenumber": "1",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6125342,
+        "lat": 55.754051,
+        "formatted": "Mokhovaya Street 1, Tverskoy District, Moscow, Russia, 103009",
+        "address_line1": "Mokhovaya Street 1",
+        "address_line2": "Tverskoy District, Moscow, Russia, 103009",
+        "categories": [
+          "access_limited",
+          "access_limited.customers",
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.754051,
+            "lon": 37.6125342,
+            "access": "customers",
+            "osm_id": 3233679015,
+            "street": "Манежная площадь",
+            "amenity": "cafe",
+            "osm_type": "n",
+            "postcode": 103009,
+            "_inherited": "",
+            "housenumber": 1
+          }
+        },
+        "restrictions": {
+          "access": "customers"
+        },
+        "distance": 499,
+        "place_id": "513c574a8567ce4240590f4240be84e04b40f00103f901a706bec000000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6125342,
+          55.754051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eat&talk",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "121019",
+        "suburb": "Arbat District",
+        "quarter": "41",
+        "street": "улица Воздвиженка",
+        "housenumber": "4",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.6108287,
+        "lat": 55.7530211,
+        "formatted": "Eat&talk, улица Воздвиженка 4, Arbat District, Moscow, Russia, 121019",
+        "address_line1": "Eat&talk",
+        "address_line2": "улица Воздвиженка 4, Arbat District, Moscow, Russia, 121019",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7530211,
+            "lon": 37.6108287,
+            "name": "Eat&talk",
+            "osm_id": 9983557916,
+            "street": "улица Воздвиженка",
+            "amenity": "cafe",
+            "osm_type": "n",
+            "_inherited": "",
+            "check_date": "2022-08-28",
+            "housenumber": 4,
+            "opening_hours": "24/7"
+          }
+        },
+        "opening_hours": "24/7",
+        "distance": 501,
+        "place_id": "51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6108287,
+          55.7530211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Central Federal District",
+        "state": "Moscow",
+        "city": "Moscow",
+        "postcode": "109548",
+        "suburb": "Yakimanka District",
+        "street": "Sofiyskaya Embankment",
+        "iso3166_2": "RU-MOW",
+        "lon": 37.624923,
+        "lat": 55.7486386,
+        "formatted": "Sofiyskaya Embankment, Yakimanka District, Moscow, Russia, 109548",
+        "address_line1": "Sofiyskaya Embankment",
+        "address_line2": "Yakimanka District, Moscow, Russia, 109548",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 55.7486386,
+            "lon": 37.624923,
+            "layer": 1,
+            "osm_id": 5106870691,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "distance": 513,
+        "place_id": "5155c2137afdcf424059f9c2bf63d3df4b40f00103f901a3a9643001000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.624923,
+          55.7486386
+        ]
+      }
+    }
+  ]
+}

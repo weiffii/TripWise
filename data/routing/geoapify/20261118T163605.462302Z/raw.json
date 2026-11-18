@@ -1,0 +1,2127 @@
+[
+  {
+    "from_poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+    "to_poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+    "parameters_without_key": {
+      "waypoints": "55.75596667678106,37.612584876915285|55.75531939361359,37.61774434220595",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.612584,
+                  55.755966
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.617744,
+                  55.755319
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 678,
+            "distance_units": "meters",
+            "time": 636.972,
+            "legs": [
+              {
+                "distance": 678,
+                "time": 636.972,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 3,
+                    "distance": 34,
+                    "time": 28.11,
+                    "instruction": {
+                      "text": "Walk northwest."
+                    }
+                  },
+                  {
+                    "from_index": 3,
+                    "to_index": 5,
+                    "distance": 42,
+                    "time": 38.669,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 5,
+                    "to_index": 6,
+                    "distance": 81,
+                    "time": 62.587,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 6,
+                    "to_index": 12,
+                    "distance": 173,
+                    "time": 191.658,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 12,
+                    "to_index": 13,
+                    "distance": 5,
+                    "time": 4.39,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 13,
+                    "to_index": 16,
+                    "distance": 10,
+                    "time": 8.78,
+                    "instruction": {
+                      "text": "Take the stairs to Level -1."
+                    }
+                  },
+                  {
+                    "from_index": 16,
+                    "to_index": 17,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Continue on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 17,
+                    "to_index": 18,
+                    "distance": 7,
+                    "time": 6.146,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 18,
+                    "to_index": 21,
+                    "distance": 23,
+                    "time": 20.195,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 21,
+                    "to_index": 29,
+                    "distance": 65,
+                    "time": 60.321,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 29,
+                    "to_index": 30,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 30,
+                    "to_index": 31,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Take the stairs."
+                    }
+                  },
+                  {
+                    "from_index": 31,
+                    "to_index": 33,
+                    "distance": 15,
+                    "time": 14.487,
+                    "instruction": {
+                      "text": "Bear left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 33,
+                    "to_index": 35,
+                    "distance": 41,
+                    "time": 41.004,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 35,
+                    "to_index": 37,
+                    "distance": 16,
+                    "time": 15.014,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 37,
+                    "to_index": 43,
+                    "distance": 94,
+                    "time": 84.011,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 43,
+                    "to_index": 44,
+                    "distance": 15,
+                    "time": 11.59,
+                    "instruction": {
+                      "text": "Continue on проезд Воскресенские Ворота."
+                    }
+                  },
+                  {
+                    "from_index": 44,
+                    "to_index": 49,
+                    "distance": 43,
+                    "time": 38.589,
+                    "instruction": {
+                      "text": "Keep right to stay on проезд Воскресенские Ворота."
+                    }
+                  },
+                  {
+                    "from_index": 49,
+                    "to_index": 49,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.61273,
+                  55.756098
+                ],
+                [
+                  37.612684,
+                  55.756114
+                ],
+                [
+                  37.612684,
+                  55.756156
+                ],
+                [
+                  37.612327,
+                  55.75628
+                ],
+                [
+                  37.612152,
+                  55.756233
+                ],
+                [
+                  37.611902,
+                  55.756006
+                ],
+                [
+                  37.613004,
+                  55.755625
+                ],
+                [
+                  37.613353,
+                  55.755951
+                ],
+                [
+                  37.613725,
+                  55.75635
+                ],
+                [
+                  37.613794,
+                  55.756411
+                ],
+                [
+                  37.614478,
+                  55.756837
+                ],
+                [
+                  37.614492,
+                  55.756859
+                ],
+                [
+                  37.614488,
+                  55.756916
+                ],
+                [
+                  37.614559,
+                  55.75693
+                ],
+                [
+                  37.614594,
+                  55.756951
+                ],
+                [
+                  37.614593,
+                  55.756972
+                ],
+                [
+                  37.614543,
+                  55.756997
+                ],
+                [
+                  37.61452,
+                  55.757009
+                ],
+                [
+                  37.61459,
+                  55.757053
+                ],
+                [
+                  37.61469,
+                  55.757
+                ],
+                [
+                  37.614753,
+                  55.756993
+                ],
+                [
+                  37.614872,
+                  55.75706
+                ],
+                [
+                  37.614901,
+                  55.757025
+                ],
+                [
+                  37.61492,
+                  55.757007
+                ],
+                [
+                  37.615011,
+                  55.756979
+                ],
+                [
+                  37.615142,
+                  55.756923
+                ],
+                [
+                  37.615243,
+                  55.756893
+                ],
+                [
+                  37.615613,
+                  55.756762
+                ],
+                [
+                  37.615677,
+                  55.756733
+                ],
+                [
+                  37.615721,
+                  55.756765
+                ],
+                [
+                  37.615743,
+                  55.756756
+                ],
+                [
+                  37.615847,
+                  55.756704
+                ],
+                [
+                  37.615896,
+                  55.756681
+                ],
+                [
+                  37.616017,
+                  55.756755
+                ],
+                [
+                  37.616309,
+                  55.7566
+                ],
+                [
+                  37.61649,
+                  55.756503
+                ],
+                [
+                  37.616435,
+                  55.756471
+                ],
+                [
+                  37.616316,
+                  55.7564
+                ],
+                [
+                  37.616496,
+                  55.756298
+                ],
+                [
+                  37.616721,
+                  55.756236
+                ],
+                [
+                  37.617037,
+                  55.756151
+                ],
+                [
+                  37.617184,
+                  55.756112
+                ],
+                [
+                  37.617478,
+                  55.755976
+                ],
+                [
+                  37.617541,
+                  55.755939
+                ],
+                [
+                  37.617704,
+                  55.755847
+                ],
+                [
+                  37.617743,
+                  55.755754
+                ],
+                [
+                  37.617885,
+                  55.755667
+                ],
+                [
+                  37.618017,
+                  55.755586
+                ],
+                [
+                  37.618097,
+                  55.755538
+                ],
+                [
+                  37.618097,
+                  55.755538
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.75596667678106,
+            "lon": 37.612584876915285
+          },
+          {
+            "lat": 55.75531939361359,
+            "lon": 37.61774434220595
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+    "to_poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+    "parameters_without_key": {
+      "waypoints": "55.75596667678106,37.612584876915285|55.756272,37.6186895",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.612584,
+                  55.755966
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.618689,
+                  55.756272
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 703,
+            "distance_units": "meters",
+            "time": 658.347,
+            "legs": [
+              {
+                "distance": 703,
+                "time": 658.347,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 3,
+                    "distance": 34,
+                    "time": 28.11,
+                    "instruction": {
+                      "text": "Walk northwest."
+                    }
+                  },
+                  {
+                    "from_index": 3,
+                    "to_index": 5,
+                    "distance": 42,
+                    "time": 38.669,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 5,
+                    "to_index": 6,
+                    "distance": 81,
+                    "time": 62.587,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 6,
+                    "to_index": 12,
+                    "distance": 173,
+                    "time": 191.658,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 12,
+                    "to_index": 13,
+                    "distance": 5,
+                    "time": 4.39,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 13,
+                    "to_index": 16,
+                    "distance": 10,
+                    "time": 8.78,
+                    "instruction": {
+                      "text": "Take the stairs to Level -1."
+                    }
+                  },
+                  {
+                    "from_index": 16,
+                    "to_index": 17,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Continue on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 17,
+                    "to_index": 18,
+                    "distance": 7,
+                    "time": 6.146,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 18,
+                    "to_index": 21,
+                    "distance": 23,
+                    "time": 20.195,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 21,
+                    "to_index": 29,
+                    "distance": 65,
+                    "time": 60.321,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 29,
+                    "to_index": 30,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 30,
+                    "to_index": 31,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Take the stairs."
+                    }
+                  },
+                  {
+                    "from_index": 31,
+                    "to_index": 33,
+                    "distance": 15,
+                    "time": 14.487,
+                    "instruction": {
+                      "text": "Bear left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 33,
+                    "to_index": 35,
+                    "distance": 41,
+                    "time": 41.004,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 35,
+                    "to_index": 37,
+                    "distance": 16,
+                    "time": 15.014,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 37,
+                    "to_index": 42,
+                    "distance": 88,
+                    "time": 78.743,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 42,
+                    "to_index": 47,
+                    "distance": 62,
+                    "time": 53.736,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 47,
+                    "to_index": 49,
+                    "distance": 27,
+                    "time": 23.085,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 49,
+                    "to_index": 49,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.61273,
+                  55.756098
+                ],
+                [
+                  37.612684,
+                  55.756114
+                ],
+                [
+                  37.612684,
+                  55.756156
+                ],
+                [
+                  37.612327,
+                  55.75628
+                ],
+                [
+                  37.612152,
+                  55.756233
+                ],
+                [
+                  37.611902,
+                  55.756006
+                ],
+                [
+                  37.613004,
+                  55.755625
+                ],
+                [
+                  37.613353,
+                  55.755951
+                ],
+                [
+                  37.613725,
+                  55.75635
+                ],
+                [
+                  37.613794,
+                  55.756411
+                ],
+                [
+                  37.614478,
+                  55.756837
+                ],
+                [
+                  37.614492,
+                  55.756859
+                ],
+                [
+                  37.614488,
+                  55.756916
+                ],
+                [
+                  37.614559,
+                  55.75693
+                ],
+                [
+                  37.614594,
+                  55.756951
+                ],
+                [
+                  37.614593,
+                  55.756972
+                ],
+                [
+                  37.614543,
+                  55.756997
+                ],
+                [
+                  37.61452,
+                  55.757009
+                ],
+                [
+                  37.61459,
+                  55.757053
+                ],
+                [
+                  37.61469,
+                  55.757
+                ],
+                [
+                  37.614753,
+                  55.756993
+                ],
+                [
+                  37.614872,
+                  55.75706
+                ],
+                [
+                  37.614901,
+                  55.757025
+                ],
+                [
+                  37.61492,
+                  55.757007
+                ],
+                [
+                  37.615011,
+                  55.756979
+                ],
+                [
+                  37.615142,
+                  55.756923
+                ],
+                [
+                  37.615243,
+                  55.756893
+                ],
+                [
+                  37.615613,
+                  55.756762
+                ],
+                [
+                  37.615677,
+                  55.756733
+                ],
+                [
+                  37.615721,
+                  55.756765
+                ],
+                [
+                  37.615743,
+                  55.756756
+                ],
+                [
+                  37.615847,
+                  55.756704
+                ],
+                [
+                  37.615896,
+                  55.756681
+                ],
+                [
+                  37.616017,
+                  55.756755
+                ],
+                [
+                  37.616309,
+                  55.7566
+                ],
+                [
+                  37.61649,
+                  55.756503
+                ],
+                [
+                  37.616435,
+                  55.756471
+                ],
+                [
+                  37.616316,
+                  55.7564
+                ],
+                [
+                  37.616496,
+                  55.756298
+                ],
+                [
+                  37.616721,
+                  55.756236
+                ],
+                [
+                  37.617037,
+                  55.756151
+                ],
+                [
+                  37.617184,
+                  55.756112
+                ],
+                [
+                  37.617478,
+                  55.755976
+                ],
+                [
+                  37.617557,
+                  55.756024
+                ],
+                [
+                  37.617768,
+                  55.756142
+                ],
+                [
+                  37.618024,
+                  55.756286
+                ],
+                [
+                  37.617969,
+                  55.75632
+                ],
+                [
+                  37.618066,
+                  55.756371
+                ],
+                [
+                  37.618129,
+                  55.756339
+                ],
+                [
+                  37.618393,
+                  55.756466
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.75596667678106,
+            "lon": 37.612584876915285
+          },
+          {
+            "lat": 55.756272,
+            "lon": 37.6186895
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+    "to_poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+    "parameters_without_key": {
+      "waypoints": "55.75531939361359,37.61774434220595|55.75596667678106,37.612584876915285",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.617744,
+                  55.755319
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.612584,
+                  55.755966
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 678,
+            "distance_units": "meters",
+            "time": 628.183,
+            "legs": [
+              {
+                "distance": 678,
+                "time": 628.183,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 5,
+                    "distance": 58,
+                    "time": 54.842,
+                    "instruction": {
+                      "text": "Walk northwest on проезд Воскресенские Ворота."
+                    }
+                  },
+                  {
+                    "from_index": 5,
+                    "to_index": 11,
+                    "distance": 93,
+                    "time": 94.091,
+                    "instruction": {
+                      "text": "Continue on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 11,
+                    "to_index": 13,
+                    "distance": 16,
+                    "time": 13.276,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 13,
+                    "to_index": 15,
+                    "distance": 41,
+                    "time": 32.558,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 15,
+                    "to_index": 17,
+                    "distance": 15,
+                    "time": 12.117,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 17,
+                    "to_index": 18,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Take the stairs to Level -1."
+                    }
+                  },
+                  {
+                    "from_index": 18,
+                    "to_index": 19,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Continue on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 19,
+                    "to_index": 27,
+                    "distance": 65,
+                    "time": 56.054,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 27,
+                    "to_index": 30,
+                    "distance": 23,
+                    "time": 20.195,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 30,
+                    "to_index": 31,
+                    "distance": 7,
+                    "time": 6.146,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 31,
+                    "to_index": 32,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 32,
+                    "to_index": 35,
+                    "distance": 10,
+                    "time": 8.78,
+                    "instruction": {
+                      "text": "Take the stairs."
+                    }
+                  },
+                  {
+                    "from_index": 35,
+                    "to_index": 36,
+                    "distance": 5,
+                    "time": 4.39,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 36,
+                    "to_index": 42,
+                    "distance": 173,
+                    "time": 160.926,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 42,
+                    "to_index": 43,
+                    "distance": 81,
+                    "time": 85.346,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 43,
+                    "to_index": 45,
+                    "distance": 42,
+                    "time": 35.824,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 45,
+                    "to_index": 48,
+                    "distance": 34,
+                    "time": 32.219,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 48,
+                    "to_index": 48,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.618097,
+                  55.755538
+                ],
+                [
+                  37.618017,
+                  55.755586
+                ],
+                [
+                  37.617885,
+                  55.755667
+                ],
+                [
+                  37.617743,
+                  55.755754
+                ],
+                [
+                  37.617704,
+                  55.755847
+                ],
+                [
+                  37.617541,
+                  55.755939
+                ],
+                [
+                  37.617478,
+                  55.755976
+                ],
+                [
+                  37.617184,
+                  55.756112
+                ],
+                [
+                  37.617037,
+                  55.756151
+                ],
+                [
+                  37.616721,
+                  55.756236
+                ],
+                [
+                  37.616496,
+                  55.756298
+                ],
+                [
+                  37.616316,
+                  55.7564
+                ],
+                [
+                  37.616435,
+                  55.756471
+                ],
+                [
+                  37.61649,
+                  55.756503
+                ],
+                [
+                  37.616309,
+                  55.7566
+                ],
+                [
+                  37.616017,
+                  55.756755
+                ],
+                [
+                  37.615896,
+                  55.756681
+                ],
+                [
+                  37.615847,
+                  55.756704
+                ],
+                [
+                  37.615743,
+                  55.756756
+                ],
+                [
+                  37.615721,
+                  55.756765
+                ],
+                [
+                  37.615677,
+                  55.756733
+                ],
+                [
+                  37.615613,
+                  55.756762
+                ],
+                [
+                  37.615243,
+                  55.756893
+                ],
+                [
+                  37.615142,
+                  55.756923
+                ],
+                [
+                  37.615011,
+                  55.756979
+                ],
+                [
+                  37.61492,
+                  55.757007
+                ],
+                [
+                  37.614901,
+                  55.757025
+                ],
+                [
+                  37.614872,
+                  55.75706
+                ],
+                [
+                  37.614753,
+                  55.756993
+                ],
+                [
+                  37.61469,
+                  55.757
+                ],
+                [
+                  37.61459,
+                  55.757053
+                ],
+                [
+                  37.61452,
+                  55.757009
+                ],
+                [
+                  37.614543,
+                  55.756997
+                ],
+                [
+                  37.614593,
+                  55.756972
+                ],
+                [
+                  37.614594,
+                  55.756951
+                ],
+                [
+                  37.614559,
+                  55.75693
+                ],
+                [
+                  37.614488,
+                  55.756916
+                ],
+                [
+                  37.614492,
+                  55.756859
+                ],
+                [
+                  37.614478,
+                  55.756837
+                ],
+                [
+                  37.613794,
+                  55.756411
+                ],
+                [
+                  37.613725,
+                  55.75635
+                ],
+                [
+                  37.613353,
+                  55.755951
+                ],
+                [
+                  37.613004,
+                  55.755625
+                ],
+                [
+                  37.611902,
+                  55.756006
+                ],
+                [
+                  37.612152,
+                  55.756233
+                ],
+                [
+                  37.612327,
+                  55.75628
+                ],
+                [
+                  37.612684,
+                  55.756156
+                ],
+                [
+                  37.612684,
+                  55.756114
+                ],
+                [
+                  37.61273,
+                  55.756098
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.75531939361359,
+            "lon": 37.61774434220595
+          },
+          {
+            "lat": 55.75596667678106,
+            "lon": 37.612584876915285
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+    "to_poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+    "parameters_without_key": {
+      "waypoints": "55.75531939361359,37.61774434220595|55.756272,37.6186895",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.617744,
+                  55.755319
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.618689,
+                  55.756272
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 153,
+            "distance_units": "meters",
+            "time": 136.932,
+            "legs": [
+              {
+                "distance": 153,
+                "time": 136.932,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 5,
+                    "distance": 58,
+                    "time": 54.842,
+                    "instruction": {
+                      "text": "Walk northwest on проезд Воскресенские Ворота."
+                    }
+                  },
+                  {
+                    "from_index": 5,
+                    "to_index": 6,
+                    "distance": 6,
+                    "time": 5.268,
+                    "instruction": {
+                      "text": "Continue on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 6,
+                    "to_index": 11,
+                    "distance": 62,
+                    "time": 53.736,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 11,
+                    "to_index": 13,
+                    "distance": 27,
+                    "time": 23.085,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 13,
+                    "to_index": 13,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.618097,
+                  55.755538
+                ],
+                [
+                  37.618017,
+                  55.755586
+                ],
+                [
+                  37.617885,
+                  55.755667
+                ],
+                [
+                  37.617743,
+                  55.755754
+                ],
+                [
+                  37.617704,
+                  55.755847
+                ],
+                [
+                  37.617541,
+                  55.755939
+                ],
+                [
+                  37.617478,
+                  55.755976
+                ],
+                [
+                  37.617557,
+                  55.756024
+                ],
+                [
+                  37.617768,
+                  55.756142
+                ],
+                [
+                  37.618024,
+                  55.756286
+                ],
+                [
+                  37.617969,
+                  55.75632
+                ],
+                [
+                  37.618066,
+                  55.756371
+                ],
+                [
+                  37.618129,
+                  55.756339
+                ],
+                [
+                  37.618393,
+                  55.756466
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.75531939361359,
+            "lon": 37.61774434220595
+          },
+          {
+            "lat": 55.756272,
+            "lon": 37.6186895
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+    "to_poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+    "parameters_without_key": {
+      "waypoints": "55.756272,37.6186895|55.75596667678106,37.612584876915285",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.618689,
+                  55.756272
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.612584,
+                  55.755966
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 658,
+            "distance_units": "meters",
+            "time": 638.896,
+            "legs": [
+              {
+                "distance": 658,
+                "time": 638.896,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 4,
+                    "distance": 42,
+                    "time": 44.824,
+                    "instruction": {
+                      "text": "Walk southwest on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 4,
+                    "to_index": 8,
+                    "distance": 29,
+                    "time": 27.131,
+                    "instruction": {
+                      "text": "Keep left to take the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 8,
+                    "to_index": 23,
+                    "distance": 118,
+                    "time": 133.524,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 23,
+                    "to_index": 25,
+                    "distance": 15,
+                    "time": 12.117,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 25,
+                    "to_index": 26,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Take the stairs to Level -1."
+                    }
+                  },
+                  {
+                    "from_index": 26,
+                    "to_index": 27,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Continue on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 27,
+                    "to_index": 35,
+                    "distance": 65,
+                    "time": 56.054,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 35,
+                    "to_index": 38,
+                    "distance": 23,
+                    "time": 20.195,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 38,
+                    "to_index": 39,
+                    "distance": 7,
+                    "time": 6.146,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 39,
+                    "to_index": 40,
+                    "distance": 2,
+                    "time": 1.756,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 40,
+                    "to_index": 43,
+                    "distance": 10,
+                    "time": 8.78,
+                    "instruction": {
+                      "text": "Take the stairs."
+                    }
+                  },
+                  {
+                    "from_index": 43,
+                    "to_index": 44,
+                    "distance": 5,
+                    "time": 4.39,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 44,
+                    "to_index": 50,
+                    "distance": 173,
+                    "time": 160.926,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 50,
+                    "to_index": 51,
+                    "distance": 81,
+                    "time": 85.346,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 51,
+                    "to_index": 53,
+                    "distance": 42,
+                    "time": 35.824,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 53,
+                    "to_index": 56,
+                    "distance": 34,
+                    "time": 32.219,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 56,
+                    "to_index": 56,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.618393,
+                  55.756466
+                ],
+                [
+                  37.618129,
+                  55.756339
+                ],
+                [
+                  37.618066,
+                  55.756371
+                ],
+                [
+                  37.618057,
+                  55.756375
+                ],
+                [
+                  37.617884,
+                  55.756454
+                ],
+                [
+                  37.61778,
+                  55.756448
+                ],
+                [
+                  37.61763,
+                  55.756519
+                ],
+                [
+                  37.617536,
+                  55.756563
+                ],
+                [
+                  37.617512,
+                  55.756575
+                ],
+                [
+                  37.617418,
+                  55.756516
+                ],
+                [
+                  37.617333,
+                  55.756483
+                ],
+                [
+                  37.617031,
+                  55.756398
+                ],
+                [
+                  37.61701,
+                  55.756389
+                ],
+                [
+                  37.617,
+                  55.756384
+                ],
+                [
+                  37.616964,
+                  55.756374
+                ],
+                [
+                  37.616922,
+                  55.756366
+                ],
+                [
+                  37.616877,
+                  55.75636
+                ],
+                [
+                  37.616833,
+                  55.75636
+                ],
+                [
+                  37.616789,
+                  55.756364
+                ],
+                [
+                  37.616751,
+                  55.756372
+                ],
+                [
+                  37.616716,
+                  55.756384
+                ],
+                [
+                  37.61649,
+                  55.756503
+                ],
+                [
+                  37.616309,
+                  55.7566
+                ],
+                [
+                  37.616017,
+                  55.756755
+                ],
+                [
+                  37.615896,
+                  55.756681
+                ],
+                [
+                  37.615847,
+                  55.756704
+                ],
+                [
+                  37.615743,
+                  55.756756
+                ],
+                [
+                  37.615721,
+                  55.756765
+                ],
+                [
+                  37.615677,
+                  55.756733
+                ],
+                [
+                  37.615613,
+                  55.756762
+                ],
+                [
+                  37.615243,
+                  55.756893
+                ],
+                [
+                  37.615142,
+                  55.756923
+                ],
+                [
+                  37.615011,
+                  55.756979
+                ],
+                [
+                  37.61492,
+                  55.757007
+                ],
+                [
+                  37.614901,
+                  55.757025
+                ],
+                [
+                  37.614872,
+                  55.75706
+                ],
+                [
+                  37.614753,
+                  55.756993
+                ],
+                [
+                  37.61469,
+                  55.757
+                ],
+                [
+                  37.61459,
+                  55.757053
+                ],
+                [
+                  37.61452,
+                  55.757009
+                ],
+                [
+                  37.614543,
+                  55.756997
+                ],
+                [
+                  37.614593,
+                  55.756972
+                ],
+                [
+                  37.614594,
+                  55.756951
+                ],
+                [
+                  37.614559,
+                  55.75693
+                ],
+                [
+                  37.614488,
+                  55.756916
+                ],
+                [
+                  37.614492,
+                  55.756859
+                ],
+                [
+                  37.614478,
+                  55.756837
+                ],
+                [
+                  37.613794,
+                  55.756411
+                ],
+                [
+                  37.613725,
+                  55.75635
+                ],
+                [
+                  37.613353,
+                  55.755951
+                ],
+                [
+                  37.613004,
+                  55.755625
+                ],
+                [
+                  37.611902,
+                  55.756006
+                ],
+                [
+                  37.612152,
+                  55.756233
+                ],
+                [
+                  37.612327,
+                  55.75628
+                ],
+                [
+                  37.612684,
+                  55.756156
+                ],
+                [
+                  37.612684,
+                  55.756114
+                ],
+                [
+                  37.61273,
+                  55.756098
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.756272,
+            "lon": 37.6186895
+          },
+          {
+            "lat": 55.75596667678106,
+            "lon": 37.612584876915285
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+    "to_poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+    "parameters_without_key": {
+      "waypoints": "55.756272,37.6186895|55.75531939361359,37.61774434220595",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.618689,
+                  55.756272
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.617744,
+                  55.755319
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 153,
+            "distance_units": "meters",
+            "time": 154.518,
+            "legs": [
+              {
+                "distance": 153,
+                "time": 154.518,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 2,
+                    "distance": 27,
+                    "time": 31.653,
+                    "instruction": {
+                      "text": "Walk southwest on the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 2,
+                    "to_index": 5,
+                    "distance": 36,
+                    "time": 34.77,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 5,
+                    "to_index": 7,
+                    "distance": 26,
+                    "time": 32.645,
+                    "instruction": {
+                      "text": "Keep left to take the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 7,
+                    "to_index": 8,
+                    "distance": 6,
+                    "time": 5.268,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 8,
+                    "to_index": 9,
+                    "distance": 15,
+                    "time": 11.59,
+                    "instruction": {
+                      "text": "Continue on проезд Воскресенские Ворота."
+                    }
+                  },
+                  {
+                    "from_index": 9,
+                    "to_index": 14,
+                    "distance": 43,
+                    "time": 38.589,
+                    "instruction": {
+                      "text": "Keep right to stay on проезд Воскресенские Ворота."
+                    }
+                  },
+                  {
+                    "from_index": 14,
+                    "to_index": 14,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.618393,
+                  55.756466
+                ],
+                [
+                  37.618129,
+                  55.756339
+                ],
+                [
+                  37.618066,
+                  55.756371
+                ],
+                [
+                  37.617969,
+                  55.75632
+                ],
+                [
+                  37.618024,
+                  55.756286
+                ],
+                [
+                  37.617768,
+                  55.756142
+                ],
+                [
+                  37.617557,
+                  55.756024
+                ],
+                [
+                  37.617478,
+                  55.755976
+                ],
+                [
+                  37.617541,
+                  55.755939
+                ],
+                [
+                  37.617704,
+                  55.755847
+                ],
+                [
+                  37.617743,
+                  55.755754
+                ],
+                [
+                  37.617885,
+                  55.755667
+                ],
+                [
+                  37.618017,
+                  55.755586
+                ],
+                [
+                  37.618097,
+                  55.755538
+                ],
+                [
+                  37.618097,
+                  55.755538
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.756272,
+            "lon": 37.6186895
+          },
+          {
+            "lat": 55.75531939361359,
+            "lon": 37.61774434220595
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  }
+]

@@ -159,6 +159,10 @@ def recommend(preferences, pois, *, evaluated_at=None):
     if len(scales) > 1:
         warnings.append({'code': 'RATING_SCALE_COMPARABILITY_ASSUMED', 'poi_id': None})
     primary, secondary = set(preferences['primary_interests']), set(preferences['secondary_interests'])
+    if not candidates:
+        warnings.append({'code': 'NO_CANDIDATES_FOR_DESTINATION', 'poi_id': None})
+    elif not any(primary.intersection(p['categories']) for p in candidates):
+        warnings.append({'code': 'NO_PRIMARY_INTEREST_MATCH', 'poi_id': None})
     scored = []
     for p in sorted(candidates, key=lambda p: p['id']):
         rating, popularity = p['rating'], p['popularity']

@@ -1,0 +1,148 @@
+{
+  "routing_context": {
+    "schema_version": "0.2",
+    "endpoint_policy": "first_last_poi",
+    "pace_policy_version": "pace-policy-v0.2",
+    "unknown_duration_policy": "strict",
+    "poi_snapshot_id": "synthetic_multiday_fixture",
+    "duration_overrides": [],
+    "opening_intervals": [],
+    "cost_context": null,
+    "days": [
+      {
+        "date": "2026-11-17",
+        "day_start": "2026-11-17T09:00:00+03:00",
+        "day_end": "2026-11-17T15:00:00+03:00",
+        "meal_break": null,
+        "blocked_intervals": [],
+        "max_active_seconds": null
+      },
+      {
+        "date": "2026-11-18",
+        "day_start": "2026-11-18T09:00:00+03:00",
+        "day_end": "2026-11-18T15:00:00+03:00",
+        "meal_break": null,
+        "blocked_intervals": [],
+        "max_active_seconds": null
+      }
+    ]
+  },
+  "travel_times": {
+    "mode": "walking",
+    "basis": "test_matrix",
+    "source_id": "synthetic_multiday_matrix",
+    "retrieved_at": null,
+    "valid_for": null,
+    "pairs": [
+      {
+        "from_poi_id": "synthetic:multiday-00",
+        "to_poi_id": "synthetic:multiday-01",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-00",
+        "to_poi_id": "synthetic:multiday-02",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-00",
+        "to_poi_id": "synthetic:multiday-03",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-01",
+        "to_poi_id": "synthetic:multiday-00",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-01",
+        "to_poi_id": "synthetic:multiday-02",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-01",
+        "to_poi_id": "synthetic:multiday-03",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-02",
+        "to_poi_id": "synthetic:multiday-00",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-02",
+        "to_poi_id": "synthetic:multiday-01",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-02",
+        "to_poi_id": "synthetic:multiday-03",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-03",
+        "to_poi_id": "synthetic:multiday-00",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-03",
+        "to_poi_id": "synthetic:multiday-01",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      },
+      {
+        "from_poi_id": "synthetic:multiday-03",
+        "to_poi_id": "synthetic:multiday-02",
+        "status": "known",
+        "duration_seconds": 600,
+        "distance_meters": 700,
+        "geometry": null,
+        "navigation_url": "https://example.org/synthetic-navigation"
+      }
+    ]
+  },
+  "is_synthetic": true
+}

@@ -1,0 +1,10 @@
+{
+  "interestChanged": true,
+  "paceChanged": true,
+  "lowBudget": true,
+  "syntheticBudgetDisabled": true,
+  "assistant": true,
+  "overflow": false,
+  "errors": [],
+  "network_requests": 0
+}

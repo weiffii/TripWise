@@ -1,0 +1,52 @@
+{
+  "checked_date": "2026-11-17",
+  "source_id": "openstreetmap",
+  "status": "blocked",
+  "real_poi_count": 0,
+  "snapshots_created": 0,
+  "attempts": [
+    {
+      "city_key": "moscow",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "execution": "sandbox",
+      "result": "WinError 10013: socket access denied"
+    },
+    {
+      "city_key": "moscow",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "execution": "require_escalated",
+      "result": "The read operation timed out"
+    },
+    {
+      "city_key": "saint-petersburg",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "execution": "sandbox",
+      "result": "WinError 10013: socket access denied"
+    },
+    {
+      "city_key": "saint-petersburg",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "execution": "require_escalated",
+      "result": "The read operation timed out"
+    },
+    {
+      "city_key": "moscow",
+      "endpoint": "https://overpass.private.coffee/api/interpreter",
+      "execution": "sandbox",
+      "result": "WinError 10013: socket access denied"
+    },
+    {
+      "city_key": "moscow",
+      "endpoint": "https://overpass.private.coffee/api/interpreter",
+      "execution": "require_escalated",
+      "max_attempts": 1,
+      "timeout_seconds": 45,
+      "result": "Remote end closed connection without response"
+    }
+  ],
+  "limitations": [
+    "No valid Overpass response was received",
+    "Mock payloads used in unit tests are not real OSM data",
+    "Zero received POIs does not indicate zero POI coverage in either city"
+  ]
+}

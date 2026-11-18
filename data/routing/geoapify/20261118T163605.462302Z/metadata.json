@@ -1,0 +1,26 @@
+{
+  "source_id": "geoapify_routing",
+  "source_url": "https://apidocs.geoapify.com/docs/routing/",
+  "retrieved_at": "2026-11-18T16:36:05.462302+00:00",
+  "http_attempt_count": 6,
+  "max_requests": 6,
+  "successful_pairs": 6,
+  "expected_pairs": 6,
+  "coverage_complete": true,
+  "stop_reason": "target_reached",
+  "errors": [],
+  "attribution": [
+    "Powered by Geoapify",
+    "OpenStreetMap contributors"
+  ],
+  "input_is_synthetic": false,
+  "test_mode": false,
+  "credit_balance_known": false,
+  "limitations": [
+    "Provider estimate, not observed walking time",
+    "POI coordinates are not independently verified entrances",
+    "No confirmation of access restrictions or opening hours",
+    "Walking only; no transit schedules or parking validation",
+    "No visit durations or prices are inferred"
+  ]
+}

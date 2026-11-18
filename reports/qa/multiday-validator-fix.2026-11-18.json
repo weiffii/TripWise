@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-18",
+  "independent_qa": "qa_current_v02",
+  "defect": "Validator accepted malformed output and budget passed when canonical budget not_checked",
+  "confirmed_before": [
+    "budget passed accepted",
+    "empty checks accepted",
+    "invalid status accepted",
+    "missing status accepted"
+  ],
+  "before_regression": "test_validator_rejects_budget_passed_when_no_budget_was_checked failed: True is not false",
+  "fix": [
+    "exact check field set and enums",
+    "passed only when canonical passed",
+    "route status enum",
+    "infeasible requires canonical proof",
+    "feasible conflicts with unknown or failed checks rejected"
+  ],
+  "before_sha256": "ae3810a4c8234df254c2a263b0b3d7c44abae050f9eac004152ae49f662d7a77",
+  "after_sha256": "48d6fd0cd24bba78501d4bcc03d1486681afda5d3b7f80368f393e57ccd9ddd7",
+  "after_suite": {
+    "independent_targeted_passed": 67,
+    "full_isolated_passed": 188,
+    "negative_probes_rejected": 4,
+    "evidence": "reports/qa/clean-bundle-tests.2026-11-18.json"
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "synthetic:multiday-00",
+    "name": "Synthetic multiday POI 0",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": 120,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "multiday-0",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:multiday-01",
+    "name": "Synthetic multiday POI 1",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": 120,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "multiday-1",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:multiday-02",
+    "name": "Synthetic multiday POI 2",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": 120,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "multiday-2",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  },
+  {
+    "id": "synthetic:multiday-03",
+    "name": "Synthetic multiday POI 3",
+    "country_code": "RU",
+    "city": "Тестовый город",
+    "coordinates": {
+      "latitude": 55.75,
+      "longitude": 37.62
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": 120,
+    "visit_duration_basis": "test_fixture",
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "synthetic_fixture",
+      "source_record_id": "multiday-3",
+      "source_url": null,
+      "retrieved_at": null,
+      "verified_at": null,
+      "is_synthetic": true
+    }
+  }
+]

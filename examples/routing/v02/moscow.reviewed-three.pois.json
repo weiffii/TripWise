@@ -1,0 +1,86 @@
+[
+  {
+    "id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+    "name": "Исторический музей",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75531939361359,
+      "longitude": 37.61774434220595
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:38:36.768006+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+    "name": "Музей Отечественной войны 1812 года",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.756272,
+      "longitude": 37.6186895
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:38:36.768006+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+    "name": "Государственный геологический музей им. В. И. Вернадского",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75596667678106,
+      "longitude": 37.612584876915285
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:38:36.768006+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  }
+]

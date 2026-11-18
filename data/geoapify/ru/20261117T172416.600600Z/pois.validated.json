@@ -1,0 +1,2130 @@
+[
+  {
+    "id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+    "name": "Грановитая палата",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75051342115356,
+      "longitude": 37.61669342304547
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+    "name": "Патриаршие палаты",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.751201595566535,
+      "longitude": 37.61670292672185
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Большой Кремлёвский дворец",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75022483892692,
+      "longitude": 37.61575341821598
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Теремной дворец",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7505837,
+      "longitude": 37.6156276
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+    "name": "Тайницкий Сад",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75017520645997,
+      "longitude": 37.61925766778485
+    },
+    "categories": [
+      "nature"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+    "name": "Чудов монастырь",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75166343076104,
+      "longitude": 37.618919431336735
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Малый Николаевский дворец",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7515387,
+      "longitude": 37.619297700000004
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+    "name": "Большой Кремлёвский сквер",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75104042409033,
+      "longitude": 37.62030719039332
+    },
+    "categories": [
+      "nature"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Потешный дворец",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.751241187606915,
+      "longitude": 37.61441395024666
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+    "name": "Храм Чуда Архистратига Михаила в Хонех",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.752286908403825,
+      "longitude": 37.61919870577999
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+    "name": "Алмазный фонд",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.749614,
+      "longitude": 37.613758
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+    "name": "Оружейная палата",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.749582778020155,
+      "longitude": 37.613434827686405
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+    "name": "Церковь Св. Екатерины",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.752185442794364,
+      "longitude": 37.620762489078366
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+    "name": "Вознесенский собор",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75247010636479,
+      "longitude": 37.62029979095186
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+    "name": "Александровский сад",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75197523436096,
+      "longitude": 37.61352952994985
+    },
+    "categories": [
+      "nature"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Сенатский дворец",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75323718126065,
+      "longitude": 37.618576998723434
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+    "name": "София",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7481639,
+      "longitude": 37.6215668
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+    "name": "Грот «Руины»",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7537642,
+      "longitude": 37.6153707
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+    "name": "Plasenn Ruz",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75408,
+      "longitude": 37.6204643
+    },
+    "categories": [
+      "viewpoints"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+    "name": "Dостоевский",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7523012,
+      "longitude": 37.6110659
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+    "name": "Eat&talk",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7530211,
+      "longitude": 37.6108287
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+    "name": "Пушкинъ",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7546584,
+      "longitude": 37.6212906
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+    "name": "Tea room",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7468003,
+      "longitude": 37.6225041
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+    "name": "Государственный универсальный магазин (ГУМ)",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75469677040853,
+      "longitude": 37.62142403421369
+    },
+    "categories": [
+      "shopping"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+    "name": "Исторический музей",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75531939361359,
+      "longitude": 37.61774434220595
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+    "name": "ShakeUp",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7547853,
+      "longitude": 37.6131784
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+    "name": "Фестивальное",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7544221,
+      "longitude": 37.6228179
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+    "name": "Фестивальное 2",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7550912,
+      "longitude": 37.6210992
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+    "name": "Дом Пашкова",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.74995039213438,
+      "longitude": 37.6083983657122
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+    "name": "Чайхана Лаззат",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75534032981566,
+      "longitude": 37.614076405815936
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+    "name": "Музей книги",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7522192,
+      "longitude": 37.6087385
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+    "name": "Cofix",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7555188,
+      "longitude": 37.6147655
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+    "name": "Ивановский зал РГБ",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75079668648363,
+      "longitude": 37.608244167975805
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+    "name": "Дворный Пивик",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75537391426638,
+      "longitude": 37.61371921264594
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+    "name": "Kurnik",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7551528,
+      "longitude": 37.6220302
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+    "name": "Cofix",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7554675,
+      "longitude": 37.6140437
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+    "name": "Счастье",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7556316,
+      "longitude": 37.6202479
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+    "name": "Репинский сквер",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.74520570201111,
+      "longitude": 37.61768407157884
+    },
+    "categories": [
+      "nature"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+    "name": "Галерея Александра Шилова",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7490545,
+      "longitude": 37.608298
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+    "name": "Кофе Хауз",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75576939779695,
+      "longitude": 37.61475786951749
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+    "name": "Cofix",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7558418,
+      "longitude": 37.6150821
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+    "name": "Торговый комплекс «Охотный ряд»",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75580882089323,
+      "longitude": 37.61468584811464
+    },
+    "categories": [
+      "shopping"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+    "name": "Шоколадница",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7561894601727,
+      "longitude": 37.615745121966256
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+    "name": "Мемориальный музей-квартира Тимирязева Климента Аркадьевича",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.754143,
+      "longitude": 37.6095016
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+    "name": "Музей Отечественной войны 1812 года",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.756272,
+      "longitude": 37.6186895
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+    "name": "Кофеин",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7560632,
+      "longitude": 37.6204749
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+    "name": "Музей археологии Москвы",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7563277,
+      "longitude": 37.6171792
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+    "name": "Tutti Frutti",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7562971184965,
+      "longitude": 37.61632973416419
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+    "name": "Манежка.Ru",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75638484787083,
+      "longitude": 37.61594494338797
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+    "name": "Трапезная",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7525567,
+      "longitude": 37.6275028
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+    "name": "Государственный музей архитектуры им. А. В. Щусева",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.752462716989506,
+      "longitude": 37.607313350632474
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+    "name": "Государственный геологический музей им. В. И. Вернадского",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.75596667678106,
+      "longitude": 37.612584876915285
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+    "name": "Трапезная",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7558486,
+      "longitude": 37.6228188
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+    "name": "Prosvet",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7546358,
+      "longitude": 37.6256038
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+    "name": "Пельмени & Пельмени",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.747311,
+      "longitude": 37.6081919
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+    "name": "Дом на набережной",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7451872,
+      "longitude": 37.6119663
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+    "name": "Шоколадница",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7566505,
+      "longitude": 37.6192744
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+    "name": "LNVKофе",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.747018,
+      "longitude": 37.6083032
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+    "name": "Гастрономический центр \"Зарядье\"",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.750396977333594,
+      "longitude": 37.628583785282295
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+    "name": "Prime",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7469452,
+      "longitude": 37.6266387
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+    "name": "Fine",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7471795,
+      "longitude": 37.607895
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+    "name": "Триумф",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7472834,
+      "longitude": 37.6076933
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+    "name": "Подземный музей",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7500056,
+      "longitude": 37.6288121
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+    "name": "Coffee Inn",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7476224,
+      "longitude": 37.6276765
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+    "name": "парк «Зарядье»",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.751046237174926,
+      "longitude": 37.628918121750615
+    },
+    "categories": [
+      "nature"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+    "name": "Даблби",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7471201,
+      "longitude": 37.6074749
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+    "name": "Кулинарная лавка братьев Караваевых",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7528751,
+      "longitude": 37.6065123
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+    "name": "Cofix",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7568131,
+      "longitude": 37.6212521
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+    "name": "Место притяжения",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7568301,
+      "longitude": 37.6212191
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+    "name": "Старик Хинкалыч",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7470621,
+      "longitude": 37.6074097
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+    "name": "Археологический выставочный комплекс \"Старый \"Гостиный двор\"",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7538794,
+      "longitude": 37.6277982
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+    "name": "Лалибела кофе",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7470041,
+      "longitude": 37.6073358
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+    "name": "Каппо Хироки Аракава",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7572817,
+      "longitude": 37.6171365
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+    "name": "Гурмэ",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.756879,
+      "longitude": 37.621849
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+    "name": "Surf Coffee",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7573283,
+      "longitude": 37.618313
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+    "name": "Оружейный подвал",
+    "country_code": "RU",
+    "city": "Москва",
+    "coordinates": {
+      "latitude": 55.7569368,
+      "longitude": 37.6217781
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:16.600600+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  }
+]

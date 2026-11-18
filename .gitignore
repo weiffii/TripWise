@@ -1,0 +1,12 @@
+# Python runtime files
+__pycache__/
+*.py[cod]
+
+# Local credentials
+.env
+.env.*
+!.env.example
+
+# Generated handoff archives and private staging
+artifacts/*.zip
+artifacts/ai-ds-clean-*/

@@ -1,0 +1,168 @@
+{
+  "schema_version": "0.2",
+  "model_version": "multiday-insertion-v0.2",
+  "route_id": null,
+  "version": null,
+  "status": "unknown",
+  "poi_snapshot_id": "data/routing/geoapify/20261118T074145.332517Z#reviewed-two-pois",
+  "days": [
+    {
+      "date": "2026-11-18",
+      "visits": [
+        {
+          "poi_id": "geoapify:514c9bbba7bccf424059a2e0737165e14b40f00103f901013d226601000000920344d09cd183d0b7d0b5d0b920d18dd0bad181d0bbd0b8d0b1d180d0b8d181d0b020d0b820d0bcd0b8d0bdd0b8d0b0d182d18ed180d0bdd0bed0b920d0bad0bdd0b8d0b3d0b8",
+          "start_at": "2026-11-18T12:00:00+03:00",
+          "end_at": "2026-11-18T13:00:00+03:00",
+          "duration_basis": "expert_estimate"
+        },
+        {
+          "poi_id": "geoapify:514c0025d7a4cf4240599f36556691e14b40f00101f901c6bb28000000000092032ed09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b4d0bed0bc20d185d183d0b4d0bed0b6d0bdd0b8d0bad0b0",
+          "start_at": "2026-11-18T13:19:32.403000+03:00",
+          "end_at": "2026-11-18T14:19:32.403000+03:00",
+          "duration_basis": "expert_estimate"
+        }
+      ],
+      "legs": [
+        {
+          "from_poi_id": "geoapify:514c9bbba7bccf424059a2e0737165e14b40f00103f901013d226601000000920344d09cd183d0b7d0b5d0b920d18dd0bad181d0bbd0b8d0b1d180d0b8d181d0b020d0b820d0bcd0b8d0bdd0b8d0b0d182d18ed180d0bdd0bed0b920d0bad0bdd0b8d0b3d0b8",
+          "to_poi_id": "geoapify:514c0025d7a4cf4240599f36556691e14b40f00101f901c6bb28000000000092032ed09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b4d0bed0bc20d185d183d0b4d0bed0b6d0bdd0b8d0bad0b0",
+          "duration_seconds": 272.403,
+          "distance_meters": 277,
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                37.622889,
+                55.760908
+              ],
+              [
+                37.62289,
+                55.760857
+              ],
+              [
+                37.622892,
+                55.760825
+              ],
+              [
+                37.62347,
+                55.760785
+              ],
+              [
+                37.623597,
+                55.760789
+              ],
+              [
+                37.623554,
+                55.761485
+              ],
+              [
+                37.623548,
+                55.761583
+              ],
+              [
+                37.623538,
+                55.761738
+              ],
+              [
+                37.623527,
+                55.761922
+              ],
+              [
+                37.623519,
+                55.762045
+              ],
+              [
+                37.623505,
+                55.762083
+              ],
+              [
+                37.62348,
+                55.762112
+              ],
+              [
+                37.623456,
+                55.762128
+              ],
+              [
+                37.623415,
+                55.762143
+              ],
+              [
+                37.623383,
+                55.762149
+              ],
+              [
+                37.623343,
+                55.762149
+              ],
+              [
+                37.622328,
+                55.762005
+              ]
+            ]
+          },
+          "navigation_url": null,
+          "retrieved_at": "2026-11-18T07:41:45.332517+00:00",
+          "basis": "routing_provider",
+          "source_id": "geoapify_routing",
+          "start_at": "2026-11-18T13:15:00+03:00",
+          "end_at": "2026-11-18T13:19:32.403000+03:00"
+        }
+      ],
+      "breaks": [
+        {
+          "start_at": "2026-11-18T13:00:00+03:00",
+          "end_at": "2026-11-18T13:15:00+03:00",
+          "kind": "rest"
+        }
+      ],
+      "pace": "balanced",
+      "active_limit_seconds": 15120.0,
+      "rest_after_visit_seconds": 900.0,
+      "active_seconds": 7472.403,
+      "visit_span_seconds": 8372.403,
+      "elapsed_seconds": 8372.403,
+      "constraint_checks": {
+        "time": "passed",
+        "opening_hours": "unknown"
+      },
+      "warnings": [
+        "ESTIMATED_VISIT_DURATION",
+        "MEAL_BREAK_NOT_CONFIGURED",
+        "OPENING_HOURS_NOT_VERIFIED"
+      ]
+    }
+  ],
+  "unplaced_required_poi_ids": [],
+  "unresolved_candidate_ids": [],
+  "warnings": [
+    "AVAILABILITY_UNKNOWN",
+    "ESTIMATED_VISIT_DURATION",
+    "HOTEL_TRANSFERS_NOT_INCLUDED",
+    "MEAL_BREAK_NOT_CONFIGURED",
+    "OPENING_HOURS_NOT_VERIFIED"
+  ],
+  "constraint_checks": {
+    "time": "passed",
+    "required_places": "passed",
+    "opening_hours": "unknown",
+    "budget": "not_checked"
+  },
+  "budget_summary": {
+    "status": "not_checked",
+    "known_total": null,
+    "currency": null,
+    "unknown_items": [],
+    "warnings": []
+  },
+  "diagnostics": [],
+  "planning_metadata": {
+    "algorithm": "multiday-insertion-v0.2",
+    "search_complete": false,
+    "candidate_count": 2,
+    "selected_count": 2,
+    "pool_scope": "recommendation_items_plus_required",
+    "pace_policy_version": "pace-policy-v0.2",
+    "unknown_duration_policy": "strict"
+  }
+}

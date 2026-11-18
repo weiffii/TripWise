@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-18",
+  "exit_code": 0,
+  "test_count": 189,
+  "passed": true,
+  "environment": "isolated directory on same Python/OS; API keys removed",
+  "live_network_requests": 0,
+  "archive": "artifacts/tripwise-ai-ds-2026-11-18-v3.zip",
+  "archive_sha256": "73fb75ae30d83a8205e72267605cc580dfa775d60fa91e393331a55b5007d9b1",
+  "source_files": 172
+}

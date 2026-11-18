@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-18",
+  "component": "ai_ds.multiday._result",
+  "defect": "Known explicit schedule failure overwritten by no-selected-visits unknown status",
+  "test": "test_exact_active_cap_and_one_microsecond_below",
+  "input": "one explicit synthetic visit of 3600s, active cap3599.999999s, no required IDs",
+  "expected_time_check": "failed",
+  "observed_before": "unknown",
+  "before_suite": {
+    "total": 23,
+    "failures": 1
+  },
+  "old_condition": "if not selected and not required:",
+  "new_condition": "if not selected and not required and not issues:",
+  "before_sha256": "40bac2c6bae90655c856c4f62b100fbf766c98f0e11a29d675409ee863322d0c",
+  "after_sha256": "ae3810a4c8234df254c2a263b0b3d7c44abae050f9eac004152ae49f662d7a77",
+  "after_suite": {
+    "total": 23,
+    "failures": 0
+  },
+  "data_kind": "synthetic regression; not a tourist field test"
+}

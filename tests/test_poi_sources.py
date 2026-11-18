@@ -102,6 +102,31 @@ class SourceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             admin_relation(payload, 'moscow')
 
+    def test_invalid_admin_id(self):
+        for value in (-1, 0, True, '123'):
+            payload = mock_document()
+            payload['elements'][0]['id'] = value
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                admin_relation(payload, 'moscow')
+
+    def test_attempts_must_be_bounded_integer(self):
+        for value in (True, 0, 4, 1.5):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                fetch('query', attempts=value,
+                      opener=lambda *a, **kw: self.fail('unexpected network call'))
+
+    def test_configured_timeout_and_invalid_timeout(self):
+        calls = []
+        def opener(request, timeout):
+            calls.append(timeout)
+            return mock_response(mock_document())
+        fetch('query', timeout=45, attempts=1, opener=opener)
+        self.assertEqual(calls, [45])
+        for value in (True, 0, 46, 1.5):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                fetch('query', timeout=value,
+                      opener=lambda *a, **kw: self.fail('unexpected network call'))
+
     def test_download_snapshot_exclusive_and_verified(self):
         with tempfile.TemporaryDirectory() as directory:
             opener = lambda *a, **kw: mock_response(mock_document())

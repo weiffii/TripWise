@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-18",
+  "command": [
+    "C:\\msys64\\ucrt64\\bin\\python.exe",
+    "-B",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "python_version": "3.14.5",
+  "exit_code": 0,
+  "test_count": 175,
+  "passed": true,
+  "scope": "all discovered unit/integration tests, external APIs mocked",
+  "live_network_requests": 0,
+  "output_file": "reports/qa/unittest.2026-11-18.txt"
+}

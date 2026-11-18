@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "start": "09:00",
+      "breakfast_count": 1,
+      "rest_count": 0,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed"
+      }
+    },
+    {
+      "start": "11:30",
+      "breakfast_count": 1,
+      "rest_count": 0,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed"
+      }
+    },
+    {
+      "start": "12:00",
+      "breakfast_count": 0,
+      "rest_count": 0,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed"
+      }
+    }
+  ],
+  "js_errors": [],
+  "network_requests": 0
+}

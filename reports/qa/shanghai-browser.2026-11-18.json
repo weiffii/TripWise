@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "network_requests": 0,
+  "js_errors": [],
+  "mobile_overflow": false,
+  "culture": {
+    "ids": [
+      "shanghai-demo:shanghai-museum",
+      "shanghai-demo:ministry-crab",
+      "shanghai-demo:history-museum",
+      "shanghai-demo:gong-de-lin",
+      "shanghai-demo:sihang",
+      "shanghai-demo:postal-museum",
+      "shanghai-demo:shen-da-cheng",
+      "shanghai-demo:wang-bao-he"
+    ],
+    "summary": {
+      "total_cost_cny": 615,
+      "budget_cny": 1200,
+      "visit_count": 4,
+      "meal_count": 4,
+      "estimated_travel_minutes": 91,
+      "planned_travel_minutes": 160,
+      "days_count": 2,
+      "covered_interests": [
+        "museums",
+        "history"
+      ],
+      "synthetic_data": true,
+      "transport_basis": "synthetic_estimate",
+      "first_last_poi": true
+    },
+    "checks": {
+      "time": "passed",
+      "budget": "passed",
+      "opening_hours": "passed",
+      "meals": "passed",
+      "required_places": "passed",
+      "interest_coverage": "passed"
+    }
+  },
+  "green": {
+    "ids": [
+      "shanghai-demo:bund",
+      "shanghai-demo:yu-garden",
+      "shanghai-demo:lu-bo-lang",
+      "shanghai-demo:nanxiang",
+      "shanghai-demo:shanghai-tower",
+      "shanghai-demo:synthetic-ifc-cafe",
+      "shanghai-demo:lujiazui-green",
+      "shanghai-demo:peoples-park",
+      "shanghai-demo:ministry-crab"
+    ],
+    "summary": {
+      "total_cost_cny": 845,
+      "budget_cny": 1200,
+      "visit_count": 5,
+      "meal_count": 4,
+      "estimated_travel_minutes": 82,
+      "planned_travel_minutes": 150,
+      "days_count": 2,
+      "covered_interests": [
+        "viewpoints",
+        "nature"
+      ],
+      "synthetic_data": true,
+      "transport_basis": "synthetic_estimate",
+      "first_last_poi": true
+    },
+    "checks": {
+      "time": "passed",
+      "budget": "passed",
+      "opening_hours": "passed",
+      "meals": "passed",
+      "required_places": "passed",
+      "interest_coverage": "passed"
+    }
+  },
+  "zero_budget": {
+    "status": "infeasible",
+    "checks": {
+      "time": "passed",
+      "budget": "failed",
+      "opening_hours": "passed",
+      "meals": "failed",
+      "required_places": "passed",
+      "interest_coverage": "failed"
+    },
+    "spent": 0,
+    "warnings": [
+      "Демонстрационные данные: цены, рейтинги, отзывы, часы и переходы синтетические. Это не подтверждение реальной поездки.",
+      "Не покрыты интересы: смотровые площадки. Добавьте дни, измените бюджет/время или обязательные места.",
+      "Бюджет меньше нижней оценки обязательных билетов и необходимых приёмов пищи.",
+      "Не удалось включить обед: нет доступного по времени, бюджету и близости заведения. Увеличьте бюджет/время или измените места.",
+      "Не удалось включить ужин: нет доступного по времени, бюджету и близости заведения. Увеличьте бюджет/время или измените места."
+    ]
+  },
+  "empty_interests_error": true,
+  "day_tab_works": true
+}

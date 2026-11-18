@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-17",
+  "service": "GitHub",
+  "transport": "connected MCP tool",
+  "purpose": "Verify project repository and published AI/DS branch; evidence for A26/A27",
+  "calls": [
+    {
+      "tool": "mcp__codex_apps__github_get_repo",
+      "arguments": {
+        "repository_full_name": "weiffii/TripWise"
+      },
+      "result": {
+        "repository_full_name": "weiffii/TripWise",
+        "id": "1460377509",
+        "visibility": "public",
+        "default_branch": "main",
+        "archived": false
+      },
+      "is_error": false
+    },
+    {
+      "tool": "mcp__codex_apps__github_search_branches",
+      "arguments": {
+        "owner": "weiffii",
+        "repo_name": "TripWise",
+        "query": "feature/ai-ds",
+        "page_size": 10
+      },
+      "result": {
+        "branches": [
+          {
+            "branch": "feature/ai-ds"
+          }
+        ],
+        "cursor": "MQ"
+      },
+      "is_error": false
+    }
+  ],
+  "limitations": [
+    "Branch existence does not prove current uncommitted changes are published",
+    "No remote writes, messages, commits or pushes performed",
+    "Result is a selected summary of actual structured tool responses, not a mock"
+  ]
+}

@@ -1,0 +1,4770 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "とびうお桟橋",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.1989936,
+        "lat": 27.0987848,
+        "formatted": "とびうお桟橋, Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "とびうお桟橋",
+        "address_line2": "Tokyo, Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.098785435869935,
+            "lon": 142.1989855026376,
+            "name": "とびうお桟橋",
+            "osm_id": 1387947232,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "519d46d8165ec6614059ea6198004a193b40f00102f901e064ba5200000000920312e381a8e381b3e38186e3818ae6a19fe6a98b"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.1989855026376,
+          27.098785435869935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.1570465,
+        "lat": 26.6372664,
+        "formatted": "Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 26.63721675574337,
+            "lon": 142.15702325016383,
+            "osm_id": 444081388,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "514a859f5506c5614059896126a320a33a40f00102f901ec24781a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.15702325016383,
+          26.63721675574337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Minamikanon",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2100",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Ioto",
+        "iso3166_2": "JP-13",
+        "lon": 141.2892377,
+        "lat": 24.7544187,
+        "formatted": "Minamikanon, Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "address_line1": "Minamikanon",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 24.7544187,
+            "lon": 141.28923770000003,
+            "name": "Minamikanon",
+            "osm_id": 1026980780,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51a7c86b6f41a9614059a7fd7b9521c13840f00102f901ac7b363d0000000092030b4d696e616d696b616e6f6e"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.28923770000003,
+          24.7544187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北飛行場跡",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2100",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Ioto",
+        "suburb": "Ioto",
+        "iso3166_2": "JP-13",
+        "lon": 141.3179105,
+        "lat": 24.7938207,
+        "formatted": "北飛行場跡, Ioto, Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "address_line1": "北飛行場跡",
+        "address_line2": "Ioto, Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 24.79381701383275,
+            "lon": 141.3178828398781,
+            "name": "北飛行場跡",
+            "osm_id": 995809488,
+            "historic": "archaeological_site",
+            "osm_type": "w"
+          }
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "place_id": "518e27a2182caa614059886b819737cb3840f00102f901d0d85a3b0000000092030fe58c97e9a39be8a18ce5a0b4e8b7a1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.3178828398781,
+          24.79381701383275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.1927341,
+        "lat": 27.0939612,
+        "formatted": "Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.094032265031064,
+            "lon": 142.1931342074002,
+            "osm_id": 443381054,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51ba10ca272ec6614059c5139f7f12183b40f00102f9013e756d1a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.1931342074002,
+          27.094032265031064
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ウェザーステーション",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Nishimachi",
+        "street": "行文道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.184512,
+        "lat": 27.0954792,
+        "formatted": "Weather Station, 行文道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "Weather Station",
+        "address_line2": "行文道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0954792,
+            "lon": 142.184512,
+            "name": "ウェザーステーション",
+            "osm_id": 3774779748,
+            "name:en": "Weather Station",
+            "name:ja": "ウェザーステーション",
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "name_international": {
+          "en": "Weather Station",
+          "ja": "ウェザーステーション"
+        },
+        "place_id": "5107b7b585e7c5614059c072295371183b40f00103f9016491fee00000000092031ee382a6e382a7e382b6e383bce382b9e38386e383bce382b7e383a7e383b3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.184512,
+          27.0954792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "平和祈念墓地公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2100",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Ioto",
+        "iso3166_2": "JP-13",
+        "lon": 141.3050813,
+        "lat": 24.7917806,
+        "formatted": "平和祈念墓地公園, Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "address_line1": "平和祈念墓地公園",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 24.7917806,
+            "lon": 141.3050813,
+            "name": "平和祈念墓地公園",
+            "osm_id": 4407559346,
+            "leisure": "park",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51e1c3db39c3a9614059759b2622b2ca3840f00103f901b204b60601000000920318e5b9b3e5928ce7a588e5bfb5e5a293e59cb0e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.3050813,
+          24.7917806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "旭山",
+        "street": "夜明道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.2119833,
+        "lat": 27.1007026,
+        "formatted": "夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "夜明道路",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.1007026,
+            "lon": 142.2119833,
+            "osm_id": 4373968529,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "518b993391c8c6614059479f45a5c7193b40f00103f9019176b50401000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2119833,
+          27.1007026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "気象観測所跡",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "district": "Hachijō Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 140.2894094,
+        "lat": 30.4839251,
+        "formatted": "気象観測所跡, Tokyo, Hachijō Subprefecture, Japan",
+        "address_line1": "気象観測所跡",
+        "address_line2": "Tokyo, Hachijō Subprefecture, Japan",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.ruines"
+        ],
+        "details": [
+          "details.historic"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 30.4839251,
+            "lon": 140.2894094,
+            "name": "気象観測所跡",
+            "ruins": "building",
+            "osm_id": 4470977952,
+            "historic": "ruins",
+            "osm_type": "n"
+          }
+        },
+        "historic": {
+          "type": "ruins",
+          "ruins": true
+        },
+        "place_id": "51f68480d74289614059aa36ee83e27b3e40f00103f901a0b57d0a01000000920312e6b097e8b1a1e8a6b3e6b8ace68980e8b7a1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.2894094,
+          30.4839251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "旭平展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "旭山",
+        "street": "夜明道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.2172423,
+        "lat": 27.095794,
+        "formatted": "旭平展望台, 夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "旭平展望台",
+        "address_line2": "夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.095794,
+            "lon": 142.2172423,
+            "name": "旭平展望台",
+            "osm_id": 5653819222,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51dab91fa6f3c66140592d27a1f485183b40f00103f901566ffe500100000092030fe697ade5b9b3e5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2172423,
+          27.095794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.2019802,
+        "lat": 27.0596807,
+        "formatted": "Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.05962671289919,
+            "lon": 142.202457044989,
+            "osm_id": 443772945,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51526232877ac6614059b8de3db2430f3b40f00102f9011170731a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.202457044989,
+          27.05962671289919
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "長崎展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "旭山",
+        "street": "夜明道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.2136764,
+        "lat": 27.0999324,
+        "formatted": "長崎展望台, 夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "長崎展望台",
+        "address_line2": "夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0999324,
+            "lon": 142.2136764,
+            "name": "長崎展望台",
+            "osm_id": 4373968550,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51aabde36fd6c661405990cf752b95193b40f00103f901a676b5040100000092030fe995b7e5b48ee5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2136764,
+          27.0999324
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大坂トンネル展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "town": "Hachijō",
+        "postcode": "100-1401",
+        "street": "八丈循環線",
+        "iso3166_2": "JP-13",
+        "lon": 139.783917,
+        "lat": 33.0848712,
+        "formatted": "大坂トンネル展望台, 八丈循環線, Tokyo, 100-1401, Japan",
+        "address_line1": "大坂トンネル展望台",
+        "address_line2": "八丈循環線, Tokyo, 100-1401, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 33.0848712,
+            "lon": 139.783917,
+            "name": "大坂トンネル展望台",
+            "osm_id": 4840912322,
+            "name:ja": "大坂トンネル展望台",
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "name_international": {
+          "ja": "大坂トンネル展望台"
+        },
+        "place_id": "51e9b81ad91579614059a72f3a0fdd8a4040f00103f901c2758a200100000092031be5a4a7e59d82e38388e383b3e3838de383abe5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.783917,
+          33.0848712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "尾山展望公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "village": "Aogashima",
+        "iso3166_2": "JP-13",
+        "lon": 139.7628594,
+        "lat": 32.4605338,
+        "formatted": "尾山展望公園, Tokyo, Hachijō Subprefecture, Japan",
+        "address_line1": "尾山展望公園",
+        "address_line2": "Tokyo, Hachijō Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 32.460542103638474,
+            "lon": 139.76284367251978,
+            "name": "尾山展望公園",
+            "osm_id": 560714110,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51db2d2237697861405976c72c0bf33a4040f00102f9017ed16b2100000000920312e5b0bee5b1b1e5b195e69c9be585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76284367251978,
+          32.460542103638474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "硫黄島戦没者顕彰碑",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2100",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Ioto",
+        "iso3166_2": "JP-13",
+        "lon": 141.2891619,
+        "lat": 24.7502937,
+        "formatted": "Iwo Jima War Dead Memorial Monument, Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "address_line1": "Iwo Jima War Dead Memorial Monument",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 24.75017664428494,
+            "lon": 141.2891590807716,
+            "name": "硫黄島戦没者顕彰碑",
+            "osm_id": 1026980779,
+            "leisure": "park",
+            "name:en": "Iwo Jima War Dead Memorial Monument",
+            "name:ja": "硫黄島戦没者顕彰碑",
+            "osm_type": "w"
+          }
+        },
+        "name_international": {
+          "en": "Iwo Jima War Dead Memorial Monument",
+          "ja": "硫黄島戦没者顕彰碑"
+        },
+        "place_id": "512d688bca40a9614059466d99930bc03840f00102f901ab7b363d0000000092031be7a1abe9bb84e5b3b6e688a6e6b2a1e88085e9a195e5bdb0e7a291"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.2891590807716,
+          24.75017664428494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "名主屋敷跡",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "village": "Aogashima",
+        "district": "Yasundogo",
+        "street": "Aogashima-hondo Ave.",
+        "iso3166_2": "JP-13",
+        "lon": 139.7671614,
+        "lat": 32.465521,
+        "formatted": "名主屋敷跡, Aogashima-hondo Ave., Tokyo, Yasundogo, Japan",
+        "address_line1": "名主屋敷跡",
+        "address_line2": "Aogashima-hondo Ave., Tokyo, Yasundogo, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.sights",
+          "tourism.sights.ruines"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 32.4655264665721,
+            "lon": 139.76715651168956,
+            "name": "名主屋敷跡",
+            "osm_id": 561525786,
+            "tourism": "attraction",
+            "historic": "ruins",
+            "osm_type": "w"
+          }
+        },
+        "historic": {
+          "type": "ruins"
+        },
+        "place_id": "51d813d08b8c78614059c0ac0a5f963b4040f00102f9011a3478210000000092030fe5908de4b8bbe5b18be695b7e8b7a1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76715651168956,
+          32.4655264665721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Higashimachi",
+        "street": "湾岸通り",
+        "iso3166_2": "JP-13",
+        "lon": 142.197228,
+        "lat": 27.0970811,
+        "formatted": "湾岸通り, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "湾岸通り",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0970811,
+            "lon": 142.197228,
+            "osm_id": 4373968513,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51603b18b14fc6614059498f954eda183b40f00103f9018176b50401000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.197228,
+          27.0970811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Okumura",
+        "street": "夜明道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.2078318,
+        "lat": 27.1022407,
+        "formatted": "夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "夜明道路",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.1022407,
+            "lon": 142.2078318,
+            "osm_id": 4373968547,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "513402e08ea6c6614059f5d14e722c1a3b40f00103f901a376b50401000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2078318,
+          27.1022407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "電信山展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Okumura",
+        "street": "夜明道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.2058372,
+        "lat": 27.102059,
+        "formatted": "電信山展望台, 夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "電信山展望台",
+        "address_line2": "夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.102059,
+            "lon": 142.2058372,
+            "name": "電信山展望台",
+            "osm_id": 4373968551,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "519b49e53796c66140593143e389201a3b40f00103f901a776b50401000000920312e99bbbe4bfa1e5b1b1e5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2058372,
+          27.102059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "お祭り広場",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.192495,
+        "lat": 27.0939494,
+        "formatted": "お祭り広場, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "お祭り広場",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0939494,
+            "lon": 142.192495,
+            "name": "お祭り広場",
+            "osm_id": 13843287017,
+            "leisure": "park",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51983446eb28c6614059947a60110d183b40f00103f901e9cb1f390300000092030fe3818ae7a5ade3828ae5ba83e5a0b4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.192495,
+          27.0939494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "street": "南島指定ルート",
+        "iso3166_2": "JP-13",
+        "lon": 142.1767424,
+        "lat": 27.0378066,
+        "formatted": "南島指定ルート, Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "南島指定ルート",
+        "address_line2": "Tokyo, Ogasawara Subprefecture, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0378066,
+            "lon": 142.1767424,
+            "osm_id": 5886257143,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51217aaddfa7c5614059ad927eb1ad093b40f00103f901f727d95e01000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.1767424,
+          27.0378066
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北飛行場跡",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2100",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Ioto",
+        "iso3166_2": "JP-13",
+        "lon": 141.325594,
+        "lat": 24.7969855,
+        "formatted": "北飛行場跡, Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "address_line1": "北飛行場跡",
+        "address_line2": "Tokyo, Ogasawara Subprefecture 100-2100, Japan",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 24.796825104084668,
+            "lon": 141.32518679587994,
+            "name": "北飛行場跡",
+            "osm_id": 995809487,
+            "historic": "archaeological_site",
+            "osm_type": "w"
+          }
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "place_id": "51a7ac23ee67aa614059eaace2bafccb3840f00102f901cfd85a3b0000000092030fe58c97e9a39be8a18ce5a0b4e8b7a1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.32518679587994,
+          24.796825104084668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "枕状溶岩",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "旭山",
+        "street": "夜明道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.2144369,
+        "lat": 27.0985185,
+        "formatted": "枕状溶岩, 夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "枕状溶岩",
+        "address_line2": "夜明道路, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0985185,
+            "lon": 142.2144369,
+            "name": "枕状溶岩",
+            "osm_id": 5653819221,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51c811c6aadcc66140590d8d278238193b40f00103f901556ffe500100000092030ce69e95e78ab6e6bab6e5b2a9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2144369,
+          27.0985185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "小笠原ビジターセンター",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Nishimachi",
+        "street": "湾岸通り",
+        "iso3166_2": "JP-13",
+        "lon": 142.1918405,
+        "lat": 27.0930651,
+        "formatted": "小笠原ビジターセンター, 湾岸通り, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "小笠原ビジターセンター",
+        "address_line2": "湾岸通り, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0930651,
+            "lon": 142.1918405,
+            "name": "小笠原ビジターセンター",
+            "osm_id": 1864231227,
+            "tourism": "museum",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "518c31b08e23c661405923e6481dd3173b40f00103f9013be91d6f00000000920321e5b08fe7aca0e58e9fe38393e382b8e382bfe383bce382bbe383b3e382bfe383bc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.1918405,
+          27.0930651
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ハートロック",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "北袋沢",
+        "street": "小港道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.2056582,
+        "lat": 27.0446715,
+        "formatted": "ハートロック, 小港道路, Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "ハートロック",
+        "address_line2": "小港道路, Tokyo, Ogasawara Subprefecture, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0446715,
+            "lon": 142.2056582,
+            "name": "ハートロック",
+            "osm_id": 5653819223,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51ef6481c094c6614059329067976f0b3b40f00103f901576ffe5001000000920312e3838fe383bce38388e383ade38383e382af"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2056582,
+          27.0446715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大根山墓地公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.1881364,
+        "lat": 27.0920312,
+        "formatted": "大根山墓地公園, Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "大根山墓地公園",
+        "address_line2": "Tokyo, Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.092020330146315,
+            "lon": 142.1881042606513,
+            "name": "大根山墓地公園",
+            "osm_id": 443381061,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "518af739f304c6614059a98bf4a48e173b40f00102f90145756d1a00000000920315e5a4a7e6a0b9e5b1b1e5a293e59cb0e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.1881042606513,
+          27.092020330146315
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Toshima",
+        "street": "利島環状線",
+        "iso3166_2": "JP-13",
+        "lon": 139.2777371,
+        "lat": 34.5310222,
+        "formatted": "利島環状線, Tokyo, Japan",
+        "address_line1": "利島環状線",
+        "address_line2": "Tokyo, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.5310222,
+            "lon": 139.2777371,
+            "osm_id": 5011270900,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51592cea38e36861405999391389f8434140f00103f901f4ecb12a01000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.2777371,
+          34.5310222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.1945559,
+        "lat": 27.0945677,
+        "formatted": "Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.094733783787113,
+            "lon": 142.19482953955728,
+            "osm_id": 443381057,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "512f96280b3cc66140592631277940183b40f00102f90141756d1a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.19482953955728,
+          27.094733783787113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Kozushima",
+        "iso3166_2": "JP-13",
+        "lon": 139.1311827,
+        "lat": 34.2161961,
+        "formatted": "Tokyo, Oshima Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Oshima Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.21620313322561,
+            "lon": 139.13119403370274,
+            "osm_id": 709143848,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51e085d4bd3264614059953f558bac1b4140f00102f90128ad442a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.13119403370274,
+          34.21620313322561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "COZY CAFE",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Kozushima",
+        "postcode": "100-0601",
+        "district": "神津島村",
+        "street": "神津本道",
+        "iso3166_2": "JP-13",
+        "lon": 139.1342162,
+        "lat": 34.2067425,
+        "formatted": "COZY CAFE, 神津本道, Tokyo, 神津島村 100-0601, Japan",
+        "address_line1": "COZY CAFE",
+        "address_line2": "神津本道, Tokyo, 神津島村 100-0601, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.2067425,
+            "lon": 139.1342162,
+            "name": "COZY CAFE",
+            "osm_id": 6664918848,
+            "amenity": "cafe",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51fdb2c57f4b64614059bd18ca89761a4140f00103f9014097428d01000000920309434f5a592043414645"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1342162,
+          34.2067425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "新東京百景展望地",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Kozushima",
+        "postcode": "100-0601",
+        "district": "那智",
+        "street": "白島登山道",
+        "iso3166_2": "JP-13",
+        "lon": 139.1587547,
+        "lat": 34.2200531,
+        "formatted": "新東京百景展望地, 白島登山道, Tokyo, 那智 100-0601, Japan",
+        "address_line1": "新東京百景展望地",
+        "address_line2": "白島登山道, Tokyo, 那智 100-0601, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.2200531,
+            "lon": 139.1587547,
+            "name": "新東京百景展望地",
+            "osm_id": 6665082026,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51c392bc84146561405914f131b32a1c4140f00103f901aa14458d01000000920318e696b0e69db1e4baace799bee699afe5b195e69c9be59cb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1587547,
+          34.2200531
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Miyake Subprefecture",
+        "city": "Tokyo",
+        "village": "Miyake",
+        "iso3166_2": "JP-13",
+        "lon": 139.5162477,
+        "lat": 34.0497408,
+        "formatted": "Tokyo, Miyake Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Miyake Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.04975011929439,
+            "lon": 139.51625751411058,
+            "osm_id": 452061164,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "516a6d7a2e8570614059b6ab3f365e064140f00102f901ece7f11a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.51625751411058,
+          34.04975011929439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "雨ごい神事の跡",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Kozushima",
+        "postcode": "100-0601",
+        "district": "那智",
+        "street": "白島登山道",
+        "iso3166_2": "JP-13",
+        "lon": 139.1570961,
+        "lat": 34.2214669,
+        "formatted": "雨ごい神事の跡, 白島登山道, Tokyo, 那智 100-0601, Japan",
+        "address_line1": "雨ごい神事の跡",
+        "address_line2": "白島登山道, Tokyo, 那智 100-0601, Japan",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.archaeological_site"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.2214669,
+            "lon": 139.1570961,
+            "name": "雨ごい神事の跡",
+            "osm_id": 6665069600,
+            "historic": "archaeological_site",
+            "osm_type": "n"
+          }
+        },
+        "historic": {
+          "type": "archaeological_site"
+        },
+        "place_id": "51887a66ee0665614059c1520207591c4140f00103f90120e4448d01000000920315e99ba8e38194e38184e7a59ee4ba8be381aee8b7a1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1570961,
+          34.2214669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Niijima",
+        "suburb": "Wakago",
+        "iso3166_2": "JP-13",
+        "lon": 139.282356,
+        "lat": 34.4248254,
+        "formatted": "Wakago, Tokyo, Oshima Subprefecture, Japan",
+        "address_line1": "Wakago",
+        "address_line2": "Tokyo, Oshima Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.4248171242082,
+            "lon": 139.28235387990617,
+            "osm_id": 727758914,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "511003010b0969614059a3a0536860364140f00102f90142b8602b00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.28235387990617,
+          34.4248171242082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "天上山の展望",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Kozushima",
+        "postcode": "100-0601",
+        "district": "那智",
+        "street": "白島登山道",
+        "iso3166_2": "JP-13",
+        "lon": 139.1579095,
+        "lat": 34.2218551,
+        "formatted": "天上山の展望, 白島登山道, Tokyo, 那智 100-0601, Japan",
+        "address_line1": "天上山の展望",
+        "address_line2": "白島登山道, Tokyo, 那智 100-0601, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.2218551,
+            "lon": 139.1579095,
+            "name": "天上山の展望",
+            "osm_id": 6665042884,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51494739980d65614059b47977bf651c4140f00103f901c47b448d01000000920312e5a4a9e4b88ae5b1b1e381aee5b195e69c9b"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1579095,
+          34.2218551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "海のふるさと村キャンプファイヤ",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "iso3166_2": "JP-13",
+        "lon": 139.443984,
+        "lat": 34.7452618,
+        "formatted": "海のふるさと村キャンプファイヤ, Tokyo, Oshima Subprefecture, Japan",
+        "address_line1": "海のふるさと村キャンプファイヤ",
+        "address_line2": "Tokyo, Oshima Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.74527232837349,
+            "lon": 139.4439843428558,
+            "name": "海のふるさと村キャンプファイヤ",
+            "osm_id": 427306232,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "510e10a71e356e6140592c7d6a15655f4140f00102f901f82c78190000000092032de6b5b7e381aee381b5e3828be38195e381a8e69d91e382ade383a3e383b3e38397e38395e382a1e382a4e383a4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.4439843428558,
+          34.74527232837349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "錆ヶ浜園地",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Miyake Subprefecture",
+        "city": "Tokyo",
+        "village": "Miyake",
+        "suburb": "Ako",
+        "iso3166_2": "JP-13",
+        "lon": 139.4807508,
+        "lat": 34.0712167,
+        "formatted": "錆ヶ浜園地, Ako, Tokyo, Miyake Subprefecture, Japan",
+        "address_line1": "錆ヶ浜園地",
+        "address_line2": "Ako, Tokyo, Miyake Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.071213240890536,
+            "lon": 139.48075089619084,
+            "name": "錆ヶ浜園地",
+            "osm_id": 451970556,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "513215b44f626f6140596155f6831d094140f00102f901fc85f01a0000000092030fe98c86e383b6e6b59ce59c92e59cb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.48075089619084,
+          34.071213240890536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "street": "火口見学道",
+        "iso3166_2": "JP-13",
+        "lon": 139.3982957,
+        "lat": 34.7296073,
+        "formatted": "火口見学道, Tokyo, Japan",
+        "address_line1": "火口見学道",
+        "address_line2": "Tokyo, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.7296073,
+            "lon": 139.3982957,
+            "osm_id": 5224563708,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "5166b49fd6be6c6140592036a2c5635d4140f00103f901fc83683701000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3982957,
+          34.7296073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "金子勇博古館",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "postcode": "100-0211",
+        "suburb": "Habuminato",
+        "street": "大島循環線",
+        "iso3166_2": "JP-13",
+        "lon": 139.442777,
+        "lat": 34.68873,
+        "formatted": "金子勇博古館, 大島循環線, Habuminato, Tokyo, 100-0211, Japan",
+        "address_line1": "金子勇博古館",
+        "address_line2": "大島循環線, Habuminato, Tokyo, 100-0211, Japan",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.68873,
+            "lon": 139.442777,
+            "name": "金子勇博古館",
+            "osm_id": 2119563166,
+            "tourism": "museum",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "5179cdab3a2b6e61405915e3fc4d28584140f00103f9019ef7557e00000000920312e98791e5ad90e58b87e58d9ae58fa4e9a4a8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.442777,
+          34.68873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "鉄砲場",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "postcode": "100-0211",
+        "suburb": "Habuminato",
+        "street": "踊り子坂",
+        "iso3166_2": "JP-13",
+        "lon": 139.442721,
+        "lat": 34.685232,
+        "formatted": "鉄砲場, 踊り子坂, Habuminato, Tokyo, 100-0211, Japan",
+        "address_line1": "鉄砲場",
+        "address_line2": "踊り子坂, Habuminato, Tokyo, 100-0211, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.685232,
+            "lon": 139.442721,
+            "name": "鉄砲場",
+            "osm_id": 2119549836,
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "wheelchair": "yes",
+            "opening_hours": "24/7"
+          }
+        },
+        "opening_hours": "24/7",
+        "facilities": {
+          "wheelchair": true
+        },
+        "place_id": "5114083bc52a6e6140591a16a3aeb5574140f00103f9018cc3557e00000000920309e98984e7a0b2e5a0b4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.442721,
+          34.685232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "踊り子の里資料館",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "postcode": "100-0211",
+        "suburb": "Habuminato",
+        "street": "下地波浮港線",
+        "iso3166_2": "JP-13",
+        "lon": 139.4397906,
+        "lat": 34.6868792,
+        "formatted": "Odoriko no Sato Museum, 下地波浮港線, Habuminato, Tokyo, 100-0211, Japan",
+        "address_line1": "Odoriko no Sato Museum",
+        "address_line2": "下地波浮港線, Habuminato, Tokyo, 100-0211, Japan",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "no_fee",
+          "no_fee.no"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "no",
+            "lat": 34.6868792,
+            "lon": 139.4397906,
+            "name": "踊り子の里資料館",
+            "osm_id": 2088085890,
+            "name:en": "Odoriko no Sato Museum",
+            "name:ja": "踊り子の里資料館",
+            "tourism": "museum",
+            "osm_type": "n",
+            "name:ja-Hira": "おどりこのさとしりょうかん",
+            "name:ja-Latn": "Odoriko no Sato Shiryōkan",
+            "opening_hours": "Mo-Su 09:00-16:00"
+          }
+        },
+        "opening_hours": "Mo-Su 09:00-16:00",
+        "name_international": {
+          "en": "Odoriko no Sato Museum",
+          "ja": "踊り子の里資料館"
+        },
+        "place_id": "51d382bcc3126e614059bd265aa8eb574140f00103f90182a9757c00000000920318e8b88ae3828ae5ad90e381aee9878ce8b387e69699e9a4a8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.4397906,
+          34.6868792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "三浦湾展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Kozushima",
+        "postcode": "100-0601",
+        "district": "金長",
+        "street": "神戸山多幸線支線",
+        "iso3166_2": "JP-13",
+        "lon": 139.144183,
+        "lat": 34.1922203,
+        "formatted": "三浦湾展望台, 神戸山多幸線支線, Tokyo, 金長 100-0601, Japan",
+        "address_line1": "三浦湾展望台",
+        "address_line2": "神戸山多幸線支線, Tokyo, 金長 100-0601, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.1922203,
+            "lon": 139.144183,
+            "name": "三浦湾展望台",
+            "osm_id": 6753712078,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "5174b4aa259d646140594c10bfac9a184140f00103f901ce778d9201000000920312e4b889e6b5a6e6b9bee5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.144183,
+          34.1922203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "三宅村交通公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Miyake Subprefecture",
+        "city": "Tokyo",
+        "village": "Miyake",
+        "suburb": "Kamitsuki",
+        "iso3166_2": "JP-13",
+        "lon": 139.5283771,
+        "lat": 34.1242541,
+        "formatted": "三宅村交通公園, Kamitsuki, Tokyo, Miyake Subprefecture, Japan",
+        "address_line1": "三宅村交通公園",
+        "address_line2": "Kamitsuki, Tokyo, Miyake Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.12435615326724,
+            "lon": 139.52808746882405,
+            "name": "三宅村交通公園",
+            "osm_id": 1294633654,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51db00b117e6706140596aab05e7ea0f4140f00102f901b68a2a4d00000000920315e4b889e5ae85e69d91e4baa4e9809ae585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.52808746882405,
+          34.12435615326724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "展望広場",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "iso3166_2": "JP-13",
+        "lon": 139.3810825,
+        "lat": 34.7385622,
+        "formatted": "展望広場, Tokyo, Oshima Subprefecture, Japan",
+        "address_line1": "展望広場",
+        "address_line2": "Tokyo, Oshima Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.738535245817616,
+            "lon": 139.38106600549077,
+            "name": "展望広場",
+            "osm_id": 150332204,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "5168e655b1316c61405970ddab52885e4140f00102f9012ce3f5080000000092030ce5b195e69c9be5ba83e5a0b4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.38106600549077,
+          34.738535245817616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ハート食堂",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Miyake Subprefecture",
+        "city": "Tokyo",
+        "village": "Miyake",
+        "district": "坪田",
+        "suburb": "Tsubota",
+        "street": "三宅循環線",
+        "iso3166_2": "JP-13",
+        "lon": 139.5476019,
+        "lat": 34.0612042,
+        "formatted": "ハート食堂, 三宅循環線, Tsubota, Tokyo, 坪田, Japan",
+        "address_line1": "ハート食堂",
+        "address_line2": "三宅循環線, Tsubota, Tokyo, 坪田, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.0612042,
+            "lon": 139.5476019,
+            "name": "ハート食堂",
+            "level": 1,
+            "osm_id": 4487064218,
+            "amenity": "cafe",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "5147776bf485716140595db00a8ad5074140f00103f9019a2a730b0100000092030fe3838fe383bce38388e9a39fe5a082"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.5476019,
+          34.0612042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "伊豆大島火山博物館",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "district": "Motomachi 3-chome",
+        "suburb": "Motomachi",
+        "street": "御神火スカイライン",
+        "iso3166_2": "JP-13",
+        "lon": 139.3599974,
+        "lat": 34.7440119,
+        "formatted": "Izu Oshima Museum - Gionos, 御神火スカイライン, Motomachi, Tokyo, Motomachi 3-chome, Japan",
+        "address_line1": "Izu Oshima Museum - Gionos",
+        "address_line2": "御神火スカイライン, Motomachi, Tokyo, Motomachi 3-chome, Japan",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 34.7440119,
+            "lon": 139.3599974,
+            "name": "伊豆大島火山博物館",
+            "museum": "geology;vulcano",
+            "osm_id": 1420766922,
+            "name:en": "Izu Oshima Museum - Gionos",
+            "name:ja": "伊豆大島火山博物館",
+            "tourism": "museum",
+            "website": "https://oshima-navi.com/geopark/geonous/index.html",
+            "osm_type": "n",
+            "wikidata": "Q111984533",
+            "wikipedia": "ja:伊豆大島火山博物館",
+            "name:ja_rm": "Izuoshima kazan hakubutsukan",
+            "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-P02-v2_0.html",
+            "name:ja-Hira": "いずおおしまかざんはくぶつかん",
+            "contact:phone": "+81 4992-2-4103",
+            "opening_hours": "Mo-Su 09:00-17:00"
+          }
+        },
+        "website": "https://oshima-navi.com/geopark/geonous/index.html",
+        "opening_hours": "Mo-Su 09:00-17:00",
+        "name_international": {
+          "en": "Izu Oshima Museum - Gionos",
+          "ja": "伊豆大島火山博物館"
+        },
+        "contact": {
+          "phone": "+81 4992-2-4103"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q111984533",
+          "wikipedia": "ja:伊豆大島火山博物館"
+        },
+        "place_id": "51a4744419856b614059db2a2dc83b5f4140f00103f901ca2eaf540000000092031be4bc8ae8b186e5a4a7e5b3b6e781abe5b1b1e58d9ae789a9e9a4a8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3599974,
+          34.7440119
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大島公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "postcode": "100-0103",
+        "iso3166_2": "JP-13",
+        "lon": 139.435916,
+        "lat": 34.7616508,
+        "formatted": "Oshima Park, Tokyo, 100-0103, Japan",
+        "address_line1": "Oshima Park",
+        "address_line2": "Tokyo, 100-0103, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.762364809597884,
+            "lon": 139.43579543773802,
+            "name": "大島公園",
+            "osm_id": 427306044,
+            "leisure": "park",
+            "name:en": "Oshima Park",
+            "name:ja": "大島公園",
+            "osm_type": "w",
+            "wikidata": "Q109361701",
+            "wikipedia": "ja:大島公園動物園"
+          }
+        },
+        "name_international": {
+          "en": "Oshima Park",
+          "ja": "大島公園"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q109361701",
+          "wikipedia": "ja:大島公園動物園"
+        },
+        "place_id": "51961a4609f26d6140590e6c8a2b95614140f00102f9013c2c78190000000092030ce5a4a7e5b3b6e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.43579543773802,
+          34.762364809597884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "新火口展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "street": "Miharayama tozan doro Ave.",
+        "iso3166_2": "JP-13",
+        "lon": 139.3917466,
+        "lat": 34.7462534,
+        "formatted": "Shinkako tenbodai (New crater lookout), Miharayama tozan doro Ave., Tokyo, Japan",
+        "address_line1": "Shinkako tenbodai (New crater lookout)",
+        "address_line2": "Miharayama tozan doro Ave., Tokyo, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.7462534,
+            "lon": 139.3917466,
+            "url": "http://oshima-gdm.jp/%E6%96%B0%E7%81%AB%E5%8F%A3%E5%B1%95%E6%9C%9B%E5%8F%B0",
+            "name": "新火口展望台",
+            "osm_id": 2092344350,
+            "name:en": "Shinkako tenbodai (New crater lookout)",
+            "name:es": "Shinkako tenbodai (vistazo al nuevo cracter)",
+            "name:ja": "新火口展望台",
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "name:ja_rm": "Shinkako tenbodai",
+            "name:ja-Hira": "しんかこうてんぼうだい"
+          }
+        },
+        "website": "http://oshima-gdm.jp/%E6%96%B0%E7%81%AB%E5%8F%A3%E5%B1%95%E6%9C%9B%E5%8F%B0",
+        "name_international": {
+          "en": "Shinkako tenbodai (New crater lookout)",
+          "es": "Shinkako tenbodai (vistazo al nuevo cracter)",
+          "ja": "新火口展望台"
+        },
+        "place_id": "51376a2a30896c614059b0c33d3b855f4140f00103f9011ea4b67c00000000920312e696b0e781abe58fa3e5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3917466,
+          34.7462534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "town": "Oshima",
+        "street": "大島循環線",
+        "iso3166_2": "JP-13",
+        "lon": 139.3580294,
+        "lat": 34.763972,
+        "formatted": "大島循環線, Tokyo, Japan",
+        "address_line1": "大島循環線",
+        "address_line2": "Tokyo, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.763972,
+            "lon": 139.3580294,
+            "osm_id": 2130587652,
+            "amenity": "cafe",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51358012fa746b614059a587a1d5c9614140f00103f9010430fe7e00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3580294,
+          34.763972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "和泉親水公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "town": "Hachijō",
+        "iso3166_2": "JP-13",
+        "lon": 139.7992402,
+        "lat": 33.1095507,
+        "formatted": "和泉親水公園, Tokyo, Hachijō Subprefecture, Japan",
+        "address_line1": "和泉親水公園",
+        "address_line2": "Tokyo, Hachijō Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 33.10948203051814,
+            "lon": 139.79922748099116,
+            "name": "和泉親水公園",
+            "osm_id": 446343124,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "517d9d824593796140599c49d681038e4040f00102f901d4a79a1a00000000920312e5928ce6b389e8a6aae6b0b4e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.79922748099116,
+          33.10948203051814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "人間魚雷「回天」二号壕跡(底土基地)",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "town": "Hachijō",
+        "postcode": "100-1511",
+        "district": "宮ケ路",
+        "suburb": "Sueyoshi",
+        "street": "八丈循環線",
+        "iso3166_2": "JP-13",
+        "lon": 139.8155308,
+        "lat": 33.1198646,
+        "formatted": "人間魚雷「回天」二号壕跡(底土基地), 八丈循環線, Sueyoshi, Tokyo, 宮ケ路 100-1511, Japan",
+        "address_line1": "人間魚雷「回天」二号壕跡(底土基地)",
+        "address_line2": "八丈循環線, Sueyoshi, Tokyo, 宮ケ路 100-1511, Japan",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.ruines"
+        ],
+        "details": [
+          "details.historic"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 33.1198646,
+            "lon": 139.8155308,
+            "name": "人間魚雷「回天」二号壕跡(底土基地)",
+            "ruins": "yes",
+            "osm_id": 5103426748,
+            "historic": "ruins",
+            "osm_type": "n"
+          }
+        },
+        "historic": {
+          "type": "ruins",
+          "ruins": true
+        },
+        "place_id": "512f5c0cd4187a6140595c7924b9578f4040f00103f901bc1c303001000000920332e4babae99693e9ad9ae99bb7e3808ce59b9ee5a4a9e3808de4ba8ce58fb7e5a395e8b7a128e5ba95e59c9fe59fbae59cb029"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.8155308,
+          33.1198646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "名護の展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "town": "Hachijō",
+        "district": "尾崎",
+        "suburb": "Kashitate",
+        "street": "八丈循環線",
+        "iso3166_2": "JP-13",
+        "lon": 139.8425387,
+        "lat": 33.0782593,
+        "formatted": "名護の展望台, 八丈循環線, Kashitate, Tokyo, 尾崎, Japan",
+        "address_line1": "名護の展望台",
+        "address_line2": "八丈循環線, Kashitate, Tokyo, 尾崎, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 33.0782593,
+            "lon": 139.8425387,
+            "name": "名護の展望台",
+            "osm_id": 4840950926,
+            "name:ja": "名護の展望台",
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "name_international": {
+          "ja": "名護の展望台"
+        },
+        "place_id": "51a943b813f67a614059ce0d9766048a4040f00103f9018e0c8b2001000000920312e5908de8adb7e381aee5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.8425387,
+          33.0782593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "中山展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "北袋沢",
+        "street": "小港道路",
+        "iso3166_2": "JP-13",
+        "lon": 142.193412,
+        "lat": 27.0581554,
+        "formatted": "Nakayama Observation Deck, 小港道路, Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "Nakayama Observation Deck",
+        "address_line2": "小港道路, Tokyo, Ogasawara Subprefecture, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0581554,
+            "lon": 142.193412,
+            "name": "中山展望台",
+            "osm_id": 5653801121,
+            "name:en": "Nakayama Observation Deck",
+            "name:ja": "中山展望台",
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "name_international": {
+          "en": "Nakayama Observation Deck",
+          "ja": "中山展望台"
+        },
+        "place_id": "51edd45c6e30c6614059f715b545e30e3b40f00103f901a128fe500100000092030fe4b8ade5b1b1e5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.193412,
+          27.0581554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Miyake Subprefecture",
+        "city": "Tokyo",
+        "village": "Miyake",
+        "iso3166_2": "JP-13",
+        "lon": 139.5290181,
+        "lat": 34.0516009,
+        "formatted": "Tokyo, Miyake Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Miyake Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.05163254820869,
+            "lon": 139.52884719558025,
+            "osm_id": 452056554,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "512733f450ec7061405994fb34e59b064140f00102f901ead5f11a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.52884719558025,
+          34.05163254820869
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "七島展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Miyake Subprefecture",
+        "city": "Tokyo",
+        "village": "Miyake",
+        "postcode": "100-1212",
+        "street": "Pass around Mt. Oyama",
+        "iso3166_2": "JP-13",
+        "lon": 139.5086126,
+        "lat": 34.0692229,
+        "formatted": "七島展望台, Pass around Mt. Oyama, Tokyo, 100-1212, Japan",
+        "address_line1": "七島展望台",
+        "address_line2": "Pass around Mt. Oyama, Tokyo, 100-1212, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.0692229,
+            "lon": 139.5086126,
+            "name": "七島展望台",
+            "osm_id": 4351160542,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51ac6aee8d467061405930d1c54bdc084140f00103f901de7059030100000092030fe4b883e5b3b6e5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.5086126,
+          34.0692229
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "NINZ COFFEE",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Niijima",
+        "district": "式根ヶ沢",
+        "suburb": "式根島",
+        "street": "式根本道",
+        "iso3166_2": "JP-13",
+        "lon": 139.2208683,
+        "lat": 34.3263762,
+        "formatted": "NINZ COFFEE, 式根本道, 式根島, Tokyo, 式根ヶ沢, Japan",
+        "address_line1": "NINZ COFFEE",
+        "address_line2": "式根本道, 式根島, Tokyo, 式根ヶ沢, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.3263762,
+            "lon": 139.2208683,
+            "name": "NINZ COFFEE",
+            "osm_id": 5017828500,
+            "amenity": "cafe",
+            "osm_type": "n",
+            "opening_hours": "08:00-12:00, 15:00-18:00"
+          }
+        },
+        "opening_hours": "08:00-12:00, 15:00-18:00",
+        "place_id": "5124a7655a1167614059ac9800b2c6294140f00103f90194fc152b0100000092030b4e494e5a20434f46464545"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.2208683,
+          34.3263762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "利島村郷土資料館",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Toshima",
+        "street": "利島環状線",
+        "iso3166_2": "JP-13",
+        "lon": 139.2823439,
+        "lat": 34.5290017,
+        "formatted": "利島村郷土資料館, 利島環状線, Tokyo, Japan",
+        "address_line1": "利島村郷土資料館",
+        "address_line2": "利島環状線, Tokyo, Japan",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "no_fee",
+          "no_fee.no"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "no",
+            "lat": 34.5290017,
+            "lon": 139.2823439,
+            "name": "利島村郷土資料館",
+            "osm_id": 5005903234,
+            "tourism": "museum",
+            "osm_type": "n",
+            "opening_hours": "10:00-16:00; Sa-Su,PH off"
+          }
+        },
+        "opening_hours": "10:00-16:00; Sa-Su,PH off",
+        "place_id": "51341713f60869614059a383e453b6434140f00103f9018205602a01000000920318e588a9e5b3b6e69d91e983b7e59c9fe8b387e69699e9a4a8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.2823439,
+          34.5290017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "奥村グラウンド",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.2018782,
+        "lat": 27.0998178,
+        "formatted": "奥村グラウンド, Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "奥村グラウンド",
+        "address_line2": "Tokyo, Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.099663897769037,
+            "lon": 142.2021432106258,
+            "name": "奥村グラウンド",
+            "osm_id": 443597107,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51e1d709f577c66140598982bd9283193b40f00102f90133c1701a00000000920315e5a5a5e69d91e382b0e383a9e382a6e383b3e38389"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.2021432106258,
+          27.099663897769037
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大神山展望台",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "postcode": "100-2101",
+        "district": "Ogasawara Subprefecture",
+        "neighbourhood": "Higashimachi",
+        "street": "湾岸通り",
+        "iso3166_2": "JP-13",
+        "lon": 142.1947099,
+        "lat": 27.0965949,
+        "formatted": "大神山展望台, 湾岸通り, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "address_line1": "大神山展望台",
+        "address_line2": "湾岸通り, Tokyo, Ogasawara Subprefecture 100-2101, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 27.0965949,
+            "lon": 142.1947099,
+            "name": "大神山展望台",
+            "osm_id": 4373968549,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51a39641103bc6614059dc758071ba183b40f00103f901a576b50401000000920312e5a4a7e7a59ee5b1b1e5b195e69c9be58fb0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.1947099,
+          27.0965949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Tokyo",
+        "village": "Ogasawara",
+        "district": "Ogasawara Subprefecture",
+        "iso3166_2": "JP-13",
+        "lon": 142.1564875,
+        "lat": 26.6364519,
+        "formatted": "Tokyo, Ogasawara Subprefecture, Japan",
+        "address_line1": "Tokyo",
+        "address_line2": "Ogasawara Subprefecture, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 26.636387915317847,
+            "lon": 142.15652823861797,
+            "osm_id": 444081375,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "517838824702c56140591adc8351eaa23a40f00102f901df24781a00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.15652823861797,
+          26.636387915317847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Deep",
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Oshima Subprefecture",
+        "city": "Tokyo",
+        "village": "Kozushima",
+        "postcode": "100-0601",
+        "district": "神津島村",
+        "street": "神津本道",
+        "iso3166_2": "JP-13",
+        "lon": 139.1348393,
+        "lat": 34.2072208,
+        "formatted": "Deep, 神津本道, Tokyo, 神津島村 100-0601, Japan",
+        "address_line1": "Deep",
+        "address_line2": "神津本道, Tokyo, 神津島村 100-0601, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details.catering",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 34.2072208,
+            "lon": 139.1348393,
+            "name": "Deep",
+            "osm_id": 13740184764,
+            "amenity": "cafe",
+            "osm_type": "n",
+            "indoor_seating": "yes",
+            "outdoor_seating": "yes"
+          }
+        },
+        "facilities": {
+          "outdoor_seating": true
+        },
+        "place_id": "51e6f6819a506461405986860f36861a4140f00103f901bc94fa320300000092030444656570"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1348393,
+          34.2072208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "東山公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Akiruno",
+        "iso3166_2": "JP-13",
+        "lon": 139.2168995,
+        "lat": 35.7287362,
+        "formatted": "東山公園, Akiruno, Japan",
+        "address_line1": "東山公園",
+        "address_line2": "Akiruno, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.72876494003333,
+            "lon": 139.21687194677895,
+            "name": "東山公園",
+            "osm_id": 1036873466,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51bcda6f9df06661405910f5672b48dd4140f00102f901fa6ecd3d0000000092030ce69db1e5b1b1e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.21687194677895,
+          35.72876494003333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "夕やけ小やけふれあいの里",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "192-0156",
+        "iso3166_2": "JP-13",
+        "lon": 139.2159808,
+        "lat": 35.6702652,
+        "formatted": "夕やけ小やけふれあいの里, Hachioji, 192-0156, Japan",
+        "address_line1": "夕やけ小やけふれあいの里",
+        "address_line2": "Hachioji, 192-0156, Japan",
+        "categories": [
+          "fee",
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 35.670168546361815,
+            "lon": 139.21642458320716,
+            "city": "八王子市",
+            "name": "夕やけ小やけふれあいの里",
+            "osm_id": 251132400,
+            "leisure": "park",
+            "quarter": "上恩方町",
+            "operator": "八王子観光コンベンション協会",
+            "osm_type": "w",
+            "postcode": "192-0156",
+            "province": "東京都",
+            "block_number": 2030,
+            "opening_hours": "Apr-Oct 09:00-16:30; Nov-Mar 09:00-16:00"
+          }
+        },
+        "opening_hours": "Apr-Oct 09:00-16:30; Nov-Mar 09:00-16:00",
+        "operator": "八王子観光コンベンション協会",
+        "place_id": "519b5d3ff3ec6661405947b73a15c8d54140f00102f901f0f9f70e00000000920324e5a495e38284e38191e5b08fe38284e38191e381b5e3828ce38182e38184e381aee9878c"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.21642458320716,
+          35.670168546361815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "小仏峠",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "252-0173",
+        "street": "浅川相模湖線",
+        "iso3166_2": "JP-13",
+        "lon": 139.2168348,
+        "lat": 35.6362447,
+        "formatted": "Kobotoke Touge, 浅川相模湖線, Hachioji, 252-0173, Japan",
+        "address_line1": "Kobotoke Touge",
+        "address_line2": "浅川相模湖線, Hachioji, 252-0173, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6362447,
+            "lon": 139.2168348,
+            "name": "小仏峠",
+            "osm_id": 824017756,
+            "name:en": "Kobotoke Touge",
+            "name:ja": "小仏峠",
+            "tourism": "viewpoint",
+            "osm_type": "n",
+            "wikidata": "Q11458826",
+            "wikipedia": "ja:小仏峠"
+          }
+        },
+        "name_international": {
+          "en": "Kobotoke Touge",
+          "ja": "小仏峠"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11458826",
+          "wikipedia": "ja:小仏峠"
+        },
+        "place_id": "514fd4884ff0666140596d60617770d14140f00103f9015c831d3100000000920309e5b08fe4bb8fe5b3a0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.2168348,
+          35.6362447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3096924,
+        "lat": 35.6443629,
+        "formatted": "Hachioji, Japan",
+        "address_line1": "Hachioji",
+        "address_line2": "Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.64436287317207,
+            "lon": 139.3096924345206,
+            "osm_id": 245627674,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51b5c21b00e969614059ec838d7b7ad24140f00102f9011afba30e00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3096924345206,
+          35.64436287317207
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ゆりのき台中央公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3015652,
+        "lat": 35.6273891,
+        "formatted": "ゆりのき台中央公園, Hachioji, Japan",
+        "address_line1": "ゆりのき台中央公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6274027003134,
+            "lon": 139.30131341634714,
+            "name": "ゆりのき台中央公園",
+            "osm_id": 696442818,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51d3a1085ca46961405952a24fbb4ed04140f00102f901c2df82290000000092031be38286e3828ae381aee3818de58fb0e4b8ade5a4aee585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.30131341634714,
+          35.6274027003134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "殿入北公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.2979364,
+        "lat": 35.629047,
+        "formatted": "Shingari Nyuuhoku Park, Hachioji, Japan",
+        "address_line1": "Shingari Nyuuhoku Park",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.62906893293289,
+            "lon": 139.29797702932254,
+            "name": "殿入北公園",
+            "osm_id": 696277520,
+            "leisure": "park",
+            "name:en": "Shingari Nyuuhoku Park",
+            "name:ja": "殿入北公園",
+            "osm_type": "w"
+          }
+        },
+        "name_international": {
+          "en": "Shingari Nyuuhoku Park",
+          "ja": "殿入北公園"
+        },
+        "place_id": "51c97c1f0789696140592df0ae5485d04140f00102f901105a80290000000092030fe6aebfe585a5e58c97e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.29797702932254,
+          35.62906893293289
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "向原公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3115157,
+        "lat": 35.6396506,
+        "formatted": "Mukaihara-kouen, Hachioji, Japan",
+        "address_line1": "Mukaihara-kouen",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.63964209341403,
+            "lon": 139.3115144343322,
+            "name": "向原公園",
+            "osm_id": 382521338,
+            "leisure": "park",
+            "name:en": "Mukaihara-kouen",
+            "name:ja": "向原公園",
+            "osm_type": "w",
+            "name:simple": "Mukaiharakouen"
+          }
+        },
+        "name_international": {
+          "en": "Mukaihara-kouen",
+          "ja": "向原公園"
+        },
+        "place_id": "510a761eedf769614059db2dc8cadfd14140f00102f901facfcc160000000092030ce59091e58e9fe585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3115144343322,
+          35.63964209341403
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "栃谷戸公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "Minamino",
+        "iso3166_2": "JP-13",
+        "lon": 139.3176017,
+        "lat": 35.6302694,
+        "formatted": "Tochiyato Park, Hachioji, Japan",
+        "address_line1": "Tochiyato Park",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.630068447894125,
+            "lon": 139.3177505825155,
+            "name": "栃谷戸公園",
+            "osm_id": 245210346,
+            "leisure": "park",
+            "name:en": "Tochiyato Park",
+            "name:ja": "栃谷戸公園",
+            "osm_type": "w"
+          }
+        },
+        "name_international": {
+          "en": "Tochiyato Park",
+          "ja": "栃谷戸公園"
+        },
+        "place_id": "510c0645032b6a6140592ff93815a6d04140f00102f901ea9c9d0e0000000092030fe6a083e8b0b7e688b8e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3177505825155,
+          35.630068447894125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "Minamino",
+        "iso3166_2": "JP-13",
+        "lon": 139.3151829,
+        "lat": 35.6324735,
+        "formatted": "Hachioji, Japan",
+        "address_line1": "Hachioji",
+        "address_line2": "Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.63256153857976,
+            "lon": 139.31515816582015,
+            "osm_id": 644187074,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "517ae893c6156a6140592974c8c6f7d04140f00102f901c283652600000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.31515816582015,
+          35.63256153857976
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北野台中央公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "北野台",
+        "iso3166_2": "JP-13",
+        "lon": 139.3523869,
+        "lat": 35.6287148,
+        "formatted": "北野台中央公園, Hachioji, Japan",
+        "address_line1": "北野台中央公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.628640502636905,
+            "lon": 139.35234787413893,
+            "name": "北野台中央公園",
+            "osm_id": 224253918,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51bd870c6f466b6140591de2bf4a77d04140f00102f901ded75d0d00000000920315e58c97e9878ee58fb0e4b8ade5a4aee585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.35234787413893,
+          35.628640502636905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "中山北公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "北野台",
+        "iso3166_2": "JP-13",
+        "lon": 139.3594709,
+        "lat": 35.6308452,
+        "formatted": "Nakayamakita Park, Hachioji, Japan",
+        "address_line1": "Nakayamakita Park",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.63084789516849,
+            "lon": 139.359472990337,
+            "name": "中山北公園",
+            "osm_id": 224257322,
+            "leisure": "park",
+            "name:en": "Nakayamakita Park",
+            "name:ja": "中山北公園",
+            "osm_type": "w"
+          }
+        },
+        "name_international": {
+          "en": "Nakayamakita Park",
+          "ja": "中山北公園"
+        },
+        "place_id": "515e2980cd806b614059e33fb39fbfd04140f00102f9012ae55d0d0000000092030fe4b8ade5b1b1e58c97e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.359472990337,
+          35.63084789516849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "片倉台車石公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "北野台",
+        "iso3166_2": "JP-13",
+        "lon": 139.343677,
+        "lat": 35.6287077,
+        "formatted": "片倉台車石公園, Hachioji, Japan",
+        "address_line1": "片倉台車石公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.628668479034936,
+            "lon": 139.34371704688704,
+            "name": "片倉台車石公園",
+            "osm_id": 224338078,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51a46ee4baff6a61405995bd6e3578d04140f00102f9019e205f0d00000000920315e78987e58089e58fb0e8bb8ae79fb3e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.34371704688704,
+          35.628668479034936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大矢部公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3579857,
+        "lat": 35.6425282,
+        "formatted": "Oyabe Park, Hachioji, Japan",
+        "address_line1": "Oyabe Park",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.64254489590399,
+            "lon": 139.35798792567778,
+            "name": "大矢部公園",
+            "osm_id": 783282144,
+            "leisure": "park",
+            "name:en": "Oyabe Park",
+            "name:ja": "大矢部公園",
+            "osm_type": "w"
+          }
+        },
+        "name_international": {
+          "en": "Oyabe Park",
+          "ja": "大矢部公園"
+        },
+        "place_id": "51c42418a3746b614059470f41e93ed24140f00102f901e0efaf2e0000000092030fe5a4a7e79fa2e983a8e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.35798792567778,
+          35.64254489590399
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "武蔵台児童遊園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hino",
+        "suburb": "Higashi Hirayama",
+        "iso3166_2": "JP-13",
+        "lon": 139.3717106,
+        "lat": 35.6497445,
+        "formatted": "武蔵台児童遊園, Higashi Hirayama, Hino, Japan",
+        "address_line1": "武蔵台児童遊園",
+        "address_line2": "Higashi Hirayama, Hino, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.64978494006116,
+            "lon": 139.37172194010532,
+            "name": "武蔵台児童遊園",
+            "osm_id": 189024644,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51a8fe6825e56b6140597d7f25272cd34140f00102f9018449440b00000000920315e6ada6e894b5e58fb0e58590e7aba5e9818ae59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.37172194010532,
+          35.64978494006116
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北野台ながれの公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "北野台",
+        "iso3166_2": "JP-13",
+        "lon": 139.3560788,
+        "lat": 35.6315912,
+        "formatted": "北野台ながれの公園, Hachioji, Japan",
+        "address_line1": "北野台ながれの公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.631600880689916,
+            "lon": 139.35615301719233,
+            "name": "北野台ながれの公園",
+            "osm_id": 230401486,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51cf26039b656b6140591058334cd8d04140f00102f901cea5bb0d0000000092031be58c97e9878ee58fb0e381aae3818ce3828ce381aee585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.35615301719233,
+          35.631600880689916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3710377,
+        "lat": 35.6425122,
+        "formatted": "Hachioji, Japan",
+        "address_line1": "Hachioji",
+        "address_line2": "Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.642512494902924,
+            "lon": 139.37103729771562,
+            "osm_id": 203961902,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "511d699c89df6b614059917074d93dd24140f00102f9012e36280c00000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.37103729771562,
+          35.642512494902924
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "下和田公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "192-0045",
+        "iso3166_2": "JP-13",
+        "lon": 139.35853,
+        "lat": 35.655858,
+        "formatted": "下和田公園, Hachioji, 192-0045, Japan",
+        "address_line1": "下和田公園",
+        "address_line2": "Hachioji, 192-0045, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.655858,
+            "lon": 139.35853,
+            "name": "下和田公園",
+            "osm_id": 2535883954,
+            "leisure": "park",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "515114e813796b614059f568aa27f3d34140f00103f901b28426970000000092030fe4b88be5928ce794b0e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.35853,
+          35.655858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "セレオ八王子北館",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "192-0083",
+        "district": "Azumacho",
+        "street": "Kuwanamiki dori",
+        "iso3166_2": "JP-13",
+        "lon": 139.3392898,
+        "lat": 35.6560883,
+        "formatted": "セレオ八王子北館, Kuwanamiki dori, Hachioji, Azumacho 192-0083, Japan",
+        "address_line1": "セレオ八王子北館",
+        "address_line2": "Kuwanamiki dori, Hachioji, Azumacho 192-0083, Japan",
+        "categories": [
+          "building",
+          "building.commercial",
+          "commercial",
+          "commercial.shopping_mall",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details.building",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.65606411726805,
+            "lon": 139.3392894466415,
+            "name": "セレオ八王子北館",
+            "shop": "mall",
+            "height": 45,
+            "osm_id": 888942712,
+            "building": "retail",
+            "osm_type": "w",
+            "wheelchair": "yes",
+            "building:colour": "#f3f9f5",
+            "building:levels": 10,
+            "toilets:wheelchair": "yes"
+          }
+        },
+        "facilities": {
+          "wheelchair": true,
+          "toilets": true
+        },
+        "building": {
+          "levels": 10,
+          "type": "retail",
+          "color": "#f3f9f5",
+          "height": 45
+        },
+        "commercial": {
+          "type": "mall"
+        },
+        "place_id": "5180a68a75db6a61405969dfb3e8f9d34140f00102f9017830fc3400000000920318e382bbe383ace382aae585abe78e8be5ad90e58c97e9a4a8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3392894466415,
+          35.65606411726805
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "六本杉公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3414718,
+        "lat": 35.6489476,
+        "formatted": "六本杉公園, Hachioji, Japan",
+        "address_line1": "六本杉公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.64902803932088,
+            "lon": 139.3415871065973,
+            "name": "六本杉公園",
+            "osm_id": 245981384,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "5143721548ee6a614059fc88cd5913d34140f00102f901c860a90e0000000092030fe585ade69cace69d89e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3415871065973,
+          35.64902803932088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "時々カフェ「南の魔女の家」",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "Nishi-Katakura",
+        "postcode": "192-0914",
+        "district": "Kitanomachi",
+        "street": "八王子南バイパス",
+        "iso3166_2": "JP-13",
+        "lon": 139.332213,
+        "lat": 35.6443873,
+        "formatted": "時々カフェ「南の魔女の家」, 八王子南バイパス, Hachioji, Kitanomachi 192-0914, Japan",
+        "address_line1": "時々カフェ「南の魔女の家」",
+        "address_line2": "八王子南バイパス, Hachioji, Kitanomachi 192-0914, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6443873,
+            "lon": 139.332213,
+            "name": "時々カフェ「南の魔女の家」",
+            "osm_id": 7607271020,
+            "amenity": "cafe",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51cb49287da16a61405997ba75487bd24140f00103f9016cbe6dc501000000920327e69982e38085e382abe38395e382a7e3808ce58d97e381aee9ad94e5a5b3e381aee5aeb6e3808d"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.332213,
+          35.6443873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "台町見晴公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3236473,
+        "lat": 35.6550602,
+        "formatted": "台町見晴公園, Hachioji, Japan",
+        "address_line1": "台町見晴公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.65496888618098,
+            "lon": 139.32365776025358,
+            "name": "台町見晴公園",
+            "osm_id": 246112408,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "5158ec84675b6a614059be053d05d6d34140f00102f9019860ab0e00000000920312e58fb0e794bae8a68be699b4e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.32365776025358,
+          35.65496888618098
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "みどり児童遊園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3235336,
+        "lat": 35.6474676,
+        "formatted": "みどり児童遊園, Hachioji, Japan",
+        "address_line1": "みどり児童遊園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.647501500289856,
+            "lon": 139.3235246099736,
+            "name": "みどり児童遊園",
+            "osm_id": 680479890,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51356948505a6a6140598ded4354e1d24140f00102f901924c8f2800000000920315e381bfe381a9e3828ae58590e7aba5e9818ae59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3235246099736,
+          35.647501500289856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.332372,
+        "lat": 35.6474899,
+        "formatted": "Hachioji, Japan",
+        "address_line1": "Hachioji",
+        "address_line2": "Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.64749189080898,
+            "lon": 139.33237176988294,
+            "osm_id": 680504994,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "5159381fcaa26a61405992b9a703e1d24140f00102f901a2ae8f2800000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.33237176988294,
+          35.64749189080898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "金照庵",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "193-0931",
+        "district": "Daimachi 2-chome",
+        "street": "松姫通り",
+        "iso3166_2": "JP-13",
+        "lon": 139.3223893,
+        "lat": 35.6562081,
+        "formatted": "金照庵, 松姫通り, Hachioji, Daimachi 2-chome 193-0931, Japan",
+        "address_line1": "金照庵",
+        "address_line2": "松姫通り, Hachioji, Daimachi 2-chome 193-0931, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6562081,
+            "lon": 139.3223893,
+            "name": "金照庵",
+            "osm_id": 10314363716,
+            "amenity": "cafe",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "5192825d03516a614059666f84a0fed34140f00103f90144b3c86602000000920309e98791e785a7e5bab5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3223893,
+          35.6562081
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3167022,
+        "lat": 35.6672875,
+        "formatted": "Hachioji, Japan",
+        "address_line1": "Hachioji",
+        "address_line2": "Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6674486159309,
+            "lon": 139.31519512786107,
+            "osm_id": 563946542,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51b3c01714166a6140598397ccf46ed54140f00102f9012e249d2100000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.31519512786107,
+          35.6674486159309
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3277823,
+        "lat": 35.6687869,
+        "formatted": "Hachioji, Japan",
+        "address_line1": "Hachioji",
+        "address_line2": "Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.66883955241335,
+            "lon": 139.3277536910513,
+            "osm_id": 1364173016,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51ad064ff57c6a6140597df1d1889cd54140f00102f901d8a04f5100000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3277536910513,
+          35.66883955241335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "コニカミノルタ サイエンスドーム",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "192-0052",
+        "district": "Nakano-kamicho 1-chome",
+        "street": "Asakawa Yuttari Road",
+        "iso3166_2": "JP-13",
+        "lon": 139.327845,
+        "lat": 35.664774,
+        "formatted": "Konica Minolta Science Dome, Asakawa Yuttari Road, Hachioji, Nakano-kamicho 1-chome 192-0052, Japan",
+        "address_line1": "Konica Minolta Science Dome",
+        "address_line2": "Asakawa Yuttari Road, Hachioji, Nakano-kamicho 1-chome 192-0052, Japan",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.664774,
+            "lon": 139.327845,
+            "name": "コニカミノルタ サイエンスドーム",
+            "museum": "sience;children",
+            "osm_id": 1420767670,
+            "name:en": "Konica Minolta Science Dome",
+            "name:ja": "コニカミノルタ サイエンスドーム",
+            "tourism": "museum",
+            "website": "https://www.city.hachioji.tokyo.jp/shisetsu/003/p011705.html",
+            "alt_name": "八王子市こども科学館",
+            "osm_type": "n",
+            "wikidata": "Q17229781",
+            "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-P02-v2_0.html",
+            "alt_name:en": "Hachioji Children's Science Museum"
+          }
+        },
+        "website": "https://www.city.hachioji.tokyo.jp/shisetsu/003/p011705.html",
+        "name_other": {
+          "alt_name": "八王子市こども科学館"
+        },
+        "name_international": {
+          "en": "Konica Minolta Science Dome",
+          "ja": "コニカミノルタ サイエンスドーム"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q17229781"
+        },
+        "place_id": "510725ccb47d6a614059959d7e5017d54140f00103f901b631af540000000092032ee382b3e3838be382abe3839fe3838ee383abe382bf20e382b5e382a4e382a8e383b3e382b9e38389e383bce383a0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.327845,
+          35.664774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "193-0841",
+        "district": "Minami-Asakawamachi",
+        "street": "高尾林道",
+        "iso3166_2": "JP-13",
+        "lon": 139.2406288,
+        "lat": 35.6248154,
+        "formatted": "高尾林道, Hachioji, Minami-Asakawamachi 193-0841, Japan",
+        "address_line1": "高尾林道",
+        "address_line2": "Hachioji, Minami-Asakawamachi 193-0841, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6248154,
+            "lon": 139.2406288,
+            "osm_id": 12592923882,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51394f2b3bb367614059c28476f3f9cf4140f00103f901eac498ee02000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.2406288,
+          35.6248154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "カフェ アンリ・マティス",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "192-0065",
+        "district": "Shincho",
+        "street": "Sando",
+        "iso3166_2": "JP-13",
+        "lon": 139.3406725,
+        "lat": 35.6604119,
+        "formatted": "カフェ アンリ・マティス, Sando, Hachioji, Shincho 192-0065, Japan",
+        "address_line1": "カフェ アンリ・マティス",
+        "address_line2": "Sando, Hachioji, Shincho 192-0065, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6604119,
+            "lon": 139.3406725,
+            "name": "カフェ アンリ・マティス",
+            "level": 0,
+            "osm_id": 9556786056,
+            "amenity": "cafe",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51b1c403cae66a614059d2318c6088d44140f00103f90188fba03902000000920322e382abe38395e382a720e382a2e383b3e383aae383bbe3839ee38386e382a3e382b9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3406725,
+          35.6604119
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "county": "Hachijō Subprefecture",
+        "city": "Tokyo",
+        "town": "Hachijō",
+        "postcode": "100-1411",
+        "district": "永郷",
+        "suburb": "Okago",
+        "street": "八丈循環線",
+        "iso3166_2": "JP-13",
+        "lon": 139.7677351,
+        "lat": 33.1300869,
+        "formatted": "八丈循環線, Okago, Tokyo, 永郷 100-1411, Japan",
+        "address_line1": "八丈循環線",
+        "address_line2": "Okago, Tokyo, 永郷 100-1411, Japan",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.attraction.viewpoint"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 33.1300869,
+            "lon": 139.7677351,
+            "osm_id": 5407290824,
+            "tourism": "viewpoint",
+            "osm_type": "n"
+          }
+        },
+        "place_id": "51b94f33499178614059ab9102b0a6904040f00103f901c8b54c4201000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7677351,
+          33.1300869
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dia.Coffee",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "postcode": "192-0046",
+        "district": "Myojincho 4-chome",
+        "street": "Koshu-kaido",
+        "iso3166_2": "JP-13",
+        "lon": 139.3439926,
+        "lat": 35.6594077,
+        "formatted": "Dia.Coffee, Koshu-kaido, Hachioji, Myojincho 4-chome 192-0046, Japan",
+        "address_line1": "Dia.Coffee",
+        "address_line2": "Koshu-kaido, Hachioji, Myojincho 4-chome 192-0046, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "catering.cafe.coffee",
+          "catering.cafe.coffee_shop"
+        ],
+        "details": [
+          "details",
+          "details.catering"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6594077,
+            "lon": 139.3439926,
+            "name": "Dia.Coffee",
+            "osm_id": 11637333082,
+            "amenity": "cafe",
+            "cuisine": "coffee_shop",
+            "website": "https://www.instagram.com/dia__coffee?igsh=MTkzajlhMmM2ZjA1dQ==",
+            "osm_type": "n"
+          }
+        },
+        "website": "https://www.instagram.com/dia__coffee?igsh=MTkzajlhMmM2ZjA1dQ==",
+        "catering": {
+          "cuisine": "coffee_shop"
+        },
+        "place_id": "511de2c4fc016b614059841db57867d44140f00103f9015a9ca3b50200000092030a4469612e436f66666565"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3439926,
+          35.6594077
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Canaan",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hino",
+        "postcode": "191-0065",
+        "district": "Asahigaoka 3",
+        "suburb": "Asahigaoka",
+        "street": "Hirayama Dori Avenue",
+        "iso3166_2": "JP-13",
+        "lon": 139.3682449,
+        "lat": 35.6583981,
+        "formatted": "Canaan, Hirayama Dori Avenue, Asahigaoka, Hino, Asahigaoka 3 191-0065, Japan",
+        "address_line1": "Canaan",
+        "address_line2": "Hirayama Dori Avenue, Asahigaoka, Hino, Asahigaoka 3 191-0065, Japan",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.6583981,
+            "lon": 139.3682449,
+            "name": "Canaan",
+            "osm_id": 2173201678,
+            "amenity": "cafe",
+            "operator": "東京光の家",
+            "osm_type": "n",
+            "wheelchair": "yes"
+          }
+        },
+        "operator": "東京光の家",
+        "facilities": {
+          "wheelchair": true
+        },
+        "place_id": "51674d87a9c86b614059d09f916346d44140f00103f9010e6d88810000000092030643616e61616e"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3682449,
+          35.6583981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大谷沢公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.354481,
+        "lat": 35.6700676,
+        "formatted": "大谷沢公園, Hachioji, Japan",
+        "address_line1": "大谷沢公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.67006519563887,
+            "lon": 139.3544821589026,
+            "name": "大谷沢公園",
+            "osm_id": 545424166,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "5112f0f7ea576b61405978ba42b2c4d54140f00102f901268382200000000092030fe5a4a7e8b0b7e6b2a2e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3544821589026,
+          35.67006519563887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "楢原桑の実公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3094896,
+        "lat": 35.6846114,
+        "formatted": "楢原桑の実公園, Hachioji, Japan",
+        "address_line1": "楢原桑の実公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.68461333557045,
+            "lon": 139.3095135112773,
+            "name": "楢原桑の実公園",
+            "osm_id": 547186802,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "516513e188e7696140591c57e768a1d74140f00102f90172689d2000000000920315e6a5a2e58e9fe6a191e381aee5ae9fe585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3095135112773,
+          35.68461333557045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "諏訪北公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.2909088,
+        "lat": 35.6818449,
+        "formatted": "諏訪北公園, Hachioji, Japan",
+        "address_line1": "諏訪北公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.68184180258034,
+            "lon": 139.29090872111792,
+            "name": "諏訪北公園",
+            "osm_id": 556444710,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "51536ace1f4f696140596a90999746d74140f00102f90126ac2a210000000092030fe8ab8fe8a8aae58c97e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.29090872111792,
+          35.68184180258034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大谷児童遊園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3518288,
+        "lat": 35.6689788,
+        "formatted": "大谷児童遊園, Hachioji, Japan",
+        "address_line1": "大谷児童遊園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.66894275361314,
+            "lon": 139.35184368581656,
+            "name": "大谷児童遊園",
+            "osm_id": 547164322,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "515c7cb04d426b61405912d588ea9fd54140f00102f901a2109d2000000000920312e5a4a7e8b0b7e58590e7aba5e9818ae59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.35184368581656,
+          35.66894275361314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.2828924,
+        "lat": 35.6844787,
+        "formatted": "Hachioji, Japan",
+        "address_line1": "Hachioji",
+        "address_line2": "Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.68444421664431,
+            "lon": 139.2828907633853,
+            "osm_id": 556656582,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "519222ee700d696140593a363bde9bd74140f00102f901c6e72d2100000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.2828907633853,
+          35.68444421664431
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大谷ちびっこ公園",
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "iso3166_2": "JP-13",
+        "lon": 139.3456094,
+        "lat": 35.6698244,
+        "formatted": "大谷ちびっこ公園, Hachioji, Japan",
+        "address_line1": "大谷ちびっこ公園",
+        "address_line2": "Hachioji, Japan",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.66983006216599,
+            "lon": 139.3456106481064,
+            "name": "大谷ちびっこ公園",
+            "osm_id": 545424168,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "5186d80f3e0f6b614059b770d1fdbcd54140f00102f9012883822000000000920318e5a4a7e8b0b7e381a1e381b3e381a3e38193e585ace59c92"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.3456106481064,
+          35.66983006216599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Japan",
+        "country_code": "jp",
+        "city": "Hachioji",
+        "hamlet": "Nishiasakawamachi",
+        "postcode": "193-0844",
+        "district": "Nishi-Asakawamachi",
+        "street": "Koshu-kaido",
+        "iso3166_2": "JP-13",
+        "lon": 139.2714387,
+        "lat": 35.6386161,
+        "formatted": "Koshu-kaido, Hachioji, Nishi-Asakawamachi 193-0844, Japan",
+        "address_line1": "Koshu-kaido",
+        "address_line2": "Hachioji, Nishi-Asakawamachi 193-0844, Japan",
+        "categories": [
+          "building",
+          "building.catering",
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 35.63860181637142,
+            "lon": 139.27143030259575,
+            "osm_id": 1239838770,
+            "amenity": "cafe",
+            "building": "yes",
+            "osm_type": "w"
+          }
+        },
+        "place_id": "5159199a8eaf68614059a03d4eb4bdd14140f00102f9013270e64900000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.27143030259575,
+          35.63860181637142
+        ]
+      }
+    }
+  ]
+}

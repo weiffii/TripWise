@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-18",
+  "passed": true,
+  "network_requests": 0,
+  "scenario": "reviewed three real POIs with cached paths, published scoped prices and estimated durations",
+  "inputs_unchanged": true,
+  "input_sha256": {
+    "examples/routing/v02/moscow.reviewed-three.draft.json": "76c4d0bbab18e69b89153d9008a987440b738573ad177aec89cd0d41b6ba3672",
+    "examples/routing/v02/moscow.reviewed-three.pois.json": "cdf3d00dfe41096ae690869f48d661bb532f2a0c47f534325174ba1f37d441c4",
+    "examples/routing/v02/moscow.reviewed-three.preferences.json": "38fc13ac466dc030583f2228c8b7434cb6ef296d345b4ef65dc45f61b543714e",
+    "examples/routing/v02/moscow.reviewed-three.scenario.json": "dd2a9351acf76c97f204717bd508655d830db9b1c223ad080209db2a780dbb63"
+  },
+  "cases": [
+    {
+      "decision": "preview",
+      "exit_code": 0,
+      "stored_version": 1,
+      "original_unchanged_before_confirmation": true,
+      "interpreter_kind": "synthetic_fixture",
+      "storage": "in_memory_demo_only",
+      "checks": {
+        "time": "passed",
+        "required_places": "passed",
+        "opening_hours": "unknown",
+        "budget": "unknown"
+      }
+    },
+    {
+      "decision": "reject",
+      "exit_code": 0,
+      "stored_version": 1,
+      "original_unchanged_before_confirmation": true,
+      "interpreter_kind": "synthetic_fixture",
+      "storage": "in_memory_demo_only",
+      "checks": {
+        "time": "passed",
+        "required_places": "passed",
+        "opening_hours": "unknown",
+        "budget": "unknown"
+      }
+    },
+    {
+      "decision": "confirm",
+      "exit_code": 0,
+      "stored_version": 2,
+      "original_unchanged_before_confirmation": true,
+      "interpreter_kind": "synthetic_fixture",
+      "storage": "in_memory_demo_only",
+      "checks": {
+        "time": "passed",
+        "required_places": "passed",
+        "opening_hours": "unknown",
+        "budget": "unknown"
+      }
+    }
+  ]
+}

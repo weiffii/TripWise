@@ -64,28 +64,34 @@ def validate_document(document):
     return document
 
 
-def fetch(query, *, endpoint=ENDPOINT, opener=urlopen, sleep=time.sleep, attempts=2):
-    """До двух последовательных попыток; 400/403 не повторяются."""
+def fetch(query, *, endpoint=ENDPOINT, opener=urlopen, sleep=time.sleep, attempts=2, timeout=30):
+    """По умолчанию две попытки, максимум три; 400/403 не повторяются."""
     parsed = urlparse(endpoint)
     if parsed.scheme != 'https' or not parsed.netloc:
         raise ValueError('Требуется HTTPS endpoint')
-    if not 1 <= attempts <= 3:
+    if type(attempts) is not int or not 1 <= attempts <= 3:
         raise ValueError('Допустимо от одной до трёх попыток')
+    if type(timeout) is not int or not 1 <= timeout <= 45:
+        raise ValueError('timeout должен быть целым от 1 до 45 секунд')
     request = Request(endpoint, data=urlencode({'data': query}).encode('utf-8'),
                       headers={'User-Agent': USER_AGENT, 'Accept': 'application/json',
                                'Content-Type': 'application/x-www-form-urlencoded'}, method='POST')
     for attempt in range(attempts):
         try:
-            with opener(request, timeout=30) as response:
+            with opener(request, timeout=timeout) as response:
                 body = response.read(MAX_RESPONSE_BYTES + 1)
             if len(body) > MAX_RESPONSE_BYTES:
                 raise ValueError('Ответ превышает ограничение 8 MiB')
             validate_document(json.loads(body.decode('utf-8')))
             return body
         except HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt + 1 == attempts:
-                raise
-            sleep(retry_seconds(error.headers.get('Retry-After'), attempt))
+            try:
+                if error.code not in (429, 500, 502, 503, 504) or attempt + 1 == attempts:
+                    raise
+                delay = retry_seconds((error.headers or {}).get('Retry-After'), attempt)
+            finally:
+                error.close()
+            sleep(delay)
         except (URLError, TimeoutError):
             if attempt + 1 == attempts:
                 raise
@@ -107,14 +113,17 @@ def admin_relation(document, city):
                     tags.get('name:ru', tags.get('name')) != expected['name']):
                 raise ValueError('Теги административной relation не соответствуют городу')
             relations.append(element)
-    if len(relations) != 1 or type(relations[0].get('id')) is not int:
+    if (len(relations) != 1 or type(relations[0].get('id')) is not int or
+            relations[0]['id'] <= 0):
         raise ValueError('Ожидалась одна административная relation города')
     return relations[0]
 
 
-def download(city, raw_dir, *, endpoint=ENDPOINT, opener=urlopen, sleep=time.sleep):
+def download(city, raw_dir, *, endpoint=ENDPOINT, opener=urlopen, sleep=time.sleep,
+             attempts=2, timeout=30):
     query = query_path(city).read_text(encoding='utf-8')
-    body = fetch(query, endpoint=endpoint, opener=opener, sleep=sleep)
+    body = fetch(query, endpoint=endpoint, opener=opener, sleep=sleep,
+                 attempts=attempts, timeout=timeout)
     document = json.loads(body.decode('utf-8'))
     relation = admin_relation(document, city)
     now = datetime.now(timezone.utc)
@@ -149,9 +158,13 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--city', choices=tuple(CITIES), required=True)
     parser.add_argument('--raw-dir', type=Path, default=ROOT / 'data/raw/openstreetmap')
+    parser.add_argument('--endpoint', default=ENDPOINT)
+    parser.add_argument('--attempts', type=int, default=2)
+    parser.add_argument('--timeout', type=int, default=30)
     args = parser.parse_args(argv)
     try:
-        directory = download(args.city, args.raw_dir)
+        directory = download(args.city, args.raw_dir, endpoint=args.endpoint,
+                             attempts=args.attempts, timeout=args.timeout)
         print(directory)
         return 0
     except (OSError, ValueError) as error:

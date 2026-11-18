@@ -1,0 +1,2579 @@
+[
+  {
+    "id": "geoapify:513023607584513e4059c56d2bfd1cf84d40f00102f9012f1f771200000000920339d092d0bed181d182d0bed187d0bdd0bed0b520d0bad180d18bd0bbd0be20d093d0bbd0b0d0b2d0bdd0bed0b3d0be20d188d182d0b0d0b1d0b0",
+    "name": "Восточное крыло Главного штаба",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.93838467236086,
+      "longitude": 30.318427406283433
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "513023607584513e4059c56d2bfd1cf84d40f00102f9012f1f771200000000920339d092d0bed181d182d0bed187d0bdd0bed0b520d0bad180d18bd0bbd0be20d093d0bbd0b0d0b2d0bdd0bed0b3d0be20d188d182d0b0d0b1d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:518fef41be3a513e4059d1538957fef74d40f00103f901acfdc59b020000009203075465706c696361",
+    "name": "Teplica",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9374494,
+      "longitude": 30.3173026
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "518fef41be3a513e4059d1538957fef74d40f00103f901acfdc59b020000009203075465706c696361",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:514a9baa7b64513e405916e52db2f8f74d40f00103f90103bf840801000000920318d0a0d0bed0ba20d0a1d182d0b0d18020d09ad0b0d184d0b5",
+    "name": "Рок Стар Кафе",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9372771,
+      "longitude": 30.3179395
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "514a9baa7b64513e405916e52db2f8f74d40f00103f90103bf840801000000920318d0a0d0bed0ba20d0a1d182d0b0d18020d09ad0b0d184d0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51de8d058541513e4059481f4ebbf3f74d40f00103f901c950f86402000000920308576f6f2d686f6f21",
+    "name": "Woo-hoo!",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9371256,
+      "longitude": 30.317406
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51de8d058541513e4059481f4ebbf3f74d40f00103f901c950f86402000000920308576f6f2d686f6f21",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51cd22145b41513e4059fbe362b1f2f74d40f00103f9013d3b8c250100000092031dd092d0bdd183d182d180d0b820d187d0b5d0bbd0bed0b2d0b5d0bad0b0",
+    "name": "Внутри человека",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9370939,
+      "longitude": 30.3174035
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51cd22145b41513e4059fbe362b1f2f74d40f00103f9013d3b8c250100000092031dd092d0bdd183d182d180d0b820d187d0b5d0bbd0bed0b2d0b5d0bad0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51f52ede8fdb513e40594662ddd330f84d40f00103f901e1f8178e02000000920325d09fd0b5d182d180d0bed0b2d181d0bad0b8d0b920d0bad180d0b5d0bdd0b4d0b5d0bbd18c",
+    "name": "Петровский крендель",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9389901,
+      "longitude": 30.3197565
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51f52ede8fdb513e40594662ddd330f84d40f00103f901e1f8178e02000000920325d09fd0b5d182d180d0bed0b2d181d0bad0b8d0b920d0bad180d0b5d0bdd0b4d0b5d0bbd18c",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a94c310741513e4059f62c639ef0f74d40f00103f901e4f69cd0010000009203094d6f76696520417274",
+    "name": "Movie Art",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9370306,
+      "longitude": 30.3173985
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a94c310741513e4059f62c639ef0f74d40f00103f901e4f69cd0010000009203094d6f76696520417274",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:512758d240e2513e4059872e4db626f84d40f00103f901d4bf394201000000920319d0a2d180d0bed0b8d186d0bad0b8d0b920d0bcd0bed181d182",
+    "name": "Троицкий мост",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9386814,
+      "longitude": 30.3198586
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "512758d240e2513e4059872e4db626f84d40f00103f901d4bf394201000000920319d0a2d180d0bed0b8d186d0bad0b8d0b920d0bcd0bed181d182",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c160edde40513e40593eb14e95eff74d40f00103f901f9be840801000000920319d09cd183d0b7d0b5d0b920d0b8d0bbd0bbd18ed0b7d0b8d0b9",
+    "name": "Музей иллюзий",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.936999,
+      "longitude": 30.3173961
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c160edde40513e40593eb14e95eff74d40f00103f901f9be840801000000920319d09cd183d0b7d0b5d0b920d0b8d0bbd0bbd18ed0b7d0b8d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51f127cf6163513e4059d25048d7f1f74d40f00103f901a8d9682301000000920309416c65782053686f77",
+    "name": "Alex Show",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9370679,
+      "longitude": 30.3179227
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51f127cf6163513e4059d25048d7f1f74d40f00103f901a8d9682301000000920309416c65782053686f77",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:519d8a0a8b40513e405939fa4e82edf74d40f00103f901f7be840801000000920317d094d0bed0bc20d092d0b5d0bbd0b8d0bad0b0d0bdd0b0",
+    "name": "Дом Великана",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9369357,
+      "longitude": 30.3173911
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "519d8a0a8b40513e405939fa4e82edf74d40f00103f901f7be840801000000920317d094d0bed0bc20d092d0b5d0bbd0b8d0bad0b0d0bdd0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51dfed8b95e2503e40592f8c4f5ce9f74d40f00103f9010ef8928d02000000920307c3947065746974",
+    "name": "Ôpetit",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9368091,
+      "longitude": 30.3159574
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51dfed8b95e2503e40592f8c4f5ce9f74d40f00103f9010ef8928d02000000920307c3947065746974",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51437bab64b6503e405947109d54eaf74d40f00103f901e659413c0100000092030e42616767696e7320436f66666565",
+    "name": "Baggins Coffee",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9368387,
+      "longitude": 30.3152831
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51437bab64b6503e405947109d54eaf74d40f00103f901e659413c0100000092030e42616767696e7320436f66666565",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51331c2a21b3503e405917ba1281eaf74d40f00103f901545b247c0200000092030c56d0bbd0b076d0b0d188d0b5",
+    "name": "Vлаvаше",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.936844,
+      "longitude": 30.3152333
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51331c2a21b3503e405917ba1281eaf74d40f00103f901545b247c0200000092030c56d0bbd0b076d0b0d188d0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d44e8358ec513e40595232ef2719f84d40f00103f901c6e2a4d100000000920317d09cd183d0b7d0b5d0b920d0bfd0b5d187d0b0d182d0b8",
+    "name": "Музей печати",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9382677,
+      "longitude": 30.3200126
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d44e8358ec513e40595232ef2719f84d40f00103f901c6e2a4d100000000920317d09cd183d0b7d0b5d0b920d0bfd0b5d187d0b0d182d0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5104b80f2f3e513e4059b2f4a10beaf74d40f00103f901db90a22e03000000920322d09cd183d0b7d0b5d0b920d181d183d0bfd0b5d18020d0b3d0b5d180d0bed0b5d0b2",
+    "name": "Музей супер героев",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.93683,
+      "longitude": 30.3173551
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5104b80f2f3e513e4059b2f4a10beaf74d40f00103f901db90a22e03000000920322d09cd183d0b7d0b5d0b920d181d183d0bfd0b5d18020d0b3d0b5d180d0bed0b5d0b2",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51af5120fd40513e4059ac1dc539eaf74d40f00103f901e6f69cd001000000920325d09cd183d0b7d0b5d0b920d0bad0b0d0b7d0bdd0b5d0b920d0b820d0bfd18bd182d0bed0ba",
+    "name": "Музей казней и пыток",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9368355,
+      "longitude": 30.3173979
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51af5120fd40513e4059ac1dc539eaf74d40f00103f901e6f69cd001000000920325d09cd183d0b7d0b5d0b920d0bad0b0d0b7d0bdd0b5d0b920d0b820d0bfd18bd182d0bed0ba",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51fa76b7578b503e40598d124fd1ecf74d40f00103f901e259413c0100000092031dd0a1d0b5d0b2d0b5d1802dd09cd0b5d182d180d0bed0bfd0bed0bbd18c",
+    "name": "Север-Метрополь",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9369146,
+      "longitude": 30.3146262
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51fa76b7578b503e40598d124fd1ecf74d40f00103f901e259413c0100000092031dd0a1d0b5d0b2d0b5d1802dd09cd0b5d182d180d0bed0bfd0bed0bbd18c",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51feb220393e513e40595f58a3c3e8f74d40f00103f901dc90a22e0300000092032ed09cd183d0b7d0b5d0b920d0bed0bfd182d0b8d187d0b5d181d0bad0b8d18520d0b8d0bbd0bbd18ed0b7d0b8d0b9",
+    "name": "Музей оптических иллюзий",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9367909,
+      "longitude": 30.3173557
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51feb220393e513e40595f58a3c3e8f74d40f00103f901dc90a22e0300000092032ed09cd183d0b7d0b5d0b920d0bed0bfd182d0b8d187d0b5d181d0bad0b8d18520d0b8d0bbd0bbd18ed0b7d0b8d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c160edde40513e40598f0a52dfe8f74d40f00103f901dd90a22e03000000920324d09cd183d0b7d0b5d0b920d0b0d0bdd0b0d182d0bed0bcd0b8d0b820d182d0b5d0bbd0b0",
+    "name": "Музей анатомии тела",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9367942,
+      "longitude": 30.3173961
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c160edde40513e40598f0a52dfe8f74d40f00103f901dd90a22e03000000920324d09cd183d0b7d0b5d0b920d0b0d0bdd0b0d182d0bed0bcd0b8d0b820d182d0b5d0bbd0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51b7e5c86f76503e405903fbf900eef74d40f00103f901d8c5c2f100000000920315d0a2d0bed180d18220d09fd0b5d180d0b2d18bd0b9",
+    "name": "Торт Первый",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9369508,
+      "longitude": 30.3143072
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51b7e5c86f76503e405903fbf900eef74d40f00103f901d8c5c2f100000000920315d0a2d0bed180d18220d09fd0b5d180d0b2d18bd0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5162e3b0ea62513e4059581932c3ebf74d40f00103f901aad9682301000000920317d094d0bed0bc20d0bdd0b0d0bed0b1d0bed180d0bed182",
+    "name": "Дом наоборот",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9368824,
+      "longitude": 30.3179156
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5162e3b0ea62513e4059581932c3ebf74d40f00103f901aad9682301000000920317d094d0bed0bc20d0bdd0b0d0bed0b1d0bed180d0bed182",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:513bd567265a503e4059e3a8b79861f84d40f00101f901300f010000000000920319d097d0b8d0bcd0bdd0b8d0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Зимний дворец",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.940478410413355,
+      "longitude": 30.313875580167615
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "513bd567265a503e4059e3a8b79861f84d40f00101f901300f010000000000920319d097d0b8d0bcd0bdd0b8d0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:518cc3f41840513e4059bccff1d1e2f74d40f00103f901de90a22e03000000920306576168616c61",
+    "name": "Wahala",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9366095,
+      "longitude": 30.3173843
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "518cc3f41840513e4059bccff1d1e2f74d40f00103f901de90a22e03000000920306576168616c61",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:515cfd7d6bcc503e405904fef0f3dff74d40f00103f901cab47fa100000000920308506c616365203433",
+    "name": "Place 43",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.936522,
+      "longitude": 30.3156192
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "515cfd7d6bcc503e405904fef0f3dff74d40f00103f901cab47fa100000000920308506c616365203433",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:514e1df521b9503e4059f2a66ca2e0f74d40f00103f9013901b0b101000000920308436f666665657273",
+    "name": "Coffeers",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9365428,
+      "longitude": 30.3153249
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "514e1df521b9503e4059f2a66ca2e0f74d40f00103f9013901b0b101000000920308436f666665657273",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51f701486de2503e40595e6397a8def74d40f00103f9013be3002501000000920315d0a1d182d0bed0bbd0bed0b2d0b0d18f20e2849633",
+    "name": "Столовая №3",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9364825,
+      "longitude": 30.315955
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51f701486de2503e40595e6397a8def74d40f00103f9013be3002501000000920315d0a1d182d0bed0bbd0bed0b2d0b0d18f20e2849633",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51cdc75ae8ef503e405941086ddeddf74d40f00103f9013d91c0d80000000092030cd0a8d182d0bed0bbd0bbd0b5",
+    "name": "Штолле",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9364584,
+      "longitude": 30.3161607
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51cdc75ae8ef503e405941086ddeddf74d40f00103f9013d91c0d80000000092030cd0a8d182d0bed0bbd0bbd0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51fe0868c7b2513e4059f097608264f84d40f00103f901cb61c23201000000920310d0a0d0b0d181d0bfd183d182d0b8d0bd",
+    "name": "Распутин",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9405673,
+      "longitude": 30.3191342
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51fe0868c7b2513e4059f097608264f84d40f00103f901cb61c23201000000920310d0a0d0b0d181d0bfd183d182d0b8d0bd",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5179c3222b64513e4059abcc94d6dff74d40f00103f901f481c03201000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+    "name": "Шоколадница",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9365185,
+      "longitude": 30.3179347
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5179c3222b64513e4059abcc94d6dff74d40f00103f901f481c03201000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5190821ec9b7503e4059ae37ba9f75f84d40f00101f901867a7b000000000092032dd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0add180d0bcd0b8d182d0b0d0b6",
+    "name": "Государственный Эрмитаж",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.941089597631944,
+      "longitude": 30.315304346035703
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5190821ec9b7503e4059ae37ba9f75f84d40f00101f901867a7b000000000092032dd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0add180d0bcd0b8d182d0b0d0b6",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51ddda786638503e40597d433c6de8f74d40f00103f901f735c0fe00000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+    "name": "Шоколадница",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9367806,
+      "longitude": 30.3133606
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51ddda786638503e40597d433c6de8f74d40f00103f901f735c0fe00000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:519159620a7b513e40595930968edef74d40f00103f901adfdc59b0200000092031bd09cd0b8d0b4d0b8d0b9d0bdd0bed0b520d0bcd0b5d181d182d0be",
+    "name": "Мидийное место",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9364794,
+      "longitude": 30.3182837
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "519159620a7b513e40595930968edef74d40f00103f901adfdc59b0200000092031bd09cd0b8d0b4d0b8d0b9d0bdd0bed0b520d0bcd0b5d181d182d0be",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5158defa5525503e4059e8c5e468e9f74d40f00103f901756700250100000092031ad094d0bed0bc20d0b2d0b2d0b5d180d18520d0b4d0bdd0bed0bc",
+    "name": "Дом вверх дном",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9368106,
+      "longitude": 30.3130697
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5158defa5525503e4059e8c5e468e9f74d40f00103f901756700250100000092031ad094d0bed0bc20d0b2d0b2d0b5d180d18520d0b4d0bdd0bed0bc",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:515932c7f2ae503e4059a33cf372d8f74d40f00103f90183562ecc0200000092030e42616767696e7320436f66666565",
+    "name": "Baggins Coffee",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.936293,
+      "longitude": 30.3151695
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "515932c7f2ae503e4059a33cf372d8f74d40f00103f90183562ecc0200000092030e42616767696e7320436f66666565",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d7da7554c24f3e40597226cac845f84d40f00101f901dd52af0000000000920322d181d0b0d0b420d097d0b8d0bcd0bdd0b5d0b3d0be20d0b4d0b2d0bed180d186d0b0",
+    "name": "сад Зимнего дворца",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.93962964888205,
+      "longitude": 30.311558989308505
+    },
+    "categories": [
+      "nature"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d7da7554c24f3e40597226cac845f84d40f00101f901dd52af0000000000920322d181d0b0d0b420d097d0b8d0bcd0bdd0b5d0b3d0be20d0b4d0b2d0bed180d186d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51bb325ea91d503e405917d4b7cce9f74d40f00103f90126e06f080100000092030f313020d0bad0bed0bfd0b5d0b5d0ba",
+    "name": "10 копеек",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9368225,
+      "longitude": 30.3129526
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51bb325ea91d503e405917d4b7cce9f74d40f00103f90126e06f080100000092030f313020d0bad0bed0bfd0b5d0b5d0ba",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51561bbc93b1503e405942ed5b33d7f74d40f00102f9012a374a4d00000000920323d091d180d0b8d182d0b0d0bdd181d0bad0b8d0b520d0bfd0b5d0bad0b0d180d0bdd0b8",
+    "name": "Британские пекарни",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.93625490177739,
+      "longitude": 30.315209611343867
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51561bbc93b1503e405942ed5b33d7f74d40f00102f9012a374a4d00000000920323d091d180d0b8d182d0b0d0bdd181d0bad0b8d0b520d0bfd0b5d0bad0b0d180d0bdd0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d55e44db31513e40592d5a80b6d5f74d40f00103f90157e01e5a0200000092030a43697479204772696c6c",
+    "name": "City Grill",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9362095,
+      "longitude": 30.317167
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d55e44db31513e40592d5a80b6d5f74d40f00103f90157e01e5a0200000092030a43697479204772696c6c",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51afe53a32fb513e4059242fc61bf4f74d40f00103f901c2bb8e2501000000920313d09dd0b020d0b0d0b1d0bed180d0b4d0b0d0b6",
+    "name": "На абордаж",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9371371,
+      "longitude": 30.3202392
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51afe53a32fb513e4059242fc61bf4f74d40f00103f901c2bb8e2501000000920313d09dd0b020d0b0d0b1d0bed180d0b4d0b0d0b6",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51cba88d452e513e40596a36ea7cd3f74d40f00103f90159e01e5a0200000092030d4d6172696f27732050697a7a61",
+    "name": "Mario's Pizza",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9361416,
+      "longitude": 30.3171123
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51cba88d452e513e40596a36ea7cd3f74d40f00103f90159e01e5a0200000092030d4d6172696f27732050697a7a61",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:510095850a69503e40594568041bd7f74d40f00103f90150e210790100000092031043616b65202620427265616b66617374",
+    "name": "Cake & Breakfast",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.936252,
+      "longitude": 30.3141028
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "510095850a69503e40594568041bd7f74d40f00103f90150e210790100000092031043616b65202620427265616b66617374",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51495c1146fd4f3e40590c18c9c3e7f74d40f00103f90131e68e0f0300000092030ad09fd18bd188d0bad0b8",
+    "name": "Пышки",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9367604,
+      "longitude": 30.3124584
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51495c1146fd4f3e40590c18c9c3e7f74d40f00103f90131e68e0f0300000092030ad09fd18bd188d0bad0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5140a374e95f523e4059eaf8799d1ef84d40f00103f901bde8681902000000920310436976696c20436f6666656520426172",
+    "name": "Civil Coffee Bar",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9384343,
+      "longitude": 30.321776
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5140a374e95f523e4059eaf8799d1ef84d40f00103f901bde8681902000000920310436976696c20436f6666656520426172",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d5c6491b84503e4059136718abcff74d40f00102f9017e1e364500000000920306436f66666974",
+    "name": "Coffit",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.93602503482375,
+      "longitude": 30.314515786659133
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d5c6491b84503e4059136718abcff74d40f00102f9017e1e364500000000920306436f66666974",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51753348669a513e405958271d9bd3f74d40f00103f901a68ab53a01000000920312d09ad0bed184d0b5d0b2d0b0d180d0b8d0bc",
+    "name": "Кофеварим",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9361452,
+      "longitude": 30.3187622
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51753348669a513e405958271d9bd3f74d40f00103f901a68ab53a01000000920312d09ad0bed184d0b5d0b2d0b0d180d0b8d0bc",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:516c7bbb2539503e4059ea0d524bcef74d40f00103f901b057637700000000920308d091d183d188d0b5",
+    "name": "Буше",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9359831,
+      "longitude": 30.313372
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "516c7bbb2539503e4059ea0d524bcef74d40f00103f901b057637700000000920308d091d183d188d0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51e9e280a7da503e4059e0826c59bef74d40f00103f901b8ddb33401000000920311d09ad0b8d0be20d0bad183d185d0bdd18f",
+    "name": "Кио кухня",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9354965,
+      "longitude": 30.3158364
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51e9e280a7da503e4059e0826c59bef74d40f00103f901b8ddb33401000000920311d09ad0b8d0be20d0bad183d185d0bdd18f",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:515b52ff6a1f503e4059f829d890c9f74d40f00103f9010545c4170100000092030cd0afd180d183d0bcd18dd0bd",
+    "name": "Ярумэн",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9358388,
+      "longitude": 30.3129794
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "515b52ff6a1f503e4059f829d890c9f74d40f00103f9010545c4170100000092030cd0afd180d183d0bcd18dd0bd",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5104368c2727513e40594dcf053fbbf74d40f00103f901e0cdb53800000000920311d09ad0b8d0bdd0b320d09fd0bed0bdd0b3",
+    "name": "Кинг Понг",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9354018,
+      "longitude": 30.3170037
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5104368c2727513e40594dcf053fbbf74d40f00103f901e0cdb53800000000920311d09ad0b8d0bdd0b320d09fd0bed0bdd0b3",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a58059468f523e4059a80183a44ff84d40f00103f901e6ad4a9a0200000092030dc2ab416c2044656e7465e2809d",
+    "name": "«Al Dente”",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9399305,
+      "longitude": 30.3224987
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a58059468f523e4059a80183a44ff84d40f00103f901e6ad4a9a0200000092030dc2ab416c2044656e7465e2809d",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a3bfe14f9e4f3e4059c735f405e3f74d40f00103f9010ec2a5d10000000092033fd09cd183d0b7d0b5d0b920d0bfd0bed0bbd0b8d182d0b8d187d0b5d181d0bad0bed0b920d0b8d181d182d0bed180d0b8d0b820d0a0d0bed181d181d0b8d0b8",
+    "name": "Музей политической истории России",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9366157,
+      "longitude": 30.3110094
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a3bfe14f9e4f3e4059c735f405e3f74d40f00103f9010ec2a5d10000000092033fd09cd183d0b7d0b5d0b920d0bfd0bed0bbd0b8d182d0b8d187d0b5d181d0bad0bed0b920d0b8d181d182d0bed180d0b8d0b820d0a0d0bed181d181d0b8d0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d893dcb94e523e40591cac736e73f84d40f00102f9013243fe0500000000920334d09cd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0902ec2a0d0a12ec2a0d09fd183d188d0bad0b8d0bdd0b0",
+    "name": "Музей-квартира А. С. Пушкина",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.94102268837034,
+      "longitude": 30.321513763763363
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d893dcb94e523e40591cac736e73f84d40f00102f9013243fe0500000000920334d09cd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0902ec2a0d0a12ec2a0d09fd183d188d0bad0b8d0bdd0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c73a66eabf523e4059f661bd512bf84d40f00103f901d133480301000000920332d0a1d0b0d0bad0b2d0bed18fd0b620d0b1d0b5d180d0b5d0bcd0b5d0bdd0bdd0bed0b920d188d0bfd0b8d0bed0bdd0bad0b8",
+    "name": "Саквояж беременной шпионки",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.938822,
+      "longitude": 30.3232409
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c73a66eabf523e4059f661bd512bf84d40f00103f901d133480301000000920332d0a1d0b0d0bad0b2d0bed18fd0b620d0b1d0b5d180d0b5d0bcd0b5d0bdd0bdd0bed0b920d188d0bfd0b8d0bed0bdd0bad0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:511f29c709b8523e40597ad10d034cf84d40f00103f90135710e5402000000920323d093d0b8d0bbd18cd0b4d0b8d18f20d0bfd0b0d180d184d18ed0bcd0b5d180d0bed0b2",
+    "name": "Гильдия парфюмеров",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398197,
+      "longitude": 30.3231207
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "511f29c709b8523e40597ad10d034cf84d40f00103f90135710e5402000000920323d093d0b8d0bbd18cd0b4d0b8d18f20d0bfd0b0d180d184d18ed0bcd0b5d180d0bed0b2",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51900b73277d523e405979d4f3c9e5f74d40f00103f901c92e2a4702000000920306d09cd18dd0b9",
+    "name": "Мэй",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9367001,
+      "longitude": 30.3222222
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51900b73277d523e405979d4f3c9e5f74d40f00103f901c92e2a4702000000920306d09cd18dd0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5189bfdcddb9523e40595be03ce64df84d40f00103f901eb0de20c0300000092030b5361696e74204769726f73",
+    "name": "Saint Giros",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398773,
+      "longitude": 30.3231486
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5189bfdcddb9523e40595be03ce64df84d40f00103f901eb0de20c0300000092030b5361696e74204769726f73",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517d47437c16523e4059fccadead87f84d40f00103f901298e74aa0100000092030cd0a7d091d09ad0b0d184d0b5",
+    "name": "ЧБКафе",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9416406,
+      "longitude": 30.3206556
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517d47437c16523e4059fccadead87f84d40f00103f901298e74aa0100000092030cd0a7d091d09ad0b0d184d0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5118963fdf16523e405958946d3bc8f74d40f00103f901994f2a320100000092032cd092d18bd181d182d0b0d0b2d0bad0b020d0b2d0bed181d0bad0bed0b2d18bd18520d184d0b8d0b3d183d180",
+    "name": "Выставка восковых фигур",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9357981,
+      "longitude": 30.3206615
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5118963fdf16523e405958946d3bc8f74d40f00103f901994f2a320100000092032cd092d18bd181d182d0b0d0b2d0bad0b020d0b2d0bed181d0bad0bed0b2d18bd18520d184d0b8d0b3d183d180",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d3f31373b5503e40599550b0b5adf74d40f00103f9017ca09fbd0100000092030a44726976652043616665",
+    "name": "Drive Cafe",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9349887,
+      "longitude": 30.3152687
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d3f31373b5503e40599550b0b5adf74d40f00103f9017ca09fbd0100000092030a44726976652043616665",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5184eb2b1510523e40594bbc36b4c2f74d40f00101f901f7af0f0000000000920327d0a1d182d180d0bed0b3d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Строгановский дворец",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.93562939331658,
+      "longitude": 30.320557902548458
+    },
+    "categories": [
+      "history",
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5184eb2b1510523e40594bbc36b4c2f74d40f00101f901f7af0f0000000000920327d0a1d182d180d0bed0b3d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51204dabd7e3523e4059ad026b8b21f84d40f00103f9010aa2872c0100000092030ad0a1d0bfd18dd188d0bb",
+    "name": "Спэшл",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9385237,
+      "longitude": 30.3237891
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51204dabd7e3523e4059ad026b8b21f84d40f00103f9010aa2872c0100000092030ad0a1d0bfd18dd188d0bb",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:514c039a63d4523e4059b5fd2b2b4df84d40f00103f901a10fe83c0300000092030f4c6f756e61206279204f7065746974",
+    "name": "Louna by Opetit",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.939855,
+      "longitude": 30.3235533
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "514c039a63d4523e4059b5fd2b2b4df84d40f00103f901a10fe83c0300000092030f4c6f756e61206279204f7065746974",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5151f1248ee1523e4059da20ee450ff84d40f00103f9013496eb360100000092031ad0a5d0b5d0bbd18cd181d0b8d0bdd0bad0b8d0bad0b0d184d0b5",
+    "name": "Хельсинкикафе",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9379661,
+      "longitude": 30.3237542
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5151f1248ee1523e4059da20ee450ff84d40f00103f9013496eb360100000092031ad0a5d0b5d0bbd18cd181d0b8d0bdd0bad0b8d0bad0b0d184d0b5",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51742e200fd8523e4059321f10e84cf84d40f00103f9015902b24e01000000920319d09fd0bed0b420d0bbd0b5d181d182d0bdd0b8d186d0b5d0b9",
+    "name": "Под лестницей",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.939847,
+      "longitude": 30.3236093
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51742e200fd8523e4059321f10e84cf84d40f00103f9015902b24e01000000920319d09fd0bed0b420d0bbd0b5d181d182d0bdd0b8d186d0b5d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:513858eebbd8523e4059a36428dd4cf84d40f00103f9015a02b24e0100000092030a45636c61697243686963",
+    "name": "EclairChic",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398457,
+      "longitude": 30.3236196
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "513858eebbd8523e4059a36428dd4cf84d40f00103f9015a02b24e0100000092030a45636c61697243686963",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d2020f67d9523e4059a96917d34cf84d40f00103f9015b02b24e010000009203054368616e67",
+    "name": "Chang",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398445,
+      "longitude": 30.3236298
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d2020f67d9523e4059a96917d34cf84d40f00103f9015b02b24e010000009203054368616e67",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5131d7fdbeda523e4059b573f5be4cf84d40f00103f9015d02b24e01000000920308496b7261666f6f64",
+    "name": "Ikrafood",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398421,
+      "longitude": 30.3236503
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5131d7fdbeda523e4059b573f5be4cf84d40f00103f9015d02b24e01000000920308496b7261666f6f64",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5148ff266fdb523e4059d2a00d654df84d40f00103f9013cc97109020000009203063232d181d0bc",
+    "name": "22см",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398619,
+      "longitude": 30.3236608
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5148ff266fdb523e4059d2a00d654df84d40f00103f9013cc97109020000009203063232d181d0bc",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5140fdc28602513e405951b69267a8f84d40f00103f901b5f5d1fe00000000920317d09ed0b1d0b7d0bed18020d0b0d0bdd0b3d0b5d0bbd0b0",
+    "name": "Обзор ангела",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9426393,
+      "longitude": 30.3164448
+    },
+    "categories": [
+      "viewpoints"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5140fdc28602513e405951b69267a8f84d40f00103f901b5f5d1fe00000000920317d09ed0b1d0b7d0bed18020d0b0d0bdd0b3d0b5d0bbd0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5105604dafde523e4059f6bea7284df84d40f00103f901daba375202000000",
+    "name": "Adept Coffe",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398547,
+      "longitude": 30.3237104
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5105604dafde523e4059f6bea7284df84d40f00103f901daba375202000000",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5134f8567fdf523e4059fc613a634ef84d40f00103f9015802b24e010000009203055361766976",
+    "name": "Saviv",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9398922,
+      "longitude": 30.3237228
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5134f8567fdf523e4059fc613a634ef84d40f00103f9015802b24e010000009203055361766976",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:513a579412824f3e405956b0d705cdf74d40f00103f901dfd620110100000092030cd0a1d0b8d0b1d0b8d180d18c",
+    "name": "Сибирь",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9359443,
+      "longitude": 30.3105785
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "513a579412824f3e405956b0d705cdf74d40f00103f901dfd620110100000092030cd0a1d0b8d0b1d0b8d180d18c",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5169bd29f6e1523e4059ee93a30051f84d40f00103f901ec0de20c0300000092030c536f6b6f6c20436f66666565",
+    "name": "Sokol Coffee",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.939972,
+      "longitude": 30.3237604
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5169bd29f6e1523e4059ee93a30051f84d40f00103f901ec0de20c0300000092030c536f6b6f6c20436f66666565",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51a4e194b9f9523e40594eaac7c738f84d40f00103f901d221480301000000920308d09ad0b0d185d0b0",
+    "name": "Каха",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9392328,
+      "longitude": 30.324123
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51a4e194b9f9523e40594eaac7c738f84d40f00103f901d221480301000000920308d09ad0b0d185d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5191860959cc523e40593e35a84764f84d40f00103f901ce44a87d01000000920315d09cd183d0b7d0b5d0b920d0a2d0b5d0bdd0b5d0b9",
+    "name": "Музей Теней",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9405603,
+      "longitude": 30.3234306
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5191860959cc523e40593e35a84764f84d40f00103f901ce44a87d01000000920315d09cd183d0b7d0b5d0b920d0a2d0b5d0bdd0b5d0b9",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51b2a4373701533e4059c1a8a44e40f84d40f00103f901768c0e020100000092030b50697a7a6120323220636d",
+    "name": "Pizza 22 cm",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9394625,
+      "longitude": 30.3242373
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51b2a4373701533e4059c1a8a44e40f84d40f00103f901768c0e020100000092030b50697a7a6120323220636d",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51736ac2514d523e4059a4a833f790f84d40f00103f901dd764c8002000000920317d09cd183d0b7d0b5d0b920d181d0bfd0bed180d182d0b0",
+    "name": "Музей спорта",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.941924,
+      "longitude": 30.3214923
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51736ac2514d523e4059a4a833f790f84d40f00103f901dd764c8002000000920317d09cd183d0b7d0b5d0b920d181d0bfd0bed180d182d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c2734a9b05533e405930ae02c644f84d40f00103f901b616922501000000920306526564426f78",
+    "name": "RedBox",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9395988,
+      "longitude": 30.3243043
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c2734a9b05533e405930ae02c644f84d40f00103f901b616922501000000920306526564426f78",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51dbb86a436a513e4059e8aa2f01aef84d40f00103f901cf67472701000000920326d097d0b8d0bcd0bdd0b8d0b920d0b4d0b2d0bed180d0b5d18620d09fd0b5d182d180d0b02049",
+    "name": "Зимний дворец Петра I",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9428102,
+      "longitude": 30.3180277
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51dbb86a436a513e4059e8aa2f01aef84d40f00103f901cf67472701000000920326d097d0b8d0bcd0bdd0b8d0b920d0b4d0b2d0bed180d0b5d18620d09fd0b5d182d180d0b02049",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:510ac105346c4f3e40594e82925dc4f74d40f00103f9019e8cf3280100000092030cd09ed0bcd0bcd0b0d0bdd18d",
+    "name": "Омманэ",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9356801,
+      "longitude": 30.3102448
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "510ac105346c4f3e40594e82925dc4f74d40f00103f9019e8cf3280100000092030cd09ed0bcd0bcd0b0d0bdd18d",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:511e2ad725f4523e4059c1470e2263f84d40f00103f901593e4803010000009203065961676f6461",
+    "name": "Yagoda",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9405253,
+      "longitude": 30.3240379
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "511e2ad725f4523e4059c1470e2263f84d40f00103f901593e4803010000009203065961676f6461",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51854d53baaa523e4059259ccc2ecef74d40f00103f901673f9f2e0200000092030ed0a7d0b0d0b9d185d0bed0bdd0b0",
+    "name": "Чайхона",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9359797,
+      "longitude": 30.3229176
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51854d53baaa523e4059259ccc2ecef74d40f00103f901673f9f2e0200000092030ed0a7d0b0d0b9d185d0bed0bdd0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:514de03197af523e40593d3abf72cef74d40f00103f9016b01b3fe02000000920308d098d0b3d180d0b0",
+    "name": "Игра",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9359878,
+      "longitude": 30.3229918
+    },
+    "categories": [
+      "museums"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "514de03197af523e40593d3abf72cef74d40f00103f9016b01b3fe02000000920308d098d0b3d180d0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5138313e23b64e3e4059759db70521f84d40f00102f9016542f9010000000092032ed09cd0b0d0bbd0be2dd09cd0b8d185d0b0d0b9d0bbd0bed0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+    "name": "Мало-Михайловский дворец",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.938507761627,
+      "longitude": 30.307466700252206
+    },
+    "categories": [
+      "history"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5138313e23b64e3e4059759db70521f84d40f00102f9016542f9010000000092032ed09cd0b0d0bbd0be2dd09cd0b8d185d0b0d0b9d0bbd0bed0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51d483dd0b27503e405924647b88a1f74d40f00103f901e86003cc02000000920316d094d0b0d0b1d0bb20d091d0b0d0b1d0bb20d0a2d0b8",
+    "name": "Дабл Бабл Ти",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9346171,
+      "longitude": 30.3130958
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51d483dd0b27503e405924647b88a1f74d40f00103f901e86003cc02000000920316d094d0b0d0b1d0bb20d091d0b0d0b1d0bb20d0a2d0b8",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c7a01342074f3e4059bff6274c73f84d40f00103f90138f794fe00000000920348d092d0b8d0b420d18120d094d0b2d0bed180d186d0bed0b2d0bed0b3d0be20d0bcd0bed181d182d0b020d0bdd0b020d097d0b8d0bcd0bdd0b8d0b920d094d0b2d0bed180d0b5d186",
+    "name": "Вид с Дворцового моста на Зимний Дворец",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9410186,
+      "longitude": 30.3087045
+    },
+    "categories": [
+      "viewpoints"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c7a01342074f3e4059bff6274c73f84d40f00103f90138f794fe00000000920348d092d0b8d0b420d18120d094d0b2d0bed180d186d0bed0b2d0bed0b3d0be20d0bcd0bed181d182d0b020d0bdd0b020d097d0b8d0bcd0bdd0b8d0b920d094d0b2d0bed180d0b5d186",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51c0875cba934f3e4059ebd9bd26b5f74d40f00103f90101b6cbbb0000000092030d506c61796c6f66742047616761",
+    "name": "Playloft Gaga",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9352158,
+      "longitude": 30.3108479
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51c0875cba934f3e4059ebd9bd26b5f74d40f00103f90101b6cbbb0000000092030d506c61796c6f66742047616761",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:5103b68311fb523e40590b3d073b6af84d40f00103f9014022480301000000920310d091d0b0d180d181d0bbd0bed0bdd0b0",
+    "name": "Барслона",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9407419,
+      "longitude": 30.3241435
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "5103b68311fb523e40590b3d073b6af84d40f00103f9014022480301000000920310d091d0b0d180d181d0bbd0bed0bdd0b0",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51de0abcee08503e4059241cc418a2f74d40f00103f901aad6798f00000000920313d0a16f6666656520526f6f6d20537472656574",
+    "name": "Сoffee Room Street",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9346343,
+      "longitude": 30.3126363
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51de0abcee08503e4059241cc418a2f74d40f00103f901aad6798f00000000920313d0a16f6666656520526f6f6d20537472656574",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:51899ae8f351503e4059284e49319bf74d40f00103f901125c12300000000092031dd0a1d0b5d0b2d0b5d1802dd09cd0b5d182d180d0bed0bfd0bed0bbd18c",
+    "name": "Север-Метрополь",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9344236,
+      "longitude": 30.3137505
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "51899ae8f351503e4059284e49319bf74d40f00103f901125c12300000000092031dd0a1d0b5d0b2d0b5d1802dd09cd0b5d182d180d0bed0bfd0bed0bbd18c",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  },
+  {
+    "id": "geoapify:517e271c30fe523e405963ec29de6df84d40f00103f90129e4d4e800000000920303466569",
+    "name": "Fei",
+    "country_code": "RU",
+    "city": "Санкт-Петербург",
+    "coordinates": {
+      "latitude": 59.9408529,
+      "longitude": 30.3241911
+    },
+    "categories": [
+      "cafes"
+    ],
+    "rating": null,
+    "popularity": null,
+    "visit_duration_minutes": null,
+    "visit_duration_basis": null,
+    "estimated_cost": null,
+    "opening_hours": null,
+    "availability": "unknown",
+    "provenance": {
+      "source_id": "geoapify",
+      "source_record_id": "517e271c30fe523e405963ec29de6df84d40f00103f90129e4d4e800000000920303466569",
+      "source_url": "https://www.geoapify.com/",
+      "retrieved_at": "2026-11-17T17:24:20.515824+00:00",
+      "verified_at": null,
+      "is_synthetic": false
+    }
+  }
+]

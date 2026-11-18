@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-18",
+  "scope": "manual primary-source readiness review of three routing-pilot POIs",
+  "original_snapshots_modified": false,
+  "is_synthetic": false,
+  "records": [
+    {
+      "poi_id": "geoapify:51c28b193ca7cf424059242b1ac638e14b40f00103f901d123434801000000920335d0a6d0b5d0bdd182d180d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d09cd0a7d0a120d0a0d0bed181d181d0b8d0b8",
+      "name": "Центральный музей МЧС России",
+      "review_status": "needs_manual_verification",
+      "code": "POSSIBLE_LOCATION_AND_ACCESS_CONFLICT",
+      "source_url": "https://mchs.gov.ru/ministerstvo/uchrezhdeniya-mchs-rossii/muzei-mchs-rossii/centralnyy-muzey-mchs-rossii",
+      "evidence_access": "Official-page search index excerpt read; direct page fetch timed out and museum subdomain was unavailable to web tool",
+      "observation": "Official excerpt describes Khimki/Novogorsk address, relocation and group advance-booking restrictions; Geoapify record points to central Moscow",
+      "action": "Do not treat technical walking paths as proof of visitor access; original snapshot unchanged"
+    },
+    {
+      "poi_id": "geoapify:514c9bbba7bccf424059a2e0737165e14b40f00103f901013d226601000000920344d09cd183d0b7d0b5d0b920d18dd0bad181d0bbd0b8d0b1d180d0b8d181d0b020d0b820d0bcd0b8d0bdd0b8d0b0d182d18ed180d0bdd0bed0b920d0bad0bdd0b8d0b3d0b8",
+      "name": "Музей экслибриса и миниатюрной книги",
+      "review_status": "source_identified_not_applied",
+      "source_url": "https://exlibrismuseum.org/",
+      "observation": "Official site lists weekday 10:00-17:00 and weekend closure; group excursion price cannot be used as a per-person ticket price",
+      "action": "No hours, price, or duration copied into POI; future dated sidecar requires verified scope and exceptions"
+    },
+    {
+      "poi_id": "geoapify:514c0025d7a4cf4240599f36556691e14b40f00101f901c6bb28000000000092032ed09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b4d0bed0bc20d185d183d0b4d0bed0b6d0bdd0b8d0bad0b0",
+      "name": "Московский дом художника",
+      "review_status": "source_identified_not_applied",
+      "source_url": "https://mdx.ru/",
+      "observation": "Official site distinguishes shop hours from exhibition hours (12:00-19:00 daily); third-party hours cannot silently replace exhibition schedule",
+      "action": "No price or duration inferred; select correct exhibition and applicable date before planning"
+    }
+  ],
+  "limitations": [
+    "Not an exhaustive factual audit of all 2058 POIs",
+    "No current availability is inferred solely from a website or search excerpt",
+    "No source content is scraped into a new production dataset"
+  ]
+}

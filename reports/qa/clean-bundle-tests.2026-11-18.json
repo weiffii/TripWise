@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-18",
+  "exit_code": 0,
+  "test_count": 189,
+  "passed": true,
+  "environment": "isolated directory on same Python/OS; API keys removed",
+  "live_network_requests": 0
+}

@@ -1,0 +1,3914 @@
+{
+  "schema_version": "0.1",
+  "input_count": 100,
+  "normalization_rejected": [
+    {
+      "index": 10,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 19,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 22,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 23,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 24,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 25,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 26,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 27,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 29,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 34,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 38,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 39,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 42,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 43,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 52,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 54,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 57,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 59,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 62,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 77,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 85,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 90,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 93,
+      "code": "UNMAPPED_OR_UNNAMED"
+    },
+    {
+      "index": 97,
+      "code": "UNMAPPED_OR_UNNAMED"
+    }
+  ],
+  "quality": {
+    "schema_version": "0.1",
+    "summary": {
+      "input_count": 76,
+      "accepted_count": 76,
+      "rejected_count": 0,
+      "records_with_warnings": 76,
+      "records_without_issues": 0,
+      "issue_count": 540
+    },
+    "source_ids": [
+      "geoapify"
+    ],
+    "data_kind": "real",
+    "issues": [
+      {
+        "index": 0,
+        "poi_id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 0,
+        "poi_id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 0,
+        "poi_id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 0,
+        "poi_id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 0,
+        "poi_id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 0,
+        "poi_id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 0,
+        "poi_id": "geoapify:51bdd161cfefce4240592588e3d210e04b40f00101f9015a2e750000000000920321d093d180d0b0d0bdd0bed0b2d0b8d182d0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 1,
+        "poi_id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 1,
+        "poi_id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 1,
+        "poi_id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 1,
+        "poi_id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 1,
+        "poi_id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 1,
+        "poi_id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 1,
+        "poi_id": "geoapify:5115cf1a1ff0ce424059a5d4b65f27e04b40f00101f90190bd140000000000920321d09fd0b0d182d180d0b8d0b0d180d188d0b8d0b520d0bfd0b0d0bbd0b0d182d18b",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 2,
+        "poi_id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 2,
+        "poi_id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 2,
+        "poi_id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 2,
+        "poi_id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 2,
+        "poi_id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 2,
+        "poi_id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 2,
+        "poi_id": "geoapify:51a5d10c02d1ce42405943eb155e07e04b40f00101f901096f030000000000920332d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 3,
+        "poi_id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 3,
+        "poi_id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 3,
+        "poi_id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 3,
+        "poi_id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 3,
+        "poi_id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 3,
+        "poi_id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 3,
+        "poi_id": "geoapify:51eb419ce2ccce42405991346e2013e04b40f00103f9019455328d0000000092031dd0a2d0b5d180d0b5d0bcd0bdd0bed0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 4,
+        "poi_id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 4,
+        "poi_id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 4,
+        "poi_id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 4,
+        "poi_id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 4,
+        "poi_id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 4,
+        "poi_id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 4,
+        "poi_id": "geoapify:517277d3d543cf4240590002bdbd05e04b40f00101f90125c3140000000000920319d0a2d0b0d0b9d0bdd0b8d186d0bad0b8d0b920d0a1d0b0d0b4",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 5,
+        "poi_id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 5,
+        "poi_id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 5,
+        "poi_id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 5,
+        "poi_id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 5,
+        "poi_id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 5,
+        "poi_id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 5,
+        "poi_id": "geoapify:51a0397ec038cf424059e25bde8136e04b40f00102f901ada6d51f0000000092031dd0a7d183d0b4d0bed0b220d0bcd0bed0bdd0b0d181d182d18bd180d18c",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 6,
+        "poi_id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 6,
+        "poi_id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 6,
+        "poi_id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 6,
+        "poi_id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 6,
+        "poi_id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 6,
+        "poi_id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 6,
+        "poi_id": "geoapify:5178fea32545cf424059d4168d6b32e04b40f00102f901aca6d51f00000000920330d09cd0b0d0bbd18bd0b920d09dd0b8d0bad0bed0bbd0b0d0b5d0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 7,
+        "poi_id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 7,
+        "poi_id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 7,
+        "poi_id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 7,
+        "poi_id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 7,
+        "poi_id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 7,
+        "poi_id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 7,
+        "poi_id": "geoapify:51421bdc3966cf42405991b8b51722e04b40f00101f9013bc3140000000000920330d091d0bed0bbd18cd188d0bed0b920d09ad180d0b5d0bcd0bbd191d0b2d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 8,
+        "poi_id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 8,
+        "poi_id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 8,
+        "poi_id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 8,
+        "poi_id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 8,
+        "poi_id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 8,
+        "poi_id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 8,
+        "poi_id": "geoapify:51fe41c71da5ce4240590717d6ab28e04b40f00101f901e9bd14000000000092031dd09fd0bed182d0b5d188d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 9,
+        "poi_id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 9,
+        "poi_id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 9,
+        "poi_id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 9,
+        "poi_id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 9,
+        "poi_id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 9,
+        "poi_id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 9,
+        "poi_id": "geoapify:517a8637e741cf424059d566faef4ae04b40f00102f901d2a5d51f00000000920347d0a5d180d0b0d0bc20d0a7d183d0b4d0b020d090d180d185d0b8d181d182d180d0b0d182d0b8d0b3d0b020d09cd0b8d185d0b0d0b8d0bbd0b020d0b220d0a5d0bed0bdd0b5d185",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 10,
+        "poi_id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 10,
+        "poi_id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 10,
+        "poi_id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 10,
+        "poi_id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 10,
+        "poi_id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 10,
+        "poi_id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 10,
+        "poi_id": "geoapify:5145d4449f8fce424059d74fff59f3df4b40f00103f901942e522901000000920319d090d0bbd0bcd0b0d0b7d0bdd18bd0b920d184d0bed0bdd0b4",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 11,
+        "poi_id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 11,
+        "poi_id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 11,
+        "poi_id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 11,
+        "poi_id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 11,
+        "poi_id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 11,
+        "poi_id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 11,
+        "poi_id": "geoapify:51fc914d0885ce424059e69e1654f2df4b40f00101f901e7bd14000000000092031fd09ed180d183d0b6d0b5d0b9d0bdd0b0d18f20d0bfd0b0d0bbd0b0d182d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 12,
+        "poi_id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 12,
+        "poi_id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 12,
+        "poi_id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 12,
+        "poi_id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 12,
+        "poi_id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 12,
+        "poi_id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 12,
+        "poi_id": "geoapify:516b962e2575cf4240591faad29c47e04b40f00101f901e312750000000000920328d0a6d0b5d180d0bad0bed0b2d18c20d0a1d0b22ec2a0d095d0bad0b0d182d0b5d180d0b8d0bdd18b",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 13,
+        "poi_id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 13,
+        "poi_id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 13,
+        "poi_id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 13,
+        "poi_id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 13,
+        "poi_id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 13,
+        "poi_id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 13,
+        "poi_id": "geoapify:514cedc9fb65cf424059f706c1f050e04b40f00101f901e412750000000000920323d092d0bed0b7d0bdd0b5d181d0b5d0bdd181d0bad0b8d0b920d181d0bed0b1d0bed180",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 14,
+        "poi_id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 14,
+        "poi_id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 14,
+        "poi_id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 14,
+        "poi_id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 14,
+        "poi_id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 14,
+        "poi_id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 14,
+        "poi_id": "geoapify:51e721b92288ce424059bb7d77b940e04b40f00101f90195c9140000000000920325d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 15,
+        "poi_id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 15,
+        "poi_id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 15,
+        "poi_id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 15,
+        "poi_id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 15,
+        "poi_id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 15,
+        "poi_id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 15,
+        "poi_id": "geoapify:5199c9f5872dcf424059a7d271136ae04b40f00101f90181bd14000000000092031fd0a1d0b5d0bdd0b0d182d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 16,
+        "poi_id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 16,
+        "poi_id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 16,
+        "poi_id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 16,
+        "poi_id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 16,
+        "poi_id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 16,
+        "poi_id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 16,
+        "poi_id": "geoapify:51c2233b808fcf4240591f46add5c3df4b40f00103f9010104072e0300000092030ad0a1d0bed184d0b8d18f",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 17,
+        "poi_id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 17,
+        "poi_id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 17,
+        "poi_id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 17,
+        "poi_id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 17,
+        "poi_id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 17,
+        "poi_id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 17,
+        "poi_id": "geoapify:5154b59377c4ce424059a3f265587be04b40f00103f9016f394e6300000000920317d093d180d0bed18220c2abd0a0d183d0b8d0bdd18bc2bb",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 18,
+        "poi_id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 18,
+        "poi_id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 18,
+        "poi_id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 18,
+        "poi_id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 18,
+        "poi_id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 18,
+        "poi_id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 18,
+        "poi_id": "geoapify:51f36aca5f6bcf424059aa4885b185e04b40f00103f901e5d9eb1101000000",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 19,
+        "poi_id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 19,
+        "poi_id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 19,
+        "poi_id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 19,
+        "poi_id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 19,
+        "poi_id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 19,
+        "poi_id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 19,
+        "poi_id": "geoapify:51b4194c6837ce424059eb5edd674be04b40f00103f9010aa51fd10200000092031544d0bed181d182d0bed0b5d0b2d181d0bad0b8d0b9",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 20,
+        "poi_id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 20,
+        "poi_id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 20,
+        "poi_id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 20,
+        "poi_id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 20,
+        "poi_id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 20,
+        "poi_id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 20,
+        "poi_id": "geoapify:51a6fa84a22fce42405956d9d2fe62e04b40f00103f9011c011153020000009203084561742674616c6b",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 21,
+        "poi_id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 21,
+        "poi_id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 21,
+        "poi_id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 21,
+        "poi_id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 21,
+        "poi_id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 21,
+        "poi_id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 21,
+        "poi_id": "geoapify:51f7274c7386cf4240596ad37da598e04b40f00103f901d8c1c1160200000092030ed09fd183d188d0bad0b8d0bdd18a",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 22,
+        "poi_id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 22,
+        "poi_id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 22,
+        "poi_id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 22,
+        "poi_id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 22,
+        "poi_id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 22,
+        "poi_id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 22,
+        "poi_id": "geoapify:511e90df36aecf4240594d92f82697df4b40f00103f901a2089e3f0300000092030854656120726f6f6d",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 23,
+        "poi_id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 23,
+        "poi_id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 23,
+        "poi_id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 23,
+        "poi_id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 23,
+        "poi_id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 23,
+        "poi_id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 23,
+        "poi_id": "geoapify:51b6f29fd28acf42405996a65de799e04b40f00101f90105d2320000000000920351d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d183d0bdd0b8d0b2d0b5d180d181d0b0d0bbd18cd0bdd18bd0b920d0bcd0b0d0b3d0b0d0b7d0b8d0bd2028d093d0a3d09c29",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 24,
+        "poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 24,
+        "poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 24,
+        "poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 24,
+        "poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 24,
+        "poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 24,
+        "poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 24,
+        "poi_id": "geoapify:512488213f12cf4240596ecd4e4eaee04b40f00101f90192005b0000000000920323d098d181d182d0bed180d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b9",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 25,
+        "poi_id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 25,
+        "poi_id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 25,
+        "poi_id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 25,
+        "poi_id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 25,
+        "poi_id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 25,
+        "poi_id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 25,
+        "poi_id": "geoapify:518b4e3ba17cce424059338001ce9ce04b40f00103f901450dc186010000009203075368616b655570",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 26,
+        "poi_id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 26,
+        "poi_id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 26,
+        "poi_id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 26,
+        "poi_id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 26,
+        "poi_id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 26,
+        "poi_id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 26,
+        "poi_id": "geoapify:5184ee377fb8cf424059987043e790e04b40f00103f90139d80e4000000000920318d0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b5",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 27,
+        "poi_id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 27,
+        "poi_id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 27,
+        "poi_id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 27,
+        "poi_id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 27,
+        "poi_id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 27,
+        "poi_id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 27,
+        "poi_id": "geoapify:5130c9b72d80cf424059abbf14d4a6e04b40f00103f9011b585c120300000092031ad0a4d0b5d181d182d0b8d0b2d0b0d0bbd18cd0bdd0bed0b52032",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 28,
+        "poi_id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 28,
+        "poi_id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 28,
+        "poi_id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 28,
+        "poi_id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 28,
+        "poi_id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 28,
+        "poi_id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 28,
+        "poi_id": "geoapify:513dd665ffdfcd42405976ebdb5ffedf4b40f00101f9010f155b0000000000920315d094d0bed0bc20d09fd0b0d188d0bad0bed0b2d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 29,
+        "poi_id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 29,
+        "poi_id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 29,
+        "poi_id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 29,
+        "poi_id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 29,
+        "poi_id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 29,
+        "poi_id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 29,
+        "poi_id": "geoapify:51c21c400e9ace4240593df4eefdaee04b40f00101f90131085f000000000092031bd0a7d0b0d0b9d185d0b0d0bdd0b020d09bd0b0d0b7d0b7d0b0d182",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 30,
+        "poi_id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 30,
+        "poi_id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 30,
+        "poi_id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 30,
+        "poi_id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 30,
+        "poi_id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 30,
+        "poi_id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 30,
+        "poi_id": "geoapify:5176a8a624ebcd4240592eb6ffb748e04b40f00103f90149fc67a400000000920315d09cd183d0b7d0b5d0b920d0bad0bdd0b8d0b3d0b8",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 32,
+        "poi_id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 32,
+        "poi_id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 32,
+        "poi_id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 32,
+        "poi_id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 32,
+        "poi_id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 32,
+        "poi_id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 32,
+        "poi_id": "geoapify:512bb8e4f1dacd4240593932171b1ae04b40f00102f90150dcf20100000000920322d098d0b2d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bb20d0a0d093d091",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 33,
+        "poi_id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 33,
+        "poi_id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 33,
+        "poi_id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 33,
+        "poi_id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 33,
+        "poi_id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 33,
+        "poi_id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 33,
+        "poi_id": "geoapify:51df9ee5598ece4240594703a917b0e04b40f00101f90136085f0000000000920319d094d0b2d0bed180d0bdd18bd0b920d09fd0b8d0b2d0b8d0ba",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 34,
+        "poi_id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 34,
+        "poi_id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 34,
+        "poi_id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 34,
+        "poi_id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 34,
+        "poi_id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 34,
+        "poi_id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 34,
+        "poi_id": "geoapify:51ea0f83af9ecf424059cdbdd1d8a8e04b40f00103f901db7aafdc020000009203064b75726e696b",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 36,
+        "poi_id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 36,
+        "poi_id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 36,
+        "poi_id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 36,
+        "poi_id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 36,
+        "poi_id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 36,
+        "poi_id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 36,
+        "poi_id": "geoapify:51d3f47e4864cf4240597ee94889b8e04b40f00103f901da951d3b0300000092030ed0a1d187d0b0d181d182d18cd0b5",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 37,
+        "poi_id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 37,
+        "poi_id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 37,
+        "poi_id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 37,
+        "poi_id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 37,
+        "poi_id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 37,
+        "poi_id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 37,
+        "poi_id": "geoapify:517b588b4510cf424059197783e662df4b40f00101f901f7f6cf000000000092031dd0a0d0b5d0bfd0b8d0bdd181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 38,
+        "poi_id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 38,
+        "poi_id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 38,
+        "poi_id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 38,
+        "poi_id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 38,
+        "poi_id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 38,
+        "poi_id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 38,
+        "poi_id": "geoapify:51711c78b5dccd424059f8359204e1df4b40f00103f901cdb19a4f01000000920330d093d0b0d0bbd0b5d180d0b5d18f20d090d0bbd0b5d0bad181d0b0d0bdd0b4d180d0b020d0a8d0b8d0bbd0bed0b2d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 39,
+        "poi_id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 39,
+        "poi_id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 39,
+        "poi_id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 39,
+        "poi_id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 39,
+        "poi_id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 39,
+        "poi_id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 39,
+        "poi_id": "geoapify:51a444c862b0ce424059826d370dbde04b40f00101f9012d085f0000000000920311d09ad0bed184d0b520d0a5d0b0d183d0b7",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 41,
+        "poi_id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 41,
+        "poi_id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 41,
+        "poi_id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 41,
+        "poi_id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 41,
+        "poi_id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 41,
+        "poi_id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 41,
+        "poi_id": "geoapify:51b37b9f06aece424059e3e1eb57bee04b40f00101f9018e1e5f000000000092033bd0a2d0bed180d0b3d0bed0b2d18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad18120c2abd09ed185d0bed182d0bdd18bd0b920d180d18fd0b4c2bb",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 43,
+        "poi_id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 43,
+        "poi_id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 43,
+        "poi_id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 43,
+        "poi_id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 43,
+        "poi_id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 43,
+        "poi_id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 43,
+        "poi_id": "geoapify:510a6eff2504ce424059f0c000c287e04b40f00103f9018fd3327602000000920371d09cd0b5d0bcd0bed180d0b8d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b92dd0bad0b2d0b0d180d182d0b8d180d0b020d0a2d0b8d0bcd0b8d180d18fd0b7d0b5d0b2d0b020d09ad0bbd0b8d0bcd0b5d0bdd182d0b020d090d180d0bad0b0d0b4d18cd0b5d0b2d0b8d187d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 44,
+        "poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 44,
+        "poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 44,
+        "poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 44,
+        "poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 44,
+        "poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 44,
+        "poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 44,
+        "poi_id": "geoapify:517670b03731cf424059b5705985cde04b40f00103f901954aeb680100000092033ed09cd183d0b7d0b5d0b920d09ed182d0b5d187d0b5d181d182d0b2d0b5d0bdd0bdd0bed0b920d0b2d0bed0b9d0bdd18b203138313220d0b3d0bed0b4d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 45,
+        "poi_id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 45,
+        "poi_id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 45,
+        "poi_id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 45,
+        "poi_id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 45,
+        "poi_id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 45,
+        "poi_id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 45,
+        "poi_id": "geoapify:5193beb5b86bcf424059c4daceadc6e04b40f00103f90120585c120300000092030cd09ad0bed184d0b5d0b8d0bd",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 46,
+        "poi_id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 46,
+        "poi_id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 46,
+        "poi_id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 46,
+        "poi_id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 46,
+        "poi_id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 46,
+        "poi_id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 46,
+        "poi_id": "geoapify:51bfe25fbaffce4240598a479858cfe04b40f00103f901b2cf44690100000092032cd09cd183d0b7d0b5d0b920d0b0d180d185d0b5d0bed0bbd0bed0b3d0b8d0b820d09cd0bed181d0bad0b2d18b",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 47,
+        "poi_id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 47,
+        "poi_id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 47,
+        "poi_id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 47,
+        "poi_id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 47,
+        "poi_id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 47,
+        "poi_id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 47,
+        "poi_id": "geoapify:51cfe489e4e3ce42405931000f58cee04b40f00101f90146085f000000000092030c547574746920467275747469",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 48,
+        "poi_id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 48,
+        "poi_id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 48,
+        "poi_id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 48,
+        "poi_id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 48,
+        "poi_id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 48,
+        "poi_id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 48,
+        "poi_id": "geoapify:5174fead48d7ce424059c765fc37d1e04b40f00101f90124085f0000000000920311d09cd0b0d0bdd0b5d0b6d0bad0b02e5275",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 50,
+        "poi_id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 50,
+        "poi_id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 50,
+        "poi_id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 50,
+        "poi_id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 50,
+        "poi_id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 50,
+        "poi_id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 50,
+        "poi_id": "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 51,
+        "poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 51,
+        "poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 51,
+        "poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 51,
+        "poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 51,
+        "poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 51,
+        "poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 51,
+        "poi_id": "geoapify:510b30662e69ce424059fad11c84c3e04b40f00102f9012061e00100000000920369d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0b3d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0bcd183d0b7d0b5d0b920d0b8d0bc2e20d0922e20d0982e20d092d0b5d180d0bdd0b0d0b4d181d0bad0bed0b3d0be",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 53,
+        "poi_id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 53,
+        "poi_id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 53,
+        "poi_id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 53,
+        "poi_id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 53,
+        "poi_id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 53,
+        "poi_id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 53,
+        "poi_id": "geoapify:516da00ac913d042405906b2e8e797e04b40f00103f9014d3efad70100000092030750726f73766574",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 54,
+        "poi_id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 54,
+        "poi_id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 54,
+        "poi_id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 54,
+        "poi_id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 54,
+        "poi_id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 54,
+        "poi_id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 54,
+        "poi_id": "geoapify:519718703bd9cd424059757808e3a7df4b40f00103f9013d17eca200000000920323d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8202620d09fd0b5d0bbd18cd0bcd0b5d0bdd0b8",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 55,
+        "poi_id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 55,
+        "poi_id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 55,
+        "poi_id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 55,
+        "poi_id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 55,
+        "poi_id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 55,
+        "poi_id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 55,
+        "poi_id": "geoapify:51876066e954ce424059ebb24e4b62df4b40f00103f9011760e45e00000000920320d094d0bed0bc20d0bdd0b020d0bdd0b0d0b1d0b5d180d0b5d0b6d0bdd0bed0b9",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 57,
+        "poi_id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 57,
+        "poi_id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 57,
+        "poi_id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 57,
+        "poi_id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 57,
+        "poi_id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 57,
+        "poi_id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 57,
+        "poi_id": "geoapify:51ad0617e1dccd424059fcc22b499edf4b40f00103f90166875d470300000092030a4c4e564bd0bed184d0b5",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 58,
+        "poi_id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 58,
+        "poi_id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 58,
+        "poi_id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 58,
+        "poi_id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 58,
+        "poi_id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 58,
+        "poi_id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 58,
+        "poi_id": "geoapify:51ab4af86e75d0424059205516020de04b40f00102f90125d49d1e0000000092033cd093d0b0d181d182d180d0bed0bdd0bed0bcd0b8d187d0b5d181d0bad0b8d0b920d186d0b5d0bdd182d1802022d097d0b0d180d18fd0b4d18cd0b522",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 59,
+        "poi_id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 59,
+        "poi_id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 59,
+        "poi_id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 59,
+        "poi_id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 59,
+        "poi_id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 59,
+        "poi_id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 59,
+        "poi_id": "geoapify:51387469b235d0424059bcf37ae69bdf4b40f00103f901ca7e9a40010000009203055072696d65",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 60,
+        "poi_id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 60,
+        "poi_id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 60,
+        "poi_id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 60,
+        "poi_id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 60,
+        "poi_id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 60,
+        "poi_id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 60,
+        "poi_id": "geoapify:517233dc80cfcd424059ee5eee93a3df4b40f00103f901d7bd10b30100000092030446696e65",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 61,
+        "poi_id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 61,
+        "poi_id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 61,
+        "poi_id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 61,
+        "poi_id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 61,
+        "poi_id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 61,
+        "poi_id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 61,
+        "poi_id": "geoapify:51c9bfe0e4c8cd424059feeb81fba6df4b40f00103f9014083a9eb0000000092030cd0a2d180d0b8d183d0bcd184",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 62,
+        "poi_id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 62,
+        "poi_id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 62,
+        "poi_id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 62,
+        "poi_id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 62,
+        "poi_id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 62,
+        "poi_id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 62,
+        "poi_id": "geoapify:511f6a36ea7cd04240598fe8f92e00e04b40f00103f9019499592b0100000092031dd09fd0bed0b4d0b7d0b5d0bcd0bdd18bd0b920d0bcd183d0b7d0b5d0b9",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 63,
+        "poi_id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 63,
+        "poi_id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 63,
+        "poi_id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 63,
+        "poi_id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 63,
+        "poi_id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 63,
+        "poi_id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 63,
+        "poi_id": "geoapify:51dffb1bb457d0424059e6e03e17b2df4b40f00103f901a9ebc4880100000092030a436f6666656520496e6e",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 64,
+        "poi_id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 64,
+        "poi_id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 64,
+        "poi_id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 64,
+        "poi_id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 64,
+        "poi_id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 64,
+        "poi_id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 64,
+        "poi_id": "geoapify:51ec63966380d04240599f39794822e04b40f00101f901a5bc17000000000092031bd0bfd0b0d180d0ba20c2abd097d0b0d180d18fd0b4d18cd0b5c2bb",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 65,
+        "poi_id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 65,
+        "poi_id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 65,
+        "poi_id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 65,
+        "poi_id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 65,
+        "poi_id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 65,
+        "poi_id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 65,
+        "poi_id": "geoapify:510852cebcc1cd42405995d7a5a1a1df4b40f00103f9018cfacced0000000092030cd094d0b0d0b1d0bbd0b1d0b8",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 66,
+        "poi_id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 66,
+        "poi_id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 66,
+        "poi_id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 66,
+        "poi_id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 66,
+        "poi_id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 66,
+        "poi_id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 66,
+        "poi_id": "geoapify:51958fee31a2cd424059823c16365ee04b40f00103f9015bf92b2601000000920343d09ad183d0bbd0b8d0bdd0b0d180d0bdd0b0d18f20d0bbd0b0d0b2d0bad0b020d0b1d180d0b0d182d18cd0b5d0b220d09ad0b0d180d0b0d0b2d0b0d0b5d0b2d18bd185",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 68,
+        "poi_id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 68,
+        "poi_id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 68,
+        "poi_id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 68,
+        "poi_id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 68,
+        "poi_id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 68,
+        "poi_id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 68,
+        "poi_id": "geoapify:514513831b84cf424059701008cfdfe04b40f00103f901ad7a0d2f0200000092031fd09cd0b5d181d182d0be20d0bfd180d0b8d182d18fd0b6d0b5d0bdd0b8d18f",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 69,
+        "poi_id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 69,
+        "poi_id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 69,
+        "poi_id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 69,
+        "poi_id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 69,
+        "poi_id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 69,
+        "poi_id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 69,
+        "poi_id": "geoapify:51f762de99bfcd42405961ca1bbb9fdf4b40f00103f9014afdc3bd0000000092031dd0a1d182d0b0d180d0b8d0ba20d0a5d0b8d0bdd0bad0b0d0bbd18bd187",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 70,
+        "poi_id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 70,
+        "poi_id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 70,
+        "poi_id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 70,
+        "poi_id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 70,
+        "poi_id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 70,
+        "poi_id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 70,
+        "poi_id": "geoapify:516cbe00b15bd04240596610c41e7fe04b40f00103f9014c84add000000000920370d090d180d185d0b5d0bed0bbd0bed0b3d0b8d187d0b5d181d0bad0b8d0b920d0b2d18bd181d182d0b0d0b2d0bed187d0bdd18bd0b920d0bad0bed0bcd0bfd0bbd0b5d0bad1812022d0a1d182d0b0d180d18bd0b92022d093d0bed181d182d0b8d0bdd18bd0b920d0b4d0b2d0bed18022",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 71,
+        "poi_id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 71,
+        "poi_id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 71,
+        "poi_id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 71,
+        "poi_id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 71,
+        "poi_id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 71,
+        "poi_id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 71,
+        "poi_id": "geoapify:515258f32dbdcd4240592cbd91d49ddf4b40f00103f9018d806da500000000920319d09bd0b0d0bbd0b8d0b1d0b5d0bbd0b020d0bad0bed184d0b5",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 72,
+        "poi_id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 72,
+        "poi_id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 72,
+        "poi_id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 72,
+        "poi_id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 72,
+        "poi_id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 72,
+        "poi_id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 72,
+        "poi_id": "geoapify:517e552e54fece424059fdad539beee04b40f00103f901a9ad6a3c02000000920326d09ad0b0d0bfd0bfd0be20d0a5d0b8d180d0bed0bad0b820d090d180d0b0d0bad0b0d0b2d0b0",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 73,
+        "poi_id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 73,
+        "poi_id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 73,
+        "poi_id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 73,
+        "poi_id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 73,
+        "poi_id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 73,
+        "poi_id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 73,
+        "poi_id": "geoapify:5170067fbf98cf424059bc033c69e1e04b40f00103f9014af985a60000000092030ad093d183d180d0bcd18d",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 74,
+        "poi_id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 74,
+        "poi_id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 74,
+        "poi_id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 74,
+        "poi_id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 74,
+        "poi_id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 74,
+        "poi_id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 74,
+        "poi_id": "geoapify:5188d860e124cf424059ea6a3c22f0e04b40f00103f90132c75b4b0200000092030b5375726620436f66666565",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 75,
+        "poi_id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+        "field": "rating",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 75,
+        "poi_id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+        "field": "popularity",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 75,
+        "poi_id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+        "field": "visit_duration_minutes",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 75,
+        "poi_id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+        "field": "estimated_cost",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 75,
+        "poi_id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+        "field": "opening_hours",
+        "code": "UNKNOWN_VALUE",
+        "severity": "warning"
+      },
+      {
+        "index": 75,
+        "poi_id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+        "field": "availability",
+        "code": "AVAILABILITY_UNKNOWN",
+        "severity": "warning"
+      },
+      {
+        "index": 75,
+        "poi_id": "geoapify:513c6fbe6c96cf424059c791184ee3e04b40f00103f901eab7b9dd0200000092031fd09ed180d183d0b6d0b5d0b9d0bdd18bd0b920d0bfd0bed0b4d0b2d0b0d0bb",
+        "field": "provenance.verified_at",
+        "code": "NOT_VERIFIED",
+        "severity": "warning"
+      },
+      {
+        "index": 31,
+        "poi_id": "geoapify:51c39acaa2b0ce424059afc10cd7b4e04b40f00103f9019daeb79a02000000920305436f666978",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      },
+      {
+        "index": 35,
+        "poi_id": "geoapify:514de8e4fb98ce4240596fd8b628b3e04b40f00103f901d4f3392601000000920305436f666978",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      },
+      {
+        "index": 40,
+        "poi_id": "geoapify:5171ed9f02bbce42405992f9916cbfe04b40f00103f901a2aeb79a02000000920305436f666978",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      },
+      {
+        "index": 67,
+        "poi_id": "geoapify:512109563085cf4240599ad76c40dfe04b40f00103f901569598f300000000920305436f666978",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      },
+      {
+        "index": 42,
+        "poi_id": "geoapify:5120c274bcd0ce424059c582f4d0cae04b40f00101f9013f085f0000000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      },
+      {
+        "index": 56,
+        "poi_id": "geoapify:5101a02f6244cf424059430070ecd9e04b40f00103f9019e02842501000000920316d0a8d0bed0bad0bed0bbd0b0d0b4d0bdd0b8d186d0b0",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      },
+      {
+        "index": 49,
+        "poi_id": "geoapify:510013020352d04240595e7127c753e04b40f00103f901a3c616b302000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      },
+      {
+        "index": 52,
+        "poi_id": "geoapify:51bfaac486b8cf4240591bdd9ca5bfe04b40f00103f9011935eea101000000920312d0a2d180d0b0d0bfd0b5d0b7d0bdd0b0d18f",
+        "field": "name",
+        "code": "POSSIBLE_DUPLICATE_NAME",
+        "severity": "warning"
+      }
+    ],
+    "routing_without_coordinates": [],
+    "limitations": [
+      "Географическое соответствие городу не проверено",
+      "Часы работы, актуальность фактов и выполнимость маршрута не проверены",
+      "Пригодность признаков для модели ранжирования не оценена"
+    ]
+  },
+  "attribution": [
+    "Powered by Geoapify",
+    "OpenStreetMap contributors"
+  ],
+  "limitations": [
+    "City membership relies on verified place boundary filter",
+    "Coordinates are not verified entrances",
+    "User ratings, popularity, cost, hours and duration are unknown"
+  ]
+}

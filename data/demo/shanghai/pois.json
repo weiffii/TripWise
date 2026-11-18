@@ -1,0 +1,1574 @@
+{
+  "schema_version": "shanghai-demo-v1",
+  "city": "Шанхай",
+  "country_code": "CN",
+  "currency": "CNY",
+  "timezone": "Asia/Shanghai",
+  "is_demo": true,
+  "description": "Демонстрационный набор: реальные названия мест, синтетические рейтинги, отзывы, цены и часы; координаты приблизительные, длительности плановые. Не фактический путеводитель.",
+  "pois": [
+    {
+      "id": "shanghai-demo:bund",
+      "name": "Набережная Вайтань",
+      "kind": "attraction",
+      "categories": [
+        "history",
+        "viewpoints"
+      ],
+      "lat": 31.239,
+      "lon": 121.49,
+      "duration_minutes": 90,
+      "price_cny": 0,
+      "rating": 4.8,
+      "review_count": 28000,
+      "opening": {
+        "open": "08:00",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Вайтань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Набережная Вайтань. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:yu-garden",
+      "name": "Сад Юйюань",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "history"
+      ],
+      "lat": 31.227,
+      "lon": 121.492,
+      "duration_minutes": 120,
+      "price_cny": 50,
+      "rating": 4.7,
+      "review_count": 18000,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Юйюань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Сад Юйюань. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:city-god-temple",
+      "name": "Храм городского божества",
+      "kind": "attraction",
+      "categories": [
+        "history"
+      ],
+      "lat": 31.2255,
+      "lon": 121.4925,
+      "duration_minutes": 60,
+      "price_cny": 20,
+      "rating": 4.5,
+      "review_count": 8500,
+      "opening": {
+        "open": "09:00",
+        "close": "17:30",
+        "closed_weekdays": []
+      },
+      "area": "Юйюань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Храм городского божества. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-240-hourtransfer-stayinShanghai/20240104/d25575598d6444e49dc75f7a23b985d2.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:shanghai-museum",
+      "name": "Шанхайский музей на Народной площади",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2301,
+      "lon": 121.4704,
+      "duration_minutes": 150,
+      "price_cny": 30,
+      "rating": 4.8,
+      "review_count": 22000,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Шанхайский музей на Народной площади. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:history-museum",
+      "name": "Музей истории Шанхая",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2344,
+      "lon": 121.4684,
+      "duration_minutes": 120,
+      "price_cny": 25,
+      "rating": 4.6,
+      "review_count": 7200,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Музей истории Шанхая. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:urban-planning",
+      "name": "Музей городского планирования",
+      "kind": "attraction",
+      "categories": [
+        "museums"
+      ],
+      "lat": 31.2348,
+      "lon": 121.4712,
+      "duration_minutes": 90,
+      "price_cny": 35,
+      "rating": 4.5,
+      "review_count": 6100,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": [
+          3
+        ]
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Музей городского планирования. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-MuseumsGalleries/20240220/f15d15315c7c4d0083d76d821f3eaa17.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:natural-history",
+      "name": "Шанхайский музей естественной истории",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "nature"
+      ],
+      "lat": 31.237,
+      "lon": 121.462,
+      "duration_minutes": 150,
+      "price_cny": 45,
+      "rating": 4.8,
+      "review_count": 19000,
+      "opening": {
+        "open": "09:00",
+        "close": "17:30",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Шанхайский музей естественной истории. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-ArtExhibitions/20261112/f0451320ae2b4057a46e3ae647296486.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:peoples-park",
+      "name": "Народный парк",
+      "kind": "attraction",
+      "categories": [
+        "nature"
+      ],
+      "lat": 31.235,
+      "lon": 121.469,
+      "duration_minutes": 60,
+      "price_cny": 0,
+      "rating": 4.4,
+      "review_count": 6900,
+      "opening": {
+        "open": "07:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Народный парк. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-FestivalsCelebrations/20260415/34bd26f1b6c04f0cb1900374c70c3ff4.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:fuxing-park",
+      "name": "Парк Фусин",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "history"
+      ],
+      "lat": 31.2157,
+      "lon": 121.4661,
+      "duration_minutes": 75,
+      "price_cny": 0,
+      "rating": 4.6,
+      "review_count": 7800,
+      "opening": {
+        "open": "07:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Французская концессия",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Парк Фусин. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-FestivalsCelebrations/20260415/34bd26f1b6c04f0cb1900374c70c3ff4.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:sculpture-park",
+      "name": "Парк скульптур Цзинъань",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "unusual"
+      ],
+      "lat": 31.2373,
+      "lon": 121.4613,
+      "duration_minutes": 60,
+      "price_cny": 0,
+      "rating": 4.5,
+      "review_count": 4500,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Парк скульптур Цзинъань. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-ArtExhibitions/20261112/f0451320ae2b4057a46e3ae647296486.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:jingan-temple",
+      "name": "Храм Цзинъань",
+      "kind": "attraction",
+      "categories": [
+        "history"
+      ],
+      "lat": 31.2235,
+      "lon": 121.445,
+      "duration_minutes": 75,
+      "price_cny": 60,
+      "rating": 4.7,
+      "review_count": 12500,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Храм Цзинъань. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:jade-buddha",
+      "name": "Храм Нефритового Будды",
+      "kind": "attraction",
+      "categories": [
+        "history"
+      ],
+      "lat": 31.24,
+      "lon": 121.4381,
+      "duration_minutes": 90,
+      "price_cny": 30,
+      "rating": 4.6,
+      "review_count": 11000,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Храм Нефритового Будды. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:xintiandi",
+      "name": "Квартал Синьтяньди",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "history"
+      ],
+      "lat": 31.2194,
+      "lon": 121.475,
+      "duration_minutes": 90,
+      "price_cny": 0,
+      "rating": 4.6,
+      "review_count": 14500,
+      "opening": {
+        "open": "10:00",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Синьтяньди",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Квартал Синьтяньди. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:tianzifang",
+      "name": "Квартал Тяньцзыфан",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual"
+      ],
+      "lat": 31.2088,
+      "lon": 121.4685,
+      "duration_minutes": 120,
+      "price_cny": 0,
+      "rating": 4.5,
+      "review_count": 16000,
+      "opening": {
+        "open": "10:00",
+        "close": "21:30",
+        "closed_weekdays": []
+      },
+      "area": "Французская концессия",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Квартал Тяньцзыфан. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-ScenicSpots/20250220/07accc0710864d548ccc1edf621c353f.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:zhangyuan",
+      "name": "Исторический квартал Чжанъюань",
+      "kind": "attraction",
+      "categories": [
+        "history",
+        "shopping"
+      ],
+      "lat": 31.2288,
+      "lon": 121.4573,
+      "duration_minutes": 90,
+      "price_cny": 0,
+      "rating": 4.5,
+      "review_count": 5500,
+      "opening": {
+        "open": "10:00",
+        "close": "21:30",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Исторический квартал Чжанъюань. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:nanjing-road",
+      "name": "Нанкинская пешеходная улица",
+      "kind": "attraction",
+      "categories": [
+        "shopping"
+      ],
+      "lat": 31.2367,
+      "lon": 121.4794,
+      "duration_minutes": 120,
+      "price_cny": 0,
+      "rating": 4.6,
+      "review_count": 24500,
+      "opening": {
+        "open": "10:00",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Нанкинская пешеходная улица. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:wukang-mansion",
+      "name": "Дом Укан и прогулка по улице Укан",
+      "kind": "attraction",
+      "categories": [
+        "history",
+        "unusual"
+      ],
+      "lat": 31.2032,
+      "lon": 121.438,
+      "duration_minutes": 90,
+      "price_cny": 0,
+      "rating": 4.6,
+      "review_count": 10200,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Французская концессия",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Дом Укан и прогулка по улице Укан. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:columbia-circle",
+      "name": "Columbia Circle — Шаншэн Синьсо",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual"
+      ],
+      "lat": 31.2109,
+      "lon": 121.4272,
+      "duration_minutes": 90,
+      "price_cny": 0,
+      "rating": 4.4,
+      "review_count": 5100,
+      "opening": {
+        "open": "10:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Чаннин",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Columbia Circle — Шаншэн Синьсо. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:m50",
+      "name": "Арт-квартал M50",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "unusual"
+      ],
+      "lat": 31.2472,
+      "lon": 121.4481,
+      "duration_minutes": 120,
+      "price_cny": 20,
+      "rating": 4.4,
+      "review_count": 6800,
+      "opening": {
+        "open": "10:00",
+        "close": "18:00",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Сучжоу-Крик",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Арт-квартал M50. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:shanghai-tower",
+      "name": "Смотровая Шанхайской башни",
+      "kind": "attraction",
+      "categories": [
+        "viewpoints",
+        "entertainment"
+      ],
+      "lat": 31.2336,
+      "lon": 121.5055,
+      "duration_minutes": 120,
+      "price_cny": 220,
+      "rating": 4.8,
+      "review_count": 21000,
+      "opening": {
+        "open": "10:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "description": "Демонстрационное посещение: Смотровая Шанхайской башни. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:oriental-pearl",
+      "name": "Телебашня Восточная жемчужина",
+      "kind": "attraction",
+      "categories": [
+        "viewpoints",
+        "entertainment"
+      ],
+      "lat": 31.2397,
+      "lon": 121.4998,
+      "duration_minutes": 120,
+      "price_cny": 180,
+      "rating": 4.6,
+      "review_count": 19500,
+      "opening": {
+        "open": "09:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "description": "Демонстрационное посещение: Телебашня Восточная жемчужина. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:pudong-art",
+      "name": "Музей искусства Пудуна",
+      "kind": "attraction",
+      "categories": [
+        "museums"
+      ],
+      "lat": 31.2378,
+      "lon": 121.4967,
+      "duration_minutes": 150,
+      "price_cny": 100,
+      "rating": 4.7,
+      "review_count": 9100,
+      "opening": {
+        "open": "10:00",
+        "close": "18:00",
+        "closed_weekdays": [
+          2
+        ]
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "description": "Демонстрационное посещение: Музей искусства Пудуна. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:lujiazui-green",
+      "name": "Центральный парк Луцзяцзуй",
+      "kind": "attraction",
+      "categories": [
+        "nature"
+      ],
+      "lat": 31.239,
+      "lon": 121.504,
+      "duration_minutes": 60,
+      "price_cny": 0,
+      "rating": 4.4,
+      "review_count": 4200,
+      "opening": {
+        "open": "07:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "description": "Демонстрационное посещение: Центральный парк Луцзяцзуй. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Latest-WhatsNew/20240417/c0b59775389643688fca7502ba2d3587.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:postal-museum",
+      "name": "Шанхайский почтовый музей",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2463,
+      "lon": 121.485,
+      "duration_minutes": 90,
+      "price_cny": 20,
+      "rating": 4.5,
+      "review_count": 3800,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": [
+          1,
+          2
+        ]
+      },
+      "area": "Северный Вайтань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Шанхайский почтовый музей. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:jewish-refugees",
+      "name": "Музей еврейских беженцев",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2541,
+      "lon": 121.5114,
+      "duration_minutes": 120,
+      "price_cny": 30,
+      "rating": 4.7,
+      "review_count": 5400,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Хункоу",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Музей еврейских беженцев. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:sihang",
+      "name": "Мемориальный музей склада Сыхан",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2422,
+      "lon": 121.467,
+      "duration_minutes": 90,
+      "price_cny": 10,
+      "rating": 4.6,
+      "review_count": 4200,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Сучжоу-Крик",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Мемориальный музей склада Сыхан. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:power-station-art",
+      "name": "Power Station of Art",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "unusual"
+      ],
+      "lat": 31.1865,
+      "lon": 121.497,
+      "duration_minutes": 150,
+      "price_cny": 60,
+      "rating": 4.5,
+      "review_count": 7900,
+      "opening": {
+        "open": "11:00",
+        "close": "19:00",
+        "closed_weekdays": [
+          1
+        ]
+      },
+      "area": "Южная набережная",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Power Station of Art. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:west-bund",
+      "name": "Прогулка по набережной Вест-Банд",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.17,
+      "lon": 121.463,
+      "duration_minutes": 90,
+      "price_cny": 0,
+      "rating": 4.5,
+      "review_count": 5200,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Вест-Банд",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Прогулка по набережной Вест-Банд. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:longhua-temple",
+      "name": "Храм Лунхуа",
+      "kind": "attraction",
+      "categories": [
+        "history"
+      ],
+      "lat": 31.1721,
+      "lon": 121.451,
+      "duration_minutes": 90,
+      "price_cny": 25,
+      "rating": 4.6,
+      "review_count": 6700,
+      "opening": {
+        "open": "09:00",
+        "close": "17:00",
+        "closed_weekdays": []
+      },
+      "area": "Сюйхуэй",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Храм Лунхуа. Числовые условия синтетические.",
+      "source_url": "https://www.meet-in-shanghai.net/en/100-recommended-tourist-attractions-in-shanghai/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:madame-tussauds",
+      "name": "Музей мадам Тюссо",
+      "kind": "attraction",
+      "categories": [
+        "entertainment",
+        "museums"
+      ],
+      "lat": 31.2365,
+      "lon": 121.4734,
+      "duration_minutes": 120,
+      "price_cny": 190,
+      "rating": 4.4,
+      "review_count": 8200,
+      "opening": {
+        "open": "10:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Музей мадам Тюссо. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-MuseumsGalleries/20240527/3937ac13043a44f39c2a27506a3d7539.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:ocean-aquarium",
+      "name": "Шанхайский океанариум",
+      "kind": "attraction",
+      "categories": [
+        "entertainment",
+        "nature"
+      ],
+      "lat": 31.2406,
+      "lon": 121.5018,
+      "duration_minutes": 150,
+      "price_cny": 170,
+      "rating": 4.6,
+      "review_count": 11800,
+      "opening": {
+        "open": "09:00",
+        "close": "19:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "description": "Демонстрационное посещение: Шанхайский океанариум. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Latest-WhatsNew/20240612/2440ee2f160749c98e57141121276be7.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:nanxiang",
+      "name": "Наньсян — ресторан сяолунбао",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2271,
+      "lon": 121.4912,
+      "duration_minutes": 50,
+      "price_cny": 65,
+      "rating": 4.5,
+      "review_count": 12000,
+      "opening": {
+        "open": "10:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Юйюань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Наньсян — ресторан сяолунбао. Числовые условия синтетические.",
+      "source_url": "https://guide.michelin.com/jp/en/shanghai-municipality/shanghai/restaurant/nanxiang-steamed-bun-city-god-temple",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:lu-bo-lang",
+      "name": "Лу Бо Лан",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.227,
+      "lon": 121.4917,
+      "duration_minutes": 60,
+      "price_cny": 170,
+      "rating": 4.6,
+      "review_count": 8500,
+      "opening": {
+        "open": "11:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Юйюань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Лу Бо Лан. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-TrendyStores/20250107/7f6df47f590545a7bb4f427e38670c42.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:wang-bao-he",
+      "name": "Ван Бао Хэ",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.234,
+      "lon": 121.475,
+      "duration_minutes": 60,
+      "price_cny": 130,
+      "rating": 4.5,
+      "review_count": 6400,
+      "opening": {
+        "open": "11:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Ван Бао Хэ. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Restaurants/20240702/bd904e77c23948449daaa4e9b035fa4d.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:shen-da-cheng",
+      "name": "Шэнь Да Чэн",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2374,
+      "lon": 121.4772,
+      "duration_minutes": 50,
+      "price_cny": 55,
+      "rating": 4.4,
+      "review_count": 10500,
+      "opening": {
+        "open": "09:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Нанкинская улица",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Шэнь Да Чэн. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Restaurants/20240702/bd904e77c23948449daaa4e9b035fa4d.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:lan-xin",
+      "name": "Лань Синь на Цзиньсянь-роуд",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.22,
+      "lon": 121.4575,
+      "duration_minutes": 60,
+      "price_cny": 95,
+      "rating": 4.6,
+      "review_count": 5100,
+      "opening": {
+        "open": "11:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Французская концессия",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Лань Синь на Цзиньсянь-роуд. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Restaurants/20240702/bd904e77c23948449daaa4e9b035fa4d.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:zao-zi-shu",
+      "name": "Цзао Цзы Шу на Суншань-роуд",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2223,
+      "lon": 121.476,
+      "duration_minutes": 60,
+      "price_cny": 90,
+      "rating": 4.5,
+      "review_count": 4300,
+      "opening": {
+        "open": "11:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Синьтяньди",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Цзао Цзы Шу на Суншань-роуд. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Vegetarian-travelinshanghai/20240226/7a472730838d4379b0404c75404c2a78.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:gong-de-lin",
+      "name": "Гун Дэ Линь на Западной Нанкинской улице",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2341,
+      "lon": 121.4662,
+      "duration_minutes": 60,
+      "price_cny": 85,
+      "rating": 4.5,
+      "review_count": 6500,
+      "opening": {
+        "open": "10:30",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Гун Дэ Линь на Западной Нанкинской улице. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Vegetarian-travelinshanghai/20240226/7a472730838d4379b0404c75404c2a78.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:wu-guan-tang",
+      "name": "У Гуань Тан на Синьхуа-роуд",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2045,
+      "lon": 121.4257,
+      "duration_minutes": 60,
+      "price_cny": 100,
+      "rating": 4.4,
+      "review_count": 2700,
+      "opening": {
+        "open": "11:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Чаннин",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: У Гуань Тан на Синьхуа-роуд. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-Vegetarian-travelinshanghai/20240226/7a472730838d4379b0404c75404c2a78.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:henkes",
+      "name": "Henkes в Reel Mall",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2238,
+      "lon": 121.446,
+      "duration_minutes": 60,
+      "price_cny": 140,
+      "rating": 4.4,
+      "review_count": 3500,
+      "opening": {
+        "open": "11:00",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Henkes в Reel Mall. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-ConsulatesRec-travelinshanghai/20231225/6d02e0af7577444db253f6d1f100a741.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:bor-eatery",
+      "name": "BOR Eatery на Аньфу-роуд",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2124,
+      "lon": 121.4421,
+      "duration_minutes": 60,
+      "price_cny": 150,
+      "rating": 4.6,
+      "review_count": 2900,
+      "opening": {
+        "open": "11:00",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Французская концессия",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: BOR Eatery на Аньфу-роуд. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-ConsulatesRec-travelinshanghai/20231225/6d02e0af7577444db253f6d1f100a741.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:jade-on-36",
+      "name": "Jade on 36",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2362,
+      "lon": 121.4975,
+      "duration_minutes": 60,
+      "price_cny": 380,
+      "rating": 4.8,
+      "review_count": 4100,
+      "opening": {
+        "open": "11:30",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "description": "Демонстрационное посещение: Jade on 36. Числовые условия синтетические.",
+      "source_url": "https://www.shangri-la.com/restaurants-bars/shanghai/pudongshangrila/jade-on-36/",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:ministry-crab",
+      "name": "Ministry of Crab в Народном парке",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2358,
+      "lon": 121.4688,
+      "duration_minutes": 60,
+      "price_cny": 260,
+      "rating": 4.6,
+      "review_count": 3200,
+      "opening": {
+        "open": "11:00",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Ministry of Crab в Народном парке. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-ConsulatesRec-travelinshanghai/20231225/6d02e0af7577444db253f6d1f100a741.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:schindlers",
+      "name": "Schindlers Tankstelle на Цзюцзян-роуд",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2371,
+      "lon": 121.4847,
+      "duration_minutes": 60,
+      "price_cny": 120,
+      "rating": 4.3,
+      "review_count": 2600,
+      "opening": {
+        "open": "11:00",
+        "close": "22:00",
+        "closed_weekdays": []
+      },
+      "area": "Вайтань",
+      "river_bank": "west",
+      "description": "Демонстрационное посещение: Schindlers Tankstelle на Цзюцзян-роуд. Числовые условия синтетические.",
+      "source_url": "https://english.shanghai.gov.cn/en-ConsulatesRec-travelinshanghai/20231225/6d02e0af7577444db253f6d1f100a741.html",
+      "provenance": {
+        "identity": "real_place_source_checked",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-ifc-cafe",
+      "name": "Тестовое кафе у Shanghai IFC",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2358,
+      "lon": 121.5022,
+      "duration_minutes": 60,
+      "price_cny": 80,
+      "rating": 4.4,
+      "review_count": 1800,
+      "opening": {
+        "open": "10:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "description": "Полностью вымышленное заведение для теста питания рядом с настоящим ориентиром. Не существует как подтверждённое кафе.",
+      "source_url": "https://english.shanghai.gov.cn/en-ShoppingCenters/20240531/770b5a886adc40a581af2b54cbd1abe5.html",
+      "provenance": {
+        "identity": "synthetic_venue_near_real_place",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-century-cafe",
+      "name": "Тестовое кафе у Century Park",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2198,
+      "lon": 121.548,
+      "duration_minutes": 60,
+      "price_cny": 75,
+      "rating": 4.4,
+      "review_count": 1800,
+      "opening": {
+        "open": "10:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Century Park",
+      "river_bank": "east",
+      "description": "Полностью вымышленное заведение для теста питания рядом с настоящим ориентиром. Не существует как подтверждённое кафе.",
+      "source_url": "https://english.shanghai.gov.cn/en-Parks/20231220/489a4c048d594b1d9fec56e57214a284.html",
+      "provenance": {
+        "identity": "synthetic_venue_near_real_place",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption"
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-18",
+  "state": "passed",
+  "request_limit": 1,
+  "paid_fallback_enabled": false,
+  "scenario_kind": "real_pois_and_provider_paths_with_user_approved_duration_assumptions_in_memory_technical_demo",
+  "real_user_trip_or_database_modified": false,
+  "network_request_count": 1,
+  "provider_metadata": {
+    "provider": "openrouter",
+    "requested_model": "openrouter/free",
+    "selected_model": "dots-studio/dots-3-note-preview:free",
+    "request_count": 1,
+    "paid_fallback_enabled": false
+  },
+  "operations": [
+    {
+      "op": "set_day_pace",
+      "day": "2026-11-18",
+      "pace": "relaxed"
+    }
+  ],
+  "preview_status": "ready_for_confirmation",
+  "unchanged_before_confirmation": true,
+  "idempotent_confirmation": true,
+  "confirmed_version": 2,
+  "is_draft": true,
+  "candidate_status": "unknown",
+  "checks": {
+    "time": "passed",
+    "required_places": "passed",
+    "opening_hours": "unknown",
+    "budget": "not_checked"
+  },
+  "required_preserved": true
+}

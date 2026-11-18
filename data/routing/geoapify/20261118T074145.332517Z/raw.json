@@ -1,0 +1,1274 @@
+[
+  {
+    "from_poi_id": "geoapify:514c0025d7a4cf4240599f36556691e14b40f00101f901c6bb28000000000092032ed09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b4d0bed0bc20d185d183d0b4d0bed0b6d0bdd0b8d0bad0b0",
+    "to_poi_id": "geoapify:514c9bbba7bccf424059a2e0737165e14b40f00103f901013d226601000000920344d09cd183d0b7d0b5d0b920d18dd0bad181d0bbd0b8d0b1d180d0b8d181d0b020d0b820d0bcd0b8d0bdd0b8d0b0d182d18ed180d0bdd0bed0b920d0bad0bdd0b8d0b3d0b8",
+    "parameters_without_key": {
+      "waypoints": "55.762249747856224,37.62221803003976|55.7609083,37.6229448",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.622218,
+                  55.762249
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.622944,
+                  55.760908
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 277,
+            "distance_units": "meters",
+            "time": 284.71,
+            "legs": [
+              {
+                "distance": 277,
+                "time": 284.71,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 4,
+                    "distance": 73,
+                    "time": 76.422,
+                    "instruction": {
+                      "text": "Walk east on улица Кузнецкий Мост."
+                    }
+                  },
+                  {
+                    "from_index": 4,
+                    "to_index": 12,
+                    "distance": 150,
+                    "time": 135.799,
+                    "instruction": {
+                      "text": "Bear right onto улица Рождественка."
+                    }
+                  },
+                  {
+                    "from_index": 12,
+                    "to_index": 14,
+                    "distance": 44,
+                    "time": 33.998,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 14,
+                    "to_index": 16,
+                    "distance": 9,
+                    "time": 38.491,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 16,
+                    "to_index": 16,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "You have arrived at your destination."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.622328,
+                  55.762005
+                ],
+                [
+                  37.623343,
+                  55.762149
+                ],
+                [
+                  37.623383,
+                  55.762149
+                ],
+                [
+                  37.623415,
+                  55.762143
+                ],
+                [
+                  37.623456,
+                  55.762128
+                ],
+                [
+                  37.62348,
+                  55.762112
+                ],
+                [
+                  37.623505,
+                  55.762083
+                ],
+                [
+                  37.623519,
+                  55.762045
+                ],
+                [
+                  37.623527,
+                  55.761922
+                ],
+                [
+                  37.623538,
+                  55.761738
+                ],
+                [
+                  37.623548,
+                  55.761583
+                ],
+                [
+                  37.623554,
+                  55.761485
+                ],
+                [
+                  37.623597,
+                  55.760789
+                ],
+                [
+                  37.62347,
+                  55.760785
+                ],
+                [
+                  37.622892,
+                  55.760825
+                ],
+                [
+                  37.62289,
+                  55.760857
+                ],
+                [
+                  37.622889,
+                  55.760908
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.762249747856224,
+            "lon": 37.62221803003976
+          },
+          {
+            "lat": 55.7609083,
+            "lon": 37.6229448
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:514c0025d7a4cf4240599f36556691e14b40f00101f901c6bb28000000000092032ed09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b4d0bed0bc20d185d183d0b4d0bed0b6d0bdd0b8d0bad0b0",
+    "to_poi_id": "geoapify:51c28b193ca7cf424059242b1ac638e14b40f00103f901d123434801000000920335d0a6d0b5d0bdd182d180d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d09cd0a7d0a120d0a0d0bed181d181d0b8d0b8",
+    "parameters_without_key": {
+      "waypoints": "55.762249747856224,37.62221803003976|55.7595451,37.6222911",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.622218,
+                  55.762249
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.622291,
+                  55.759545
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 472,
+            "distance_units": "meters",
+            "time": 460.073,
+            "legs": [
+              {
+                "distance": 472,
+                "time": 460.073,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 4,
+                    "distance": 73,
+                    "time": 76.422,
+                    "instruction": {
+                      "text": "Walk east on улица Кузнецкий Мост."
+                    }
+                  },
+                  {
+                    "from_index": 4,
+                    "to_index": 15,
+                    "distance": 164,
+                    "time": 149.091,
+                    "instruction": {
+                      "text": "Bear right onto улица Рождественка."
+                    }
+                  },
+                  {
+                    "from_index": 15,
+                    "to_index": 16,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 16,
+                    "to_index": 19,
+                    "distance": 121,
+                    "time": 106.243,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 19,
+                    "to_index": 20,
+                    "distance": 56,
+                    "time": 47.695,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 20,
+                    "to_index": 22,
+                    "distance": 26,
+                    "time": 52.829,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 22,
+                    "to_index": 23,
+                    "distance": 22,
+                    "time": 19.887,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 23,
+                    "to_index": 23,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the left."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.622328,
+                  55.762005
+                ],
+                [
+                  37.623343,
+                  55.762149
+                ],
+                [
+                  37.623383,
+                  55.762149
+                ],
+                [
+                  37.623415,
+                  55.762143
+                ],
+                [
+                  37.623456,
+                  55.762128
+                ],
+                [
+                  37.62348,
+                  55.762112
+                ],
+                [
+                  37.623505,
+                  55.762083
+                ],
+                [
+                  37.623519,
+                  55.762045
+                ],
+                [
+                  37.623527,
+                  55.761922
+                ],
+                [
+                  37.623538,
+                  55.761738
+                ],
+                [
+                  37.623548,
+                  55.761583
+                ],
+                [
+                  37.623554,
+                  55.761485
+                ],
+                [
+                  37.623597,
+                  55.760789
+                ],
+                [
+                  37.623604,
+                  55.760753
+                ],
+                [
+                  37.623616,
+                  55.760705
+                ],
+                [
+                  37.623631,
+                  55.760658
+                ],
+                [
+                  37.623489,
+                  55.760669
+                ],
+                [
+                  37.623494,
+                  55.760636
+                ],
+                [
+                  37.623514,
+                  55.760586
+                ],
+                [
+                  37.623562,
+                  55.759589
+                ],
+                [
+                  37.622689,
+                  55.759468
+                ],
+                [
+                  37.622669,
+                  55.759514
+                ],
+                [
+                  37.622591,
+                  55.759696
+                ],
+                [
+                  37.622246,
+                  55.759648
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.762249747856224,
+            "lon": 37.62221803003976
+          },
+          {
+            "lat": 55.7595451,
+            "lon": 37.6222911
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:514c9bbba7bccf424059a2e0737165e14b40f00103f901013d226601000000920344d09cd183d0b7d0b5d0b920d18dd0bad181d0bbd0b8d0b1d180d0b8d181d0b020d0b820d0bcd0b8d0bdd0b8d0b0d182d18ed180d0bdd0bed0b920d0bad0bdd0b8d0b3d0b8",
+    "to_poi_id": "geoapify:514c0025d7a4cf4240599f36556691e14b40f00101f901c6bb28000000000092032ed09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b4d0bed0bc20d185d183d0b4d0bed0b6d0bdd0b8d0bad0b0",
+    "parameters_without_key": {
+      "waypoints": "55.7609083,37.6229448|55.762249747856224,37.62221803003976",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.622944,
+                  55.760908
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.622218,
+                  55.762249
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 277,
+            "distance_units": "meters",
+            "time": 272.403,
+            "legs": [
+              {
+                "distance": 277,
+                "time": 272.403,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 2,
+                    "distance": 9,
+                    "time": 38.491,
+                    "instruction": {
+                      "text": "Walk south."
+                    }
+                  },
+                  {
+                    "from_index": 2,
+                    "to_index": 4,
+                    "distance": 44,
+                    "time": 46.36,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 4,
+                    "to_index": 12,
+                    "distance": 150,
+                    "time": 129.635,
+                    "instruction": {
+                      "text": "Turn left onto улица Рождественка."
+                    }
+                  },
+                  {
+                    "from_index": 12,
+                    "to_index": 16,
+                    "distance": 73,
+                    "time": 57.916,
+                    "instruction": {
+                      "text": "Bear left onto улица Кузнецкий Мост."
+                    }
+                  },
+                  {
+                    "from_index": 16,
+                    "to_index": 16,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.622889,
+                  55.760908
+                ],
+                [
+                  37.62289,
+                  55.760857
+                ],
+                [
+                  37.622892,
+                  55.760825
+                ],
+                [
+                  37.62347,
+                  55.760785
+                ],
+                [
+                  37.623597,
+                  55.760789
+                ],
+                [
+                  37.623554,
+                  55.761485
+                ],
+                [
+                  37.623548,
+                  55.761583
+                ],
+                [
+                  37.623538,
+                  55.761738
+                ],
+                [
+                  37.623527,
+                  55.761922
+                ],
+                [
+                  37.623519,
+                  55.762045
+                ],
+                [
+                  37.623505,
+                  55.762083
+                ],
+                [
+                  37.62348,
+                  55.762112
+                ],
+                [
+                  37.623456,
+                  55.762128
+                ],
+                [
+                  37.623415,
+                  55.762143
+                ],
+                [
+                  37.623383,
+                  55.762149
+                ],
+                [
+                  37.623343,
+                  55.762149
+                ],
+                [
+                  37.622328,
+                  55.762005
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.7609083,
+            "lon": 37.6229448
+          },
+          {
+            "lat": 55.762249747856224,
+            "lon": 37.62221803003976
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:514c9bbba7bccf424059a2e0737165e14b40f00103f901013d226601000000920344d09cd183d0b7d0b5d0b920d18dd0bad181d0bbd0b8d0b1d180d0b8d181d0b020d0b820d0bcd0b8d0bdd0b8d0b0d182d18ed180d0bdd0bed0b920d0bad0bdd0b8d0b3d0b8",
+    "to_poi_id": "geoapify:51c28b193ca7cf424059242b1ac638e14b40f00103f901d123434801000000920335d0a6d0b5d0bdd182d180d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d09cd0a7d0a120d0a0d0bed181d181d0b8d0b8",
+    "parameters_without_key": {
+      "waypoints": "55.7609083,37.6229448|55.7595451,37.6222911",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.622944,
+                  55.760908
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.622291,
+                  55.759545
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 302,
+            "distance_units": "meters",
+            "time": 332.703,
+            "legs": [
+              {
+                "distance": 302,
+                "time": 332.703,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 2,
+                    "distance": 9,
+                    "time": 38.491,
+                    "instruction": {
+                      "text": "Walk south."
+                    }
+                  },
+                  {
+                    "from_index": 2,
+                    "to_index": 4,
+                    "distance": 44,
+                    "time": 46.36,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 4,
+                    "to_index": 7,
+                    "distance": 14,
+                    "time": 13.292,
+                    "instruction": {
+                      "text": "Turn right onto улица Рождественка."
+                    }
+                  },
+                  {
+                    "from_index": 7,
+                    "to_index": 8,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 8,
+                    "to_index": 11,
+                    "distance": 121,
+                    "time": 106.243,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 11,
+                    "to_index": 12,
+                    "distance": 56,
+                    "time": 47.695,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 12,
+                    "to_index": 14,
+                    "distance": 26,
+                    "time": 52.829,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 14,
+                    "to_index": 15,
+                    "distance": 22,
+                    "time": 19.887,
+                    "instruction": {
+                      "text": "Turn left."
+                    }
+                  },
+                  {
+                    "from_index": 15,
+                    "to_index": 15,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the left."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.622889,
+                  55.760908
+                ],
+                [
+                  37.62289,
+                  55.760857
+                ],
+                [
+                  37.622892,
+                  55.760825
+                ],
+                [
+                  37.62347,
+                  55.760785
+                ],
+                [
+                  37.623597,
+                  55.760789
+                ],
+                [
+                  37.623604,
+                  55.760753
+                ],
+                [
+                  37.623616,
+                  55.760705
+                ],
+                [
+                  37.623631,
+                  55.760658
+                ],
+                [
+                  37.623489,
+                  55.760669
+                ],
+                [
+                  37.623494,
+                  55.760636
+                ],
+                [
+                  37.623514,
+                  55.760586
+                ],
+                [
+                  37.623562,
+                  55.759589
+                ],
+                [
+                  37.622689,
+                  55.759468
+                ],
+                [
+                  37.622669,
+                  55.759514
+                ],
+                [
+                  37.622591,
+                  55.759696
+                ],
+                [
+                  37.622246,
+                  55.759648
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.7609083,
+            "lon": 37.6229448
+          },
+          {
+            "lat": 55.7595451,
+            "lon": 37.6222911
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:51c28b193ca7cf424059242b1ac638e14b40f00103f901d123434801000000920335d0a6d0b5d0bdd182d180d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d09cd0a7d0a120d0a0d0bed181d181d0b8d0b8",
+    "to_poi_id": "geoapify:514c0025d7a4cf4240599f36556691e14b40f00101f901c6bb28000000000092032ed09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b4d0bed0bc20d185d183d0b4d0bed0b6d0bdd0b8d0bad0b0",
+    "parameters_without_key": {
+      "waypoints": "55.7595451,37.6222911|55.762249747856224,37.62221803003976",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.622291,
+                  55.759545
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.622218,
+                  55.762249
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 472,
+            "distance_units": "meters",
+            "time": 463.377,
+            "legs": [
+              {
+                "distance": 472,
+                "time": 463.377,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 1,
+                    "distance": 22,
+                    "time": 19.887,
+                    "instruction": {
+                      "text": "Walk east."
+                    }
+                  },
+                  {
+                    "from_index": 1,
+                    "to_index": 3,
+                    "distance": 26,
+                    "time": 52.829,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 3,
+                    "to_index": 4,
+                    "distance": 56,
+                    "time": 65.397,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 4,
+                    "to_index": 7,
+                    "distance": 121,
+                    "time": 116.517,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 7,
+                    "to_index": 8,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 8,
+                    "to_index": 19,
+                    "distance": 163,
+                    "time": 142.927,
+                    "instruction": {
+                      "text": "Turn left onto улица Рождественка."
+                    }
+                  },
+                  {
+                    "from_index": 19,
+                    "to_index": 23,
+                    "distance": 73,
+                    "time": 57.916,
+                    "instruction": {
+                      "text": "Bear left onto улица Кузнецкий Мост."
+                    }
+                  },
+                  {
+                    "from_index": 23,
+                    "to_index": 23,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "Your destination is on the right."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.622246,
+                  55.759648
+                ],
+                [
+                  37.622591,
+                  55.759696
+                ],
+                [
+                  37.622669,
+                  55.759514
+                ],
+                [
+                  37.622689,
+                  55.759468
+                ],
+                [
+                  37.623562,
+                  55.759589
+                ],
+                [
+                  37.623514,
+                  55.760586
+                ],
+                [
+                  37.623494,
+                  55.760636
+                ],
+                [
+                  37.623489,
+                  55.760669
+                ],
+                [
+                  37.623631,
+                  55.760658
+                ],
+                [
+                  37.623616,
+                  55.760705
+                ],
+                [
+                  37.623604,
+                  55.760753
+                ],
+                [
+                  37.623597,
+                  55.760789
+                ],
+                [
+                  37.623554,
+                  55.761485
+                ],
+                [
+                  37.623548,
+                  55.761583
+                ],
+                [
+                  37.623538,
+                  55.761738
+                ],
+                [
+                  37.623527,
+                  55.761922
+                ],
+                [
+                  37.623519,
+                  55.762045
+                ],
+                [
+                  37.623505,
+                  55.762083
+                ],
+                [
+                  37.62348,
+                  55.762112
+                ],
+                [
+                  37.623456,
+                  55.762128
+                ],
+                [
+                  37.623415,
+                  55.762143
+                ],
+                [
+                  37.623383,
+                  55.762149
+                ],
+                [
+                  37.623343,
+                  55.762149
+                ],
+                [
+                  37.622328,
+                  55.762005
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.7595451,
+            "lon": 37.6222911
+          },
+          {
+            "lat": 55.762249747856224,
+            "lon": 37.62221803003976
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  },
+  {
+    "from_poi_id": "geoapify:51c28b193ca7cf424059242b1ac638e14b40f00103f901d123434801000000920335d0a6d0b5d0bdd182d180d0b0d0bbd18cd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d09cd0a7d0a120d0a0d0bed181d181d0b8d0b8",
+    "to_poi_id": "geoapify:514c9bbba7bccf424059a2e0737165e14b40f00103f901013d226601000000920344d09cd183d0b7d0b5d0b920d18dd0bad181d0bbd0b8d0b1d180d0b8d181d0b020d0b820d0bcd0b8d0bdd0b8d0b0d182d18ed180d0bdd0bed0b920d0bad0bdd0b8d0b3d0b8",
+    "parameters_without_key": {
+      "waypoints": "55.7595451,37.6222911|55.7609083,37.6229448",
+      "mode": "walk",
+      "units": "metric",
+      "format": "geojson"
+    },
+    "response": {
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mode": "walk",
+            "waypoints": [
+              {
+                "location": [
+                  37.622291,
+                  55.759545
+                ],
+                "original_index": 0
+              },
+              {
+                "location": [
+                  37.622944,
+                  55.760908
+                ],
+                "original_index": 1
+              }
+            ],
+            "units": "metric",
+            "distance": 302,
+            "distance_units": "meters",
+            "time": 348.315,
+            "legs": [
+              {
+                "distance": 302,
+                "time": 348.315,
+                "steps": [
+                  {
+                    "from_index": 0,
+                    "to_index": 1,
+                    "distance": 22,
+                    "time": 19.887,
+                    "instruction": {
+                      "text": "Walk east."
+                    }
+                  },
+                  {
+                    "from_index": 1,
+                    "to_index": 3,
+                    "distance": 26,
+                    "time": 52.829,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 3,
+                    "to_index": 4,
+                    "distance": 56,
+                    "time": 65.397,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 4,
+                    "to_index": 7,
+                    "distance": 121,
+                    "time": 116.517,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 7,
+                    "to_index": 8,
+                    "distance": 9,
+                    "time": 7.902,
+                    "instruction": {
+                      "text": "Turn right onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 8,
+                    "to_index": 11,
+                    "distance": 14,
+                    "time": 13.292,
+                    "instruction": {
+                      "text": "Turn left onto улица Рождественка."
+                    }
+                  },
+                  {
+                    "from_index": 11,
+                    "to_index": 13,
+                    "distance": 44,
+                    "time": 33.998,
+                    "instruction": {
+                      "text": "Turn left onto the walkway."
+                    }
+                  },
+                  {
+                    "from_index": 13,
+                    "to_index": 15,
+                    "distance": 9,
+                    "time": 38.491,
+                    "instruction": {
+                      "text": "Turn right."
+                    }
+                  },
+                  {
+                    "from_index": 15,
+                    "to_index": 15,
+                    "distance": 0,
+                    "time": 0,
+                    "instruction": {
+                      "text": "You have arrived at your destination."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "geometry": {
+            "type": "MultiLineString",
+            "coordinates": [
+              [
+                [
+                  37.622246,
+                  55.759648
+                ],
+                [
+                  37.622591,
+                  55.759696
+                ],
+                [
+                  37.622669,
+                  55.759514
+                ],
+                [
+                  37.622689,
+                  55.759468
+                ],
+                [
+                  37.623562,
+                  55.759589
+                ],
+                [
+                  37.623514,
+                  55.760586
+                ],
+                [
+                  37.623494,
+                  55.760636
+                ],
+                [
+                  37.623489,
+                  55.760669
+                ],
+                [
+                  37.623631,
+                  55.760658
+                ],
+                [
+                  37.623616,
+                  55.760705
+                ],
+                [
+                  37.623604,
+                  55.760753
+                ],
+                [
+                  37.623597,
+                  55.760789
+                ],
+                [
+                  37.62347,
+                  55.760785
+                ],
+                [
+                  37.622892,
+                  55.760825
+                ],
+                [
+                  37.62289,
+                  55.760857
+                ],
+                [
+                  37.622889,
+                  55.760908
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "mode": "walk",
+        "waypoints": [
+          {
+            "lat": 55.7595451,
+            "lon": 37.6222911
+          },
+          {
+            "lat": 55.7609083,
+            "lon": 37.6229448
+          }
+        ],
+        "units": "metric"
+      },
+      "type": "FeatureCollection"
+    }
+  }
+]

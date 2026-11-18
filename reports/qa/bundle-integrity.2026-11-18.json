@@ -1,0 +1,11 @@
+{
+  "archive": "artifacts/tripwise-ai-ds-2026-11-18-v3.zip",
+  "archive_entries": 177,
+  "source_hashes_verified": 172,
+  "generated_hashes_verified": 4,
+  "test_count": 189,
+  "reports_consistent": true,
+  "crc_passed": true,
+  "duplicate_entries": 0,
+  "archive_sha256": "73fb75ae30d83a8205e72267605cc580dfa775d60fa91e393331a55b5007d9b1"
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "destination": {
+    "country_code": "RU",
+    "city": "Тестовый город"
+  },
+  "date_start": "2026-11-17",
+  "date_end": "2026-11-18",
+  "timezone": "Europe/Moscow",
+  "primary_interests": [
+    "museums"
+  ],
+  "secondary_interests": [],
+  "pace": "balanced",
+  "transport": "walking",
+  "budget": null,
+  "required_poi_ids": [
+    "synthetic:multiday-00",
+    "synthetic:multiday-01"
+  ],
+  "top_k": 4
+}

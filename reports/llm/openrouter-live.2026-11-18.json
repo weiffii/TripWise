@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-18",
+  "provider": "openrouter",
+  "requested_model": "openrouter/free",
+  "selected_model": "dots-studio/dots-3-note-preview:free",
+  "network_request_count": 1,
+  "paid_fallback_enabled": false,
+  "scenario_kind": "synthetic_smoke_not_real_route",
+  "input_summary": "request to make 2026-11-17 calmer; no real user account or trip",
+  "decision": {
+    "action": "propose",
+    "operations": [
+      {
+        "op": "set_day_pace",
+        "day": "2026-11-17",
+        "pace": "relaxed"
+      }
+    ],
+    "clarification": null
+  },
+  "cli_exit_code": 0,
+  "limitations": [
+    "Only API access and one interpretation tested",
+    "Does not prove route recalculation, confirmation or Russian intent reliability across scenarios"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-18",
+  "passed": true,
+  "poi_count": 3,
+  "leg_count": 2,
+  "matrix_pairs": 6,
+  "status": "unknown",
+  "constraint_checks": {
+    "time": "passed",
+    "required_places": "passed",
+    "opening_hours": "unknown",
+    "budget": "unknown"
+  },
+  "budget_summary": {
+    "status": "unknown",
+    "known_total": 1800,
+    "currency": "RUB",
+    "unknown_items": [
+      "meal:2026-11-18",
+      "scope:trip_food_and_entertainment"
+    ],
+    "warnings": []
+  },
+  "all_required_preserved": true,
+  "input_unchanged": true,
+  "network_requests_during_planning": 0,
+  "routing_snapshot": "data/routing/geoapify/20261118T163605.462302Z",
+  "price_scope": "Adult Russian/EAEU visitor at GIM and 1812; standard main-exhibition admission at geology; no tours, foreign tariffs or meal costs",
+  "user_input_assumptions": [
+    "Demo date 2026-11-18, window 12-19",
+    "Demo food/entertainment budget 2500 RUB",
+    "Fixed meal interval 13:30-14:15",
+    "Estimated 60-minute visits, not measured duration"
+  ],
+  "limitations": [
+    "No date-specific opening intervals applied",
+    "Meal expenses unknown; published tariffs not a confirmed booking",
+    "Visitor entrances not independently coordinate-verified",
+    "No UI, HTTP or permanent DB tested"
+  ]
+}

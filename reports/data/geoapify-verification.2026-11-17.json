@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-17",
+  "network_requests_during_verification": 0,
+  "tests_passed": 86,
+  "snapshots": [
+    {
+      "snapshot": "data/geoapify/ru/20261117T173836.768006Z",
+      "city": "Москва",
+      "accepted_count": 580,
+      "raw_count": 842,
+      "stop_reason": "budget_limit",
+      "http_attempt_count": 13,
+      "reserved_credit_upper_estimate": 61,
+      "blocked_http_status": null,
+      "renormalization_equal": true,
+      "rejected_count": 0,
+      "profiles": [
+        {
+          "profile": "museums",
+          "exit_code": 0,
+          "count": 5,
+          "poi_ids": [
+            "geoapify:51001b1aaaf7cd4240595ae5bd511ce44b40f00101f901e908410100000000920355d09cd0bed181d0bad0bed0b2d181d0bad0b8d0b920d0b3d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0a12e20d0902e20d095d181d0b5d0bdd0b8d0bdd0b0",
+            "geoapify:51001fbc7669cc424059f0085d7814df4b40f00103f90172d3c8a600000000920341d093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d09b2ed09d2e20d0a2d0bed0bbd181d182d0bed0b3d0be",
+            "geoapify:5101b2a171bccd424059f176c4b250e04b40f00102f901e5ddf2010000000092035bd093d0bed181d183d0b4d0b0d180d181d182d0b2d0b5d0bdd0bdd18bd0b920d0bcd183d0b7d0b5d0b920d0b0d180d185d0b8d182d0b5d0bad182d183d180d18b20d0b8d0bc2e20d0902e20d0922e20d0a9d183d181d0b5d0b2d0b0",
+            "geoapify:5102135da775cf424059f426ce86d6de4b40f00102f901941531030000000092034cd0a2d180d0b5d182d18cd18fd0bad0bed0b2d181d0bad0b0d18f20d0b3d0b0d0bbd0b5d180d0b5d18f2e20d098d0bdd0b6d0b5d0bdd0b5d180d0bdd18bd0b920d0bad0bed180d0bfd183d181",
+            "geoapify:5105099b4bbbcf4240597b359b221bdf4b40f00103f9010c5b4c2d01000000920325d09ad0b0d0b4d0b0d188d0b5d0b2d181d0bad0b0d18f20d181d0bbd0bed0b1d0bed0b4d0b0"
+          ]
+        },
+        {
+          "profile": "nature",
+          "exit_code": 0,
+          "count": 5,
+          "poi_ids": [
+            "geoapify:510170d2e249cc4240590db15adab1e14b40f00102f901fd8a9d0c0000000092031dd0a1d0bad0b2d0b5d18020d091d183d0bbd0b3d0b0d0bad0bed0b2d0b0",
+            "geoapify:5101f9f5ed67d142405969664e54c5e04b40f00101f901fbce710000000000920315d09fd0b0d180d0ba2022d093d0bed180d0bad0b022",
+            "geoapify:5102d69f368ed1424059f42dd94c13de4b40f00101f901a5862d010000000092031fd09cd0b8d185d0b0d0b9d0bbd0bed0b2d181d0bad0b8d0b920d181d0b0d0b4",
+            "geoapify:51034ffd63bacb424059f51cd79fa1e04b40f00101f9011d69480000000000920317d0a1d0bad0b2d0b5d18020d091d183d0bdd0b8d0bdd0b0",
+            "geoapify:51076eb8506ed24240594bb3a36db3e04b40f00101f901e51d6d000000000092031dd09cd0bed180d0bed0b7d0bed0b2d181d0bad0b8d0b920d181d0b0d0b4"
+          ]
+        }
+      ]
+    },
+    {
+      "snapshot": "data/geoapify/ru/20261117T173907.144035Z",
+      "city": "Санкт-Петербург",
+      "accepted_count": 627,
+      "raw_count": 829,
+      "stop_reason": "budget_limit",
+      "http_attempt_count": 13,
+      "reserved_credit_upper_estimate": 61,
+      "blocked_http_status": null,
+      "renormalization_equal": true,
+      "rejected_count": 0,
+      "profiles": [
+        {
+          "profile": "museums",
+          "exit_code": 0,
+          "count": 5,
+          "poi_ids": [
+            "geoapify:5132800e70aa563e4059647098745ef84d40f00101f901eba3030000000000920323d09cd0b8d185d0b0d0b9d0bbd0bed0b2d181d0bad0b8d0b920d0b7d0b0d0bcd0bed0ba",
+            "geoapify:514260df0ced513e4059008e86a9c1f74d40f00101f901f7af0f0000000000920327d0a1d182d180d0bed0b3d0b0d0bdd0bed0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+            "geoapify:51436c0b58bd4b3e40590cdef9a72df84d40f00102f9013ce5e90c0000000092031fd094d0b2d0bed180d0b5d18620d09cd0b5d0bdd188d0b8d0bad0bed0b2d0b0",
+            "geoapify:515e8a071b694c3e40594c322cf7f1f64d40f00102f901678b580700000000920321d0aed181d183d0bfd0bed0b2d181d0bad0b8d0b920d0b4d0b2d0bed180d0b5d186",
+            "geoapify:517d21993ba1533e40596e2aa2ccfaf84d40f00101f90196cb0e000000000092031fd09cd180d0b0d0bcd0bed180d0bdd18bd0b920d0b4d0b2d0bed180d0b5d186"
+          ]
+        },
+        {
+          "profile": "nature",
+          "exit_code": 0,
+          "count": 5,
+          "poi_ids": [
+            "geoapify:51012e1dba4a543e40593d7c2df34ef64d40f00101f901a583a30000000000",
+            "geoapify:51017037ae1a493e4059cae4f23766f64d40f00102f9013046f1050000000092032ad181d0bad0b2d0b5d18020d095d0bbd0b5d0bdd18b20d09ed0b1d180d0b0d0b7d186d0bed0b2d0bed0b9",
+            "geoapify:5103540d55b14d3e4059aeebbe9fb8f94d40f00101f9011c752f0000000000920323d09fd180d0bed0b2d0b8d0b0d0bdd182d181d0bad0b8d0b920d181d0bad0b2d0b5d180",
+            "geoapify:5107e59ba4ba4c3e4059ff2fecf621f64d40f00101f901d43632000000000092031bd09dd0b8d0bad0bed0bbd18cd181d0bad0b8d0b920d181d0b0d0b4",
+            "geoapify:51083f4822524e3e4059cd55aaa850f54d40f00101f90190de00010000000092033bd181d0b0d0b420d0a2d180d0bed0b8d186d0b52dd098d0b7d0bcd0b0d0b9d0bbd0bed0b2d181d0bad0bed0b3d0be20d181d0bed0b1d0bed180d0b0"
+          ]
+        }
+      ]
+    },
+    {
+      "snapshot": "data/geoapify/jp/20261117T173938.648464Z",
+      "city": "Токио",
+      "accepted_count": 851,
+      "raw_count": 1020,
+      "stop_reason": "budget_limit",
+      "http_attempt_count": 13,
+      "reserved_credit_upper_estimate": 61,
+      "blocked_http_status": null,
+      "renormalization_equal": true,
+      "rejected_count": 0,
+      "profiles": [
+        {
+          "profile": "museums",
+          "exit_code": 0,
+          "count": 5,
+          "poi_ids": [
+            "geoapify:5101788ce62279614059cba2f4c6bed04140f00102f901627ee3080000000092030fe6b0b4e381aee7a791e5ada6e9a4a8",
+            "geoapify:5103a3810e2976614059affc43447bd84140f00103f901ea60af540000000092031be5b9b3e5928ce7a588e5bfb5e5b195e7a4bae8b387e69699e9a4a8",
+            "geoapify:5104ff00101c71614059a8e2c62de6d94140f00103f901ee17ad6b0000000092031ee6ada6e894b5e9878ee381b5e3828be38195e381a8e6adb4e58fb2e9a4a8",
+            "geoapify:51052f9f51df77614059abdf96d931d54140f00103f901405389bb0200000092031be6b8afe58cbae7ab8be381bfe381aae381a8e7a791e5ada6e9a4a8",
+            "geoapify:51065e0e2c6a77614059b0f9f94b1ad94140f00102f90170cfe6460000000092030fe69cace381a8e6b4bbe5ad97e9a4a8"
+          ]
+        },
+        {
+          "profile": "nature",
+          "exit_code": 0,
+          "count": 5,
+          "poi_ids": [
+            "geoapify:51003ed3a2666d61405986acbdeda4d44140f00102f90126e6e14e0000000092030fe381ade38293e38282e585ace59c92",
+            "geoapify:51005314bf596a614059b9e806bb3fcf4140f00102f901e4e1cd5400000000920312e4b883e59bbde7acace4b883e7b791e59cb0",
+            "geoapify:51005bb9725179614059a61d4828c7d24140f00103f9017fbcfba502000000920309e69c88e8a68be58fb0",
+            "geoapify:510116778ab96f6140595dcf644107de4140f00102f901d4b63b0300000000920312e38182e38198e38195e38184e585ace59c92",
+            "geoapify:5101e291122f6e614059a4b1ced85cd04140f00102f9017c491d470000000092030ce7939ce7949fe585ace59c92"
+          ]
+        }
+      ]
+    }
+  ]
+}

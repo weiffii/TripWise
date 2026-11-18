@@ -1,0 +1,2228 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Восточное крыло Главного штаба",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Palace Square",
+        "housenumber": "6-8",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.318397,
+        "lat": 59.9385369,
+        "formatted": "Восточное крыло Главного штаба, Palace Square 6-8, Saint Petersburg, Russia, 191186",
+        "address_line1": "Восточное крыло Главного штаба",
+        "address_line2": "Palace Square 6-8, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "building",
+          "building.tourism",
+          "entertainment",
+          "entertainment.museum",
+          "fee",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.facilities",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 59.93838467236086,
+            "lon": 30.318427406283433,
+            "name": "Восточное крыло Главного штаба",
+            "osm_id": 309796655,
+            "street": "Дворцовая площадь",
+            "tourism": "museum",
+            "website": "https://www.hermitagemuseum.org/wps/portal/hermitage/visitus/general-staff/",
+            "building": "yes",
+            "osm_type": "w",
+            "postcode": 191186,
+            "wikidata": "Q2622043",
+            "architect": "Карл Иванович Росси",
+            "start_date": 1829,
+            "wheelchair": "yes",
+            "housenumber": "6-8",
+            "opening_hours": "Tu-Su 12:00-21:00",
+            "building:levels": 4,
+            "fee:conditional": "yes, no@Dec 07,Th[3]",
+            "architect:wikidata": "Q619584",
+            "toilets:wheelchair": "yes"
+          }
+        },
+        "website": "https://www.hermitagemuseum.org/wps/portal/hermitage/visitus/general-staff/",
+        "opening_hours": "Tu-Su 12:00-21:00",
+        "facilities": {
+          "wheelchair": true,
+          "toilets": true
+        },
+        "wiki_and_media": {
+          "wikidata": "Q2622043"
+        },
+        "building": {
+          "levels": 4,
+          "start_date": 1829
+        },
+        "distance": 129,
+        "place_id": "513023607584513e4059c56d2bfd1cf84d40f00102f9012f1f771200000000920339d092d0bed181d182d0bed187d0bdd0bed0b520d0bad180d18bd0bbd0be20d093d0bbd0b0d0b2d0bdd0bed0b3d0be20d188d182d0b0d0b1d0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.318427406283433,
+          59.93838467236086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Teplica",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "3-5",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173026,
+        "lat": 59.9374494,
+        "formatted": "Teplica, Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "address_line1": "Teplica",
+        "address_line2": "Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9374494,
+            "lon": 30.3173026,
+            "city": "Санкт-Петербург",
+            "name": "Teplica",
+            "osm_id": 11203378604,
+            "street": "Большая Морская улица",
+            "amenity": "cafe",
+            "country": "RU",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2023-09-19",
+            "housenumber": "3-5"
+          }
+        },
+        "distance": 155,
+        "place_id": "518fef41be3a513e4059d1538957fef74d40f00103f901acfdc59b020000009203075465706c696361"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173026,
+          59.9374494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Рок Стар Кафе",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "6",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3179395,
+        "lat": 59.9372771,
+        "formatted": "Рок Стар Кафе, Большая Морская улица 6, Saint Petersburg, Russia, 191186",
+        "address_line1": "Рок Стар Кафе",
+        "address_line2": "Большая Морская улица 6, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "internet_access"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9372771,
+            "lon": 30.3179395,
+            "city": "Санкт-Петербург",
+            "name": "Рок Стар Кафе",
+            "osm_id": 4437884675,
+            "street": "Большая Морская улица",
+            "amenity": "cafe",
+            "country": "RU",
+            "name:ru": "Рок Стар Кафе",
+            "int_name": "Rock Star Cafe",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2025-08-26",
+            "contact:vk": "https://vk.com/rockstarcafe",
+            "wheelchair": "no",
+            "housenumber": 6,
+            "contact:phone": "+7 812 3098883",
+            "opening_hours": "Mo-Th,Su 13:00-24:00; Fr-Sa 13:00-02:00",
+            "contact:website": "https://rockstarcafe.ru",
+            "internet_access": "yes"
+          }
+        },
+        "website": "https://rockstarcafe.ru",
+        "opening_hours": "Mo-Th,Su 13:00-24:00; Fr-Sa 13:00-02:00",
+        "name_international": {
+          "ru": "Рок Стар Кафе"
+        },
+        "contact": {
+          "phone": "+7 812 3098883"
+        },
+        "facilities": {
+          "internet_access": true,
+          "wheelchair": false
+        },
+        "distance": 188,
+        "place_id": "514a9baa7b64513e405916e52db2f8f74d40f00103f90103bf840801000000920318d0a0d0bed0ba20d0a1d182d0b0d18020d09ad0b0d184d0b5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3179395,
+          59.9372771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Woo-hoo!",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "3-5",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.317406,
+        "lat": 59.9371256,
+        "formatted": "Woo-hoo!, Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "address_line1": "Woo-hoo!",
+        "address_line2": "Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [
+          "details",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9371256,
+            "lon": 30.317406,
+            "city": "Санкт-Петербург",
+            "name": "Woo-hoo!",
+            "osm_id": 10283929801,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "contact:vk": "https://vk.com/smile_park_spb",
+            "description": "Музей дополненной реальности",
+            "housenumber": "3-5",
+            "contact:phone": "+7 800 7000680",
+            "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+            "contact:website": "https://smile-park.ru/woo-hoo"
+          }
+        },
+        "website": "https://smile-park.ru/woo-hoo",
+        "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+        "description": "Музей дополненной реальности",
+        "contact": {
+          "phone": "+7 800 7000680"
+        },
+        "distance": 191,
+        "place_id": "51de8d058541513e4059481f4ebbf3f74d40f00103f901c950f86402000000920308576f6f2d686f6f21"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.317406,
+          59.9371256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Внутри человека",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "3-5",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3174035,
+        "lat": 59.9370939,
+        "formatted": "Внутри человека, Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "address_line1": "Внутри человека",
+        "address_line2": "Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9370939,
+            "lon": 30.3174035,
+            "city": "Санкт-Петербург",
+            "name": "Внутри человека",
+            "osm_id": 4924914493,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "contact:vk": "https://vk.com/smile_park_spb",
+            "wheelchair": "no",
+            "housenumber": "3-5",
+            "contact:phone": "+7 800 7000680",
+            "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+            "contact:website": "https://smile-park.ru/v-sankt-peterburge/vnutri-cheloveka"
+          }
+        },
+        "website": "https://smile-park.ru/v-sankt-peterburge/vnutri-cheloveka",
+        "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+        "contact": {
+          "phone": "+7 800 7000680"
+        },
+        "facilities": {
+          "wheelchair": false
+        },
+        "distance": 194,
+        "place_id": "51cd22145b41513e4059fbe362b1f2f74d40f00103f9013d3b8c250100000092031dd092d0bdd183d182d180d0b820d187d0b5d0bbd0bed0b2d0b5d0bad0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3174035,
+          59.9370939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Петровский крендель",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "набережная реки Мойки",
+        "housenumber": "26",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3197565,
+        "lat": 59.9389901,
+        "formatted": "Петровский крендель, набережная реки Мойки 26, Saint Petersburg, Russia, 191186",
+        "address_line1": "Петровский крендель",
+        "address_line2": "набережная реки Мойки 26, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "internet_access"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9389901,
+            "lon": 30.3197565,
+            "city": "Санкт-Петербург",
+            "name": "Петровский крендель",
+            "osm_id": 10973870305,
+            "street": "набережная реки Мойки",
+            "amenity": "cafe",
+            "country": "RU",
+            "cuisine": "breakfast;cake;coffee_shop;sandwich;savory_pancakes;tea",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-08-07",
+            "housenumber": 26,
+            "opening_hours": "11:00-23:00",
+            "internet_access": "wlan"
+          }
+        },
+        "opening_hours": "11:00-23:00",
+        "facilities": {
+          "internet_access": true
+        },
+        "catering": {
+          "cuisine": "breakfast;cake;coffee_shop;sandwich;savory_pancakes;tea"
+        },
+        "distance": 199,
+        "place_id": "51f52ede8fdb513e40594662ddd330f84d40f00103f901e1f8178e02000000920325d09fd0b5d182d180d0bed0b2d181d0bad0b8d0b920d0bad180d0b5d0bdd0b4d0b5d0bbd18c"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3197565,
+          59.9389901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Movie Art",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "3-5",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173985,
+        "lat": 59.9370306,
+        "formatted": "Movie Art, Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "address_line1": "Movie Art",
+        "address_line2": "Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 59.9370306,
+            "lon": 30.3173985,
+            "city": "Санкт-Петербург",
+            "name": "Movie Art",
+            "osm_id": 7794915044,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "contact:vk": "https://vk.com/smile_park_spb",
+            "housenumber": "3-5",
+            "contact:phone": "+7 800 7000680",
+            "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+            "contact:website": "https://smile-park.ru/v-sankt-peterburge/movie-art"
+          }
+        },
+        "website": "https://smile-park.ru/v-sankt-peterburge/movie-art",
+        "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+        "contact": {
+          "phone": "+7 800 7000680"
+        },
+        "distance": 201,
+        "place_id": "51a94c310741513e4059f62c639ef0f74d40f00103f901e4f69cd0010000009203094d6f76696520417274"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173985,
+          59.9370306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Троицкий мост",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "набережная реки Мойки",
+        "housenumber": "30",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3198586,
+        "lat": 59.9386814,
+        "formatted": "Троицкий мост, набережная реки Мойки 30, Saint Petersburg, Russia, 191186",
+        "address_line1": "Троицкий мост",
+        "address_line2": "набережная реки Мойки 30, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "vegetarian"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9386814,
+            "lon": 30.3198586,
+            "city": "Санкт-Петербург",
+            "name": "Троицкий мост",
+            "osm_id": 5406048212,
+            "street": "набережная реки Мойки",
+            "amenity": "cafe",
+            "country": "RU",
+            "cuisine": "coffee_shop;international;tea",
+            "website": "http://t-most.ru/",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-08-07",
+            "contact:vk": "https://vk.com/trmost",
+            "wheelchair": "no",
+            "housenumber": 30,
+            "opening_hours": "09:00-21:00",
+            "diet:vegetarian": "yes"
+          }
+        },
+        "website": "http://t-most.ru/",
+        "opening_hours": "09:00-21:00",
+        "facilities": {
+          "wheelchair": false
+        },
+        "catering": {
+          "cuisine": "coffee_shop;international;tea",
+          "diet": {
+            "vegetarian": true
+          }
+        },
+        "distance": 203,
+        "place_id": "512758d240e2513e4059872e4db626f84d40f00103f901d4bf394201000000920319d0a2d180d0bed0b8d186d0bad0b8d0b920d0bcd0bed181d182"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3198586,
+          59.9386814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Музей иллюзий",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "3-5",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173961,
+        "lat": 59.936999,
+        "formatted": "Музей иллюзий, Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "address_line1": "Музей иллюзий",
+        "address_line2": "Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 59.936999,
+            "lon": 30.3173961,
+            "city": "Санкт-Петербург",
+            "name": "Музей иллюзий",
+            "osm_id": 4437884665,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "contact:vk": "https://vk.com/smile_park_spb",
+            "wheelchair": "no",
+            "housenumber": "3-5",
+            "contact:phone": "+7 800 7000680",
+            "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+            "contact:website": "https://smile-park.ru/sankt-peterburg/muzej-illyuzij"
+          }
+        },
+        "website": "https://smile-park.ru/sankt-peterburg/muzej-illyuzij",
+        "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+        "contact": {
+          "phone": "+7 800 7000680"
+        },
+        "facilities": {
+          "wheelchair": false
+        },
+        "distance": 204,
+        "place_id": "51c160edde40513e40593eb14e95eff74d40f00103f901f9be840801000000920319d09cd183d0b7d0b5d0b920d0b8d0bbd0bbd18ed0b7d0b8d0b9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173961,
+          59.936999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alex Show",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "6",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3179227,
+        "lat": 59.9370679,
+        "formatted": "Alex Show, Большая Морская улица 6, Saint Petersburg, Russia, 191186",
+        "address_line1": "Alex Show",
+        "address_line2": "Большая Морская улица 6, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 59.9370679,
+            "lon": 30.3179227,
+            "city": "Санкт-Петербург",
+            "name": "Alex Show",
+            "level": 0,
+            "osm_id": 4889041320,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2025-08-26",
+            "contact:vk": "https://vk.com/wax_figures",
+            "housenumber": 6,
+            "contact:phone": "+7 911 0124994",
+            "opening_hours": "Mo-Fr 10:00-23:00; Sa-Su,PH 10:00-24:00",
+            "contact:website": "http://www.wax.ru"
+          }
+        },
+        "website": "http://www.wax.ru",
+        "opening_hours": "Mo-Fr 10:00-23:00; Sa-Su,PH 10:00-24:00",
+        "contact": {
+          "phone": "+7 911 0124994"
+        },
+        "distance": 208,
+        "place_id": "51f127cf6163513e4059d25048d7f1f74d40f00103f901a8d9682301000000920309416c65782053686f77"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3179227,
+          59.9370679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Дом Великана",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "3-5",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173911,
+        "lat": 59.9369357,
+        "formatted": "Giant’s house, Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "address_line1": "Giant’s house",
+        "address_line2": "Большая Морская улица 3-5, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 59.9369357,
+            "lon": 30.3173911,
+            "city": "Санкт-Петербург",
+            "name": "Дом Великана",
+            "osm_id": 4437884663,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "name:en": "Giant’s house",
+            "name:ru": "Дом Великана",
+            "name:zh": "巨人之家",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "contact:vk": "https://vk.com/smile_park_spb",
+            "wheelchair": "no",
+            "housenumber": "3-5",
+            "contact:phone": "+7 800 7000680",
+            "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+            "contact:website": "https://smile-park.ru/sankt-peterburg/dom-velikana"
+          }
+        },
+        "website": "https://smile-park.ru/sankt-peterburg/dom-velikana",
+        "opening_hours": "Mo-Fr 11:00-22:00;Sa-Su 10:00-22:00",
+        "name_international": {
+          "en": "Giant’s house",
+          "ru": "Дом Великана",
+          "zh": "巨人之家"
+        },
+        "contact": {
+          "phone": "+7 800 7000680"
+        },
+        "facilities": {
+          "wheelchair": false
+        },
+        "distance": 210,
+        "place_id": "519d8a0a8b40513e405939fa4e82edf74d40f00103f901f7be840801000000920317d094d0bed0bc20d092d0b5d0bbd0b8d0bad0b0d0bdd0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173911,
+          59.9369357
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ôpetit",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Nevsky Avenue",
+        "housenumber": "12",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3159574,
+        "lat": 59.9368091,
+        "formatted": "Ôpetit, Nevsky Avenue 12, Saint Petersburg, Russia, 191186",
+        "address_line1": "Ôpetit",
+        "address_line2": "Nevsky Avenue 12, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9368091,
+            "lon": 30.3159574,
+            "city": "Санкт-Петербург",
+            "name": "Ôpetit",
+            "osm_id": 10965153806,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "country": "RU",
+            "website": "https://o-petit.ru/",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "housenumber": 12,
+            "opening_hours": "Mo-Sa 09:30-20:00"
+          }
+        },
+        "website": "https://o-petit.ru/",
+        "opening_hours": "Mo-Sa 09:30-20:00",
+        "distance": 215,
+        "place_id": "51dfed8b95e2503e40592f8c4f5ce9f74d40f00103f9010ef8928d02000000920307c3947065746974"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3159574,
+          59.9368091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Baggins Coffee",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Nevsky Avenue",
+        "housenumber": "10",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3152831,
+        "lat": 59.9368387,
+        "formatted": "Baggins Coffee, Nevsky Avenue 10, Saint Petersburg, Russia, 191186",
+        "address_line1": "Baggins Coffee",
+        "address_line2": "Nevsky Avenue 10, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "catering.cafe.coffee",
+          "catering.cafe.coffee_shop"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9368387,
+            "lon": 30.3152831,
+            "city": "Санкт-Петербург",
+            "name": "Baggins Coffee",
+            "brand": "Baggins Coffee",
+            "osm_id": 5305883110,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "country": "RU",
+            "cuisine": "coffee_shop",
+            "name:ru": "Baggins Coffee",
+            "osm_type": "n",
+            "postcode": 191186,
+            "takeaway": "yes",
+            "_inherited": "",
+            "check_date": "2025-05-25",
+            "contact:vk": "https://vk.com/bagginscoffee",
+            "housenumber": 10,
+            "contact:email": "info@bagginscoffee.ru",
+            "contact:phone": "+7 800 6007015",
+            "opening_hours": "Mo-Fr 08:00-21:00; Sa-Su 09:00-21:00",
+            "brand:wikidata": "Q100272631",
+            "contact:website": "http://bagginscoffee.com",
+            "contact:youtube": "https://youtube.com/channel/UCBVX0L_WSz9Wr3mF8xcCXyw",
+            "contact:facebook": "https://facebook.com/bagginscoffee",
+            "contact:instagram": "https://instagram.com/baggins_coffee"
+          }
+        },
+        "website": "http://bagginscoffee.com",
+        "opening_hours": "Mo-Fr 08:00-21:00; Sa-Su 09:00-21:00",
+        "brand": "Baggins Coffee",
+        "brand_details": {
+          "wikidata": "Q100272631"
+        },
+        "name_international": {
+          "ru": "Baggins Coffee"
+        },
+        "contact": {
+          "phone": "+7 800 6007015",
+          "email": "info@bagginscoffee.ru"
+        },
+        "facilities": {
+          "takeaway": true
+        },
+        "catering": {
+          "cuisine": "coffee_shop"
+        },
+        "distance": 217,
+        "place_id": "51437bab64b6503e405947109d54eaf74d40f00103f901e659413c0100000092030e42616767696e7320436f66666565"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3152831,
+          59.9368387
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vлаvаше",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Nevsky Avenue",
+        "housenumber": "10",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3152333,
+        "lat": 59.936844,
+        "formatted": "Vлаvаше, Nevsky Avenue 10, Saint Petersburg, Russia, 191186",
+        "address_line1": "Vлаvаше",
+        "address_line2": "Nevsky Avenue 10, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.936844,
+            "lon": 30.3152333,
+            "city": "Санкт-Петербург",
+            "name": "Vлаvаше",
+            "phone": "+7 (812) 317 47 77",
+            "osm_id": 10672692052,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "country": "RU",
+            "cuisine": "regional",
+            "website": "https://vlavashe.ru/",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2025-05-25",
+            "housenumber": 10,
+            "opening_hours": "24/7"
+          }
+        },
+        "website": "https://vlavashe.ru/",
+        "opening_hours": "24/7",
+        "contact": {
+          "phone": "+7 (812) 317 47 77"
+        },
+        "catering": {
+          "cuisine": "regional"
+        },
+        "distance": 218,
+        "place_id": "51331c2a21b3503e405917ba1281eaf74d40f00103f901545b247c0200000092030c56d0bbd0b076d0b0d188d0b5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3152333,
+          59.936844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Музей печати",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "набережная реки Мойки",
+        "housenumber": "32",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3200126,
+        "lat": 59.9382677,
+        "formatted": "Museum of printing, набережная реки Мойки 32, Saint Petersburg, Russia, 191186",
+        "address_line1": "Museum of printing",
+        "address_line2": "набережная реки Мойки 32, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 59.9382677,
+            "lon": 30.3200126,
+            "city": "Санкт-Петербург",
+            "name": "Музей печати",
+            "phone": "+7 812 5710270",
+            "osm_id": 3517244102,
+            "street": "набережная реки Мойки",
+            "country": "RU",
+            "name:en": "Museum of printing",
+            "name:fr": "Musée de l'écriture",
+            "name:ru": "Музей печати",
+            "name:zh": "博物馆的印刷",
+            "tourism": "museum",
+            "website": "https://www.spbmuseum.ru/themuseum/museum_complex/museum_of_printing/",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-08-07",
+            "contact:vk": "https://vk.com/musey_pechati",
+            "wheelchair": "no",
+            "housenumber": 32,
+            "opening_hours": "Mo,Th-Su 11:00-18:00; Tu 11:00-17:00"
+          }
+        },
+        "website": "https://www.spbmuseum.ru/themuseum/museum_complex/museum_of_printing/",
+        "opening_hours": "Mo,Th-Su 11:00-18:00; Tu 11:00-17:00",
+        "name_international": {
+          "en": "Museum of printing",
+          "fr": "Musée de l'écriture",
+          "ru": "Музей печати",
+          "zh": "博物馆的印刷"
+        },
+        "contact": {
+          "phone": "+7 812 5710270"
+        },
+        "facilities": {
+          "wheelchair": false
+        },
+        "distance": 218,
+        "place_id": "51d44e8358ec513e40595232ef2719f84d40f00103f901c6e2a4d100000000920317d09cd183d0b7d0b5d0b920d0bfd0b5d187d0b0d182d0b8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3200126,
+          59.9382677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Музей супер героев",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "7",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173551,
+        "lat": 59.93683,
+        "formatted": "Музей супер героев, Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "address_line1": "Музей супер героев",
+        "address_line2": "Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.93683,
+            "lon": 30.3173551,
+            "city": "Санкт-Петербург",
+            "name": "Музей супер героев",
+            "osm_id": 13667307739,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-03-21",
+            "housenumber": 7
+          }
+        },
+        "distance": 221,
+        "place_id": "5104b80f2f3e513e4059b2f4a10beaf74d40f00103f901db90a22e03000000920322d09cd183d0b7d0b5d0b920d181d183d0bfd0b5d18020d0b3d0b5d180d0bed0b5d0b2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173551,
+          59.93683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Музей казней и пыток",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "7",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173979,
+        "lat": 59.9368355,
+        "formatted": "Музей казней и пыток, Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "address_line1": "Музей казней и пыток",
+        "address_line2": "Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9368355,
+            "lon": 30.3173979,
+            "city": "Санкт-Петербург",
+            "name": "Музей казней и пыток",
+            "osm_id": 7794915046,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-03-21",
+            "housenumber": 7
+          }
+        },
+        "distance": 221,
+        "place_id": "51af5120fd40513e4059ac1dc539eaf74d40f00103f901e6f69cd001000000920325d09cd183d0b7d0b5d0b920d0bad0b0d0b7d0bdd0b5d0b920d0b820d0bfd18bd182d0bed0ba"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173979,
+          59.9368355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Север-Метрополь",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Nevsky Avenue",
+        "housenumber": "6",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3146262,
+        "lat": 59.9369146,
+        "formatted": "Sever-Metropol, Nevsky Avenue 6, Saint Petersburg, Russia, 191186",
+        "address_line1": "Sever-Metropol",
+        "address_line2": "Nevsky Avenue 6, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "catering.cafe.cake",
+          "catering.cafe.coffee",
+          "catering.cafe.coffee_shop",
+          "commercial",
+          "commercial.food_and_drink",
+          "commercial.food_and_drink.confectionery"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9369146,
+            "lon": 30.3146262,
+            "city": "Санкт-Петербург",
+            "name": "Север-Метрополь",
+            "shop": "confectionery",
+            "brand": "Север-Метрополь",
+            "email": "info@sf-sm.ru",
+            "osm_id": 5305883106,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "country": "RU",
+            "cuisine": "cake;coffee_shop",
+            "name:en": "Sever-Metropol",
+            "name:ru": "Север-Метрополь",
+            "brand:en": "Sever-Metropol",
+            "brand:ru": "Север-Метрополь",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2025-05-25",
+            "contact:vk": "https://vk.com/sever.metropol.official",
+            "housenumber": 6,
+            "opening_hours": "08:00-22:00",
+            "brand:wikidata": "Q4411982",
+            "contact:website": "https://sever-metropol.ru",
+            "contact:facebook": "https://www.facebook.com/sever.metropol.official",
+            "contact:instagram": "https://www.instagram.com/sever_metropol/"
+          }
+        },
+        "website": "https://sever-metropol.ru",
+        "opening_hours": "08:00-22:00",
+        "brand": "Север-Метрополь",
+        "brand_details": {
+          "wikidata": "Q4411982"
+        },
+        "name_international": {
+          "en": "Sever-Metropol",
+          "ru": "Север-Метрополь"
+        },
+        "contact": {
+          "email": "info@sf-sm.ru"
+        },
+        "catering": {
+          "cuisine": "cake;coffee_shop"
+        },
+        "commercial": {
+          "type": "confectionery"
+        },
+        "distance": 221,
+        "place_id": "51fa76b7578b503e40598d124fd1ecf74d40f00103f901e259413c0100000092031dd0a1d0b5d0b2d0b5d1802dd09cd0b5d182d180d0bed0bfd0bed0bbd18c"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3146262,
+          59.9369146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Музей оптических иллюзий",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "7",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173557,
+        "lat": 59.9367909,
+        "formatted": "Музей оптических иллюзий, Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "address_line1": "Музей оптических иллюзий",
+        "address_line2": "Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9367909,
+            "lon": 30.3173557,
+            "city": "Санкт-Петербург",
+            "name": "Музей оптических иллюзий",
+            "osm_id": 13667307740,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-03-21",
+            "housenumber": 7
+          }
+        },
+        "distance": 225,
+        "place_id": "51feb220393e513e40595f58a3c3e8f74d40f00103f901dc90a22e0300000092032ed09cd183d0b7d0b5d0b920d0bed0bfd182d0b8d187d0b5d181d0bad0b8d18520d0b8d0bbd0bbd18ed0b7d0b8d0b9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173557,
+          59.9367909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Музей анатомии тела",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "7",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173961,
+        "lat": 59.9367942,
+        "formatted": "Музей анатомии тела, Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "address_line1": "Музей анатомии тела",
+        "address_line2": "Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9367942,
+            "lon": 30.3173961,
+            "city": "Санкт-Петербург",
+            "name": "Музей анатомии тела",
+            "osm_id": 13667307741,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-03-21",
+            "housenumber": 7
+          }
+        },
+        "distance": 226,
+        "place_id": "51c160edde40513e40598f0a52dfe8f74d40f00103f901dd90a22e03000000920324d09cd183d0b7d0b5d0b920d0b0d0bdd0b0d182d0bed0bcd0b8d0b820d182d0b5d0bbd0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173961,
+          59.9367942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Торт Первый",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Nevsky Avenue",
+        "housenumber": "6",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3143072,
+        "lat": 59.9369508,
+        "formatted": "Торт Первый, Nevsky Avenue 6, Saint Petersburg, Russia, 191186",
+        "address_line1": "Торт Первый",
+        "address_line2": "Nevsky Avenue 6, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities",
+          "details.payment"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9369508,
+            "lon": 30.3143072,
+            "city": "Санкт-Петербург",
+            "name": "Торт Первый",
+            "osm_id": 4056073688,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "country": "RU",
+            "operator": "ООО «Контур»",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2025-05-25",
+            "contact:vk": "https://vk.com/tort_pervyi",
+            "wheelchair": "yes",
+            "housenumber": 6,
+            "payment:cash": "yes",
+            "payment:visa": "yes",
+            "opening_hours": "09:00-22:00",
+            "payment:maestro": "yes",
+            "payment:mastercard": "yes",
+            "payment:visa_electron": "yes"
+          }
+        },
+        "opening_hours": "09:00-22:00",
+        "operator": "ООО «Контур»",
+        "facilities": {
+          "wheelchair": true
+        },
+        "payment_options": {
+          "cash": true,
+          "visa": true,
+          "maestro": true,
+          "mastercard": true,
+          "visa_electron": true
+        },
+        "distance": 226,
+        "place_id": "51b7e5c86f76503e405903fbf900eef74d40f00103f901d8c5c2f100000000920315d0a2d0bed180d18220d09fd0b5d180d0b2d18bd0b9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3143072,
+          59.9369508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Дом наоборот",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "10 литБ",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3179156,
+        "lat": 59.9368824,
+        "formatted": "Дом наоборот, Большая Морская улица 10 литБ, Saint Petersburg, Russia, 191186",
+        "address_line1": "Дом наоборот",
+        "address_line2": "Большая Морская улица 10 литБ, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "entertainment",
+          "entertainment.museum",
+          "fee"
+        ],
+        "details": [
+          "details",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "fee": "yes",
+            "lat": 59.9368824,
+            "lon": 30.3179156,
+            "city": "Санкт-Петербург",
+            "name": "Дом наоборот",
+            "osm_id": 4889041322,
+            "street": "Большая Морская улица",
+            "country": "RU",
+            "tourism": "museum",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2025-08-26",
+            "housenumber": "10 литБ",
+            "contact:phone": "+7 812 9861696",
+            "opening_hours": "10:00-22:00",
+            "contact:website": "https://domnaoborot.ru",
+            "contact:instagram": "https://www.instagram.com/dom__naoborot"
+          }
+        },
+        "website": "https://domnaoborot.ru",
+        "opening_hours": "10:00-22:00",
+        "contact": {
+          "phone": "+7 812 9861696"
+        },
+        "distance": 227,
+        "place_id": "5162e3b0ea62513e4059581932c3ebf74d40f00103f901aad9682301000000920317d094d0bed0bc20d0bdd0b0d0bed0b1d0bed180d0bed182"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3179156,
+          59.9368824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "district": "Palace District",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3137849,
+        "lat": 59.9404243,
+        "formatted": "Saint Petersburg, Palace District, Russia",
+        "address_line1": "Saint Petersburg",
+        "address_line2": "Palace District, Russia",
+        "categories": [
+          "leisure",
+          "leisure.park"
+        ],
+        "details": [],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.94039089981903,
+            "lon": 30.31383320646663,
+            "osm_id": 125832823,
+            "leisure": "park",
+            "osm_type": "w"
+          }
+        },
+        "distance": 228,
+        "place_id": "51492c7e5f57503e4059e116a0ba5ef84d40f00102f901770e800700000000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.31383320646663,
+          59.94039089981903
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Зимний дворец",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "190000",
+        "district": "Palace District",
+        "street": "Дворцовая набережная",
+        "housenumber": "38 литА",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3151887,
+        "lat": 59.9404625,
+        "formatted": "Winter Palace, Дворцовая набережная 38 литА, Saint Petersburg, Russia, 190000",
+        "address_line1": "Winter Palace",
+        "address_line2": "Дворцовая набережная 38 литА, Saint Petersburg, Russia, 190000",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.castle"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.940478410413355,
+            "lon": 30.313875580167615,
+            "name": "Зимний дворец",
+            "height": 22,
+            "osm_id": 69424,
+            "street": "Дворцовая набережная",
+            "name:ar": "القصر الشتوي",
+            "name:ca": "Palau d'Hivern",
+            "name:cs": "Zimní palác",
+            "name:de": "Winterpalast",
+            "name:en": "Winter Palace",
+            "name:es": "Palacio de Invierno",
+            "name:fi": "Talvipalatsi",
+            "name:fr": "Palais d'Hiver",
+            "name:it": "Palazzo d'Inverno",
+            "name:ko": "겨울궁전",
+            "name:lt": "Ermitažas",
+            "name:nl": "Winterpaleis",
+            "name:pl": "Pałac Zimowy",
+            "name:ru": "Зимний дворец",
+            "website": "https://ermitazh.org/",
+            "building": "yes",
+            "historic": "castle",
+            "osm_type": "r",
+            "postcode": 190000,
+            "wikidata": "Q182147",
+            "wikipedia": "ru:Зимний дворец",
+            "castle_type": "palace",
+            "housenumber": "38 литА",
+            "building:part": "base",
+            "building:colour": "aquamarine",
+            "building:levels": 3
+          }
+        },
+        "website": "https://ermitazh.org/",
+        "name_international": {
+          "ar": "القصر الشتوي",
+          "ca": "Palau d'Hivern",
+          "cs": "Zimní palác",
+          "de": "Winterpalast",
+          "en": "Winter Palace",
+          "es": "Palacio de Invierno",
+          "fi": "Talvipalatsi",
+          "fr": "Palais d'Hiver",
+          "it": "Palazzo d'Inverno",
+          "ko": "겨울궁전",
+          "lt": "Ermitažas",
+          "nl": "Winterpaleis",
+          "pl": "Pałac Zimowy",
+          "ru": "Зимний дворец"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q182147",
+          "wikipedia": "ru:Зимний дворец"
+        },
+        "historic": {
+          "type": "castle",
+          "castle_type": "palace"
+        },
+        "building": {
+          "levels": 3,
+          "color": "aquamarine",
+          "height": 22
+        },
+        "distance": 235,
+        "place_id": "513bd567265a503e4059e3a8b79861f84d40f00101f901300f010000000000920319d097d0b8d0bcd0bdd0b8d0b920d0b4d0b2d0bed180d0b5d186"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.313875580167615,
+          59.940478410413355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wahala",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "Большая Морская улица",
+        "housenumber": "7",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3173843,
+        "lat": 59.9366095,
+        "formatted": "Wahala, Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "address_line1": "Wahala",
+        "address_line2": "Большая Морская улица 7, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "catering.cafe.bubble_tea",
+          "catering.cafe.tea"
+        ],
+        "details": [
+          "details.catering"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9366095,
+            "lon": 30.3173843,
+            "city": "Санкт-Петербург",
+            "name": "Wahala",
+            "osm_id": 13667307742,
+            "street": "Большая Морская улица",
+            "amenity": "cafe",
+            "country": "RU",
+            "cuisine": "bubble_tea",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2026-03-21",
+            "housenumber": 7
+          }
+        },
+        "catering": {
+          "cuisine": "bubble_tea"
+        },
+        "distance": 245,
+        "place_id": "518cc3f41840513e4059bccff1d1e2f74d40f00103f901de90a22e03000000920306576168616c61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3173843,
+          59.9366095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Place 43",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "округ № 78",
+        "suburb": "Apraksin Dvor",
+        "street": "Nevsky Avenue",
+        "housenumber": "11/2",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3156192,
+        "lat": 59.936522,
+        "formatted": "Place 43, Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "address_line1": "Place 43",
+        "address_line2": "Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "internet_access",
+          "internet_access.free"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.936522,
+            "lon": 30.3156192,
+            "cafe": "time_cafe",
+            "city": "Санкт-Петербург",
+            "name": "Place 43",
+            "level": 4,
+            "osm_id": 2709501130,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "osm_type": "n",
+            "check_date": "2025-02-05",
+            "contact:vk": "https://vk.com/place43spb",
+            "housenumber": "11/2",
+            "contact:email": "contact@fdfree.ru",
+            "contact:phone": "+7 911 0281444",
+            "opening_hours": "Su-Th 11:00-01:00; Fr-Sa 11:00-06:00",
+            "internet_access": "wlan",
+            "internet_access:fee": "no"
+          }
+        },
+        "opening_hours": "Su-Th 11:00-01:00; Fr-Sa 11:00-06:00",
+        "contact": {
+          "phone": "+7 911 0281444",
+          "email": "contact@fdfree.ru"
+        },
+        "facilities": {
+          "internet_access": true
+        },
+        "distance": 249,
+        "place_id": "515cfd7d6bcc503e405904fef0f3dff74d40f00103f901cab47fa100000000920308506c616365203433"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3156192,
+          59.936522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coffeers",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "округ № 78",
+        "suburb": "Apraksin Dvor",
+        "street": "Nevsky Avenue",
+        "housenumber": "11/2",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3153249,
+        "lat": 59.9365428,
+        "formatted": "Coffeers, Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "address_line1": "Coffeers",
+        "address_line2": "Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "catering.cafe.coffee",
+          "catering.cafe.coffee_shop"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9365428,
+            "lon": 30.3153249,
+            "city": "Санкт-Петербург",
+            "name": "Coffeers",
+            "osm_id": 7276069177,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "cuisine": "coffee_shop",
+            "osm_type": "n",
+            "postcode": 191186,
+            "takeaway": "yes",
+            "_inherited": "",
+            "check_date": "2026-07-14",
+            "housenumber": "11/2",
+            "opening_hours": "09:00-21:50"
+          }
+        },
+        "opening_hours": "09:00-21:50",
+        "facilities": {
+          "takeaway": true
+        },
+        "catering": {
+          "cuisine": "coffee_shop"
+        },
+        "distance": 249,
+        "place_id": "514e1df521b9503e4059f2a66ca2e0f74d40f00103f9013901b0b101000000920308436f666665657273"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3153249,
+          59.9365428
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Столовая №3",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "округ № 78",
+        "suburb": "Apraksin Dvor",
+        "street": "Nevsky Avenue",
+        "housenumber": "11/2",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.315955,
+        "lat": 59.9364825,
+        "formatted": "Столовая №3, Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "address_line1": "Столовая №3",
+        "address_line2": "Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9364825,
+            "lon": 30.315955,
+            "city": "Санкт-Петербург",
+            "name": "Столовая №3",
+            "level": 1,
+            "osm_id": 4915782459,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "name:ru": "Столовая №3",
+            "website": "https://anypasta.ru/",
+            "alt_name": "Any.Pasta.Pizza.Bar",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "check_date": "2025-02-05",
+            "contact:vk": "https://vk.com/anypasta",
+            "wheelchair": "no",
+            "housenumber": "11/2",
+            "opening_hours": "24/7"
+          }
+        },
+        "website": "https://anypasta.ru/",
+        "opening_hours": "24/7",
+        "name_other": {
+          "alt_name": "Any.Pasta.Pizza.Bar"
+        },
+        "name_international": {
+          "ru": "Столовая №3"
+        },
+        "facilities": {
+          "wheelchair": false
+        },
+        "distance": 251,
+        "place_id": "51f701486de2503e40595e6397a8def74d40f00103f9013be3002501000000920315d0a1d182d0bed0bbd0bed0b2d0b0d18f20e2849633"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.315955,
+          59.9364825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Штолле",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "округ № 78",
+        "suburb": "Apraksin Dvor",
+        "street": "Nevsky Avenue",
+        "housenumber": "11/2",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3161607,
+        "lat": 59.9364584,
+        "formatted": "Stolle, Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "address_line1": "Stolle",
+        "address_line2": "Nevsky Avenue 11/2, Apraksin Dvor, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe",
+          "vegetarian",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9364584,
+            "lon": 30.3161607,
+            "city": "Санкт-Петербург",
+            "name": "Штолле",
+            "brand": "Штолле",
+            "level": 0,
+            "osm_id": 3636498749,
+            "street": "Невский проспект",
+            "amenity": "cafe",
+            "cuisine": "pie",
+            "name:de": "Stolle",
+            "name:en": "Stolle",
+            "name:fr": "Stolle",
+            "name:ru": "Штолле",
+            "website": "https://spb.stolle.ru/",
+            "brand:de": "Stolle",
+            "brand:en": "Stolle",
+            "brand:ru": "Штолле",
+            "int_name": "Stolle",
+            "operator": "ООО «Столовая №64»",
+            "osm_type": "n",
+            "postcode": 191186,
+            "takeaway": "yes",
+            "_inherited": "",
+            "check_date": "2025-02-05",
+            "contact:vk": "stollerussia",
+            "wheelchair": "yes",
+            "housenumber": "11/2",
+            "opening_hours": "Mo-Fr 08:00-21:00; Sa-Su 09:00-21:00",
+            "brand:wikidata": "Q62502236",
+            "indoor_seating": "yes",
+            "diet:vegetarian": "yes"
+          }
+        },
+        "website": "https://spb.stolle.ru/",
+        "opening_hours": "Mo-Fr 08:00-21:00; Sa-Su 09:00-21:00",
+        "brand": "Штолле",
+        "brand_details": {
+          "wikidata": "Q62502236"
+        },
+        "operator": "ООО «Столовая №64»",
+        "name_international": {
+          "de": "Stolle",
+          "en": "Stolle",
+          "fr": "Stolle",
+          "ru": "Штолле"
+        },
+        "facilities": {
+          "wheelchair": true,
+          "takeaway": true
+        },
+        "catering": {
+          "cuisine": "pie",
+          "diet": {
+            "vegetarian": true
+          }
+        },
+        "distance": 253,
+        "place_id": "51cdc75ae8ef503e405941086ddeddf74d40f00103f9013d91c0d80000000092030cd0a8d182d0bed0bbd0bbd0b5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3161607,
+          59.9364584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Распутин",
+        "country": "Russia",
+        "country_code": "ru",
+        "region": "Northwestern Federal District",
+        "state": "Saint Petersburg",
+        "city": "Saint Petersburg",
+        "postcode": "191186",
+        "district": "Palace District",
+        "street": "набережная реки Мойки",
+        "housenumber": "37",
+        "iso3166_2": "RU-SPE",
+        "lon": 30.3191342,
+        "lat": 59.9405673,
+        "formatted": "Распутин, набережная реки Мойки 37, Saint Petersburg, Russia, 191186",
+        "address_line1": "Распутин",
+        "address_line2": "набережная реки Мойки 37, Saint Petersburg, Russia, 191186",
+        "categories": [
+          "catering",
+          "catering.cafe"
+        ],
+        "details": [
+          "details",
+          "details.catering",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "lat": 59.9405673,
+            "lon": 30.3191342,
+            "name": "Распутин",
+            "email": "admin@rasputin-cafe.ru",
+            "phone": "+78125717591",
+            "osm_id": 5146567115,
+            "street": "набережная реки Мойки",
+            "amenity": "cafe",
+            "cuisine": "regional;russian",
+            "website": "https://rasputin-cafe.ru/",
+            "osm_type": "n",
+            "postcode": 191186,
+            "_inherited": "",
+            "contact:vk": "https://vk.com/rasputincafe",
+            "housenumber": 37,
+            "opening_hours": "Mo-Su 10:00-23:00"
+          }
+        },
+        "website": "https://rasputin-cafe.ru/",
+        "opening_hours": "Mo-Su 10:00-23:00",
+        "contact": {
+          "phone": "+78125717591",
+          "email": "admin@rasputin-cafe.ru"
+        },
+        "catering": {
+          "cuisine": "regional;russian"
+        },
+        "distance": 261,
+        "place_id": "51fe0868c7b2513e4059f097608264f84d40f00103f901cb61c23201000000920310d0a0d0b0d181d0bfd183d182d0b8d0bd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3191342,
+          59.9405673
+        ]
+      }
+    }
+  ]
+}

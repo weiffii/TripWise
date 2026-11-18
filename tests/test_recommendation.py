@@ -216,5 +216,21 @@ class RecommendationTests(unittest.TestCase):
             self.assertEqual(error['error']['details'][0]['poi_id'], 'несуществующий')
 
 
+    def test_missing_primary_category_is_explicit_not_fabricated(self):
+        profile=deepcopy(self.profile)
+        profile['primary_interests']=['unusual']
+        profile['secondary_interests']=[]
+        result=self.result(pois=self.pois[:3],profile=profile)
+        self.assertTrue(result['items'])
+        self.assertIn('NO_PRIMARY_INTEREST_MATCH',[w['code'] for w in result['warnings']])
+        for item in result['items']:
+            self.assertIn('FALLBACK_SELECTION',[r['code'] for r in item['reasons']])
+            self.assertNotIn('PRIMARY_INTEREST_MATCH',[r['code'] for r in item['reasons']])
+
+    def test_no_city_candidates_has_explicit_warning(self):
+        result=self.result(pois=[])
+        self.assertEqual(result['items'],[])
+        self.assertIn('NO_CANDIDATES_FOR_DESTINATION',[w['code'] for w in result['warnings']])
+
 if __name__ == '__main__':
     unittest.main()
