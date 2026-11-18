@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "mocked_responses_only": true,
+  "external_requests_forwarded": 0,
+  "default_dinner_each_day": true,
+  "street_warning": true,
+  "street_times_applied": true,
+  "synthetic_bus_preserves_intermediate_waypoints": true,
+  "bus_waypoint_request": "https://routing.openstreetmap.de/routed-car/route/v1/driving/121.47501,31.23258;121.475,31.23408;121.47239,31.23258?overview=full&geometries=geojson&steps=true&generate_hints=false",
+  "js_errors": []
+}

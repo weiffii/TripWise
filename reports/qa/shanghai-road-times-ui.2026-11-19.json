@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "external_requests_forwarded": 0,
+  "mocked_responses_only": true,
+  "cases": [
+    {
+      "case": "selected_road_times_apply_and_warn",
+      "passed": true,
+      "mock_responses": 1,
+      "state": {
+        "has_tables": true,
+        "seconds": [
+          1800
+        ],
+        "changed": true,
+        "source_legs": 1
+      }
+    },
+    {
+      "case": "empty_geometry_rejected",
+      "passed": true,
+      "mock_responses": 1
+    }
+  ]
+}

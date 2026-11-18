@@ -1,0 +1,53 @@
+{
+  "successful_road_responses": 5,
+  "responses": [
+    {
+      "url": "https://routing.openstreetmap.de/routed-foot/route/v1/driving/121.47505,31.2325;121.47103,31.23019?overview=full&geometries=geojson&steps=true&generate_hints=false",
+      "status": 200,
+      "route_points": 75,
+      "steps": 10
+    },
+    {
+      "url": "https://routing.openstreetmap.de/routed-foot/route/v1/driving/121.47103,31.23019;121.45902,31.23671?overview=full&geometries=geojson&steps=true&generate_hints=false",
+      "status": 200,
+      "route_points": 137,
+      "steps": 21
+    },
+    {
+      "url": "https://routing.openstreetmap.de/routed-foot/route/v1/driving/121.45902,31.23671;121.4662,31.2341?overview=full&geometries=geojson&steps=true&generate_hints=false",
+      "status": 200,
+      "route_points": 39,
+      "steps": 7
+    },
+    {
+      "url": "https://routing.openstreetmap.de/routed-foot/route/v1/driving/121.4662,31.2341;121.45801,31.23688?overview=full&geometries=geojson&steps=true&generate_hints=false",
+      "status": 200,
+      "route_points": 37,
+      "steps": 8
+    },
+    {
+      "url": "https://routing.openstreetmap.de/routed-foot/route/v1/driving/121.45801,31.23688;121.4688,31.2358?overview=full&geometries=geojson&steps=true&generate_hints=false",
+      "status": 200,
+      "route_points": 49,
+      "steps": 13
+    }
+  ],
+  "state": {
+    "map": {
+      "center": [
+        121.46653000000003,
+        31.233535059212635
+      ],
+      "zoom": 14,
+      "request_count": 5,
+      "stop_count": 6,
+      "leg_count": 5
+    },
+    "label": "OpenStreetMap",
+    "solid_paths": 5
+  },
+  "observed_road_responses": 5,
+  "tile_request_count": null,
+  "test_interception_limit_enforced": false,
+  "test_note": "The first test URL glob did not intercept resource paths. Five successful road responses were observed; the map application retained its own serial 1100ms / max20-per-plan limit. No claim of a two-request test cap or offline blocking is made. Offline verification was repeated with a universal route interceptor."
+}

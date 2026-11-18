@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-19",
+  "status": "ready_for_user_review_with_documented_limits",
+  "local_url": "http://127.0.0.1:8765/tripwise-shanghai.html",
+  "node_tests": {
+    "engine": 19,
+    "meals": 14,
+    "transit": 9,
+    "passed": 42
+  },
+  "python_builder_tests_passed": 3,
+  "full_historical_python_suite_run": false,
+  "independent_qa_prior_revision": {
+    "node_tests": 39,
+    "additional_profiles": 93,
+    "report": "reports/qa/shanghai-transit-independent.2026-11-19.json"
+  },
+  "browser_reports": [
+    "reports/qa/shanghai-map-browser.2026-11-19.json",
+    "reports/qa/shanghai-map-live.2026-11-19.json",
+    "reports/qa/shanghai-road-times-ui.2026-11-19.json",
+    "reports/qa/shanghai-map-final-ui.2026-11-19.json"
+  ],
+  "source_sha256": {
+    "ai_ds/web_demo/shanghai-engine.js": "066f66740390aa8b5504b54f6796d85b5c6434af155a21dd792f796d1f64f767",
+    "ai_ds/web_demo/shanghai-transit.js": "ef0f2e334858d7a0cdec984acfe08a73d3fdbfb3b0bbf901aaaa4c40c9f01e94",
+    "ai_ds/web_demo/shanghai-map.js": "3ed1e5cbae55713ff1a0fd8a2ada3c55d5c55293f6a7c1f2cee25ea2c6c067cb",
+    "data/demo/shanghai/pois.json": "3fe13c845ce4febc9d2cf328ff71a7d0d8435697f37a69cc08969fce06385337",
+    "data/demo/shanghai/transport.json": "e4a5081c27945e50483aaa7c1ea49ed1c5bbcd3684f5deaccf28f018e03ca381",
+    "examples/shanghai-demo/template.html": "0ad29fe78dd7a338215970030ac1e039fd17ba1783660117c0df763a6b0d87ca",
+    "scripts/build_shanghai_demo.py": "dd99224c783c2d51f3669cf839b3c198b4e18ed0ed7c2e9e610610785aee9ee2",
+    "scripts/serve_shanghai_demo.py": "817acbdbf46ca185f746165253681c6d79787c36221da7e72d13f4093146a8af",
+    "artifacts/tripwise-shanghai.html": "b6990825e2695f2921464cd7ef49e517269123bbb356a80e4b97025369eb73d5"
+  },
+  "source_metro_stations": 418,
+  "rail_lines": 21,
+  "synthetic_bus_routes": 30,
+  "synthetic_bus_stops": 174,
+  "live_root_evidence": {
+    "foot_street_responses_observed": 5,
+    "car_shape_for_one_synthetic_bus_response": 1,
+    "bus_waypoints": 8,
+    "bus_shape_points": 166
+  },
+  "limits": [
+    "No live metro service, exits or real bus services verified",
+    "Synthetic POI fields and fares remain demo data",
+    "Street shapes require reachable free OSM/FOSSGIS services",
+    "Only received street times are applied on explicit recalculate action",
+    "Synthetic bus car-road shapes are not bus passability validation",
+    "Heuristic can return partial despite another feasible solution"
+  ]
+}

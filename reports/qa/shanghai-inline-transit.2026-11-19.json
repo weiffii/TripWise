@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checked": 5,
+  "metro": 4,
+  "bus": 1,
+  "transfers": 0,
+  "fixture": true,
+  "external_requests_forwarded": 0,
+  "js_errors": [],
+  "mobile_overflow": false
+}

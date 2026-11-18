@@ -1,0 +1,2670 @@
+{
+  "schema_version": "shanghai-demo-v1",
+  "is_demo": true,
+  "description": "54 полностью синтетических тестовых POI; не реальные места.",
+  "pois": [
+    {
+      "id": "shanghai-demo:synthetic-v2-01-01",
+      "name": "Учебный музейный объект — Народная площадь (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2283,
+      "lon": 121.47235,
+      "duration_minutes": 95,
+      "price_cny": 75,
+      "rating": 4.1,
+      "review_count": 800,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Народная площадь. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-01-02",
+      "name": "Учебная парковая прогулка — Народная площадь (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.2304,
+      "lon": 121.47235,
+      "duration_minutes": 100,
+      "price_cny": 0,
+      "rating": 4.18,
+      "review_count": 860,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Народная площадь. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-01-03",
+      "name": "Учебная необычная игровая зона — Народная площадь (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2325,
+      "lon": 121.47235,
+      "duration_minutes": 85,
+      "price_cny": 35,
+      "rating": 4.1,
+      "review_count": 920,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "high",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Народная площадь. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-01-04",
+      "name": "Учебное кафе В — Народная площадь (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2283,
+      "lon": 121.47505,
+      "duration_minutes": 55,
+      "price_cny": 55,
+      "rating": 4.18,
+      "review_count": 980,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Народная площадь. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-01-05",
+      "name": "Учебное кафе А — Народная площадь (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2304,
+      "lon": 121.47505,
+      "duration_minutes": 55,
+      "price_cny": 50,
+      "rating": 4.1,
+      "review_count": 1040,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Народная площадь. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-01-06",
+      "name": "Учебное кафе Б — Народная площадь (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2325,
+      "lon": 121.47505,
+      "duration_minutes": 55,
+      "price_cny": 60,
+      "rating": 4.18,
+      "review_count": 1100,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Народная площадь",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Народная площадь. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-02-01",
+      "name": "Учебный музейный объект — Сюйцзяхуэй (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.1919,
+      "lon": 121.43605,
+      "duration_minutes": 100,
+      "price_cny": 83,
+      "rating": 4.24,
+      "review_count": 1050,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Сюйцзяхуэй",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сюйцзяхуэй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-02-02",
+      "name": "Учебная парковая прогулка — Сюйцзяхуэй (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.194,
+      "lon": 121.43605,
+      "duration_minutes": 105,
+      "price_cny": 8,
+      "rating": 4.32,
+      "review_count": 1110,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Сюйцзяхуэй",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сюйцзяхуэй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-02-03",
+      "name": "Учебная необычная игровая зона — Сюйцзяхуэй (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.1961,
+      "lon": 121.43605,
+      "duration_minutes": 90,
+      "price_cny": 43,
+      "rating": 4.24,
+      "review_count": 1170,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Сюйцзяхуэй",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сюйцзяхуэй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-02-04",
+      "name": "Учебное кафе В — Сюйцзяхуэй (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.1919,
+      "lon": 121.43875,
+      "duration_minutes": 60,
+      "price_cny": 63,
+      "rating": 4.32,
+      "review_count": 1230,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Сюйцзяхуэй",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сюйцзяхуэй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-02-05",
+      "name": "Учебное кафе А — Сюйцзяхуэй (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.194,
+      "lon": 121.43875,
+      "duration_minutes": 60,
+      "price_cny": 58,
+      "rating": 4.24,
+      "review_count": 1290,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Сюйцзяхуэй",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сюйцзяхуэй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-02-06",
+      "name": "Учебное кафе Б — Сюйцзяхуэй (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.1961,
+      "lon": 121.43875,
+      "duration_minutes": 60,
+      "price_cny": 68,
+      "rating": 4.32,
+      "review_count": 1350,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Сюйцзяхуэй",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сюйцзяхуэй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-03-01",
+      "name": "Учебный музейный объект — Тяньцзыфан (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2064,
+      "lon": 121.46955,
+      "duration_minutes": 105,
+      "price_cny": 91,
+      "rating": 4.38,
+      "review_count": 1300,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Тяньцзыфан",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Тяньцзыфан. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-03-02",
+      "name": "Учебная парковая прогулка — Тяньцзыфан (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.2085,
+      "lon": 121.46955,
+      "duration_minutes": 110,
+      "price_cny": 16,
+      "rating": 4.46,
+      "review_count": 1360,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Тяньцзыфан",
+      "river_bank": "west",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Тяньцзыфан. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-03-03",
+      "name": "Учебная необычная игровая зона — Тяньцзыфан (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2106,
+      "lon": 121.46955,
+      "duration_minutes": 95,
+      "price_cny": 51,
+      "rating": 4.38,
+      "review_count": 1420,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Тяньцзыфан",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "high",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Тяньцзыфан. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-03-04",
+      "name": "Учебное кафе В — Тяньцзыфан (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2064,
+      "lon": 121.47225,
+      "duration_minutes": 65,
+      "price_cny": 71,
+      "rating": 4.46,
+      "review_count": 1480,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Тяньцзыфан",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Тяньцзыфан. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-03-05",
+      "name": "Учебное кафе А — Тяньцзыфан (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2085,
+      "lon": 121.47225,
+      "duration_minutes": 65,
+      "price_cny": 66,
+      "rating": 4.38,
+      "review_count": 1540,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Тяньцзыфан",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Тяньцзыфан. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-03-06",
+      "name": "Учебное кафе Б — Тяньцзыфан (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2106,
+      "lon": 121.47225,
+      "duration_minutes": 65,
+      "price_cny": 76,
+      "rating": 4.46,
+      "review_count": 1600,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Тяньцзыфан",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Тяньцзыфан. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-04-01",
+      "name": "Учебный музейный объект — Хунцяо (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.1981,
+      "lon": 121.33865,
+      "duration_minutes": 95,
+      "price_cny": 99,
+      "rating": 4.52,
+      "review_count": 1550,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Хунцяо",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Хунцяо. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-04-02",
+      "name": "Учебная парковая прогулка — Хунцяо (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.2002,
+      "lon": 121.33865,
+      "duration_minutes": 100,
+      "price_cny": 24,
+      "rating": 4.6,
+      "review_count": 1610,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Хунцяо",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Хунцяо. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-04-03",
+      "name": "Учебная необычная игровая зона — Хунцяо (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2023,
+      "lon": 121.33865,
+      "duration_minutes": 85,
+      "price_cny": 59,
+      "rating": 4.52,
+      "review_count": 1670,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Хунцяо",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Хунцяо. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-04-04",
+      "name": "Учебное кафе В — Хунцяо (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.1981,
+      "lon": 121.34135,
+      "duration_minutes": 55,
+      "price_cny": 79,
+      "rating": 4.6,
+      "review_count": 1730,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Хунцяо",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Хунцяо. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-04-05",
+      "name": "Учебное кафе А — Хунцяо (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2002,
+      "lon": 121.34135,
+      "duration_minutes": 55,
+      "price_cny": 74,
+      "rating": 4.52,
+      "review_count": 1790,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Хунцяо",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Хунцяо. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-04-06",
+      "name": "Учебное кафе Б — Хунцяо (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2023,
+      "lon": 121.34135,
+      "duration_minutes": 55,
+      "price_cny": 84,
+      "rating": 4.6,
+      "review_count": 1850,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Хунцяо",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Хунцяо. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-05-01",
+      "name": "Учебный музейный объект — Чжанцзян (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.199,
+      "lon": 121.59165,
+      "duration_minutes": 100,
+      "price_cny": 75,
+      "rating": 4.1,
+      "review_count": 1800,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Чжанцзян",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Чжанцзян. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-05-02",
+      "name": "Учебная парковая прогулка — Чжанцзян (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.2011,
+      "lon": 121.59165,
+      "duration_minutes": 105,
+      "price_cny": 0,
+      "rating": 4.18,
+      "review_count": 1860,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Чжанцзян",
+      "river_bank": "east",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Чжанцзян. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-05-03",
+      "name": "Учебная необычная игровая зона — Чжанцзян (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2032,
+      "lon": 121.59165,
+      "duration_minutes": 90,
+      "price_cny": 35,
+      "rating": 4.1,
+      "review_count": 1920,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Чжанцзян",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "high",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Чжанцзян. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-05-04",
+      "name": "Учебное кафе В — Чжанцзян (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.199,
+      "lon": 121.59435,
+      "duration_minutes": 60,
+      "price_cny": 55,
+      "rating": 4.18,
+      "review_count": 1980,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Чжанцзян",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Чжанцзян. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-05-05",
+      "name": "Учебное кафе А — Чжанцзян (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2011,
+      "lon": 121.59435,
+      "duration_minutes": 60,
+      "price_cny": 50,
+      "rating": 4.1,
+      "review_count": 2040,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Чжанцзян",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Чжанцзян. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-05-06",
+      "name": "Учебное кафе Б — Чжанцзян (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2032,
+      "lon": 121.59435,
+      "duration_minutes": 60,
+      "price_cny": 60,
+      "rating": 4.18,
+      "review_count": 2100,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Чжанцзян",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Чжанцзян. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-06-01",
+      "name": "Учебный музейный объект — Луцзяцзуй (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2329,
+      "lon": 121.50225,
+      "duration_minutes": 105,
+      "price_cny": 83,
+      "rating": 4.24,
+      "review_count": 2050,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Луцзяцзуй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-06-02",
+      "name": "Учебная парковая прогулка — Луцзяцзуй (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.235,
+      "lon": 121.50225,
+      "duration_minutes": 110,
+      "price_cny": 8,
+      "rating": 4.32,
+      "review_count": 2110,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Луцзяцзуй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-06-03",
+      "name": "Учебная необычная игровая зона — Луцзяцзуй (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2371,
+      "lon": 121.50225,
+      "duration_minutes": 95,
+      "price_cny": 43,
+      "rating": 4.24,
+      "review_count": 2170,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Луцзяцзуй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-06-04",
+      "name": "Учебное кафе В — Луцзяцзуй (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2329,
+      "lon": 121.50495,
+      "duration_minutes": 65,
+      "price_cny": 63,
+      "rating": 4.32,
+      "review_count": 2230,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Луцзяцзуй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-06-05",
+      "name": "Учебное кафе А — Луцзяцзуй (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.235,
+      "lon": 121.50495,
+      "duration_minutes": 65,
+      "price_cny": 58,
+      "rating": 4.24,
+      "review_count": 2290,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Луцзяцзуй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-06-06",
+      "name": "Учебное кафе Б — Луцзяцзуй (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2371,
+      "lon": 121.50495,
+      "duration_minutes": 65,
+      "price_cny": 68,
+      "rating": 4.32,
+      "review_count": 2350,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Луцзяцзуй",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Луцзяцзуй. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-07-01",
+      "name": "Учебный музейный объект — Сэнчури-парк (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2164,
+      "lon": 121.54305,
+      "duration_minutes": 95,
+      "price_cny": 91,
+      "rating": 4.38,
+      "review_count": 2300,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Сэнчури-парк",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сэнчури-парк. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-07-02",
+      "name": "Учебная парковая прогулка — Сэнчури-парк (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.2185,
+      "lon": 121.54305,
+      "duration_minutes": 100,
+      "price_cny": 16,
+      "rating": 4.46,
+      "review_count": 2360,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Сэнчури-парк",
+      "river_bank": "east",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сэнчури-парк. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-07-03",
+      "name": "Учебная необычная игровая зона — Сэнчури-парк (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2206,
+      "lon": 121.54305,
+      "duration_minutes": 85,
+      "price_cny": 51,
+      "rating": 4.38,
+      "review_count": 2420,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Сэнчури-парк",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "high",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сэнчури-парк. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-07-04",
+      "name": "Учебное кафе В — Сэнчури-парк (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2164,
+      "lon": 121.54575,
+      "duration_minutes": 55,
+      "price_cny": 71,
+      "rating": 4.46,
+      "review_count": 2480,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Сэнчури-парк",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сэнчури-парк. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-07-05",
+      "name": "Учебное кафе А — Сэнчури-парк (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2185,
+      "lon": 121.54575,
+      "duration_minutes": 55,
+      "price_cny": 66,
+      "rating": 4.38,
+      "review_count": 2540,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Сэнчури-парк",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сэнчури-парк. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-07-06",
+      "name": "Учебное кафе Б — Сэнчури-парк (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2206,
+      "lon": 121.54575,
+      "duration_minutes": 55,
+      "price_cny": 76,
+      "rating": 4.46,
+      "review_count": 2600,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Сэнчури-парк",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Сэнчури-парк. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-08-01",
+      "name": "Учебный музейный объект — Янпу (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.269,
+      "lon": 121.52305,
+      "duration_minutes": 100,
+      "price_cny": 99,
+      "rating": 4.52,
+      "review_count": 2550,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Янпу",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Янпу. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-08-02",
+      "name": "Учебная парковая прогулка — Янпу (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.2711,
+      "lon": 121.52305,
+      "duration_minutes": 105,
+      "price_cny": 24,
+      "rating": 4.6,
+      "review_count": 2610,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Янпу",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Янпу. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-08-03",
+      "name": "Учебная необычная игровая зона — Янпу (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2732,
+      "lon": 121.52305,
+      "duration_minutes": 90,
+      "price_cny": 59,
+      "rating": 4.52,
+      "review_count": 2670,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Янпу",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Янпу. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-08-04",
+      "name": "Учебное кафе В — Янпу (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.269,
+      "lon": 121.52575,
+      "duration_minutes": 60,
+      "price_cny": 79,
+      "rating": 4.6,
+      "review_count": 2730,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Янпу",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Янпу. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-08-05",
+      "name": "Учебное кафе А — Янпу (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2711,
+      "lon": 121.52575,
+      "duration_minutes": 60,
+      "price_cny": 74,
+      "rating": 4.52,
+      "review_count": 2790,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Янпу",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Янпу. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-08-06",
+      "name": "Учебное кафе Б — Янпу (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2732,
+      "lon": 121.52575,
+      "duration_minutes": 60,
+      "price_cny": 84,
+      "rating": 4.6,
+      "review_count": 2850,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Янпу",
+      "river_bank": "east",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Янпу. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-09-01",
+      "name": "Учебный музейный объект — Цзинъань (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "museums",
+        "history"
+      ],
+      "lat": 31.2224,
+      "lon": 121.44435,
+      "duration_minutes": 105,
+      "price_cny": 75,
+      "rating": 4.1,
+      "review_count": 2800,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Цзинъань. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-09-02",
+      "name": "Учебная парковая прогулка — Цзинъань (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "nature",
+        "viewpoints"
+      ],
+      "lat": 31.2245,
+      "lon": 121.44435,
+      "duration_minutes": 110,
+      "price_cny": 0,
+      "rating": 4.18,
+      "review_count": 2860,
+      "opening": {
+        "open": "08:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "season_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Цзинъань. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-09-03",
+      "name": "Учебная необычная игровая зона — Цзинъань (синтетика)",
+      "kind": "attraction",
+      "categories": [
+        "shopping",
+        "unusual",
+        "entertainment"
+      ],
+      "lat": 31.2266,
+      "lon": 121.44435,
+      "duration_minutes": 95,
+      "price_cny": 35,
+      "rating": 4.1,
+      "review_count": 2920,
+      "opening": {
+        "open": "09:00",
+        "close": "20:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "high",
+      "weekday_crowd_level": "low",
+      "pet_friendly": false,
+      "family_friendly": false,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.5,
+        "senior": 0.7
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Цзинъань. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-09-04",
+      "name": "Учебное кафе В — Цзинъань (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2224,
+      "lon": 121.44705,
+      "duration_minutes": 65,
+      "price_cny": 55,
+      "rating": 4.18,
+      "review_count": 2980,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": false,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Цзинъань. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-09-05",
+      "name": "Учебное кафе А — Цзинъань (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2245,
+      "lon": 121.44705,
+      "duration_minutes": 65,
+      "price_cny": 50,
+      "rating": 4.1,
+      "review_count": 3040,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Цзинъань. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    },
+    {
+      "id": "shanghai-demo:synthetic-v2-09-06",
+      "name": "Учебное кафе Б — Цзинъань (синтетика)",
+      "kind": "restaurant",
+      "categories": [
+        "cafes"
+      ],
+      "lat": 31.2266,
+      "lon": 121.44705,
+      "duration_minutes": 65,
+      "price_cny": 60,
+      "rating": 4.18,
+      "review_count": 3100,
+      "opening": {
+        "open": "08:00",
+        "close": "21:00",
+        "closed_weekdays": []
+      },
+      "area": "Цзинъань",
+      "river_bank": "west",
+      "season_months": [],
+      "weekend_crowd_level": "medium",
+      "weekday_crowd_level": "low",
+      "pet_friendly": true,
+      "family_friendly": true,
+      "senior_friendly": true,
+      "price_multipliers": {
+        "adult": 1.0,
+        "child": 0.65,
+        "senior": 0.9
+      },
+      "pet_fee_cny": 0,
+      "description": "Полностью синтетический тестовый объект в районе Цзинъань. Название не означает существование реального заведения или достопримечательности.",
+      "source_url": "https://english.shanghai.gov.cn/",
+      "provenance": {
+        "identity": "synthetic_scenario_poi",
+        "coordinates": "synthetic_approximation",
+        "rating": "synthetic",
+        "review_count": "synthetic",
+        "price": "synthetic",
+        "opening": "synthetic",
+        "duration": "planning_estimate",
+        "river_bank": "planning_assumption",
+        "seasonality": "synthetic",
+        "crowd": "synthetic",
+        "group_prices": "synthetic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-19",
+  "http_requests": 1,
+  "synthetic_bus_route_id": "DEMO-BUS-01",
+  "waypoint_count": 8,
+  "provider": "FOSSGIS OSRM car / OpenStreetMap",
+  "response_code": "Ok",
+  "geometry_points": 166,
+  "steps": 30,
+  "distance_meters": 5273.6,
+  "car_duration_seconds": 545.1,
+  "is_real_bus_service": false,
+  "bus_passability_verified": false,
+  "limitations": [
+    "Car-road shape through fictional bus stops, not actual bus route or timetable"
+  ],
+  "source_url": "https://routing.openstreetmap.de/about.html",
+  "attribution": "OpenStreetMap contributors, ODbL; routing by FOSSGIS"
+}

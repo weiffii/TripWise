@@ -1,0 +1,573 @@
+{
+  "date": "2026-11-19",
+  "skills": [
+    "qa-integration-check",
+    "route-validation",
+    "data-poi-quality-check"
+  ],
+  "hashes": {
+    "ai_ds/web_demo/shanghai-engine.js": "2b09eae829266a824a5a1e454337be257b9792011340615164d6755b5d8e7058",
+    "ai_ds/web_demo/shanghai-transit.js": "39b240d90a9b51238da81437a81b16cc06fbbe59aa78543e9e056a63acc3a666",
+    "data/demo/shanghai/pois.json": "3fe13c845ce4febc9d2cf328ff71a7d0d8435697f37a69cc08969fce06385337",
+    "data/demo/shanghai/transport.json": "e4a5081c27945e50483aaa7c1ea49ed1c5bbcd3684f5deaccf28f018e03ca381"
+  },
+  "network_requests": 0,
+  "suites": {
+    "engine": 19,
+    "meals": 10,
+    "transit": 7,
+    "passed": 36,
+    "failed": 0
+  },
+  "independent": {
+    "seed": 19,
+    "profiles": 93,
+    "errors": [],
+    "counts": {
+      "pois": 100,
+      "stations": 418,
+      "lines": 21,
+      "bus_stops": 174,
+      "bus_routes": 30,
+      "connected_bus_stops": 112
+    },
+    "representative_profiles": [
+      {
+        "options": {
+          "primary_interests": [
+            "museums"
+          ],
+          "secondary_interests": [
+            "history",
+            "nature"
+          ],
+          "pace": "balanced",
+          "days": 2,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 5000,
+          "transport": "transit",
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "required_ids": [
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:shanghai-tower"
+          ]
+        },
+        "status": "partial",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "failed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "summary": {
+          "total_cost_cny": 740,
+          "budget_cny": 5000,
+          "visit_count": 6,
+          "meal_count": 5,
+          "planned_travel_minutes": 290,
+          "estimated_travel_minutes": 203,
+          "transport_cost_cny": 24,
+          "covered_interests": [
+            "museums",
+            "history",
+            "nature"
+          ],
+          "days_count": 2,
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "transport_mode": "transit",
+          "synthetic_data": true,
+          "first_last_poi": true,
+          "skipped_filters": {
+            "season": 0,
+            "weekend": 0,
+            "group": 0,
+            "opening": 8,
+            "budget": 0,
+            "capacity": 0
+          },
+          "daily_visits": [
+            3,
+            3
+          ],
+          "osm_legs": 0,
+          "stage1_selected_ids": [
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:shanghai-tower",
+            "shanghai-demo:natural-history",
+            "shanghai-demo:history-museum",
+            "shanghai-demo:fuxing-park",
+            "shanghai-demo:synthetic-v2-01-01",
+            "shanghai-demo:synthetic-v2-06-01",
+            "shanghai-demo:synthetic-v2-03-01",
+            "shanghai-demo:synthetic-v2-09-01",
+            "shanghai-demo:sculpture-park"
+          ],
+          "stage1_count": 10,
+          "clusters": [
+            {
+              "date": "2026-11-19",
+              "ids": [
+                "shanghai-demo:shanghai-museum",
+                "shanghai-demo:natural-history",
+                "shanghai-demo:history-museum",
+                "shanghai-demo:fuxing-park",
+                "shanghai-demo:synthetic-v2-01-01"
+              ]
+            },
+            {
+              "date": "2026-11-20",
+              "ids": [
+                "shanghai-demo:shanghai-tower",
+                "shanghai-demo:synthetic-v2-06-01",
+                "shanghai-demo:synthetic-v2-03-01",
+                "shanghai-demo:synthetic-v2-09-01",
+                "shanghai-demo:sculpture-park"
+              ]
+            }
+          ],
+          "required_total": 2,
+          "required_placed": 2
+        },
+        "warnings": [
+          "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+          "Не поместились в этот день: Шанхайский музей естественной истории, Музей истории Шанхая.",
+          "Ужин: не удалось найти подходящее кафе в выбранном окне.",
+          "Не поместились в этот день: Арт-музей «Шанхайский дворик», Галерея «Каменная лилия»."
+        ]
+      },
+      {
+        "options": {
+          "primary_interests": [
+            "museums"
+          ],
+          "secondary_interests": [
+            "history",
+            "nature"
+          ],
+          "pace": "balanced",
+          "days": 2,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 5000,
+          "transport": "mixed",
+          "group": {
+            "adult": 2,
+            "child": 1,
+            "senior": 1,
+            "pet": 0
+          },
+          "required_ids": [
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:shanghai-tower"
+          ]
+        },
+        "status": "demo",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "passed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "summary": {
+          "total_cost_cny": 3640.25,
+          "budget_cny": 5000,
+          "visit_count": 6,
+          "meal_count": 6,
+          "planned_travel_minutes": 250,
+          "estimated_travel_minutes": 183,
+          "transport_cost_cny": 20,
+          "covered_interests": [
+            "museums",
+            "history",
+            "nature"
+          ],
+          "days_count": 2,
+          "group": {
+            "adult": 2,
+            "child": 1,
+            "senior": 1,
+            "pet": 0
+          },
+          "transport_mode": "mixed",
+          "synthetic_data": true,
+          "first_last_poi": true,
+          "skipped_filters": {
+            "season": 0,
+            "weekend": 0,
+            "group": 0,
+            "opening": 7,
+            "budget": 0,
+            "capacity": 0
+          },
+          "daily_visits": [
+            3,
+            3
+          ],
+          "osm_legs": 0,
+          "stage1_selected_ids": [
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:shanghai-tower",
+            "shanghai-demo:natural-history",
+            "shanghai-demo:history-museum",
+            "shanghai-demo:fuxing-park",
+            "shanghai-demo:synthetic-v2-01-01",
+            "shanghai-demo:synthetic-v2-06-01",
+            "shanghai-demo:synthetic-v2-03-01",
+            "shanghai-demo:sihang",
+            "shanghai-demo:sculpture-park"
+          ],
+          "stage1_count": 10,
+          "clusters": [
+            {
+              "date": "2026-11-19",
+              "ids": [
+                "shanghai-demo:shanghai-museum",
+                "shanghai-demo:natural-history",
+                "shanghai-demo:history-museum",
+                "shanghai-demo:fuxing-park",
+                "shanghai-demo:synthetic-v2-01-01"
+              ]
+            },
+            {
+              "date": "2026-11-20",
+              "ids": [
+                "shanghai-demo:shanghai-tower",
+                "shanghai-demo:synthetic-v2-06-01",
+                "shanghai-demo:synthetic-v2-03-01",
+                "shanghai-demo:sihang",
+                "shanghai-demo:sculpture-park"
+              ]
+            }
+          ],
+          "required_total": 2,
+          "required_placed": 2
+        },
+        "warnings": [
+          "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+          "Не поместились в этот день: Шанхайский музей естественной истории, Музей истории Шанхая.",
+          "Не поместились в этот день: Арт-музей «Шанхайский дворик», Парк скульптур Цзинъань."
+        ]
+      },
+      {
+        "options": {
+          "primary_interests": [
+            "museums"
+          ],
+          "secondary_interests": [
+            "history",
+            "nature"
+          ],
+          "pace": "balanced",
+          "days": 2,
+          "start_date": "2026-11-19",
+          "day_start": "18:00",
+          "day_end": "23:30",
+          "budget_cny": 5000,
+          "transport": "taxi",
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "required_ids": []
+        },
+        "status": "partial",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "passed",
+          "required_places": "passed",
+          "interest_coverage": "failed",
+          "primary_interests": "failed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "summary": {
+          "total_cost_cny": 347,
+          "budget_cny": 5000,
+          "visit_count": 2,
+          "meal_count": 2,
+          "planned_travel_minutes": 35,
+          "estimated_travel_minutes": 20,
+          "transport_cost_cny": 32,
+          "covered_interests": [
+            "nature",
+            "history"
+          ],
+          "days_count": 2,
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "transport_mode": "taxi",
+          "synthetic_data": true,
+          "first_last_poi": true,
+          "skipped_filters": {
+            "season": 0,
+            "weekend": 0,
+            "group": 0,
+            "opening": 19,
+            "budget": 0,
+            "capacity": 0
+          },
+          "daily_visits": [
+            1,
+            1
+          ],
+          "osm_legs": 0,
+          "stage1_selected_ids": [
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:natural-history",
+            "shanghai-demo:history-museum",
+            "shanghai-demo:fuxing-park",
+            "shanghai-demo:synthetic-v2-01-01",
+            "shanghai-demo:synthetic-v2-03-01",
+            "shanghai-demo:synthetic-v2-09-01",
+            "shanghai-demo:sihang",
+            "shanghai-demo:sculpture-park",
+            "shanghai-demo:peoples-park"
+          ],
+          "stage1_count": 10,
+          "clusters": [
+            {
+              "date": "2026-11-19",
+              "ids": [
+                "shanghai-demo:shanghai-museum",
+                "shanghai-demo:natural-history",
+                "shanghai-demo:history-museum",
+                "shanghai-demo:sihang",
+                "shanghai-demo:sculpture-park"
+              ]
+            },
+            {
+              "date": "2026-11-20",
+              "ids": [
+                "shanghai-demo:fuxing-park",
+                "shanghai-demo:synthetic-v2-01-01",
+                "shanghai-demo:synthetic-v2-03-01",
+                "shanghai-demo:synthetic-v2-09-01",
+                "shanghai-demo:peoples-park"
+              ]
+            }
+          ],
+          "required_total": 0,
+          "required_placed": 0
+        },
+        "warnings": [
+          "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+          "Не покрыты главные интересы: Музеи. Это не полный маршрут по заданным требованиям.",
+          "Не представлены категории: Музеи.",
+          "Не поместились в этот день: Шанхайский музей на Народной площади, Шанхайский музей естественной истории, Музей истории Шанхая, Мемориальный музей склада Сыхан.",
+          "Не поместились в этот день: Галерея «Красные ворота», Арт-музей «Шанхайский дворик», Галерея «Каменная лилия», Народный парк."
+        ]
+      }
+    ],
+    "line2": {
+      "base_minutes": 16,
+      "planned_minutes": 25,
+      "buffer_minutes": 9,
+      "distance_m": 2911,
+      "transport_cost_cny": 4,
+      "mode": "transit",
+      "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+      "instructions": [
+        {
+          "mode": "walk",
+          "from_name": "People's Square / 人民广场",
+          "to_name": "People's Square / 人民广场",
+          "base_minutes": 3,
+          "estimated": true,
+          "synthetic": true,
+          "text": "Пешком: People's Square / 人民广场 → People's Square / 人民广场 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+        },
+        {
+          "mode": "metro",
+          "line_id": "2",
+          "line_name": "Line 2 / 2号线",
+          "from_name": "People's Square / 人民广场",
+          "to_name": "Lujiazui / 陆家嘴",
+          "direction": "Pudong Airport Terminal 1&2 / 浦东1号2号航站楼",
+          "stop_count": 2,
+          "base_minutes": 7,
+          "estimated": true,
+          "synthetic": false,
+          "color": "#82BF25"
+        },
+        {
+          "mode": "walk",
+          "from_name": "Lujiazui / 陆家嘴",
+          "to_name": "Lujiazui / 陆家嘴",
+          "base_minutes": 3,
+          "estimated": true,
+          "synthetic": true,
+          "text": "Пешком: Lujiazui / 陆家嘴 → Lujiazui / 陆家嘴 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+        }
+      ],
+      "geometry_segments": [
+        {
+          "mode": "walk",
+          "coordinates": [
+            [
+              121.4709,
+              31.234
+            ],
+            [
+              121.4709,
+              31.234
+            ]
+          ],
+          "source": "estimated_access",
+          "synthetic": true
+        },
+        {
+          "mode": "metro",
+          "line_id": "2",
+          "color": "#82BF25",
+          "coordinates": [
+            [
+              121.4709,
+              31.234
+            ],
+            [
+              121.479722,
+              31.239722
+            ],
+            [
+              121.497,
+              31.2397
+            ]
+          ],
+          "source": "real_topology_schematic",
+          "synthetic": false,
+          "tracks_schematic": true
+        },
+        {
+          "mode": "walk",
+          "coordinates": [
+            [
+              121.497,
+              31.2397
+            ],
+            [
+              121.497,
+              31.2397
+            ]
+          ],
+          "source": "estimated_access",
+          "synthetic": true
+        }
+      ],
+      "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+      "fare_basis": "synthetic",
+      "time_basis": "planning_estimate",
+      "service_verified": false
+    },
+    "popular_required": {
+      "options": {
+        "primary_interests": [
+          "museums",
+          "history",
+          "viewpoints",
+          "shopping"
+        ],
+        "secondary_interests": [
+          "nature"
+        ],
+        "days": 4,
+        "start_date": "2026-11-19",
+        "day_start": "08:00",
+        "day_end": "21:00",
+        "pace": "balanced",
+        "budget_cny": 15000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": [
+          "shanghai-demo:bund",
+          "shanghai-demo:yu-garden",
+          "shanghai-demo:shanghai-museum",
+          "shanghai-demo:shanghai-tower",
+          "shanghai-demo:nanjing-road",
+          "shanghai-demo:jingan-temple"
+        ]
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "unplaced": []
+    }
+  },
+  "limitations": [
+    "Уличная навигация, актуальные выходы, GTFS, интервалы, ночная доступность и действующие автобусы не проверены.",
+    "Все автобусные маршруты/остановки вымышленные, времена/тарифы расчётные.",
+    "UI, backend, сохранение, Route Assistant и Python suite не запускались этим агентом.",
+    "62 синтетические остановки не входят в цепочки маршрутов.",
+    "Solo transit профиль честно partial: один приём пищи не размещён."
+  ],
+  "readiness": "готово с ограничениями для offline demo",
+  "final_revision": {
+    "date": "2026-11-19",
+    "hashes": {
+      "ai_ds/web_demo/shanghai-engine.js": "3b9e1469e626b29536d755f112afb587350208172b6138b0f998926368935e92",
+      "ai_ds/web_demo/shanghai-transit.js": "ef0f2e334858d7a0cdec984acfe08a73d3fdbfb3b0bbf901aaaa4c40c9f01e94",
+      "data/demo/shanghai/pois.json": "3fe13c845ce4febc9d2cf328ff71a7d0d8435697f37a69cc08969fce06385337",
+      "data/demo/shanghai/transport.json": "e4a5081c27945e50483aaa7c1ea49ed1c5bbcd3684f5deaccf28f018e03ca381"
+    },
+    "retest_counts": {
+      "engine": 19,
+      "meals": 11,
+      "transit": 9,
+      "passed": 39,
+      "failed": 0
+    },
+    "network_requests": 0,
+    "independent_narrow_checks": {
+      "bus_noon_valid_23_closed_noon_cache_valid": true,
+      "ring_direction": "По кольцу через D",
+      "ring_stop_count": 2,
+      "deferred_meal_actual_departure": "existing regression passed; revised leg/time/cost and closure inspected"
+    },
+    "full_93_profiles_repeated": false,
+    "limitations": "Учебные часы автобусов применяются при departure_min; реальная работа метро, GTFS, выходы и действующие автобусы не проверены."
+  }
+}

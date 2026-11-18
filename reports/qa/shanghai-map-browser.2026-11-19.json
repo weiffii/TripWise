@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "external_network": "universally intercepted",
+  "blocked_external_attempts": 21,
+  "forwarded_external_requests": 0,
+  "pan": true,
+  "zoom": true,
+  "fit": true,
+  "popup": true,
+  "leg_instructions": true,
+  "dinner_1730": true,
+  "transit_legs": 9,
+  "mobile_overflow": false,
+  "js_errors": [],
+  "repository_http_status": 404,
+  "summary": {
+    "total_cost_cny": 756,
+    "budget_cny": 6000,
+    "visit_count": 6,
+    "meal_count": 5,
+    "planned_travel_minutes": 295,
+    "estimated_travel_minutes": 210,
+    "transport_cost_cny": 30,
+    "covered_interests": [
+      "museums",
+      "history",
+      "nature"
+    ],
+    "days_count": 2,
+    "group": {
+      "adult": 1,
+      "child": 0,
+      "senior": 0,
+      "pet": 0
+    },
+    "transport_mode": "transit",
+    "synthetic_data": true,
+    "first_last_poi": true,
+    "skipped_filters": {
+      "season": 0,
+      "weekend": 0,
+      "group": 0,
+      "opening": 10,
+      "budget": 0,
+      "capacity": 0
+    },
+    "daily_visits": [
+      3,
+      3
+    ],
+    "osm_legs": 0,
+    "stage1_selected_ids": [
+      "shanghai-demo:shanghai-museum",
+      "shanghai-demo:natural-history",
+      "shanghai-demo:history-museum",
+      "shanghai-demo:fuxing-park",
+      "shanghai-demo:synthetic-v2-01-01",
+      "shanghai-demo:synthetic-v2-03-01",
+      "shanghai-demo:synthetic-v2-09-01",
+      "shanghai-demo:sihang",
+      "shanghai-demo:sculpture-park",
+      "shanghai-demo:peoples-park"
+    ],
+    "stage1_count": 10,
+    "clusters": [
+      {
+        "date": "2026-11-18",
+        "ids": [
+          "shanghai-demo:shanghai-museum",
+          "shanghai-demo:natural-history",
+          "shanghai-demo:history-museum",
+          "shanghai-demo:sihang",
+          "shanghai-demo:sculpture-park"
+        ]
+      },
+      {
+        "date": "2026-11-19",
+        "ids": [
+          "shanghai-demo:fuxing-park",
+          "shanghai-demo:synthetic-v2-01-01",
+          "shanghai-demo:synthetic-v2-03-01",
+          "shanghai-demo:synthetic-v2-09-01",
+          "shanghai-demo:peoples-park"
+        ]
+      }
+    ],
+    "required_total": 0,
+    "required_placed": 0
+  }
+}

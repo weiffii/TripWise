@@ -1,0 +1,7366 @@
+{
+  "api_version": 1,
+  "feed": "metro",
+  "site": "https://shanghaistorymap.com",
+  "generated": "2026-11-18T18:06:58.515Z",
+  "count": 21,
+  "as_of": "2026-10-23",
+  "transfer_minutes": 5,
+  "branch_change_minutes": 4,
+  "stations": [
+    {
+      "id": "xinzhuang",
+      "en": "Xinzhuang",
+      "zh": "莘庄",
+      "py": "shēn zhuāng",
+      "lat": 31.11311,
+      "lng": 121.38063,
+      "lines": [
+        "1",
+        "5"
+      ]
+    },
+    {
+      "id": "waihuan-road",
+      "en": "Waihuan Road",
+      "zh": "外环路",
+      "py": "wài huán lù",
+      "lat": 31.12277,
+      "lng": 121.38837,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "lianhua-road",
+      "en": "Lianhua Road",
+      "zh": "莲花路",
+      "py": "lián huā lù",
+      "lat": 31.1328,
+      "lng": 121.3983,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "jinjiang-park",
+      "en": "Jinjiang Park",
+      "zh": "锦江乐园",
+      "py": "jǐn jiāng lè yuán",
+      "lat": 31.1439,
+      "lng": 121.409,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "shanghai-south-railway-station",
+      "en": "Shanghai South Railway Station",
+      "zh": "上海南站",
+      "py": "shàng hǎi nán zhàn",
+      "lat": 31.1553,
+      "lng": 121.426,
+      "lines": [
+        "1",
+        "3",
+        "15"
+      ]
+    },
+    {
+      "id": "caobao-road",
+      "en": "Caobao Road",
+      "zh": "漕宝路",
+      "py": "cáo bǎo lù",
+      "lat": 31.1703,
+      "lng": 121.431,
+      "lines": [
+        "1",
+        "12"
+      ]
+    },
+    {
+      "id": "shanghai-indoor-stadium",
+      "en": "Shanghai Indoor Stadium",
+      "zh": "上海体育馆",
+      "py": "shàng hǎi tǐ yù guǎn",
+      "lat": 31.1836,
+      "lng": 121.432,
+      "lines": [
+        "1",
+        "4"
+      ]
+    },
+    {
+      "id": "xujiahui",
+      "en": "Xujiahui",
+      "zh": "徐家汇",
+      "py": "xú jiā huì",
+      "lat": 31.1967,
+      "lng": 121.4323,
+      "lines": [
+        "1",
+        "9",
+        "11"
+      ]
+    },
+    {
+      "id": "hengshan-road",
+      "en": "Hengshan Road",
+      "zh": "衡山路",
+      "py": "héng shān lù",
+      "lat": 31.20638,
+      "lng": 121.44194,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "changshu-road",
+      "en": "Changshu Road",
+      "zh": "常熟路",
+      "py": "cháng shú lù",
+      "lat": 31.21517,
+      "lng": 121.44648,
+      "lines": [
+        "1",
+        "7"
+      ]
+    },
+    {
+      "id": "south-shaanxi-road",
+      "en": "South Shaanxi Road",
+      "zh": "陕西南路",
+      "py": "shǎn xī nán lù",
+      "lat": 31.2189,
+      "lng": 121.454,
+      "lines": [
+        "1",
+        "10",
+        "12"
+      ]
+    },
+    {
+      "id": "south-huangpi-road",
+      "en": "South Huangpi Road",
+      "zh": "一大会址·黄陂南路",
+      "py": "yí dà huì zhǐ · huáng bēi nán lù",
+      "lat": 31.2246,
+      "lng": 121.4687,
+      "lines": [
+        "1",
+        "14"
+      ]
+    },
+    {
+      "id": "peoples-square",
+      "en": "People's Square",
+      "zh": "人民广场",
+      "py": "rén mín guǎng chǎng",
+      "lat": 31.234,
+      "lng": 121.4709,
+      "lines": [
+        "1",
+        "2",
+        "8"
+      ],
+      "transferMinutes": 7,
+      "transferNote": "The busiest interchange on the network: the three lines meet through the concourse."
+    },
+    {
+      "id": "xinzha-road",
+      "en": "Xinzha Road",
+      "zh": "新闸路",
+      "py": "xīn zhá lù",
+      "lat": 31.2406,
+      "lng": 121.463,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "hanzhong-road",
+      "en": "Hanzhong Road",
+      "zh": "汉中路",
+      "py": "hàn zhōng lù",
+      "lat": 31.24265,
+      "lng": 121.45446,
+      "lines": [
+        "1",
+        "12",
+        "13"
+      ]
+    },
+    {
+      "id": "shanghai-railway-station",
+      "en": "Shanghai Railway Station",
+      "zh": "上海火车站",
+      "py": "shàng hǎi huǒ chē zhàn",
+      "lat": 31.25,
+      "lng": 121.450556,
+      "lines": [
+        "1",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "north-zhongshan-road",
+      "en": "North Zhongshan Road",
+      "zh": "中山北路",
+      "py": "zhōng shān běi lù",
+      "lat": 31.2611,
+      "lng": 121.454,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "yanchang-road",
+      "en": "Yanchang Road",
+      "zh": "延长路",
+      "py": "yán cháng lù",
+      "lat": 31.2732,
+      "lng": 121.4507,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "shanghai-circus-world",
+      "en": "Shanghai Circus World",
+      "zh": "上海马戏城",
+      "py": "shàng hǎi mǎ xì chéng",
+      "lat": 31.2818,
+      "lng": 121.4472,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "wenshui-road",
+      "en": "Wenshui Road",
+      "zh": "汶水路",
+      "py": "wèn shuǐ lù",
+      "lat": 31.2942,
+      "lng": 121.446,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "pengpu-xincun",
+      "en": "Pengpu Xincun",
+      "zh": "彭浦新村",
+      "py": "péng pǔ xīn cūn",
+      "lat": 31.30749,
+      "lng": 121.44394,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "gongkang-road",
+      "en": "Gongkang Road",
+      "zh": "共康路",
+      "py": "gòng kāng lù",
+      "lat": 31.3207,
+      "lng": 121.4424,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "tonghe-xincun",
+      "en": "Tonghe Xincun",
+      "zh": "通河新村",
+      "py": "tōng hé xīn cūn",
+      "lat": 31.3317,
+      "lng": 121.437,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "hulan-road",
+      "en": "Hulan Road",
+      "zh": "呼兰路",
+      "py": "hū lán lù",
+      "lat": 31.3417,
+      "lng": 121.433,
+      "lines": [
+        "1",
+        "18"
+      ]
+    },
+    {
+      "id": "gongfu-xincun",
+      "en": "Gongfu Xincun",
+      "zh": "共富新村",
+      "py": "gòng fù xīn cūn",
+      "lat": 31.35694,
+      "lng": 121.42944,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "baoan-highway",
+      "en": "Bao'an Highway",
+      "zh": "宝安公路",
+      "py": "bǎo ān gōng lù",
+      "lat": 31.3713,
+      "lng": 121.4262,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "west-youyi-road",
+      "en": "West Youyi Road",
+      "zh": "友谊西路",
+      "py": "yǒu yì xī lù",
+      "lat": 31.383,
+      "lng": 121.4233,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "fujin-road",
+      "en": "Fujin Road",
+      "zh": "富锦路",
+      "py": "fù jǐn lù",
+      "lat": 31.3941,
+      "lng": 121.41993,
+      "lines": [
+        "1"
+      ]
+    },
+    {
+      "id": "panxiang-road",
+      "en": "Panxiang Road",
+      "zh": "蟠祥路·国家会计学院",
+      "py": "pán xiáng lù · guó jiā kuài jì xué yuàn",
+      "lat": 31.1834,
+      "lng": 121.2817,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "national-exhibition-and-convention-center-line-2",
+      "en": "National Exhibition and Convention Center",
+      "zh": "国家会展中心",
+      "py": "guó jiā huì zhǎn zhōng xīn",
+      "lat": 31.19105,
+      "lng": 121.29614,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "hongqiao-railway-station",
+      "en": "Hongqiao Railway Station",
+      "zh": "虹桥火车站",
+      "py": "hóng qiáo huǒ chē zhàn",
+      "lat": 31.196139,
+      "lng": 121.314889,
+      "lines": [
+        "2",
+        "10",
+        "17"
+      ]
+    },
+    {
+      "id": "hongqiao-airport-terminal-2",
+      "en": "Hongqiao Airport Terminal 2",
+      "zh": "虹桥2号航站楼",
+      "py": "hóng qiáo 2 hào háng zhàn lóu",
+      "lat": 31.1969,
+      "lng": 121.326,
+      "lines": [
+        "2",
+        "10",
+        "AL"
+      ]
+    },
+    {
+      "id": "songhong-road",
+      "en": "Songhong Road",
+      "zh": "淞虹路",
+      "py": "sōng hóng lù",
+      "lat": 31.21998,
+      "lng": 121.3558,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "beixinjing",
+      "en": "Beixinjing",
+      "zh": "北新泾",
+      "py": "běi xīn jīng",
+      "lat": 31.2184,
+      "lng": 121.36908,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "weining-road",
+      "en": "Weining Road",
+      "zh": "威宁路",
+      "py": "wēi níng lù",
+      "lat": 31.2167,
+      "lng": 121.381,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "loushanguan-road",
+      "en": "Loushanguan Road",
+      "zh": "娄山关路",
+      "py": "lóu shān guān lù",
+      "lat": 31.2129,
+      "lng": 121.3995,
+      "lines": [
+        "2",
+        "15"
+      ]
+    },
+    {
+      "id": "zhongshan-park",
+      "en": "Zhongshan Park",
+      "zh": "中山公园",
+      "py": "zhōng shān gōng yuán",
+      "lat": 31.2197,
+      "lng": 121.411,
+      "lines": [
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "jiangsu-road",
+      "en": "Jiangsu Road",
+      "zh": "江苏路",
+      "py": "jiāng sū lù",
+      "lat": 31.2217,
+      "lng": 121.427,
+      "lines": [
+        "2",
+        "11"
+      ]
+    },
+    {
+      "id": "jingan-temple",
+      "en": "Jing'an Temple",
+      "zh": "静安寺",
+      "py": "jìng ān sì",
+      "lat": 31.225,
+      "lng": 121.442,
+      "lines": [
+        "2",
+        "7",
+        "14"
+      ]
+    },
+    {
+      "id": "west-nanjing-road",
+      "en": "West Nanjing Road",
+      "zh": "南京西路",
+      "py": "nán jīng xī lù",
+      "lat": 31.23181,
+      "lng": 121.45601,
+      "lines": [
+        "2",
+        "12",
+        "13"
+      ]
+    },
+    {
+      "id": "east-nanjing-road",
+      "en": "East Nanjing Road",
+      "zh": "南京东路",
+      "py": "nán jīng dōng lù",
+      "lat": 31.239722,
+      "lng": 121.479722,
+      "lines": [
+        "2",
+        "10"
+      ]
+    },
+    {
+      "id": "lujiazui",
+      "en": "Lujiazui",
+      "zh": "陆家嘴",
+      "py": "lù jiā zuǐ",
+      "lat": 31.2397,
+      "lng": 121.497,
+      "lines": [
+        "2",
+        "14"
+      ]
+    },
+    {
+      "id": "south-pudong-road-line-2",
+      "en": "South Pudong Road",
+      "zh": "浦东南路",
+      "py": "pǔ dōng nán lù @ 2",
+      "lat": 31.2358,
+      "lng": 121.51,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "century-avenue",
+      "en": "Century Avenue",
+      "zh": "世纪大道",
+      "py": "shì jì dà dào",
+      "lat": 31.23078,
+      "lng": 121.52274,
+      "lines": [
+        "2",
+        "4",
+        "6",
+        "9"
+      ],
+      "transferMinutes": 6
+    },
+    {
+      "id": "shanghai-science-and-technology-museum",
+      "en": "Shanghai Science and Technology Museum",
+      "zh": "上海科技馆",
+      "py": "shàng hǎi kē jì guǎn",
+      "lat": 31.2217,
+      "lng": 121.539,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "century-park",
+      "en": "Century Park",
+      "zh": "世纪公园",
+      "py": "shì jì gōng yuán",
+      "lat": 31.2113,
+      "lng": 121.5466,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "longyang-road",
+      "en": "Longyang Road",
+      "zh": "龙阳路",
+      "py": "lóng yáng lù",
+      "lat": 31.2053,
+      "lng": 121.554,
+      "lines": [
+        "2",
+        "7",
+        "16",
+        "18",
+        "M"
+      ]
+    },
+    {
+      "id": "zhangjiang-high-technology-park",
+      "en": "Zhangjiang High Technology Park",
+      "zh": "张江高科",
+      "py": "zhāng jiāng gāo kē",
+      "lat": 31.20399,
+      "lng": 121.58335,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "jinke-road",
+      "en": "Jinke Road",
+      "zh": "金科路",
+      "py": "jīn kē lù",
+      "lat": 31.2064,
+      "lng": 121.597,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "guanglan-road",
+      "en": "Guanglan Road",
+      "zh": "广兰路",
+      "py": "guǎng lán lù",
+      "lat": 31.2131,
+      "lng": 121.619,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "tangzhen",
+      "en": "Tangzhen",
+      "zh": "唐镇",
+      "py": "táng zhèn",
+      "lat": 31.2161,
+      "lng": 121.652,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "middle-chuangxin-road",
+      "en": "Middle Chuangxin Road",
+      "zh": "创新中路",
+      "py": "chuàng xīn zhōng lù",
+      "lat": 31.2156,
+      "lng": 121.669,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "east-huaxia-road",
+      "en": "East Huaxia Road",
+      "zh": "华夏东路",
+      "py": "huá xià dōng lù",
+      "lat": 31.1989,
+      "lng": 121.677,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "chuansha",
+      "en": "Chuansha",
+      "zh": "川沙",
+      "py": "chuān shā",
+      "lat": 31.1883,
+      "lng": 121.693,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "lingkong-road",
+      "en": "Lingkong Road",
+      "zh": "凌空路",
+      "py": "líng kōng lù",
+      "lat": 31.1944,
+      "lng": 121.719,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "yuandong-avenue",
+      "en": "Yuandong Avenue",
+      "zh": "远东大道",
+      "py": "yuǎn dōng dà dào",
+      "lat": 31.20144,
+      "lng": 121.75094,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "haitiansan-road",
+      "en": "Haitiansan Road",
+      "zh": "海天三路",
+      "py": "hǎi tiān sān lù",
+      "lat": 31.1703,
+      "lng": 121.793,
+      "lines": [
+        "2"
+      ]
+    },
+    {
+      "id": "pudong-airport-terminal-1-and-2",
+      "en": "Pudong Airport Terminal 1&2",
+      "zh": "浦东1号2号航站楼",
+      "py": "pǔ dōng 1 hào 2 hào háng zhàn lóu",
+      "lat": 31.1539,
+      "lng": 121.801,
+      "lines": [
+        "2",
+        "M",
+        "AL"
+      ]
+    },
+    {
+      "id": "shilong-road",
+      "en": "Shilong Road",
+      "zh": "石龙路",
+      "py": "shí lóng lù",
+      "lat": 31.16,
+      "lng": 121.438,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "longcao-road",
+      "en": "Longcao Road",
+      "zh": "龙漕路",
+      "py": "lóng cáo lù",
+      "lat": 31.1714,
+      "lng": 121.439,
+      "lines": [
+        "3",
+        "12"
+      ]
+    },
+    {
+      "id": "caoxi-road",
+      "en": "Caoxi Road",
+      "zh": "漕溪路",
+      "py": "cáo xī lù",
+      "lat": 31.1786,
+      "lng": 121.433,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "yishan-road",
+      "en": "Yishan Road",
+      "zh": "宜山路",
+      "py": "yí shān lù",
+      "lat": 31.1886,
+      "lng": 121.422,
+      "lines": [
+        "3",
+        "4",
+        "9"
+      ]
+    },
+    {
+      "id": "hongqiao-road",
+      "en": "Hongqiao Road",
+      "zh": "虹桥路",
+      "py": "hóng qiáo lù",
+      "lat": 31.1994,
+      "lng": 121.416,
+      "lines": [
+        "3",
+        "4",
+        "10"
+      ]
+    },
+    {
+      "id": "west-yanan-road",
+      "en": "West Yan'an Road",
+      "zh": "延安西路",
+      "py": "yán ān xī lù",
+      "lat": 31.2114,
+      "lng": 121.412,
+      "lines": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "jinshajiang-road",
+      "en": "Jinshajiang Road",
+      "zh": "金沙江路",
+      "py": "jīn shā jiāng lù",
+      "lat": 31.2342,
+      "lng": 121.408,
+      "lines": [
+        "3",
+        "4",
+        "13"
+      ]
+    },
+    {
+      "id": "caoyang-road",
+      "en": "Caoyang Road",
+      "zh": "曹杨路",
+      "py": "cáo yáng lù",
+      "lat": 31.2411,
+      "lng": 121.413,
+      "lines": [
+        "3",
+        "4",
+        "11",
+        "14"
+      ]
+    },
+    {
+      "id": "zhenping-road",
+      "en": "Zhenping Road",
+      "zh": "镇坪路",
+      "py": "zhèn píng lù",
+      "lat": 31.248333,
+      "lng": 121.425,
+      "lines": [
+        "3",
+        "4",
+        "7"
+      ]
+    },
+    {
+      "id": "zhongtan-road",
+      "en": "Zhongtan Road",
+      "zh": "中潭路",
+      "py": "zhōng tán lù",
+      "lat": 31.2564,
+      "lng": 121.436,
+      "lines": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "baoshan-road",
+      "en": "Baoshan Road",
+      "zh": "宝山路",
+      "py": "bǎo shān lù",
+      "lat": 31.25344,
+      "lng": 121.47177,
+      "lines": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "dongbaoxing-road",
+      "en": "Dongbaoxing Road",
+      "zh": "东宝兴路",
+      "py": "dōng bǎo xīng lù",
+      "lat": 31.2614,
+      "lng": 121.476,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "hongkou-football-stadium",
+      "en": "Hongkou Football Stadium",
+      "zh": "虹口足球场",
+      "py": "hóng kǒu zú qiú chǎng",
+      "lat": 31.2728,
+      "lng": 121.474,
+      "lines": [
+        "3",
+        "8"
+      ]
+    },
+    {
+      "id": "chifeng-road",
+      "en": "Chifeng Road",
+      "zh": "赤峰路",
+      "py": "chì fēng lù",
+      "lat": 31.2828,
+      "lng": 121.478,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "dabaishu",
+      "en": "Dabaishu",
+      "zh": "大柏树",
+      "py": "dà bǎi shù",
+      "lat": 31.2911,
+      "lng": 121.479,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "jiangwan-town",
+      "en": "Jiangwan Town",
+      "zh": "江湾镇",
+      "py": "jiāng wān zhèn",
+      "lat": 31.30749,
+      "lng": 121.480596,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "west-yingao-road",
+      "en": "West Yingao Road",
+      "zh": "殷高西路",
+      "py": "yīn gāo xī lù",
+      "lat": 31.3236,
+      "lng": 121.479,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "south-changjiang-road",
+      "en": "South Changjiang Road",
+      "zh": "长江南路",
+      "py": "cháng jiāng nán lù",
+      "lat": 31.3333,
+      "lng": 121.486,
+      "lines": [
+        "3",
+        "18"
+      ]
+    },
+    {
+      "id": "songfa-road",
+      "en": "Songfa Road",
+      "zh": "淞发路",
+      "py": "sōng fā lù",
+      "lat": 31.34711,
+      "lng": 121.496,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "zhanghuabang",
+      "en": "Zhanghuabang",
+      "zh": "张华浜",
+      "py": "zhāng huá bāng",
+      "lat": 31.35997,
+      "lng": 121.49422,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "songbin-road",
+      "en": "Songbin Road",
+      "zh": "淞滨路",
+      "py": "sōng bīn lù",
+      "lat": 31.37286,
+      "lng": 121.48833,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "shuichan-road",
+      "en": "Shuichan Road",
+      "zh": "水产路",
+      "py": "shuǐ chǎn lù",
+      "lat": 31.38317,
+      "lng": 121.48372,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "baoyang-road",
+      "en": "Baoyang Road",
+      "zh": "宝杨路",
+      "py": "bǎo yáng lù",
+      "lat": 31.39722,
+      "lng": 121.475,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "youyi-road",
+      "en": "Youyi Road",
+      "zh": "友谊路",
+      "py": "yǒu yì lù",
+      "lat": 31.40583,
+      "lng": 121.47139,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "tieli-road",
+      "en": "Tieli Road",
+      "zh": "铁力路",
+      "py": "tiě lì lù",
+      "lat": 31.4099,
+      "lng": 121.4565,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "north-jiangyang-road",
+      "en": "North Jiangyang Road",
+      "zh": "江杨北路",
+      "py": "jiāng yáng běi lù",
+      "lat": 31.40964,
+      "lng": 121.43519,
+      "lines": [
+        "3"
+      ]
+    },
+    {
+      "id": "hailun-road",
+      "en": "Hailun Road",
+      "zh": "海伦路",
+      "py": "hǎi lún lù",
+      "lat": 31.26096,
+      "lng": 121.48532,
+      "lines": [
+        "4",
+        "10"
+      ]
+    },
+    {
+      "id": "linping-road",
+      "en": "Linping Road",
+      "zh": "临平路",
+      "py": "lín píng lù",
+      "lat": 31.26297,
+      "lng": 121.49636,
+      "lines": [
+        "4"
+      ]
+    },
+    {
+      "id": "dalian-road",
+      "en": "Dalian Road",
+      "zh": "大连路",
+      "py": "dà lián lù",
+      "lat": 31.26014,
+      "lng": 121.50864,
+      "lines": [
+        "4",
+        "12"
+      ]
+    },
+    {
+      "id": "yangshupu-road",
+      "en": "Yangshupu Road",
+      "zh": "杨树浦路",
+      "py": "yáng shù pǔ lù",
+      "lat": 31.2541,
+      "lng": 121.5125,
+      "lines": [
+        "4"
+      ]
+    },
+    {
+      "id": "pudong-avenue",
+      "en": "Pudong Avenue",
+      "zh": "浦东大道",
+      "py": "pǔ dōng dà dào",
+      "lat": 31.2419,
+      "lng": 121.515,
+      "lines": [
+        "4",
+        "14"
+      ]
+    },
+    {
+      "id": "xiangcheng-road",
+      "en": "Xiangcheng Road",
+      "zh": "向城路",
+      "py": "xiàng chéng lù",
+      "lat": 31.2246,
+      "lng": 121.5278,
+      "lines": [
+        "4"
+      ]
+    },
+    {
+      "id": "lancun-road",
+      "en": "Lancun Road",
+      "zh": "蓝村路",
+      "py": "lán cūn lù",
+      "lat": 31.21376,
+      "lng": 121.52381,
+      "lines": [
+        "4",
+        "6"
+      ]
+    },
+    {
+      "id": "tangqiao",
+      "en": "Tangqiao",
+      "zh": "塘桥",
+      "py": "táng qiáo",
+      "lat": 31.2117,
+      "lng": 121.51435,
+      "lines": [
+        "4"
+      ]
+    },
+    {
+      "id": "nanpu-bridge",
+      "en": "Nanpu Bridge",
+      "zh": "南浦大桥",
+      "py": "nán pǔ dà qiáo",
+      "lat": 31.21039,
+      "lng": 121.49502,
+      "lines": [
+        "4"
+      ]
+    },
+    {
+      "id": "south-xizang-road",
+      "en": "South Xizang Road",
+      "zh": "西藏南路",
+      "py": "xī zàng nán lù",
+      "lat": 31.2038,
+      "lng": 121.485,
+      "lines": [
+        "4",
+        "8"
+      ]
+    },
+    {
+      "id": "luban-road",
+      "en": "Luban Road",
+      "zh": "鲁班路",
+      "py": "lǔ bān lù",
+      "lat": 31.2014,
+      "lng": 121.471,
+      "lines": [
+        "4"
+      ]
+    },
+    {
+      "id": "damuqiao-road",
+      "en": "Damuqiao Road",
+      "zh": "大木桥路",
+      "py": "dà mù qiáo lù",
+      "lat": 31.1958,
+      "lng": 121.459,
+      "lines": [
+        "4",
+        "12"
+      ]
+    },
+    {
+      "id": "dongan-road",
+      "en": "Dong'an Road",
+      "zh": "东安路",
+      "py": "dōng ān lù",
+      "lat": 31.1925,
+      "lng": 121.45,
+      "lines": [
+        "4",
+        "7"
+      ]
+    },
+    {
+      "id": "shanghai-stadium",
+      "en": "Shanghai Stadium",
+      "zh": "上海体育场",
+      "py": "shàng hǎi tǐ yù chǎng",
+      "lat": 31.18759,
+      "lng": 121.43908,
+      "lines": [
+        "4"
+      ]
+    },
+    {
+      "id": "chunshen-road",
+      "en": "Chunshen Road",
+      "zh": "春申路",
+      "py": "chūn shēn lù",
+      "lat": 31.10013,
+      "lng": 121.38116,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "yindu-road",
+      "en": "Yindu Road",
+      "zh": "银都路",
+      "py": "yín dōu lù",
+      "lat": 31.0911,
+      "lng": 121.385,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "zhuanqiao",
+      "en": "Zhuanqiao",
+      "zh": "颛桥",
+      "py": "zhuān qiáo",
+      "lat": 31.0686,
+      "lng": 121.397,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "beiqiao",
+      "en": "Beiqiao",
+      "zh": "北桥",
+      "py": "běi qiáo",
+      "lat": 31.0469,
+      "lng": 121.405,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "jianchuan-road",
+      "en": "Jianchuan Road",
+      "zh": "剑川路",
+      "py": "jiàn chuān lù",
+      "lat": 31.0281,
+      "lng": 121.412,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "dongchuan-road",
+      "en": "Dongchuan Road",
+      "zh": "东川路",
+      "py": "dōng chuān lù",
+      "lat": 31.02,
+      "lng": 121.415,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "jiangchuan-road",
+      "en": "Jiangchuan Road",
+      "zh": "江川路",
+      "py": "jiāng chuān lù",
+      "lat": 31.007285,
+      "lng": 121.418883,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "xidu",
+      "en": "Xidu",
+      "zh": "西渡",
+      "py": "xī dù",
+      "lat": 30.99105,
+      "lng": 121.427932,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "xiaotang",
+      "en": "Xiaotang",
+      "zh": "萧塘",
+      "py": "xiāo táng",
+      "lat": 30.967986,
+      "lng": 121.437297,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "fengpu-avenue",
+      "en": "Fengpu Avenue",
+      "zh": "奉浦大道",
+      "py": "fèng pǔ dà dào",
+      "lat": 30.944055,
+      "lng": 121.444405,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "huanchengdong-road",
+      "en": "Huanchengdong Road",
+      "zh": "环城东路",
+      "py": "huán chéng dōng lù",
+      "lat": 30.933035,
+      "lng": 121.458852,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "wangyuan-road",
+      "en": "Wangyuan Road",
+      "zh": "望园路",
+      "py": "wàng yuán lù",
+      "lat": 30.93419,
+      "lng": 121.478341,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "jinhai-lake",
+      "en": "Jinhai Lake",
+      "zh": "金海湖",
+      "py": "jīn hǎi hú",
+      "lat": 30.931641,
+      "lng": 121.487621,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "fengxian-xincheng",
+      "en": "Fengxian Xincheng",
+      "zh": "奉贤新城",
+      "py": "fèng xián xīn chéng",
+      "lat": 30.919027,
+      "lng": 121.490876,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "jinping-road",
+      "en": "Jinping Road",
+      "zh": "金平路",
+      "py": "jīn píng lù",
+      "lat": 31.0131,
+      "lng": 121.405,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "huaning-road",
+      "en": "Huaning Road",
+      "zh": "华宁路",
+      "py": "huá níng lù",
+      "lat": 31.0092,
+      "lng": 121.39,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "wenjing-road",
+      "en": "Wenjing Road",
+      "zh": "文井路",
+      "py": "wén jǐng lù",
+      "lat": 31.0053,
+      "lng": 121.376,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "minhang-development-zone",
+      "en": "Minhang Development Zone",
+      "zh": "闵行开发区",
+      "py": "mǐn xíng kāi fā qū",
+      "lat": 31.0025,
+      "lng": 121.365,
+      "lines": [
+        "5"
+      ]
+    },
+    {
+      "id": "gangcheng-road",
+      "en": "Gangcheng Road",
+      "zh": "港城路",
+      "py": "gǎng chéng lù",
+      "lat": 31.355,
+      "lng": 121.57,
+      "lines": [
+        "6",
+        "10"
+      ]
+    },
+    {
+      "id": "north-waigaoqiao-free-trade-zone",
+      "en": "North Waigaoqiao Free Trade Zone",
+      "zh": "外高桥保税区北",
+      "py": "wài gāo qiáo bǎo shuì qū běi",
+      "lat": 31.3497,
+      "lng": 121.583,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "hangjin-road",
+      "en": "Hangjin Road",
+      "zh": "航津路",
+      "py": "háng jīn lù",
+      "lat": 31.3372,
+      "lng": 121.59,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "south-waigaoqiao-free-trade-zone",
+      "en": "South Waigaoqiao Free Trade Zone",
+      "zh": "外高桥保税区南",
+      "py": "wài gāo qiáo bǎo shuì qū nán",
+      "lat": 31.3236,
+      "lng": 121.598,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "zhouhai-road",
+      "en": "Zhouhai Road",
+      "zh": "洲海路",
+      "py": "zhōu hǎi lù",
+      "lat": 31.3144,
+      "lng": 121.585,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "wuzhou-avenue",
+      "en": "Wuzhou Avenue",
+      "zh": "五洲大道",
+      "py": "wǔ zhōu dà dào",
+      "lat": 31.3047,
+      "lng": 121.585,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "dongjing-road",
+      "en": "Dongjing Road",
+      "zh": "东靖路",
+      "py": "dōng jìng lù",
+      "lat": 31.2928,
+      "lng": 121.584,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "jufeng-road",
+      "en": "Jufeng Road",
+      "zh": "巨峰路",
+      "py": "jù fēng lù",
+      "lat": 31.282625,
+      "lng": 121.5847,
+      "lines": [
+        "6",
+        "12"
+      ]
+    },
+    {
+      "id": "wulian-road",
+      "en": "Wulian Road",
+      "zh": "五莲路",
+      "py": "wǔ lián lù",
+      "lat": 31.27416,
+      "lng": 121.58377,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "boxing-road",
+      "en": "Boxing Road",
+      "zh": "博兴路",
+      "py": "bó xīng lù",
+      "lat": 31.2656,
+      "lng": 121.582,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "jinqiao-road",
+      "en": "Jinqiao Road",
+      "zh": "金桥路",
+      "py": "jīn qiáo lù",
+      "lat": 31.2592,
+      "lng": 121.577,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "yunshan-road",
+      "en": "Yunshan Road",
+      "zh": "云山路",
+      "py": "yún shān lù",
+      "lat": 31.2524,
+      "lng": 121.5682,
+      "lines": [
+        "6",
+        "14"
+      ]
+    },
+    {
+      "id": "deping-road",
+      "en": "Deping Road",
+      "zh": "德平路",
+      "py": "dé píng lù",
+      "lat": 31.24749,
+      "lng": 121.55993,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "beiyangjing-road",
+      "en": "Beiyangjing Road",
+      "zh": "北洋泾路",
+      "py": "běi yáng jīng lù",
+      "lat": 31.24117,
+      "lng": 121.5478,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "minsheng-road",
+      "en": "Minsheng Road",
+      "zh": "民生路",
+      "py": "mín shēng lù",
+      "lat": 31.2383,
+      "lng": 121.54028,
+      "lines": [
+        "6",
+        "18"
+      ]
+    },
+    {
+      "id": "yuanshen-sports-center",
+      "en": "Yuanshen Sports Center",
+      "zh": "源深体育中心",
+      "py": "yuán shēn tǐ yù zhōng xīn",
+      "lat": 31.2351,
+      "lng": 121.5301,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "pudian-road",
+      "en": "Pudian Road",
+      "zh": "浦电路",
+      "py": "pǔ diàn lù",
+      "lat": 31.221667,
+      "lng": 121.524722,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "shanghai-childrens-medical-center",
+      "en": "Shanghai Children's Medical Center",
+      "zh": "上海儿童医学中心",
+      "py": "shàng hǎi ér tóng yī xué zhōng xīn",
+      "lat": 31.2054,
+      "lng": 121.5189,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "linyi-xincun",
+      "en": "Linyi Xincun",
+      "zh": "临沂新村",
+      "py": "lín yí xīn cūn",
+      "lat": 31.194722,
+      "lng": 121.511667,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "west-gaoke-road",
+      "en": "West Gaoke Road",
+      "zh": "高科西路",
+      "py": "gāo kē xī lù",
+      "lat": 31.1872,
+      "lng": 121.505,
+      "lines": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "id": "dongming-road",
+      "en": "Dongming Road",
+      "zh": "东明路",
+      "py": "dōng míng lù",
+      "lat": 31.174722,
+      "lng": 121.506667,
+      "lines": [
+        "6",
+        "13"
+      ]
+    },
+    {
+      "id": "gaoqing-road",
+      "en": "Gaoqing Road",
+      "zh": "高青路",
+      "py": "gāo qīng lù",
+      "lat": 31.16148,
+      "lng": 121.5113,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "west-huaxia-road",
+      "en": "West Huaxia Road",
+      "zh": "华夏西路",
+      "py": "huá xià xī lù",
+      "lat": 31.152,
+      "lng": 121.5104,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "shangnan-road",
+      "en": "Shangnan Road",
+      "zh": "上南路",
+      "py": "shàng nán lù",
+      "lat": 31.150833,
+      "lng": 121.501944,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "south-lingyan-road",
+      "en": "South Lingyan Road",
+      "zh": "灵岩南路",
+      "py": "líng yán nán lù",
+      "lat": 31.1507,
+      "lng": 121.4908,
+      "lines": [
+        "6"
+      ]
+    },
+    {
+      "id": "oriental-sports-center",
+      "en": "Oriental Sports Center",
+      "zh": "东方体育中心",
+      "py": "dōng fāng tǐ yù zhōng xīn",
+      "lat": 31.155339,
+      "lng": 121.475789,
+      "lines": [
+        "6",
+        "8",
+        "11"
+      ]
+    },
+    {
+      "id": "meilan-lake",
+      "en": "Meilan Lake",
+      "zh": "美兰湖",
+      "py": "měi lán hú",
+      "lat": 31.4036,
+      "lng": 121.345,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "luonan-xincun",
+      "en": "Luonan Xincun",
+      "zh": "罗南新村",
+      "py": "luó nán xīn cūn",
+      "lat": 31.3906,
+      "lng": 121.353,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "panguang-road",
+      "en": "Panguang Road",
+      "zh": "潘广路",
+      "py": "pān guǎng lù",
+      "lat": 31.3653,
+      "lng": 121.351,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "liuhang",
+      "en": "Liuhang",
+      "zh": "刘行",
+      "py": "liú xíng",
+      "lat": 31.358889,
+      "lng": 121.357778,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "gucun-park",
+      "en": "Gucun Park",
+      "zh": "顾村公园",
+      "py": "gù cūn gōng yuán",
+      "lat": 31.34617,
+      "lng": 121.36856,
+      "lines": [
+        "7",
+        "15"
+      ]
+    },
+    {
+      "id": "qihua-road",
+      "en": "Qihua Road",
+      "zh": "祁华路",
+      "py": "qí huá lù",
+      "lat": 31.32395,
+      "lng": 121.36907,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "shanghai-university",
+      "en": "Shanghai University",
+      "zh": "上海大学",
+      "py": "shàng hǎi dà xué",
+      "lat": 31.3219,
+      "lng": 121.382,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "nanchen-road",
+      "en": "Nanchen Road",
+      "zh": "南陈路",
+      "py": "nán chén lù",
+      "lat": 31.32333,
+      "lng": 121.39306,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "shangda-road",
+      "en": "Shangda Road",
+      "zh": "上大路",
+      "py": "shàng dà lù",
+      "lat": 31.3153,
+      "lng": 121.404,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "changzhong-road",
+      "en": "Changzhong Road",
+      "zh": "场中路",
+      "py": "chǎng zhōng lù",
+      "lat": 31.305,
+      "lng": 121.408333,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "dachang-town",
+      "en": "Dachang Town",
+      "zh": "大场镇",
+      "py": "dà chǎng zhèn",
+      "lat": 31.295,
+      "lng": 121.411389,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "xingzhi-road",
+      "en": "Xingzhi Road",
+      "zh": "行知路",
+      "py": "xíng zhī lù",
+      "lat": 31.2861,
+      "lng": 121.417,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "dahuasan-road",
+      "en": "Dahuasan Road",
+      "zh": "大华三路",
+      "py": "dà huá sān lù",
+      "lat": 31.2764,
+      "lng": 121.418,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "xincun-road",
+      "en": "Xincun Road",
+      "zh": "新村路",
+      "py": "xīn cūn lù",
+      "lat": 31.2658,
+      "lng": 121.418,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "langao-road",
+      "en": "Langao Road",
+      "zh": "岚皋路",
+      "py": "lán gāo lù",
+      "lat": 31.258333,
+      "lng": 121.416944,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "changshou-road",
+      "en": "Changshou Road",
+      "zh": "长寿路",
+      "py": "cháng shòu lù",
+      "lat": 31.241944,
+      "lng": 121.433333,
+      "lines": [
+        "7",
+        "13"
+      ]
+    },
+    {
+      "id": "changping-road",
+      "en": "Changping Road",
+      "zh": "昌平路",
+      "py": "chāng píng lù",
+      "lat": 31.236389,
+      "lng": 121.437222,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "zhaojiabang-road",
+      "en": "Zhaojiabang Road",
+      "zh": "肇嘉浜路",
+      "py": "zhào jiā bāng lù",
+      "lat": 31.20143,
+      "lng": 121.44584,
+      "lines": [
+        "7",
+        "9"
+      ]
+    },
+    {
+      "id": "middle-longhua-road",
+      "en": "Middle Longhua Road",
+      "zh": "龙华中路",
+      "py": "lóng huá zhōng lù",
+      "lat": 31.185,
+      "lng": 121.453,
+      "lines": [
+        "7",
+        "12"
+      ]
+    },
+    {
+      "id": "houtan",
+      "en": "Houtan",
+      "zh": "后滩",
+      "py": "hòu tān",
+      "lat": 31.1742,
+      "lng": 121.469,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "changqing-road",
+      "en": "Changqing Road",
+      "zh": "长清路",
+      "py": "cháng qīng lù",
+      "lat": 31.1772,
+      "lng": 121.483,
+      "lines": [
+        "7",
+        "13"
+      ]
+    },
+    {
+      "id": "yaohua-road",
+      "en": "Yaohua Road",
+      "zh": "耀华路",
+      "py": "yào huá lù",
+      "lat": 31.18052,
+      "lng": 121.49018,
+      "lines": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "yuntai-road",
+      "en": "Yuntai Road",
+      "zh": "云台路",
+      "py": "yún tái lù",
+      "lat": 31.18428,
+      "lng": 121.49601,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "south-yanggao-road",
+      "en": "South Yanggao Road",
+      "zh": "杨高南路",
+      "py": "yáng gāo nán lù",
+      "lat": 31.19,
+      "lng": 121.518611,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "jinxiu-road",
+      "en": "Jinxiu Road",
+      "zh": "锦绣路",
+      "py": "jǐn xiù lù",
+      "lat": 31.1897,
+      "lng": 121.5347,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "fanghua-road",
+      "en": "Fanghua Road",
+      "zh": "芳华路",
+      "py": "fāng huá lù",
+      "lat": 31.195556,
+      "lng": 121.545833,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "huamu-road",
+      "en": "Huamu Road",
+      "zh": "花木路",
+      "py": "huā mù lù",
+      "lat": 31.212222,
+      "lng": 121.558611,
+      "lines": [
+        "7"
+      ]
+    },
+    {
+      "id": "shiguang-road",
+      "en": "Shiguang Road",
+      "zh": "市光路",
+      "py": "shì guāng lù",
+      "lat": 31.32479,
+      "lng": 121.52763,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "nenjiang-road",
+      "en": "Nenjiang Road",
+      "zh": "嫩江路",
+      "py": "nèn jiāng lù",
+      "lat": 31.31678,
+      "lng": 121.52767,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "xiangyin-road",
+      "en": "Xiangyin Road",
+      "zh": "翔殷路",
+      "py": "xiáng yīn lù",
+      "lat": 31.30712,
+      "lng": 121.52761,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "huangxing-park",
+      "en": "Huangxing Park",
+      "zh": "黄兴公园",
+      "py": "huáng xīng gōng yuán",
+      "lat": 31.2975,
+      "lng": 121.529,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "middle-yanji-road",
+      "en": "Middle Yanji Road",
+      "zh": "延吉中路",
+      "py": "yán jí zhōng lù",
+      "lat": 31.2897,
+      "lng": 121.531,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "huangxing-road",
+      "en": "Huangxing Road",
+      "zh": "黄兴路",
+      "py": "huáng xīng lù",
+      "lat": 31.2811,
+      "lng": 121.524,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "jiangpu-road",
+      "en": "Jiangpu Road",
+      "zh": "江浦路",
+      "py": "jiāng pǔ lù",
+      "lat": 31.277,
+      "lng": 121.5142,
+      "lines": [
+        "8",
+        "18"
+      ]
+    },
+    {
+      "id": "anshan-xincun",
+      "en": "Anshan Xincun",
+      "zh": "鞍山新村",
+      "py": "ān shān xīn cūn",
+      "lat": 31.27526,
+      "lng": 121.50516,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "siping-road",
+      "en": "Siping Road",
+      "zh": "四平路",
+      "py": "sì píng lù",
+      "lat": 31.2769,
+      "lng": 121.497,
+      "lines": [
+        "8",
+        "10"
+      ]
+    },
+    {
+      "id": "quyang-road",
+      "en": "Quyang Road",
+      "zh": "曲阳路",
+      "py": "qǔ yáng lù",
+      "lat": 31.2784,
+      "lng": 121.486,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "north-xizang-road",
+      "en": "North Xizang Road",
+      "zh": "西藏北路",
+      "py": "xī zàng běi lù",
+      "lat": 31.2655,
+      "lng": 121.4645,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "zhongxing-road",
+      "en": "Zhongxing Road",
+      "zh": "中兴路",
+      "py": "zhōng xīng lù",
+      "lat": 31.25507,
+      "lng": 121.46435,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "qufu-road",
+      "en": "Qufu Road",
+      "zh": "曲阜路",
+      "py": "qū fù lù",
+      "lat": 31.24437,
+      "lng": 121.46697,
+      "lines": [
+        "8",
+        "12"
+      ]
+    },
+    {
+      "id": "dashijie",
+      "en": "Dashijie",
+      "zh": "大世界",
+      "py": "dà shì jiè",
+      "lat": 31.22911,
+      "lng": 121.47482,
+      "lines": [
+        "8",
+        "14"
+      ]
+    },
+    {
+      "id": "laoximen",
+      "en": "Laoximen",
+      "zh": "老西门",
+      "py": "lǎo xī mén",
+      "lat": 31.22084,
+      "lng": 121.47843,
+      "lines": [
+        "8",
+        "10"
+      ]
+    },
+    {
+      "id": "lujiabang-road",
+      "en": "Lujiabang Road",
+      "zh": "陆家浜路",
+      "py": "lù jiā bāng lù",
+      "lat": 31.21385,
+      "lng": 121.48147,
+      "lines": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "id": "china-art-museum",
+      "en": "China Art Museum",
+      "zh": "中华艺术宫",
+      "py": "zhōng huá yì shù gōng",
+      "lat": 31.1871,
+      "lng": 121.4893,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "chengshan-road",
+      "en": "Chengshan Road",
+      "zh": "成山路",
+      "py": "chéng shān lù",
+      "lat": 31.172778,
+      "lng": 121.491667,
+      "lines": [
+        "8",
+        "13"
+      ]
+    },
+    {
+      "id": "yangsi",
+      "en": "Yangsi",
+      "zh": "杨思",
+      "py": "yáng sī",
+      "lat": 31.163056,
+      "lng": 121.488889,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "lingzhao-xincun",
+      "en": "Lingzhao Xincun",
+      "zh": "凌兆新村",
+      "py": "líng zhào xīn cūn",
+      "lat": 31.1425,
+      "lng": 121.485,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "luheng-road",
+      "en": "Luheng Road",
+      "zh": "芦恒路",
+      "py": "lú héng lù",
+      "lat": 31.12,
+      "lng": 121.494,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "pujiang-town",
+      "en": "Pujiang Town",
+      "zh": "浦江镇",
+      "py": "pǔ jiāng zhèn",
+      "lat": 31.0983,
+      "lng": 121.502,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "jiangyue-road",
+      "en": "Jiangyue Road",
+      "zh": "江月路",
+      "py": "jiāng yuè lù",
+      "lat": 31.0861,
+      "lng": 121.504,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "lianhang-road",
+      "en": "Lianhang Road",
+      "zh": "联航路",
+      "py": "lián háng lù",
+      "lat": 31.0756,
+      "lng": 121.506,
+      "lines": [
+        "8"
+      ]
+    },
+    {
+      "id": "shendu-highway",
+      "en": "Shendu Highway",
+      "zh": "沈杜公路",
+      "py": "shěn dù gōng lù",
+      "lat": 31.06349,
+      "lng": 121.50784,
+      "lines": [
+        "8",
+        "PJ"
+      ]
+    },
+    {
+      "id": "shanghai-songjiang-railway-station",
+      "en": "Shanghai Songjiang Railway Station",
+      "zh": "上海松江站",
+      "py": "shàng hǎi sōng jiāng zhàn",
+      "lat": 30.986935,
+      "lng": 121.226362,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "zuibaichi-park",
+      "en": "Zuibaichi Park",
+      "zh": "醉白池",
+      "py": "zuì bái chí",
+      "lat": 31.001,
+      "lng": 121.229,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "songjiang-sports-center",
+      "en": "Songjiang Sports Center",
+      "zh": "松江体育中心",
+      "py": "sōng jiāng tǐ yù zhōng xīn",
+      "lat": 31.01799,
+      "lng": 121.22624,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "songjiang-xincheng",
+      "en": "Songjiang Xincheng",
+      "zh": "松江新城",
+      "py": "sōng jiāng xīn chéng",
+      "lat": 31.032778,
+      "lng": 121.226111,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "songjiang-university-town",
+      "en": "Songjiang University Town",
+      "zh": "松江大学城",
+      "py": "sōng jiāng dà xué chéng",
+      "lat": 31.056389,
+      "lng": 121.228611,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "dongjing",
+      "en": "Dongjing",
+      "zh": "洞泾",
+      "py": "dòng jīng",
+      "lat": 31.08654,
+      "lng": 121.22604,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "sheshan",
+      "en": "Sheshan",
+      "zh": "佘山",
+      "py": "shé shān",
+      "lat": 31.10642,
+      "lng": 121.22533,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "sijing",
+      "en": "Sijing",
+      "zh": "泗泾",
+      "py": "sì jīng",
+      "lat": 31.12039,
+      "lng": 121.2559,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "jiuting",
+      "en": "Jiuting",
+      "zh": "九亭",
+      "py": "jiǔ tíng",
+      "lat": 31.1394,
+      "lng": 121.314,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "zhongchun-road",
+      "en": "Zhongchun Road",
+      "zh": "中春路",
+      "py": "zhōng chūn lù",
+      "lat": 31.1509,
+      "lng": 121.3321,
+      "lines": [
+        "9",
+        "AL"
+      ]
+    },
+    {
+      "id": "qibao",
+      "en": "Qibao",
+      "zh": "七宝",
+      "py": "qī bǎo",
+      "lat": 31.1569,
+      "lng": 121.343,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "xingzhong-road",
+      "en": "Xingzhong Road",
+      "zh": "星中路",
+      "py": "xīng zhōng lù",
+      "lat": 31.1603,
+      "lng": 121.364,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "hechuan-road",
+      "en": "Hechuan Road",
+      "zh": "合川路",
+      "py": "hé chuān lù",
+      "lat": 31.1686,
+      "lng": 121.379,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "caohejing-hi-tech-park",
+      "en": "Caohejing Hi-Tech Park",
+      "zh": "漕河泾开发区",
+      "py": "cáo hé jīng kāi fā qū",
+      "lat": 31.1728,
+      "lng": 121.393,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "guilin-road",
+      "en": "Guilin Road",
+      "zh": "桂林路",
+      "py": "guì lín lù",
+      "lat": 31.1767,
+      "lng": 121.412,
+      "lines": [
+        "9",
+        "15"
+      ]
+    },
+    {
+      "id": "jiashan-road",
+      "en": "Jiashan Road",
+      "zh": "嘉善路",
+      "py": "jiā shàn lù",
+      "lat": 31.20461,
+      "lng": 121.45636,
+      "lines": [
+        "9",
+        "12"
+      ]
+    },
+    {
+      "id": "dapuqiao",
+      "en": "Dapuqiao",
+      "zh": "打浦桥",
+      "py": "dǎ pǔ qiáo",
+      "lat": 31.2075,
+      "lng": 121.463889,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "madang-road",
+      "en": "Madang Road",
+      "zh": "马当路",
+      "py": "mǎ dāng lù",
+      "lat": 31.2114,
+      "lng": 121.472,
+      "lines": [
+        "9",
+        "13"
+      ]
+    },
+    {
+      "id": "xiaonanmen",
+      "en": "Xiaonanmen",
+      "zh": "小南门",
+      "py": "xiǎo nán mén",
+      "lat": 31.2192,
+      "lng": 121.494,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "shangcheng-road",
+      "en": "Shangcheng Road",
+      "zh": "商城路",
+      "py": "shāng chéng lù",
+      "lat": 31.23251,
+      "lng": 121.51205,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "middle-yanggao-road",
+      "en": "Middle Yanggao Road",
+      "zh": "杨高中路",
+      "py": "yáng gāo zhōng lù",
+      "lat": 31.229722,
+      "lng": 121.544444,
+      "lines": [
+        "9",
+        "18"
+      ]
+    },
+    {
+      "id": "fangdian-road",
+      "en": "Fangdian Road",
+      "zh": "芳甸路",
+      "py": "fāng diàn lù",
+      "lat": 31.233944,
+      "lng": 121.554306,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "lantian-road",
+      "en": "Lantian Road",
+      "zh": "蓝天路",
+      "py": "lán tiān lù",
+      "lat": 31.2431,
+      "lng": 121.5736,
+      "lines": [
+        "9",
+        "14"
+      ]
+    },
+    {
+      "id": "taierzhuang-road",
+      "en": "Taierzhuang Road",
+      "zh": "台儿庄路",
+      "py": "tái ér zhuāng lù",
+      "lat": 31.255058,
+      "lng": 121.593795,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "jinqiao",
+      "en": "Jinqiao",
+      "zh": "金桥",
+      "py": "jīn qiáo",
+      "lat": 31.263056,
+      "lng": 121.606716,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "jinji-road",
+      "en": "Jinji Road",
+      "zh": "金吉路",
+      "py": "jīn jí lù",
+      "lat": 31.266499,
+      "lng": 121.624716,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "jinhai-road",
+      "en": "Jinhai Road",
+      "zh": "金海路",
+      "py": "jīn hǎi lù",
+      "lat": 31.265414,
+      "lng": 121.63438,
+      "lines": [
+        "9",
+        "12"
+      ]
+    },
+    {
+      "id": "gutang-road",
+      "en": "Gutang Road",
+      "zh": "顾唐路",
+      "py": "gù táng lù",
+      "lat": 31.268179,
+      "lng": 121.652136,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "minlei-road",
+      "en": "Minlei Road",
+      "zh": "民雷路",
+      "py": "mín léi lù",
+      "lat": 31.27049,
+      "lng": 121.663841,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "caolu",
+      "en": "Caolu",
+      "zh": "曹路",
+      "py": "cáo lù",
+      "lat": 31.273402,
+      "lng": 121.67867,
+      "lines": [
+        "9"
+      ]
+    },
+    {
+      "id": "hongqiao-airport-terminal-1",
+      "en": "Hongqiao Airport Terminal 1",
+      "zh": "虹桥1号航站楼",
+      "py": "hóng qiáo 1 hào háng zhàn lóu",
+      "lat": 31.1933,
+      "lng": 121.342,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "shanghai-zoo",
+      "en": "Shanghai Zoo",
+      "zh": "上海动物园",
+      "py": "shàng hǎi dòng wù yuán",
+      "lat": 31.192222,
+      "lng": 121.363056,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "longxi-road",
+      "en": "Longxi Road",
+      "zh": "龙溪路",
+      "py": "lóng xī lù",
+      "lat": 31.195833,
+      "lng": 121.375,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "shuicheng-road",
+      "en": "Shuicheng Road",
+      "zh": "水城路",
+      "py": "shuǐ chéng lù",
+      "lat": 31.201111,
+      "lng": 121.386944,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "yili-road",
+      "en": "Yili Road",
+      "zh": "伊犁路",
+      "py": "yī lí lù",
+      "lat": 31.2009,
+      "lng": 121.3992,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "songyuan-road",
+      "en": "Songyuan Road",
+      "zh": "宋园路",
+      "py": "sòng yuán lù",
+      "lat": 31.198333,
+      "lng": 121.407222,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "jiao-tong-university",
+      "en": "Jiao Tong University",
+      "zh": "交通大学",
+      "py": "jiāo tōng dà xué",
+      "lat": 31.2039,
+      "lng": 121.43,
+      "lines": [
+        "10",
+        "11"
+      ]
+    },
+    {
+      "id": "shanghai-library",
+      "en": "Shanghai Library",
+      "zh": "上海图书馆",
+      "py": "shàng hǎi tú shū guǎn",
+      "lat": 31.21,
+      "lng": 121.43965,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "xintiandi",
+      "en": "Xintiandi",
+      "zh": "一大会址·新天地",
+      "py": "yí dà huì zhǐ · xīn tiān dì",
+      "lat": 31.218139,
+      "lng": 121.470444,
+      "lines": [
+        "10",
+        "13"
+      ]
+    },
+    {
+      "id": "yuyuan-garden",
+      "en": "Yuyuan Garden",
+      "zh": "豫园",
+      "py": "yù yuán",
+      "lat": 31.229784,
+      "lng": 121.48263,
+      "lines": [
+        "10",
+        "14"
+      ]
+    },
+    {
+      "id": "tiantong-road",
+      "en": "Tiantong Road",
+      "zh": "天潼路",
+      "py": "tiān tóng lù",
+      "lat": 31.24575,
+      "lng": 121.4778,
+      "lines": [
+        "10",
+        "12"
+      ]
+    },
+    {
+      "id": "north-sichuan-road",
+      "en": "North Sichuan Road",
+      "zh": "四川北路",
+      "py": "sì chuān běi lù",
+      "lat": 31.253722,
+      "lng": 121.479472,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "youdian-xincun",
+      "en": "Youdian Xincun",
+      "zh": "邮电新村",
+      "py": "yóu diàn xīn cūn",
+      "lat": 31.27037,
+      "lng": 121.48975,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "tongji-university",
+      "en": "Tongji University",
+      "zh": "同济大学",
+      "py": "tóng jì dà xué",
+      "lat": 31.28439,
+      "lng": 121.50209,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "guoquan-road",
+      "en": "Guoquan Road",
+      "zh": "国权路",
+      "py": "guó quán lù",
+      "lat": 31.291389,
+      "lng": 121.505556,
+      "lines": [
+        "10",
+        "18"
+      ]
+    },
+    {
+      "id": "wujiaochang",
+      "en": "Wujiaochang",
+      "zh": "五角场",
+      "py": "wǔ jiǎo chǎng",
+      "lat": 31.29974,
+      "lng": 121.51006,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "jiangwan-stadium",
+      "en": "Jiangwan Stadium",
+      "zh": "江湾体育场",
+      "py": "jiāng wān tǐ yù chǎng",
+      "lat": 31.3051,
+      "lng": 121.5096,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "sanmen-road",
+      "en": "Sanmen Road",
+      "zh": "三门路",
+      "py": "sān mén lù",
+      "lat": 31.3152,
+      "lng": 121.5038,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "east-yingao-road",
+      "en": "East Yingao Road",
+      "zh": "殷高东路",
+      "py": "yīn gāo dōng lù",
+      "lat": 31.3236,
+      "lng": 121.502,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "xinjiangwancheng",
+      "en": "Xinjiangwancheng",
+      "zh": "新江湾城",
+      "py": "xīn jiāng wān chéng",
+      "lat": 31.3303,
+      "lng": 121.502,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "guofan-road",
+      "en": "Guofan Road",
+      "zh": "国帆路",
+      "py": "guó fān lù",
+      "lat": 31.3416,
+      "lng": 121.5088,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "shuangjiang-road",
+      "en": "Shuangjiang Road",
+      "zh": "双江路",
+      "py": "shuāng jiāng lù",
+      "lat": 31.355636,
+      "lng": 121.535229,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "west-gaoqiao",
+      "en": "West Gaoqiao",
+      "zh": "高桥西",
+      "py": "gāo qiáo xī",
+      "lat": 31.35358,
+      "lng": 121.545039,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "gaoqiao",
+      "en": "Gaoqiao",
+      "zh": "高桥",
+      "py": "gāo qiáo",
+      "lat": 31.354714,
+      "lng": 121.558645,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "jilong-road",
+      "en": "Jilong Road",
+      "zh": "基隆路",
+      "py": "jī lóng lù",
+      "lat": 31.35358,
+      "lng": 121.586101,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "hangzhong-road",
+      "en": "Hangzhong Road",
+      "zh": "航中路",
+      "py": "háng zhōng lù",
+      "lat": 31.166944,
+      "lng": 121.349167,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "ziteng-road",
+      "en": "Ziteng Road",
+      "zh": "紫藤路",
+      "py": "zǐ téng lù",
+      "lat": 31.1711,
+      "lng": 121.359,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "longbai-xincun",
+      "en": "Longbai Xincun",
+      "zh": "龙柏新村",
+      "py": "lóng bǎi xīn cūn",
+      "lat": 31.17913,
+      "lng": 121.3658,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "id": "north-jiading",
+      "en": "North Jiading",
+      "zh": "嘉定北",
+      "py": "jiā dìng běi",
+      "lat": 31.39345,
+      "lng": 121.23286,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "west-jiading",
+      "en": "West Jiading",
+      "zh": "嘉定西",
+      "py": "jiā dìng xī",
+      "lat": 31.3789,
+      "lng": 121.223,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "baiyin-road",
+      "en": "Baiyin Road",
+      "zh": "白银路",
+      "py": "bái yín lù",
+      "lat": 31.346944,
+      "lng": 121.240556,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "jiading-xincheng",
+      "en": "Jiading Xincheng",
+      "zh": "嘉定新城",
+      "py": "jiā dìng xīn chéng",
+      "lat": 31.332085,
+      "lng": 121.249945,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "malu",
+      "en": "Malu",
+      "zh": "马陆",
+      "py": "mǎ lù",
+      "lat": 31.32161,
+      "lng": 121.27242,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "chenxiang-highway",
+      "en": "Chenxiang Highway",
+      "zh": "陈翔公路",
+      "py": "chén xiáng gōng lù",
+      "lat": 31.3084,
+      "lng": 121.3022,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "nanxiang",
+      "en": "Nanxiang",
+      "zh": "南翔",
+      "py": "nán xiáng",
+      "lat": 31.29886,
+      "lng": 121.3186,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "taopu-xincun",
+      "en": "Taopu Xincun",
+      "zh": "桃浦新村",
+      "py": "táo pǔ xīn cūn",
+      "lat": 31.2825,
+      "lng": 121.352,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "wuwei-road",
+      "en": "Wuwei Road",
+      "zh": "武威路",
+      "py": "wǔ wēi lù",
+      "lat": 31.2778,
+      "lng": 121.36,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "qilianshan-road",
+      "en": "Qilianshan Road",
+      "zh": "祁连山路",
+      "py": "qí lián shān lù",
+      "lat": 31.2734,
+      "lng": 121.37222,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "liziyuan",
+      "en": "Liziyuan",
+      "zh": "李子园",
+      "py": "lǐ zǐ yuán",
+      "lat": 31.27072,
+      "lng": 121.38549,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "shanghai-west-railway-station",
+      "en": "Shanghai West Railway Station",
+      "zh": "上海西站",
+      "py": "shàng hǎi xī zhàn",
+      "lat": 31.2653,
+      "lng": 121.396,
+      "lines": [
+        "11",
+        "15"
+      ]
+    },
+    {
+      "id": "zhenru",
+      "en": "Zhenru",
+      "zh": "真如",
+      "py": "zhēn rú",
+      "lat": 31.25269,
+      "lng": 121.4026,
+      "lines": [
+        "11",
+        "14"
+      ]
+    },
+    {
+      "id": "fengqiao-road",
+      "en": "Fengqiao Road",
+      "zh": "枫桥路",
+      "py": "fēng qiáo lù",
+      "lat": 31.24434,
+      "lng": 121.40572,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "longde-road",
+      "en": "Longde Road",
+      "zh": "隆德路",
+      "py": "lóng dé lù",
+      "lat": 31.23239,
+      "lng": 121.41897,
+      "lines": [
+        "11",
+        "13"
+      ]
+    },
+    {
+      "id": "shanghai-swimming-center",
+      "en": "Shanghai Swimming Center",
+      "zh": "上海游泳馆",
+      "py": "shàng hǎi yóu yǒng guǎn",
+      "lat": 31.181389,
+      "lng": 121.436667,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "longhua",
+      "en": "Longhua",
+      "zh": "龙华",
+      "py": "lóng huá",
+      "lat": 31.174722,
+      "lng": 121.448611,
+      "lines": [
+        "11",
+        "12"
+      ]
+    },
+    {
+      "id": "yunjin-road",
+      "en": "Yunjin Road",
+      "zh": "云锦路",
+      "py": "yún jǐn lù",
+      "lat": 31.169444,
+      "lng": 121.453889,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "longyao-road",
+      "en": "Longyao Road",
+      "zh": "龙耀路",
+      "py": "lóng yào lù",
+      "lat": 31.161667,
+      "lng": 121.455278,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "sanlin",
+      "en": "Sanlin",
+      "zh": "三林",
+      "py": "sān lín",
+      "lat": 31.1454,
+      "lng": 121.507928,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "east-sanlin",
+      "en": "East Sanlin",
+      "zh": "三林东",
+      "py": "sān lín dōng",
+      "lat": 31.148615,
+      "lng": 121.51876,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "pusan-road",
+      "en": "Pusan Road",
+      "zh": "浦三路",
+      "py": "pǔ sān lù",
+      "lat": 31.152943,
+      "lng": 121.534505,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "kangheng-road",
+      "en": "Kangheng Road",
+      "zh": "康恒路",
+      "py": "kāng héng lù",
+      "lat": 31.156389,
+      "lng": 121.549167,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "yuqiao",
+      "en": "Yuqiao",
+      "zh": "御桥",
+      "py": "yù qiáo",
+      "lat": 31.16052,
+      "lng": 121.56743,
+      "lines": [
+        "11",
+        "18"
+      ]
+    },
+    {
+      "id": "luoshan-road",
+      "en": "Luoshan Road",
+      "zh": "罗山路",
+      "py": "luó shān lù",
+      "lat": 31.15556,
+      "lng": 121.58895,
+      "lines": [
+        "11",
+        "16"
+      ]
+    },
+    {
+      "id": "xiuyan-road",
+      "en": "Xiuyan Road",
+      "zh": "秀沿路",
+      "py": "xiù yán lù",
+      "lat": 31.14034,
+      "lng": 121.59421,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "kangxin-highway",
+      "en": "Kangxin Highway",
+      "zh": "康新公路",
+      "py": "kāng xīn gōng lù",
+      "lat": 31.13268,
+      "lng": 121.61313,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "disney-resort",
+      "en": "Disney Resort",
+      "zh": "迪士尼",
+      "py": "dí shì ní",
+      "lat": 31.143429,
+      "lng": 121.663737,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "huaqiao",
+      "en": "Huaqiao",
+      "zh": "花桥",
+      "py": "huā qiáo",
+      "lat": 31.3006,
+      "lng": 121.09975,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "guangming-road",
+      "en": "Guangming Road",
+      "zh": "光明路",
+      "py": "guāng míng lù",
+      "lat": 31.29808,
+      "lng": 121.11255,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "zhaofeng-road",
+      "en": "Zhaofeng Road",
+      "zh": "兆丰路",
+      "py": "zhào fēng lù",
+      "lat": 31.29088,
+      "lng": 121.14545,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "anting",
+      "en": "Anting",
+      "zh": "安亭",
+      "py": "ān tíng",
+      "lat": 31.290278,
+      "lng": 121.156944,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "shanghai-automobile-city",
+      "en": "Shanghai Automobile City",
+      "zh": "上海汽车城",
+      "py": "shàng hǎi qì chē chéng",
+      "lat": 31.287269,
+      "lng": 121.176185,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "east-changji-road",
+      "en": "East Changji Road",
+      "zh": "昌吉东路",
+      "py": "chāng jí dōng lù",
+      "lat": 31.295519,
+      "lng": 121.195935,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "shanghai-circuit",
+      "en": "Shanghai Circuit",
+      "zh": "上海赛车场",
+      "py": "shàng hǎi sài chē chǎng",
+      "lat": 31.333792,
+      "lng": 121.221605,
+      "lines": [
+        "11"
+      ]
+    },
+    {
+      "id": "qixin-road",
+      "en": "Qixin Road",
+      "zh": "七莘路",
+      "py": "qī shēn lù",
+      "lat": 31.1338,
+      "lng": 121.3584,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "hongxin-road",
+      "en": "Hongxin Road",
+      "zh": "虹莘路",
+      "py": "hóng shēn lù",
+      "lat": 31.139722,
+      "lng": 121.376111,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "gudai-road",
+      "en": "Gudai Road",
+      "zh": "顾戴路",
+      "py": "gù dài lù",
+      "lat": 31.142778,
+      "lng": 121.3875,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "donglan-road",
+      "en": "Donglan Road",
+      "zh": "东兰路",
+      "py": "dōng lán lù",
+      "lat": 31.1575,
+      "lng": 121.387222,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "hongmei-road",
+      "en": "Hongmei Road",
+      "zh": "虹梅路",
+      "py": "hóng méi lù",
+      "lat": 31.1626,
+      "lng": 121.3944,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "hongcao-road",
+      "en": "Hongcao Road",
+      "zh": "虹漕路",
+      "py": "hóng cáo lù",
+      "lat": 31.165833,
+      "lng": 121.405833,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "guilin-park",
+      "en": "Guilin Park",
+      "zh": "桂林公园",
+      "py": "guì lín gōng yuán",
+      "lat": 31.16898,
+      "lng": 121.41498,
+      "lines": [
+        "12",
+        "15"
+      ]
+    },
+    {
+      "id": "international-cruise-terminal",
+      "en": "International Cruise Terminal",
+      "zh": "国际客运中心",
+      "py": "guó jì kè yùn zhōng xīn",
+      "lat": 31.251944,
+      "lng": 121.493611,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "tilanqiao",
+      "en": "Tilanqiao",
+      "zh": "提篮桥",
+      "py": "tí lán qiáo",
+      "lat": 31.25556,
+      "lng": 121.50234,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "jiangpu-park",
+      "en": "Jiangpu Park",
+      "zh": "江浦公园",
+      "py": "jiāng pǔ gōng yuán",
+      "lat": 31.26664,
+      "lng": 121.51933,
+      "lines": [
+        "12",
+        "18"
+      ]
+    },
+    {
+      "id": "ningguo-road",
+      "en": "Ningguo Road",
+      "zh": "宁国路",
+      "py": "níng guó lù",
+      "lat": 31.27073,
+      "lng": 121.52818,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "longchang-road",
+      "en": "Longchang Road",
+      "zh": "隆昌路",
+      "py": "lóng chāng lù",
+      "lat": 31.27726,
+      "lng": 121.54039,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "aiguo-road",
+      "en": "Aiguo Road",
+      "zh": "爱国路",
+      "py": "ài guó lù",
+      "lat": 31.28197,
+      "lng": 121.54832,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "fuxing-island",
+      "en": "Fuxing Island",
+      "zh": "复兴岛",
+      "py": "fù xīng dǎo",
+      "lat": 31.282987,
+      "lng": 121.55704,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "donglu-road",
+      "en": "Donglu Road",
+      "zh": "东陆路",
+      "py": "dōng lù lù",
+      "lat": 31.28469,
+      "lng": 121.57505,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "north-yanggao-road",
+      "en": "North Yanggao Road",
+      "zh": "杨高北路",
+      "py": "yáng gāo běi lù",
+      "lat": 31.28222,
+      "lng": 121.5985,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "jinjing-road",
+      "en": "Jinjing Road",
+      "zh": "金京路",
+      "py": "jīn jīng lù",
+      "lat": 31.28199,
+      "lng": 121.61115,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "shenjiang-road",
+      "en": "Shenjiang Road",
+      "zh": "申江路",
+      "py": "shēn jiāng lù",
+      "lat": 31.282309,
+      "lng": 121.622535,
+      "lines": [
+        "12"
+      ]
+    },
+    {
+      "id": "jinyun-road",
+      "en": "Jinyun Road",
+      "zh": "金运路",
+      "py": "jīn yùn lù",
+      "lat": 31.243025,
+      "lng": 121.315,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "west-jinshajiang-road",
+      "en": "West Jinshajiang Road",
+      "zh": "金沙江西路",
+      "py": "jīn shā jiāng xī lù",
+      "lat": 31.2431,
+      "lng": 121.331,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "fengzhuang",
+      "en": "Fengzhuang",
+      "zh": "丰庄",
+      "py": "fēng zhuāng",
+      "lat": 31.243447,
+      "lng": 121.351047,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "south-qilianshan-road",
+      "en": "South Qilianshan Road",
+      "zh": "祁连山南路",
+      "py": "qí lián shān nán lù",
+      "lat": 31.23951,
+      "lng": 121.362705,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "zhenbei-road",
+      "en": "Zhenbei Road",
+      "zh": "真北路",
+      "py": "zhēn běi lù",
+      "lat": 31.23402,
+      "lng": 121.37756,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "daduhe-road",
+      "en": "Daduhe Road",
+      "zh": "大渡河路",
+      "py": "dà dù hé lù",
+      "lat": 31.23362,
+      "lng": 121.38961,
+      "lines": [
+        "13",
+        "15"
+      ]
+    },
+    {
+      "id": "wuning-road",
+      "en": "Wuning Road",
+      "zh": "武宁路",
+      "py": "wǔ níng lù",
+      "lat": 31.235833,
+      "lng": 121.425833,
+      "lines": [
+        "13",
+        "14"
+      ]
+    },
+    {
+      "id": "jiangning-road",
+      "en": "Jiangning Road",
+      "zh": "江宁路",
+      "py": "jiāng níng lù",
+      "lat": 31.246111,
+      "lng": 121.44,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "shanghai-natural-history-museum",
+      "en": "Shanghai Natural History Museum",
+      "zh": "自然博物馆",
+      "py": "zì rán bó wù guǎn",
+      "lat": 31.2382,
+      "lng": 121.4578,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "middle-huaihai-road",
+      "en": "Middle Huaihai Road",
+      "zh": "淮海中路",
+      "py": "huái hǎi zhōng lù",
+      "lat": 31.221944,
+      "lng": 121.459722,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "world-expo-museum",
+      "en": "World Expo Museum",
+      "zh": "世博会博物馆",
+      "py": "shì bó huì bó wù guǎn",
+      "lat": 31.19924,
+      "lng": 121.47711,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "shibo-avenue",
+      "en": "Shibo Avenue",
+      "zh": "世博大道",
+      "py": "shì bó dà dào",
+      "lat": 31.185,
+      "lng": 121.479167,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "huapeng-road",
+      "en": "Huapeng Road",
+      "zh": "华鹏路",
+      "py": "huá péng lù",
+      "lat": 31.178333,
+      "lng": 121.522222,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "xianan-road",
+      "en": "Xia'nan Road",
+      "zh": "下南路",
+      "py": "xià nán lù",
+      "lat": 31.181389,
+      "lng": 121.536111,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "beicai",
+      "en": "Beicai",
+      "zh": "北蔡",
+      "py": "běi cài",
+      "lat": 31.182222,
+      "lng": 121.547778,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "chenchun-road",
+      "en": "Chenchun Road",
+      "zh": "陈春路",
+      "py": "chén chūn lù",
+      "lat": 31.177,
+      "lng": 121.5538,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "lianxi-road",
+      "en": "Lianxi Road",
+      "zh": "莲溪路",
+      "py": "lián xī lù",
+      "lat": 31.171111,
+      "lng": 121.561944,
+      "lines": [
+        "13",
+        "18"
+      ]
+    },
+    {
+      "id": "middle-huaxia-road",
+      "en": "Middle Huaxia Road",
+      "zh": "华夏中路",
+      "py": "huá xià zhōng lù",
+      "lat": 31.176667,
+      "lng": 121.576667,
+      "lines": [
+        "13",
+        "16"
+      ]
+    },
+    {
+      "id": "zhongke-road",
+      "en": "Zhongke Road",
+      "zh": "中科路",
+      "py": "zhōng kē lù",
+      "lat": 31.181111,
+      "lng": 121.597778,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "xuelin-road",
+      "en": "Xuelin Road",
+      "zh": "学林路",
+      "py": "xué lín lù",
+      "lat": 31.185556,
+      "lng": 121.61,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "zhangjiang-road",
+      "en": "Zhangjiang Road",
+      "zh": "张江路",
+      "py": "zhāng jiāng lù",
+      "lat": 31.191389,
+      "lng": 121.625,
+      "lines": [
+        "13"
+      ]
+    },
+    {
+      "id": "fengbang",
+      "en": "Fengbang",
+      "zh": "封浜",
+      "py": "fēng bāng",
+      "lat": 31.269679,
+      "lng": 121.29158,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "lexiu-road",
+      "en": "Lexiu Road",
+      "zh": "乐秀路",
+      "py": "lè xiù lù",
+      "lat": 31.26727,
+      "lng": 121.309629,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "lintao-road",
+      "en": "Lintao Road",
+      "zh": "临洮路",
+      "py": "lín táo lù",
+      "lat": 31.265024,
+      "lng": 121.326354,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "jiayi-road",
+      "en": "Jiayi Road",
+      "zh": "嘉怡路",
+      "py": "jiā yí lù",
+      "lat": 31.261056,
+      "lng": 121.341472,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "dingbian-road",
+      "en": "Dingbian Road",
+      "zh": "定边路",
+      "py": "dìng biān lù",
+      "lat": 31.258135,
+      "lng": 121.356775,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "zhenxin-xincun",
+      "en": "Zhenxin Xincun",
+      "zh": "真新新村",
+      "py": "zhēn xīn xīn cūn",
+      "lat": 31.257192,
+      "lng": 121.367705,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "zhenguang-road",
+      "en": "Zhenguang Road",
+      "zh": "真光路",
+      "py": "zhēn guāng lù",
+      "lat": 31.255082,
+      "lng": 121.379835,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "tongchuan-road",
+      "en": "Tongchuan Road",
+      "zh": "铜川路",
+      "py": "tóng chuān lù",
+      "lat": 31.253415,
+      "lng": 121.392717,
+      "lines": [
+        "14",
+        "15"
+      ]
+    },
+    {
+      "id": "zhongning-road",
+      "en": "Zhongning Road",
+      "zh": "中宁路",
+      "py": "zhōng níng lù",
+      "lat": 31.247343,
+      "lng": 121.408965,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "wuding-road",
+      "en": "Wuding Road",
+      "zh": "武定路",
+      "py": "wǔ dìng lù",
+      "lat": 31.22892,
+      "lng": 121.431989,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "south-pudong-road-line-14",
+      "en": "South Pudong Road",
+      "zh": "浦东南路",
+      "py": "pǔ dōng nán lù",
+      "lat": 31.240311,
+      "lng": 121.506891,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "yuanshen-road",
+      "en": "Yuanshen Road",
+      "zh": "源深路",
+      "py": "yuán shēn lù",
+      "lat": 31.24309,
+      "lng": 121.524856,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "changyi-road",
+      "en": "Changyi Road",
+      "zh": "昌邑路",
+      "py": "chāng yì lù",
+      "lat": 31.246,
+      "lng": 121.5357,
+      "lines": [
+        "14",
+        "18"
+      ]
+    },
+    {
+      "id": "xiepu-road",
+      "en": "Xiepu Road",
+      "zh": "歇浦路",
+      "py": "xiē pǔ lù",
+      "lat": 31.252112,
+      "lng": 121.546284,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "huangyang-road",
+      "en": "Huangyang Road",
+      "zh": "黄杨路",
+      "py": "huáng yáng lù",
+      "lat": 31.236146,
+      "lng": 121.586886,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "yunshun-road",
+      "en": "Yunshun Road",
+      "zh": "云顺路",
+      "py": "yún shùn lù",
+      "lat": 31.238939,
+      "lng": 121.595389,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "pudong-football-stadium",
+      "en": "Pudong Football Stadium",
+      "zh": "浦东足球场",
+      "py": "pǔ dōng zú qiú chǎng",
+      "lat": 31.243731,
+      "lng": 121.61072,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "jinyue-road",
+      "en": "Jinyue Road",
+      "zh": "金粤路",
+      "py": "jīn yuè lù",
+      "lat": 31.244263,
+      "lng": 121.623761,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "guiqiao-road",
+      "en": "Guiqiao Road",
+      "zh": "桂桥路",
+      "py": "guì qiáo lù",
+      "lat": 31.254027,
+      "lng": 121.630789,
+      "lines": [
+        "14"
+      ]
+    },
+    {
+      "id": "jinqiu-road",
+      "en": "Jinqiu Road",
+      "zh": "锦秋路",
+      "py": "jǐn qiū lù",
+      "lat": 31.32265,
+      "lng": 121.37729,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "fengxiang-road",
+      "en": "Fengxiang Road",
+      "zh": "丰翔路",
+      "py": "fēng xiáng lù",
+      "lat": 31.3102,
+      "lng": 121.37623,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "nanda-road",
+      "en": "Nanda Road",
+      "zh": "南大路",
+      "py": "nán dà lù",
+      "lat": 31.30045,
+      "lng": 121.3756,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "qian-road",
+      "en": "Qi'an Road",
+      "zh": "祁安路",
+      "py": "qí ān lù",
+      "lat": 31.29341,
+      "lng": 121.38026,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "gulang-road",
+      "en": "Gulang Road",
+      "zh": "古浪路",
+      "py": "gǔ làng lù",
+      "lat": 31.2854,
+      "lng": 121.38743,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "east-wuwei-road",
+      "en": "East Wuwei Road",
+      "zh": "武威东路",
+      "py": "wǔ wēi dōng lù",
+      "lat": 31.2773,
+      "lng": 121.3875,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "north-meiling-road",
+      "en": "North Meiling Road",
+      "zh": "梅岭北路",
+      "py": "méi lǐng běi lù",
+      "lat": 31.24574,
+      "lng": 121.3921,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "changfeng-park",
+      "en": "Changfeng Park",
+      "zh": "长风公园",
+      "py": "cháng fēng gōng yuán",
+      "lat": 31.227681,
+      "lng": 121.3915,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "hongbaoshi-road",
+      "en": "Hongbaoshi Road",
+      "zh": "红宝石路",
+      "py": "hóng bǎo shí lù",
+      "lat": 31.2008,
+      "lng": 121.3936,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "yaohong-road",
+      "en": "Yaohong Road",
+      "zh": "姚虹路",
+      "py": "yáo hóng lù",
+      "lat": 31.19334,
+      "lng": 121.40145,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "wuzhong-road",
+      "en": "Wuzhong Road",
+      "zh": "吴中路",
+      "py": "wú zhōng lù",
+      "lat": 31.1863,
+      "lng": 121.4093,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "east-china-university-of-science-and-technology",
+      "en": "East China University of Science and Technology",
+      "zh": "华东理工大学",
+      "py": "huá dōng lǐ gōng dà xué",
+      "lat": 31.1447,
+      "lng": 121.4244,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "luoxiu-road",
+      "en": "Luoxiu Road",
+      "zh": "罗秀路",
+      "py": "luó xiù lù",
+      "lat": 31.13357,
+      "lng": 121.43126,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "zhumei-road",
+      "en": "Zhumei Road",
+      "zh": "朱梅路",
+      "py": "zhū méi lù",
+      "lat": 31.1261,
+      "lng": 121.4332,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "jinghong-road",
+      "en": "Jinghong Road",
+      "zh": "景洪路",
+      "py": "jǐng hóng lù",
+      "lat": 31.114222,
+      "lng": 121.435782,
+      "lines": [
+        "15",
+        "AL"
+      ]
+    },
+    {
+      "id": "south-hongmei-road",
+      "en": "South Hongmei Road",
+      "zh": "虹梅南路",
+      "py": "hóng méi nán lù",
+      "lat": 31.105668,
+      "lng": 121.428407,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "jingxi-road",
+      "en": "Jingxi Road",
+      "zh": "景西路",
+      "py": "jǐng xī lù",
+      "lat": 31.101683,
+      "lng": 121.414757,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "shujian-road",
+      "en": "Shujian Road",
+      "zh": "曙建路",
+      "py": "shǔ jiàn lù",
+      "lat": 31.092729,
+      "lng": 121.413081,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "shuangbai-road",
+      "en": "Shuangbai Road",
+      "zh": "双柏路",
+      "py": "shuāng bǎi lù",
+      "lat": 31.084588,
+      "lng": 121.417453,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "yuanjiang-road",
+      "en": "Yuanjiang Road",
+      "zh": "元江路",
+      "py": "yuán jiāng lù",
+      "lat": 31.065199,
+      "lng": 121.427055,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "yongde-road",
+      "en": "Yongde Road",
+      "zh": "永德路",
+      "py": "yǒng dé lù",
+      "lat": 31.040998,
+      "lng": 121.438708,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "zizhu-hi-tech-park",
+      "en": "Zizhu Hi-tech Park",
+      "zh": "紫竹高新区",
+      "py": "zǐ zhú gāo xīn qū",
+      "lat": 31.02588,
+      "lng": 121.44632,
+      "lines": [
+        "15"
+      ]
+    },
+    {
+      "id": "east-zhoupu",
+      "en": "East Zhoupu",
+      "zh": "周浦东",
+      "py": "zhōu pǔ dōng",
+      "lat": 31.11227,
+      "lng": 121.60273,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "heshahangcheng",
+      "en": "Heshahangcheng",
+      "zh": "鹤沙航城",
+      "py": "hè shā háng chéng",
+      "lat": 31.0799,
+      "lng": 121.60709,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "east-hangtou",
+      "en": "East Hangtou",
+      "zh": "航头东",
+      "py": "háng tóu dōng",
+      "lat": 31.057153,
+      "lng": 121.613229,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "xinchang",
+      "en": "Xinchang",
+      "zh": "新场",
+      "py": "xīn chǎng",
+      "lat": 31.04779,
+      "lng": 121.64484,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "wild-animal-park",
+      "en": "Wild Animal Park",
+      "zh": "野生动物园",
+      "py": "yě shēng dòng wù yuán",
+      "lat": 31.0524,
+      "lng": 121.6948,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "huinan",
+      "en": "Huinan",
+      "zh": "惠南",
+      "py": "huì nán",
+      "lat": 31.05599,
+      "lng": 121.757311,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "east-huinan",
+      "en": "East Huinan",
+      "zh": "惠南东",
+      "py": "huì nán dōng",
+      "lat": 31.028619,
+      "lng": 121.789445,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "shuyuan",
+      "en": "Shuyuan",
+      "zh": "书院",
+      "py": "shū yuàn",
+      "lat": 30.96156,
+      "lng": 121.8464,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "lingang-avenue",
+      "en": "Lingang Avenue",
+      "zh": "临港大道",
+      "py": "lín gǎng dà dào",
+      "lat": 30.92591,
+      "lng": 121.90668,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "dishui-lake",
+      "en": "Dishui Lake",
+      "zh": "滴水湖",
+      "py": "dī shuǐ hú",
+      "lat": 30.90943,
+      "lng": 121.92564,
+      "lines": [
+        "16"
+      ]
+    },
+    {
+      "id": "national-exhibition-and-convention-center-line-17",
+      "en": "National Exhibition and Convention Center",
+      "zh": "国家会展中心",
+      "py": "guó jiā huì zhǎn zhōng xīn @ 1 7",
+      "lat": 31.193497,
+      "lng": 121.288106,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "panlong-road",
+      "en": "Panlong Road",
+      "zh": "蟠龙路",
+      "py": "pán lóng lù",
+      "lat": 31.188328,
+      "lng": 121.274144,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "xuying-road",
+      "en": "Xuying Road",
+      "zh": "徐盈路",
+      "py": "xú yíng lù",
+      "lat": 31.18,
+      "lng": 121.24951,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "xujingbeicheng",
+      "en": "Xujingbeicheng",
+      "zh": "徐泾北城",
+      "py": "xú jīng běi chéng",
+      "lat": 31.17744,
+      "lng": 121.23723,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "middle-jiasong-road",
+      "en": "Middle Jiasong Road",
+      "zh": "嘉松中路",
+      "py": "jiā sōng zhōng lù",
+      "lat": 31.166139,
+      "lng": 121.219694,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "zhaoxiang",
+      "en": "Zhaoxiang",
+      "zh": "赵巷",
+      "py": "zhào xiàng",
+      "lat": 31.163167,
+      "lng": 121.1875,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "huijin-road",
+      "en": "Huijin Road",
+      "zh": "汇金路",
+      "py": "huì jīn lù",
+      "lat": 31.163139,
+      "lng": 121.148972,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "qingpu-xincheng",
+      "en": "Qingpu Xincheng",
+      "zh": "青浦新城",
+      "py": "qīng pǔ xīn chéng",
+      "lat": 31.160667,
+      "lng": 121.121139,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "caoying-road",
+      "en": "Caoying Road",
+      "zh": "漕盈路",
+      "py": "cáo yíng lù",
+      "lat": 31.162333,
+      "lng": 121.091806,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "dianshanhu-avenue",
+      "en": "Dianshanhu Avenue",
+      "zh": "淀山湖大道",
+      "py": "diàn shān hú dà dào",
+      "lat": 31.136167,
+      "lng": 121.077167,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "zhujiajiao",
+      "en": "Zhujiajiao",
+      "zh": "朱家角",
+      "py": "zhū jiā jiǎo",
+      "lat": 31.102528,
+      "lng": 121.044167,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "oriental-land",
+      "en": "Oriental Land",
+      "zh": "东方绿舟",
+      "py": "dōng fāng lǜ zhōu",
+      "lat": 31.10061,
+      "lng": 121.01515,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "xicen",
+      "en": "Xicen",
+      "zh": "西岑",
+      "py": "xī cén",
+      "lat": 31.07242,
+      "lng": 120.9596,
+      "lines": [
+        "17"
+      ]
+    },
+    {
+      "id": "hangtou",
+      "en": "Hangtou",
+      "zh": "航头",
+      "py": "háng tóu",
+      "lat": 31.037052,
+      "lng": 121.592849,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "xiasha",
+      "en": "Xiasha",
+      "zh": "下沙",
+      "py": "xià shā",
+      "lat": 31.056899,
+      "lng": 121.584772,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "hetao-road",
+      "en": "Hetao Road",
+      "zh": "鹤涛路",
+      "py": "hè tāo lù",
+      "lat": 31.074843,
+      "lng": 121.581731,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "shenmei-road",
+      "en": "Shenmei Road",
+      "zh": "沈梅路",
+      "py": "shěn méi lù",
+      "lat": 31.093584,
+      "lng": 121.576047,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "fanrong-road",
+      "en": "Fanrong Road",
+      "zh": "繁荣路",
+      "py": "fán róng lù",
+      "lat": 31.104599,
+      "lng": 121.566665,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "zhoupu",
+      "en": "Zhoupu",
+      "zh": "周浦",
+      "py": "zhōu pǔ",
+      "lat": 31.11672,
+      "lng": 121.56345,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "kangqiao",
+      "en": "Kangqiao",
+      "zh": "康桥",
+      "py": "kāng qiáo",
+      "lat": 31.13659,
+      "lng": 121.563031,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "beizhong-road",
+      "en": "Beizhong Road",
+      "zh": "北中路",
+      "py": "běi zhōng lù",
+      "lat": 31.1852,
+      "lng": 121.557,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "fangxin-road",
+      "en": "Fangxin Road",
+      "zh": "芳芯路",
+      "py": "fāng xīn lù",
+      "lat": 31.1931,
+      "lng": 121.555,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "yingchun-road",
+      "en": "Yingchun Road",
+      "zh": "迎春路",
+      "py": "yíng chūn lù",
+      "lat": 31.2232,
+      "lng": 121.5467,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "danyang-road",
+      "en": "Danyang Road",
+      "zh": "丹阳路",
+      "py": "dān yáng lù",
+      "lat": 31.255537,
+      "lng": 121.527234,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "pingliang-road",
+      "en": "Pingliang Road",
+      "zh": "平凉路",
+      "py": "píng liáng lù",
+      "lat": 31.260727,
+      "lng": 121.522424,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "fushun-road",
+      "en": "Fushun Road",
+      "zh": "抚顺路",
+      "py": "fǔ shùn lù",
+      "lat": 31.2856,
+      "lng": 121.5114,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "fudan-university",
+      "en": "Fudan University",
+      "zh": "复旦大学",
+      "py": "fù dàn dà xué",
+      "lat": 31.297878,
+      "lng": 121.495765,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "shanghai-university-of-finance-and-economics",
+      "en": "Shanghai University of Finance and Economics",
+      "zh": "上海财经大学",
+      "py": "shàng hǎi cái jīng dà xué",
+      "lat": 31.309971,
+      "lng": 121.491872,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "yingao-road",
+      "en": "Yingao Road",
+      "zh": "殷高路",
+      "py": "yīn gāo lù",
+      "lat": 31.32255,
+      "lng": 121.491,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "tongnan-road",
+      "en": "Tongnan Road",
+      "zh": "通南路",
+      "py": "tōng nán lù",
+      "lat": 31.339515,
+      "lng": 121.475261,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "west-changjiang-road",
+      "en": "West Changjiang Road",
+      "zh": "长江西路",
+      "py": "cháng jiāng xī lù",
+      "lat": 31.348126,
+      "lng": 121.470519,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "aihui-road",
+      "en": "Aihui Road",
+      "zh": "爱辉路",
+      "py": "ài huī lù",
+      "lat": 31.346018,
+      "lng": 121.444615,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "kangwen-road",
+      "en": "Kangwen Road",
+      "zh": "康文路",
+      "py": "kāng wén lù",
+      "lat": 31.337395,
+      "lng": 121.415899,
+      "lines": [
+        "18"
+      ]
+    },
+    {
+      "id": "sanlu-highway",
+      "en": "Sanlu Highway",
+      "zh": "三鲁公路",
+      "py": "sān lǔ gōng lù",
+      "lat": 31.058293,
+      "lng": 121.522973,
+      "lines": [
+        "PJ"
+      ]
+    },
+    {
+      "id": "minrui-road",
+      "en": "Minrui Road",
+      "zh": "闵瑞路",
+      "py": "mǐn ruì lù",
+      "lat": 31.050171,
+      "lng": 121.526065,
+      "lines": [
+        "PJ"
+      ]
+    },
+    {
+      "id": "puhang-road",
+      "en": "Puhang Road",
+      "zh": "浦航路",
+      "py": "pǔ háng lù",
+      "lat": 31.043167,
+      "lng": 121.526322,
+      "lines": [
+        "PJ"
+      ]
+    },
+    {
+      "id": "dongchengyi-road",
+      "en": "Dongchengyi Road",
+      "zh": "东城一路",
+      "py": "dōng chéng yí lù",
+      "lat": 31.032622,
+      "lng": 121.527759,
+      "lines": [
+        "PJ"
+      ]
+    },
+    {
+      "id": "huizhen-road",
+      "en": "Huizhen Road",
+      "zh": "汇臻路",
+      "py": "huì zhēn lù",
+      "lat": 31.027495,
+      "lng": 121.52093,
+      "lines": [
+        "PJ"
+      ]
+    },
+    {
+      "id": "south-sanlin",
+      "en": "South Sanlin",
+      "zh": "三林南",
+      "py": "sān lín nán",
+      "lat": 31.12818,
+      "lng": 121.48336,
+      "lines": [
+        "AL"
+      ]
+    },
+    {
+      "id": "east-kangqiao",
+      "en": "East Kangqiao",
+      "zh": "康桥东",
+      "py": "kāng qiáo dōng",
+      "lat": 31.149056,
+      "lng": 121.610694,
+      "lines": [
+        "AL"
+      ]
+    },
+    {
+      "id": "shanghai-international-resort",
+      "en": "Shanghai International Resort",
+      "zh": "上海国际旅游度假区",
+      "py": "shàng hǎi guó jì lǚ yóu dù jià qū",
+      "lat": 31.15852,
+      "lng": 121.67591,
+      "lines": [
+        "AL"
+      ]
+    }
+  ],
+  "transfers": [
+    {
+      "station": "shanghai-railway-station",
+      "lines": [
+        "1",
+        "3"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "shanghai-railway-station",
+      "lines": [
+        "1",
+        "4"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "west-nanjing-road",
+      "lines": [
+        "2",
+        "12"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "west-nanjing-road",
+      "lines": [
+        "2",
+        "13"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "caoyang-road",
+      "lines": [
+        "14",
+        "3"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "caoyang-road",
+      "lines": [
+        "14",
+        "4"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "caoyang-road",
+      "lines": [
+        "14",
+        "11"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "changqing-road",
+      "lines": [
+        "7",
+        "13"
+      ],
+      "minutes": 10,
+      "note": "Out-of-station transfer: leave through the gates and re-enter within 30 minutes. With a transport card, ride code or the Metro app the fare carries on; a single-journey ticket does not, so buy a new one."
+    },
+    {
+      "station": "west-nanjing-road",
+      "lines": [
+        "12",
+        "13"
+      ],
+      "minutes": 5,
+      "note": "Lines 12 and 13 have no connection here; change at Hanzhong Road.",
+      "blocked": true
+    },
+    {
+      "station": "hongqiao-road",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "west-yanan-road",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "zhongshan-park",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "jinshajiang-road",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "caoyang-road",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "zhenping-road",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "zhongtan-road",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "shanghai-railway-station",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "baoshan-road",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "minutes": 2,
+      "note": "Lines 3 and 4 share these platforms."
+    },
+    {
+      "station": "longyang-road",
+      "lines": [
+        "2",
+        "M"
+      ],
+      "minutes": 10,
+      "note": "The Maglev has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "longyang-road",
+      "lines": [
+        "7",
+        "M"
+      ],
+      "minutes": 10,
+      "note": "The Maglev has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "longyang-road",
+      "lines": [
+        "16",
+        "M"
+      ],
+      "minutes": 10,
+      "note": "The Maglev has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "longyang-road",
+      "lines": [
+        "18",
+        "M"
+      ],
+      "minutes": 10,
+      "note": "The Maglev has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "pudong-airport-terminal-1-and-2",
+      "lines": [
+        "2",
+        "M"
+      ],
+      "minutes": 10,
+      "note": "The Maglev has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "pudong-airport-terminal-1-and-2",
+      "lines": [
+        "2",
+        "AL"
+      ],
+      "minutes": 10,
+      "note": "The Airport Link Line has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "pudong-airport-terminal-1-and-2",
+      "lines": [
+        "M",
+        "AL"
+      ],
+      "minutes": 10,
+      "note": "The Airport Link Line has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "hongqiao-airport-terminal-2",
+      "lines": [
+        "2",
+        "AL"
+      ],
+      "minutes": 10,
+      "note": "The Airport Link Line has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "hongqiao-airport-terminal-2",
+      "lines": [
+        "10",
+        "AL"
+      ],
+      "minutes": 10,
+      "note": "The Airport Link Line has its own gates and fare: leave one set of gates and pay again at the other."
+    },
+    {
+      "station": "zhongchun-road",
+      "lines": [
+        "9",
+        "AL"
+      ],
+      "minutes": 6,
+      "note": "In-station transfer; the fare carries on."
+    },
+    {
+      "station": "jinghong-road",
+      "lines": [
+        "15",
+        "AL"
+      ],
+      "minutes": 6,
+      "note": "In-station transfer; the fare carries on."
+    }
+  ],
+  "links": [],
+  "notes": [
+    "Station coordinates are WGS-84 station centres, not exits.",
+    "Segment minutes and fares are estimates; the gate charges the exact fare."
+  ],
+  "items": [
+    {
+      "id": "1",
+      "en": "Line 1",
+      "zh": "1号线",
+      "color": "#E3002B",
+      "text": "#ffffff",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "xinzhuang",
+            "waihuan-road",
+            "lianhua-road",
+            "jinjiang-park",
+            "shanghai-south-railway-station",
+            "caobao-road",
+            "shanghai-indoor-stadium",
+            "xujiahui",
+            "hengshan-road",
+            "changshu-road",
+            "south-shaanxi-road",
+            "south-huangpi-road",
+            "peoples-square",
+            "xinzha-road",
+            "hanzhong-road",
+            "shanghai-railway-station",
+            "north-zhongshan-road",
+            "yanchang-road",
+            "shanghai-circus-world",
+            "wenshui-road",
+            "pengpu-xincun",
+            "gongkang-road",
+            "tonghe-xincun",
+            "hulan-road",
+            "gongfu-xincun",
+            "baoan-highway",
+            "west-youyi-road",
+            "fujin-road"
+          ],
+          "minutes": [
+            3,
+            2,
+            3,
+            3,
+            3,
+            2,
+            2,
+            3,
+            2,
+            1,
+            2,
+            3,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            3,
+            2.49,
+            2.31,
+            2.97,
+            2.85,
+            2.5,
+            3
+          ],
+          "km": [
+            1.31,
+            1.46,
+            1.63,
+            2.09,
+            1.6,
+            1.57,
+            1.2,
+            1.58,
+            1.09,
+            0.93,
+            1.32,
+            1.57,
+            0.95,
+            0.99,
+            0.82,
+            1.37,
+            1.52,
+            0.93,
+            1.44,
+            1.57,
+            1.39,
+            1.46,
+            1.29,
+            1.9,
+            1.79,
+            1.46,
+            1.27
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Some off-peak trains terminate at Shanghai Railway Station; wait for the next train to Fujin Road.",
+          "passes": "shanghai-railway-station",
+          "then": "north-zhongshan-road"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-1/"
+    },
+    {
+      "id": "2",
+      "en": "Line 2",
+      "zh": "2号线",
+      "color": "#82BF25",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "panxiang-road",
+            "national-exhibition-and-convention-center-line-2",
+            "hongqiao-railway-station",
+            "hongqiao-airport-terminal-2",
+            "songhong-road",
+            "beixinjing",
+            "weining-road",
+            "loushanguan-road",
+            "zhongshan-park",
+            "jiangsu-road",
+            "jingan-temple",
+            "west-nanjing-road",
+            "peoples-square",
+            "east-nanjing-road",
+            "lujiazui",
+            "south-pudong-road-line-2",
+            "century-avenue",
+            "shanghai-science-and-technology-museum",
+            "century-park",
+            "longyang-road",
+            "zhangjiang-high-technology-park",
+            "jinke-road",
+            "guanglan-road",
+            "tangzhen",
+            "middle-chuangxin-road",
+            "east-huaxia-road",
+            "chuansha",
+            "lingkong-road",
+            "yuandong-avenue",
+            "haitiansan-road",
+            "pudong-airport-terminal-1-and-2"
+          ],
+          "minutes": [
+            2.84,
+            3,
+            2,
+            7,
+            3,
+            2,
+            3,
+            3,
+            3,
+            3,
+            2,
+            3,
+            2,
+            3,
+            3,
+            2,
+            3,
+            3,
+            2,
+            4,
+            2,
+            4,
+            5,
+            3,
+            3,
+            5,
+            3,
+            5,
+            7,
+            3
+          ],
+          "km": [
+            1.78,
+            2.13,
+            0.51,
+            5.69,
+            1.4,
+            1.26,
+            1.6,
+            1.68,
+            1.43,
+            1.13,
+            1.82,
+            1.21,
+            1.14,
+            1.86,
+            1.3,
+            1.27,
+            1.81,
+            1.43,
+            1.09,
+            2.67,
+            1.64,
+            1.95,
+            3.38,
+            1.76,
+            2.13,
+            3.17,
+            1.9,
+            3.11,
+            5.91,
+            2.33
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "On weekday peaks some trains terminate at Guanglan Road. For the airport, take a train signed Pudong Airport Terminal 1&2, or change at Guanglan Road.",
+          "passes": "guanglan-road",
+          "then": "tangzhen"
+        },
+        {
+          "text": "On weekday peaks some westbound trains terminate at Songhong Road; take a train signed Panxiang Road, or change there.",
+          "passes": "songhong-road",
+          "then": "hongqiao-airport-terminal-2"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-2/"
+    },
+    {
+      "id": "3",
+      "en": "Line 3",
+      "zh": "3号线",
+      "color": "#FCD600",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "shanghai-south-railway-station",
+            "shilong-road",
+            "longcao-road",
+            "caoxi-road",
+            "yishan-road",
+            "hongqiao-road",
+            "west-yanan-road",
+            "zhongshan-park",
+            "jinshajiang-road",
+            "caoyang-road",
+            "zhenping-road",
+            "zhongtan-road",
+            "shanghai-railway-station",
+            "baoshan-road",
+            "dongbaoxing-road",
+            "hongkou-football-stadium",
+            "chifeng-road",
+            "dabaishu",
+            "jiangwan-town",
+            "west-yingao-road",
+            "south-changjiang-road",
+            "songfa-road",
+            "zhanghuabang",
+            "songbin-road",
+            "shuichan-road",
+            "baoyang-road",
+            "youyi-road",
+            "tieli-road",
+            "north-jiangyang-road"
+          ],
+          "minutes": [
+            3,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            3,
+            3,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            3
+          ],
+          "km": [
+            1.25,
+            1.48,
+            1.03,
+            1.54,
+            1.37,
+            1.41,
+            0.96,
+            1.66,
+            0.9,
+            1.4,
+            1.44,
+            1.72,
+            2.03,
+            1.11,
+            1.28,
+            1.15,
+            0.91,
+            1.79,
+            1.6,
+            1.51,
+            1.69,
+            1.52,
+            1.55,
+            1.24,
+            1.75,
+            1.03,
+            1.7,
+            2.1
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-3/"
+    },
+    {
+      "id": "4",
+      "en": "Line 4",
+      "zh": "4号线",
+      "color": "#461D84",
+      "text": "#ffffff",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": true,
+      "loopLabels": {
+        "clockwise": "内圈 inner loop",
+        "anticlockwise": "外圈 outer loop"
+      },
+      "branches": [
+        {
+          "stations": [
+            "yishan-road",
+            "hongqiao-road",
+            "west-yanan-road",
+            "zhongshan-park",
+            "jinshajiang-road",
+            "caoyang-road",
+            "zhenping-road",
+            "zhongtan-road",
+            "shanghai-railway-station",
+            "baoshan-road",
+            "hailun-road",
+            "linping-road",
+            "dalian-road",
+            "yangshupu-road",
+            "pudong-avenue",
+            "century-avenue",
+            "xiangcheng-road",
+            "lancun-road",
+            "tangqiao",
+            "nanpu-bridge",
+            "south-xizang-road",
+            "luban-road",
+            "damuqiao-road",
+            "dongan-road",
+            "shanghai-stadium",
+            "shanghai-indoor-stadium"
+          ],
+          "minutes": [
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            4,
+            3,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2.22
+          ],
+          "km": [
+            1.37,
+            1.41,
+            0.96,
+            1.66,
+            0.9,
+            1.4,
+            1.44,
+            1.72,
+            2.03,
+            1.51,
+            1.07,
+            1.4,
+            0.72,
+            1.44,
+            1.43,
+            0.85,
+            1.34,
+            1.21,
+            2.13,
+            1.22,
+            1.47,
+            1.19,
+            0.62,
+            1.51,
+            0.67,
+            1.21
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-4/"
+    },
+    {
+      "id": "5",
+      "en": "Line 5",
+      "zh": "5号线",
+      "color": "#944D9A",
+      "text": "#ffffff",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "xinzhuang",
+            "chunshen-road",
+            "yindu-road",
+            "zhuanqiao",
+            "beiqiao",
+            "jianchuan-road",
+            "dongchuan-road",
+            "jiangchuan-road",
+            "xidu",
+            "xiaotang",
+            "fengpu-avenue",
+            "huanchengdong-road",
+            "wangyuan-road",
+            "jinhai-lake",
+            "fengxian-xincheng"
+          ],
+          "minutes": [
+            3,
+            2,
+            4,
+            3,
+            4,
+            2,
+            2.65,
+            3.3,
+            4.16,
+            4.2,
+            3.11,
+            3.14,
+            2.02,
+            2.62
+          ],
+          "km": [
+            1.58,
+            1.08,
+            2.7,
+            2.55,
+            2.17,
+            0.97,
+            1.61,
+            2.2,
+            2.99,
+            3.02,
+            2.03,
+            2.05,
+            1.02,
+            1.58
+          ]
+        },
+        {
+          "stations": [
+            "xinzhuang",
+            "chunshen-road",
+            "yindu-road",
+            "zhuanqiao",
+            "beiqiao",
+            "jianchuan-road",
+            "dongchuan-road",
+            "jinping-road",
+            "huaning-road",
+            "wenjing-road",
+            "minhang-development-zone"
+          ],
+          "minutes": [
+            3,
+            2,
+            4,
+            3,
+            4,
+            2,
+            2,
+            3,
+            2,
+            3
+          ],
+          "km": [
+            1.58,
+            1.08,
+            2.7,
+            2.55,
+            2.17,
+            0.97,
+            1.47,
+            1.48,
+            1.45,
+            1.1
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Line 5 splits at Dongchuan Road; only trains signed Fengxian Xincheng go this way.",
+          "passes": "dongchuan-road",
+          "then": "jiangchuan-road"
+        },
+        {
+          "text": "Line 5 splits at Dongchuan Road; only trains signed Minhang Development Zone go this way.",
+          "passes": "dongchuan-road",
+          "then": "jinping-road"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-5/"
+    },
+    {
+      "id": "6",
+      "en": "Line 6",
+      "zh": "6号线",
+      "color": "#E30067",
+      "text": "#ffffff",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "gangcheng-road",
+            "north-waigaoqiao-free-trade-zone",
+            "hangjin-road",
+            "south-waigaoqiao-free-trade-zone",
+            "zhouhai-road",
+            "wuzhou-avenue",
+            "dongjing-road",
+            "jufeng-road",
+            "wulian-road",
+            "boxing-road",
+            "jinqiao-road",
+            "yunshan-road",
+            "deping-road",
+            "beiyangjing-road",
+            "minsheng-road",
+            "yuanshen-sports-center",
+            "century-avenue",
+            "pudian-road",
+            "lancun-road",
+            "shanghai-childrens-medical-center",
+            "linyi-xincun",
+            "west-gaoke-road",
+            "dongming-road",
+            "gaoqing-road",
+            "west-huaxia-road",
+            "shangnan-road",
+            "south-lingyan-road",
+            "oriental-sports-center"
+          ],
+          "minutes": [
+            3,
+            2.75,
+            2.93,
+            2.82,
+            2.19,
+            3,
+            2,
+            2.03,
+            2.06,
+            1.93,
+            3,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            3,
+            2,
+            3
+          ],
+          "km": [
+            1.62,
+            1.69,
+            1.86,
+            1.76,
+            1.19,
+            1.32,
+            1.11,
+            1.04,
+            1.06,
+            0.94,
+            1.13,
+            1.03,
+            1.34,
+            0.89,
+            0.87,
+            0.93,
+            1.07,
+            0.93,
+            0.99,
+            1.34,
+            1.11,
+            1.45,
+            1.57,
+            1.4,
+            0.8,
+            1.08,
+            1.54
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-6/"
+    },
+    {
+      "id": "7",
+      "en": "Line 7",
+      "zh": "7号线",
+      "color": "#ED6F00",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "meilan-lake",
+            "luonan-xincun",
+            "panguang-road",
+            "liuhang",
+            "gucun-park",
+            "qihua-road",
+            "shanghai-university",
+            "nanchen-road",
+            "shangda-road",
+            "changzhong-road",
+            "dachang-town",
+            "xingzhi-road",
+            "dahuasan-road",
+            "xincun-road",
+            "langao-road",
+            "zhenping-road",
+            "changshou-road",
+            "changping-road",
+            "jingan-temple",
+            "changshu-road",
+            "zhaojiabang-road",
+            "dongan-road",
+            "middle-longhua-road",
+            "houtan",
+            "changqing-road",
+            "yaohua-road",
+            "yuntai-road",
+            "west-gaoke-road",
+            "south-yanggao-road",
+            "jinxiu-road",
+            "fanghua-road",
+            "longyang-road",
+            "huamu-road"
+          ],
+          "minutes": [
+            2.86,
+            4.28,
+            2.05,
+            3,
+            4,
+            3,
+            2,
+            3,
+            2.36,
+            2.28,
+            2,
+            2.2,
+            2.31,
+            2,
+            3,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            4,
+            2,
+            2,
+            2,
+            3,
+            2,
+            3,
+            3,
+            3,
+            3
+          ],
+          "km": [
+            1.8,
+            3.1,
+            1.06,
+            1.72,
+            2.74,
+            1.68,
+            0.95,
+            1.42,
+            1.34,
+            1.26,
+            1.04,
+            1.19,
+            1.3,
+            0.81,
+            1.53,
+            1.03,
+            0.75,
+            1.38,
+            1.09,
+            1.66,
+            0.96,
+            0.75,
+            2.21,
+            1.28,
+            0.94,
+            0.73,
+            0.97,
+            1.48,
+            1.44,
+            1.45,
+            1.69,
+            1.14
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "At peak times some trains terminate at Qihua Road.",
+          "passes": "qihua-road",
+          "then": "gucun-park"
+        },
+        {
+          "text": "At peak times some trains terminate at South Yanggao Road.",
+          "passes": "south-yanggao-road",
+          "then": "jinxiu-road"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-7/"
+    },
+    {
+      "id": "8",
+      "en": "Line 8",
+      "zh": "8号线",
+      "color": "#0094D8",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "shiguang-road",
+            "nenjiang-road",
+            "xiangyin-road",
+            "huangxing-park",
+            "middle-yanji-road",
+            "huangxing-road",
+            "jiangpu-road",
+            "anshan-xincun",
+            "siping-road",
+            "quyang-road",
+            "hongkou-football-stadium",
+            "north-xizang-road",
+            "zhongxing-road",
+            "qufu-road",
+            "peoples-square",
+            "dashijie",
+            "laoximen",
+            "lujiabang-road",
+            "south-xizang-road",
+            "china-art-museum",
+            "yaohua-road",
+            "chengshan-road",
+            "yangsi",
+            "oriental-sports-center",
+            "lingzhao-xincun",
+            "luheng-road",
+            "pujiang-town",
+            "jiangyue-road",
+            "lianhang-road",
+            "shendu-highway"
+          ],
+          "minutes": [
+            2,
+            3,
+            2,
+            2,
+            2,
+            3,
+            2,
+            1,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            2,
+            3,
+            4,
+            3,
+            4,
+            2,
+            3,
+            2
+          ],
+          "km": [
+            0.88,
+            1.07,
+            1.04,
+            0.85,
+            1.41,
+            1.04,
+            0.88,
+            0.81,
+            1.07,
+            1.47,
+            1.27,
+            1.23,
+            1.19,
+            1.18,
+            0.74,
+            0.96,
+            0.85,
+            1.12,
+            2.11,
+            0.9,
+            0.9,
+            1.13,
+            1.67,
+            1.83,
+            2.57,
+            2.61,
+            1.39,
+            1.2,
+            1.36
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-8/"
+    },
+    {
+      "id": "9",
+      "en": "Line 9",
+      "zh": "9号线",
+      "color": "#87CAED",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "shanghai-songjiang-railway-station",
+            "zuibaichi-park",
+            "songjiang-sports-center",
+            "songjiang-xincheng",
+            "songjiang-university-town",
+            "dongjing",
+            "sheshan",
+            "sijing",
+            "jiuting",
+            "zhongchun-road",
+            "qibao",
+            "xingzhong-road",
+            "hechuan-road",
+            "caohejing-hi-tech-park",
+            "guilin-road",
+            "yishan-road",
+            "xujiahui",
+            "zhaojiabang-road",
+            "jiashan-road",
+            "dapuqiao",
+            "madang-road",
+            "lujiabang-road",
+            "xiaonanmen",
+            "shangcheng-road",
+            "century-avenue",
+            "middle-yanggao-road",
+            "fangdian-road",
+            "lantian-road",
+            "taierzhuang-road",
+            "jinqiao",
+            "jinji-road",
+            "jinhai-road",
+            "gutang-road",
+            "minlei-road",
+            "caolu"
+          ],
+          "minutes": [
+            2.8,
+            3,
+            3,
+            3,
+            5,
+            3,
+            4,
+            7,
+            3,
+            3,
+            3,
+            3,
+            2,
+            3,
+            3,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            4,
+            2,
+            3,
+            2,
+            3,
+            4,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2
+          ],
+          "km": [
+            1.74,
+            1.74,
+            1.62,
+            2.6,
+            3.38,
+            2.21,
+            3.87,
+            6.24,
+            2.27,
+            1.3,
+            1.88,
+            1.86,
+            1.33,
+            2.03,
+            1.69,
+            1.51,
+            1.38,
+            1.07,
+            0.87,
+            0.84,
+            0.95,
+            1.47,
+            2.4,
+            0.98,
+            2.44,
+            1.06,
+            2.12,
+            2.31,
+            1.54,
+            1.7,
+            1.02,
+            1.72,
+            1.12,
+            1.51
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "At peak times some eastbound trains terminate at Middle Yanggao Road or Jinji Road.",
+          "passes": "middle-yanggao-road",
+          "then": "fangdian-road"
+        },
+        {
+          "text": "At peak times some westbound trains terminate at Sheshan.",
+          "passes": "sheshan",
+          "then": "dongjing"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-9/"
+    },
+    {
+      "id": "10",
+      "en": "Line 10",
+      "zh": "10号线",
+      "color": "#C6AFD4",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "hongqiao-railway-station",
+            "hongqiao-airport-terminal-2",
+            "hongqiao-airport-terminal-1",
+            "shanghai-zoo",
+            "longxi-road",
+            "shuicheng-road",
+            "yili-road",
+            "songyuan-road",
+            "hongqiao-road",
+            "jiao-tong-university",
+            "shanghai-library",
+            "south-shaanxi-road",
+            "xintiandi",
+            "laoximen",
+            "yuyuan-garden",
+            "east-nanjing-road",
+            "tiantong-road",
+            "north-sichuan-road",
+            "hailun-road",
+            "youdian-xincun",
+            "siping-road",
+            "tongji-university",
+            "guoquan-road",
+            "wujiaochang",
+            "jiangwan-stadium",
+            "sanmen-road",
+            "east-yingao-road",
+            "xinjiangwancheng",
+            "guofan-road",
+            "shuangjiang-road",
+            "west-gaoqiao",
+            "gaoqiao",
+            "gangcheng-road",
+            "jilong-road"
+          ],
+          "minutes": [
+            2,
+            3,
+            3,
+            2.35,
+            2.43,
+            2.3,
+            1.88,
+            1.91,
+            2.61,
+            2.27,
+            2.92,
+            2.78,
+            1.88,
+            2.19,
+            2.27,
+            1.73,
+            1.98,
+            2.07,
+            2.25,
+            2.1,
+            2.06,
+            1.91,
+            2.13,
+            1.62,
+            2.4,
+            2.04,
+            1.79,
+            2.6,
+            4.45,
+            2.05,
+            2.46,
+            2.19,
+            2.74
+          ],
+          "km": [
+            0.56,
+            1.93,
+            1.96,
+            1.33,
+            1.41,
+            1.28,
+            0.9,
+            0.93,
+            1.56,
+            1.26,
+            1.85,
+            1.72,
+            0.9,
+            1.18,
+            1.25,
+            0.76,
+            0.99,
+            1.08,
+            1.24,
+            1.1,
+            1.06,
+            0.93,
+            1.12,
+            0.66,
+            1.38,
+            1.04,
+            0.82,
+            1.55,
+            3.25,
+            1.06,
+            1.43,
+            1.19,
+            1.69
+          ]
+        },
+        {
+          "stations": [
+            "hangzhong-road",
+            "ziteng-road",
+            "longbai-xincun",
+            "longxi-road",
+            "shuicheng-road",
+            "yili-road",
+            "songyuan-road",
+            "hongqiao-road",
+            "jiao-tong-university",
+            "shanghai-library",
+            "south-shaanxi-road",
+            "xintiandi",
+            "laoximen",
+            "yuyuan-garden",
+            "east-nanjing-road",
+            "tiantong-road",
+            "north-sichuan-road",
+            "hailun-road",
+            "youdian-xincun",
+            "siping-road",
+            "tongji-university",
+            "guoquan-road",
+            "wujiaochang",
+            "jiangwan-stadium",
+            "sanmen-road",
+            "east-yingao-road",
+            "xinjiangwancheng"
+          ],
+          "minutes": [
+            2.15,
+            2.22,
+            3.36,
+            2.43,
+            2.3,
+            1.88,
+            1.91,
+            2.61,
+            2.27,
+            2.92,
+            2.78,
+            1.88,
+            2.19,
+            2.27,
+            1.73,
+            1.98,
+            2.07,
+            2.25,
+            2.1,
+            2.06,
+            1.91,
+            2.13,
+            1.62,
+            2.4,
+            2.04,
+            1.79
+          ],
+          "km": [
+            1.15,
+            1.21,
+            2.26,
+            1.41,
+            1.28,
+            0.9,
+            0.93,
+            1.56,
+            1.26,
+            1.85,
+            1.72,
+            0.9,
+            1.18,
+            1.25,
+            0.76,
+            0.99,
+            1.08,
+            1.24,
+            1.1,
+            1.06,
+            0.93,
+            1.12,
+            0.66,
+            1.38,
+            1.04,
+            0.82
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Many trains terminate at Xinjiangwancheng; beyond it, take a train signed Jilong Road.",
+          "passes": "xinjiangwancheng",
+          "then": "guofan-road"
+        },
+        {
+          "text": "Line 10 splits at Longxi Road; only trains signed Hangzhong Road go this way, about every 7 to 12 minutes.",
+          "passes": "longxi-road",
+          "then": "longbai-xincun"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-10/"
+    },
+    {
+      "id": "11",
+      "en": "Line 11",
+      "zh": "11号线",
+      "color": "#871C2B",
+      "text": "#ffffff",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "north-jiading",
+            "west-jiading",
+            "baiyin-road",
+            "jiading-xincheng",
+            "malu",
+            "chenxiang-highway",
+            "nanxiang",
+            "taopu-xincun",
+            "wuwei-road",
+            "qilianshan-road",
+            "liziyuan",
+            "shanghai-west-railway-station",
+            "zhenru",
+            "fengqiao-road",
+            "caoyang-road",
+            "longde-road",
+            "jiangsu-road",
+            "jiao-tong-university",
+            "xujiahui",
+            "shanghai-swimming-center",
+            "longhua",
+            "yunjin-road",
+            "longyao-road",
+            "oriental-sports-center",
+            "sanlin",
+            "east-sanlin",
+            "pusan-road",
+            "kangheng-road",
+            "yuqiao",
+            "luoshan-road",
+            "xiuyan-road",
+            "kangxin-highway",
+            "disney-resort"
+          ],
+          "minutes": [
+            3,
+            4,
+            2,
+            4,
+            4,
+            3,
+            4,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            3,
+            3,
+            2,
+            2,
+            3,
+            5,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            5
+          ],
+          "km": [
+            1.94,
+            3.29,
+            1.89,
+            2.9,
+            3.4,
+            2.36,
+            3.13,
+            1.59,
+            1.32,
+            1.35,
+            1.45,
+            1.35,
+            1.05,
+            0.81,
+            0.98,
+            1.35,
+            2.08,
+            0.88,
+            1.85,
+            1.39,
+            1.01,
+            0.76,
+            2.14,
+            3.13,
+            1.21,
+            1.58,
+            1.46,
+            1.73,
+            2.51,
+            1.78,
+            2.32,
+            5.08
+          ]
+        },
+        {
+          "stations": [
+            "huaqiao",
+            "guangming-road",
+            "zhaofeng-road",
+            "anting",
+            "shanghai-automobile-city",
+            "east-changji-road",
+            "shanghai-circuit",
+            "jiading-xincheng",
+            "malu",
+            "chenxiang-highway",
+            "nanxiang",
+            "taopu-xincun",
+            "wuwei-road",
+            "qilianshan-road",
+            "liziyuan",
+            "shanghai-west-railway-station",
+            "zhenru",
+            "fengqiao-road",
+            "caoyang-road",
+            "longde-road",
+            "jiangsu-road",
+            "jiao-tong-university",
+            "xujiahui",
+            "shanghai-swimming-center",
+            "longhua",
+            "yunjin-road",
+            "longyao-road",
+            "oriental-sports-center",
+            "sanlin",
+            "east-sanlin",
+            "pusan-road",
+            "kangheng-road",
+            "yuqiao",
+            "luoshan-road",
+            "xiuyan-road",
+            "kangxin-highway",
+            "disney-resort"
+          ],
+          "minutes": [
+            2.4,
+            4.77,
+            2.21,
+            3.13,
+            3.41,
+            6.79,
+            4.14,
+            4,
+            4,
+            3,
+            4,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            3,
+            3,
+            2,
+            2,
+            3,
+            5,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            5
+          ],
+          "km": [
+            1.37,
+            3.55,
+            1.2,
+            2.04,
+            2.3,
+            5.4,
+            2.97,
+            2.9,
+            3.4,
+            2.36,
+            3.13,
+            1.59,
+            1.32,
+            1.35,
+            1.45,
+            1.35,
+            1.05,
+            0.81,
+            0.98,
+            1.35,
+            2.08,
+            0.88,
+            1.85,
+            1.39,
+            1.01,
+            0.76,
+            2.14,
+            3.13,
+            1.21,
+            1.58,
+            1.46,
+            1.73,
+            2.51,
+            1.78,
+            2.32,
+            5.08
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Line 11 splits at Jiading Xincheng; only trains signed Huaqiao go this way. Huaqiao, Guangming Road and Zhaofeng Road are in Kunshan, Jiangsu.",
+          "passes": "jiading-xincheng",
+          "then": "shanghai-circuit"
+        },
+        {
+          "text": "Line 11 splits at Jiading Xincheng; only trains signed North Jiading go this way.",
+          "passes": "jiading-xincheng",
+          "then": "baiyin-road"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-11/"
+    },
+    {
+      "id": "12",
+      "en": "Line 12",
+      "zh": "12号线",
+      "color": "#007B61",
+      "text": "#ffffff",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "qixin-road",
+            "hongxin-road",
+            "gudai-road",
+            "donglan-road",
+            "hongmei-road",
+            "hongcao-road",
+            "guilin-park",
+            "caobao-road",
+            "longcao-road",
+            "longhua",
+            "middle-longhua-road",
+            "damuqiao-road",
+            "jiashan-road",
+            "south-shaanxi-road",
+            "west-nanjing-road",
+            "hanzhong-road",
+            "qufu-road",
+            "tiantong-road",
+            "international-cruise-terminal",
+            "tilanqiao",
+            "dalian-road",
+            "jiangpu-park",
+            "ningguo-road",
+            "longchang-road",
+            "aiguo-road",
+            "fuxing-island",
+            "donglu-road",
+            "jufeng-road",
+            "north-yanggao-road",
+            "jinjing-road",
+            "shenjiang-road",
+            "jinhai-road"
+          ],
+          "minutes": [
+            4,
+            2,
+            2.86,
+            1.97,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            3,
+            3,
+            3,
+            2,
+            4,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            2,
+            3,
+            3,
+            3,
+            2.34,
+            2.2,
+            5
+          ],
+          "km": [
+            1.73,
+            1.23,
+            1.8,
+            0.98,
+            1.42,
+            0.83,
+            1.55,
+            0.84,
+            1.04,
+            1.35,
+            1.57,
+            1.01,
+            1.49,
+            1.4,
+            1.48,
+            1.24,
+            1.04,
+            1.69,
+            0.98,
+            0.79,
+            1.29,
+            0.91,
+            1.42,
+            0.92,
+            0.82,
+            1.7,
+            1.09,
+            1.27,
+            1.32,
+            1.19,
+            2.53
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-12/"
+    },
+    {
+      "id": "13",
+      "en": "Line 13",
+      "zh": "13号线",
+      "color": "#E999C0",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "jinyun-road",
+            "west-jinshajiang-road",
+            "fengzhuang",
+            "south-qilianshan-road",
+            "zhenbei-road",
+            "daduhe-road",
+            "jinshajiang-road",
+            "longde-road",
+            "wuning-road",
+            "changshou-road",
+            "jiangning-road",
+            "hanzhong-road",
+            "shanghai-natural-history-museum",
+            "west-nanjing-road",
+            "middle-huaihai-road",
+            "xintiandi",
+            "madang-road",
+            "world-expo-museum",
+            "shibo-avenue",
+            "changqing-road",
+            "chengshan-road",
+            "dongming-road",
+            "huapeng-road",
+            "xianan-road",
+            "beicai",
+            "chenchun-road",
+            "lianxi-road",
+            "middle-huaxia-road",
+            "zhongke-road",
+            "xuelin-road",
+            "zhangjiang-road"
+          ],
+          "minutes": [
+            3,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            1,
+            3,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2
+          ],
+          "km": [
+            1.52,
+            1.94,
+            1.31,
+            1.48,
+            1.24,
+            1.62,
+            1.21,
+            0.85,
+            1.08,
+            0.7,
+            1.63,
+            0.65,
+            0.86,
+            0.96,
+            1.21,
+            0.63,
+            1.53,
+            1.61,
+            0.89,
+            1.16,
+            1.4,
+            1.15,
+            1.82,
+            1.07,
+            0.93,
+            1.34,
+            1.77,
+            1.06,
+            1.96,
+            1.69
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-13/"
+    },
+    {
+      "id": "14",
+      "en": "Line 14",
+      "zh": "14号线",
+      "color": "#626020",
+      "text": "#ffffff",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "fengbang",
+            "lexiu-road",
+            "lintao-road",
+            "jiayi-road",
+            "dingbian-road",
+            "zhenxin-xincun",
+            "zhenguang-road",
+            "tongchuan-road",
+            "zhenru",
+            "zhongning-road",
+            "caoyang-road",
+            "wuning-road",
+            "wuding-road",
+            "jingan-temple",
+            "south-huangpi-road",
+            "dashijie",
+            "yuyuan-garden",
+            "lujiazui",
+            "south-pudong-road-line-14",
+            "pudong-avenue",
+            "yuanshen-road",
+            "changyi-road",
+            "xiepu-road",
+            "yunshan-road",
+            "lantian-road",
+            "huangyang-road",
+            "yunshun-road",
+            "pudong-football-stadium",
+            "jinyue-road",
+            "guiqiao-road"
+          ],
+          "minutes": [
+            2,
+            2,
+            2.7,
+            2.69,
+            2.15,
+            2.31,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            4,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            4,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2
+          ],
+          "km": [
+            1.61,
+            1.65,
+            1.65,
+            1.64,
+            1.15,
+            1.29,
+            1.31,
+            0.92,
+            0.9,
+            1.1,
+            1.05,
+            0.97,
+            1.03,
+            3.07,
+            0.71,
+            0.74,
+            1.6,
+            1.01,
+            0.74,
+            1.05,
+            1.06,
+            1.23,
+            3.07,
+            1.16,
+            1.86,
+            0.88,
+            1.49,
+            1.28,
+            1.49
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-14/"
+    },
+    {
+      "id": "15",
+      "en": "Line 15",
+      "zh": "15号线",
+      "color": "#BCA886",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "gucun-park",
+            "jinqiu-road",
+            "fengxiang-road",
+            "nanda-road",
+            "qian-road",
+            "gulang-road",
+            "east-wuwei-road",
+            "shanghai-west-railway-station",
+            "tongchuan-road",
+            "north-meiling-road",
+            "daduhe-road",
+            "changfeng-park",
+            "loushanguan-road",
+            "hongbaoshi-road",
+            "yaohong-road",
+            "wuzhong-road",
+            "guilin-road",
+            "guilin-park",
+            "shanghai-south-railway-station",
+            "east-china-university-of-science-and-technology",
+            "luoxiu-road",
+            "zhumei-road",
+            "jinghong-road",
+            "south-hongmei-road",
+            "jingxi-road",
+            "shujian-road",
+            "shuangbai-road",
+            "yuanjiang-road",
+            "yongde-road",
+            "zizhu-hi-tech-park"
+          ],
+          "minutes": [
+            4,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            2,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            4,
+            3
+          ],
+          "km": [
+            3.09,
+            1.21,
+            1,
+            1.4,
+            1.49,
+            0.7,
+            1.63,
+            1.4,
+            0.67,
+            1.43,
+            0.88,
+            1.42,
+            1.37,
+            1.81,
+            0.86,
+            1.41,
+            0.87,
+            1.86,
+            1.16,
+            1.36,
+            1.04,
+            0.76,
+            1.58,
+            1.17,
+            1.37,
+            0.95,
+            2.8,
+            2.66,
+            1.87
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-15/"
+    },
+    {
+      "id": "16",
+      "en": "Line 16",
+      "zh": "16号线",
+      "color": "#98D1C0",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "longyang-road",
+            "middle-huaxia-road",
+            "luoshan-road",
+            "east-zhoupu",
+            "heshahangcheng",
+            "east-hangtou",
+            "xinchang",
+            "wild-animal-park",
+            "huinan",
+            "east-huinan",
+            "shuyuan",
+            "lingang-avenue",
+            "dishui-lake"
+          ],
+          "minutes": [
+            5,
+            3,
+            5,
+            3,
+            4,
+            3,
+            5,
+            5,
+            5,
+            8,
+            6,
+            3
+          ],
+          "km": [
+            4.37,
+            2.67,
+            4.98,
+            2.62,
+            2.6,
+            3.6,
+            4.84,
+            6.05,
+            5.79,
+            10.61,
+            7.08,
+            2.59
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Some trains run limited-stop or non-stop between Longyang Road and Dishui Lake. If your stop is in between, check the platform screen before boarding."
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-16/"
+    },
+    {
+      "id": "17",
+      "en": "Line 17",
+      "zh": "17号线",
+      "color": "#BC796F",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "hongqiao-railway-station",
+            "national-exhibition-and-convention-center-line-17",
+            "panlong-road",
+            "xuying-road",
+            "xujingbeicheng",
+            "middle-jiasong-road",
+            "zhaoxiang",
+            "huijin-road",
+            "qingpu-xincheng",
+            "caoying-road",
+            "dianshanhu-avenue",
+            "zhujiajiao",
+            "oriental-land",
+            "xicen"
+          ],
+          "minutes": [
+            3,
+            3,
+            3,
+            2,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            6,
+            3,
+            6.7
+          ],
+          "km": [
+            2.52,
+            1.5,
+            2.53,
+            1.2,
+            2.24,
+            3.05,
+            3.88,
+            2.51,
+            2.81,
+            3.85,
+            5.83,
+            2.8,
+            6.76
+          ]
+        }
+      ],
+      "notes": [],
+      "url": "https://shanghaistorymap.com/metro/line-17/"
+    },
+    {
+      "id": "18",
+      "en": "Line 18",
+      "zh": "18号线",
+      "color": "#C4984F",
+      "text": "#1a1a1a",
+      "kind": "metro",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "hangtou",
+            "xiasha",
+            "hetao-road",
+            "shenmei-road",
+            "fanrong-road",
+            "zhoupu",
+            "kangqiao",
+            "yuqiao",
+            "lianxi-road",
+            "beizhong-road",
+            "fangxin-road",
+            "longyang-road",
+            "yingchun-road",
+            "middle-yanggao-road",
+            "minsheng-road",
+            "changyi-road",
+            "danyang-road",
+            "pingliang-road",
+            "jiangpu-park",
+            "jiangpu-road",
+            "fushun-road",
+            "guoquan-road",
+            "fudan-university",
+            "shanghai-university-of-finance-and-economics",
+            "yingao-road",
+            "south-changjiang-road",
+            "tongnan-road",
+            "west-changjiang-road",
+            "aihui-road",
+            "hulan-road",
+            "kangwen-road"
+          ],
+          "minutes": [
+            2,
+            3,
+            3,
+            2,
+            2,
+            3,
+            4,
+            2,
+            3,
+            1,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2.38,
+            2.17,
+            3.87,
+            2.34,
+            2.93
+          ],
+          "km": [
+            2.58,
+            1.76,
+            2.46,
+            1.53,
+            1.32,
+            2.32,
+            3.08,
+            1.33,
+            1.72,
+            0.91,
+            1.2,
+            2.03,
+            0.86,
+            1.02,
+            0.98,
+            1.31,
+            0.75,
+            0.76,
+            1.27,
+            1.04,
+            0.92,
+            1.06,
+            1.48,
+            1.41,
+            1.4,
+            1.36,
+            1.16,
+            2.72,
+            1.32,
+            1.86
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "On weekday peaks some trains terminate at South Changjiang Road.",
+          "passes": "south-changjiang-road",
+          "then": "tongnan-road"
+        },
+        {
+          "text": "On weekday peaks some trains terminate at Shenmei Road.",
+          "passes": "shenmei-road",
+          "then": "hetao-road"
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/line-18/"
+    },
+    {
+      "id": "PJ",
+      "en": "Pujiang Line",
+      "zh": "浦江线",
+      "color": "#B5B5B6",
+      "text": "#1a1a1a",
+      "kind": "apm",
+      "fare": "metro",
+      "fareFixed": null,
+      "fareNote": "",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "shendu-highway",
+            "sanlu-highway",
+            "minrui-road",
+            "puhang-road",
+            "dongchengyi-road",
+            "huizhen-road"
+          ],
+          "minutes": [
+            3.46,
+            2.47,
+            2.19,
+            2.85,
+            2.33
+          ],
+          "km": [
+            1.71,
+            1.04,
+            0.86,
+            1.3,
+            0.95
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "A driverless rubber-tyred people mover, part of the metro fare network. Change to Line 8 at Shendu Highway."
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/pujiang-line/"
+    },
+    {
+      "id": "M",
+      "en": "Maglev",
+      "zh": "磁浮线",
+      "color": "#1C5F5B",
+      "text": "#ffffff",
+      "kind": "maglev",
+      "fare": "separate",
+      "fareFixed": 50,
+      "fareNote": "Maglev: ¥50 single, ¥40 with a same-day air ticket; paid separately from the metro.",
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "longyang-road",
+            "pudong-airport-terminal-1-and-2"
+          ],
+          "minutes": [
+            8
+          ],
+          "km": [
+            26.6
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "The Maglev runs about every 20 minutes and is outside the metro: leave the metro gates and buy a Maglev ticket, or tap a bank card or ride code at its gates."
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/maglev/"
+    },
+    {
+      "id": "AL",
+      "en": "Airport Link Line",
+      "zh": "机场联络线",
+      "color": "#4E7A8C",
+      "text": "#ffffff",
+      "kind": "rail",
+      "fare": "separate",
+      "fareFixed": null,
+      "fareNote": "Airport Link Line: priced by distance (¥4 minimum, ¥26 end to end).",
+      "farePerKm": {
+        "rate": 0.45,
+        "min": 4
+      },
+      "loop": false,
+      "branches": [
+        {
+          "stations": [
+            "hongqiao-airport-terminal-2",
+            "zhongchun-road",
+            "jinghong-road",
+            "south-sanlin",
+            "east-kangqiao",
+            "shanghai-international-resort",
+            "pudong-airport-terminal-1-and-2"
+          ],
+          "minutes": [
+            4.24,
+            8.21,
+            3.98,
+            9.41,
+            5.06,
+            9.1
+          ],
+          "km": [
+            5.66,
+            11.75,
+            5.27,
+            13.57,
+            6.92,
+            13.11
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "text": "Trains every 15 minutes, about 05:45 to 22:15. A suburban railway with its own fare: at Hongqiao Airport Terminal 2 and Pudong Airport Terminal 1&2 you leave one set of gates and pay again; at Zhongchun Road and Jinghong Road the fare carries on."
+        }
+      ],
+      "url": "https://shanghaistorymap.com/metro/airport-link-line/"
+    }
+  ]
+}
