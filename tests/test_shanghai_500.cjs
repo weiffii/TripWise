@@ -32,11 +32,14 @@ test('group average checks and food reserves exclude an unaffordable premium caf
  const p=api.planTrip(d,{...options,budget_cny:100,required_ids:['a']});assert.equal(p.days[0].meal_ids.length,3);assert(!p.selected_ids.includes('premium'));assert(p.summary.total_cost_cny<=100);
 });
 test('optional visit rollback can rescue a lunch without deleting a required attraction',()=>{
- const d={pois:[poi('a'),poi('b','attraction',{rating:4.9}),poi('c'),poi('breakfast','restaurant',{duration_minutes:50,opening:{open:'08:00',close:'10:30',closed_weekdays:[]}}),poi('lunch','restaurant',{duration_minutes:50,opening:{open:'11:30',close:'13:00',closed_weekdays:[]}}),poi('dinner','restaurant',{duration_minutes:50,opening:{open:'16:00',close:'22:00',closed_weekdays:[]}})]};
+ // Keep the 90-minute lunch window; align it with the new noon preference and
+ // 150-minute separation after a 09:00 breakfast (earliest lunch ends 13:10).
+ const d={pois:[poi('a'),poi('b','attraction',{rating:4.9}),poi('c'),poi('breakfast','restaurant',{duration_minutes:50,opening:{open:'08:00',close:'10:30',closed_weekdays:[]}}),poi('lunch','restaurant',{duration_minutes:50,opening:{open:'12:00',close:'13:30',closed_weekdays:[]}}),poi('dinner','restaurant',{duration_minutes:50,opening:{open:'16:00',close:'22:00',closed_weekdays:[]}})]};
  const p=api.planTrip(d,{...options,required_ids:['a']});assert.equal(p.checks.meals,'passed');assert.equal(p.checks.required_places,'passed');assert(p.selected_ids.includes('a'));
  assert.equal(p.summary.meal_count,3);assert.equal(p.checks.time,'passed');assert.equal(p.checks.budget,'passed');assert.equal(p.checks.opening_hours,'passed');
  assert(p.summary.total_cost_cny<=options.budget_cny);assert(Number.isInteger(p.summary.meal_repair_count)&&p.summary.meal_repair_count>=0);
  const events=p.days[0].events;assert.deepEqual(events.filter(e=>e.type==='meal').map(e=>e.meal_kind),['breakfast','lunch','dinner']);
+ const meals=events.filter(e=>e.type==='meal');assert(meals[1].start_min-meals[0].end_min>=150);assert(meals[2].start_min-meals[1].end_min>=180);
  for(let i=0;i<events.length;i++){const e=events[i];if(i)assert(e.start_min>=events[i-1].end_min);if(e.poi_id){const place=d.pois.find(v=>v.id===e.poi_id),time=s=>s.split(':').map(Number).reduce((h,m)=>h*60+m,0);assert(e.start_min>=time(place.opening.open)&&e.end_min<=time(place.opening.close));}}
 });
 test('bounded geographic improvement keeps the day membership and first anchor',()=>{

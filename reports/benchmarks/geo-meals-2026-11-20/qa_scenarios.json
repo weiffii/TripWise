@@ -1,0 +1,756 @@
+{
+  "schema": "TripWise-scenario-v1",
+  "source": "TripWise Shanghai 5000 data-only extension; original 16 + 10 scenarios",
+  "scenarios": [
+    {
+      "id": "01_museum_weekend",
+      "purpose": "Музеи за два дня с питанием",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "history",
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 2800,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "02_historic_walk",
+      "purpose": "Пешая прогулка по истории за день",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "history"
+        ],
+        "secondary_interests": [
+          "unusual"
+        ],
+        "days": 1,
+        "pace": "relaxed",
+        "transport": "walk",
+        "budget_cny": 1200,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-21",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "03_nature_transit",
+      "purpose": "Парки с использованием городского транспорта",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 3,
+        "pace": "intensive",
+        "transport": "transit",
+        "budget_cny": 2200,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "04_shopping_taxi",
+      "purpose": "Шопинг и развлечения на такси",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "shopping",
+          "entertainment"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "taxi",
+        "budget_cny": 4000,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "05_unusual_multiday",
+      "purpose": "Необычные места и музеи на три дня",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "unusual",
+          "museums"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "days": 3,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 3200,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "06_family",
+      "purpose": "Семья с двумя детьми; совместимость мест и меню",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "entertainment",
+          "nature"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 3000,
+        "group": {
+          "adult": 2,
+          "child": 2,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "07_senior",
+      "purpose": "Пожилые туристы, спокойный темп",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "museums",
+          "history"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "relaxed",
+        "transport": "mixed",
+        "budget_cny": 2600,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 2,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "08_pets_walk",
+      "purpose": "Путешествие с животным, только пешком",
+      "expectation": "may_warn",
+      "input": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "unusual"
+        ],
+        "days": 1,
+        "pace": "relaxed",
+        "transport": "walk",
+        "budget_cny": 1000,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 1
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "09_low_budget",
+      "purpose": "Стресс-тест: крайне низкий бюджет",
+      "expectation": "infeasible_with_warnings",
+      "input": {
+        "primary_interests": [
+          "viewpoints",
+          "museums"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 25,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "10_five_days",
+      "purpose": "Длинный насыщенный маршрут 5 дней",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "museums",
+          "shopping"
+        ],
+        "secondary_interests": [
+          "nature",
+          "history"
+        ],
+        "days": 5,
+        "pace": "intensive",
+        "transport": "mixed",
+        "budget_cny": 6000,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "11_required_landmarks",
+      "purpose": "Обязательные Восточная жемчужина и Вайтань",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "viewpoints",
+          "history"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 3000,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:bund",
+          "shanghai-demo:oriental-pearl"
+        ]
+      }
+    },
+    {
+      "id": "12_conflicting_required",
+      "purpose": "Слишком много обязательных мест для одного спокойного дня",
+      "expectation": "infeasible_with_warnings",
+      "input": {
+        "primary_interests": [
+          "history"
+        ],
+        "secondary_interests": [
+          "museums"
+        ],
+        "days": 1,
+        "pace": "relaxed",
+        "transport": "walk",
+        "budget_cny": 300,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:bund",
+          "shanghai-demo:yu-garden",
+          "shanghai-demo:shanghai-museum",
+          "shanghai-demo:oriental-pearl",
+          "shanghai-demo:shanghai-tower",
+          "shanghai-demo:jingan-temple"
+        ]
+      }
+    },
+    {
+      "id": "13_monday_museum_closed",
+      "purpose": "Закрытый в понедельник музей из сохранённого базового набора (исправлен устаревший ID теста)",
+      "expectation": "infeasible_with_warnings",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "days": 1,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 1800,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-23",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:shanghai-museum"
+        ]
+      }
+    },
+    {
+      "id": "14_business_cafe",
+      "purpose": "Кафе и шопинг в пределах бюджета",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "shopping"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "transit",
+        "budget_cny": 800,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "15_breakfast_early",
+      "purpose": "Раннее питание и достопримечательности",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "history",
+          "nature"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 1,
+        "pace": "intensive",
+        "transport": "mixed",
+        "budget_cny": 1500,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "07:30",
+        "day_end": "18:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "16_child_pet",
+      "purpose": "Несовместимые предпочтения: ребёнок, питомец и музеи",
+      "expectation": "may_warn",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "viewpoints",
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "transit",
+        "budget_cny": 700,
+        "group": {
+          "adult": 2,
+          "child": 1,
+          "senior": 0,
+          "pet": 1
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "17_songjiang_heritage",
+      "purpose": "Пригород Сунцзян, обязательный историко-культурный POI",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "history"
+        ],
+        "secondary_interests": [
+          "cafes",
+          "nature"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "transit",
+        "budget_cny": 4800,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:synthetic-ext-v2-0445"
+        ]
+      }
+    },
+    {
+      "id": "18_qingpu_nature",
+      "purpose": "Пригород Цинпу, природные POI и еда",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 3,
+        "pace": "relaxed",
+        "transport": "taxi",
+        "budget_cny": 4800,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:synthetic-ext-v2-0699"
+        ]
+      }
+    },
+    {
+      "id": "19_jiading_unusual",
+      "purpose": "Пригород Цзядин, необычное место",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "unusual"
+        ],
+        "secondary_interests": [
+          "shopping"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 4700,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:synthetic-ext-v2-1820"
+        ]
+      }
+    },
+    {
+      "id": "20_centre_walk",
+      "purpose": "Центр: пешие музеи, обязательный новый музей",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "history",
+          "cafes"
+        ],
+        "days": 1,
+        "pace": "intensive",
+        "transport": "walk",
+        "budget_cny": 2200,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:synthetic-ext-v2-0046"
+        ]
+      }
+    },
+    {
+      "id": "21_multicity_5days",
+      "purpose": "Пятидневный смешанный маршрут центр и пригороды",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "history",
+          "nature",
+          "unusual"
+        ],
+        "secondary_interests": [
+          "museums",
+          "cafes"
+        ],
+        "days": 5,
+        "pace": "intensive",
+        "transport": "mixed",
+        "budget_cny": 10500,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:synthetic-ext-v2-0445",
+          "shanghai-demo:synthetic-ext-v2-0046"
+        ]
+      }
+    },
+    {
+      "id": "22_suburb_museum_taxi",
+      "purpose": "Пригородный музей на такси с едой",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "relaxed",
+        "transport": "taxi",
+        "budget_cny": 6500,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:synthetic-ext-v2-0078"
+        ]
+      }
+    },
+    {
+      "id": "23_senior_family",
+      "purpose": "Семья с ребёнком и пожилым путешественником",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "nature",
+          "entertainment"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 3,
+        "pace": "relaxed",
+        "transport": "transit",
+        "budget_cny": 6000,
+        "group": {
+          "adult": 2,
+          "child": 1,
+          "senior": 1,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "24_impossible_budget",
+      "purpose": "Невыполнимый бюджет 1 CNY",
+      "expectation": "infeasible_with_warnings",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "intensive",
+        "transport": "mixed",
+        "budget_cny": 1,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      }
+    },
+    {
+      "id": "25_cross_river_1day",
+      "purpose": "Речной переход за один день и культурные достопримечательности",
+      "expectation": "feasible_or_partial",
+      "input": {
+        "primary_interests": [
+          "history",
+          "viewpoints"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 1,
+        "pace": "balanced",
+        "transport": "transit",
+        "budget_cny": 2700,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:bund",
+          "shanghai-demo:oriental-pearl"
+        ]
+      }
+    },
+    {
+      "id": "26_closed_new_museum",
+      "purpose": "Новый демонстрационный музей закрыт в понедельник",
+      "expectation": "infeasible_with_warnings",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 1,
+        "pace": "relaxed",
+        "transport": "walk",
+        "budget_cny": 3000,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-23",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": [
+          "shanghai-demo:synthetic-ext-v2-0001"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "before": {
+    "cases": 26,
+    "statuses": {
+      "demo": 20,
+      "partial": 2,
+      "infeasible": 4
+    },
+    "hard_violations": 0,
+    "travel_minutes": 4945,
+    "meal_spacing_violations": 20,
+    "river_crossings": 5,
+    "area_returns": 33,
+    "long_gaps": 5,
+    "long_gap_minutes": 650,
+    "unexplained_long_gaps": 5,
+    "visits": 172,
+    "meals": 144,
+    "required_placed": 12,
+    "engine_hashes": [
+      "0b0cb8acc3119abacf4c6f85375a58db2a0773615186626ab3aa0212024df1be"
+    ]
+  },
+  "after": {
+    "cases": 26,
+    "statuses": {
+      "demo": 20,
+      "partial": 2,
+      "infeasible": 4
+    },
+    "hard_violations": 0,
+    "travel_minutes": 4615,
+    "meal_spacing_violations": 0,
+    "river_crossings": 3,
+    "area_returns": 35,
+    "long_gaps": 9,
+    "long_gap_minutes": 1705,
+    "unexplained_long_gaps": 0,
+    "visits": 165,
+    "meals": 144,
+    "required_placed": 12,
+    "engine_hashes": [
+      "13623a3724e1b0617e2b82a7ffc3cf7bc6cdeb0b3e0c1f04a84b8daef73f2d16"
+    ]
+  },
+  "speed": {
+    "before": {
+      "speed_1": {
+        "cold_ms": 1920.039200000465,
+        "warm_median_ms": 488.8370000012219
+      },
+      "speed_3": {
+        "cold_ms": 3571.598600000143,
+        "warm_median_ms": 891.5407500006258
+      },
+      "speed_5": {
+        "cold_ms": 3594.799699999392,
+        "warm_median_ms": 1081.073949996382
+      }
+    },
+    "after": {
+      "speed_1": {
+        "cold_ms": 2256.87120000273,
+        "warm_median_ms": 453.7851499952376
+      },
+      "speed_3": {
+        "cold_ms": 3966.5327000021935,
+        "warm_median_ms": 905.8772500008345
+      },
+      "speed_5": {
+        "cold_ms": 3760.8563000038266,
+        "warm_median_ms": 871.6037499979138
+      }
+    }
+  },
+  "data_sha256": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d",
+  "network_calls_in_benchmark": 0,
+  "geography_note": "Area re-entry and crossings are diagnostics; do not prove unnecessary detours without opening/required/transport context. New meal constraints increase some waits; no claim that all avoidable waits are removed."
+}

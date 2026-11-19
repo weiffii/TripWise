@@ -4,8 +4,8 @@
     {
       "days": 1,
       "status": "demo",
-      "ms": 368.5,
-      "ticks": 17,
+      "ms": 306,
+      "ticks": 14,
       "visits": 3,
       "checks": {
         "time": "passed",
@@ -15,15 +15,15 @@
         "required_places": "passed",
         "interest_coverage": "passed",
         "primary_interests": "passed",
-        "no_gaps": "passed",
+        "no_gaps": "failed",
         "no_duplicates": "passed"
       }
     },
     {
       "days": 3,
       "status": "demo",
-      "ms": 922.5,
-      "ticks": 44,
+      "ms": 678.3999999985099,
+      "ticks": 33,
       "visits": 10,
       "checks": {
         "time": "passed",
@@ -33,16 +33,131 @@
         "required_places": "passed",
         "interest_coverage": "passed",
         "primary_interests": "passed",
-        "no_gaps": "passed",
+        "no_gaps": "failed",
         "no_duplicates": "passed"
       }
     },
     {
       "days": 5,
       "status": "demo",
-      "ms": 1205.2000000029802,
-      "ticks": 58,
-      "visits": 16,
+      "ms": 948.5,
+      "ticks": 46,
+      "visits": 15,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "failed",
+        "no_duplicates": "passed"
+      }
+    }
+  ],
+  "residual": [
+    {
+      "id": "09_low_budget",
+      "status": "partial",
+      "visits": 8,
+      "meals": 0,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "failed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием.",
+        "Бюджет 25 CNY ниже минимальной оценки питания для всей группы (180 CNY). Сохранены доступные посещения по интересам; полное питание не обеспечено.",
+        "Не представлены интересы: Кафе.",
+        "Завтрак, Обед или Ужин: не все необходимые приёмы пищи найдены в заданных условиях.",
+        "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет.",
+        "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет."
+      ],
+      "events": 14
+    },
+    {
+      "id": "16_child_pet",
+      "status": "infeasible",
+      "visits": 0,
+      "meals": 0,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "failed",
+        "primary_interests": "failed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Питомцы и выбранный общественный транспорт несовместимы с консервативными правилами этой модели. Выберите пеший или смешанный транспорт; перевозка питомцев в метро/автобусе не подтверждена.",
+        "Длительности, цены, часы и рейтинги каталога демонстрационные; вывод относится к этой модели."
+      ],
+      "events": 0
+    },
+    {
+      "id": "17_songjiang_heritage",
+      "status": "demo",
+      "visits": 4,
+      "meals": 6,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "failed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием.",
+        "В режиме общественного транспорта короткие местные переходы могут быть пешком: до 1800 м по прямой. Дорожная доступность оценочная, источник указан у каждого перехода."
+      ],
+      "events": 18
+    },
+    {
+      "id": "24_impossible_budget",
+      "status": "partial",
+      "visits": 0,
+      "meals": 0,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "failed",
+        "primary_interests": "failed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием.",
+        "Бюджет 1 CNY ниже минимальной оценки питания для всей группы (180 CNY). Сохранены доступные посещения по интересам; полное питание не обеспечено.",
+        "Не представлены интересы: Музеи, Кафе.",
+        "Завтрак, Обед или Ужин: не все необходимые приёмы пищи найдены в заданных условиях.",
+        "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет.",
+        "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет."
+      ],
+      "events": 0
+    },
+    {
+      "id": "cafes_only",
+      "status": "demo",
+      "visits": 0,
+      "meals": 8,
       "checks": {
         "time": "passed",
         "budget": "passed",
@@ -53,11 +168,15 @@
         "primary_interests": "passed",
         "no_gaps": "passed",
         "no_duplicates": "passed"
-      }
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "events": 15
     }
   ],
   "worker_count": 2,
-  "blocked_external_requests": 36,
+  "blocked_external_requests": 38,
   "external_network_allowed": false,
   "page_errors": [],
   "checks": [
@@ -68,6 +187,10 @@
     "day tabs",
     "three languages",
     "map zoom/fit/stop",
-    "stale result cancellation"
+    "stale result cancellation",
+    "cafes-only",
+    "Songjiang food",
+    "low-budget partial visits",
+    "pet/transit preflight"
   ]
 }

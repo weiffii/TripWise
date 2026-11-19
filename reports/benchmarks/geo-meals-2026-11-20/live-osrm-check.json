@@ -1,0 +1,11 @@
+{
+  "checked_at_utc": "2026-11-19T21:13:45.611607+00:00",
+  "request_count": 1,
+  "provider": "FOSSGIS_OSRM_foot",
+  "from_id": "shanghai-demo:bund",
+  "to_id": "shanghai-demo:yu-garden",
+  "code": "Ok",
+  "duration_seconds": 1236.5,
+  "distance_metres": 1545.6,
+  "source_url": "https://routing.openstreetmap.de/routed-foot/route/v1/driving/121.48604,31.24033;121.48743,31.22892?overview=false&steps=false"
+}
