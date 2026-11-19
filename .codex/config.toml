@@ -28,3 +28,11 @@ config_file = "agents/recommendation_agent.toml"
 [agents.routing_agent]
 description = "Оптимизация маршрутов и разработка Route Assistant."
 config_file = "agents/routing_agent.toml"
+
+[agents.frontend_agent]
+description = "Интерфейс TripWise: формы, страницы, карта и взаимодействие с пользователем."
+config_file = "agents/frontend_agent.toml"
+
+[agents.backend_agent]
+description = "Сервер TripWise: API, SQLite, аккаунты, сохранение и интеграция AI/DS."
+config_file = "agents/backend_agent.toml"

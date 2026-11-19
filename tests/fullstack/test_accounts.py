@@ -37,7 +37,7 @@ class NoRedirect(HTTPRedirectHandler):
         return None
 
 
-class AccountTests(unittest.TestCase):
+class LiveServerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.temp = tempfile.TemporaryDirectory(prefix="tripwise-auth-test-")
@@ -88,14 +88,14 @@ class AccountTests(unittest.TestCase):
         with test_database(self.db_path) as db:
             db.execute("DELETE FROM auth_attempts")
 
-    def request(self, path, data=None, *, client=None, origin=None, headers=None):
+    def request(self, path, data=None, *, client=None, origin=None, headers=None, method=None):
         request_headers = dict(headers or {})
         body = None
         if data is not None:
             body = json.dumps(data).encode()
             request_headers["Content-Type"] = "application/json"
             request_headers["Origin"] = self.base if origin is None else origin
-        request = Request(self.base + path, data=body, headers=request_headers)
+        request = Request(self.base + path, data=body, headers=request_headers, method=method)
         try:
             response = (client or self.client).open(request, timeout=5)
         except HTTPError as error:
@@ -110,6 +110,8 @@ class AccountTests(unittest.TestCase):
             "email": email or self.email, "password": PASSWORD, "password_confirmation": PASSWORD,
         }, client=client)
 
+
+class AccountTests(LiveServerTests):
     def test_register_and_private_page(self):
         status, data, headers = self.register()
         self.assertEqual(status, 201)

@@ -9,6 +9,7 @@ from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from backend.accounts import current_user, init_database, router
+from backend.drafts import init_drafts, router as drafts_router
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FRONTEND_DIR = PROJECT_ROOT / "frontend"
@@ -16,23 +17,25 @@ FRONTEND_DIR = PROJECT_ROOT / "frontend"
 @asynccontextmanager
 async def lifespan(app):
     init_database()
+    init_drafts()
     yield
 
 
 app = FastAPI(
     title="TripWise API",
     description="Аккаунты TripWise. Генерация и сохранение маршрутов пока не подключены.",
-    version="0.2.0",
+    version="0.3.0",
     lifespan=lifespan,
 )
 
 app.include_router(router)
+app.include_router(drafts_router)
 
 
 @app.middleware("http")
 async def private_responses(request: Request, call_next):
     response = await call_next(request)
-    if request.url.path.startswith("/api/auth/") or request.url.path == "/trips":
+    if request.url.path.startswith(("/api/auth/", "/api/trip-draft")) or request.url.path in {"/trips", "/trip/new"}:
         response.headers["Cache-Control"] = "no-store"
     response.headers["X-Content-Type-Options"] = "nosniff"
     return response
@@ -41,6 +44,8 @@ async def private_responses(request: Request, call_next):
 @app.exception_handler(RequestValidationError)
 async def invalid_request(request: Request, error: RequestValidationError):
     # Стандартные ошибки могут содержать input с паролем. Возвращаем только текст.
+    if request.url.path == "/api/trip-draft":
+        return JSONResponse(status_code=422, content={"detail": "Проверьте поля анкеты: время, количество людей, бюджет и выбранные варианты."}, headers={"Cache-Control": "no-store"})
     return JSONResponse(status_code=422, content={"detail": "Проверьте почту и пароль. При регистрации: от 8 до 128 символов и одинаковый повтор пароля."}, headers={"Cache-Control": "no-store"})
 
 
@@ -52,13 +57,22 @@ def health() -> dict[str, str]:
 
 @app.get("/trips", include_in_schema=False)
 def trips_page(request: Request):
+    return protected_page(request, "trips.html")
+
+
+@app.get("/trip/new", include_in_schema=False)
+def questionnaire_page(request: Request):
+    return protected_page(request, "questionnaire.html")
+
+
+def protected_page(request: Request, filename: str):
     try:
         current_user(request)
     except HTTPException as error:
         if error.status_code != 401:
             raise
         return RedirectResponse("/", status_code=303)
-    return FileResponse(PROJECT_ROOT / "backend" / "pages" / "trips.html", headers={"Cache-Control": "no-store"})
+    return FileResponse(PROJECT_ROOT / "backend" / "pages" / filename, headers={"Cache-Control": "no-store"})
 
 
 # API объявляем первым: обработчики проверяются по порядку.

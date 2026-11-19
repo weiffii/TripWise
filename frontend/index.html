@@ -5,39 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="TripWise — персональные маршруты для ваших путешествий.">
     <title>Вход — TripWise</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/styles.css">
     <script src="auth.js" defer></script>
   </head>
-  <body>
+  <body class="auth-page">
     <header class="header">
-      <a class="brand" href="./index.html" aria-label="TripWise — начало">
+      <a class="brand" href="/" aria-label="TripWise — начало">
         <span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span>
       </a>
-      <span class="header-caption">Меньше планов. Больше впечатлений.</span>
+      <div class="header-actions"><span class="header-caption">Искусство путешествовать по-своему</span><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button></div>
     </header>
 
     <main class="layout">
       <section class="intro" aria-labelledby="intro-title">
-        <p class="eyebrow"><span aria-hidden="true">✳</span> ПУТЕШЕСТВИЯ В ВАШЕМ РИТМЕ</p>
-        <h1 id="intro-title">Ваш город.<br> Ваш ритм.<br> <span>Ваш маршрут.</span></h1>
-        <p class="intro-copy">Места, которые вам интересны. Время на то, что вы любите. Соберите свою следующую поездку с TripWise.</p>
-
-        <div class="journey" aria-hidden="true">
-          <div class="journey-top"><span>Маленький план большого дня</span><span>↗</span></div>
-          <div class="journey-stops">
-            <div><span class="stop-icon">☕</span><span>Не спеша<br><strong>Начать с кофе</strong></span></div>
-            <span class="connection"></span>
-            <div><span class="stop-icon">✳</span><span>С интересом<br><strong>Открыть новое</strong></span></div>
-            <span class="connection"></span>
-            <div><span class="stop-icon">☀</span><span>В своём ритме<br><strong>Поймать момент</strong></span></div>
-          </div>
-          <p class="journey-note">Вдохновение для поездки · не рассчитанный маршрут</p>
+        <div class="intro-content">
+          <p class="eyebrow">НЕ ПРОСТО МЕСТА. ВАШИ ВПЕЧАТЛЕНИЯ.</p>
+          <h1 id="intro-title">Путешествия,<br>в которых<br><em>есть вы.</em></h1>
+          <p class="intro-copy">Любимые места, маленькие открытия и время для себя. Спланируйте город в своём ритме.</p>
         </div>
-        <p class="intro-footnote">От первой идеи до любимых воспоминаний.</p>
+        <div class="photo-caption"><span>01 / НАЧНИТЕ С МОСКВЫ</span><span>55°45′ С. Ш. &nbsp; 37°37′ В. Д.</span></div>
       </section>
 
       <section class="auth-card" aria-labelledby="auth-title">
-        <span class="card-label">ВАША СЛЕДУЮЩАЯ ПОЕЗДКА НАЧИНАЕТСЯ ЗДЕСЬ</span>
+        <span class="card-label">ВАШЕ СЛЕДУЮЩЕЕ ОТКРЫТИЕ</span>
         <h2 id="auth-title">С возвращением!</h2>
         <p id="auth-description" class="card-description">Войдите, чтобы планировать новые поездки и возвращаться к сохранённым.</p>
 
@@ -70,6 +61,6 @@
         <div class="prototype-note"><span class="prototype-mark" aria-hidden="true">i</span><p><strong>Учебный проект.</strong> Аккаунт сохраняется на сервере TripWise. Для тестирования используйте вымышленную почту и отдельный тестовый пароль. Подтверждение почты пока не подключено.</p></div>
       </section>
     </main>
-    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span>Планируйте с любопытством.</span></footer>
+    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span class="photo-credit">Фото: <a href="https://commons.wikimedia.org/wiki/File:Sunset_over_Moscow_City.jpg" target="_blank" rel="noopener noreferrer">Юрий Д.К.</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></footer>
   </body>
 </html>
