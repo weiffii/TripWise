@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "days": 1,
+      "before_ms": 2915.7778,
+      "after_ms": 2843.3547000000003,
+      "status": "demo",
+      "visits": 4,
+      "identical": true
+    },
+    {
+      "days": 3,
+      "before_ms": 3696.3376,
+      "after_ms": 3933.755799999999,
+      "status": "demo",
+      "visits": 12,
+      "identical": true
+    },
+    {
+      "days": 5,
+      "before_ms": 3817.994199999999,
+      "after_ms": 4021.0809999999983,
+      "status": "demo",
+      "visits": 18,
+      "identical": true
+    }
+  ],
+  "poi_unchanged": true
+}

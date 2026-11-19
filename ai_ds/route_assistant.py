@@ -146,13 +146,18 @@ def parse_interpretation(value):
     return deepcopy(value)
 
 class RouteAssistant:
-    def __init__(self, store, interpreter, *, proposal_ttl_seconds, clock=None, scheduler=None, validator=None):
+    def __init__(self, store, interpreter, *, proposal_ttl_seconds, clock=None, scheduler=None, validator=None, interpretation_parser=None, allow_cost_edits=False):
         require(isinstance(store, InMemoryRouteStore), 'INVALID_STORE')
         require(callable(interpreter), 'INVALID_INTERPRETER')
         require(type(proposal_ttl_seconds) is int and proposal_ttl_seconds > 0, 'INVALID_PROPOSAL_TTL')
         self.store, self.interpreter, self.ttl = store, interpreter, proposal_ttl_seconds
         self.clock = clock or (lambda: datetime.now(timezone.utc))
         self.scheduler, self.validator = scheduler or schedule, validator or validate
+        self.interpretation_parser = interpretation_parser or parse_interpretation
+        self.allow_cost_edits = allow_cost_edits
+    def _working_copy(self, base):
+        """Адаптер может подготовить транзакцию, не меняя сохранённый маршрут."""
+        return deepcopy(base)
     def _now(self):
         now = self.clock()
         require(isinstance(now, datetime) and now.utcoffset() is not None, 'INVALID_CLOCK')
@@ -244,17 +249,17 @@ class RouteAssistant:
         require(base['version'] == request['base_version'], 'VERSION_CONFLICT')
         require(base['poi_snapshot_id'] == request['poi_snapshot_id'], 'SNAPSHOT_CONFLICT')
         price_words = ('дорог', 'дешев', 'дёшев', 'стоимост', 'expensive', 'cheaper')
-        if any(w in request['text'].casefold() for w in price_words):
+        if not self.allow_cost_edits and any(w in request['text'].casefold() for w in price_words):
             return {'schema_version': '0.2', 'validation_status': 'needs_clarification', 'code': 'UNKNOWN_COST' if self._unknown_costs(base) else 'COST_FILTER_NOT_SUPPORTED', 'clarification': 'Правки по стоимости требуют известных цен и отдельной поддерживаемой операции.'}
         try:
-            parsed = parse_interpretation(self.interpreter(deepcopy(self._payload(base, request['text']))))
+            parsed = self.interpretation_parser(self.interpreter(deepcopy(self._payload(base, request['text']))))
         except AssistantError:
             raise
         except Exception:
             raise AssistantError('INTERPRETER_UNAVAILABLE') from None
         if parsed['action'] != 'propose':
             return {'schema_version': '0.2', 'validation_status': parsed['action'], 'clarification': parsed['clarification']}
-        state, seq = deepcopy(base), sequences_of(base['route'])
+        state, seq = self._working_copy(base), sequences_of(base['route'])
         before = deepcopy(seq)
         try:
             for op in parsed['operations']:

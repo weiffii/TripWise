@@ -4,7 +4,7 @@
     {
       "file": "test_shanghai_500.cjs",
       "exit_code": 0,
-      "elapsed_ms": 199,
+      "elapsed_ms": 244,
       "error": null,
       "stdout": "PASS mixed compares complete planned times, including a fast public route for a family\nPASS mixed selects a short walk when it is faster than all transport\nPASS mixed chooses the fastest affordable mode, rather than rejecting an expensive taxi later\nPASS mixed respects pets and never invents an affordable walk across the river\nPASS average restaurant check drives group spend and retains legacy fallback\nPASS group average checks and food reserves exclude an unaffordable premium cafe\nPASS optional visit rollback can rescue a lunch without deleting a required attraction\nPASS bounded geographic improvement keeps the day membership and first anchor\nPASS warnings no longer enumerate omitted optional names\n{\"passed\":9,\"network_requests\":0}\n",
       "stderr": ""
@@ -12,7 +12,7 @@
     {
       "file": "test_shanghai_5000_data.cjs",
       "exit_code": 0,
-      "elapsed_ms": 336,
+      "elapsed_ms": 395,
       "error": null,
       "stdout": "Shanghai current data: 5000 POI, 2000 restaurants, 4500 explicitly fictional; schema/provenance/SHA passed\n",
       "stderr": ""
@@ -20,7 +20,7 @@
     {
       "file": "test_shanghai_5000_optimizer.cjs",
       "exit_code": 0,
-      "elapsed_ms": 383,
+      "elapsed_ms": 411,
       "error": null,
       "stdout": "PASS required ticket survives an impossible meal budget\nPASS a required restaurant participates in protected scheduling\nPASS a required restaurant opening at one permits breakfast beforehand\nPASS breakfast is retried after a museum that closes at ten\nPASS an exactly one-hour required visit wins over conflicting dinner\nPASS a large museum keeps its source duration in balanced pace\nPASS five short mandatory visits are not dropped by a fixed relaxed quota\nPASS mandatory date assignment tries alternate days\nPASS three days receive visits instead of filling only the first\nPASS secondary category reserve survives many high-score cultural objects\nPASS group total price and compatibility are hard constraints\nPASS known closed required place yields a reasoned infeasible status\nPASS unavailable walking river crossing is not fabricated\nPASS changing primary interests changes the actual attractions\nPASS planning is deterministic and never mutates its dataset\nPASS one thousand mandatory POIs stop at the proven duration lower bound\n{\"passed\":16,\"network_requests\":0}\n",
       "stderr": ""
@@ -28,15 +28,39 @@
     {
       "file": "test_shanghai_5000_oracle.cjs",
       "exit_code": 0,
-      "elapsed_ms": 284,
+      "elapsed_ms": 453,
       "error": null,
       "stdout": "{\"cases\":48,\"feasible\":35,\"impossible\":13,\"missed_feasible\":0,\"network_requests\":0}\n",
       "stderr": ""
     },
     {
+      "file": "test_shanghai_assistant.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 481,
+      "error": null,
+      "stdout": "PASS generated native base validates without conversion or re-planning\nPASS fixed removal preserves all restaurants and the entire other day\nPASS protected places and full meals cannot be silently removed or replaced\nPASS replace by category resolves an existing POI and preserves other membership\nPASS add by existing name-resolved ID uses a feasible position\nPASS multiple operations are applied atomically, including cross-day move\nPASS explicit meal time pins lunch and maintains full-meal intervals\nPASS infeasible lunch time fails without changing the source route\nPASS pace and visit-count edits combine rather than dropping an operation\nPASS cheaper restaurant is selected from stored group prices\nPASS travel optimization retains exactly the fixed set of stops\nPASS transport change and early finish use per-day settings\nPASS finish before eighteen re-times the fixed restaurants without dropping them\nPASS validator rejects forged prices, durations, transport and duplicate records\nPASS strict operation allowlist rejects unknown fields and executable text\nPASS validator rejects missing and non-finite event money or transport metadata\nPASS previously suggested alternatives can be excluded without persisting the exclusion\nPASS compact snapshots remain renderable after an edit\nPASS known closed additions and budget conflicts cannot change the original route\nPASS walking optimization reduces walking without overriding the allowed mode\nPASS explicit reordering respects the requested complete-stop position\nPASS a partial route stays explicitly partial after a useful edit\nPASS no edit mutates the route, dataset or input options\n{\"passed\":23,\"network_requests\":0}\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_assistant_regression.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 21778,
+      "error": null,
+      "stdout": "{\"passed\":3,\"initial_routes_identical\":true,\"results\":[{\"days\":1,\"before_ms\":2915.7778,\"after_ms\":2843.3547000000003,\"status\":\"demo\",\"visits\":4,\"identical\":true},{\"days\":3,\"before_ms\":3696.3376,\"after_ms\":3933.755799999999,\"status\":\"demo\",\"visits\":12,\"identical\":true},{\"days\":5,\"before_ms\":3817.994199999999,\"after_ms\":4021.0809999999983,\"status\":\"demo\",\"visits\":18,\"identical\":true}]}\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_chat.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 132,
+      "error": null,
+      "stdout": "PASS preview keeps original plan; confirmation updates exactly once\nPASS rejection leaves route and version intact\nPASS clarification and follow-up text remain separate conversation messages\nPASS queued messages are processed sequentially and latest preview wins\nPASS new form plan invalidates an old in-flight confirmation\nPASS version conflict and provider failure never mutate route\nPASS file mode explains local API requirement without network or fake edits\nPASS compact snapshot omits ranking; preview shows names, exact stop times and day bounds\n{\"passed\":8,\"external_requests\":0}\n",
+      "stderr": ""
+    },
+    {
       "file": "test_shanghai_data_final.cjs",
       "exit_code": 0,
-      "elapsed_ms": 1651,
+      "elapsed_ms": 2016,
       "error": null,
       "stdout": "PASS trip 1 day(s) visits 5 meals 3\nPASS trip 2 day(s) visits 9 meals 6\nPASS trip 3 day(s) visits 12 meals 9\nPASS trip 4 day(s) visits 16 meals 12\nPASS trip 5 day(s) visits 18 meals 15\nPASS group {\"adult\":2,\"child\":1,\"senior\":0,\"pet\":0} checks {\"time\":\"passed\",\"budget\":\"passed\",\"opening_hours\":\"passed\",\"meals\":\"passed\",\"required_places\":\"passed\",\"interest_coverage\":\"passed\",\"primary_interests\":\"passed\",\"no_gaps\":\"failed\",\"no_duplicates\":\"passed\"}\nPASS group {\"adult\":1,\"child\":0,\"senior\":1,\"pet\":0} checks {\"time\":\"passed\",\"budget\":\"passed\",\"opening_hours\":\"passed\",\"meals\":\"passed\",\"required_places\":\"passed\",\"interest_coverage\":\"passed\",\"primary_interests\":\"passed\",\"no_gaps\":\"failed\",\"no_duplicates\":\"passed\"}\nPASS group {\"adult\":1,\"child\":0,\"senior\":0,\"pet\":1} checks {\"time\":\"passed\",\"budget\":\"passed\",\"opening_hours\":\"passed\",\"meals\":\"passed\",\"required_places\":\"passed\",\"interest_coverage\":\"passed\",\"primary_interests\":\"passed\",\"no_gaps\":\"failed\",\"no_duplicates\":\"passed\"}\nPASS group {\"adult\":1,\"child\":1,\"senior\":1,\"pet\":1} checks {\"time\":\"passed\",\"budget\":\"passed\",\"opening_hours\":\"passed\",\"meals\":\"passed\",\"required_places\":\"passed\",\"interest_coverage\":\"passed\",\"primary_interests\":\"passed\",\"no_gaps\":\"failed\",\"no_duplicates\":\"passed\"}\n{\"passed_trip_lengths\":5,\"passed_group_cases\":4,\"calendar_sunday_checked\":true,\"engine_modified\":false,\"network_requests\":0,\"remaining_walk_pet_gaps\":4}\n",
       "stderr": ""
@@ -44,7 +68,7 @@
     {
       "file": "test_shanghai_engine.cjs",
       "exit_code": 0,
-      "elapsed_ms": 2787,
+      "elapsed_ms": 3154,
       "error": null,
       "stdout": "PASS expanded 500-POI catalogue preserves unique sourced identities\nPASS expanded default profile keeps hard constraints and reports missing food coverage\nPASS oversubscribed budget+required still builds available route\nPASS zero budget cannot pretend a complete itinerary with required food\nPASS group ticket prices incorporate children and seniors\nPASS date filters seasonal objects off season and weekend high crowd\nPASS primary interests prioritized but secondary categories still covered\nPASS pace changes number and time of visits\nPASS pedestrians never cross river via invented walking leg\nPASS different transports produce different durations and costs\nPASS family, seniors and pets alter eligibility or mode\nPASS rank responds to priorities; date and data are immutable\nPASS invalid inputs rejected rather than silent wrong plans\nPASS a cafe interest in a short afternoon window gets a real meal stop in the schedule\nPASS synthetic currencies are exposed and fixed, not live FX\nPASS stage 1 selects all mandatory attractions before grouping\nPASS restaurants remain near at least one attraction in their day\nPASS OSRM road matrix overrides approximated taxi time and distance\nPASS more mandatory sites than available daily capacity yields a warning\n{\"passed\":19,\"network_requests\":0,\"catalog_count\":5000}\n",
       "stderr": ""
@@ -52,7 +76,7 @@
     {
       "file": "test_shanghai_geo_meals.cjs",
       "exit_code": 0,
-      "elapsed_ms": 142,
+      "elapsed_ms": 150,
       "error": null,
       "stdout": "PASS full day respects hard meal intervals and explains real waits\nPASS gastronomic snacks do not masquerade as consecutive full meals\nPASS short late day never removes required visit to fabricate three meals\nPASS opening wait identifies opening rather than invented rest\nPASS directed OSM costs determine actual order instead of symmetric coordinates\n{\"passed\":5,\"network_requests\":0}\n",
       "stderr": ""
@@ -60,7 +84,7 @@
     {
       "file": "test_shanghai_remaining.cjs",
       "exit_code": 0,
-      "elapsed_ms": 9553,
+      "elapsed_ms": 11297,
       "error": null,
       "stdout": "PASS all eight categories produce matching activities including cafes-only\nPASS cafes-only protects a required restaurant\nPASS Songjiang has six meals with preserved required place and honest local walking\nPASS 25 CNY preserves useful free interest-matching visits\nPASS one CNY explains insufficient food budget without unrelated attractions\nPASS pet plus fixed transit fails before any isolated teleport visits\nPASS mixed transport with a pet remains supported\n{\"passed\":7,\"network_requests\":0}\n",
       "stderr": ""
@@ -68,7 +92,7 @@
     {
       "file": "test_shanghai_transit.cjs",
       "exit_code": 0,
-      "elapsed_ms": 1093,
+      "elapsed_ms": 1436,
       "error": null,
       "stdout": "PASS source topology and synthetic fleet are structurally distinct\nPASS Line 2 crosses the river using two published station segments\nPASS cache results are isolated from callers\nPASS inaccessible and unsupported transit is not fabricated\nPASS explicitly blocked interchange cannot be traversed\nPASS fictional bus path is labelled and never presented as real metro\nPASS active v4 planner carries real transit instructions into selected events\nPASS synthetic bus service hours are respected when departure is known\nPASS a ring has a direction via the next station, not an invented terminus\nPASS nearest cache preserves departures, changed coordinates, group and bank filters\nPASS nearest cache does not reuse a bus route across a service boundary\nPASS nearest cache has a strict 4096 entry bound without changing results\nPassed 12 transit tests\n",
       "stderr": ""
@@ -76,7 +100,7 @@
     {
       "file": "test_shanghai_v2.cjs",
       "exit_code": 0,
-      "elapsed_ms": 143,
+      "elapsed_ms": 236,
       "error": null,
       "stdout": "PASS 54 new places, all unique, marked synthetic, with eight categories\nPASS balanced uses at least 2 attractions per day, no idle wait gaps\nPASS pace controls durations and stop count, without isolated rest\nPASS all selected interests are covered if feasible\nPASS primary interests outrank only secondary interests\nPASS children and senior group discounts, transport fares per group\nPASS seasonal attractions excluded off-season and boosted in season\nPASS high weekend crowd spots excluded unless marked required\nPASS walk, taxi, transit and mixed use distinct travel assumptions\nPASS pets must be explicitly allowed, transit with pets rejected\nPASS budget infeasibility is explicit, no violation even if partial\nPASS schedules and opening hours remain valid for multiple days\nPASS reject invalid inputs and retain source data unmutated\n{\"passed\":13,\"network_requests\":0}\n",
       "stderr": ""
@@ -84,7 +108,7 @@
     {
       "file": "test_shanghai_v4_meals.cjs",
       "exit_code": 0,
-      "elapsed_ms": 127,
+      "elapsed_ms": 241,
       "error": null,
       "stdout": "PASS dinner is requested strictly after 17:00 including a 17:01 day end\nPASS a late one-hour day can contain dinner and honestly lacks museum time\nPASS breakfast is required at 11:30 but not at noon\nPASS a missing dinner is reported rather than pretending meals passed\nPASS a five-star distant restaurant cannot move attraction selection or visits\nPASS restaurants never cross the river merely because they are geometrically close\nPASS meal departure can be delayed with an honest gap, without fake rest or visits\nPASS published popularity input affects tie-quality ranking without outranking interests\nPASS the supplied transit graph is cached and its exact planned time and instructions reach schedule\nPASS a graph with no transit path does not silently produce fabricated transit\nPASS a deferred meal recomputes transit at actual departure and respects service closure\nPASS an expensive high-rated breakfast cannot spend the reserve for cheap lunch and dinner\nPASS optional tickets cannot consume money reserved for all remaining meals\nPASS failed previous-day meals release their reserve rather than blocking later meals forever\n{\"passed\":14,\"network_requests\":0}\n",
       "stderr": ""
@@ -92,7 +116,7 @@
     {
       "file": "test_shanghai_worker.cjs",
       "exit_code": 0,
-      "elapsed_ms": 251,
+      "elapsed_ms": 242,
       "error": null,
       "stdout": "Shanghai worker: off-thread protocol, reuse, stale cancellation, errors and fallback passed\n",
       "stderr": ""

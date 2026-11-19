@@ -15,6 +15,11 @@ from urllib.parse import urlsplit
 import threading
 import tempfile
 import webbrowser
+import sys
+from http.cookies import SimpleCookie
+
+if str(ROOT if 'ROOT' in globals() else Path(__file__).resolve().parents[1]) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 ROOT = Path(__file__).resolve().parents[1]
 HTML = ROOT / 'artifacts/tripwise-shanghai.html'
@@ -124,8 +129,74 @@ def get_tile(z, x, y, *, cache_dir=None, opener=None, now=None, referer=None):
 
 
 class DemoHandler(BaseHTTPRequestHandler):
+    def _assistant_json(self, value, status=200, token=None):
+        body = json.dumps(value, ensure_ascii=False, allow_nan=False).encode('utf-8')
+        self.send_response(status)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header('Content-Length', str(len(body)))
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('X-Content-Type-Options', 'nosniff')
+        if token:
+            self.send_header('Set-Cookie', 'tripwise_session=' + token + '; Path=/; HttpOnly; SameSite=Strict; Max-Age=3600')
+        self.end_headers(); self.wfile.write(body)
+
+    def _assistant_session_token(self):
+        cookie = SimpleCookie()
+        try:
+            cookie.load(self.headers.get('Cookie', ''))
+            return cookie['tripwise_session'].value if 'tripwise_session' in cookie else None
+        except Exception:
+            return None
+
+    def _assistant_origin_valid(self):
+        host = self.headers.get('Host', '')
+        expected = '127.0.0.1:' + str(self.server.server_port)
+        local = 'localhost:' + str(self.server.server_port)
+        if host not in (expected, local):
+            return False
+        origin = self.headers.get('Origin')
+        return origin is None or origin == 'http://' + host
+
+    def do_POST(self):
+        from ai_ds.route_assistant import AssistantError
+        from ai_ds.shanghai_assistant import human_error
+        path = urlsplit(self.path).path
+        service = getattr(self.server, 'assistant_service', None)
+        if not path.startswith('/api/assistant/') or service is None:
+            self.send_error(404); return
+        try:
+            if not self._assistant_origin_valid():
+                raise AssistantError('ORIGIN_REJECTED')
+            if self.headers.get('Content-Type', '').split(';')[0].strip() != 'application/json':
+                raise AssistantError('JSON_REQUIRED')
+            length = self.headers.get('Content-Length', '')
+            if not length.isdigit() or not 0 < int(length) <= 2 * 1024 * 1024:
+                raise AssistantError('REQUEST_TOO_LARGE')
+            self.connection.settimeout(10)
+            from ai_ds.route_assistant import unique_pairs, reject_constant
+            body = json.loads(self.rfile.read(int(length)), object_pairs_hook=unique_pairs, parse_constant=reject_constant)
+            result = service.request(self._assistant_session_token(), self.headers.get('X-TripWise-CSRF'), path.rsplit('/', 1)[-1], body)
+            self._assistant_json(result)
+        except AssistantError as error:
+            self._assistant_json({'type': 'error', 'code': error.code, 'message': human_error(error.code)}, 403 if error.code in ('CSRF_REJECTED', 'ORIGIN_REJECTED', 'SESSION_REQUIRED') else 400)
+        except (ValueError, TypeError, OSError):
+            self._assistant_json({'type': 'error', 'code': 'INVALID_REQUEST', 'message': 'Запрос не удалось обработать. Исходный маршрут сохранён.'}, 400)
+
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/api/assistant/status':
+            from ai_ds.route_assistant import AssistantError
+            service = getattr(self.server, 'assistant_service', None)
+            if service is None:
+                self._assistant_json({'available': False, 'reason': 'API помощника не запущен.'}, 503); return
+            if not self._assistant_origin_valid():
+                self._assistant_json({'type': 'error', 'code': 'ORIGIN_REJECTED', 'message': 'Недопустимый источник запроса.'}, 403); return
+            try:
+                token, result = service.status(self._assistant_session_token())
+                self._assistant_json(result, token=token)
+            except AssistantError:
+                self._assistant_json({'available': False, 'reason': 'Сервис временно занят.'}, 503)
+            return
         if path == '/favicon.ico':
             self.send_response(204)
             self.end_headers()
@@ -180,18 +251,33 @@ class DemoHandler(BaseHTTPRequestHandler):
         pass
 
 
+def create_server(port=8765, *, assistant_service=None):
+    """Инъекция mock interpreter допустима только из явно тестового запуска."""
+    if assistant_service is None:
+        from ai_ds.shanghai_assistant import ShanghaiAssistantService
+        assistant_service = ShanghaiAssistantService()
+    server = ThreadingHTTPServer(('127.0.0.1', port), DemoHandler)
+    server.assistant_service = assistant_service
+    return server
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--no-browser', action='store_true')
+    parser.add_argument('--assistant-mock', type=Path, help='Явный тестовый JSON со списком ответов mock LLM; не для живого демо')
     args = parser.parse_args()
     if not HTML.is_file():
         from build_shanghai_demo import build
         build()
+    assistant_service = None
+    if args.assistant_mock:
+        from ai_ds.shanghai_assistant import ShanghaiAssistantService, mock_interpreter_file
+        assistant_service = ShanghaiAssistantService(interpreter=mock_interpreter_file(args.assistant_mock), mode='mock')
     try:
-        server = ThreadingHTTPServer(('127.0.0.1', args.port), DemoHandler)
+        server = create_server(args.port, assistant_service=assistant_service)
     except OSError:
-        server = ThreadingHTTPServer(('127.0.0.1', 0), DemoHandler)
+        server = create_server(0, assistant_service=assistant_service)
     url = 'http://127.0.0.1:%d/tripwise-shanghai.html' % server.server_port
     print(url, flush=True)
     if not args.no_browser:

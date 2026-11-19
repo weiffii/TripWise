@@ -78,7 +78,7 @@ def _decision(value):
     return value
 
 
-def _minimal_context(payload):
+def _minimal_context(payload, *, rich_context=False):
     safe = {'text': payload['text']}
     if 'timezone' in payload:
         if not isinstance(payload['timezone'], str):
@@ -91,7 +91,7 @@ def _minimal_context(payload):
         safe[field] = []
         for value in values:
             if field == 'catalog':
-                allowed = ('poi_id', 'id', 'name', 'categories')
+                allowed = ('poi_id', 'id', 'name', 'categories') + (('kind', 'price_cny') if rich_context else ())
             else:
                 allowed = ('date', 'pace', 'day_start', 'day_end')
             row = {key: value[key] for key in allowed if key in value}
@@ -104,7 +104,14 @@ def _minimal_context(payload):
                     if isinstance(visit, str):
                         row['visits'].append({'poi_id': visit})
                     elif isinstance(visit, dict) and isinstance(visit.get('poi_id'), str):
-                        row['visits'].append({'poi_id': visit['poi_id']})
+                        entry = {'poi_id': visit['poi_id']}
+                        if rich_context:
+                            for key in ('type', 'meal_kind', 'name', 'start_time', 'end_time'):
+                                if key in visit:
+                                    if not isinstance(visit[key], str):
+                                        raise OpenRouterError('LLM_INVALID_CONTEXT')
+                                    entry[key] = visit[key][:250]
+                        row['visits'].append(entry)
                     else:
                         raise OpenRouterError('LLM_INVALID_CONTEXT')
             # Nested objects are rejected in scalar context fields.
@@ -114,6 +121,9 @@ def _minimal_context(payload):
                 if key == 'categories':
                     if not isinstance(item, list) or not all(isinstance(c, str) for c in item):
                         raise OpenRouterError('LLM_INVALID_CONTEXT')
+                elif key == 'price_cny' and rich_context:
+                    if type(item) not in (int, float) or not math.isfinite(item) or item < 0:
+                        raise OpenRouterError('LLM_INVALID_CONTEXT')
                 elif not isinstance(item, str):
                     raise OpenRouterError('LLM_INVALID_CONTEXT')
             safe[field].append(row)
@@ -121,6 +131,15 @@ def _minimal_context(payload):
     if not isinstance(required, list) or not all(isinstance(i, str) for i in required):
         raise OpenRouterError('LLM_INVALID_CONTEXT')
     safe['required_poi_ids'] = list(required)
+    if rich_context:
+        history = payload.get('conversation', [])
+        if not isinstance(history, list) or len(history) > 12:
+            raise OpenRouterError('LLM_INVALID_CONTEXT')
+        safe['conversation'] = []
+        for item in history:
+            if not isinstance(item, dict) or item.get('role') not in ('user', 'assistant') or not isinstance(item.get('content'), str):
+                raise OpenRouterError('LLM_INVALID_CONTEXT')
+            safe['conversation'].append({'role': item['role'], 'content': item['content'][:2000]})
     return safe
 
 
@@ -130,7 +149,7 @@ class OpenRouterInterpreter:
     payload от RouteAssistant уже минимизирован; дополнительный allowlist ниже
     не передаёт raw, ключи, пользовательские аккаунты или произвольные snapshots.
     """
-    def __init__(self, *, key=None, timeout=30, max_output_tokens=1024, opener=None):
+    def __init__(self, *, key=None, timeout=30, max_output_tokens=1024, opener=None, system_prompt=None, rich_context=False):
         if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0:
             raise ValueError('timeout must be positive and finite')
         if type(max_output_tokens) is not int or max_output_tokens <= 0:
@@ -139,6 +158,8 @@ class OpenRouterInterpreter:
         self.timeout, self.max_output_tokens = timeout, max_output_tokens
         self._opener = opener if opener is not None else build_opener(_NoRedirect()).open
         self.last_metadata = None
+        self.system_prompt = SYSTEM_PROMPT if system_prompt is None else system_prompt
+        self.rich_context = rich_context
 
     def __call__(self, payload):
         self.last_metadata = None
@@ -148,7 +169,7 @@ class OpenRouterInterpreter:
             raise OpenRouterError('LLM_INVALID_CONTEXT')
         # Не отправлять неизвестные поля верхнего уровня: отдельный интерфейс
         # минимизации согласуется с server-owned RouteAssistant context.
-        safe = _minimal_context(payload)
+        safe = _minimal_context(payload, rich_context=self.rich_context)
         try:
             content = json.dumps(safe, ensure_ascii=False, allow_nan=False)
             if self._key.strip() in content:
@@ -156,7 +177,7 @@ class OpenRouterInterpreter:
         except (TypeError, ValueError, OverflowError):
             raise OpenRouterError('LLM_INVALID_CONTEXT') from None
         body = {'model': MODEL, 'messages': [
-                    {'role': 'system', 'content': SYSTEM_PROMPT},
+                    {'role': 'system', 'content': self.system_prompt},
                     {'role': 'user', 'content': content}],
                 'response_format': {'type': 'json_object'}, 'temperature': 0,
                 'max_tokens': self.max_output_tokens, 'stream': False,

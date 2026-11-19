@@ -1,0 +1,18 @@
+{
+  "mock_llm": true,
+  "real_http": true,
+  "real_js_router": true,
+  "url": "http://127.0.0.1:57323/tripwise-shanghai.html",
+  "steps": [
+    "natural-language ambiguity clarification",
+    "contextual follow-up and unchanged route/map before confirmation",
+    "reject preserves old route",
+    "confirm updates native schedule/map/cost and preserves untouched day and recommendations",
+    "subsequent command uses confirmed version",
+    "atomic multi-operation request with fixed lunch time",
+    "LLM outage preserves route",
+    "required POI protected and form rebuild invalidates old conversation"
+  ],
+  "page_errors": [],
+  "external_requests_blocked": 24
+}

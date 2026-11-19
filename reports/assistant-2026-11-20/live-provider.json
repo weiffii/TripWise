@@ -1,0 +1,135 @@
+{
+  "provider_mode": "live",
+  "mock": false,
+  "max_calls": 3,
+  "initial_status": "demo",
+  "initial_visits": 8,
+  "dialogue": [
+    {
+      "user": "В первом дне убери третью достопримечательность.",
+      "type": "proposal",
+      "message": "Изменения рассчитаны. Проверьте предварительный просмотр и подтвердите применение.",
+      "code": null,
+      "elapsed_seconds": 3.879,
+      "diff": {
+        "changed_days": [
+          "2026-11-20"
+        ],
+        "added": [],
+        "removed": [
+          {
+            "name": "Квартал Синьтяньди",
+            "day": "2026-11-20"
+          }
+        ],
+        "moved": [],
+        "before_cost": 405,
+        "after_cost": 389,
+        "before_travel": 150,
+        "after_travel": 140,
+        "days": [
+          {
+            "date": "2026-11-20",
+            "before": [
+              {
+                "name": "Кафе «Moxiang Breakfast Shop»",
+                "start_time": "09:00",
+                "end_time": "09:50"
+              },
+              {
+                "name": "Музей истории Шанхая",
+                "start_time": "09:55",
+                "end_time": "11:55"
+              },
+              {
+                "name": "Шанхайский музей",
+                "start_time": "12:10",
+                "end_time": "14:40"
+              },
+              {
+                "name": "Кондитерская «Boan»",
+                "start_time": "14:50",
+                "end_time": "15:40"
+              },
+              {
+                "name": "Квартал Синьтяньди",
+                "start_time": "15:55",
+                "end_time": "17:25"
+              },
+              {
+                "name": "Парк Фусин",
+                "start_time": "17:40",
+                "end_time": "18:55"
+              },
+              {
+                "name": "Лапшичная «Маленький Горы и море и Тонкий вкус» — Синьтяньди",
+                "start_time": "19:05",
+                "end_time": "19:55"
+              }
+            ],
+            "after": [
+              {
+                "name": "Кафе «Moxiang Breakfast Shop»",
+                "start_time": "09:00",
+                "end_time": "09:50"
+              },
+              {
+                "name": "Музей истории Шанхая",
+                "start_time": "09:55",
+                "end_time": "11:55"
+              },
+              {
+                "name": "Шанхайский музей",
+                "start_time": "12:10",
+                "end_time": "14:40"
+              },
+              {
+                "name": "Кондитерская «Boan»",
+                "start_time": "14:50",
+                "end_time": "15:40"
+              },
+              {
+                "name": "Парк Фусин",
+                "start_time": "17:40",
+                "end_time": "18:55"
+              },
+              {
+                "name": "Лапшичная «Маленький Горы и море и Тонкий вкус» — Синьтяньди",
+                "start_time": "19:05",
+                "end_time": "19:55"
+              }
+            ]
+          }
+        ]
+      },
+      "candidate_status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "failed",
+        "no_duplicates": "passed"
+      },
+      "confirmed": true,
+      "version": 2
+    },
+    {
+      "user": "В первом дне перенеси обед на 14:00.",
+      "type": "error",
+      "message": "Время питания конфликтует с длительностью визитов или минимальными интервалами. Исходный маршрут сохранён. Можно изменить время или заменить одно необязательное посещение.",
+      "code": "NO_FEASIBLE_EDIT",
+      "elapsed_seconds": 15.185
+    },
+    {
+      "user": "Во втором дне замени один музей на парк поблизости.",
+      "type": "unavailable",
+      "message": "ИИ-помощник сейчас недоступен. Маршрут сохранён; попробуйте позже.",
+      "code": "INTERPRETER_UNAVAILABLE",
+      "elapsed_seconds": 16.843
+    }
+  ]
+}

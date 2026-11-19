@@ -18,7 +18,7 @@ def build(root:Path=ROOT,output:Path|None=None)->dict:
     engine=(root/'ai_ds/web_demo/shanghai-engine.js').read_text(encoding='utf-8-sig')
     assert template.count('__SHANGHAI_ENGINE__')==1 and template.count('__SHANGHAI_DATA__')==1
     modules={}
-    for marker,name in [('__SHANGHAI_TRANSIT__','shanghai-transit.js'),('__SHANGHAI_MAP__','shanghai-map.js')]:
+    for marker,name in [('__SHANGHAI_TRANSIT__','shanghai-transit.js'),('__SHANGHAI_MAP__','shanghai-map.js'),('__SHANGHAI_CHAT__','shanghai-chat.js')]:
         if marker in template:modules[marker]=(root/'ai_ds/web_demo'/name).read_text(encoding='utf-8-sig')
     assert all('</script' not in src.lower() for src in [engine,*modules.values()]), 'Unsafe inline module terminator'
     rendered=template.replace('__SHANGHAI_ENGINE__',engine).replace('__SHANGHAI_DATA__',json.dumps(data,ensure_ascii=False,allow_nan=False).replace('<','\\u003c'))
