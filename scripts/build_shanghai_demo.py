@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def build(root: Path = ROOT, output: Path | None = None) -> dict:
     data = json.loads((root / 'data/demo/shanghai/pois.json').read_text(encoding='utf-8-sig'))
-    assert data['is_demo'] is True and len(data['pois']) == 100, 'Нужно ровно 100 демонстрационных объектов.'
+    assert data['is_demo'] is True and len(data['pois']) == 500, 'Нужно ровно 500 демонстрационных объектов.'
     transport_path = root / 'data/demo/shanghai/transport.json'
     if transport_path.exists():
         data['transport'] = json.loads(transport_path.read_text(encoding='utf-8-sig'))

@@ -10,3 +10,4 @@ __pycache__/
 # Generated handoff archives and private staging
 artifacts/*.zip
 artifacts/ai-ds-clean-*/
+artifacts/osm-tile-cache/

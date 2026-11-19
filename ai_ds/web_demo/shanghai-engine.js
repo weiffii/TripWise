@@ -36,7 +36,7 @@ function normalize(dataset,o){
   return {primary,secondary,interests,pace,days:dates(o.start_date||'2026-11-18',n),start,end,budget,group,transport,required,pois:dataset.pois,byId,osm_tables:o.osm_tables||null,transit_router:transitRouter(dataset.transport)};
 }
 function distance(a,b){if(!a||!b)return 0;const r=n=>n*Math.PI/180,dl=r(b.lat-a.lat),dn=r(b.lon-a.lon),h=Math.sin(dl/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dn/2)**2;return 12742000*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)));}
-function groupPrice(p,g){const rates={adult:1,child:p.kind==='restaurant'?.65:.5,senior:p.kind==='restaurant'?.9:.7,...(p.price_multipliers||{})};return round(p.price_cny*(g.adult*rates.adult+g.child*rates.child+g.senior*rates.senior)+(p.pet_fee_cny||0)*g.pet);}
+function groupPrice(p,g){const rates={adult:1,child:p.kind==='restaurant'?.65:.5,senior:p.kind==='restaurant'?.9:.7,...(p.price_multipliers||{})};const unit=p.kind==='restaurant'&&Number.isFinite(p.avg_check_cny)&&p.avg_check_cny>=0?p.avg_check_cny:p.price_cny;return round(unit*(g.adult*rates.adult+g.child*rates.child+g.senior*rates.senior)+(p.pet_fee_cny||0)*g.pet);}
 function flags(p,date){const d=new Date(date+'T00:00:00Z'),dow=d.getUTCDay()||7,month=d.getUTCMonth()+1,weekend=dow>=6;
  const seasonal=Array.isArray(p.season_months)&&p.season_months.length>0;
  const closed=(p.opening.closed_weekdays||[]).includes(dow)||(p.opening.closed_dates||[]).includes(date);
@@ -47,17 +47,23 @@ function flags(p,date){const d=new Date(date+'T00:00:00Z'),dow=d.getUTCDay()||7,
 function suitable(p,g){return !(g.pet&&p.pet_friendly!==true)&&!(g.child&&p.family_friendly===false)&&!(g.senior&&p.senior_friendly===false);}
 function duration(p,pace){return Math.max(50,Math.min(pace==='relaxed'?170:pace==='balanced'?105:95,Math.round(p.duration_minutes*PACES[pace].factor/5)*5));}
 function matrixCell(osm,a,b,mode){if(!osm||!a||!b)return null;const table=osm[mode==='walk'?'foot':'car'];if(!table||!Array.isArray(table.ids))return null;const i=table.ids.indexOf(a.id),j=table.ids.indexOf(b.id);if(i<0||j<0)return null;const n=table.durations?.[i]?.[j],d=table.distances?.[i]?.[j];return Number.isFinite(n)&&n>=0?{seconds:n,metres:Number.isFinite(d)&&d>=0?d:null}:null;}
-function transportLeg(a,b,transport,g,date,osm=null,router=null,departureMinute=null){
+function transportLeg(a,b,transport,g,date,osm=null,router=null,departureMinute=null,maxCost=Infinity){
  if(!a||a.id===b.id)return {base_minutes:0,buffer_minutes:0,planned_minutes:0,distance_m:0,transport_cost_cny:0,mode:'start',source:'start',reason:'Отель не задан.'};
+ if(transport==='mixed'){
+  const preference={walk:0,transit:1,taxi:2};
+  const candidates=['walk','transit','taxi'].map(mode=>transportLeg(a,b,mode,g,date,osm,router,departureMinute,maxCost)).filter(Boolean);
+  candidates.sort((a,b)=>a.planned_minutes-b.planned_minutes||a.base_minutes-b.base_minutes||preference[a.mode]-preference[b.mode]||a.transport_cost_cny-b.transport_cost_cny);
+  return candidates.length?{...candidates[0],selection_reason:'fastest_affordable_planned_time',mixed_candidates:candidates.map(c=>({mode:c.mode,planned_minutes:c.planned_minutes,transport_cost_cny:c.transport_cost_cny,source:c.source}))}:null;
+ }
  const direct=distance(a,b),cross=!!(a.river_bank&&b.river_bank&&a.river_bank!==b.river_bank);const persons=g.adult+g.child+g.senior;
- let mode=transport;if(mode==='mixed')mode=!cross&&direct<=1750?'walk':g.pet||persons>=4?'taxi':'transit';
+ let mode=transport;
  if(mode==='walk'&&cross&&!matrixCell(osm,a,b,'walk'))return null;
  if(mode==='walk'&&direct>8000)return null;
  if(mode==='transit'&&g.pet)return null;
   if(mode==='transit'&&router){
    const result=router.route(a,b,{group:g,date,departure_min:departureMinute});if(!result)return null;
    must(Number.isFinite(result.base_minutes)&&result.base_minutes>0&&Number.isFinite(result.planned_minutes)&&result.planned_minutes>=result.base_minutes&&Number.isFinite(result.transport_cost_cny)&&result.transport_cost_cny>=0&&Number.isFinite(result.distance_m)&&result.distance_m>=0,'Транспортный модуль вернул некорректный переход.');
-   return {...result,mode:'transit'};
+   return result.transport_cost_cny<=maxCost+1e-7?{...result,mode:'transit'}:null;
   }
  const road=direct*1.25;
  let base,cost=0,reason,source='synthetic_distance_estimate',metres=road;
@@ -69,7 +75,7 @@ function transportLeg(a,b,transport,g,date,osm=null,router=null,departureMinute=
  if(mode==='taxi'){const cars=Math.ceil((persons+Math.ceil(g.pet/2))/4);cost=round((16+Math.max(0,metres/1000-3)*2.8)*cars);}
  if(mode==='transit')cost=round(g.adult*4+g.child*2+g.senior*2);
  const planned=Math.ceil((base*(mode==='walk'?1.1:1.18)+(mode==='walk'?2:4))/5)*5;
- return {base_minutes:base,buffer_minutes:planned-base,planned_minutes:planned,transport_cost_cny:cost,distance_m:Math.round(metres),mode,source,reason};
+ return cost<=maxCost+1e-7?{base_minutes:base,buffer_minutes:planned-base,planned_minutes:planned,transport_cost_cny:cost,distance_m:Math.round(metres),mode,source,reason}:null;
 }
 function scorePOI(p,x,chosen,day){const inter=p.categories,primary=x.primary.filter(c=>inter.includes(c)),secondary=x.secondary.filter(c=>inter.includes(c)),isRequired=x.required.includes(p.id);
  const f=flags(p,day);let nearest=chosen.length?Math.min(...chosen.map(z=>distance(z,p))):0;
@@ -142,6 +148,13 @@ function assignDays(x,shortlist){
    const before=distanceTo(p,day.pois.filter(z=>z!==p));const best=other.sort((a,b)=>distanceTo(p,a.pois)-distanceTo(p,b.pois))[0];
    if(best&&best.pois.length&&before>distanceTo(p,best.pois)+2500&&day.pois.length>2){day.pois=day.pois.filter(z=>z!==p);best.pois.push(p);}
  }
+ // Bounded open-path 2-opt within each fixed day. Keep its first attraction as the
+ // anchor; change neither membership nor mandatory/interest selection.
+ for(const day of days){const cost=list=>sum(list.slice(1).map((p,i)=>roadMetric(list[i],p)));let value=cost(day.pois);const before=value;
+  for(let pass=0;pass<3;pass++){let best=null,bestCost=value;for(let i=1;i<day.pois.length-1;i++)for(let j=i+1;j<day.pois.length;j++){
+   const candidate=day.pois.slice(0,i).concat(day.pois.slice(i,j+1).reverse(),day.pois.slice(j+1)),v=cost(candidate);if(v<bestCost-1){best=candidate;bestCost=v;}
+  }if(!best)break;day.pois=best;value=bestCost;}day.geographic_optimization={method:'bounded_open_path_2opt_fixed_anchor',before_metres:Math.round(before),after_metres:Math.round(value),basis:'partial_OSRM_distance_else_geometric_estimate'};
+ }
  return days;
 }
 function mealSlots(x){const a=[];if(x.start<12*60)a.push({kind:'breakfast',earliest:x.start,latest:Math.min(x.start+90,12*60-1,x.end-50),target:x.start,label:'Завтрак'});
@@ -156,7 +169,7 @@ function planTrip(dataset,options){
  const warnings=['Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.'];
  if(selection.tooManyRequired)warnings.push(`Обязательных мест больше, чем вместимость выбранного темпа: ${x.required.length} мест на ${x.days.length} дн. Лучше добавить дни или изменить темп.`);
  const totalPrimary=x.primary.filter(c=>c!=='cafes');if(totalPrimary.length>selection.capacity)warnings.push('Главных категорий больше запланированного числа посещений — возможно неполное покрытие.');
- const skipped={season:0,weekend:0,group:0,opening:0,budget:0,capacity:0},days=[];let spent=0,missedMeals=0;
+ const skipped={season:0,weekend:0,group:0,opening:0,budget:0,capacity:0},days=[];let spent=0,missedMeals=0,mealRepairs=0;
   let remainingMealSlots=mealSlots(x).length*x.days.length;
   const eligibleFood=restaurants.filter(p=>suitable(p,x.group));
   const minMealPrice=eligibleFood.length?Math.min(...eligibleFood.map(p=>groupPrice(p,x.group))):0;
@@ -165,15 +178,18 @@ function planTrip(dataset,options){
  if(requiredReserve()>x.budget)warnings.push('Нижняя оценка стоимости обязательных билетов выше бюджета. Некоторые обязательные объекты разместить невозможно.');
   if(requiredReserve()+foodReserve()>x.budget)warnings.push('Бюджет ниже минимальной оценки обязательных билетов и предусмотренных приёмов пищи. Полное питание и все обязательные места нельзя обещать в этом сценарии.');
  function mealChoice(state,slot,anchor){
-   const source=anchor||state.lastAttraction||state.queue[0]||state.position||null;
+   const anchors=unique([state.lastAttraction,anchor,...state.visit_ids.map(id=>x.byId.get(id))].filter(Boolean));
+   if(!anchors.length)anchors.push(state.queue[0]||state.position||null);
+   const bankAnchor=state.lastAttraction||anchor||anchors[0];
   const picks=[];
   for(const p of restaurants){if(used.has(p.id)||!suitable(p,x.group))continue;const f=flags(p,state.date);if(!f.available)continue;
-    const from=state.position;let leg=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now);if(!leg)continue;
+    const allowance=x.budget-spent-groupPrice(p,x.group)-requiredReserve(p.id)-foodReserve(true);
+    const from=state.position;let leg=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance);if(!leg)continue;
    const duration=Math.max(50,Math.min(60,Math.round(p.duration_minutes)));
     const rawArrival=state.now+leg.planned_minutes;let arrival=Math.max(rawArrival,f.open,slot.earliest);
     const depart=state.now+(arrival-rawArrival);
     if(depart!==state.now&&leg.mode==='transit'&&x.transit_router){
-     const revised=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,depart);if(!revised)continue;
+     const revised=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,depart,allowance);if(!revised)continue;
      leg=revised;arrival=depart+leg.planned_minutes;
      // Один консервативный пересчёт: если нужен ещё один сдвиг, кандидат неустойчив.
      if(arrival<f.open||arrival<slot.earliest)continue;
@@ -181,14 +197,15 @@ function planTrip(dataset,options){
     const price=groupPrice(p,x.group)+leg.transport_cost_cny;
     if(arrival+duration>f.close||arrival+duration>x.end||arrival>slot.latest)continue;
    if(spent+price+requiredReserve(p.id)+foodReserve(true)>x.budget+1e-7)continue;
-    if(source?.river_bank&&p.river_bank&&source.river_bank!==p.river_bank)continue;
-    const metres=source?distance(source,p):0;if(metres>(x.interests.includes('cafes')?2500:1500))continue;
-   const nearAnchor=anchor?distance(p,anchor):0;
+    if(bankAnchor?.river_bank&&p.river_bank&&bankAnchor.river_bank!==p.river_bank)continue;
+    const metres=anchors[0]?Math.min(...anchors.filter(Boolean).map(source=>distance(source,p))):0;if(metres>(x.interests.includes('cafes')?2500:1500))continue;
+   const nearAnchor=state.lastAttraction?distance(p,state.lastAttraction):anchor?distance(p,anchor):0;
     picks.push({p,leg,duration,price,arrival,depart,metres,nearAnchor,score:metres+nearAnchor*.35+leg.planned_minutes*20+f.crowdPenalty*5-(p.rating||4)*30});
   }
    picks.sort((a,b)=>Math.floor(a.metres/500)-Math.floor(b.metres/500)||(b.p.rating||0)-(a.p.rating||0)||(b.p.review_count||0)-(a.p.review_count||0)||a.score-b.score||a.p.id.localeCompare(b.p.id));return picks[0]||null;
  }
  function append(state,p,type,leg,dur,reason,kind){
+   if(type==='visit')state.lastCheckpoint=snapshot(state);
    if(leg.planned_minutes){state.events.push({type:'travel',start_min:state.now,end_min:state.now+leg.planned_minutes,from_poi_id:state.position.id,to_poi_id:p.id,...leg});state.now+=leg.planned_minutes;}
    const price=groupPrice(p,x.group);const evt={type,poi_id:p.id,start_min:state.now,end_min:state.now+dur,price_cny:price,reason,matched_interests:x.interests.filter(c=>p.categories.includes(c))};if(kind)evt.meal_kind=kind;
    state.events.push(evt);state.now+=dur;state.position=p;spent=round(spent+price+leg.transport_cost_cny);state.cost=round(state.cost+price+leg.transport_cost_cny);used.add(p.id);
@@ -196,40 +213,51 @@ function planTrip(dataset,options){
  }
   function appendMeal(state,meal,reason,kind){state.now=meal.depart;append(state,meal.p,'meal',meal.leg,meal.duration,reason,kind);remainingMealSlots=Math.max(0,remainingMealSlots-1);}
   function visitChoices(state){const picks=[];for(const p of state.queue){if(used.has(p.id))continue;const f=flags(p,state.date);if(!f.available||!suitable(p,x.group))continue;
-   const leg=transportLeg(state.position,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now);if(!leg)continue;const dur=duration(p,x.pace),arrival=state.now+leg.planned_minutes;
+   if(state.blockedForFood?.has(p.id))continue;
+   const allowance=x.budget-spent-groupPrice(p,x.group)-requiredReserve(p.id)-foodReserve();
+   const leg=transportLeg(state.position,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance);if(!leg)continue;const dur=duration(p,x.pace),arrival=state.now+leg.planned_minutes;
    if(arrival<f.open||arrival+dur>f.close||arrival+dur>x.end){skipped.opening++;continue;}
    const ticket=groupPrice(p,x.group);if(spent+ticket+leg.transport_cost_cny+requiredReserve(p.id)+foodReserve()>x.budget+1e-7){skipped.budget++;continue;}
    const mandatory=required.has(p.id),newPrimary=x.primary.filter(c=>p.categories.includes(c)&&!covered.has(c)).length;
    const newSecondary=x.secondary.filter(c=>p.categories.includes(c)&&!covered.has(c)).length;
    // Geographic proximity determines ordering once the attraction shortlist has been fixed.
    const anchor=state.lastAttraction||state.queue[0]||null;
-   const anchorLeg=transportLeg(anchor,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now);
+   const anchorLeg=transportLeg(anchor,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance);
    const spatial=anchorLeg?anchorLeg.planned_minutes+anchorLeg.distance_m/200:leg.planned_minutes+leg.distance_m/200;
    const popularity=Math.min(10,Math.log2(1+Math.max(0,p.review_count||0))*.5);
    const score=(mandatory?600:0)+newPrimary*180+newSecondary*65+((p.rating||4)*2)+popularity-spatial*2-f.crowdPenalty*12-(dur>140?12:0);
    picks.push({p,leg,dur,score,mandatory,newPrimary,newSecondary});
   }return picks.sort((a,b)=>b.score-a.score||a.leg.planned_minutes-b.leg.planned_minutes||a.p.id.localeCompare(b.p.id));}
- for(const d of clusters){const state={date:d.date,now:x.start,position:null,events:[],visit_ids:[],meal_ids:[],warnings:[],cost:0,queue:[...d.pois]};const meals=mealSlots(x);let slotIndex=0;let guard=0;
+ function snapshot(state){return {now:state.now,position:state.position,lastAttraction:state.lastAttraction,events:state.events.slice(),visit_ids:state.visit_ids.slice(),meal_ids:state.meal_ids.slice(),cost:state.cost,lastCheckpoint:state.lastCheckpoint,blockedForFood:new Set(state.blockedForFood||[]),spent,used:[...used],covered:[...covered],remainingMealSlots};}
+ function restore(state,s){for(const key of ['now','position','lastAttraction','events','visit_ids','meal_ids','cost','lastCheckpoint'])state[key]=s[key];state.blockedForFood=new Set(s.blockedForFood);spent=s.spent;remainingMealSlots=s.remainingMealSlots;used.clear();s.used.forEach(id=>used.add(id));covered.clear();s.covered.forEach(id=>covered.add(id));}
+ function protectedMealChoice(state,slot,anchor){let meal=mealChoice(state,slot,anchor);if(meal)return meal;
+  const original=snapshot(state),blocked=new Set(state.blockedForFood||[]);
+  for(let attempt=0;attempt<2;attempt++){const last=state.events[state.events.length-1];if(last?.type!=='visit'||required.has(last.poi_id)||!state.lastCheckpoint)break;
+   blocked.add(last.poi_id);const checkpoint=state.lastCheckpoint;restore(state,checkpoint);state.blockedForFood=new Set(blocked);
+   const nextAnchor=state.lastAttraction||state.queue.find(p=>!used.has(p.id)&&!blocked.has(p.id))||null;
+   meal=mealChoice(state,slot,nextAnchor);if(meal){mealRepairs++;return meal;}
+  }restore(state,original);return null;
+ }
+ for(const d of clusters){const state={date:d.date,now:x.start,position:null,events:[],visit_ids:[],meal_ids:[],warnings:[],cost:0,queue:[...d.pois],blockedForFood:new Set()};const meals=mealSlots(x);let slotIndex=0;let guard=0;
   // breakfast (when selected) should be near the upcoming attraction, not a random distant venue.
-  if(meals[0]?.kind==='breakfast'){const m=mealChoice(state,meals[0],d.pois[0]||null);if(m)appendMeal(state,m,'Завтрак возле выбранных достопримечательностей.',meals[0].kind);else{state.warnings.push('Не найден завтрак рядом с дневным кластером в указанное время.');missedMeals++;remainingMealSlots=Math.max(0,remainingMealSlots-1);}slotIndex++;}
+  if(meals[0]?.kind==='breakfast'){const m=protectedMealChoice(state,meals[0],d.pois[0]||null);if(m)appendMeal(state,m,'Завтрак возле выбранных достопримечательностей.',meals[0].kind);else{state.warnings.push('Не найден завтрак рядом с дневным кластером в указанное время.');missedMeals++;remainingMealSlots=Math.max(0,remainingMealSlots-1);}slotIndex++;}
   while(guard++<50&&state.visit_ids.length<PACES[x.pace].max){
    const choices=visitChoices(state),slot=meals[slotIndex];
    let meal=null;
    if(slot){const next=choices[0];const wouldEnd=next?state.now+next.leg.planned_minutes+next.dur:Infinity;
-    if(state.now>=slot.earliest&&(state.now>=slot.target-40||wouldEnd>slot.latest))meal=mealChoice(state,slot,next?.p||null);
+    if(state.now>=slot.earliest&&(state.now>=slot.target-40||wouldEnd>slot.latest))meal=protectedMealChoice(state,slot,next?.p||null);
     if(meal){appendMeal(state,meal,'Питание вблизи следующего запланированного места (радиус до 2,5 км).',slot.kind);slotIndex++;continue;}
     if(state.now>slot.latest){state.warnings.push(`${slot.label}: не найдено подходящего кафе рядом с маршрутом.`);missedMeals++;remainingMealSlots=Math.max(0,remainingMealSlots-1);slotIndex++;continue;}
    }
-   if(!choices.length){if(slot){meal=mealChoice(state,slot,null);if(meal){appendMeal(state,meal,'Питание возле текущего дневного маршрута.',slot.kind);slotIndex++;continue;}}
+   if(!choices.length){if(slot){meal=protectedMealChoice(state,slot,null);if(meal){appendMeal(state,meal,'Питание возле текущего дневного маршрута.',slot.kind);slotIndex++;continue;}}
     break;}
    // Avoid crossing a meal window with a lengthy attraction unless meal is unavailable.
    let chosen=choices.find(v=>!slot||state.now+v.leg.planned_minutes+v.dur<slot.latest-20)||choices[0];
-   if(slot&&state.now>=slot.earliest&&state.now+chosen.leg.planned_minutes+chosen.dur>slot.latest){meal=mealChoice(state,slot,chosen.p);if(meal){appendMeal(state,meal,'Питание рядом с планируемым посещением.',slot.kind);slotIndex++;continue;}}
+   if(slot&&state.now>=slot.earliest&&state.now+chosen.leg.planned_minutes+chosen.dur>slot.latest){meal=protectedMealChoice(state,slot,chosen.p);if(meal){appendMeal(state,meal,'Питание рядом с планируемым посещением.',slot.kind);slotIndex++;continue;}}
    const f=flags(chosen.p,d.date);append(state,chosen.p,'visit',chosen.leg,chosen.dur,`${chosen.mandatory?'Обязательное место. ':''}${chosen.newPrimary?'Главный интерес. ':''}Сгруппировано по близости; ${f.weekend?'учтена загруженность выходного':'учтены часы работы и расположение'}.`);
   }
   // End-of-day meal only if feasible and still relevant to the itinerary.
-  while(slotIndex<meals.length){const slot=meals[slotIndex++];if(state.now>slot.latest){missedMeals++;remainingMealSlots=Math.max(0,remainingMealSlots-1);state.warnings.push(`${slot.label}: время прошло.`);continue;}const m=mealChoice(state,slot,null);if(m)appendMeal(state,m,'Кафе рядом с последним местом маршрута.',slot.kind);else{missedMeals++;remainingMealSlots=Math.max(0,remainingMealSlots-1);state.warnings.push(`${slot.label}: не удалось найти подходящее кафе в выбранном окне.`);}}
-  const remaining=state.queue.filter(p=>!used.has(p.id));if(remaining.length)state.warnings.push(`Не поместились в этот день: ${remaining.slice(0,5).map(p=>p.name).join(', ')}${remaining.length>5?' и ещё '+(remaining.length-5):''}.`);
+  while(slotIndex<meals.length){const slot=meals[slotIndex++];const m=protectedMealChoice(state,slot,null);if(m)appendMeal(state,m,'Кафе рядом с последним местом маршрута.',slot.kind);else{missedMeals++;remainingMealSlots=Math.max(0,remainingMealSlots-1);state.warnings.push(`${slot.label}: не удалось найти подходящее кафе в выбранном окне.`);}}
   days.push({date:d.date,events:state.events,visit_ids:state.visit_ids,meal_ids:state.meal_ids,total_cost_cny:round(state.cost),active_minutes:sum(state.events.filter(e=>e.type==='visit'||e.type==='travel').map(e=>e.end_min-e.start_min)),active_limit_minutes:x.end-x.start,rest_minutes:0,starts_at:state.events[0]?.start_min??null,ends_at:state.events.length?state.now:null,warnings:state.warnings});
  }
  if(x.pace==='balanced'&&x.end-x.start>=8*60){
@@ -248,7 +276,7 @@ function planTrip(dataset,options){
  const sourceLegs=legs.filter(e=>e.source==='OSM_OSRM').length;
  const status=Object.entries(checks).filter(([name])=>name!=='no_gaps').every(([,v])=>v==='passed')&&visits.length?'demo':'partial';
  return {schema_version:'shanghai-demo-v1',model_version:'two-stage-geo-cluster-routing-v4',status,days,selected_ids:[...used],warnings:unique(warnings.concat(days.flatMap(d=>d.warnings))),ranking:ranked,checks,unplaced_required_ids:unplaced,uncovered_interests:uncovered,
- summary:{total_cost_cny:round(spent),budget_cny:x.budget,visit_count:visits.length,meal_count:food.length,planned_travel_minutes:sum(legs.map(e=>e.planned_minutes)),estimated_travel_minutes:sum(legs.map(e=>e.base_minutes)),transport_cost_cny:round(sum(legs.map(e=>e.transport_cost_cny))),covered_interests:[...covered],days_count:days.length,group:x.group,transport_mode:x.transport,synthetic_data:true,first_last_poi:true,skipped_filters:skipped,daily_visits:days.map(d=>d.visit_ids.length),osm_legs:sourceLegs,stage1_selected_ids:selection.shortlist.map(z=>z.poi.id),stage1_count:selection.shortlist.length,clusters:clusters.map(d=>({date:d.date,ids:d.pois.map(p=>p.id)})),required_total:x.required.length,required_placed:x.required.length-unplaced.length}};
+ summary:{total_cost_cny:round(spent),budget_cny:x.budget,visit_count:visits.length,meal_count:food.length,planned_travel_minutes:sum(legs.map(e=>e.planned_minutes)),estimated_travel_minutes:sum(legs.map(e=>e.base_minutes)),transport_cost_cny:round(sum(legs.map(e=>e.transport_cost_cny))),covered_interests:[...covered],days_count:days.length,group:x.group,transport_mode:x.transport,synthetic_data:true,first_last_poi:true,skipped_filters:skipped,daily_visits:days.map(d=>d.visit_ids.length),osm_legs:sourceLegs,stage1_selected_ids:selection.shortlist.map(z=>z.poi.id),stage1_count:selection.shortlist.length,clusters:clusters.map(d=>({date:d.date,ids:d.pois.map(p=>p.id),geographic_optimization:d.geographic_optimization})),required_total:x.required.length,required_placed:x.required.length-unplaced.length,meal_repair_count:mealRepairs}};
 }
 return {planTrip,rankPois,selectAttractions,assignDays,normalize,groupPrice,transportLeg,FX_TO_CNY,CATEGORIES,LABELS,PACES,distance};
 });

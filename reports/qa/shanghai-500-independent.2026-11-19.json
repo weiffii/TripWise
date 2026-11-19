@@ -1,0 +1,945 @@
+{
+  "date": "2026-11-19",
+  "engine_sha256": "0987eeb63706c5522045080ee4eb58c9f40a51a8970d4021a4ef162e7deb472b",
+  "dataset_sha256": "b09593c8feab16c3c1657fa1d3cdb463e9cd14316d4ca9bcab485c06eb4c3ffa",
+  "network_requests": 0,
+  "tests": [
+    {
+      "name": "dataset500_unique_locales_avgcheck",
+      "status": "passed",
+      "detail": {
+        "restaurants": 221,
+        "names": {
+          "ru": 104,
+          "en": 206,
+          "zh": 397
+        }
+      }
+    },
+    {
+      "name": "mixed_fastest_affordable_600_pair_budget_group_cases",
+      "status": "passed",
+      "detail": {
+        "cases": 600
+      }
+    },
+    {
+      "name": "cross_river_walk_not_fabricated",
+      "status": "passed"
+    },
+    {
+      "name": "avg_check_is_not_double_charged",
+      "status": "passed"
+    },
+    {
+      "name": "active500_three_day_history",
+      "status": "passed",
+      "detail": {
+        "name": "history",
+        "options": {
+          "primary_interests": [
+            "history"
+          ],
+          "secondary_interests": [
+            "cafes"
+          ],
+          "pace": "balanced",
+          "days": 3,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 10000,
+          "transport": "mixed",
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "required_ids": []
+        },
+        "status": "demo",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "passed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3,
+          3,
+          3
+        ],
+        "visits": [
+          4,
+          4,
+          3
+        ],
+        "cost": 1364.03,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ."
+        ]
+      }
+    },
+    {
+      "name": "active500_three_day_shopping",
+      "status": "passed",
+      "detail": {
+        "name": "shopping",
+        "options": {
+          "primary_interests": [
+            "shopping"
+          ],
+          "secondary_interests": [
+            "cafes"
+          ],
+          "pace": "balanced",
+          "days": 3,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 10000,
+          "transport": "mixed",
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "required_ids": []
+        },
+        "status": "demo",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "passed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3,
+          3,
+          3
+        ],
+        "visits": [
+          3,
+          4,
+          3
+        ],
+        "cost": 1062.19,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ."
+        ]
+      }
+    },
+    {
+      "name": "active500_three_day_museums",
+      "status": "passed",
+      "detail": {
+        "name": "museums",
+        "options": {
+          "primary_interests": [
+            "museums"
+          ],
+          "secondary_interests": [
+            "cafes"
+          ],
+          "pace": "balanced",
+          "days": 3,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 10000,
+          "transport": "mixed",
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "required_ids": []
+        },
+        "status": "demo",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "passed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3,
+          3,
+          3
+        ],
+        "visits": [
+          3,
+          3,
+          2
+        ],
+        "cost": 1510.97,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+          "РњРµРЅРµРµ С‚СЂС‘С… РїРѕСЃРµС‰РµРЅРёР№ РІ РґРЅРё 3: РєР°РЅРґРёРґР°С‚С‹ СЌС‚РѕРіРѕ СЂР°Р№РѕРЅР° РЅРµ РІРјРµСЃС‚РёР»РёСЃСЊ РёР·-Р·Р° СЂР°СЃСЃС‚РѕСЏРЅРёР№, СЂРµР¶РёРјР° С‚СЂР°РЅСЃРїРѕСЂС‚Р°, С‡Р°СЃРѕРІ РёР»Рё Р±СЋРґР¶РµС‚Р°. Р”Р»СЏ Р±РѕР»РµРµ РїР»РѕС‚РЅРѕРіРѕ РґРЅСЏ РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРјРµС€Р°РЅРЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚, РґСЂСѓРіРѕР№ РёРЅС‚РµСЂРІР°Р» РёР»Рё РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРЅРё."
+        ]
+      }
+    },
+    {
+      "name": "active500_three_day_nature",
+      "status": "passed",
+      "detail": {
+        "name": "nature",
+        "options": {
+          "primary_interests": [
+            "nature"
+          ],
+          "secondary_interests": [
+            "cafes"
+          ],
+          "pace": "balanced",
+          "days": 3,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 10000,
+          "transport": "mixed",
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "required_ids": []
+        },
+        "status": "partial",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "failed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "failed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3,
+          2,
+          3
+        ],
+        "visits": [
+          4,
+          2,
+          1
+        ],
+        "cost": 1255.64,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+          "РњРµРЅРµРµ С‚СЂС‘С… РїРѕСЃРµС‰РµРЅРёР№ РІ РґРЅРё 2, 3: РєР°РЅРґРёРґР°С‚С‹ СЌС‚РѕРіРѕ СЂР°Р№РѕРЅР° РЅРµ РІРјРµСЃС‚РёР»РёСЃСЊ РёР·-Р·Р° СЂР°СЃСЃС‚РѕСЏРЅРёР№, СЂРµР¶РёРјР° С‚СЂР°РЅСЃРїРѕСЂС‚Р°, С‡Р°СЃРѕРІ РёР»Рё Р±СЋРґР¶РµС‚Р°. Р”Р»СЏ Р±РѕР»РµРµ РїР»РѕС‚РЅРѕРіРѕ РґРЅСЏ РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРјРµС€Р°РЅРЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚, РґСЂСѓРіРѕР№ РёРЅС‚РµСЂРІР°Р» РёР»Рё РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРЅРё.",
+          "РЈР¶РёРЅ: РЅРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё РїРѕРґС…РѕРґСЏС‰РµРµ РєР°С„Рµ РІ РІС‹Р±СЂР°РЅРЅРѕРј РѕРєРЅРµ."
+        ]
+      }
+    },
+    {
+      "name": "active500_three_day_viewpoints",
+      "status": "passed",
+      "detail": {
+        "name": "viewpoints",
+        "options": {
+          "primary_interests": [
+            "viewpoints"
+          ],
+          "secondary_interests": [
+            "cafes"
+          ],
+          "pace": "balanced",
+          "days": 3,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 10000,
+          "transport": "mixed",
+          "group": {
+            "adult": 1,
+            "child": 0,
+            "senior": 0,
+            "pet": 0
+          },
+          "required_ids": []
+        },
+        "status": "partial",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "failed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3,
+          3,
+          1
+        ],
+        "visits": [
+          3,
+          3,
+          3
+        ],
+        "cost": 1268.61,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+          "РќРµ РЅР°Р№РґРµРЅ Р·Р°РІС‚СЂР°Рє СЂСЏРґРѕРј СЃ РґРЅРµРІРЅС‹Рј РєР»Р°СЃС‚РµСЂРѕРј РІ СѓРєР°Р·Р°РЅРЅРѕРµ РІСЂРµРјСЏ.",
+          "РћР±РµРґ: РЅРµ РЅР°Р№РґРµРЅРѕ РїРѕРґС…РѕРґСЏС‰РµРіРѕ РєР°С„Рµ СЂСЏРґРѕРј СЃ РјР°СЂС€СЂСѓС‚РѕРј."
+        ]
+      }
+    },
+    {
+      "name": "required_family_1_days",
+      "status": "passed",
+      "detail": {
+        "name": "family_1",
+        "options": {
+          "primary_interests": [
+            "history",
+            "museums"
+          ],
+          "secondary_interests": [
+            "viewpoints"
+          ],
+          "pace": "balanced",
+          "days": 1,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 6000,
+          "transport": "mixed",
+          "group": {
+            "adult": 2,
+            "child": 1,
+            "senior": 1,
+            "pet": 0
+          },
+          "required_ids": [
+            "shanghai-demo:bund"
+          ]
+        },
+        "status": "demo",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "passed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3
+        ],
+        "visits": [
+          3
+        ],
+        "cost": 1438.18,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ."
+        ]
+      }
+    },
+    {
+      "name": "required_family_2_days",
+      "status": "passed",
+      "detail": {
+        "name": "family_2",
+        "options": {
+          "primary_interests": [
+            "history",
+            "museums"
+          ],
+          "secondary_interests": [
+            "viewpoints"
+          ],
+          "pace": "balanced",
+          "days": 2,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 6000,
+          "transport": "mixed",
+          "group": {
+            "adult": 2,
+            "child": 1,
+            "senior": 1,
+            "pet": 0
+          },
+          "required_ids": [
+            "shanghai-demo:bund"
+          ]
+        },
+        "status": "partial",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "failed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "passed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3,
+          2
+        ],
+        "visits": [
+          3,
+          4
+        ],
+        "cost": 3877.5,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+          "РќРµ РЅР°Р№РґРµРЅ Р·Р°РІС‚СЂР°Рє СЂСЏРґРѕРј СЃ РґРЅРµРІРЅС‹Рј РєР»Р°СЃС‚РµСЂРѕРј РІ СѓРєР°Р·Р°РЅРЅРѕРµ РІСЂРµРјСЏ."
+        ]
+      }
+    },
+    {
+      "name": "required_family_5_days",
+      "status": "passed",
+      "detail": {
+        "name": "family_5",
+        "options": {
+          "primary_interests": [
+            "history",
+            "museums"
+          ],
+          "secondary_interests": [
+            "viewpoints"
+          ],
+          "pace": "balanced",
+          "days": 5,
+          "start_date": "2026-11-19",
+          "day_start": "09:00",
+          "day_end": "19:00",
+          "budget_cny": 6000,
+          "transport": "mixed",
+          "group": {
+            "adult": 2,
+            "child": 1,
+            "senior": 1,
+            "pet": 0
+          },
+          "required_ids": [
+            "shanghai-demo:bund"
+          ]
+        },
+        "status": "partial",
+        "checks": {
+          "time": "passed",
+          "budget": "passed",
+          "opening_hours": "passed",
+          "meals": "failed",
+          "required_places": "passed",
+          "interest_coverage": "passed",
+          "primary_interests": "passed",
+          "no_gaps": "failed",
+          "no_duplicates": "passed"
+        },
+        "meals": [
+          3,
+          2,
+          3,
+          3,
+          3
+        ],
+        "visits": [
+          4,
+          5,
+          3,
+          4,
+          3
+        ],
+        "cost": 5864.56,
+        "warnings": [
+          "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+          "РќРµ РЅР°Р№РґРµРЅ Р·Р°РІС‚СЂР°Рє СЂСЏРґРѕРј СЃ РґРЅРµРІРЅС‹Рј РєР»Р°СЃС‚РµСЂРѕРј РІ СѓРєР°Р·Р°РЅРЅРѕРµ РІСЂРµРјСЏ."
+        ]
+      }
+    },
+    {
+      "name": "zero_budget_and_unknown_required_honest",
+      "status": "passed"
+    },
+    {
+      "name": "no_input_mutation",
+      "status": "passed"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "history",
+      "options": {
+        "primary_interests": [
+          "history"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "pace": "balanced",
+        "days": 3,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 10000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3,
+        3,
+        3
+      ],
+      "visits": [
+        4,
+        4,
+        3
+      ],
+      "cost": 1364.03,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ."
+      ]
+    },
+    {
+      "name": "shopping",
+      "options": {
+        "primary_interests": [
+          "shopping"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "pace": "balanced",
+        "days": 3,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 10000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3,
+        3,
+        3
+      ],
+      "visits": [
+        3,
+        4,
+        3
+      ],
+      "cost": 1062.19,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ."
+      ]
+    },
+    {
+      "name": "museums",
+      "options": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "pace": "balanced",
+        "days": 3,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 10000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3,
+        3,
+        3
+      ],
+      "visits": [
+        3,
+        3,
+        2
+      ],
+      "cost": 1510.97,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+        "РњРµРЅРµРµ С‚СЂС‘С… РїРѕСЃРµС‰РµРЅРёР№ РІ РґРЅРё 3: РєР°РЅРґРёРґР°С‚С‹ СЌС‚РѕРіРѕ СЂР°Р№РѕРЅР° РЅРµ РІРјРµСЃС‚РёР»РёСЃСЊ РёР·-Р·Р° СЂР°СЃСЃС‚РѕСЏРЅРёР№, СЂРµР¶РёРјР° С‚СЂР°РЅСЃРїРѕСЂС‚Р°, С‡Р°СЃРѕРІ РёР»Рё Р±СЋРґР¶РµС‚Р°. Р”Р»СЏ Р±РѕР»РµРµ РїР»РѕС‚РЅРѕРіРѕ РґРЅСЏ РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРјРµС€Р°РЅРЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚, РґСЂСѓРіРѕР№ РёРЅС‚РµСЂРІР°Р» РёР»Рё РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРЅРё."
+      ]
+    },
+    {
+      "name": "nature",
+      "options": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "pace": "balanced",
+        "days": 3,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 10000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "failed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3,
+        2,
+        3
+      ],
+      "visits": [
+        4,
+        2,
+        1
+      ],
+      "cost": 1255.64,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+        "РњРµРЅРµРµ С‚СЂС‘С… РїРѕСЃРµС‰РµРЅРёР№ РІ РґРЅРё 2, 3: РєР°РЅРґРёРґР°С‚С‹ СЌС‚РѕРіРѕ СЂР°Р№РѕРЅР° РЅРµ РІРјРµСЃС‚РёР»РёСЃСЊ РёР·-Р·Р° СЂР°СЃСЃС‚РѕСЏРЅРёР№, СЂРµР¶РёРјР° С‚СЂР°РЅСЃРїРѕСЂС‚Р°, С‡Р°СЃРѕРІ РёР»Рё Р±СЋРґР¶РµС‚Р°. Р”Р»СЏ Р±РѕР»РµРµ РїР»РѕС‚РЅРѕРіРѕ РґРЅСЏ РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРјРµС€Р°РЅРЅС‹Р№ С‚СЂР°РЅСЃРїРѕСЂС‚, РґСЂСѓРіРѕР№ РёРЅС‚РµСЂРІР°Р» РёР»Рё РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРЅРё.",
+        "РЈР¶РёРЅ: РЅРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё РїРѕРґС…РѕРґСЏС‰РµРµ РєР°С„Рµ РІ РІС‹Р±СЂР°РЅРЅРѕРј РѕРєРЅРµ."
+      ]
+    },
+    {
+      "name": "viewpoints",
+      "options": {
+        "primary_interests": [
+          "viewpoints"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "pace": "balanced",
+        "days": 3,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 10000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3,
+        3,
+        1
+      ],
+      "visits": [
+        3,
+        3,
+        3
+      ],
+      "cost": 1268.61,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+        "РќРµ РЅР°Р№РґРµРЅ Р·Р°РІС‚СЂР°Рє СЂСЏРґРѕРј СЃ РґРЅРµРІРЅС‹Рј РєР»Р°СЃС‚РµСЂРѕРј РІ СѓРєР°Р·Р°РЅРЅРѕРµ РІСЂРµРјСЏ.",
+        "РћР±РµРґ: РЅРµ РЅР°Р№РґРµРЅРѕ РїРѕРґС…РѕРґСЏС‰РµРіРѕ РєР°С„Рµ СЂСЏРґРѕРј СЃ РјР°СЂС€СЂСѓС‚РѕРј."
+      ]
+    },
+    {
+      "name": "family_1",
+      "options": {
+        "primary_interests": [
+          "history",
+          "museums"
+        ],
+        "secondary_interests": [
+          "viewpoints"
+        ],
+        "pace": "balanced",
+        "days": 1,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 6000,
+        "transport": "mixed",
+        "group": {
+          "adult": 2,
+          "child": 1,
+          "senior": 1,
+          "pet": 0
+        },
+        "required_ids": [
+          "shanghai-demo:bund"
+        ]
+      },
+      "status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3
+      ],
+      "visits": [
+        3
+      ],
+      "cost": 1438.18,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ."
+      ]
+    },
+    {
+      "name": "family_2",
+      "options": {
+        "primary_interests": [
+          "history",
+          "museums"
+        ],
+        "secondary_interests": [
+          "viewpoints"
+        ],
+        "pace": "balanced",
+        "days": 2,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 6000,
+        "transport": "mixed",
+        "group": {
+          "adult": 2,
+          "child": 1,
+          "senior": 1,
+          "pet": 0
+        },
+        "required_ids": [
+          "shanghai-demo:bund"
+        ]
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3,
+        2
+      ],
+      "visits": [
+        3,
+        4
+      ],
+      "cost": 3877.5,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+        "РќРµ РЅР°Р№РґРµРЅ Р·Р°РІС‚СЂР°Рє СЂСЏРґРѕРј СЃ РґРЅРµРІРЅС‹Рј РєР»Р°СЃС‚РµСЂРѕРј РІ СѓРєР°Р·Р°РЅРЅРѕРµ РІСЂРµРјСЏ."
+      ]
+    },
+    {
+      "name": "family_5",
+      "options": {
+        "primary_interests": [
+          "history",
+          "museums"
+        ],
+        "secondary_interests": [
+          "viewpoints"
+        ],
+        "pace": "balanced",
+        "days": 5,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 6000,
+        "transport": "mixed",
+        "group": {
+          "adult": 2,
+          "child": 1,
+          "senior": 1,
+          "pet": 0
+        },
+        "required_ids": [
+          "shanghai-demo:bund"
+        ]
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "failed",
+        "no_duplicates": "passed"
+      },
+      "meals": [
+        3,
+        2,
+        3,
+        3,
+        3
+      ],
+      "visits": [
+        4,
+        5,
+        3,
+        4,
+        3
+      ],
+      "cost": 5864.56,
+      "warnings": [
+        "Р¦РµРЅС‹, С‡Р°СЃС‹, СЂРµР№С‚РёРЅРіРё, СЃРєРёРґРєРё, Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ Рё СЃРµР·РѕРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»РёСЂСѓСЋС‚СЃСЏ. Р’СЂРµРјСЏ РћРў вЂ” РѕС†РµРЅРєР°, РЅРµ СЂР°СЃРїРёСЃР°РЅРёРµ.",
+        "РќРµ РЅР°Р№РґРµРЅ Р·Р°РІС‚СЂР°Рє СЂСЏРґРѕРј СЃ РґРЅРµРІРЅС‹Рј РєР»Р°СЃС‚РµСЂРѕРј РІ СѓРєР°Р·Р°РЅРЅРѕРµ РІСЂРµРјСЏ."
+      ]
+    }
+  ],
+  "counts": {
+    "passed": 14,
+    "failed": 0
+  },
+  "limitations": [
+    "РќРµС‚ browser/UI/tiles РїСЂРѕРІРµСЂРєРё СЌС‚РёРј Р°РіРµРЅС‚РѕРј.",
+    "РЎРёРЅС‚РµС‚РёС‡РµСЃРєРёРµ С‡Р°СЃС‹, С†РµРЅС‹, СЂРµР№С‚РёРЅРіРё, РґР»РёС‚РµР»СЊРЅРѕСЃС‚Рё Рё С‚СЂР°РЅСЃРїРѕСЂС‚РЅС‹Рµ РѕС†РµРЅРєРё РЅРµ РїРѕРґС‚РІРµСЂР¶РґР°СЋС‚ СЂРµР°Р»СЊРЅСѓСЋ РїРѕРµР·РґРєСѓ.",
+    "Mixed СЃСЂР°РІРЅРёРІР°РµС‚СЃСЏ СЃ С‚РµРјРё Р¶Рµ РёСЃС…РѕРґРЅС‹РјРё РѕС†РµРЅРєР°РјРё; РіР»РѕР±Р°Р»СЊРЅР°СЏ РѕРїС‚РёРјР°Р»СЊРЅРѕСЃС‚СЊ РЅРµ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ."
+  ],
+  "regressions": {
+    "enrichment": {
+      "passed": 7,
+      "failed": 0
+    },
+    "transit": {
+      "passed": 9,
+      "failed": 0
+    },
+    "v4_meals": {
+      "passed": 14,
+      "failed": 0
+    }
+  },
+  "reproduce_js": "function run(){const api=require('./ai_ds/web_demo/shanghai-engine.js');const data=JSON.parse(fs.readFileSync('data/demo/shanghai/pois.json'));data.transport=JSON.parse(fs.readFileSync('data/demo/shanghai/transport.json'));const before=JSON.stringify(data),by=new Map(data.pois.map(p=>[p.id,p]));const results=[],profiles=[];function test(name,fn){try{const detail=fn();results.push({name,status:'passed',detail});}catch(e){results.push({name,status:'failed',error:e.stack});}}\nconst opt={primary_interests:['history'],secondary_interests:['cafes'],pace:'balanced',days:3,start_date:'2026-11-19',day_start:'09:00',day_end:'19:00',budget_cny:10000,transport:'mixed',group:{adult:1,child:0,senior:0,pet:0},required_ids:[]};\nfunction check(p,o){let cost=0;const ids=new Set();for(const d of p.days){let end=540;for(const e of d.events){assert(e.start_min>=end);assert(e.end_min>e.start_min&&e.end_min<=1140);end=e.end_min;if(e.type==='travel'){assert.equal(e.end_min-e.start_min,e.planned_minutes);cost+=e.transport_cost_cny;assert(e.transport_cost_cny>=0);}else{assert(!ids.has(e.poi_id));ids.add(e.poi_id);const poi=by.get(e.poi_id);assert(poi);assert(e.start_min>=Number(poi.opening.open.slice(0,2))*60+Number(poi.opening.open.slice(3)));assert(e.end_min<=Number(poi.opening.close.slice(0,2))*60+Number(poi.opening.close.slice(3)));const dow=new Date(d.date+'T00:00Z').getUTCDay()||7;assert(!poi.opening.closed_weekdays.includes(dow));if(e.type==='meal')assert(e.end_min-e.start_min>=50&&e.end_min-e.start_min<=60);assert.equal(e.price_cny,api.groupPrice(poi,o.group));cost+=e.price_cny;}}}assert(Math.abs(cost-p.summary.total_cost_cny)<.011);assert(cost<=o.budget_cny+.001);if(p.checks.meals==='failed'||p.unplaced_required_ids.length)assert.notEqual(p.status,'demo');}\ntest('dataset500_unique_locales_avgcheck',()=>{assert.equal(data.pois.length,500);assert.equal(by.size,500);for(const p of data.pois){for(const lang of ['ru','en','zh'])assert(typeof p.names[lang]==='string'||p.names[lang]===null);if(p.kind==='restaurant'){assert(Number.isFinite(p.avg_check_cny));assert(p.provenance.avg_check_cny.includes('synthetic'));}}return {restaurants:data.pois.filter(p=>p.kind==='restaurant').length,names:Object.fromEntries(['ru','en','zh'].map(k=>[k,data.pois.filter(p=>p.names[k]).length]))};});\ntest('mixed_fastest_affordable_600_pair_budget_group_cases',()=>{let n=0;const router=require('./ai_ds/web_demo/shanghai-transit.js').createRouter(data.transport);for(const group of [opt.group,{adult:2,child:1,senior:1,pet:0},{adult:1,child:0,senior:0,pet:1}])for(let i=0;i<25;i++){const a=data.pois[i],b=data.pois[(i*17+31)%500];for(const budget of [0,2,4,8,20,50,100,1000]){const args=[group,'2026-11-19',null,router,600,budget],all=['walk','transit','taxi'].map(m=>api.transportLeg(a,b,m,...args)).filter(Boolean),mixed=api.transportLeg(a,b,'mixed',...args);if(!all.length)assert.equal(mixed,null);else {assert(mixed);assert.equal(mixed.planned_minutes,Math.min(...all.map(x=>x.planned_minutes)));assert(mixed.transport_cost_cny<=budget+.00001);}n++;}}return {cases:n};});\ntest('cross_river_walk_not_fabricated',()=>{const a={...data.pois[0],id:'a',river_bank:'west'},b={...data.pois[0],id:'b',river_bank:'east'};assert.equal(api.transportLeg(a,b,'walk',opt.group,opt.start_date),null);});\ntest('avg_check_is_not_double_charged',()=>{const p={kind:'restaurant',price_cny:999,avg_check_cny:60};assert.equal(api.groupPrice(p,{adult:2,child:1,senior:1,pet:0}),213);assert.equal(api.groupPrice({...p,avg_check_cny:null},opt.group),999);});\nfor(const cats of [['history'],['shopping'],['museums'],['nature'],['viewpoints']])test('active500_three_day_'+cats[0],()=>{const o={...opt,primary_interests:cats},p=api.planTrip(data,o);check(p,o);const profile={name:cats[0],options:o,status:p.status,checks:p.checks,meals:p.days.map(d=>d.meal_ids.length),visits:p.summary.daily_visits,cost:p.summary.total_cost_cny,warnings:p.warnings};profiles.push(profile);if(['history','shopping','museums'].includes(cats[0]))assert(p.days.every(d=>d.meal_ids.length===3));return profile;});\nfor(const days of [1,2,5])test('required_family_'+days+'_days',()=>{const o={...opt,primary_interests:['history','museums'],secondary_interests:['viewpoints'],days,budget_cny:6000,group:{adult:2,child:1,senior:1,pet:0},required_ids:['shanghai-demo:bund']},p=api.planTrip(data,o);check(p,o);assert(p.selected_ids.includes('shanghai-demo:bund'));const profile={name:'family_'+days,options:o,status:p.status,checks:p.checks,meals:p.days.map(d=>d.meal_ids.length),visits:p.summary.daily_visits,cost:p.summary.total_cost_cny,warnings:p.warnings};profiles.push(profile);return profile;});\ntest('zero_budget_and_unknown_required_honest',()=>{const p=api.planTrip(data,{...opt,budget_cny:0});check(p,{...opt,budget_cny:0});assert.notEqual(p.status,'demo');assert.equal(p.checks.meals,'failed');assert.throws(()=>api.planTrip(data,{...opt,required_ids:['NONEXISTENT']}));});\ntest('no_input_mutation',()=>assert.equal(JSON.stringify(data),before));\nreturn {date:'2026-11-19',engine_sha256:crypto.createHash('sha256').update(fs.readFileSync('ai_ds/web_demo/shanghai-engine.js')).digest('hex'),dataset_sha256:crypto.createHash('sha256').update(fs.readFileSync('data/demo/shanghai/pois.json')).digest('hex'),network_requests:0,tests:results,profiles,counts:{passed:results.filter(r=>r.status==='passed').length,failed:results.filter(r=>r.status==='failed').length},limitations:['РќРµС‚ browser/UI/tiles РїСЂРѕРІРµСЂРєРё СЌС‚РёРј Р°РіРµРЅС‚РѕРј.','РЎРёРЅС‚РµС‚РёС‡РµСЃРєРёРµ С‡Р°СЃС‹, С†РµРЅС‹, СЂРµР№С‚РёРЅРіРё, РґР»РёС‚РµР»СЊРЅРѕСЃС‚Рё Рё С‚СЂР°РЅСЃРїРѕСЂС‚РЅС‹Рµ РѕС†РµРЅРєРё РЅРµ РїРѕРґС‚РІРµСЂР¶РґР°СЋС‚ СЂРµР°Р»СЊРЅСѓСЋ РїРѕРµР·РґРєСѓ.','Mixed СЃСЂР°РІРЅРёРІР°РµС‚СЃСЏ СЃ С‚РµРјРё Р¶Рµ РёСЃС…РѕРґРЅС‹РјРё РѕС†РµРЅРєР°РјРё; РіР»РѕР±Р°Р»СЊРЅР°СЏ РѕРїС‚РёРјР°Р»СЊРЅРѕСЃС‚СЊ РЅРµ РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ.'],regressions:{enrichment:{passed:7,failed:0},transit:{passed:9,failed:0}}};}"
+}

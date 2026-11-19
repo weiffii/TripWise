@@ -1,0 +1,894 @@
+{
+  "date": "2026-11-19",
+  "poi_count": 500,
+  "source_sha256": "b09593c8feab16c3c1657fa1d3cdb463e9cd14316d4ca9bcab485c06eb4c3ffa",
+  "profiles": [
+    {
+      "id": "culture_mixed_2",
+      "options": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "pace": "balanced",
+        "days": 2,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 3000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 900.67,
+      "meal_repairs": 0,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 2,
+          "visit_ids": [
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:wikidata-Q220805"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 630,
+              "end_min": 690
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:nanxiang",
+              "start_min": 830,
+              "end_min": 880
+            }
+          ],
+          "missing_meals": [
+            "dinner"
+          ],
+          "warnings": [
+            "Ужин: не удалось найти подходящее кафе в выбранном окне."
+          ]
+        },
+        {
+          "date": "2026-11-20",
+          "visit_count": 4,
+          "visit_ids": [
+            "shanghai-demo:postal-museum",
+            "shanghai-demo:wikidata-Q2121198",
+            "shanghai-demo:madame-tussauds",
+            "shanghai-demo:wikidata-Q1325611"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n12409670437",
+              "start_min": 540,
+              "end_min": 595
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n5106711621",
+              "start_min": 770,
+              "end_min": 820
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n11799151769",
+              "start_min": 1055,
+              "end_min": 1115
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Менее трёх посещений в дни 1: кандидаты этого района не вместились из-за расстояний, режима транспорта, часов или бюджета. Для более плотного дня попробуйте смешанный транспорт, другой интервал или дополнительные дни.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне."
+      ]
+    },
+    {
+      "id": "nature_mixed_2",
+      "options": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "viewpoints"
+        ],
+        "pace": "balanced",
+        "days": 2,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 3000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 862.55,
+      "meal_repairs": 0,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 4,
+          "visit_ids": [
+            "shanghai-demo:fuxing-park",
+            "shanghai-demo:peoples-park",
+            "shanghai-demo:sculpture-park",
+            "shanghai-demo:natural-history"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n12624600218",
+              "start_min": 540,
+              "end_min": 590
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 815,
+              "end_min": 875
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n7099715317",
+              "start_min": 1030,
+              "end_min": 1085
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        },
+        {
+          "date": "2026-11-20",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:bund",
+            "shanghai-demo:wikidata-Q2121198",
+            "shanghai-demo:yu-garden"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:nanxiang",
+              "start_min": 600,
+              "end_min": 650
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n12246238630",
+              "start_min": 825,
+              "end_min": 880
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n12409670437",
+              "start_min": 1015,
+              "end_min": 1070
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ]
+    },
+    {
+      "id": "family_mixed_2",
+      "options": {
+        "primary_interests": [
+          "nature",
+          "entertainment"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "pace": "balanced",
+        "days": 2,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 6000,
+        "transport": "mixed",
+        "group": {
+          "adult": 2,
+          "child": 1,
+          "senior": 1,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 2508.73,
+      "meal_repairs": 1,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 4,
+          "visit_ids": [
+            "shanghai-demo:ocean-aquarium",
+            "shanghai-demo:yu-garden",
+            "shanghai-demo:wikidata-Q7083702",
+            "shanghai-demo:xintiandi"
+          ],
+          "meals": [
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:nanxiang",
+              "start_min": 760,
+              "end_min": 810
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n7099715317",
+              "start_min": 990,
+              "end_min": 1045
+            }
+          ],
+          "missing_meals": [
+            "breakfast"
+          ],
+          "warnings": [
+            "Не найден завтрак рядом с дневным кластером в указанное время."
+          ]
+        },
+        {
+          "date": "2026-11-20",
+          "visit_count": 4,
+          "visit_ids": [
+            "shanghai-demo:wikidata-Q1325611",
+            "shanghai-demo:peoples-park",
+            "shanghai-demo:wikidata-Q11177928",
+            "shanghai-demo:fuxing-park"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 630,
+              "end_min": 690
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n12624600218",
+              "start_min": 1070,
+              "end_min": 1120
+            }
+          ],
+          "missing_meals": [
+            "lunch"
+          ],
+          "warnings": [
+            "Обед: не найдено подходящего кафе рядом с маршрутом."
+          ]
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не найден завтрак рядом с дневным кластером в указанное время.",
+        "Обед: не найдено подходящего кафе рядом с маршрутом."
+      ]
+    },
+    {
+      "id": "culture_transit_2",
+      "options": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "pace": "balanced",
+        "days": 2,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 3000,
+        "transport": "transit",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 614,
+      "meal_repairs": 1,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:history-museum",
+            "shanghai-demo:urban-planning",
+            "shanghai-demo:wikidata-Q220805"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 630,
+              "end_min": 690
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:nanxiang",
+              "start_min": 735,
+              "end_min": 785
+            }
+          ],
+          "missing_meals": [
+            "dinner"
+          ],
+          "warnings": [
+            "Ужин: не удалось найти подходящее кафе в выбранном окне."
+          ]
+        },
+        {
+          "date": "2026-11-20",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:postal-museum",
+            "shanghai-demo:jewish-refugees",
+            "shanghai-demo:wikidata-Q2121198"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n12409670437",
+              "start_min": 540,
+              "end_min": 595
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n5106711621",
+              "start_min": 850,
+              "end_min": 900
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n11799151769",
+              "start_min": 1035,
+              "end_min": 1095
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне."
+      ]
+    },
+    {
+      "id": "required_top3_3",
+      "options": {
+        "primary_interests": [
+          "history",
+          "viewpoints"
+        ],
+        "secondary_interests": [
+          "nature"
+        ],
+        "pace": "balanced",
+        "days": 3,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 5000,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": [
+          "shanghai-demo:bund",
+          "shanghai-demo:yu-garden",
+          "shanghai-demo:shanghai-tower"
+        ]
+      },
+      "status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "failed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 1297.82,
+      "meal_repairs": 2,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:bund",
+            "shanghai-demo:yu-garden",
+            "shanghai-demo:shanghai-tower"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 630,
+              "end_min": 690
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:nanxiang",
+              "start_min": 795,
+              "end_min": 845
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n8847798971",
+              "start_min": 1065,
+              "end_min": 1125
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        },
+        {
+          "date": "2026-11-20",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:fuxing-park",
+            "shanghai-demo:peoples-park",
+            "shanghai-demo:wikidata-Q23804"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n12624600218",
+              "start_min": 540,
+              "end_min": 590
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n7099715317",
+              "start_min": 835,
+              "end_min": 890
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n12409670437",
+              "start_min": 960,
+              "end_min": 1015
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:wikidata-Q910848",
+            "shanghai-demo:wikidata-Q1194232",
+            "shanghai-demo:sculpture-park"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n9269938682",
+              "start_min": 540,
+              "end_min": 590
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n11959656110",
+              "start_min": 780,
+              "end_min": 830
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n11959656108",
+              "start_min": 960,
+              "end_min": 1010
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ]
+    },
+    {
+      "id": "culture_mixed_1",
+      "options": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "pace": "balanced",
+        "days": 1,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 1600,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 251,
+      "meal_repairs": 0,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:wikidata-Q1325611",
+            "shanghai-demo:history-museum"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 630,
+              "end_min": 690
+            }
+          ],
+          "missing_meals": [
+            "lunch",
+            "dinner"
+          ],
+          "warnings": [
+            "Обед: не найдено подходящего кафе рядом с маршрутом.",
+            "Ужин: не удалось найти подходящее кафе в выбранном окне."
+          ]
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Обед: не найдено подходящего кафе рядом с маршрутом.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне."
+      ]
+    },
+    {
+      "id": "nature_mixed_3",
+      "options": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "viewpoints"
+        ],
+        "pace": "balanced",
+        "days": 3,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 4500,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "partial",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 1570.88,
+      "meal_repairs": 1,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 5,
+          "visit_ids": [
+            "shanghai-demo:fuxing-park",
+            "shanghai-demo:peoples-park",
+            "shanghai-demo:sculpture-park",
+            "shanghai-demo:natural-history",
+            "shanghai-demo:wikidata-Q1365598"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n12624600218",
+              "start_min": 540,
+              "end_min": 590
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 815,
+              "end_min": 875
+            }
+          ],
+          "missing_meals": [
+            "dinner"
+          ],
+          "warnings": [
+            "Ужин: не найдено подходящего кафе рядом с маршрутом."
+          ]
+        },
+        {
+          "date": "2026-11-20",
+          "visit_count": 3,
+          "visit_ids": [
+            "shanghai-demo:bund",
+            "shanghai-demo:wikidata-Q2121198",
+            "shanghai-demo:yu-garden"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:nanxiang",
+              "start_min": 600,
+              "end_min": 650
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n12246238630",
+              "start_min": 825,
+              "end_min": 880
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n12409670437",
+              "start_min": 1015,
+              "end_min": 1070
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "visit_count": 5,
+          "visit_ids": [
+            "shanghai-demo:lujiazui-green",
+            "shanghai-demo:wikidata-Q80813",
+            "shanghai-demo:ocean-aquarium",
+            "shanghai-demo:oriental-pearl",
+            "shanghai-demo:shanghai-tower"
+          ],
+          "meals": [
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n8847798971",
+              "start_min": 1005,
+              "end_min": 1065
+            }
+          ],
+          "missing_meals": [
+            "breakfast",
+            "lunch"
+          ],
+          "warnings": [
+            "Не найден завтрак рядом с дневным кластером в указанное время.",
+            "Обед: не найдено подходящего кафе рядом с маршрутом."
+          ]
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Ужин: не найдено подходящего кафе рядом с маршрутом.",
+        "Не найден завтрак рядом с дневным кластером в указанное время.",
+        "Обед: не найдено подходящего кафе рядом с маршрутом."
+      ]
+    },
+    {
+      "id": "food_history_mixed_2",
+      "options": {
+        "primary_interests": [
+          "cafes"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "pace": "balanced",
+        "days": 2,
+        "start_date": "2026-11-19",
+        "day_start": "09:00",
+        "day_end": "19:00",
+        "budget_cny": 2500,
+        "transport": "mixed",
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "required_ids": []
+      },
+      "status": "demo",
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "cost_cny": 886.16,
+      "meal_repairs": 0,
+      "days": [
+        {
+          "date": "2026-11-19",
+          "visit_count": 4,
+          "visit_ids": [
+            "shanghai-demo:bund",
+            "shanghai-demo:wikidata-Q6123444",
+            "shanghai-demo:wikidata-Q11111157",
+            "shanghai-demo:wikidata-Q2121198"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:osm-n4721456493",
+              "start_min": 630,
+              "end_min": 690
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n12409670437",
+              "start_min": 795,
+              "end_min": 850
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n12324030459",
+              "start_min": 1085,
+              "end_min": 1135
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        },
+        {
+          "date": "2026-11-20",
+          "visit_count": 4,
+          "visit_ids": [
+            "shanghai-demo:wikidata-Q1187116",
+            "shanghai-demo:wikidata-Q2582044",
+            "shanghai-demo:wikidata-Q7083702",
+            "shanghai-demo:wikidata-Q598603"
+          ],
+          "meals": [
+            {
+              "kind": "breakfast",
+              "poi_id": "shanghai-demo:nanxiang",
+              "start_min": 600,
+              "end_min": 650
+            },
+            {
+              "kind": "lunch",
+              "poi_id": "shanghai-demo:osm-n13816431373",
+              "start_min": 835,
+              "end_min": 890
+            },
+            {
+              "kind": "dinner",
+              "poi_id": "shanghai-demo:osm-n12246238630",
+              "start_min": 1085,
+              "end_min": 1140
+            }
+          ],
+          "missing_meals": [],
+          "warnings": []
+        }
+      ],
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ]
+    }
+  ],
+  "profile_count": 8,
+  "total_days": 17,
+  "days_with_three_meals": 10,
+  "remaining_data_limits": "Fixed 500-POI catalogue; no venues synthesized, no repeated restaurant fabricated, partial status retained when local venue coverage is insufficient",
+  "network_requests": 0
+}

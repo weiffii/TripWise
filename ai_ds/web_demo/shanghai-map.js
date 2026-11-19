@@ -8,9 +8,12 @@
  const validCoord=p=>Array.isArray(p)&&p.length>=2&&p.every(Number.isFinite)&&Math.abs(p[0])<=180&&Math.abs(p[1])<=85;
  function create(settings){
   const box=settings.container,svg=settings.svg,tiles=settings.tiles,background=settings.background;
+  const placeName=p=>settings.getName?settings.getName(p):p.name;
   let day=null,byId=new Map(),stops=[],legs=[],zoom=13,center=[121.48,31.23],online=false;
   let selected=-1,epoch=0,planEpoch=0,calls=0,loaded=0,failed=0,lastRequest=0,controller=null,drag=null,drawPending=false;
   let tileGeneration='',tileTimeout=null,tilesTimedOut=false;const tileNodes=new Map(),roadCache=new Map();
+  const localProxy=location.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname);
+  let proxyState=localProxy?'checking':'external';
   const status=text=>settings.onStatus?.(text);
   const controls=document.createElement('div');controls.className='tw-map-controls';
   controls.innerHTML='<button type="button" data-action="in" aria-label="Приблизить карту">+</button><button type="button" data-action="out" aria-label="Отдалить карту">−</button><button type="button" data-action="fit" aria-label="Показать весь маршрут">⌖</button>';
@@ -57,8 +60,10 @@
    return html;
   }
   function selectLeg(index){selected=index;popup.hidden=true;settings.onSelect?.(instructions(index),index);draw();}
-  function selectStop(index){const p=stops[index];if(!p)return;center=coordinate(p);draw();popup.innerHTML='<b>'+esc(p.name)+'</b><br><small>'+esc(p.area||'Шанхай')+' · координата места, вход не проверен</small>';popup.hidden=false;}
+  function selectStop(index){const p=stops[index];if(!p)return;center=coordinate(p);draw();popup.innerHTML='<b>'+esc(placeName(p))+'</b><br><small>'+esc(p.area||'Шанхай')+' · координата места, вход не проверен</small>';popup.hidden=false;}
   function tileStatus(){const mode=settings.mode;
+   if(online&&proxyState==='old'){if(mode)mode.textContent='Нужен перезапуск сервера';return 'Локальный сервер устарел и не поддерживает карту. Запустите START_SHANGHAI_MAP.bat и откройте новый адрес, который он откроет. Точки маршрута доступны.';}
+   if(online&&proxyState==='checking'){if(mode)mode.textContent='Проверка локальной карты…';return 'Проверяется локальный сервер карты.';}
    const label=loaded?'OpenStreetMap'+(failed?' · частично':''):(!online?'Локальная схема':failed||tilesTimedOut?'Без подложки · точки доступны':'Загрузка OSM…');
    if(mode){mode.textContent=label;mode.classList.toggle('online',loaded>0);}
    return loaded?'Подложка OpenStreetMap загружена.':!online?'Онлайн-подложка выключена.':failed||tilesTimedOut?'Подложка не загрузилась. Точки и маршруты остаются доступны на нейтральном фоне.':'Загружается подложка OpenStreetMap.';
@@ -66,9 +71,9 @@
   function updateStatus(){status(tileStatus()+' Масштаб '+zoom+'. Перетащите карту; +/− меняют масштаб. Сплошные линии — полученные дороги, пунктир — схема.');}
   function drawTiles(w,h,c){const needed=new Set(),gen=[zoom,Math.round(c[0]/256),Math.round(c[1]/256),w,h,online].join('|');
    if(gen!==tileGeneration){tileGeneration=gen;loaded=failed=0;tilesTimedOut=false;clearTimeout(tileTimeout);if(online)tileTimeout=setTimeout(()=>{tilesTimedOut=true;updateStatus();},7000);}
-   if(online){const n=2**zoom,x0=Math.floor((c[0]-w/2)/256),x1=Math.floor((c[0]+w/2)/256),y0=Math.floor((c[1]-h/2)/256),y1=Math.floor((c[1]+h/2)/256);
+   if(online&&proxyState!=='checking'&&proxyState!=='old'){const n=2**zoom,x0=Math.floor((c[0]-w/2)/256),x1=Math.floor((c[0]+w/2)/256),y0=Math.floor((c[1]-h/2)/256),y1=Math.floor((c[1]+h/2)/256);
     for(let x=x0;x<=x1;x++)for(let y=y0;y<=y1;y++){if(y<0||y>=n)continue;const col=((x%n)+n)%n,key=zoom+'/'+col+'/'+y;needed.add(key);let img=tileNodes.get(key);
-     if(!img){img=new Image();img.alt='';img.draggable=false;img.decoding='async';img.referrerPolicy='strict-origin-when-cross-origin';img.dataset.tile=key;img.addEventListener('load',()=>{loaded++;updateStatus();});img.addEventListener('error',()=>{failed++;img.style.opacity='0';updateStatus();});img.src='https://tile.openstreetmap.org/'+key+'.png';tileNodes.set(key,img);tiles.appendChild(img);}
+     if(!img){img=new Image();img.alt='';img.draggable=false;img.decoding='async';img.referrerPolicy='strict-origin-when-cross-origin';img.dataset.tile=key;img.addEventListener('load',()=>{loaded++;updateStatus();});img.addEventListener('error',()=>{failed++;img.style.opacity='0';updateStatus();});img.src=localProxy?'/tiles/'+key+'.png':'https://tile.openstreetmap.org/'+key+'.png';tileNodes.set(key,img);tiles.appendChild(img);}
      img.style.left=(x*256-c[0]+w/2)+'px';img.style.top=(y*256-c[1]+h/2)+'px';
     }}
    for(const [key,img] of tileNodes)if(!needed.has(key)){img.remove();tileNodes.delete(key);}updateStatus();
@@ -80,7 +85,7 @@
     const color=seg.mode==='bus'?'#bd5555':seg.mode==='metro'?'#287fa5':leg.mode==='taxi'?'#c18b38':'#6b51ba';
     html+=`<polyline data-leg="${index}" points="${linePath(coords,project)}" fill="none" stroke="${color}" stroke-width="${selected===index?7:4}" stroke-dasharray="${road?.coordinates?'':'8 5'}" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:stroke;cursor:pointer"><title>${esc(seg.mode==='bus'?'Вымышленный автобус':seg.mode==='metro'?'Топология станций метро, не точный тоннель':road?.coordinates?'Расчёт по уличной сети':'Приблизительная связь')} · нажмите для инструкции</title></polyline>`;
    }});
-   stops.forEach((p,index)=>{const [x,y]=project(coordinate(p));html+=`<g data-stop="${index}" role="button" tabindex="0" aria-label="${esc(p.name)}" style="pointer-events:all;cursor:pointer"><title>${esc(p.name)}</title><circle cx="${x}" cy="${y}" r="13" fill="${p.kind==='restaurant'?'#db8c33':'#5b40b0'}" stroke="white" stroke-width="3"/><text x="${x}" y="${y+4}" fill="white" text-anchor="middle" font-size="12" font-weight="700">${index+1}</text></g>`;});
+   stops.forEach((p,index)=>{const [x,y]=project(coordinate(p));html+=`<g data-stop="${index}" role="button" tabindex="0" aria-label="${esc(placeName(p))}" style="pointer-events:all;cursor:pointer"><title>${esc(placeName(p))}</title><circle cx="${x}" cy="${y}" r="13" fill="${p.kind==='restaurant'?'#db8c33':'#5b40b0'}" stroke="white" stroke-width="3"/><text x="${x}" y="${y+4}" fill="white" text-anchor="middle" font-size="12" font-weight="700">${index+1}</text></g>`;});
    if(!stops.length)html=`<text x="${w/2}" y="${h/2}" text-anchor="middle" fill="#657881">Нет точек маршрута</text>`;
    svg.innerHTML=html;
    svg.querySelectorAll('[data-stop]').forEach(g=>{const show=()=>selectStop(Number(g.dataset.stop));g.addEventListener('click',show);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});});
@@ -94,6 +99,8 @@
   box.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>4){if(!drag.moved)box.setPointerCapture(e.pointerId);drag.moved=true;popup.hidden=true;center=unmerc(drag.center[0]-dx,drag.center[1]-dy,zoom);requestDraw();}});
   box.addEventListener('pointerup',()=>{if(drag?.moved)draw();drag=null;});box.addEventListener('pointercancel',()=>{drag=null;});
   if(typeof ResizeObserver!=='undefined')new ResizeObserver(()=>requestDraw()).observe(box);
+  function probeProxy(){if(!localProxy)return;proxyState='checking';fetch('/health',{cache:'no-store',signal:AbortSignal.timeout(4000)}).then(r=>r.ok?r.json():null).then(info=>{proxyState=info?.service==='tripwise-shanghai'&&info.tile_proxy===true?'ready':'old';tileGeneration='';draw();}).catch(()=>{proxyState='old';draw();});}
+  probeProxy();
   function beginPlan(){planEpoch++;epoch++;calls=0;controller?.abort();controller=null;selected=-1;popup.hidden=true;}
   async function loadRoads(localEpoch,localPlan){
    if(!online)return;const requests=[];
@@ -120,7 +127,7 @@
    const at=new Map(),xy=p=>p.map(n=>n.toFixed(6)).join(',');for(const p of byId.values()){const key=xy(coordinate(p));if(!at.has(key))at.set(key,[]);at.get(key).push(p.id);}
    const result={};for(const mode of ['foot','car']){const pairs=[];for(const value of roadCache.values()){if(!value.request||value.request.synthetic_bus||value.request.mode!==mode||!value.coordinates)continue;const starts=at.get(xy(value.request.a))||[],ends=at.get(xy(value.request.b))||[];for(const from of starts)for(const to of ends)pairs.push({from,to,seconds:value.duration_seconds,metres:value.distance_meters});}if(!pairs.length)continue;const ids=[...new Set(pairs.flatMap(p=>[p.from,p.to]))],index=new Map(ids.map((id,i)=>[id,i])),durations=ids.map(()=>ids.map(()=>null)),distances=ids.map(()=>ids.map(()=>null));for(const p of pairs){durations[index.get(p.from)][index.get(p.to)]=p.seconds;distances[index.get(p.from)][index.get(p.to)]=p.metres;}result[mode]={ids,durations,distances};}return result;
   }
-  return {setDay,beginPlan,fit,selectLeg,selectStop,getOsmTables,retry(){for(const [key,value] of roadCache)if(value.error)roadCache.delete(key);tileGeneration='';for(const img of tileNodes.values())img.remove();tileNodes.clear();draw();epoch++;loadRoads(epoch,planEpoch);},debug(){return {center:center.slice(),zoom,request_count:calls,stop_count:stops.length,leg_count:legs.length};}};
+  return {setDay,beginPlan,fit,selectLeg,selectStop,getOsmTables,retry(){for(const [key,value] of roadCache)if(value.error)roadCache.delete(key);tileGeneration='';for(const img of tileNodes.values())img.remove();tileNodes.clear();if(proxyState==='old')probeProxy();draw();epoch++;loadRoads(epoch,planEpoch);},debug(){return {center:center.slice(),zoom,request_count:calls,stop_count:stops.length,leg_count:legs.length,tile_proxy:proxyState};}};
  }
  root.TripWiseMap={create};
 })(globalThis);

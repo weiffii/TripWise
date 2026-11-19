@@ -1,0 +1,3876 @@
+{
+  "date": "2026-11-19",
+  "poi_count": 500,
+  "kind_counts": {
+    "attraction": 279,
+    "restaurant": 221
+  },
+  "category_counts": {
+    "history": 54,
+    "viewpoints": 12,
+    "nature": 22,
+    "museums": 15,
+    "unusual": 111,
+    "shopping": 123,
+    "entertainment": 84,
+    "cafes": 221
+  },
+  "area_counts": {
+    "Вайтань": 11,
+    "Юйюань": 9,
+    "Народная площадь": 20,
+    "Цзинъань": 25,
+    "Французская концессия": 3,
+    "Синьтяньди": 1,
+    "Сучжоу-Крик": 2,
+    "Луцзяцзуй": 13,
+    "Северный Вайтань": 1,
+    "Хункоу": 33,
+    "Южная набережная": 1,
+    "Сюйхуэй": 46,
+    "Тяньцзыфан": 20,
+    "Данин": 22,
+    "Сунцзян": 5,
+    "Баошань": 21,
+    "Пудун": 21,
+    "Губэй": 28,
+    "Уцзяочан": 32,
+    "Сюйцзяхуэй": 34,
+    "Путуо": 22,
+    "Цзядин": 2,
+    "Сэнчури-парк": 29,
+    "Чжанцзян": 30,
+    "Шэшань": 1,
+    "Миньхан": 15,
+    "Хунцяо": 22,
+    "Цибао": 20,
+    "Янпу": 11
+  },
+  "identity_counts": {
+    "real_place_source_checked": 28,
+    "real_Wikidata_POI": 77,
+    "real_OSM_POI": 395
+  },
+  "original_fields_sha256_before": "824887d64a82ff6380a673d023140a67fc0e38a80e4a553e0e78aa55e25fd637",
+  "original_fields_sha256_after": "824887d64a82ff6380a673d023140a67fc0e38a80e4a553e0e78aa55e25fd637",
+  "original_fields_preserved": true,
+  "price_data_gate": {
+    "passed": true,
+    "source_url": "https://lbs.amap.com/api/webservice/guide/api/newpoisearch",
+    "field": "business.cost",
+    "meaning": "per capita consumption, optional restaurant business field",
+    "external_provider_calls": 0
+  },
+  "synthetic_average_check_count": 221,
+  "price_segment_counts": {
+    "midrange": 99,
+    "premium": 59,
+    "budget": 63
+  },
+  "name_nonmissing_counts": {
+    "ru": 104,
+    "en": 206,
+    "zh": 397
+  },
+  "name_all_three_count": 102,
+  "missing_language_value_count": 793,
+  "name_missing_ids": {
+    "ru": [
+      "shanghai-demo:wikidata-Q1626937",
+      "shanghai-demo:osm-w1202223249",
+      "shanghai-demo:osm-n11817878155",
+      "shanghai-demo:osm-n12265556037",
+      "shanghai-demo:osm-n4815429737",
+      "shanghai-demo:osm-n12862593135",
+      "shanghai-demo:osm-n13738374163",
+      "shanghai-demo:osm-n6444724803",
+      "shanghai-demo:osm-n11416870255",
+      "shanghai-demo:osm-n13033748211",
+      "shanghai-demo:osm-n11164136605",
+      "shanghai-demo:osm-n9937462030",
+      "shanghai-demo:osm-w1068601328",
+      "shanghai-demo:osm-n11904766836",
+      "shanghai-demo:osm-n11285504017",
+      "shanghai-demo:osm-n8971532479",
+      "shanghai-demo:osm-n6476952567",
+      "shanghai-demo:osm-n12045205909",
+      "shanghai-demo:osm-n12301058715",
+      "shanghai-demo:osm-n13055547177",
+      "shanghai-demo:osm-n11786752327",
+      "shanghai-demo:osm-n8930599624",
+      "shanghai-demo:osm-n11993463930",
+      "shanghai-demo:osm-n6534785558",
+      "shanghai-demo:osm-n11158536464",
+      "shanghai-demo:osm-n12192973018",
+      "shanghai-demo:osm-n12190323475",
+      "shanghai-demo:osm-n12698811066",
+      "shanghai-demo:osm-w824657451",
+      "shanghai-demo:osm-n9110294384",
+      "shanghai-demo:osm-n12185422398",
+      "shanghai-demo:osm-n11993463929",
+      "shanghai-demo:osm-n12298888549",
+      "shanghai-demo:osm-n9247993417",
+      "shanghai-demo:osm-n8444606111",
+      "shanghai-demo:osm-n4532474837",
+      "shanghai-demo:osm-n1066173050",
+      "shanghai-demo:osm-n4395942203",
+      "shanghai-demo:osm-n5837635960",
+      "shanghai-demo:osm-n4789788594",
+      "shanghai-demo:osm-n11204362520",
+      "shanghai-demo:osm-n4885031829",
+      "shanghai-demo:osm-n11209292976",
+      "shanghai-demo:osm-n4514632291",
+      "shanghai-demo:osm-n12303959765",
+      "shanghai-demo:osm-n2725114915",
+      "shanghai-demo:osm-n12396168679",
+      "shanghai-demo:osm-n467690367",
+      "shanghai-demo:osm-n11465728087",
+      "shanghai-demo:osm-n12396319348",
+      "shanghai-demo:osm-n12073097698",
+      "shanghai-demo:osm-n2025947403",
+      "shanghai-demo:osm-n11941422379",
+      "shanghai-demo:osm-n11341297995",
+      "shanghai-demo:osm-n13407152795",
+      "shanghai-demo:osm-n4458011707",
+      "shanghai-demo:osm-n12327913486",
+      "shanghai-demo:osm-n11303982679",
+      "shanghai-demo:osm-n11158427627",
+      "shanghai-demo:osm-n11261847487",
+      "shanghai-demo:osm-n12087203025",
+      "shanghai-demo:osm-n4540864990",
+      "shanghai-demo:osm-n13337983904",
+      "shanghai-demo:osm-n11910546225",
+      "shanghai-demo:osm-n1611986203",
+      "shanghai-demo:osm-w302861865",
+      "shanghai-demo:osm-n4518244993",
+      "shanghai-demo:osm-n4882481161",
+      "shanghai-demo:osm-n5427525723",
+      "shanghai-demo:osm-n4026975444",
+      "shanghai-demo:osm-n6532425830",
+      "shanghai-demo:osm-n2661490915",
+      "shanghai-demo:osm-n2659438321",
+      "shanghai-demo:osm-n6040918785",
+      "shanghai-demo:osm-n13816431373",
+      "shanghai-demo:osm-n5518183921",
+      "shanghai-demo:osm-n4406360489",
+      "shanghai-demo:osm-w587651665",
+      "shanghai-demo:osm-n6649121230",
+      "shanghai-demo:osm-n12219330636",
+      "shanghai-demo:osm-n7099715317",
+      "shanghai-demo:osm-n8847798971",
+      "shanghai-demo:osm-n13411668061",
+      "shanghai-demo:osm-n4721456493",
+      "shanghai-demo:osm-n11331308647",
+      "shanghai-demo:osm-n4458869191",
+      "shanghai-demo:osm-n8568543378",
+      "shanghai-demo:osm-n7218597011",
+      "shanghai-demo:osm-n5877402633",
+      "shanghai-demo:osm-w347706774",
+      "shanghai-demo:osm-n12862593125",
+      "shanghai-demo:osm-n11266492318",
+      "shanghai-demo:osm-n8486116784",
+      "shanghai-demo:osm-n12219282038",
+      "shanghai-demo:osm-n11817844040",
+      "shanghai-demo:osm-n12265556038",
+      "shanghai-demo:osm-w1361142671",
+      "shanghai-demo:osm-n12862593147",
+      "shanghai-demo:osm-n11799151769",
+      "shanghai-demo:osm-n2544351231",
+      "shanghai-demo:osm-n9778875177",
+      "shanghai-demo:osm-n12230064436",
+      "shanghai-demo:osm-n12224791743",
+      "shanghai-demo:osm-n12246238630",
+      "shanghai-demo:osm-n5311523825",
+      "shanghai-demo:osm-n11904766834",
+      "shanghai-demo:osm-n11285504018",
+      "shanghai-demo:osm-w1365894672",
+      "shanghai-demo:osm-n12919847210",
+      "shanghai-demo:osm-n12045205908",
+      "shanghai-demo:osm-n12301058716",
+      "shanghai-demo:osm-n11911592673",
+      "shanghai-demo:osm-n9213723817",
+      "shanghai-demo:osm-n12219335475",
+      "shanghai-demo:osm-n11993463933",
+      "shanghai-demo:osm-n11461464703",
+      "shanghai-demo:osm-n12192973011",
+      "shanghai-demo:osm-n12096810706",
+      "shanghai-demo:osm-n12698811049",
+      "shanghai-demo:osm-n5404936721",
+      "shanghai-demo:osm-n9110294382",
+      "shanghai-demo:osm-n12185422399",
+      "shanghai-demo:osm-n4972002424",
+      "shanghai-demo:osm-n12298888545",
+      "shanghai-demo:osm-n9383313117",
+      "shanghai-demo:osm-n8449317072",
+      "shanghai-demo:osm-n5338571422",
+      "shanghai-demo:osm-n4248384489",
+      "shanghai-demo:osm-n5942001992",
+      "shanghai-demo:osm-n11158427622",
+      "shanghai-demo:osm-n11204362518",
+      "shanghai-demo:osm-n13197727950",
+      "shanghai-demo:osm-n13976587799",
+      "shanghai-demo:osm-n4948714333",
+      "shanghai-demo:osm-n12811589397",
+      "shanghai-demo:osm-n5106711621",
+      "shanghai-demo:osm-n11158417549",
+      "shanghai-demo:osm-n11416870254",
+      "shanghai-demo:osm-n3328121193",
+      "shanghai-demo:osm-n11201093152",
+      "shanghai-demo:osm-n4484868789",
+      "shanghai-demo:osm-n5311531522",
+      "shanghai-demo:osm-n11209389804",
+      "shanghai-demo:osm-n9441867619",
+      "shanghai-demo:osm-n7417147439",
+      "shanghai-demo:osm-n11176094628",
+      "shanghai-demo:osm-n12698115171",
+      "shanghai-demo:osm-n8957625707",
+      "shanghai-demo:osm-n13800984283",
+      "shanghai-demo:osm-n9051985301",
+      "shanghai-demo:osm-n12518143102",
+      "shanghai-demo:osm-n12298888554",
+      "shanghai-demo:osm-n11109082106",
+      "shanghai-demo:osm-n11449104410",
+      "shanghai-demo:osm-n11092999205",
+      "shanghai-demo:osm-n12992016864",
+      "shanghai-demo:osm-n5850703716",
+      "shanghai-demo:osm-n11145667599",
+      "shanghai-demo:osm-n11959656110",
+      "shanghai-demo:osm-n4457978615",
+      "shanghai-demo:osm-n10291107217",
+      "shanghai-demo:osm-n11781013758",
+      "shanghai-demo:osm-n12189565345",
+      "shanghai-demo:osm-n12281767213",
+      "shanghai-demo:osm-n2025947395",
+      "shanghai-demo:osm-n11941422524",
+      "shanghai-demo:osm-n11403261106",
+      "shanghai-demo:osm-n12435596035",
+      "shanghai-demo:osm-n11175751926",
+      "shanghai-demo:osm-n12401766043",
+      "shanghai-demo:osm-n12060715970",
+      "shanghai-demo:osm-n4458010893",
+      "shanghai-demo:osm-n2596260645",
+      "shanghai-demo:osm-n11633949234",
+      "shanghai-demo:osm-n8930585194",
+      "shanghai-demo:osm-n3771427618",
+      "shanghai-demo:osm-n13817527919",
+      "shanghai-demo:osm-n6853078188",
+      "shanghai-demo:osm-n6854889042",
+      "shanghai-demo:osm-n6936601407",
+      "shanghai-demo:osm-n11140139224",
+      "shanghai-demo:osm-n9269938682",
+      "shanghai-demo:osm-n12624600218",
+      "shanghai-demo:osm-n13039035801",
+      "shanghai-demo:osm-w1551963891",
+      "shanghai-demo:osm-n5613200354",
+      "shanghai-demo:osm-n11817878156",
+      "shanghai-demo:osm-n7456806255",
+      "shanghai-demo:osm-n12373160202",
+      "shanghai-demo:osm-n12324030459",
+      "shanghai-demo:osm-n1699123803",
+      "shanghai-demo:osm-n8474207379",
+      "shanghai-demo:osm-n9439261147",
+      "shanghai-demo:osm-n12174947834",
+      "shanghai-demo:osm-n9427472791",
+      "shanghai-demo:osm-n12698930850",
+      "shanghai-demo:osm-n9364002522",
+      "shanghai-demo:osm-n5784591139",
+      "shanghai-demo:osm-n13307804501",
+      "shanghai-demo:osm-n5856860453",
+      "shanghai-demo:osm-n11285565734",
+      "shanghai-demo:osm-n12747711901",
+      "shanghai-demo:osm-n13976587796",
+      "shanghai-demo:osm-n11930131800",
+      "shanghai-demo:osm-n12811589400",
+      "shanghai-demo:osm-n12409670437",
+      "shanghai-demo:osm-n11209519530",
+      "shanghai-demo:osm-n7307660568",
+      "shanghai-demo:osm-n12202209740",
+      "shanghai-demo:osm-n13407152799",
+      "shanghai-demo:osm-n8095881650",
+      "shanghai-demo:osm-n12873267654",
+      "shanghai-demo:osm-n13357134684",
+      "shanghai-demo:osm-n11399894775",
+      "shanghai-demo:osm-n476072602",
+      "shanghai-demo:osm-n13077641189",
+      "shanghai-demo:osm-n9445323191",
+      "shanghai-demo:osm-n7366723205",
+      "shanghai-demo:osm-n12498223990",
+      "shanghai-demo:osm-n5518016224",
+      "shanghai-demo:osm-n11959656108",
+      "shanghai-demo:osm-w299850082",
+      "shanghai-demo:osm-w489225055",
+      "shanghai-demo:osm-r16347045",
+      "shanghai-demo:osm-w1339102459",
+      "shanghai-demo:osm-n13976789577",
+      "shanghai-demo:osm-w1064796224",
+      "shanghai-demo:osm-w450306846",
+      "shanghai-demo:osm-w421624556",
+      "shanghai-demo:osm-w482847291",
+      "shanghai-demo:osm-w971653423",
+      "shanghai-demo:osm-w1275406436",
+      "shanghai-demo:osm-w1020883276",
+      "shanghai-demo:osm-w1275359037",
+      "shanghai-demo:osm-w1003031441",
+      "shanghai-demo:osm-w1300428272",
+      "shanghai-demo:osm-w1229249265",
+      "shanghai-demo:osm-w441927387",
+      "shanghai-demo:osm-w1302205057",
+      "shanghai-demo:osm-w1056136968",
+      "shanghai-demo:osm-n11176094633",
+      "shanghai-demo:osm-w1159177638",
+      "shanghai-demo:osm-w306984718",
+      "shanghai-demo:osm-w1194217941",
+      "shanghai-demo:osm-n12298888544",
+      "shanghai-demo:osm-n11100649105",
+      "shanghai-demo:osm-w908370480",
+      "shanghai-demo:osm-w894299939",
+      "shanghai-demo:osm-w164555180",
+      "shanghai-demo:osm-n4395836189",
+      "shanghai-demo:osm-w1200745520",
+      "shanghai-demo:osm-w1234894658",
+      "shanghai-demo:osm-n3557819896",
+      "shanghai-demo:osm-w863176423",
+      "shanghai-demo:osm-w1227925287",
+      "shanghai-demo:osm-n12422137699",
+      "shanghai-demo:osm-w978588311",
+      "shanghai-demo:osm-w1327505183",
+      "shanghai-demo:osm-n4345426194",
+      "shanghai-demo:osm-n9907361087",
+      "shanghai-demo:osm-n9937462303",
+      "shanghai-demo:osm-n10296599709",
+      "shanghai-demo:osm-n9438416300",
+      "shanghai-demo:osm-n13077641158",
+      "shanghai-demo:osm-n11218806209",
+      "shanghai-demo:osm-n11285565747",
+      "shanghai-demo:osm-n4885031630",
+      "shanghai-demo:osm-n11293049139",
+      "shanghai-demo:osm-n11280892208",
+      "shanghai-demo:osm-n11309692910",
+      "shanghai-demo:osm-n11124597542",
+      "shanghai-demo:osm-n6531715408",
+      "shanghai-demo:osm-n5042024832",
+      "shanghai-demo:osm-n4623058291",
+      "shanghai-demo:osm-n11314400069",
+      "shanghai-demo:osm-n4264045789",
+      "shanghai-demo:osm-n6546730162",
+      "shanghai-demo:osm-n3684766682",
+      "shanghai-demo:osm-n822647682",
+      "shanghai-demo:osm-n9857667983",
+      "shanghai-demo:osm-n9857667986",
+      "shanghai-demo:osm-n7555465246",
+      "shanghai-demo:osm-n12810803447",
+      "shanghai-demo:osm-n12650144320",
+      "shanghai-demo:osm-n12045206283",
+      "shanghai-demo:osm-n9439362311",
+      "shanghai-demo:osm-n8930599629",
+      "shanghai-demo:osm-n8556954591",
+      "shanghai-demo:osm-n7418825189",
+      "shanghai-demo:osm-n12498223998",
+      "shanghai-demo:osm-n11303956506",
+      "shanghai-demo:osm-n7555436651",
+      "shanghai-demo:osm-n11285565722",
+      "shanghai-demo:osm-n11204366614",
+      "shanghai-demo:osm-n4457978296",
+      "shanghai-demo:osm-n11209292954",
+      "shanghai-demo:osm-n11465727993",
+      "shanghai-demo:osm-n12073097696",
+      "shanghai-demo:osm-n11941422535",
+      "shanghai-demo:osm-n11268856305",
+      "shanghai-demo:osm-n4885031821",
+      "shanghai-demo:osm-n11389444309",
+      "shanghai-demo:osm-n12190323446",
+      "shanghai-demo:osm-n6516394075",
+      "shanghai-demo:osm-n11209381668",
+      "shanghai-demo:osm-n9441917811",
+      "shanghai-demo:osm-n8307920246",
+      "shanghai-demo:osm-n11991340958",
+      "shanghai-demo:osm-n4394222089",
+      "shanghai-demo:osm-n11303956508",
+      "shanghai-demo:osm-n11285565727",
+      "shanghai-demo:osm-w1385301459",
+      "shanghai-demo:osm-n12650144315",
+      "shanghai-demo:osm-n11209381666",
+      "shanghai-demo:osm-n4761313103",
+      "shanghai-demo:osm-n4761313101",
+      "shanghai-demo:osm-n12498223984",
+      "shanghai-demo:osm-n11303966065",
+      "shanghai-demo:osm-n4457978298",
+      "shanghai-demo:osm-n5042024834",
+      "shanghai-demo:osm-n1874352983",
+      "shanghai-demo:osm-n11285504016",
+      "shanghai-demo:osm-w1366739682",
+      "shanghai-demo:osm-n12045205911",
+      "shanghai-demo:osm-n12301059108",
+      "shanghai-demo:osm-n12301049457",
+      "shanghai-demo:osm-n11209519528",
+      "shanghai-demo:osm-n9439439498",
+      "shanghai-demo:osm-n11158462257",
+      "shanghai-demo:osm-n8445744820",
+      "shanghai-demo:osm-n7722879988",
+      "shanghai-demo:osm-n3610298460",
+      "shanghai-demo:osm-n4441895990",
+      "shanghai-demo:osm-n3755910220",
+      "shanghai-demo:osm-w1388203603",
+      "shanghai-demo:osm-n8321210759",
+      "shanghai-demo:osm-n5211363622",
+      "shanghai-demo:osm-n1611986261",
+      "shanghai-demo:osm-n6854542651",
+      "shanghai-demo:osm-n6536410934",
+      "shanghai-demo:osm-n4264275695",
+      "shanghai-demo:osm-n9269930311",
+      "shanghai-demo:osm-n12951691166",
+      "shanghai-demo:osm-n5845079571",
+      "shanghai-demo:osm-n5786250054",
+      "shanghai-demo:osm-n8494366964",
+      "shanghai-demo:osm-n4726044289",
+      "shanghai-demo:osm-n11266492280",
+      "shanghai-demo:osm-n8474207039",
+      "shanghai-demo:osm-w449495494",
+      "shanghai-demo:osm-n3610298461",
+      "shanghai-demo:osm-n7417168072",
+      "shanghai-demo:osm-n1611986210",
+      "shanghai-demo:osm-n5444429924",
+      "shanghai-demo:osm-n8070511700",
+      "shanghai-demo:osm-n13826596434",
+      "shanghai-demo:osm-w859447899",
+      "shanghai-demo:osm-n1460661876",
+      "shanghai-demo:osm-n912282486",
+      "shanghai-demo:osm-n6557301627",
+      "shanghai-demo:osm-n5136775021",
+      "shanghai-demo:osm-n4364428896",
+      "shanghai-demo:osm-n4380048289",
+      "shanghai-demo:osm-n3750147477",
+      "shanghai-demo:osm-n5787402179",
+      "shanghai-demo:osm-n6555694364",
+      "shanghai-demo:osm-n6290531385",
+      "shanghai-demo:osm-n3110932575",
+      "shanghai-demo:osm-n3622538162",
+      "shanghai-demo:osm-n5376831022",
+      "shanghai-demo:osm-n835125045",
+      "shanghai-demo:osm-n13904215235",
+      "shanghai-demo:osm-n5858807255",
+      "shanghai-demo:osm-n6536441405",
+      "shanghai-demo:osm-w1185281616",
+      "shanghai-demo:osm-n5705184107",
+      "shanghai-demo:osm-w1078943454",
+      "shanghai-demo:osm-w666299513",
+      "shanghai-demo:osm-w1068498219",
+      "shanghai-demo:osm-n13891470704",
+      "shanghai-demo:osm-n12650144325",
+      "shanghai-demo:osm-n8930599631",
+      "shanghai-demo:osm-n7144919721",
+      "shanghai-demo:osm-w765716291",
+      "shanghai-demo:osm-n12373168701",
+      "shanghai-demo:osm-n5211783930",
+      "shanghai-demo:osm-n12830380537",
+      "shanghai-demo:osm-n8308012968",
+      "shanghai-demo:osm-n3737443419",
+      "shanghai-demo:osm-n4026977489",
+      "shanghai-demo:osm-n7417146684",
+      "shanghai-demo:osm-n11959634974",
+      "shanghai-demo:osm-n4458010101",
+      "shanghai-demo:osm-n11171195447",
+      "shanghai-demo:osm-n11941438347",
+      "shanghai-demo:osm-n398828768"
+    ],
+    "en": [
+      "shanghai-demo:wikidata-Q11177928",
+      "shanghai-demo:wikidata-Q129676059",
+      "shanghai-demo:osm-w1202223249",
+      "shanghai-demo:osm-n11817878155",
+      "shanghai-demo:osm-n12265556037",
+      "shanghai-demo:osm-n4815429737",
+      "shanghai-demo:osm-n12862593135",
+      "shanghai-demo:osm-n13738374163",
+      "shanghai-demo:osm-n11416870255",
+      "shanghai-demo:osm-n13033748211",
+      "shanghai-demo:osm-n11164136605",
+      "shanghai-demo:osm-n9937462030",
+      "shanghai-demo:osm-w1068601328",
+      "shanghai-demo:osm-n11904766836",
+      "shanghai-demo:osm-n11285504017",
+      "shanghai-demo:osm-n8971532479",
+      "shanghai-demo:osm-n6476952567",
+      "shanghai-demo:osm-n12045205909",
+      "shanghai-demo:osm-n12301058715",
+      "shanghai-demo:osm-n13055547177",
+      "shanghai-demo:osm-n11786752327",
+      "shanghai-demo:osm-n8930599624",
+      "shanghai-demo:osm-n11993463930",
+      "shanghai-demo:osm-n6534785558",
+      "shanghai-demo:osm-n11158536464",
+      "shanghai-demo:osm-n12192973018",
+      "shanghai-demo:osm-n12190323475",
+      "shanghai-demo:osm-n12698811066",
+      "shanghai-demo:osm-n9110294384",
+      "shanghai-demo:osm-n12185422398",
+      "shanghai-demo:osm-n11993463929",
+      "shanghai-demo:osm-n12298888549",
+      "shanghai-demo:osm-n9247993417",
+      "shanghai-demo:osm-n4532474837",
+      "shanghai-demo:osm-n4395942203",
+      "shanghai-demo:osm-n5837635960",
+      "shanghai-demo:osm-n4789788594",
+      "shanghai-demo:osm-n11204362520",
+      "shanghai-demo:osm-n4885031829",
+      "shanghai-demo:osm-n11209292976",
+      "shanghai-demo:osm-n4514632291",
+      "shanghai-demo:osm-n12303959765",
+      "shanghai-demo:osm-n2725114915",
+      "shanghai-demo:osm-n12396168679",
+      "shanghai-demo:osm-n467690367",
+      "shanghai-demo:osm-n11465728087",
+      "shanghai-demo:osm-n12396319348",
+      "shanghai-demo:osm-n12073097698",
+      "shanghai-demo:osm-n11941422379",
+      "shanghai-demo:osm-n11341297995",
+      "shanghai-demo:osm-n13407152795",
+      "shanghai-demo:osm-n4458011707",
+      "shanghai-demo:osm-n12327913486",
+      "shanghai-demo:osm-n11303982679",
+      "shanghai-demo:osm-n11158427627",
+      "shanghai-demo:osm-n11261847487",
+      "shanghai-demo:osm-n12087203025",
+      "shanghai-demo:osm-n4540864990",
+      "shanghai-demo:osm-n13337983904",
+      "shanghai-demo:osm-n11910546225",
+      "shanghai-demo:osm-w302861865",
+      "shanghai-demo:osm-n4518244993",
+      "shanghai-demo:osm-n6532425830",
+      "shanghai-demo:osm-n2661490915",
+      "shanghai-demo:osm-n2659438321",
+      "shanghai-demo:osm-n6040918785",
+      "shanghai-demo:osm-n13816431373",
+      "shanghai-demo:osm-n5518183921",
+      "shanghai-demo:osm-n4406360489",
+      "shanghai-demo:osm-w587651665",
+      "shanghai-demo:osm-n6649121230",
+      "shanghai-demo:osm-n12219330636",
+      "shanghai-demo:osm-n13411668061",
+      "shanghai-demo:osm-n4721456493",
+      "shanghai-demo:osm-n11331308647",
+      "shanghai-demo:osm-n4458869191",
+      "shanghai-demo:osm-n8568543378",
+      "shanghai-demo:osm-n7218597011",
+      "shanghai-demo:osm-n5877402633",
+      "shanghai-demo:osm-w347706774",
+      "shanghai-demo:osm-n12862593125",
+      "shanghai-demo:osm-n11266492318",
+      "shanghai-demo:osm-n8486116784",
+      "shanghai-demo:osm-n12219282038",
+      "shanghai-demo:osm-n11817844040",
+      "shanghai-demo:osm-n12265556038",
+      "shanghai-demo:osm-w1361142671",
+      "shanghai-demo:osm-n12862593147",
+      "shanghai-demo:osm-n2544351231",
+      "shanghai-demo:osm-n9778875177",
+      "shanghai-demo:osm-n12230064436",
+      "shanghai-demo:osm-n12224791743",
+      "shanghai-demo:osm-n12246238630",
+      "shanghai-demo:osm-n5311523825",
+      "shanghai-demo:osm-n11904766834",
+      "shanghai-demo:osm-n11285504018",
+      "shanghai-demo:osm-w1365894672",
+      "shanghai-demo:osm-n12919847210",
+      "shanghai-demo:osm-n12045205908",
+      "shanghai-demo:osm-n12301058716",
+      "shanghai-demo:osm-n11911592673",
+      "shanghai-demo:osm-n9213723817",
+      "shanghai-demo:osm-n12219335475",
+      "shanghai-demo:osm-n11993463933",
+      "shanghai-demo:osm-n11461464703",
+      "shanghai-demo:osm-n12192973011",
+      "shanghai-demo:osm-n12096810706",
+      "shanghai-demo:osm-n12698811049",
+      "shanghai-demo:osm-n5404936721",
+      "shanghai-demo:osm-n9110294382",
+      "shanghai-demo:osm-n12185422399",
+      "shanghai-demo:osm-n4972002424",
+      "shanghai-demo:osm-n12298888545",
+      "shanghai-demo:osm-n9383313117",
+      "shanghai-demo:osm-n5338571422",
+      "shanghai-demo:osm-n5942001992",
+      "shanghai-demo:osm-n11158427622",
+      "shanghai-demo:osm-n11204362518",
+      "shanghai-demo:osm-n13197727950",
+      "shanghai-demo:osm-n13976587799",
+      "shanghai-demo:osm-n4948714333",
+      "shanghai-demo:osm-n11416870254",
+      "shanghai-demo:osm-n11201093152",
+      "shanghai-demo:osm-n4484868789",
+      "shanghai-demo:osm-n5311531522",
+      "shanghai-demo:osm-n11209389804",
+      "shanghai-demo:osm-n11176094628",
+      "shanghai-demo:osm-n12698115171",
+      "shanghai-demo:osm-n13800984283",
+      "shanghai-demo:osm-n9051985301",
+      "shanghai-demo:osm-n12518143102",
+      "shanghai-demo:osm-n12298888554",
+      "shanghai-demo:osm-n11449104410",
+      "shanghai-demo:osm-n11145667599",
+      "shanghai-demo:osm-n4457978615",
+      "shanghai-demo:osm-n10291107217",
+      "shanghai-demo:osm-n11781013758",
+      "shanghai-demo:osm-n12189565345",
+      "shanghai-demo:osm-n12281767213",
+      "shanghai-demo:osm-n11941422524",
+      "shanghai-demo:osm-n11403261106",
+      "shanghai-demo:osm-n11175751926",
+      "shanghai-demo:osm-n12401766043",
+      "shanghai-demo:osm-n12060715970",
+      "shanghai-demo:osm-n4458010893",
+      "shanghai-demo:osm-n2596260645",
+      "shanghai-demo:osm-n11633949234",
+      "shanghai-demo:osm-n13817527919",
+      "shanghai-demo:osm-n6853078188",
+      "shanghai-demo:osm-n11140139224",
+      "shanghai-demo:osm-w1551963891",
+      "shanghai-demo:osm-n5613200354",
+      "shanghai-demo:osm-n11817878156",
+      "shanghai-demo:osm-n7456806255",
+      "shanghai-demo:osm-n12373160202",
+      "shanghai-demo:osm-n12324030459",
+      "shanghai-demo:osm-n1699123803",
+      "shanghai-demo:osm-n8474207379",
+      "shanghai-demo:osm-n9427472791",
+      "shanghai-demo:osm-n12698930850",
+      "shanghai-demo:osm-n5784591139",
+      "shanghai-demo:osm-n5856860453",
+      "shanghai-demo:osm-n11285565734",
+      "shanghai-demo:osm-n12747711901",
+      "shanghai-demo:osm-n13976587796",
+      "shanghai-demo:osm-n11930131800",
+      "shanghai-demo:osm-n12811589400",
+      "shanghai-demo:osm-n12409670437",
+      "shanghai-demo:osm-n11209519530",
+      "shanghai-demo:osm-n7307660568",
+      "shanghai-demo:osm-n12202209740",
+      "shanghai-demo:osm-n13407152799",
+      "shanghai-demo:osm-n12873267654",
+      "shanghai-demo:osm-n13357134684",
+      "shanghai-demo:osm-n11399894775",
+      "shanghai-demo:osm-n13077641189",
+      "shanghai-demo:osm-n9445323191",
+      "shanghai-demo:osm-n12498223990",
+      "shanghai-demo:osm-n5518016224",
+      "shanghai-demo:osm-w299850082",
+      "shanghai-demo:osm-w489225055",
+      "shanghai-demo:osm-r16347045",
+      "shanghai-demo:osm-w1339102459",
+      "shanghai-demo:osm-n13976789577",
+      "shanghai-demo:osm-w1064796224",
+      "shanghai-demo:osm-w450306846",
+      "shanghai-demo:osm-w421624556",
+      "shanghai-demo:osm-w482847291",
+      "shanghai-demo:osm-w971653423",
+      "shanghai-demo:osm-w1275406436",
+      "shanghai-demo:osm-w1020883276",
+      "shanghai-demo:osm-w1275359037",
+      "shanghai-demo:osm-w1003031441",
+      "shanghai-demo:osm-w1300428272",
+      "shanghai-demo:osm-w1229249265",
+      "shanghai-demo:osm-w441927387",
+      "shanghai-demo:osm-w1302205057",
+      "shanghai-demo:osm-w1056136968",
+      "shanghai-demo:osm-w1159177638",
+      "shanghai-demo:osm-w306984718",
+      "shanghai-demo:osm-w1194217941",
+      "shanghai-demo:osm-n12298888544",
+      "shanghai-demo:osm-n11100649105",
+      "shanghai-demo:osm-w908370480",
+      "shanghai-demo:osm-w894299939",
+      "shanghai-demo:osm-n4395836189",
+      "shanghai-demo:osm-w1200745520",
+      "shanghai-demo:osm-w1234894658",
+      "shanghai-demo:osm-n3557819896",
+      "shanghai-demo:osm-w863176423",
+      "shanghai-demo:osm-w1227925287",
+      "shanghai-demo:osm-n12422137699",
+      "shanghai-demo:osm-w978588311",
+      "shanghai-demo:osm-w1327505183",
+      "shanghai-demo:osm-n4345426194",
+      "shanghai-demo:osm-n9907361087",
+      "shanghai-demo:osm-n9937462303",
+      "shanghai-demo:osm-n10296599709",
+      "shanghai-demo:osm-n9438416300",
+      "shanghai-demo:osm-n11218806209",
+      "shanghai-demo:osm-n11285565747",
+      "shanghai-demo:osm-n4885031630",
+      "shanghai-demo:osm-n11293049139",
+      "shanghai-demo:osm-n11280892208",
+      "shanghai-demo:osm-n11309692910",
+      "shanghai-demo:osm-n11124597542",
+      "shanghai-demo:osm-n6531715408",
+      "shanghai-demo:osm-n5042024832",
+      "shanghai-demo:osm-n4623058291",
+      "shanghai-demo:osm-n3684766682",
+      "shanghai-demo:osm-n822647682",
+      "shanghai-demo:osm-n9857667983",
+      "shanghai-demo:osm-n9857667986",
+      "shanghai-demo:osm-n7555465246",
+      "shanghai-demo:osm-n12810803447",
+      "shanghai-demo:osm-n12650144320",
+      "shanghai-demo:osm-n9439362311",
+      "shanghai-demo:osm-n8930599629",
+      "shanghai-demo:osm-n8556954591",
+      "shanghai-demo:osm-n11285565722",
+      "shanghai-demo:osm-n11204366614",
+      "shanghai-demo:osm-n11209292954",
+      "shanghai-demo:osm-n11465727993",
+      "shanghai-demo:osm-n12073097696",
+      "shanghai-demo:osm-n11941422535",
+      "shanghai-demo:osm-n11268856305",
+      "shanghai-demo:osm-n4885031821",
+      "shanghai-demo:osm-n11389444309",
+      "shanghai-demo:osm-n12190323446",
+      "shanghai-demo:osm-n6516394075",
+      "shanghai-demo:osm-n11209381668",
+      "shanghai-demo:osm-n8307920246",
+      "shanghai-demo:osm-n11991340958",
+      "shanghai-demo:osm-n4394222089",
+      "shanghai-demo:osm-n11303956508",
+      "shanghai-demo:osm-n11285565727",
+      "shanghai-demo:osm-w1385301459",
+      "shanghai-demo:osm-n12650144315",
+      "shanghai-demo:osm-n11209381666",
+      "shanghai-demo:osm-n4761313101",
+      "shanghai-demo:osm-n11303966065",
+      "shanghai-demo:osm-n4457978298",
+      "shanghai-demo:osm-n5042024834",
+      "shanghai-demo:osm-n1874352983",
+      "shanghai-demo:osm-n11285504016",
+      "shanghai-demo:osm-w1366739682",
+      "shanghai-demo:osm-n12045205911",
+      "shanghai-demo:osm-n12301059108",
+      "shanghai-demo:osm-n12301049457",
+      "shanghai-demo:osm-n11209519528",
+      "shanghai-demo:osm-n11158462257",
+      "shanghai-demo:osm-n4441895990",
+      "shanghai-demo:osm-n12951691166",
+      "shanghai-demo:osm-n11266492280",
+      "shanghai-demo:osm-n7417168072",
+      "shanghai-demo:osm-n13826596434",
+      "shanghai-demo:osm-n4380048289",
+      "shanghai-demo:osm-n5787402179",
+      "shanghai-demo:osm-n3110932575",
+      "shanghai-demo:osm-n5376831022",
+      "shanghai-demo:osm-w1185281616",
+      "shanghai-demo:osm-n5705184107",
+      "shanghai-demo:osm-w1078943454",
+      "shanghai-demo:osm-w666299513",
+      "shanghai-demo:osm-w1068498219",
+      "shanghai-demo:osm-n13891470704",
+      "shanghai-demo:osm-n12650144325",
+      "shanghai-demo:osm-n8930599631",
+      "shanghai-demo:osm-w765716291",
+      "shanghai-demo:osm-n12373168701",
+      "shanghai-demo:osm-n12830380537",
+      "shanghai-demo:osm-n4458010101",
+      "shanghai-demo:osm-n11171195447",
+      "shanghai-demo:osm-n11941438347"
+    ],
+    "zh": [
+      "shanghai-demo:osm-n6444724803",
+      "shanghai-demo:osm-w824657451",
+      "shanghai-demo:osm-n8444606111",
+      "shanghai-demo:osm-n1066173050",
+      "shanghai-demo:osm-n2025947403",
+      "shanghai-demo:osm-n1611986203",
+      "shanghai-demo:osm-n4882481161",
+      "shanghai-demo:osm-n5427525723",
+      "shanghai-demo:osm-n4026975444",
+      "shanghai-demo:osm-n7099715317",
+      "shanghai-demo:osm-n8847798971",
+      "shanghai-demo:osm-n11799151769",
+      "shanghai-demo:osm-n8449317072",
+      "shanghai-demo:osm-n4248384489",
+      "shanghai-demo:osm-n12811589397",
+      "shanghai-demo:osm-n5106711621",
+      "shanghai-demo:osm-n11158417549",
+      "shanghai-demo:osm-n3328121193",
+      "shanghai-demo:osm-n9441867619",
+      "shanghai-demo:osm-n7417147439",
+      "shanghai-demo:osm-n8957625707",
+      "shanghai-demo:osm-n11109082106",
+      "shanghai-demo:osm-n11092999205",
+      "shanghai-demo:osm-n12992016864",
+      "shanghai-demo:osm-n5850703716",
+      "shanghai-demo:osm-n11959656110",
+      "shanghai-demo:osm-n2025947395",
+      "shanghai-demo:osm-n12435596035",
+      "shanghai-demo:osm-n8930585194",
+      "shanghai-demo:osm-n3771427618",
+      "shanghai-demo:osm-n6854889042",
+      "shanghai-demo:osm-n6936601407",
+      "shanghai-demo:osm-n9269938682",
+      "shanghai-demo:osm-n12624600218",
+      "shanghai-demo:osm-n13039035801",
+      "shanghai-demo:osm-n9439261147",
+      "shanghai-demo:osm-n12174947834",
+      "shanghai-demo:osm-n9364002522",
+      "shanghai-demo:osm-n13307804501",
+      "shanghai-demo:osm-n8095881650",
+      "shanghai-demo:osm-n476072602",
+      "shanghai-demo:osm-n7366723205",
+      "shanghai-demo:osm-n11959656108",
+      "shanghai-demo:osm-n11176094633",
+      "shanghai-demo:osm-w164555180",
+      "shanghai-demo:osm-n13077641158",
+      "shanghai-demo:osm-n11314400069",
+      "shanghai-demo:osm-n4264045789",
+      "shanghai-demo:osm-n6546730162",
+      "shanghai-demo:osm-n12045206283",
+      "shanghai-demo:osm-n7418825189",
+      "shanghai-demo:osm-n12498223998",
+      "shanghai-demo:osm-n11303956506",
+      "shanghai-demo:osm-n7555436651",
+      "shanghai-demo:osm-n4457978296",
+      "shanghai-demo:osm-n9441917811",
+      "shanghai-demo:osm-n4761313103",
+      "shanghai-demo:osm-n12498223984",
+      "shanghai-demo:osm-n9439439498",
+      "shanghai-demo:osm-n8445744820",
+      "shanghai-demo:osm-n7722879988",
+      "shanghai-demo:osm-n3610298460",
+      "shanghai-demo:osm-n3755910220",
+      "shanghai-demo:osm-w1388203603",
+      "shanghai-demo:osm-n8321210759",
+      "shanghai-demo:osm-n5211363622",
+      "shanghai-demo:osm-n1611986261",
+      "shanghai-demo:osm-n6854542651",
+      "shanghai-demo:osm-n6536410934",
+      "shanghai-demo:osm-n4264275695",
+      "shanghai-demo:osm-n9269930311",
+      "shanghai-demo:osm-n5845079571",
+      "shanghai-demo:osm-n5786250054",
+      "shanghai-demo:osm-n8494366964",
+      "shanghai-demo:osm-n4726044289",
+      "shanghai-demo:osm-n8474207039",
+      "shanghai-demo:osm-w449495494",
+      "shanghai-demo:osm-n3610298461",
+      "shanghai-demo:osm-n1611986210",
+      "shanghai-demo:osm-n5444429924",
+      "shanghai-demo:osm-n8070511700",
+      "shanghai-demo:osm-w859447899",
+      "shanghai-demo:osm-n1460661876",
+      "shanghai-demo:osm-n912282486",
+      "shanghai-demo:osm-n6557301627",
+      "shanghai-demo:osm-n5136775021",
+      "shanghai-demo:osm-n4364428896",
+      "shanghai-demo:osm-n3750147477",
+      "shanghai-demo:osm-n6555694364",
+      "shanghai-demo:osm-n6290531385",
+      "shanghai-demo:osm-n3622538162",
+      "shanghai-demo:osm-n835125045",
+      "shanghai-demo:osm-n13904215235",
+      "shanghai-demo:osm-n5858807255",
+      "shanghai-demo:osm-n6536441405",
+      "shanghai-demo:osm-n7144919721",
+      "shanghai-demo:osm-n5211783930",
+      "shanghai-demo:osm-n8308012968",
+      "shanghai-demo:osm-n3737443419",
+      "shanghai-demo:osm-n4026977489",
+      "shanghai-demo:osm-n7417146684",
+      "shanghai-demo:osm-n11959634974",
+      "shanghai-demo:osm-n398828768"
+    ]
+  },
+  "name_basis_counts": {
+    "ru": {
+      "source": 103,
+      "editorial_translation": 1,
+      "missing": 396
+    },
+    "en": {
+      "editorial_translation": 27,
+      "source": 179,
+      "missing": 294
+    },
+    "zh": {
+      "editorial_translation": 28,
+      "source": 369,
+      "missing": 103
+    }
+  },
+  "structural_field_coverage": {
+    "opening": 500,
+    "duration_minutes": 500,
+    "rating": 500,
+    "review_count": 500,
+    "family_friendly": 500,
+    "senior_friendly": 500,
+    "pet_friendly": 500,
+    "season_months": 500
+  },
+  "meal_neighbourhood_audit": {
+    "date": "2026-11-19",
+    "radius_meters": 1500,
+    "same_bank_label_required": true,
+    "scenario": "one adult, 09-20, three distinct meals; no price limit, geographic distance only",
+    "attraction_anchors_examined": 279,
+    "anchors_without_three_distinct_meals": 138,
+    "failures": [
+      {
+        "attraction_id": "shanghai-demo:yu-garden",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:city-god-temple",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:shanghai-museum",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:history-museum",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:urban-planning",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:natural-history",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:peoples-park",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:fuxing-park",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:sculpture-park",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:jingan-temple",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:xintiandi",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:shanghai-tower",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:oriental-pearl",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:pudong-art",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:lujiazui-green",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:sihang",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:power-station-art",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:longhua-temple",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:madame-tussauds",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:ocean-aquarium",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q10867765",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q10933595",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q11077044",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q11084700",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q11177928",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q1161278",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q1194232",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q129644027",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q1325611",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q1365598",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q15046355",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q15709505",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q15893841",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q15913922",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q16259176",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q1626937",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q16868453",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q171358",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q18595959",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q18712414",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q2109257",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q21659128",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q220805",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q22812497",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q2330137",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q23812",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q23825",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q2560062",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q2582044",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q284943",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q3182046",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q3267286",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q36113",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q41712",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q41841",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q41857",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q42310158",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q430218",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q5135670",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q5421483",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q543353",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q593622",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q6556969",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q6777219",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q7083702",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q7267962",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q8075048",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q80813",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q841670",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q847819",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q855376",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q865312",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:wikidata-Q910848",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w299850082",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w489225055",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w482847291",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w971653423",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w1275406436",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w1020883276",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w1003031441",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w1302205057",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w1056136968",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w908370480",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w894299939",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w1227925287",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n12422137699",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4345426194",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n13077641158",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4885031630",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n11293049139",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n11280892208",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n11124597542",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n6531715408",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4623058291",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n11314400069",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4264045789",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n6546730162",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n3684766682",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n7555465246",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n12650144320",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n8556954591",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n7555436651",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4457978296",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n11465727993",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n11941422535",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4885031821",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n12190323446",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n6516394075",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n12650144315",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4457978298",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n1874352983",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w1366739682",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n8445744820",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n8321210759",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4264275695",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n9269930311",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n12951691166",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n5786250054",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n8494366964",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n4726044289",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n11266492280",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n8474207039",
+        "nearby_restaurants": 0,
+        "unmatched_meal_slots": [
+          "breakfast",
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w449495494",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n5444429924",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n8070511700",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n13826596434",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-w859447899",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n1460661876",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n6557301627",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n5136775021",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n3750147477",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n5787402179",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n6290531385",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n3622538162",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n5376831022",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n12650144325",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n7144919721",
+        "nearby_restaurants": 1,
+        "unmatched_meal_slots": [
+          "lunch",
+          "dinner"
+        ]
+      },
+      {
+        "attraction_id": "shanghai-demo:osm-n5211783930",
+        "nearby_restaurants": 2,
+        "unmatched_meal_slots": [
+          "dinner"
+        ]
+      }
+    ],
+    "limitations": [
+      "Not a route feasibility or minimum global new-POI count",
+      "Synthetic hours, approximate bank labels and straight-line radius",
+      "No group/transport/season/budget constraints in this coverage-only audit"
+    ]
+  },
+  "hypothetical_coverage_estimates": {
+    "attractions_without_any_nearby_food": 28,
+    "attractions_without_breakfast_09_to_10": 95,
+    "attractions_without_nearby_avg_check_up_to_60": 115,
+    "any_food": {
+      "proposed_new_venue_count": 20,
+      "proposals": [
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q80813",
+          "near_name": "Цзинь Мао",
+          "lat": 31.237222,
+          "lon": 121.501389,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 5
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q8075048",
+          "near_name": "Цуйбайчи",
+          "lat": 31.0024,
+          "lon": 121.229,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q865312",
+          "near_name": "Диснейленд",
+          "lat": 31.144,
+          "lon": 121.657,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q847819",
+          "near_name": "Мост Сюйпу",
+          "lat": 31.12917,
+          "lon": 121.46417,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q7267962",
+          "near_name": "Сад Цюся",
+          "lat": 31.388804,
+          "lon": 121.24854,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q6777219",
+          "near_name": "Мост Сонгпу",
+          "lat": 30.97209,
+          "lon": 121.308058,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q543353",
+          "near_name": "Плаза 66",
+          "lat": 31.229917,
+          "lon": 121.449306,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q36113",
+          "near_name": "Мост Миньпу",
+          "lat": 31.05278,
+          "lon": 121.47694,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2560062",
+          "near_name": "Арена Спортивного Города Цзицзун",
+          "lat": 31.042,
+          "lon": 121.355522,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2330137",
+          "near_name": "Базилика Девы Марии",
+          "lat": 31.094994,
+          "lon": 121.191589,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q171358",
+          "near_name": "Международный автодром Шанхая",
+          "lat": 31.338889,
+          "lon": 121.219722,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q16868453",
+          "near_name": "Парк Гуцун",
+          "lat": 31.347412,
+          "lon": 121.384484,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15893841",
+          "near_name": "Лесной Парк Бинцзян",
+          "lat": 31.3828,
+          "lon": 121.528,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:power-station-art",
+          "near_name": "Power Station of Art",
+          "lat": 31.20306,
+          "lon": 121.4939,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w971653423",
+          "near_name": "新邻天地广场",
+          "lat": 31.282686,
+          "lon": 121.343468,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w894299939",
+          "near_name": "太平洋生活广场",
+          "lat": 31.314291,
+          "lon": 121.534912,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1056136968",
+          "near_name": "晋公馆·商业",
+          "lat": 31.162959,
+          "lon": 121.519814,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8474207039",
+          "near_name": "LEAN Cafe Bar",
+          "lat": 31.257639,
+          "lon": 121.576708,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n7555465246",
+          "near_name": "优衣库",
+          "lat": 31.272396,
+          "lon": 121.407574,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n1874352983",
+          "near_name": "百安居",
+          "lat": 31.289613,
+          "lon": 121.518175,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        }
+      ],
+      "method": "Greedy multicover on existing attraction-coordinate candidates, same bank label, radius1500m. Each hypothetical all-day venue serves at most one meal per anchor/day; co-located distinct venues allowed.",
+      "is_proven_minimum": false,
+      "creates_pois": false,
+      "limitations": [
+        "Coordinates are planning locations, not real available premises",
+        "No walking-network, price or group feasibility proof",
+        "One-day coverage, not five-day no-repeat guarantee"
+      ]
+    },
+    "breakfast_09_to_10": {
+      "proposed_new_venue_count": 40,
+      "proposals": [
+        {
+          "near_attraction_id": "shanghai-demo:osm-n3684766682",
+          "near_name": "外文书店",
+          "lat": 31.236019,
+          "lon": 121.478463,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 22
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q80813",
+          "near_name": "Цзинь Мао",
+          "lat": 31.237222,
+          "lon": 121.501389,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 9
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q11077044",
+          "near_name": "Синагога Охель Рахель",
+          "lat": 31.2315,
+          "lon": 121.453,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 9
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q8075048",
+          "near_name": "Цуйбайчи",
+          "lat": 31.0024,
+          "lon": 121.229,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1366739682",
+          "near_name": "上海众汇旺建材批发市场",
+          "lat": 31.289015,
+          "lon": 121.419607,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n822647682",
+          "near_name": "上海书城",
+          "lat": 31.239202,
+          "lon": 121.400272,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n5444429924",
+          "near_name": "The Isles",
+          "lat": 31.219071,
+          "lon": 121.410477,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q865312",
+          "near_name": "Диснейленд",
+          "lat": 31.144,
+          "lon": 121.657,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q3267286",
+          "near_name": "Спортивный Центр Юаньшэнь",
+          "lat": 31.233425,
+          "lon": 121.531683,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q3182046",
+          "near_name": "Шанхайский Зоопарк",
+          "lat": 31.195476,
+          "lon": 121.358757,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15709505",
+          "near_name": "Электростанция Яншупу",
+          "lat": 31.270683,
+          "lon": 121.551876,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q10867765",
+          "near_name": "Бывшая Резиденция Чжоу Эньлая В Шанхае",
+          "lat": 31.214186,
+          "lon": 121.468536,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w908370480",
+          "near_name": "森兰花园城",
+          "lat": 31.316483,
+          "lon": 121.587436,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:yu-garden",
+          "near_name": "Сад Юйюань",
+          "lat": 31.22892,
+          "lon": 121.48743,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q847819",
+          "near_name": "Мост Сюйпу",
+          "lat": 31.12917,
+          "lon": 121.46417,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q7267962",
+          "near_name": "Сад Цюся",
+          "lat": 31.388804,
+          "lon": 121.24854,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q6777219",
+          "near_name": "Мост Сонгпу",
+          "lat": 30.97209,
+          "lon": 121.308058,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q593622",
+          "near_name": "Шанхайский Спортивный Центр «Восток»",
+          "lat": 31.159567,
+          "lon": 121.47287,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q41857",
+          "near_name": "Чжэньжусы",
+          "lat": 31.251389,
+          "lon": 121.396667,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q36113",
+          "near_name": "Мост Миньпу",
+          "lat": 31.05278,
+          "lon": 121.47694,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2560062",
+          "near_name": "Арена Спортивного Города Цзицзун",
+          "lat": 31.042,
+          "lon": 121.355522,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2330137",
+          "near_name": "Базилика Девы Марии",
+          "lat": 31.094994,
+          "lon": 121.191589,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q171358",
+          "near_name": "Международный автодром Шанхая",
+          "lat": 31.338889,
+          "lon": 121.219722,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q16868453",
+          "near_name": "Парк Гуцун",
+          "lat": 31.347412,
+          "lon": 121.384484,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15893841",
+          "near_name": "Лесной Парк Бинцзян",
+          "lat": 31.3828,
+          "lon": 121.528,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q1365598",
+          "near_name": "Мост Янпу",
+          "lat": 31.25694,
+          "lon": 121.54139,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q129644027",
+          "near_name": "Парк Цайхунван",
+          "lat": 31.316,
+          "lon": 121.4726,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:power-station-art",
+          "near_name": "Power Station of Art",
+          "lat": 31.20306,
+          "lon": 121.4939,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w971653423",
+          "near_name": "新邻天地广场",
+          "lat": 31.282686,
+          "lon": 121.343468,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w894299939",
+          "near_name": "太平洋生活广场",
+          "lat": 31.314291,
+          "lon": 121.534912,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w299850082",
+          "near_name": "万嘉商业广场",
+          "lat": 31.295701,
+          "lon": 121.606489,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1056136968",
+          "near_name": "晋公馆·商业",
+          "lat": 31.162959,
+          "lon": 121.519814,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8556954591",
+          "near_name": "上海姐妹家具店",
+          "lat": 31.301806,
+          "lon": 121.474506,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8474207039",
+          "near_name": "LEAN Cafe Bar",
+          "lat": 31.257639,
+          "lon": 121.576708,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n7555465246",
+          "near_name": "优衣库",
+          "lat": 31.272396,
+          "lon": 121.407574,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n4264275695",
+          "near_name": "The Red Lion",
+          "lat": 31.22449,
+          "lon": 121.511595,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n1874352983",
+          "near_name": "百安居",
+          "lat": 31.289613,
+          "lon": 121.518175,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n12422137699",
+          "near_name": "高桥新城",
+          "lat": 31.339522,
+          "lon": 121.572992,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11465727993",
+          "near_name": "保罗威特工厂店",
+          "lat": 31.338883,
+          "lon": 121.451148,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11266492280",
+          "near_name": "MT酒吧",
+          "lat": 31.114323,
+          "lon": 121.589959,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        }
+      ],
+      "method": "Greedy multicover on existing attraction-coordinate candidates, same bank label, radius1500m. Each hypothetical all-day venue serves at most one meal per anchor/day; co-located distinct venues allowed.",
+      "is_proven_minimum": false,
+      "creates_pois": false,
+      "limitations": [
+        "Coordinates are planning locations, not real available premises",
+        "No walking-network, price or group feasibility proof",
+        "One-day coverage, not five-day no-repeat guarantee"
+      ]
+    },
+    "three_distinct_meals_per_anchor": {
+      "proposed_new_venue_count": 115,
+      "proposals": [
+        {
+          "near_attraction_id": "shanghai-demo:osm-n4726044289",
+          "near_name": "Le Café des Stagiaires",
+          "lat": 31.225285,
+          "lon": 121.460922,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 30
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q1325611",
+          "near_name": "Шанхайский Большой Театр",
+          "lat": 31.231494,
+          "lon": 121.467311,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 23
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q80813",
+          "near_name": "Цзинь Мао",
+          "lat": 31.237222,
+          "lon": 121.501389,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 9
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q430218",
+          "near_name": "Шанхай Уиллок Сквер",
+          "lat": 31.223611,
+          "lon": 121.440139,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 9
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q80813",
+          "near_name": "Цзинь Мао",
+          "lat": 31.237222,
+          "lon": 121.501389,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 8
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n5444429924",
+          "near_name": "The Isles",
+          "lat": 31.219071,
+          "lon": 121.410477,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 8
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n3684766682",
+          "near_name": "外文书店",
+          "lat": 31.236019,
+          "lon": 121.478463,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 7
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q5421483",
+          "near_name": "Экспо Аксис",
+          "lat": 31.185733,
+          "lon": 121.487986,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 6
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q80813",
+          "near_name": "Цзинь Мао",
+          "lat": 31.237222,
+          "lon": 121.501389,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 5
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q8075048",
+          "near_name": "Цуйбайчи",
+          "lat": 31.0024,
+          "lon": 121.229,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q8075048",
+          "near_name": "Цуйбайчи",
+          "lat": 31.0024,
+          "lon": 121.229,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q8075048",
+          "near_name": "Цуйбайчи",
+          "lat": 31.0024,
+          "lon": 121.229,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1366739682",
+          "near_name": "上海众汇旺建材批发市场",
+          "lat": 31.289015,
+          "lon": 121.419607,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q85852944",
+          "near_name": "Музей Изобразительных Искусств Вест-Бунд",
+          "lat": 31.173274,
+          "lon": 121.458473,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 3
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q841670",
+          "near_name": "Парк Чжуншань",
+          "lat": 31.2223,
+          "lon": 121.419,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 3
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q23825",
+          "near_name": "Шанхайский Центр Восточного Искусства",
+          "lat": 31.22495,
+          "lon": 121.536899,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 3
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q10867765",
+          "near_name": "Бывшая Резиденция Чжоу Эньлая В Шанхае",
+          "lat": 31.214186,
+          "lon": 121.468536,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 3
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n822647682",
+          "near_name": "上海书城",
+          "lat": 31.239202,
+          "lon": 121.400272,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 3
+        },
+        {
+          "near_attraction_id": "shanghai-demo:yu-garden",
+          "near_name": "Сад Юйюань",
+          "lat": 31.22892,
+          "lon": 121.48743,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q910848",
+          "near_name": "Нанпу Мост",
+          "lat": 31.20722,
+          "lon": 121.50111,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q910848",
+          "near_name": "Нанпу Мост",
+          "lat": 31.20722,
+          "lon": 121.50111,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q865312",
+          "near_name": "Диснейленд",
+          "lat": 31.144,
+          "lon": 121.657,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q865312",
+          "near_name": "Диснейленд",
+          "lat": 31.144,
+          "lon": 121.657,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q865312",
+          "near_name": "Диснейленд",
+          "lat": 31.144,
+          "lon": 121.657,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q41857",
+          "near_name": "Чжэньжусы",
+          "lat": 31.251389,
+          "lon": 121.396667,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q3267286",
+          "near_name": "Спортивный Центр Юаньшэнь",
+          "lat": 31.233425,
+          "lon": 121.531683,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q3182046",
+          "near_name": "Шанхайский Зоопарк",
+          "lat": 31.195476,
+          "lon": 121.358757,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q3182046",
+          "near_name": "Шанхайский Зоопарк",
+          "lat": 31.195476,
+          "lon": 121.358757,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q23812",
+          "near_name": "Парк Отель",
+          "lat": 31.235596,
+          "lon": 121.466995,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15709505",
+          "near_name": "Электростанция Яншупу",
+          "lat": 31.270683,
+          "lon": 121.551876,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15046355",
+          "near_name": "Парк Чанфэн",
+          "lat": 31.226667,
+          "lon": 121.394722,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:power-station-art",
+          "near_name": "Power Station of Art",
+          "lat": 31.20306,
+          "lon": 121.4939,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w908370480",
+          "near_name": "森兰花园城",
+          "lat": 31.316483,
+          "lon": 121.587436,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q864817",
+          "near_name": "Гранд Гейтвей Шанхай",
+          "lat": 31.1965,
+          "lon": 121.4325,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q847819",
+          "near_name": "Мост Сюйпу",
+          "lat": 31.12917,
+          "lon": 121.46417,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q847819",
+          "near_name": "Мост Сюйпу",
+          "lat": 31.12917,
+          "lon": 121.46417,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q847819",
+          "near_name": "Мост Сюйпу",
+          "lat": 31.12917,
+          "lon": 121.46417,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q7267962",
+          "near_name": "Сад Цюся",
+          "lat": 31.388804,
+          "lon": 121.24854,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q7267962",
+          "near_name": "Сад Цюся",
+          "lat": 31.388804,
+          "lon": 121.24854,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q7267962",
+          "near_name": "Сад Цюся",
+          "lat": 31.388804,
+          "lon": 121.24854,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q6777219",
+          "near_name": "Мост Сонгпу",
+          "lat": 30.97209,
+          "lon": 121.308058,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q6777219",
+          "near_name": "Мост Сонгпу",
+          "lat": 30.97209,
+          "lon": 121.308058,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q6777219",
+          "near_name": "Мост Сонгпу",
+          "lat": 30.97209,
+          "lon": 121.308058,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q593622",
+          "near_name": "Шанхайский Спортивный Центр «Восток»",
+          "lat": 31.159567,
+          "lon": 121.47287,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q593622",
+          "near_name": "Шанхайский Спортивный Центр «Восток»",
+          "lat": 31.159567,
+          "lon": 121.47287,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q41857",
+          "near_name": "Чжэньжусы",
+          "lat": 31.251389,
+          "lon": 121.396667,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q36113",
+          "near_name": "Мост Миньпу",
+          "lat": 31.05278,
+          "lon": 121.47694,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q36113",
+          "near_name": "Мост Миньпу",
+          "lat": 31.05278,
+          "lon": 121.47694,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q36113",
+          "near_name": "Мост Миньпу",
+          "lat": 31.05278,
+          "lon": 121.47694,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2560062",
+          "near_name": "Арена Спортивного Города Цзицзун",
+          "lat": 31.042,
+          "lon": 121.355522,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2560062",
+          "near_name": "Арена Спортивного Города Цзицзун",
+          "lat": 31.042,
+          "lon": 121.355522,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2560062",
+          "near_name": "Арена Спортивного Города Цзицзун",
+          "lat": 31.042,
+          "lon": 121.355522,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2330137",
+          "near_name": "Базилика Девы Марии",
+          "lat": 31.094994,
+          "lon": 121.191589,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2330137",
+          "near_name": "Базилика Девы Марии",
+          "lat": 31.094994,
+          "lon": 121.191589,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2330137",
+          "near_name": "Базилика Девы Марии",
+          "lat": 31.094994,
+          "lon": 121.191589,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q18712414",
+          "near_name": "Лонг Музей",
+          "lat": 31.21811,
+          "lon": 121.569761,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q171358",
+          "near_name": "Международный автодром Шанхая",
+          "lat": 31.338889,
+          "lon": 121.219722,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q171358",
+          "near_name": "Международный автодром Шанхая",
+          "lat": 31.338889,
+          "lon": 121.219722,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q171358",
+          "near_name": "Международный автодром Шанхая",
+          "lat": 31.338889,
+          "lon": 121.219722,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q16868453",
+          "near_name": "Парк Гуцун",
+          "lat": 31.347412,
+          "lon": 121.384484,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q16868453",
+          "near_name": "Парк Гуцун",
+          "lat": 31.347412,
+          "lon": 121.384484,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q16868453",
+          "near_name": "Парк Гуцун",
+          "lat": 31.347412,
+          "lon": 121.384484,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15893841",
+          "near_name": "Лесной Парк Бинцзян",
+          "lat": 31.3828,
+          "lon": 121.528,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15893841",
+          "near_name": "Лесной Парк Бинцзян",
+          "lat": 31.3828,
+          "lon": 121.528,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15893841",
+          "near_name": "Лесной Парк Бинцзян",
+          "lat": 31.3828,
+          "lon": 121.528,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q1365598",
+          "near_name": "Мост Янпу",
+          "lat": 31.25694,
+          "lon": 121.54139,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q1365598",
+          "near_name": "Мост Янпу",
+          "lat": 31.25694,
+          "lon": 121.54139,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q129644027",
+          "near_name": "Парк Цайхунван",
+          "lat": 31.316,
+          "lon": 121.4726,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q1194232",
+          "near_name": "Лупу",
+          "lat": 31.190556,
+          "lon": 121.475833,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:power-station-art",
+          "near_name": "Power Station of Art",
+          "lat": 31.20306,
+          "lon": 121.4939,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:power-station-art",
+          "near_name": "Power Station of Art",
+          "lat": 31.20306,
+          "lon": 121.4939,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w971653423",
+          "near_name": "新邻天地广场",
+          "lat": 31.282686,
+          "lon": 121.343468,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w971653423",
+          "near_name": "新邻天地广场",
+          "lat": 31.282686,
+          "lon": 121.343468,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w971653423",
+          "near_name": "新邻天地广场",
+          "lat": 31.282686,
+          "lon": 121.343468,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w894299939",
+          "near_name": "太平洋生活广场",
+          "lat": 31.314291,
+          "lon": 121.534912,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w894299939",
+          "near_name": "太平洋生活广场",
+          "lat": 31.314291,
+          "lon": 121.534912,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w894299939",
+          "near_name": "太平洋生活广场",
+          "lat": 31.314291,
+          "lon": 121.534912,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w482847291",
+          "near_name": "紫荆广场",
+          "lat": 31.277077,
+          "lon": 121.512526,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w482847291",
+          "near_name": "紫荆广场",
+          "lat": 31.277077,
+          "lon": 121.512526,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w306984718",
+          "near_name": "汇宝购物广场",
+          "lat": 31.158109,
+          "lon": 121.345029,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w306984718",
+          "near_name": "汇宝购物广场",
+          "lat": 31.158109,
+          "lon": 121.345029,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w299850082",
+          "near_name": "万嘉商业广场",
+          "lat": 31.295701,
+          "lon": 121.606489,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1366739682",
+          "near_name": "上海众汇旺建材批发市场",
+          "lat": 31.289015,
+          "lon": 121.419607,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1275406436",
+          "near_name": "上海康建商务广场",
+          "lat": 31.275301,
+          "lon": 121.370304,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1275406436",
+          "near_name": "上海康建商务广场",
+          "lat": 31.275301,
+          "lon": 121.370304,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1275359037",
+          "near_name": "宝山日月光中心",
+          "lat": 31.296488,
+          "lon": 121.412986,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1227925287",
+          "near_name": "慧华里",
+          "lat": 31.19684,
+          "lon": 121.523422,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1227925287",
+          "near_name": "慧华里",
+          "lat": 31.19684,
+          "lon": 121.523422,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1056136968",
+          "near_name": "晋公馆·商业",
+          "lat": 31.162959,
+          "lon": 121.519814,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1056136968",
+          "near_name": "晋公馆·商业",
+          "lat": 31.162959,
+          "lon": 121.519814,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1056136968",
+          "near_name": "晋公馆·商业",
+          "lat": 31.162959,
+          "lon": 121.519814,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8556954591",
+          "near_name": "上海姐妹家具店",
+          "lat": 31.301806,
+          "lon": 121.474506,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8556954591",
+          "near_name": "上海姐妹家具店",
+          "lat": 31.301806,
+          "lon": 121.474506,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8474207039",
+          "near_name": "LEAN Cafe Bar",
+          "lat": 31.257639,
+          "lon": 121.576708,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8474207039",
+          "near_name": "LEAN Cafe Bar",
+          "lat": 31.257639,
+          "lon": 121.576708,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8474207039",
+          "near_name": "LEAN Cafe Bar",
+          "lat": 31.257639,
+          "lon": 121.576708,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n7555465246",
+          "near_name": "优衣库",
+          "lat": 31.272396,
+          "lon": 121.407574,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n7555465246",
+          "near_name": "优衣库",
+          "lat": 31.272396,
+          "lon": 121.407574,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n7555465246",
+          "near_name": "优衣库",
+          "lat": 31.272396,
+          "lon": 121.407574,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n5211783930",
+          "near_name": "Decathlon",
+          "lat": 31.263404,
+          "lon": 121.507883,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n5211363622",
+          "near_name": "Sunny Coffe",
+          "lat": 31.139958,
+          "lon": 121.400173,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n4264275695",
+          "near_name": "The Red Lion",
+          "lat": 31.22449,
+          "lon": 121.511595,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n1874352983",
+          "near_name": "百安居",
+          "lat": 31.289613,
+          "lon": 121.518175,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n1874352983",
+          "near_name": "百安居",
+          "lat": 31.289613,
+          "lon": 121.518175,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n1874352983",
+          "near_name": "百安居",
+          "lat": 31.289613,
+          "lon": 121.518175,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n12422137699",
+          "near_name": "高桥新城",
+          "lat": 31.339522,
+          "lon": 121.572992,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n12422137699",
+          "near_name": "高桥新城",
+          "lat": 31.339522,
+          "lon": 121.572992,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n12190323446",
+          "near_name": "桃园棋牌室",
+          "lat": 31.147444,
+          "lon": 121.4941,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11941438347",
+          "near_name": "动因体育",
+          "lat": 31.142371,
+          "lon": 121.425033,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11465727993",
+          "near_name": "保罗威特工厂店",
+          "lat": 31.338883,
+          "lon": 121.451148,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11465727993",
+          "near_name": "保罗威特工厂店",
+          "lat": 31.338883,
+          "lon": 121.451148,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11293049139",
+          "near_name": "晨光",
+          "lat": 31.121044,
+          "lon": 121.448518,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11280892208",
+          "near_name": "勤学书店",
+          "lat": 31.144459,
+          "lon": 121.517733,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11266492280",
+          "near_name": "MT酒吧",
+          "lat": 31.114323,
+          "lon": 121.589959,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11266492280",
+          "near_name": "MT酒吧",
+          "lat": 31.114323,
+          "lon": 121.589959,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        }
+      ],
+      "method": "Greedy multicover on existing attraction-coordinate candidates, same bank label, radius1500m. Each hypothetical all-day venue serves at most one meal per anchor/day; co-located distinct venues allowed.",
+      "is_proven_minimum": false,
+      "creates_pois": false,
+      "limitations": [
+        "Coordinates are planning locations, not real available premises",
+        "No walking-network, price or group feasibility proof",
+        "One-day coverage, not five-day no-repeat guarantee"
+      ]
+    },
+    "cheap_food_up_to_60": {
+      "proposed_new_venue_count": 52,
+      "proposals": [
+        {
+          "near_attraction_id": "shanghai-demo:osm-n3684766682",
+          "near_name": "外文书店",
+          "lat": 31.236019,
+          "lon": 121.478463,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 22
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q543353",
+          "near_name": "Плаза 66",
+          "lat": 31.229917,
+          "lon": 121.449306,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 10
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q80813",
+          "near_name": "Цзинь Мао",
+          "lat": 31.237222,
+          "lon": 121.501389,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 9
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1366739682",
+          "near_name": "上海众汇旺建材批发市场",
+          "lat": 31.289015,
+          "lon": 121.419607,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 5
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q8075048",
+          "near_name": "Цуйбайчи",
+          "lat": 31.0024,
+          "lon": 121.229,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n822647682",
+          "near_name": "上海书城",
+          "lat": 31.239202,
+          "lon": 121.400272,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n7722879988",
+          "near_name": "Shanghai Brew House",
+          "lat": 31.178786,
+          "lon": 121.369118,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n5444429924",
+          "near_name": "The Isles",
+          "lat": 31.219071,
+          "lon": 121.410477,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 4
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wukang-mansion",
+          "near_name": "Дом Укан и прогулка по улице Укан",
+          "lat": 31.20627,
+          "lon": 121.4337,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q865312",
+          "near_name": "Диснейленд",
+          "lat": 31.144,
+          "lon": 121.657,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q598603",
+          "near_name": "Sinar Mas Center",
+          "lat": 31.251111,
+          "lon": 121.493611,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q3267286",
+          "near_name": "Спортивный Центр Юаньшэнь",
+          "lat": 31.233425,
+          "lon": 121.531683,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15709505",
+          "near_name": "Электростанция Яншупу",
+          "lat": 31.270683,
+          "lon": 121.551876,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q1325611",
+          "near_name": "Шанхайский Большой Театр",
+          "lat": 31.231494,
+          "lon": 121.467311,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:power-station-art",
+          "near_name": "Power Station of Art",
+          "lat": 31.20306,
+          "lon": 121.4939,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w908370480",
+          "near_name": "森兰花园城",
+          "lat": 31.316483,
+          "lon": 121.587436,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n5211363622",
+          "near_name": "Sunny Coffe",
+          "lat": 31.139958,
+          "lon": 121.400173,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 2
+        },
+        {
+          "near_attraction_id": "shanghai-demo:yu-garden",
+          "near_name": "Сад Юйюань",
+          "lat": 31.22892,
+          "lon": 121.48743,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q847819",
+          "near_name": "Мост Сюйпу",
+          "lat": 31.12917,
+          "lon": 121.46417,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q7267962",
+          "near_name": "Сад Цюся",
+          "lat": 31.388804,
+          "lon": 121.24854,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q6777219",
+          "near_name": "Мост Сонгпу",
+          "lat": 30.97209,
+          "lon": 121.308058,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q593622",
+          "near_name": "Шанхайский Спортивный Центр «Восток»",
+          "lat": 31.159567,
+          "lon": 121.47287,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q41857",
+          "near_name": "Чжэньжусы",
+          "lat": 31.251389,
+          "lon": 121.396667,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q36113",
+          "near_name": "Мост Миньпу",
+          "lat": 31.05278,
+          "lon": 121.47694,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q3182046",
+          "near_name": "Шанхайский Зоопарк",
+          "lat": 31.195476,
+          "lon": 121.358757,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2560062",
+          "near_name": "Арена Спортивного Города Цзицзун",
+          "lat": 31.042,
+          "lon": 121.355522,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q2330137",
+          "near_name": "Базилика Девы Марии",
+          "lat": 31.094994,
+          "lon": 121.191589,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q171358",
+          "near_name": "Международный автодром Шанхая",
+          "lat": 31.338889,
+          "lon": 121.219722,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q16868453",
+          "near_name": "Парк Гуцун",
+          "lat": 31.347412,
+          "lon": 121.384484,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q15893841",
+          "near_name": "Лесной Парк Бинцзян",
+          "lat": 31.3828,
+          "lon": 121.528,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q1365598",
+          "near_name": "Мост Янпу",
+          "lat": 31.25694,
+          "lon": 121.54139,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:wikidata-Q129644027",
+          "near_name": "Парк Цайхунван",
+          "lat": 31.316,
+          "lon": 121.4726,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w978588311",
+          "near_name": "经纬汇",
+          "lat": 31.325461,
+          "lon": 121.394534,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w971653423",
+          "near_name": "新邻天地广场",
+          "lat": 31.282686,
+          "lon": 121.343468,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w894299939",
+          "near_name": "太平洋生活广场",
+          "lat": 31.314291,
+          "lon": 121.534912,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w482847291",
+          "near_name": "紫荆广场",
+          "lat": 31.277077,
+          "lon": 121.512526,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w299850082",
+          "near_name": "万嘉商业广场",
+          "lat": 31.295701,
+          "lon": 121.606489,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1275359037",
+          "near_name": "宝山日月光中心",
+          "lat": 31.296488,
+          "lon": 121.412986,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-w1056136968",
+          "near_name": "晋公馆·商业",
+          "lat": 31.162959,
+          "lon": 121.519814,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8556954591",
+          "near_name": "上海姐妹家具店",
+          "lat": 31.301806,
+          "lon": 121.474506,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n8474207039",
+          "near_name": "LEAN Cafe Bar",
+          "lat": 31.257639,
+          "lon": 121.576708,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n7555465246",
+          "near_name": "优衣库",
+          "lat": 31.272396,
+          "lon": 121.407574,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n5211783930",
+          "near_name": "Decathlon",
+          "lat": 31.263404,
+          "lon": 121.507883,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n4264275695",
+          "near_name": "The Red Lion",
+          "lat": 31.22449,
+          "lon": 121.511595,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n1874352983",
+          "near_name": "百安居",
+          "lat": 31.289613,
+          "lon": 121.518175,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n12422137699",
+          "near_name": "高桥新城",
+          "lat": 31.339522,
+          "lon": 121.572992,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n12190323446",
+          "near_name": "桃园棋牌室",
+          "lat": 31.147444,
+          "lon": 121.4941,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11465727993",
+          "near_name": "保罗威特工厂店",
+          "lat": 31.338883,
+          "lon": 121.451148,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11293049139",
+          "near_name": "晨光",
+          "lat": 31.121044,
+          "lon": 121.448518,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11280892208",
+          "near_name": "勤学书店",
+          "lat": 31.144459,
+          "lon": 121.517733,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11266492280",
+          "near_name": "MT酒吧",
+          "lat": 31.114323,
+          "lon": 121.589959,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        },
+        {
+          "near_attraction_id": "shanghai-demo:osm-n11100649105",
+          "near_name": "泡泡玛特",
+          "lat": 31.163262,
+          "lon": 121.394404,
+          "hypothetical_new_venue": true,
+          "covered_anchor_count": 1
+        }
+      ],
+      "method": "Greedy multicover on existing attraction-coordinate candidates, same bank label, radius1500m. Each hypothetical all-day venue serves at most one meal per anchor/day; co-located distinct venues allowed.",
+      "is_proven_minimum": false,
+      "creates_pois": false,
+      "limitations": [
+        "Coordinates are planning locations, not real available premises",
+        "No walking-network, price or group feasibility proof",
+        "One-day coverage, not five-day no-repeat guarantee"
+      ]
+    }
+  },
+  "additional_synthetic_poi_count_justified": null,
+  "additional_synthetic_poi_count_explanation": "No universal ideal count follows from row count; cover measured local meal gaps first, and evaluate actual planner scenarios.",
+  "critical_errors": [],
+  "warnings": [
+    "Average checks, price segments and all previous quality/time/cost fields remain demo assumptions",
+    "Missing language labels use original names, not invented translations"
+  ]
+}

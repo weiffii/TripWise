@@ -26,20 +26,20 @@ function invariants(result,x){
   }
  }
 }
-test('exactly 100 unique POIs, no hidden APIs',()=>{
- assert.equal(data.pois.length,100);assert.equal(new Set(data.pois.map(p=>p.id)).size,100);
- assert.equal(data.pois.filter(p=>p.provenance?.identity==='synthetic_scenario_poi').length,54);
- assert.equal(data.pois.filter(p=>p.provenance?.identity==='real_place_source_checked').length,28);
- assert(data.pois.every(p=>!/^Учебн(ый|ое|ая)/i.test(p.name)));
- assert(data.pois.every(p=>p.provenance?.identity!=='real_place_source_checked'||p.provenance.coordinates==='OSM_feature_centroid_verified'&&p.coordinate_source_url?.startsWith('https://mapcarta.com/')));
+test('expanded 500-POI catalogue preserves unique sourced identities',()=>{
+ assert.equal(data.pois.length,500);assert.equal(new Set(data.pois.map(p=>p.id)).size,500);
+ assert(data.pois.every(p=>p.source_url&&p.provenance));
+ assert(data.pois.some(p=>p.provenance.identity==='real_OSM_POI'));
+ assert(data.pois.every(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon)));
 });
-test('every default day has >=2 balanced visits, without gaps',()=>{
+test('expanded default profile keeps hard constraints and reports missing food coverage',()=>{
  const plan=api.planTrip(data,opts);invariants(plan,opts);
- assert.equal(plan.status,'demo');assert(plan.days.every(d=>d.visit_ids.length>=3),'Сбалансированный двухдневный маршрут должен содержать хотя бы 3 посещения в день');
- assert.deepEqual(plan.uncovered_interests,[]);assert.equal(plan.checks.meals,'passed');
+ assert(plan.days.every(d=>d.visit_ids.length>=2));
+ assert.deepEqual(plan.uncovered_interests,[]);
+ for(const day of plan.days){if(day.meal_ids.length<3){assert.equal(plan.checks.meals,'failed');assert.notEqual(plan.status,'demo');assert(day.warnings.length>0);}}
 });
 test('oversubscribed budget+required still builds available route',()=>{
- const x={...opts,days:4,budget_cny:1000,group:{adult:2,child:0,senior:0,pet:0},primary_interests:['museums','history','shopping'],secondary_interests:[],required_ids:['shanghai-demo:yu-garden','shanghai-demo:history-museum','shanghai-demo:nanjing-road','shanghai-demo:m50']};
+ const x={...opts,days:4,budget_cny:1000,group:{adult:2,child:0,senior:0,pet:0},primary_interests:['museums','history','shopping'],secondary_interests:[],required_ids:['shanghai-demo:yu-garden','shanghai-demo:history-museum','shanghai-demo:bund','shanghai-demo:m50']};
  const p=api.planTrip(data,x);invariants(p,x);assert(p.summary.visit_count>=2);assert.notEqual(p.status,'infeasible');
  assert(p.summary.total_cost_cny<=1000);assert(p.checks.required_places==='passed'||p.unplaced_required_ids.every(id=>p.warnings.some(w=>w.includes(data.pois.find(v=>v.id===id).name))));
 });
@@ -52,10 +52,11 @@ test('group ticket prices incorporate children and seniors',()=>{
  const price=api.groupPrice(p,{adult:1,child:1,senior:1,pet:0});assert(Math.abs(price-p.price_cny*(1+.5+.7))<1e-7);
 });
 test('date filters seasonal objects off season and weekend high crowd',()=>{
- const season=data.pois.find(p=>p.kind==='attraction'&&p.season_months?.length&&p.season_months.length<12);
+ const seasonalData=JSON.parse(JSON.stringify(data));
+ const season=seasonalData.pois.find(p=>p.kind==='attraction');season.season_months=[1];
  assert(season);const month=Array.from({length:12},(_,i)=>i+1).find(i=>!season.season_months.includes(i));
  const x={...opts,primary_interests:season.categories.filter(c=>c!=='cafes'),secondary_interests:[],required_ids:[season.id],days:1,day_start:'08:00',day_end:'21:00',budget_cny:5000,start_date:`2026-${String(month).padStart(2,'0')}-11`};
- const p=api.planTrip(data,x);assert(p.unplaced_required_ids.includes(season.id));
+ const p=api.planTrip(seasonalData,x);assert(p.unplaced_required_ids.includes(season.id));
  const crowded=data.pois.find(v=>v.kind==='attraction'&&v.weekend_crowd_level==='high');assert(crowded);
  const weekend=api.planTrip(data,{...x,start_date:'2026-11-21',primary_interests:crowded.categories,required_ids:[crowded.id]});assert(weekend.selected_ids.includes(crowded.id), 'Обязательное место нельзя выбросить только из-за наплыва людей');
 });

@@ -1,0 +1,1189 @@
+{
+  "entities": {
+    "Q10867765": {
+      "type": "item",
+      "id": "Q10867765",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "上海周公馆"
+        },
+        "en": {
+          "language": "en",
+          "value": "Former Residence of Zhou Enlai in Shanghai"
+        }
+      }
+    },
+    "Q10933595": {
+      "type": "item",
+      "id": "Q10933595",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "大光明电影院 (上海)"
+        },
+        "en": {
+          "language": "en",
+          "value": "Grand Cinema"
+        }
+      }
+    },
+    "Q10934825": {
+      "type": "item",
+      "id": "Q10934825",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "大宁灵石公园"
+        },
+        "en": {
+          "language": "en",
+          "value": "Daning Lingshi Park"
+        }
+      }
+    },
+    "Q11056843": {
+      "type": "item",
+      "id": "Q11056843",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "工部局宰牲場"
+        },
+        "en": {
+          "language": "en",
+          "value": "1933 Old Millfun"
+        }
+      }
+    },
+    "Q11077044": {
+      "type": "item",
+      "id": "Q11077044",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "拉结会堂"
+        },
+        "en": {
+          "language": "en",
+          "value": "Ohel Rachel Synagogue"
+        }
+      }
+    },
+    "Q11084700": {
+      "type": "item",
+      "id": "Q11084700",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "方塔園"
+        },
+        "en": {
+          "language": "en",
+          "value": "Fangta Park"
+        }
+      }
+    },
+    "Q11111157": {
+      "type": "item",
+      "id": "Q11111157",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "格林邮船大楼"
+        },
+        "en": {
+          "language": "en",
+          "value": "Glen Line Building"
+        }
+      }
+    },
+    "Q11177928": {
+      "type": "item",
+      "id": "Q11177928",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "黄浦剧场"
+        }
+      }
+    },
+    "Q1142220": {
+      "type": "item",
+      "id": "Q1142220",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Lu Xun Park"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "鲁迅公园"
+        }
+      }
+    },
+    "Q1161278": {
+      "type": "item",
+      "id": "Q1161278",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shimao International Plaza"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海世茂国际广场"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Шимао Интернэшнл Плаза"
+        }
+      }
+    },
+    "Q1187116": {
+      "type": "item",
+      "id": "Q1187116",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "日清大楼"
+        },
+        "en": {
+          "language": "en",
+          "value": "Nissin Building"
+        }
+      }
+    },
+    "Q1194232": {
+      "type": "item",
+      "id": "Q1194232",
+      "labels": {
+        "ru": {
+          "language": "ru",
+          "value": "Лупу"
+        },
+        "en": {
+          "language": "en",
+          "value": "Lupu Bridge"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "卢浦大桥"
+        }
+      }
+    },
+    "Q129644027": {
+      "type": "item",
+      "id": "Q129644027",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "彩虹湾公园"
+        },
+        "en": {
+          "language": "en",
+          "value": "Caihongwan Park"
+        }
+      }
+    },
+    "Q129676059": {
+      "type": "item",
+      "id": "Q129676059",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "东茭泾公园"
+        }
+      }
+    },
+    "Q1325611": {
+      "type": "item",
+      "id": "Q1325611",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Grand Theatre"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海大剧院"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Шанхайский большой театр"
+        }
+      }
+    },
+    "Q1365598": {
+      "type": "item",
+      "id": "Q1365598",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Yangpu Bridge"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "杨浦大桥"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Мост Янпу"
+        }
+      }
+    },
+    "Q15046355": {
+      "type": "item",
+      "id": "Q15046355",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Changfeng Park"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "长风公园"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Парк Чанфэн"
+        }
+      }
+    },
+    "Q15709505": {
+      "type": "item",
+      "id": "Q15709505",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Yangshupu Power Plant"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "杨树浦发电厂"
+        }
+      }
+    },
+    "Q15893841": {
+      "type": "item",
+      "id": "Q15893841",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "滨江森林公园"
+        },
+        "en": {
+          "language": "en",
+          "value": "Binjiang Forest Park"
+        }
+      }
+    },
+    "Q15912151": {
+      "type": "item",
+      "id": "Q15912151",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "上海工艺美术博物馆"
+        },
+        "en": {
+          "language": "en",
+          "value": "Shanghai Museum of Arts And Crafts"
+        }
+      }
+    },
+    "Q15913922": {
+      "type": "item",
+      "id": "Q15913922",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "大上海电影院"
+        },
+        "en": {
+          "language": "en",
+          "value": "Metropol Cinema"
+        }
+      }
+    },
+    "Q16077881": {
+      "type": "item",
+      "id": "Q16077881",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "徐家汇观象台"
+        },
+        "en": {
+          "language": "en",
+          "value": "Xujiahui Observatory"
+        }
+      }
+    },
+    "Q16259176": {
+      "type": "item",
+      "id": "Q16259176",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Global Harbor"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "环球港"
+        }
+      }
+    },
+    "Q1626937": {
+      "type": "item",
+      "id": "Q1626937",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "K11"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "K11"
+        }
+      }
+    },
+    "Q16868452": {
+      "type": "item",
+      "id": "Q16868452",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "闸北公园"
+        },
+        "en": {
+          "language": "en",
+          "value": "Zhabei Park"
+        }
+      }
+    },
+    "Q16868453": {
+      "type": "item",
+      "id": "Q16868453",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "顾村公园"
+        },
+        "en": {
+          "language": "en",
+          "value": "Gucun Park"
+        }
+      }
+    },
+    "Q171358": {
+      "type": "item",
+      "id": "Q171358",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai International Circuit"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Шанхай"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海國際賽車場"
+        }
+      }
+    },
+    "Q18595959": {
+      "type": "item",
+      "id": "Q18595959",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Songjiang Mosque"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "松江清真寺"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Мечеть Сунцзян"
+        }
+      }
+    },
+    "Q18712414": {
+      "type": "item",
+      "id": "Q18712414",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Long Museum"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "龙美术馆"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Long Museum"
+        }
+      }
+    },
+    "Q201773": {
+      "type": "item",
+      "id": "Q201773",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Hongkou Football Stadium"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Футбольный стадион Хункоу"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "虹口足球场"
+        }
+      }
+    },
+    "Q2109257": {
+      "type": "item",
+      "id": "Q2109257",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Aurora Plaza"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "震旦国际大楼"
+        }
+      }
+    },
+    "Q2121198": {
+      "type": "item",
+      "id": "Q2121198",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Waibaidu Bridge"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "外白渡桥"
+        }
+      }
+    },
+    "Q21659128": {
+      "type": "item",
+      "id": "Q21659128",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Jing An Kerry Centre"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "静安嘉里中心"
+        }
+      }
+    },
+    "Q220805": {
+      "type": "item",
+      "id": "Q220805",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Concert Hall"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海音乐厅"
+        }
+      }
+    },
+    "Q22812497": {
+      "type": "item",
+      "id": "Q22812497",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Voyage to the Crystal Grotto"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "晶彩奇航"
+        }
+      }
+    },
+    "Q23170": {
+      "type": "item",
+      "id": "Q23170",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "鲁迅墓"
+        },
+        "en": {
+          "language": "en",
+          "value": "Lu Xun's tomb"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "могила Лу Синя"
+        }
+      }
+    },
+    "Q2330137": {
+      "type": "item",
+      "id": "Q2330137",
+      "labels": {
+        "ru": {
+          "language": "ru",
+          "value": "Базилика Девы Марии"
+        },
+        "en": {
+          "language": "en",
+          "value": "Sheshan Basilica"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "佘山进教之佑圣母大殿"
+        }
+      }
+    },
+    "Q2371438": {
+      "type": "item",
+      "id": "Q2371438",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Botanical Garden"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海植物园"
+        }
+      }
+    },
+    "Q23804": {
+      "type": "item",
+      "id": "Q23804",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Broadway Mansions"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "百老汇大厦"
+        }
+      }
+    },
+    "Q23812": {
+      "type": "item",
+      "id": "Q23812",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Park Hotel"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "国际饭店"
+        }
+      }
+    },
+    "Q23825": {
+      "type": "item",
+      "id": "Q23825",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Oriental Art Center"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Шанхайский центр восточного искусства"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "东方艺术中心"
+        }
+      }
+    },
+    "Q2560062": {
+      "type": "item",
+      "id": "Q2560062",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Qizhong Forest Sports City Arena"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海旗忠森林体育城网球中心"
+        }
+      }
+    },
+    "Q2582044": {
+      "type": "item",
+      "id": "Q2582044",
+      "labels": {
+        "ru": {
+          "language": "ru",
+          "value": "Церковь Святого Иосифа"
+        },
+        "en": {
+          "language": "en",
+          "value": "Saint Joseph's Church"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "洋泾浜圣若瑟堂"
+        }
+      }
+    },
+    "Q284943": {
+      "type": "item",
+      "id": "Q284943",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Saint Peter's Church"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Церковь Святого Петра"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海圣伯多禄堂"
+        }
+      }
+    },
+    "Q3182046": {
+      "type": "item",
+      "id": "Q3182046",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Zoo"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海动物园"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Шанхайский зоопарк"
+        }
+      }
+    },
+    "Q3267286": {
+      "type": "item",
+      "id": "Q3267286",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Yuanshen Sports Centre Stadium"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Спортивный центр Юаньшэнь"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "源深体育中心体育场"
+        }
+      }
+    },
+    "Q3272710": {
+      "type": "item",
+      "id": "Q3272710",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Indoor Stadium"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海体育馆"
+        }
+      }
+    },
+    "Q36113": {
+      "type": "item",
+      "id": "Q36113",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "闵浦大桥"
+        },
+        "en": {
+          "language": "en",
+          "value": "Minpu Bridge"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Мост Миньпу"
+        }
+      }
+    },
+    "Q41712": {
+      "type": "item",
+      "id": "Q41712",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "上海中山故居"
+        },
+        "en": {
+          "language": "en",
+          "value": "Former Residence of Sun Yat-sen in Shanghai"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Дом Сунь Ятсена"
+        }
+      }
+    },
+    "Q41841": {
+      "type": "item",
+      "id": "Q41841",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "兴圣教寺塔"
+        },
+        "en": {
+          "language": "en",
+          "value": "pagoda at Xingshengjiao Temple"
+        }
+      }
+    },
+    "Q41857": {
+      "type": "item",
+      "id": "Q41857",
+      "labels": {
+        "ru": {
+          "language": "ru",
+          "value": "Чжэньжусы"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "真如寺"
+        },
+        "en": {
+          "language": "en",
+          "value": "Zhenru Temple"
+        }
+      }
+    },
+    "Q42310158": {
+      "type": "item",
+      "id": "Q42310158",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Taipingqiao Park"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "太平桥公园"
+        }
+      }
+    },
+    "Q430218": {
+      "type": "item",
+      "id": "Q430218",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Wheelock Square"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "会德丰国际广场"
+        }
+      }
+    },
+    "Q5135670": {
+      "type": "item",
+      "id": "Q5135670",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Cloud Nine"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "龙之梦购物公园"
+        }
+      }
+    },
+    "Q51373360": {
+      "type": "item",
+      "id": "Q51373360",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "漕宝路七号桥碉堡"
+        },
+        "en": {
+          "language": "en",
+          "value": "Pillbox of No. 7 Bridge, Caobao Road"
+        }
+      }
+    },
+    "Q5315872": {
+      "type": "item",
+      "id": "Q5315872",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Duolun Road"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "多伦路 (上海)"
+        }
+      }
+    },
+    "Q5421483": {
+      "type": "item",
+      "id": "Q5421483",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Expo Axis"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "世博轴"
+        }
+      }
+    },
+    "Q543353": {
+      "type": "item",
+      "id": "Q543353",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Plaza 66"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海恒隆广场"
+        }
+      }
+    },
+    "Q56271471": {
+      "type": "item",
+      "id": "Q56271471",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "宋教仁墓"
+        },
+        "en": {
+          "language": "en",
+          "value": "grave of Song Jiaoren"
+        }
+      }
+    },
+    "Q593622": {
+      "type": "item",
+      "id": "Q593622",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Oriental Sports Center"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Шанхайский спортивный центр «Восток»"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海东方体育中心"
+        }
+      }
+    },
+    "Q598603": {
+      "type": "item",
+      "id": "Q598603",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Sinar Mas Center"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海白玉蘭廣場"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Sinar Mas Center"
+        }
+      }
+    },
+    "Q6123444": {
+      "type": "item",
+      "id": "Q6123444",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Yokohama Specie Bank Building"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "横滨正金银行大楼"
+        }
+      }
+    },
+    "Q616272": {
+      "type": "item",
+      "id": "Q616272",
+      "labels": {
+        "ru": {
+          "language": "ru",
+          "value": "Шанхайская библиотека"
+        },
+        "en": {
+          "language": "en",
+          "value": "Shanghai Library"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海圖書館"
+        }
+      }
+    },
+    "Q6556969": {
+      "type": "item",
+      "id": "Q6556969",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Lippo Plaza"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "力宝广场"
+        }
+      }
+    },
+    "Q6777219": {
+      "type": "item",
+      "id": "Q6777219",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "松浦大桥"
+        },
+        "en": {
+          "language": "en",
+          "value": "Songpu Bridge"
+        }
+      }
+    },
+    "Q7083702": {
+      "type": "item",
+      "id": "Q7083702",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Old City of Shanghai"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海老城厢"
+        }
+      }
+    },
+    "Q7267962": {
+      "type": "item",
+      "id": "Q7267962",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Qiuxia Garden"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "秋霞圃"
+        }
+      }
+    },
+    "Q7338612": {
+      "type": "item",
+      "id": "Q7338612",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Jiangwan Sports Center"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "江湾体育中心"
+        }
+      }
+    },
+    "Q8075048": {
+      "type": "item",
+      "id": "Q8075048",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Zuibaichi"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "醉白池"
+        }
+      }
+    },
+    "Q80813": {
+      "type": "item",
+      "id": "Q80813",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "金茂大厦"
+        },
+        "en": {
+          "language": "en",
+          "value": "Jin Mao Tower"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Цзинь Мао"
+        }
+      }
+    },
+    "Q841670": {
+      "type": "item",
+      "id": "Q841670",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Zhongshan Park (Shanghai, China)"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海中山公园"
+        }
+      }
+    },
+    "Q847819": {
+      "type": "item",
+      "id": "Q847819",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Xupu Bridge"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "徐浦大桥"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Мост Сюйпу"
+        }
+      }
+    },
+    "Q855376": {
+      "type": "item",
+      "id": "Q855376",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Science and Technology Museum"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海科技馆"
+        }
+      }
+    },
+    "Q85852944": {
+      "type": "item",
+      "id": "Q85852944",
+      "labels": {
+        "zh": {
+          "language": "zh",
+          "value": "西岸美术馆"
+        },
+        "en": {
+          "language": "en",
+          "value": "West Bund Museum"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Музей изобразительных искусств Вест-Бунд"
+        }
+      }
+    },
+    "Q864817": {
+      "type": "item",
+      "id": "Q864817",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Grand Gateway Shanghai"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "港汇广场"
+        }
+      }
+    },
+    "Q865312": {
+      "type": "item",
+      "id": "Q865312",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Shanghai Disneyland Park"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "上海迪士尼乐园"
+        },
+        "ru": {
+          "language": "ru",
+          "value": "Диснейленд"
+        }
+      }
+    },
+    "Q910848": {
+      "type": "item",
+      "id": "Q910848",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "Nanpu Bridge"
+        },
+        "zh": {
+          "language": "zh",
+          "value": "南浦大桥"
+        }
+      }
+    }
+  },
+  "source_urls": [
+    "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q10867765%7CQ10933595%7CQ10934825%7CQ11056843%7CQ11077044%7CQ11084700%7CQ11111157%7CQ11177928%7CQ1142220%7CQ1161278%7CQ1187116%7CQ1194232%7CQ129644027%7CQ129676059%7CQ1325611%7CQ1365598%7CQ15046355%7CQ15709505%7CQ15893841%7CQ15912151%7CQ15913922%7CQ16077881%7CQ16259176%7CQ1626937%7CQ16868452%7CQ16868453%7CQ171358%7CQ18595959%7CQ18712414%7CQ201773%7CQ2109257%7CQ2121198%7CQ21659128%7CQ220805%7CQ22812497%7CQ23170%7CQ2330137%7CQ2371438%7CQ23804%7CQ23812%7CQ23825%7CQ2560062%7CQ2582044%7CQ284943%7CQ3182046%7CQ3267286%7CQ3272710%7CQ36113%7CQ41712%7CQ41841&props=labels&languages=ru%7Cen%7Czh&format=json",
+    "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q41857%7CQ42310158%7CQ430218%7CQ5135670%7CQ51373360%7CQ5315872%7CQ5421483%7CQ543353%7CQ56271471%7CQ593622%7CQ598603%7CQ6123444%7CQ616272%7CQ6556969%7CQ6777219%7CQ7083702%7CQ7267962%7CQ7338612%7CQ8075048%7CQ80813%7CQ841670%7CQ847819%7CQ855376%7CQ85852944%7CQ864817%7CQ865312%7CQ910848&props=labels&languages=ru%7Cen%7Czh&format=json"
+  ],
+  "requested_languages": [
+    "ru",
+    "en",
+    "zh"
+  ],
+  "source": "Wikidata public entity labels",
+  "license": "CC0"
+}
