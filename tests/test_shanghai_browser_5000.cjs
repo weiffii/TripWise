@@ -32,8 +32,20 @@ const {chromium}=require(runtime);
   await page.locator('[data-map-stop]').first().click();
   const stale=await page.evaluate(async()=>{const a=calculatePlan({...readOptions(),days:5}).catch(e=>e.code);const b=calculatePlan({...readOptions(),days:1});return [await a,(await b).days.length];});
   assert.deepEqual(stale,['STALE_PLAN',1]);
+  const scenarios=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../data/demo/shanghai/qa_scenarios.json'),'utf8')).scenarios;
+  const residualInputs=scenarios.filter(s=>['09_low_budget','16_child_pet','17_songjiang_heritage','24_impossible_budget'].includes(s.id));
+  residualInputs.push({id:'cafes_only',input:{...scenarios[0].input,primary_interests:['cafes'],secondary_interests:[],days:1,required_ids:[],transport:'mixed',budget_cny:2000}});
+  const residual=[];
+  for(const s of residualInputs){const r=await page.evaluate(async input=>{const p=await calculatePlan(input);return {status:p.status,visits:p.summary.visit_count,meals:p.summary.meal_count,checks:p.checks,warnings:p.warnings,events:p.days.reduce((n,d)=>n+d.events.length,0)};},s.input);
+   assert.equal(r.checks.time,'passed');assert.equal(r.checks.budget,'passed');assert.equal(r.checks.opening_hours,'passed');
+   if(s.id==='cafes_only'){assert.equal(r.status,'demo');assert(r.meals>0);}
+   if(s.id==='17_songjiang_heritage'){assert.equal(r.checks.required_places,'passed');assert.equal(r.meals,6);}
+   if(s.id==='16_child_pet'){assert.equal(r.events,0);assert(r.warnings.some(w=>/питом/i.test(w)&&/транспорт/i.test(w)));}
+   if(['09_low_budget','24_impossible_budget'].includes(s.id)){assert.equal(r.status,'partial');if(s.id==='09_low_budget')assert(r.visits>0);assert.equal(r.checks.meals,'failed');assert(r.warnings.some(w=>/бюджет/i.test(w)));}
+   residual.push({id:s.id,...r});
+  }
   assert.deepEqual(errors,[]);
-  const report={target,runs,worker_count:workers.length,blocked_external_requests:blocked,external_network_allowed:false,page_errors:errors,checks:['5000 embedded POIs','worker','responsive event loop','1/3/5 days','day tabs','three languages','map zoom/fit/stop','stale result cancellation']};
+  const report={target,runs,residual,worker_count:workers.length,blocked_external_requests:blocked,external_network_allowed:false,page_errors:errors,checks:['5000 embedded POIs','worker','responsive event loop','1/3/5 days','day tabs','three languages','map zoom/fit/stop','stale result cancellation','cafes-only','Songjiang food','low-budget partial visits','pet/transit preflight']};
   fs.mkdirSync(path.resolve(__dirname,'../reports/benchmarks'),{recursive:true});fs.writeFileSync(path.resolve(__dirname,'../reports/benchmarks/shanghai-5000-browser'+(target.startsWith('file:')?'-file':'')+'.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

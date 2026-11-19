@@ -27,9 +27,10 @@ function invariants(result,x){
  }
 }
 test('expanded 500-POI catalogue preserves unique sourced identities',()=>{
- assert.equal(data.pois.length,500);assert.equal(new Set(data.pois.map(p=>p.id)).size,500);
- assert(data.pois.every(p=>p.source_url&&p.provenance));
- assert(data.pois.some(p=>p.provenance.identity==='real_OSM_POI'));
+ assert.equal(data.pois.length,5000);assert.equal(new Set(data.pois.map(p=>p.id)).size,5000);
+ assert(data.pois.every(p=>p.provenance&&typeof p.provenance.identity==='string'));
+ for(const p of data.pois){if(p.provenance.identity.startsWith('synthetic'))assert(p.provenance.coordinates.startsWith('synthetic'));else assert(typeof p.source_url==='string'&&p.source_url.startsWith('https://'),p.id);}
+ assert(data.pois.some(p=>!p.provenance.identity.startsWith('synthetic')&&/openstreetmap|OSM/i.test(p.provenance.coordinates)));
  assert(data.pois.every(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon)));
 });
 test('expanded default profile keeps hard constraints and reports missing food coverage',()=>{
@@ -45,7 +46,7 @@ test('oversubscribed budget+required still builds available route',()=>{
 });
 test('zero budget cannot pretend a complete itinerary with required food',()=>{
  const x={...opts,days:1,budget_cny:0};const p=api.planTrip(data,x);invariants(p,x);
- assert.equal(p.summary.total_cost_cny,0);assert.notEqual(p.status,'demo');assert.equal(p.checks.meals,'failed');assert(p.warnings.some(w=>w.includes('приёмов пищи')));
+ assert.equal(p.summary.total_cost_cny,0);assert.notEqual(p.status,'demo');assert.equal(p.checks.meals,'failed');assert(p.warnings.some(w=>/при[её]м.*пищ|питани|Завтрак|Обед|Ужин/i.test(w)));
 });
 test('group ticket prices incorporate children and seniors',()=>{
  const p=data.pois.find(v=>v.price_cny===100&&v.kind==='attraction')||data.pois.find(v=>v.price_cny>0&&v.kind==='attraction');
@@ -138,7 +139,7 @@ test('OSRM road matrix overrides approximated taxi time and distance',()=>{
 test('more mandatory sites than available daily capacity yields a warning',()=>{
  const required=data.pois.filter(p=>p.kind==='attraction'&&p.categories.includes('museums')).slice(0,7).map(p=>p.id);
  const x={...opts,days:1,budget_cny:10000,required_ids:required};
- const r=api.planTrip(data,x);assert(r.warnings.some(w=>w.includes('Обязательных мест больше')));
+ const r=api.planTrip(data,x);assert(r.warnings.some(w=>/обязательн/i.test(w)&&/не размещен|не хватает|недостаточ|требуется|конфликт/i.test(w)));
  assert(r.unplaced_required_ids.length>0);
 });
 

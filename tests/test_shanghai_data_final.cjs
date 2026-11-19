@@ -1,4 +1,4 @@
-/* Final Shanghai 2000: actual current engine/API integration, no network calls. */
+/* Current Shanghai 5000 plus independent deterministic calendar fixtures; no network. */
 'use strict';
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -9,7 +9,8 @@ const enginePath = path.join(ROOT,'ai_ds/web_demo/shanghai-engine.js');
 const api = require(enginePath);
 const data = require(path.join(ROOT,'data/demo/shanghai/pois.json'));
 const {pois} = data;
-const museum = pois.find(p => p.synthetic_museum);
+assert.equal(pois.length,5000);
+const museum = {...pois.find(p=>p.kind==='attraction'),id:'calendar-fixture-museum',opening:{open:'09:00',close:'18:00',closed_weekdays:[7]},season_months:[11]};
 assert(museum && museum.opening.closed_weekdays.includes(7));
 
 // Expose the current implementation's private flags ONLY in an in-memory test module.
@@ -27,6 +28,10 @@ assert.equal(flags(museum,'2026-11-22').closed,true,'Sunday must close a synthet
 assert.equal(flags(museum,'2026-11-22').available,false,'Sunday must be unavailable');
 assert.equal(flags(museum,'2026-11-21').closed,false,'Saturday must be available');
 assert.equal(flags(museum,'2026-11-21').available,true,'Saturday must not be flagged closed');
+assert.equal(flags(museum,'2026-10-21').available,false,'Declared season must exclude October');
+const closedHours={...museum,opening:{open:'10:00',close:'11:00',closed_weekdays:[]}};
+const closedPlan=api.planTrip({pois:[closedHours]},{primary_interests:['museums'],days:1,start_date:'2026-11-21',day_start:'12:00',day_end:'14:00',budget_cny:10000,required_ids:[closedHours.id]});
+assert.equal(closedPlan.checks.required_places,'failed');assert.equal(closedPlan.status,'infeasible');assert.equal(closedPlan.checks.opening_hours,'passed');
 const otherClosed=pois.filter(p=>p.opening.closed_weekdays.includes(1));
 assert(otherClosed.length>0);
 assert.equal(flags(otherClosed[0],'2026-11-23').closed,true,'Monday=1 must be closed when declared');
