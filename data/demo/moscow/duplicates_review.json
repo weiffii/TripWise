@@ -1,0 +1,16 @@
+[
+  {
+    "id_1": "moscow-cultural-73",
+    "id_2": "moscow-cultural-257",
+    "distance_m": 41.3,
+    "name_similarity": 0.875,
+    "status": "manual_review_no_auto_merge"
+  },
+  {
+    "id_1": "moscow-cultural-104",
+    "id_2": "moscow-cultural-357",
+    "distance_m": 55.5,
+    "name_similarity": 1.0,
+    "status": "manual_review_no_auto_merge"
+  }
+]

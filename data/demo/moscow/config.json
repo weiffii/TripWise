@@ -1,0 +1,25 @@
+{
+  "city": "Москва",
+  "country": "Россия",
+  "currency": "RUB",
+  "timezone": "Europe/Moscow",
+  "locale": "ru-RU",
+  "primary_view_center": [
+    55.751,
+    37.618
+  ],
+  "source_coverage": "old_moscow_124_districts_only",
+  "all_admin_city_boundaries_verified": false,
+  "new_moscow_supported": false,
+  "categories": [
+    "museums",
+    "history",
+    "nature",
+    "cafes",
+    "entertainment",
+    "shopping",
+    "viewpoints",
+    "unusual"
+  ],
+  "iso_currency": "RUB"
+}

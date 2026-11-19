@@ -1,0 +1,26 @@
+{
+  "source": "OSM features via third-party cultural map",
+  "mapping": {
+    "tourism=museum": "museums",
+    "tourism=gallery": "museums",
+    "amenity=theatre": "entertainment",
+    "amenity=cinema": "entertainment",
+    "leisure=park": "nature"
+  },
+  "source_types": {
+    "M": "museum",
+    "G": "gallery",
+    "T": "theatre",
+    "C": "cinema",
+    "N": "park_polygon"
+  },
+  "additional_category_rules": "keyword hints for unusual/history retained with primary category unchanged",
+  "uncollected_categories": [
+    "history as primary",
+    "cafes",
+    "shopping",
+    "viewpoints",
+    "unusual as primary"
+  ],
+  "warning": "Source index lacks food, commerce and many sightseeing tags; do not interpret zeros as absence in Moscow."
+}

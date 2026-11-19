@@ -1,0 +1,80 @@
+[
+  {
+    "discarded_id": "moscow-cultural-617",
+    "kept_id": "moscow-cultural-616",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-750",
+    "kept_id": "moscow-cultural-749",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p38",
+    "kept_id": "moscow-cultural-p37",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p40",
+    "kept_id": "moscow-cultural-p39",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p55",
+    "kept_id": "moscow-cultural-p54",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p101",
+    "kept_id": "moscow-cultural-p100",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p102",
+    "kept_id": "moscow-cultural-p100",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p132",
+    "kept_id": "moscow-cultural-p131",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p241",
+    "kept_id": "moscow-cultural-p240",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p296",
+    "kept_id": "moscow-cultural-p295",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p442",
+    "kept_id": "moscow-cultural-p441",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p444",
+    "kept_id": "moscow-cultural-p443",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  },
+  {
+    "discarded_id": "moscow-cultural-p486",
+    "kept_id": "moscow-cultural-p485",
+    "method": "identical_normalized_name_category_coordinates",
+    "distance_m": 0
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "hse-osm-cultural-map",
+    "name": "HSE 2026 OSM-derived Cultural Moscow map",
+    "html_map": "https://artemilinn.github.io/masters-urban-analytics/",
+    "github_source": "https://github.com/ArtemIlinn/masters-urban-analytics/blob/main/index.html",
+    "readme": "https://github.com/ArtemIlinn/masters-urban-analytics/blob/main/README.md",
+    "map_blob_sha": "6d011539cdd244603095b389b0cd996ea214c4c5",
+    "checked_on": "2026-11-19",
+    "input": "map markers + polygon interior points transcribed from published HTML",
+    "coverage": "124 old-Moscow districts; no TINAO",
+    "underlying_data_license": "OpenStreetMap ODbL 1.0",
+    "source_native_osm_id": "not available in map; only local map index",
+    "verified_operating_status": false,
+    "independent_confirmation": false,
+    "note": "Underlying OSM records have not been re-fetched; the snapshot may include closed or stale places."
+  }
+]

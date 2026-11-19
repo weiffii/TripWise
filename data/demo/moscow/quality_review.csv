@@ -1,0 +1,45 @@
+﻿id,name_ru,lat,lon,source_type,district,reason,source_id
+moscow-cultural-104,Государственный музей Л.Н. Толстого,55.74281,37.59697,museum,район Хамовники,possible_duplicate_manual_review,104
+moscow-cultural-257,Мемориальный музей-квартира А. М. Горького,55.75824,37.5963,museum,Пресненский район,possible_duplicate_manual_review,257
+moscow-cultural-258,без названия,55.85899,37.69393,museum,Ярославский район,unnamed_record,258
+moscow-cultural-295,без названия,55.75584,37.66577,gallery,Басманный район,unnamed_record,295
+moscow-cultural-357,Государственный музей Л. Н. Толстого,55.74239,37.59745,museum,район Хамовники,possible_duplicate_manual_review,357
+moscow-cultural-403,без названия,55.85145,37.4669,museum,район Левобережный,unnamed_record,403
+moscow-cultural-415,без названия,55.79122,37.75976,gallery,район Измайлово,unnamed_record,415
+moscow-cultural-436,Да,55.74933,37.59171,theatre,район Арбат,ambiguous_business_name,436
+moscow-cultural-444,без названия,55.69572,37.6806,theatre,район Нагатинский Затон,unnamed_record,444
+moscow-cultural-468,без названия,55.69728,37.60511,museum,Донской район,unnamed_record,468
+moscow-cultural-471,без названия,55.64819,37.58807,theatre,район Зюзино,unnamed_record,471
+moscow-cultural-51,Московский дом Достоевского,55.7835,37.61036,museum,,outside_or_unmatched_124_district_reference,51
+moscow-cultural-511,без названия,55.81076,37.77915,museum,район Гольяново,unnamed_record,511
+moscow-cultural-570,без названия,55.75875,37.58583,gallery,Пресненский район,unnamed_record,570
+moscow-cultural-575,111,55.79393,37.81453,theatre,район Восточное Измайлово,ambiguous_business_name,575
+moscow-cultural-582,Экспозиция «100 лет сатиры»,55.7683,37.59495,museum,,outside_or_unmatched_124_district_reference,582
+moscow-cultural-605,Театр Российской армии,55.78282,37.61388,theatre,,outside_or_unmatched_124_district_reference,605
+moscow-cultural-632,без названия,55.78423,37.56321,gallery,район Беговой,unnamed_record,632
+moscow-cultural-640,Театр сатиры,55.76835,37.59544,theatre,,outside_or_unmatched_124_district_reference,640
+moscow-cultural-651,без названия,55.53487,37.50704,theatre,район Южное Бутово,unnamed_record,651
+moscow-cultural-677,без названия,55.69212,37.74477,theatre,район Текстильщики,unnamed_record,677
+moscow-cultural-692,Филиал Театра имени А. С. Пушкина,55.7639,37.60161,theatre,,outside_or_unmatched_124_district_reference,692
+moscow-cultural-708,без названия,55.79201,37.56736,gallery,район Аэропорт,unnamed_record,708
+moscow-cultural-710,без названия,55.775,37.75287,theatre,район Измайлово,unnamed_record,710
+moscow-cultural-73,Мемориальный музей-квартира А. Н. Толстого,55.75854,37.59669,museum,Пресненский район,possible_duplicate_manual_review,73
+moscow-cultural-747,без названия,55.85327,37.49233,theatre,район Левобережный,unnamed_record,747
+moscow-cultural-752,без названия,55.66182,37.75562,theatre,район Марьино,unnamed_record,752
+moscow-cultural-758,без названия,55.99484,37.24088,theatre,район Савёлки,unnamed_record,758
+moscow-cultural-762,без названия,55.89141,37.6822,theatre,район Северное Медведково,unnamed_record,762
+moscow-cultural-764,без названия,55.60265,37.53134,theatre,район Ясенево,unnamed_record,764
+moscow-cultural-765,без названия,55.65842,37.66993,theatre,район Нагатинский Затон,unnamed_record,765
+moscow-cultural-c416,без названия,55.68301,37.54948,cinema,Гагаринский район,unnamed_record,c416
+moscow-cultural-c429,без названия,55.76874,37.6592,cinema,Басманный район,unnamed_record,c429
+moscow-cultural-c551,без названия,55.83206,37.4729,cinema,район Покровское-Стрешнево,unnamed_record,c551
+moscow-cultural-c58,без названия,55.88794,37.58896,cinema,район Бибирево,unnamed_record,c58
+moscow-cultural-c64,без названия,55.81109,37.4989,cinema,район Сокол,unnamed_record,c64
+moscow-cultural-p1196,Игровая площадка «Салют»,55.72995,37.60631,park_polygon,район Якиманка,low_tourism_relevance,p1196
+moscow-cultural-p18,Сад Аквариум,55.76767,37.59545,park_polygon,,outside_or_unmatched_124_district_reference,p18
+moscow-cultural-p33,Парк Каскад Кировоградских прудов,55.60493,37.59396,park_polygon,,outside_or_unmatched_124_district_reference,p33
+moscow-cultural-p354,Восточный лесопарк,55.98825,37.25395,park_polygon,,outside_or_unmatched_124_district_reference,p354
+moscow-cultural-p487,Малый газон,55.70396,37.53672,park_polygon,район Раменки,low_tourism_relevance,p487
+moscow-cultural-p545,Большой газон,55.71099,37.53423,park_polygon,район Раменки,low_tourism_relevance,p545
+moscow-cultural-p548,Площадь М. В. Ломоносова,55.70121,37.52766,park_polygon,район Раменки,low_tourism_relevance,p548
+moscow-cultural-p668,площадь Академика Тамма,55.70068,37.56511,park_polygon,Гагаринский район,low_tourism_relevance,p668
