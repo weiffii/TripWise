@@ -1,0 +1,4871 @@
+{
+  "mode": "after",
+  "created_utc": "2026-11-19T16:50:49.444Z",
+  "node": "v24.22.3",
+  "harness_hash": "d2bb9b9ee5530b3ce4916e873aab8f25211a176ac1c1c562a524e6fa0b456fcd",
+  "offline_transport_graph": true,
+  "network_calls": 0,
+  "data_hash_before": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d",
+  "data_hash_after": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d",
+  "timeout_ms": 60000,
+  "denominator_note": "Required denominator includes every requested ID, feasibility not presumed. Missing meals/required are completeness deficits, not hard invariant violations. Timed out cases excluded from runtime/quality averages.",
+  "cases": [
+    {
+      "id": "01_museum_weekend",
+      "input": {
+        "primary_interests": [
+          "museums"
+        ],
+        "secondary_interests": [
+          "history",
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 2800,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 96.97239999845624,
+      "cold_ms": 10120.445300001651,
+      "warm_ms": [],
+      "times_ms": [
+        10120.445300001651
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 6,
+        "meals": 6,
+        "expected_meals": 6,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 110,
+        "total_cost_cny": 772,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2137",
+              "start_min": 540,
+              "end_min": 590,
+              "price_cny": 56,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2137",
+              "to_poi_id": "shanghai-demo:sihang",
+              "start_min": 590,
+              "end_min": 600,
+              "base_minutes": 4,
+              "buffer_minutes": 6,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 277,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:sihang",
+              "start_min": 600,
+              "end_min": 690,
+              "price_cny": 20,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:sihang",
+              "to_poi_id": "shanghai-demo:urban-planning",
+              "start_min": 690,
+              "end_min": 705,
+              "base_minutes": 9,
+              "buffer_minutes": 6,
+              "planned_minutes": 15,
+              "transport_cost_cny": 16,
+              "distance_m": 1330,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:urban-planning",
+              "start_min": 705,
+              "end_min": 795,
+              "price_cny": 70,
+              "matched_interests": [
+                "museums"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:urban-planning",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2117",
+              "start_min": 795,
+              "end_min": 800,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 107,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2117",
+              "start_min": 800,
+              "end_min": 860,
+              "price_cny": 40,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2117",
+              "to_poi_id": "shanghai-demo:shanghai-museum",
+              "start_min": 860,
+              "end_min": 870,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 454,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:shanghai-museum",
+              "start_min": 870,
+              "end_min": 1020,
+              "price_cny": 60,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:shanghai-museum",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2115",
+              "start_min": 1020,
+              "end_min": 1025,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 135,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2115",
+              "start_min": 1025,
+              "end_min": 1080,
+              "price_cny": 56,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:sihang",
+            "shanghai-demo:urban-planning",
+            "shanghai-demo:shanghai-museum"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2137",
+            "shanghai-demo:synthetic-ext-v2-2117",
+            "shanghai-demo:synthetic-ext-v2-2115"
+          ],
+          "total_cost_cny": 318,
+          "active_minutes": 540,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1080,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2524",
+              "start_min": 540,
+              "end_min": 600,
+              "price_cny": 56,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2524",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-0045",
+              "start_min": 600,
+              "end_min": 610,
+              "base_minutes": 4,
+              "buffer_minutes": 6,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 263,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-0045",
+              "start_min": 610,
+              "end_min": 670,
+              "price_cny": 0,
+              "matched_interests": [
+                "museums"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-0045",
+              "to_poi_id": "shanghai-demo:postal-museum",
+              "start_min": 670,
+              "end_min": 695,
+              "base_minutes": 15,
+              "buffer_minutes": 10,
+              "planned_minutes": 25,
+              "transport_cost_cny": 16,
+              "distance_m": 2934,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:postal-museum",
+              "start_min": 695,
+              "end_min": 785,
+              "price_cny": 40,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:postal-museum",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0651",
+              "start_min": 785,
+              "end_min": 790,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 120,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0651",
+              "start_min": 790,
+              "end_min": 850,
+              "price_cny": 140,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0651",
+              "to_poi_id": "shanghai-demo:history-museum",
+              "start_min": 850,
+              "end_min": 870,
+              "base_minutes": 13,
+              "buffer_minutes": 7,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 2442,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:history-museum",
+              "start_min": 870,
+              "end_min": 990,
+              "price_cny": 50,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:history-museum",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2166",
+              "start_min": 990,
+              "end_min": 995,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 95,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2166",
+              "start_min": 995,
+              "end_min": 1055,
+              "price_cny": 136,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:synthetic-ext-v2-0045",
+            "shanghai-demo:postal-museum",
+            "shanghai-demo:history-museum"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2524",
+            "shanghai-demo:synthetic-geo-v1-0651",
+            "shanghai-demo:synthetic-ext-v2-2166"
+          ],
+          "total_cost_cny": 454,
+          "active_minutes": 515,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1055,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "02_historic_walk",
+      "input": {
+        "primary_interests": [
+          "history"
+        ],
+        "secondary_interests": [
+          "unusual"
+        ],
+        "days": 1,
+        "pace": "relaxed",
+        "transport": "walk",
+        "budget_cny": 1200,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-21",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 79.98219999670982,
+      "cold_ms": 678.3943999968469,
+      "warm_ms": [],
+      "times_ms": [
+        678.3943999968469
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 4,
+        "meals": 3,
+        "expected_meals": 3,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 105,
+        "total_cost_cny": 107,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-21",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:osm-n10220959757",
+              "start_min": 540,
+              "end_min": 595,
+              "price_cny": 59,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-n10220959757",
+              "to_poi_id": "shanghai-demo:wukang-mansion",
+              "start_min": 595,
+              "end_min": 600,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 89,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:wukang-mansion",
+              "start_min": 600,
+              "end_min": 705,
+              "price_cny": 0,
+              "matched_interests": [
+                "history",
+                "unusual"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:wukang-mansion",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0233",
+              "start_min": 705,
+              "end_min": 745,
+              "base_minutes": 34,
+              "buffer_minutes": 6,
+              "planned_minutes": 40,
+              "transport_cost_cny": 0,
+              "distance_m": 2342,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0233",
+              "start_min": 745,
+              "end_min": 815,
+              "price_cny": 0,
+              "matched_interests": [
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0233",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-1963",
+              "start_min": 815,
+              "end_min": 825,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 478,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-1963",
+              "start_min": 825,
+              "end_min": 885,
+              "price_cny": 28,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-1963",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0088",
+              "start_min": 885,
+              "end_min": 915,
+              "base_minutes": 23,
+              "buffer_minutes": 7,
+              "planned_minutes": 30,
+              "transport_cost_cny": 0,
+              "distance_m": 1588,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0088",
+              "start_min": 915,
+              "end_min": 985,
+              "price_cny": 0,
+              "matched_interests": [
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0088",
+              "to_poi_id": "shanghai-demo:fuxing-park",
+              "start_min": 985,
+              "end_min": 995,
+              "base_minutes": 3,
+              "buffer_minutes": 7,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 176,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:fuxing-park",
+              "start_min": 995,
+              "end_min": 1080,
+              "price_cny": 0,
+              "matched_interests": [
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:fuxing-park",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2241",
+              "start_min": 1080,
+              "end_min": 1090,
+              "base_minutes": 6,
+              "buffer_minutes": 4,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 351,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2241",
+              "start_min": 1090,
+              "end_min": 1140,
+              "price_cny": 20,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:wukang-mansion",
+            "shanghai-demo:synthetic-geo-v1-0233",
+            "shanghai-demo:synthetic-geo-v1-0088",
+            "shanghai-demo:fuxing-park"
+          ],
+          "meal_ids": [
+            "shanghai-demo:osm-n10220959757",
+            "shanghai-demo:synthetic-ext-v2-1963",
+            "shanghai-demo:synthetic-ext-v2-2241"
+          ],
+          "total_cost_cny": 107,
+          "active_minutes": 600,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1140,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "03_nature_transit",
+      "input": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 3,
+        "pace": "intensive",
+        "transport": "transit",
+        "budget_cny": 2200,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 71.38020000234246,
+      "cold_ms": 21457.98270000145,
+      "warm_ms": [],
+      "times_ms": [
+        21457.98270000145
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 10,
+        "meals": 9,
+        "expected_meals": 9,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 515,
+        "total_cost_cny": 1388,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-1911",
+              "start_min": 540,
+              "end_min": 595,
+              "price_cny": 220,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-1911",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-0498",
+              "start_min": 595,
+              "end_min": 630,
+              "base_minutes": 26,
+              "planned_minutes": 35,
+              "buffer_minutes": 9,
+              "distance_m": 1851,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "星灯小禾木茶舍（陆家嘴）",
+                  "to_name": "South Pudong Road / 浦东南路",
+                  "base_minutes": 5,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 星灯小禾木茶舍（陆家嘴） → South Pudong Road / 浦东南路 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "line_name": "Line 14 / 14号线",
+                  "from_name": "South Pudong Road / 浦东南路",
+                  "to_name": "Pudong Avenue / 浦东大道",
+                  "direction": "Guiqiao Road / 桂桥路",
+                  "direction_key": "guiqiao-road",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#626020"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Pudong Avenue / 浦东大道",
+                  "to_name": "梧桐小稻香林荫步道（陆家嘴）",
+                  "base_minutes": 16,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Pudong Avenue / 浦东大道 → 梧桐小稻香林荫步道（陆家嘴） (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.5062744,
+                      31.2397202
+                    ],
+                    [
+                      121.506891,
+                      31.240311
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "color": "#626020",
+                  "coordinates": [
+                    [
+                      121.506891,
+                      31.240311
+                    ],
+                    [
+                      121.515,
+                      31.2419
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.515,
+                      31.2419
+                    ],
+                    [
+                      121.5077039,
+                      31.2405766
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-0498",
+              "start_min": 630,
+              "end_min": 660,
+              "price_cny": 40,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-0498",
+              "to_poi_id": "shanghai-demo:lujiazui-green",
+              "start_min": 660,
+              "end_min": 690,
+              "base_minutes": 22,
+              "planned_minutes": 30,
+              "buffer_minutes": 8,
+              "distance_m": 1706,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "梧桐小稻香林荫步道（陆家嘴）",
+                  "to_name": "South Pudong Road / 浦东南路",
+                  "base_minutes": 5,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 梧桐小稻香林荫步道（陆家嘴） → South Pudong Road / 浦东南路 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "line_name": "Line 14 / 14号线",
+                  "from_name": "South Pudong Road / 浦东南路",
+                  "to_name": "Lujiazui / 陆家嘴",
+                  "direction": "Fengbang / 封浜",
+                  "direction_key": "fengbang",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#626020"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Lujiazui / 陆家嘴",
+                  "to_name": "Центральный парк Луцзяцзуй",
+                  "base_minutes": 12,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Lujiazui / 陆家嘴 → Центральный парк Луцзяцзуй (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.5077039,
+                      31.2405766
+                    ],
+                    [
+                      121.506891,
+                      31.240311
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "color": "#626020",
+                  "coordinates": [
+                    [
+                      121.506891,
+                      31.240311
+                    ],
+                    [
+                      121.497,
+                      31.2397
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.497,
+                      31.2397
+                    ],
+                    [
+                      121.50187,
+                      31.2403
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:lujiazui-green",
+              "start_min": 690,
+              "end_min": 745,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:lujiazui-green",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2096",
+              "start_min": 745,
+              "end_min": 780,
+              "base_minutes": 24,
+              "planned_minutes": 35,
+              "buffer_minutes": 11,
+              "distance_m": 1029,
+              "transport_cost_cny": 4,
+              "mode": "transit",
+              "source": "SYNTHETIC_BUS",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "Центральный парк Луцзяцзуй",
+                  "to_name": "Учебная остановка у «Центральный парк Луцзяцзуй»",
+                  "base_minutes": 4,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Центральный парк Луцзяцзуй → Учебная остановка у «Центральный парк Луцзяцзуй» (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-24",
+                  "line_name": "DEMO-BUS-24 · Учебный автобус 24 · Луцзяцзуй",
+                  "from_name": "Учебная остановка у «Центральный парк Луцзяцзуй»",
+                  "to_name": "Учебная остановка у «Шанхайский океанариум»",
+                  "direction": "Учебная остановка у «Музей искусства Пудуна»",
+                  "direction_key": "Учебная остановка у «Музей искусства Пудуна»",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": true,
+                  "color": "#0099C6"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Учебная остановка у «Шанхайский океанариум»",
+                  "to_name": "渡口小知味手作面馆（陆家嘴）",
+                  "base_minutes": 9,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Учебная остановка у «Шанхайский океанариум» → 渡口小知味手作面馆（陆家嘴） (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.50187,
+                      31.2403
+                    ],
+                    [
+                      121.50179,
+                      31.24022
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-24",
+                  "color": "#0099C6",
+                  "coordinates": [
+                    [
+                      121.50179,
+                      31.24022
+                    ],
+                    [
+                      121.49728,
+                      31.24265
+                    ]
+                  ],
+                  "source": "synthetic_bus",
+                  "synthetic": true,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.49728,
+                      31.24265
+                    ],
+                    [
+                      121.4969754,
+                      31.2400347
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2096",
+              "start_min": 780,
+              "end_min": 840,
+              "price_cny": 136,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2096",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0288",
+              "start_min": 840,
+              "end_min": 865,
+              "base_minutes": 16,
+              "planned_minutes": 25,
+              "buffer_minutes": 9,
+              "distance_m": 1986,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "渡口小知味手作面馆（陆家嘴）",
+                  "to_name": "Lujiazui / 陆家嘴",
+                  "base_minutes": 4,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 渡口小知味手作面馆（陆家嘴） → Lujiazui / 陆家嘴 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "2",
+                  "line_name": "Line 2 / 2号线",
+                  "from_name": "Lujiazui / 陆家嘴",
+                  "to_name": "East Nanjing Road / 南京东路",
+                  "direction": "Panxiang Road / 蟠祥路·国家会计学院",
+                  "direction_key": "panxiang-road",
+                  "stop_count": 1,
+                  "base_minutes": 4,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#82BF25"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "East Nanjing Road / 南京东路",
+                  "to_name": "花露花园小径",
+                  "base_minutes": 6,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: East Nanjing Road / 南京东路 → 花露花园小径 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4969754,
+                      31.2400347
+                    ],
+                    [
+                      121.497,
+                      31.2397
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "2",
+                  "color": "#82BF25",
+                  "coordinates": [
+                    [
+                      121.497,
+                      31.2397
+                    ],
+                    [
+                      121.479722,
+                      31.239722
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.479722,
+                      31.239722
+                    ],
+                    [
+                      121.4799235,
+                      31.2385474
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0288",
+              "start_min": 865,
+              "end_min": 970,
+              "price_cny": 20,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0288",
+              "to_poi_id": "shanghai-demo:peoples-park",
+              "start_min": 970,
+              "end_min": 1000,
+              "base_minutes": 18,
+              "planned_minutes": 30,
+              "buffer_minutes": 12,
+              "distance_m": 1562,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "花露花园小径",
+                  "to_name": "East Nanjing Road / 南京东路",
+                  "base_minutes": 6,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 花露花园小径 → East Nanjing Road / 南京东路 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "2",
+                  "line_name": "Line 2 / 2号线",
+                  "from_name": "East Nanjing Road / 南京东路",
+                  "to_name": "People's Square / 人民广场",
+                  "direction": "Panxiang Road / 蟠祥路·国家会计学院",
+                  "direction_key": "panxiang-road",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#82BF25"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "People's Square / 人民广场",
+                  "to_name": "Народный парк",
+                  "base_minutes": 7,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: People's Square / 人民广场 → Народный парк (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4799235,
+                      31.2385474
+                    ],
+                    [
+                      121.479722,
+                      31.239722
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "2",
+                  "color": "#82BF25",
+                  "coordinates": [
+                    [
+                      121.479722,
+                      31.239722
+                    ],
+                    [
+                      121.4709,
+                      31.234
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4709,
+                      31.234
+                    ],
+                    [
+                      121.46872,
+                      31.23386
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:peoples-park",
+              "start_min": 1000,
+              "end_min": 1055,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:peoples-park",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2017",
+              "start_min": 1055,
+              "end_min": 1080,
+              "base_minutes": 14,
+              "planned_minutes": 25,
+              "buffer_minutes": 11,
+              "distance_m": 337,
+              "transport_cost_cny": 4,
+              "mode": "transit",
+              "source": "SYNTHETIC_BUS",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "Народный парк",
+                  "to_name": "Учебная остановка у «Народный парк»",
+                  "base_minutes": 4,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Народный парк → Учебная остановка у «Народный парк» (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-01",
+                  "line_name": "DEMO-BUS-01 · Учебный автобус 01 · Народная площадь и центр",
+                  "from_name": "Учебная остановка у «Народный парк»",
+                  "to_name": "Учебная остановка у «Музей городского планирования»",
+                  "direction": "Учебная остановка у «Пекарня «Малый лотос»»",
+                  "direction_key": "Учебная остановка у «Пекарня «Малый лотос»»",
+                  "stop_count": 1,
+                  "base_minutes": 2,
+                  "estimated": true,
+                  "synthetic": true,
+                  "color": "#3366CC"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Учебная остановка у «Музей городского планирования»",
+                  "to_name": "云栖流云茶舍（人民广场）",
+                  "base_minutes": 4,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Учебная остановка у «Музей городского планирования» → 云栖流云茶舍（人民广场） (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.46872,
+                      31.23386
+                    ],
+                    [
+                      121.4688,
+                      31.23378
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-01",
+                  "color": "#3366CC",
+                  "coordinates": [
+                    [
+                      121.4688,
+                      31.23378
+                    ],
+                    [
+                      121.47084,
+                      31.23337
+                    ]
+                  ],
+                  "source": "synthetic_bus",
+                  "synthetic": true,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.47084,
+                      31.23337
+                    ],
+                    [
+                      121.4712721,
+                      31.2336858
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2017",
+              "start_min": 1080,
+              "end_min": 1140,
+              "price_cny": 70,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:synthetic-ext-v2-0498",
+            "shanghai-demo:lujiazui-green",
+            "shanghai-demo:synthetic-geo-v1-0288",
+            "shanghai-demo:peoples-park"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-1911",
+            "shanghai-demo:synthetic-ext-v2-2096",
+            "shanghai-demo:synthetic-ext-v2-2017"
+          ],
+          "total_cost_cny": 526,
+          "active_minutes": 600,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1140,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2241",
+              "start_min": 540,
+              "end_min": 590,
+              "price_cny": 40,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2241",
+              "to_poi_id": "shanghai-demo:fuxing-park",
+              "start_min": 590,
+              "end_min": 630,
+              "base_minutes": 28,
+              "planned_minutes": 40,
+              "buffer_minutes": 12,
+              "distance_m": 2263,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "山海小知味手作面馆（新天地）",
+                  "to_name": "Xintiandi / 一大会址·新天地",
+                  "base_minutes": 9,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 山海小知味手作面馆（新天地） → Xintiandi / 一大会址·新天地 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "line_name": "Line 13 / 13号线",
+                  "from_name": "Xintiandi / 一大会址·新天地",
+                  "to_name": "Middle Huaihai Road / 淮海中路",
+                  "direction": "Jinyun Road / 金运路",
+                  "direction_key": "jinyun-road",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#E999C0"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Middle Huaihai Road / 淮海中路",
+                  "to_name": "Парк Фусин",
+                  "base_minutes": 13,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Middle Huaihai Road / 淮海中路 → Парк Фусин (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4672307,
+                      31.2182396
+                    ],
+                    [
+                      121.470444,
+                      31.218139
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "color": "#E999C0",
+                  "coordinates": [
+                    [
+                      121.470444,
+                      31.218139
+                    ],
+                    [
+                      121.459722,
+                      31.221944
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.459722,
+                      31.221944
+                    ],
+                    [
+                      121.46444,
+                      31.21907
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:fuxing-park",
+              "start_min": 630,
+              "end_min": 700,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:fuxing-park",
+              "to_poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 700,
+              "end_min": 740,
+              "base_minutes": 28,
+              "planned_minutes": 40,
+              "buffer_minutes": 12,
+              "distance_m": 2975,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "Парк Фусин",
+                  "to_name": "Middle Huaihai Road / 淮海中路",
+                  "base_minutes": 13,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Парк Фусин → Middle Huaihai Road / 淮海中路 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "line_name": "Line 13 / 13号线",
+                  "from_name": "Middle Huaihai Road / 淮海中路",
+                  "to_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "direction": "Jinyun Road / 金运路",
+                  "direction_key": "jinyun-road",
+                  "stop_count": 2,
+                  "base_minutes": 5,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#E999C0"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "to_name": "Парк скульптур Цзинъань",
+                  "base_minutes": 7,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Shanghai Natural History Museum / 自然博物馆 → Парк скульптур Цзинъань (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.46444,
+                      31.21907
+                    ],
+                    [
+                      121.459722,
+                      31.221944
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "color": "#E999C0",
+                  "coordinates": [
+                    [
+                      121.459722,
+                      31.221944
+                    ],
+                    [
+                      121.45601,
+                      31.23181
+                    ],
+                    [
+                      121.4578,
+                      31.2382
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4578,
+                      31.2382
+                    ],
+                    [
+                      121.45902,
+                      31.23671
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 740,
+              "end_min": 795,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:sculpture-park",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-1029",
+              "start_min": 795,
+              "end_min": 825,
+              "base_minutes": 20,
+              "planned_minutes": 30,
+              "buffer_minutes": 10,
+              "distance_m": 1403,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "Парк скульптур Цзинъань",
+                  "to_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "base_minutes": 7,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Парк скульптур Цзинъань → Shanghai Natural History Museum / 自然博物馆 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "line_name": "Line 13 / 13号线",
+                  "from_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "to_name": "West Nanjing Road / 南京西路",
+                  "direction": "Zhangjiang Road / 张江路",
+                  "direction_key": "zhangjiang-road",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#E999C0"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "West Nanjing Road / 南京西路",
+                  "to_name": "观澜素食坊（人民广场店）",
+                  "base_minutes": 9,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: West Nanjing Road / 南京西路 → 观澜素食坊（人民广场店） (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.45902,
+                      31.23671
+                    ],
+                    [
+                      121.4578,
+                      31.2382
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "color": "#E999C0",
+                  "coordinates": [
+                    [
+                      121.4578,
+                      31.2382
+                    ],
+                    [
+                      121.45601,
+                      31.23181
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.45601,
+                      31.23181
+                    ],
+                    [
+                      121.4573258,
+                      31.2341551
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-1029",
+              "start_min": 825,
+              "end_min": 875,
+              "price_cny": 140,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-1029",
+              "to_poi_id": "shanghai-demo:natural-history",
+              "start_min": 875,
+              "end_min": 905,
+              "base_minutes": 19,
+              "planned_minutes": 30,
+              "buffer_minutes": 11,
+              "distance_m": 1336,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "观澜素食坊（人民广场店）",
+                  "to_name": "West Nanjing Road / 南京西路",
+                  "base_minutes": 9,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 观澜素食坊（人民广场店） → West Nanjing Road / 南京西路 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "line_name": "Line 13 / 13号线",
+                  "from_name": "West Nanjing Road / 南京西路",
+                  "to_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "direction": "Jinyun Road / 金运路",
+                  "direction_key": "jinyun-road",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#E999C0"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "to_name": "Шанхайский музей естественной истории",
+                  "base_minutes": 6,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Shanghai Natural History Museum / 自然博物馆 → Шанхайский музей естественной истории (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4573258,
+                      31.2341551
+                    ],
+                    [
+                      121.45601,
+                      31.23181
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "color": "#E999C0",
+                  "coordinates": [
+                    [
+                      121.45601,
+                      31.23181
+                    ],
+                    [
+                      121.4578,
+                      31.2382
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4578,
+                      31.2382
+                    ],
+                    [
+                      121.45801,
+                      31.23688
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:natural-history",
+              "start_min": 905,
+              "end_min": 1040,
+              "price_cny": 90,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:natural-history",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0546",
+              "start_min": 1040,
+              "end_min": 1070,
+              "base_minutes": 21,
+              "planned_minutes": 30,
+              "buffer_minutes": 9,
+              "distance_m": 1478,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "Шанхайский музей естественной истории",
+                  "to_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "base_minutes": 6,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Шанхайский музей естественной истории → Shanghai Natural History Museum / 自然博物馆 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "line_name": "Line 13 / 13号线",
+                  "from_name": "Shanghai Natural History Museum / 自然博物馆",
+                  "to_name": "West Nanjing Road / 南京西路",
+                  "direction": "Zhangjiang Road / 张江路",
+                  "direction_key": "zhangjiang-road",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#E999C0"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "West Nanjing Road / 南京西路",
+                  "to_name": "青石甜品屋",
+                  "base_minutes": 11,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: West Nanjing Road / 南京西路 → 青石甜品屋 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.45801,
+                      31.23688
+                    ],
+                    [
+                      121.4578,
+                      31.2382
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "13",
+                  "color": "#E999C0",
+                  "coordinates": [
+                    [
+                      121.4578,
+                      31.2382
+                    ],
+                    [
+                      121.45601,
+                      31.23181
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.45601,
+                      31.23181
+                    ],
+                    [
+                      121.4593505,
+                      31.2340355
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0546",
+              "start_min": 1070,
+              "end_min": 1125,
+              "price_cny": 60,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:fuxing-park",
+            "shanghai-demo:sculpture-park",
+            "shanghai-demo:natural-history"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2241",
+            "shanghai-demo:synthetic-geo-v1-1029",
+            "shanghai-demo:synthetic-geo-v1-0546"
+          ],
+          "total_cost_cny": 370,
+          "active_minutes": 585,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1125,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-22",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0814",
+              "start_min": 600,
+              "end_min": 660,
+              "price_cny": 200,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0814",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0386",
+              "start_min": 660,
+              "end_min": 690,
+              "base_minutes": 20,
+              "planned_minutes": 30,
+              "buffer_minutes": 10,
+              "distance_m": 1447,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "泊岸茶舍",
+                  "to_name": "Pudong Avenue / 浦东大道",
+                  "base_minutes": 10,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 泊岸茶舍 → Pudong Avenue / 浦东大道 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "line_name": "Line 14 / 14号线",
+                  "from_name": "Pudong Avenue / 浦东大道",
+                  "to_name": "South Pudong Road / 浦东南路",
+                  "direction": "Fengbang / 封浜",
+                  "direction_key": "fengbang",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#626020"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "South Pudong Road / 浦东南路",
+                  "to_name": "泊岸林荫步道",
+                  "base_minutes": 6,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: South Pudong Road / 浦东南路 → 泊岸林荫步道 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.5120619,
+                      31.2400764
+                    ],
+                    [
+                      121.515,
+                      31.2419
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "color": "#626020",
+                  "coordinates": [
+                    [
+                      121.515,
+                      31.2419
+                    ],
+                    [
+                      121.506891,
+                      31.240311
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.506891,
+                      31.240311
+                    ],
+                    [
+                      121.5082264,
+                      31.2405016
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0386",
+              "start_min": 690,
+              "end_min": 795,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0386",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2129",
+              "start_min": 795,
+              "end_min": 825,
+              "base_minutes": 19,
+              "planned_minutes": 30,
+              "buffer_minutes": 11,
+              "distance_m": 1541,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "泊岸林荫步道",
+                  "to_name": "South Pudong Road / 浦东南路",
+                  "base_minutes": 6,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 泊岸林荫步道 → South Pudong Road / 浦东南路 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "line_name": "Line 14 / 14号线",
+                  "from_name": "South Pudong Road / 浦东南路",
+                  "to_name": "Lujiazui / 陆家嘴",
+                  "direction": "Fengbang / 封浜",
+                  "direction_key": "fengbang",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#626020"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Lujiazui / 陆家嘴",
+                  "to_name": "清溪小星河家常菜馆（陆家嘴）",
+                  "base_minutes": 9,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Lujiazui / 陆家嘴 → 清溪小星河家常菜馆（陆家嘴） (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.5082264,
+                      31.2405016
+                    ],
+                    [
+                      121.506891,
+                      31.240311
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "14",
+                  "color": "#626020",
+                  "coordinates": [
+                    [
+                      121.506891,
+                      31.240311
+                    ],
+                    [
+                      121.497,
+                      31.2397
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.497,
+                      31.2397
+                    ],
+                    [
+                      121.4961031,
+                      31.2372141
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2129",
+              "start_min": 825,
+              "end_min": 875,
+              "price_cny": 40,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2129",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-0470",
+              "start_min": 875,
+              "end_min": 920,
+              "base_minutes": 33,
+              "planned_minutes": 45,
+              "buffer_minutes": 12,
+              "distance_m": 6836,
+              "transport_cost_cny": 8,
+              "mode": "transit",
+              "source": "REAL_METRO_TOPOLOGY_ESTIMATED_TIMES",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "清溪小星河家常菜馆（陆家嘴）",
+                  "to_name": "Lujiazui / 陆家嘴",
+                  "base_minutes": 9,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 清溪小星河家常菜馆（陆家嘴） → Lujiazui / 陆家嘴 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "2",
+                  "line_name": "Line 2 / 2号线",
+                  "from_name": "Lujiazui / 陆家嘴",
+                  "to_name": "Jing'an Temple / 静安寺",
+                  "direction": "Panxiang Road / 蟠祥路·国家会计学院",
+                  "direction_key": "panxiang-road",
+                  "stop_count": 4,
+                  "base_minutes": 14,
+                  "estimated": true,
+                  "synthetic": false,
+                  "color": "#82BF25"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Jing'an Temple / 静安寺",
+                  "to_name": "青石·南塘社区小花园（静安）",
+                  "base_minutes": 9,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Jing'an Temple / 静安寺 → 青石·南塘社区小花园（静安） (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4961031,
+                      31.2372141
+                    ],
+                    [
+                      121.497,
+                      31.2397
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "metro",
+                  "line_id": "2",
+                  "color": "#82BF25",
+                  "coordinates": [
+                    [
+                      121.497,
+                      31.2397
+                    ],
+                    [
+                      121.479722,
+                      31.239722
+                    ],
+                    [
+                      121.4709,
+                      31.234
+                    ],
+                    [
+                      121.45601,
+                      31.23181
+                    ],
+                    [
+                      121.442,
+                      31.225
+                    ]
+                  ],
+                  "source": "real_topology_schematic",
+                  "synthetic": false,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.442,
+                      31.225
+                    ],
+                    [
+                      121.4431408,
+                      31.2273758
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-0470",
+              "start_min": 920,
+              "end_min": 975,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-0470",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0358",
+              "start_min": 975,
+              "end_min": 1005,
+              "base_minutes": 21,
+              "planned_minutes": 30,
+              "buffer_minutes": 9,
+              "distance_m": 948,
+              "transport_cost_cny": 4,
+              "mode": "transit",
+              "source": "SYNTHETIC_BUS",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "青石·南塘社区小花园（静安）",
+                  "to_name": "Учебная остановка у «Арт-двор «Гранатовый цвет»»",
+                  "base_minutes": 6,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 青石·南塘社区小花园（静安） → Учебная остановка у «Арт-двор «Гранатовый цвет»» (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-07",
+                  "line_name": "DEMO-BUS-07 · Учебный автобус 07 · Цзинъань и западный центр",
+                  "from_name": "Учебная остановка у «Арт-двор «Гранатовый цвет»»",
+                  "to_name": "Учебная остановка у «Храм Цзинъань»",
+                  "direction": "Учебная промежуточная остановка 07-07-01",
+                  "direction_key": "Учебная промежуточная остановка 07-07-01",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": true,
+                  "color": "#109618"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Учебная остановка у «Храм Цзинъань»",
+                  "to_name": "里弄街心绿地",
+                  "base_minutes": 8,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Учебная остановка у «Храм Цзинъань» → 里弄街心绿地 (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4431408,
+                      31.2273758
+                    ],
+                    [
+                      121.44431,
+                      31.22668
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-07",
+                  "color": "#109618",
+                  "coordinates": [
+                    [
+                      121.44431,
+                      31.22668
+                    ],
+                    [
+                      121.44069,
+                      31.22549
+                    ]
+                  ],
+                  "source": "synthetic_bus",
+                  "synthetic": true,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.44069,
+                      31.22549
+                    ],
+                    [
+                      121.4395427,
+                      31.2274646
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0358",
+              "start_min": 1005,
+              "end_min": 1060,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0358",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2247",
+              "start_min": 1060,
+              "end_min": 1090,
+              "base_minutes": 22,
+              "planned_minutes": 30,
+              "buffer_minutes": 8,
+              "distance_m": 1024,
+              "transport_cost_cny": 4,
+              "mode": "transit",
+              "source": "SYNTHETIC_BUS",
+              "instructions": [
+                {
+                  "mode": "walk",
+                  "from_name": "里弄街心绿地",
+                  "to_name": "Учебная остановка у «Храм Цзинъань»",
+                  "base_minutes": 8,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: 里弄街心绿地 → Учебная остановка у «Храм Цзинъань» (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-07",
+                  "line_name": "DEMO-BUS-07 · Учебный автобус 07 · Цзинъань и западный центр",
+                  "from_name": "Учебная остановка у «Храм Цзинъань»",
+                  "to_name": "Учебная остановка у «Арт-двор «Гранатовый цвет»»",
+                  "direction": "Учебная остановка у «Пекарня «Сладкий османтус»»",
+                  "direction_key": "Учебная остановка у «Пекарня «Сладкий османтус»»",
+                  "stop_count": 1,
+                  "base_minutes": 3,
+                  "estimated": true,
+                  "synthetic": true,
+                  "color": "#109618"
+                },
+                {
+                  "mode": "walk",
+                  "from_name": "Учебная остановка у «Арт-двор «Гранатовый цвет»»",
+                  "to_name": "知味与花露咖啡馆（静安）",
+                  "base_minutes": 7,
+                  "estimated": true,
+                  "synthetic": true,
+                  "text": "Пешком: Учебная остановка у «Арт-двор «Гранатовый цвет»» → 知味与花露咖啡馆（静安） (доступ по приблизительным координатам, улицы уточняются отдельно)"
+                }
+              ],
+              "geometry_segments": [
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.4395427,
+                      31.2274646
+                    ],
+                    [
+                      121.44069,
+                      31.22549
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                },
+                {
+                  "mode": "bus",
+                  "line_id": "DEMO-BUS-07",
+                  "color": "#109618",
+                  "coordinates": [
+                    [
+                      121.44069,
+                      31.22549
+                    ],
+                    [
+                      121.44431,
+                      31.22668
+                    ]
+                  ],
+                  "source": "synthetic_bus",
+                  "synthetic": true,
+                  "tracks_schematic": true
+                },
+                {
+                  "mode": "walk",
+                  "coordinates": [
+                    [
+                      121.44431,
+                      31.22668
+                    ],
+                    [
+                      121.4422648,
+                      31.2269047
+                    ]
+                  ],
+                  "source": "estimated_access",
+                  "synthetic": true
+                }
+              ],
+              "reason": "Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.",
+              "fare_basis": "synthetic",
+              "time_basis": "planning_estimate",
+              "service_verified": false
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2247",
+              "start_min": 1090,
+              "end_min": 1145,
+              "price_cny": 220,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:synthetic-geo-v1-0386",
+            "shanghai-demo:synthetic-ext-v2-0470",
+            "shanghai-demo:synthetic-geo-v1-0358"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-geo-v1-0814",
+            "shanghai-demo:synthetic-ext-v2-2129",
+            "shanghai-demo:synthetic-ext-v2-2247"
+          ],
+          "total_cost_cny": 492,
+          "active_minutes": 545,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 600,
+          "ends_at": 1145,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "04_shopping_taxi",
+      "input": {
+        "primary_interests": [
+          "shopping",
+          "entertainment"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "taxi",
+        "budget_cny": 4000,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 118.83850000053644,
+      "cold_ms": 1271.800300002098,
+      "warm_ms": [],
+      "times_ms": [
+        1271.800300002098
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 6,
+        "meals": 6,
+        "expected_meals": 6,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 175,
+        "total_cost_cny": 773.98,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2503",
+              "start_min": 540,
+              "end_min": 595,
+              "price_cny": 56,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2503",
+              "to_poi_id": "shanghai-demo:osm-n10736315829",
+              "start_min": 595,
+              "end_min": 605,
+              "base_minutes": 5,
+              "buffer_minutes": 5,
+              "planned_minutes": 10,
+              "transport_cost_cny": 16,
+              "distance_m": 145,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-n10736315829",
+              "start_min": 605,
+              "end_min": 710,
+              "price_cny": 0,
+              "matched_interests": [
+                "shopping",
+                "entertainment"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-n10736315829",
+              "to_poi_id": "shanghai-demo:osm-n13784783901",
+              "start_min": 710,
+              "end_min": 730,
+              "base_minutes": 11,
+              "buffer_minutes": 9,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 1802,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-n13784783901",
+              "start_min": 730,
+              "end_min": 835,
+              "price_cny": 0,
+              "matched_interests": [
+                "shopping",
+                "entertainment"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-n13784783901",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2310",
+              "start_min": 835,
+              "end_min": 845,
+              "base_minutes": 5,
+              "buffer_minutes": 5,
+              "planned_minutes": 10,
+              "transport_cost_cny": 16,
+              "distance_m": 74,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2310",
+              "start_min": 845,
+              "end_min": 905,
+              "price_cny": 70,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2310",
+              "to_poi_id": "shanghai-demo:osm-r11002544",
+              "start_min": 905,
+              "end_min": 940,
+              "base_minutes": 23,
+              "buffer_minutes": 12,
+              "planned_minutes": 35,
+              "transport_cost_cny": 22.35,
+              "distance_m": 5269,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-r11002544",
+              "start_min": 940,
+              "end_min": 1045,
+              "price_cny": 0,
+              "matched_interests": [
+                "shopping",
+                "entertainment"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-r11002544",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-1957",
+              "start_min": 1045,
+              "end_min": 1055,
+              "base_minutes": 5,
+              "buffer_minutes": 5,
+              "planned_minutes": 10,
+              "transport_cost_cny": 16,
+              "distance_m": 135,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-1957",
+              "start_min": 1055,
+              "end_min": 1105,
+              "price_cny": 56,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:osm-n10736315829",
+            "shanghai-demo:osm-n13784783901",
+            "shanghai-demo:osm-r11002544"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2503",
+            "shanghai-demo:synthetic-ext-v2-2310",
+            "shanghai-demo:synthetic-ext-v2-1957"
+          ],
+          "total_cost_cny": 268.35,
+          "active_minutes": 565,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1105,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2445",
+              "start_min": 540,
+              "end_min": 600,
+              "price_cny": 110,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2445",
+              "to_poi_id": "shanghai-demo:osm-n11786714035",
+              "start_min": 600,
+              "end_min": 610,
+              "base_minutes": 5,
+              "buffer_minutes": 5,
+              "planned_minutes": 10,
+              "transport_cost_cny": 16,
+              "distance_m": 214,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-n11786714035",
+              "start_min": 610,
+              "end_min": 715,
+              "price_cny": 0,
+              "matched_interests": [
+                "shopping",
+                "entertainment"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-n11786714035",
+              "to_poi_id": "shanghai-demo:osm-w837690110",
+              "start_min": 715,
+              "end_min": 745,
+              "base_minutes": 22,
+              "buffer_minutes": 8,
+              "planned_minutes": 30,
+              "transport_cost_cny": 21.63,
+              "distance_m": 5012,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-w837690110",
+              "start_min": 745,
+              "end_min": 850,
+              "price_cny": 0,
+              "matched_interests": [
+                "shopping",
+                "entertainment"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-w837690110",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-1184",
+              "start_min": 850,
+              "end_min": 870,
+              "base_minutes": 13,
+              "buffer_minutes": 7,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 2412,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-1184",
+              "start_min": 870,
+              "end_min": 920,
+              "price_cny": 50,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-1184",
+              "to_poi_id": "shanghai-demo:osm-w1003031441",
+              "start_min": 920,
+              "end_min": 940,
+              "base_minutes": 13,
+              "buffer_minutes": 7,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 2309,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-w1003031441",
+              "start_min": 940,
+              "end_min": 1045,
+              "price_cny": 0,
+              "matched_interests": [
+                "shopping",
+                "entertainment"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-w1003031441",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2748",
+              "start_min": 1045,
+              "end_min": 1055,
+              "base_minutes": 5,
+              "buffer_minutes": 5,
+              "planned_minutes": 10,
+              "transport_cost_cny": 16,
+              "distance_m": 121,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2748",
+              "start_min": 1055,
+              "end_min": 1110,
+              "price_cny": 260,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:osm-n11786714035",
+            "shanghai-demo:osm-w837690110",
+            "shanghai-demo:osm-w1003031441"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2445",
+            "shanghai-demo:synthetic-geo-v1-1184",
+            "shanghai-demo:synthetic-ext-v2-2748"
+          ],
+          "total_cost_cny": 505.63,
+          "active_minutes": 570,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1110,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "05_unusual_multiday",
+      "input": {
+        "primary_interests": [
+          "unusual",
+          "museums"
+        ],
+        "secondary_interests": [
+          "history"
+        ],
+        "days": 3,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 3200,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 77.65729999914765,
+      "cold_ms": 26972.135699998587,
+      "warm_ms": [],
+      "times_ms": [
+        26972.135699998587
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 11,
+        "meals": 9,
+        "expected_meals": 9,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 235,
+        "total_cost_cny": 1498.81,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2137",
+              "start_min": 540,
+              "end_min": 590,
+              "price_cny": 56,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2137",
+              "to_poi_id": "shanghai-demo:sihang",
+              "start_min": 590,
+              "end_min": 600,
+              "base_minutes": 4,
+              "buffer_minutes": 6,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 277,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:sihang",
+              "start_min": 600,
+              "end_min": 690,
+              "price_cny": 20,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:sihang",
+              "to_poi_id": "shanghai-demo:natural-history",
+              "start_min": 690,
+              "end_min": 705,
+              "base_minutes": 9,
+              "buffer_minutes": 6,
+              "planned_minutes": 15,
+              "transport_cost_cny": 16,
+              "distance_m": 1265,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:natural-history",
+              "start_min": 705,
+              "end_min": 855,
+              "price_cny": 90,
+              "matched_interests": [
+                "museums"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:natural-history",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2437",
+              "start_min": 855,
+              "end_min": 860,
+              "base_minutes": 1,
+              "buffer_minutes": 4,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 61,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2437",
+              "start_min": 860,
+              "end_min": 910,
+              "price_cny": 170,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2437",
+              "to_poi_id": "shanghai-demo:m50",
+              "start_min": 910,
+              "end_min": 930,
+              "base_minutes": 13,
+              "buffer_minutes": 7,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 2373,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:m50",
+              "start_min": 930,
+              "end_min": 1050,
+              "price_cny": 40,
+              "matched_interests": [
+                "unusual",
+                "museums"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:m50",
+              "to_poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 1050,
+              "end_min": 1070,
+              "base_minutes": 13,
+              "buffer_minutes": 7,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 2496,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 1070,
+              "end_min": 1130,
+              "price_cny": 0,
+              "matched_interests": [
+                "unusual"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:sculpture-park",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2170",
+              "start_min": 1130,
+              "end_min": 1140,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 421,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2170",
+              "start_min": 1140,
+              "end_min": 1200,
+              "price_cny": 40,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:sihang",
+            "shanghai-demo:natural-history",
+            "shanghai-demo:m50",
+            "shanghai-demo:sculpture-park"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2137",
+            "shanghai-demo:synthetic-ext-v2-2437",
+            "shanghai-demo:synthetic-ext-v2-2170"
+          ],
+          "total_cost_cny": 464,
+          "active_minutes": 660,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1200,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2284",
+              "start_min": 540,
+              "end_min": 590,
+              "price_cny": 40,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2284",
+              "to_poi_id": "shanghai-demo:osm-n3684766682",
+              "start_min": 595,
+              "end_min": 600,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 101,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-n3684766682",
+              "start_min": 600,
+              "end_min": 670,
+              "price_cny": 0,
+              "matched_interests": [
+                "unusual"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-n3684766682",
+              "to_poi_id": "shanghai-demo:postal-museum",
+              "start_min": 670,
+              "end_min": 690,
+              "base_minutes": 10,
+              "buffer_minutes": 10,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 1470,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:postal-museum",
+              "start_min": 690,
+              "end_min": 780,
+              "price_cny": 40,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:postal-museum",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2115",
+              "start_min": 780,
+              "end_min": 800,
+              "base_minutes": 13,
+              "buffer_minutes": 7,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 2404,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2115",
+              "start_min": 800,
+              "end_min": 855,
+              "price_cny": 56,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2115",
+              "to_poi_id": "shanghai-demo:shanghai-museum",
+              "start_min": 855,
+              "end_min": 860,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 135,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:shanghai-museum",
+              "start_min": 860,
+              "end_min": 1010,
+              "price_cny": 60,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:shanghai-museum",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-1831",
+              "start_min": 1010,
+              "end_min": 1020,
+              "base_minutes": 3,
+              "buffer_minutes": 7,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 204,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-1831",
+              "start_min": 1020,
+              "end_min": 1085,
+              "price_cny": 0,
+              "matched_interests": [
+                "unusual"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-1831",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2097",
+              "start_min": 1085,
+              "end_min": 1090,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 138,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2097",
+              "start_min": 1090,
+              "end_min": 1150,
+              "price_cny": 360,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:osm-n3684766682",
+            "shanghai-demo:postal-museum",
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:synthetic-geo-v1-1831"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2284",
+            "shanghai-demo:synthetic-ext-v2-2115",
+            "shanghai-demo:synthetic-ext-v2-2097"
+          ],
+          "total_cost_cny": 588,
+          "active_minutes": 605,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1150,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-22",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0706",
+              "start_min": 540,
+              "end_min": 590,
+              "price_cny": 50,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0706",
+              "to_poi_id": "shanghai-demo:history-museum",
+              "start_min": 590,
+              "end_min": 595,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 118,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:history-museum",
+              "start_min": 595,
+              "end_min": 715,
+              "price_cny": 50,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:history-museum",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0717",
+              "start_min": 715,
+              "end_min": 725,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 431,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0717",
+              "start_min": 725,
+              "end_min": 785,
+              "price_cny": 60,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0717",
+              "to_poi_id": "shanghai-demo:power-station-art",
+              "start_min": 785,
+              "end_min": 815,
+              "base_minutes": 21,
+              "buffer_minutes": 9,
+              "planned_minutes": 30,
+              "transport_cost_cny": 21.13,
+              "distance_m": 4832,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:power-station-art",
+              "start_min": 815,
+              "end_min": 965,
+              "price_cny": 120,
+              "matched_interests": [
+                "unusual",
+                "museums"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:power-station-art",
+              "to_poi_id": "shanghai-demo:wukang-mansion",
+              "start_min": 965,
+              "end_min": 1005,
+              "base_minutes": 30,
+              "buffer_minutes": 10,
+              "planned_minutes": 40,
+              "transport_cost_cny": 27.68,
+              "distance_m": 7171,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:wukang-mansion",
+              "start_min": 1005,
+              "end_min": 1095,
+              "price_cny": 0,
+              "matched_interests": [
+                "unusual",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:wukang-mansion",
+              "to_poi_id": "shanghai-demo:osm-n10220959757",
+              "start_min": 1095,
+              "end_min": 1100,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 89,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:osm-n10220959757",
+              "start_min": 1100,
+              "end_min": 1155,
+              "price_cny": 118,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:history-museum",
+            "shanghai-demo:power-station-art",
+            "shanghai-demo:wukang-mansion"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-geo-v1-0706",
+            "shanghai-demo:synthetic-geo-v1-0717",
+            "shanghai-demo:osm-n10220959757"
+          ],
+          "total_cost_cny": 446.81,
+          "active_minutes": 615,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1155,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "failed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "06_family",
+      "input": {
+        "primary_interests": [
+          "entertainment",
+          "nature"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 3000,
+        "group": {
+          "adult": 2,
+          "child": 2,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 65.97250000014901,
+      "cold_ms": 20166.294399999082,
+      "warm_ms": [],
+      "times_ms": [
+        20166.294399999082
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 8,
+        "meals": 6,
+        "expected_meals": 6,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 160,
+        "total_cost_cny": 2588.54,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2246",
+              "start_min": 540,
+              "end_min": 600,
+              "price_cny": 416,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2246",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0386",
+              "start_min": 600,
+              "end_min": 605,
+              "base_minutes": 1,
+              "buffer_minutes": 4,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 42,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0386",
+              "start_min": 605,
+              "end_min": 720,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0386",
+              "to_poi_id": "shanghai-demo:lujiazui-green",
+              "start_min": 720,
+              "end_min": 735,
+              "base_minutes": 7,
+              "buffer_minutes": 8,
+              "planned_minutes": 15,
+              "transport_cost_cny": 16,
+              "distance_m": 756,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:lujiazui-green",
+              "start_min": 735,
+              "end_min": 795,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:lujiazui-green",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2297",
+              "start_min": 795,
+              "end_min": 805,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 339,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2297",
+              "start_min": 805,
+              "end_min": 860,
+              "price_cny": 504,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2297",
+              "to_poi_id": "shanghai-demo:ocean-aquarium",
+              "start_min": 860,
+              "end_min": 870,
+              "base_minutes": 6,
+              "buffer_minutes": 4,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 298,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:ocean-aquarium",
+              "start_min": 870,
+              "end_min": 1020,
+              "price_cny": 510,
+              "matched_interests": [
+                "entertainment",
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:ocean-aquarium",
+              "to_poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 1020,
+              "end_min": 1055,
+              "base_minutes": 26,
+              "buffer_minutes": 9,
+              "planned_minutes": 35,
+              "transport_cost_cny": 20.54,
+              "distance_m": 4621,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 1055,
+              "end_min": 1115,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:sculpture-park",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2234",
+              "start_min": 1115,
+              "end_min": 1125,
+              "base_minutes": 6,
+              "buffer_minutes": 4,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 304,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2234",
+              "start_min": 1125,
+              "end_min": 1180,
+              "price_cny": 576,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:synthetic-geo-v1-0386",
+            "shanghai-demo:lujiazui-green",
+            "shanghai-demo:ocean-aquarium",
+            "shanghai-demo:sculpture-park"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2246",
+            "shanghai-demo:synthetic-ext-v2-2297",
+            "shanghai-demo:synthetic-ext-v2-2234"
+          ],
+          "total_cost_cny": 2042.54,
+          "active_minutes": 640,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1180,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-1881",
+              "start_min": 540,
+              "end_min": 600,
+              "price_cny": 56,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-1881",
+              "to_poi_id": "shanghai-demo:yu-garden",
+              "start_min": 600,
+              "end_min": 605,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 90,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:yu-garden",
+              "start_min": 605,
+              "end_min": 725,
+              "price_cny": 150,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:yu-garden",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0288",
+              "start_min": 725,
+              "end_min": 745,
+              "base_minutes": 10,
+              "buffer_minutes": 10,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 1608,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0288",
+              "start_min": 745,
+              "end_min": 860,
+              "price_cny": 30,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0288",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0773",
+              "start_min": 860,
+              "end_min": 870,
+              "base_minutes": 4,
+              "buffer_minutes": 6,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 160,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0773",
+              "start_min": 870,
+              "end_min": 930,
+              "price_cny": 150,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0773",
+              "to_poi_id": "shanghai-demo:peoples-park",
+              "start_min": 930,
+              "end_min": 945,
+              "base_minutes": 9,
+              "buffer_minutes": 6,
+              "planned_minutes": 15,
+              "transport_cost_cny": 16,
+              "distance_m": 1335,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:peoples-park",
+              "start_min": 945,
+              "end_min": 1005,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:peoples-park",
+              "to_poi_id": "shanghai-demo:osm-n13784783901",
+              "start_min": 1005,
+              "end_min": 1025,
+              "base_minutes": 10,
+              "buffer_minutes": 10,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 1666,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:osm-n13784783901",
+              "start_min": 1025,
+              "end_min": 1130,
+              "price_cny": 0,
+              "matched_interests": [
+                "entertainment"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:osm-n13784783901",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2310",
+              "start_min": 1130,
+              "end_min": 1135,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 74,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2310",
+              "start_min": 1135,
+              "end_min": 1195,
+              "price_cny": 112,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:yu-garden",
+            "shanghai-demo:synthetic-geo-v1-0288",
+            "shanghai-demo:peoples-park",
+            "shanghai-demo:osm-n13784783901"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-1881",
+            "shanghai-demo:synthetic-geo-v1-0773",
+            "shanghai-demo:synthetic-ext-v2-2310"
+          ],
+          "total_cost_cny": 546,
+          "active_minutes": 655,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1195,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "07_senior",
+      "input": {
+        "primary_interests": [
+          "museums",
+          "history"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "relaxed",
+        "transport": "mixed",
+        "budget_cny": 2600,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 2,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 86.11760000139475,
+      "cold_ms": 10183.193100001663,
+      "warm_ms": [],
+      "times_ms": [
+        10183.193100001663
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 7,
+        "meals": 6,
+        "expected_meals": 6,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 130,
+        "total_cost_cny": 1022,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0706",
+              "start_min": 540,
+              "end_min": 590,
+              "price_cny": 60,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0706",
+              "to_poi_id": "shanghai-demo:history-museum",
+              "start_min": 590,
+              "end_min": 600,
+              "base_minutes": 3,
+              "buffer_minutes": 7,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 118,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:history-museum",
+              "start_min": 600,
+              "end_min": 740,
+              "price_cny": 60,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:history-museum",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2462",
+              "start_min": 740,
+              "end_min": 750,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 311,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2462",
+              "start_min": 750,
+              "end_min": 810,
+              "price_cny": 264,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2462",
+              "to_poi_id": "shanghai-demo:shanghai-museum",
+              "start_min": 810,
+              "end_min": 820,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 312,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:shanghai-museum",
+              "start_min": 820,
+              "end_min": 995,
+              "price_cny": 72,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:shanghai-museum",
+              "to_poi_id": "shanghai-demo:xintiandi",
+              "start_min": 995,
+              "end_min": 1010,
+              "base_minutes": 9,
+              "buffer_minutes": 6,
+              "planned_minutes": 15,
+              "transport_cost_cny": 16,
+              "distance_m": 1148,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:xintiandi",
+              "start_min": 1010,
+              "end_min": 1115,
+              "price_cny": 0,
+              "matched_interests": [
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:xintiandi",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2502",
+              "start_min": 1115,
+              "end_min": 1125,
+              "base_minutes": 4,
+              "buffer_minutes": 6,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 151,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2502",
+              "start_min": 1125,
+              "end_min": 1185,
+              "price_cny": 117,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:history-museum",
+            "shanghai-demo:shanghai-museum",
+            "shanghai-demo:xintiandi"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-geo-v1-0706",
+            "shanghai-demo:synthetic-ext-v2-2462",
+            "shanghai-demo:synthetic-ext-v2-2502"
+          ],
+          "total_cost_cny": 589,
+          "active_minutes": 645,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1185,
+          "warnings": []
+        },
+        {
+          "date": "2026-11-21",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2017",
+              "start_min": 540,
+              "end_min": 600,
+              "price_cny": 77,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2017",
+              "to_poi_id": "shanghai-demo:urban-planning",
+              "start_min": 600,
+              "end_min": 605,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 64,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:urban-planning",
+              "start_min": 605,
+              "end_min": 710,
+              "price_cny": 84,
+              "matched_interests": [
+                "museums"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:urban-planning",
+              "to_poi_id": "shanghai-demo:sihang",
+              "start_min": 710,
+              "end_min": 725,
+              "base_minutes": 9,
+              "buffer_minutes": 6,
+              "planned_minutes": 15,
+              "transport_cost_cny": 16,
+              "distance_m": 1330,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:sihang",
+              "start_min": 725,
+              "end_min": 830,
+              "price_cny": 24,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:sihang",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2134",
+              "start_min": 830,
+              "end_min": 850,
+              "base_minutes": 10,
+              "buffer_minutes": 10,
+              "planned_minutes": 20,
+              "transport_cost_cny": 16,
+              "distance_m": 1477,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2134",
+              "start_min": 850,
+              "end_min": 900,
+              "price_cny": 44,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2134",
+              "to_poi_id": "shanghai-demo:postal-museum",
+              "start_min": 900,
+              "end_min": 910,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 302,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:postal-museum",
+              "start_min": 910,
+              "end_min": 1015,
+              "price_cny": 48,
+              "matched_interests": [
+                "museums",
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:postal-museum",
+              "to_poi_id": "shanghai-demo:bund",
+              "start_min": 1015,
+              "end_min": 1030,
+              "base_minutes": 8,
+              "buffer_minutes": 7,
+              "planned_minutes": 15,
+              "transport_cost_cny": 16,
+              "distance_m": 1053,
+              "mode": "taxi",
+              "source": "synthetic_distance_estimate",
+              "reason": "Синтетическая оценка такси; дорожная сеть не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:bund",
+              "start_min": 1030,
+              "end_min": 1135,
+              "price_cny": 0,
+              "matched_interests": [
+                "history"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:bund",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2341",
+              "start_min": 1135,
+              "end_min": 1145,
+              "base_minutes": 7,
+              "buffer_minutes": 3,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 316,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2341",
+              "start_min": 1145,
+              "end_min": 1195,
+              "price_cny": 108,
+              "matched_interests": [
+                "cafes"
+              ],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:urban-planning",
+            "shanghai-demo:sihang",
+            "shanghai-demo:postal-museum",
+            "shanghai-demo:bund"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-ext-v2-2017",
+            "shanghai-demo:synthetic-ext-v2-2134",
+            "shanghai-demo:synthetic-ext-v2-2341"
+          ],
+          "total_cost_cny": 433,
+          "active_minutes": 655,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 540,
+          "ends_at": 1195,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "08_pets_walk",
+      "input": {
+        "primary_interests": [
+          "nature"
+        ],
+        "secondary_interests": [
+          "unusual"
+        ],
+        "days": 1,
+        "pace": "relaxed",
+        "transport": "walk",
+        "budget_cny": 1000,
+        "group": {
+          "adult": 1,
+          "child": 0,
+          "senior": 0,
+          "pet": 1
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "demo",
+      "load_ms": 96.2407000027597,
+      "cold_ms": 518.8612999990582,
+      "warm_ms": [],
+      "times_ms": [
+        518.8612999990582
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 3,
+        "meals": 3,
+        "expected_meals": 3,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 85,
+        "total_cost_cny": 365,
+        "required_missing": [],
+        "missing_primary": []
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0742",
+              "start_min": 630,
+              "end_min": 690,
+              "price_cny": 45,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "breakfast"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0742",
+              "to_poi_id": "shanghai-demo:synthetic-geo-v1-0411",
+              "start_min": 690,
+              "end_min": 695,
+              "base_minutes": 2,
+              "buffer_minutes": 3,
+              "planned_minutes": 5,
+              "transport_cost_cny": 0,
+              "distance_m": 59,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:synthetic-geo-v1-0411",
+              "start_min": 695,
+              "end_min": 800,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-geo-v1-0411",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2530",
+              "start_min": 800,
+              "end_min": 820,
+              "base_minutes": 15,
+              "buffer_minutes": 5,
+              "planned_minutes": 20,
+              "transport_cost_cny": 0,
+              "distance_m": 799,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2530",
+              "start_min": 820,
+              "end_min": 880,
+              "price_cny": 130,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "lunch"
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:synthetic-ext-v2-2530",
+              "to_poi_id": "shanghai-demo:peoples-park",
+              "start_min": 880,
+              "end_min": 900,
+              "base_minutes": 15,
+              "buffer_minutes": 5,
+              "planned_minutes": 20,
+              "transport_cost_cny": 0,
+              "distance_m": 791,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:peoples-park",
+              "start_min": 900,
+              "end_min": 970,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:peoples-park",
+              "to_poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 970,
+              "end_min": 1000,
+              "base_minutes": 23,
+              "buffer_minutes": 7,
+              "planned_minutes": 30,
+              "transport_cost_cny": 0,
+              "distance_m": 1219,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "visit",
+              "poi_id": "shanghai-demo:sculpture-park",
+              "start_min": 1000,
+              "end_min": 1070,
+              "price_cny": 0,
+              "matched_interests": [
+                "nature",
+                "unusual"
+              ],
+              "reason": "Главный интерес. Проверены часы, группа, бюджет и переход."
+            },
+            {
+              "type": "travel",
+              "from_poi_id": "shanghai-demo:sculpture-park",
+              "to_poi_id": "shanghai-demo:synthetic-ext-v2-2234",
+              "start_min": 1070,
+              "end_min": 1080,
+              "base_minutes": 6,
+              "buffer_minutes": 4,
+              "planned_minutes": 10,
+              "transport_cost_cny": 0,
+              "distance_m": 304,
+              "mode": "walk",
+              "source": "synthetic_distance_estimate",
+              "reason": "Оценка пешего перехода по расстоянию; дорога OSM не подтверждена."
+            },
+            {
+              "type": "meal",
+              "poi_id": "shanghai-demo:synthetic-ext-v2-2234",
+              "start_min": 1080,
+              "end_min": 1135,
+              "price_cny": 190,
+              "matched_interests": [],
+              "reason": "Питание по минимальному дополнительному времени вдоль маршрута.",
+              "meal_kind": "dinner"
+            }
+          ],
+          "visit_ids": [
+            "shanghai-demo:synthetic-geo-v1-0411",
+            "shanghai-demo:peoples-park",
+            "shanghai-demo:sculpture-park"
+          ],
+          "meal_ids": [
+            "shanghai-demo:synthetic-geo-v1-0742",
+            "shanghai-demo:synthetic-ext-v2-2530",
+            "shanghai-demo:synthetic-ext-v2-2234"
+          ],
+          "total_cost_cny": 365,
+          "active_minutes": 505,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": 630,
+          "ends_at": 1135,
+          "warnings": []
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    },
+    {
+      "id": "09_low_budget",
+      "input": {
+        "primary_interests": [
+          "viewpoints",
+          "museums"
+        ],
+        "secondary_interests": [
+          "cafes"
+        ],
+        "days": 2,
+        "pace": "balanced",
+        "transport": "mixed",
+        "budget_cny": 25,
+        "group": {
+          "adult": 2,
+          "child": 0,
+          "senior": 0,
+          "pet": 0
+        },
+        "start_date": "2026-11-20",
+        "day_start": "09:00",
+        "day_end": "20:00",
+        "required_ids": []
+      },
+      "status": "partial",
+      "load_ms": 110.51219999790192,
+      "cold_ms": 374.67540000006557,
+      "warm_ms": [],
+      "times_ms": [
+        374.67540000006557
+      ],
+      "validation": {
+        "violations": [],
+        "visits": 0,
+        "meals": 0,
+        "expected_meals": 6,
+        "required_requested": 0,
+        "required_placed": 0,
+        "travel_minutes": 0,
+        "total_cost_cny": 0,
+        "required_missing": [],
+        "missing_primary": [
+          "viewpoints",
+          "museums"
+        ]
+      },
+      "route_days": [
+        {
+          "date": "2026-11-20",
+          "events": [],
+          "visit_ids": [],
+          "meal_ids": [],
+          "total_cost_cny": 0,
+          "active_minutes": 0,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": null,
+          "ends_at": null,
+          "warnings": [
+            "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет."
+          ]
+        },
+        {
+          "date": "2026-11-21",
+          "events": [],
+          "visit_ids": [],
+          "meal_ids": [],
+          "total_cost_cny": 0,
+          "active_minutes": 0,
+          "active_limit_minutes": 660,
+          "rest_minutes": 0,
+          "starts_at": null,
+          "ends_at": null,
+          "warnings": [
+            "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет."
+          ]
+        }
+      ],
+      "reported_checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "failed",
+        "primary_interests": "failed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "warnings": [
+        "Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием.",
+        "Не представлены интересы: Смотровые, Музеи, Кафе.",
+        "Завтрак, Обед или Ужин: не все необходимые приёмы пищи найдены в заданных условиях.",
+        "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет.",
+        "Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет."
+      ],
+      "engine_hash": "370764a233e3c7784213423fc5a2da4180c0500d063b3e35661b32ea0dcacd7b",
+      "transit_hash": "57d62fb726a496915b09c7a35c47c692f6b1d2093d9e98e8ffdd82a9bab3b7e0",
+      "data_hash": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    }
+  ]
+}

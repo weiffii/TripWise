@@ -1,0 +1,85 @@
+{
+  "node": "v24.22.3",
+  "results": [
+    {
+      "file": "test_shanghai_500.cjs",
+      "exit_code": 1,
+      "elapsed_ms": 159,
+      "error": null,
+      "stdout": "PASS mixed compares complete planned times, including a fast public route for a family\nPASS mixed selects a short walk when it is faster than all transport\nPASS mixed chooses the fastest affordable mode, rather than rejecting an expensive taxi later\nPASS mixed respects pets and never invents an affordable walk across the river\nPASS average restaurant check drives group spend and retains legacy fallback\nPASS group average checks and food reserves exclude an unaffordable premium cafe\n",
+      "stderr": "node:internal/assert/utils:77\r\n    throw err;\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\r\n\r\n  assert(p.summary.meal_repair_count>0)\r\n\r\n    at C:\\MAI\\01_foundamental_informatics\\TripWise\\tests\\test_shanghai_500.cjs:36:181\r\n    at test (C:\\MAI\\01_foundamental_informatics\\TripWise\\tests\\test_shanghai_500.cjs:9:37)\r\n    at Object.<anonymous> (C:\\MAI\\01_foundamental_informatics\\TripWise\\tests\\test_shanghai_500.cjs:34:1)\r\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: false,\r\n  expected: true,\r\n  operator: '==',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.3\r\n"
+    },
+    {
+      "file": "test_shanghai_5000_data.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 311,
+      "error": null,
+      "stdout": "Shanghai current data: 5000 POI, 2000 restaurants, 4500 explicitly fictional; schema/provenance/SHA passed\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_5000_optimizer.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 273,
+      "error": null,
+      "stdout": "PASS required ticket survives an impossible meal budget\nPASS a required restaurant participates in protected scheduling\nPASS a required restaurant opening at one permits breakfast beforehand\nPASS breakfast is retried after a museum that closes at ten\nPASS an exactly one-hour required visit wins over conflicting dinner\nPASS a large museum keeps its source duration in balanced pace\nPASS five short mandatory visits are not dropped by a fixed relaxed quota\nPASS mandatory date assignment tries alternate days\nPASS three days receive visits instead of filling only the first\nPASS secondary category reserve survives many high-score cultural objects\nPASS group total price and compatibility are hard constraints\nPASS known closed required place yields a reasoned infeasible status\nPASS unavailable walking river crossing is not fabricated\nPASS changing primary interests changes the actual attractions\nPASS planning is deterministic and never mutates its dataset\nPASS one thousand mandatory POIs stop at the proven duration lower bound\n{\"passed\":16,\"network_requests\":0}\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_5000_oracle.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 316,
+      "error": null,
+      "stdout": "{\"cases\":48,\"feasible\":35,\"impossible\":13,\"missed_feasible\":0,\"network_requests\":0}\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_data_final.cjs",
+      "exit_code": 1,
+      "elapsed_ms": 174,
+      "error": null,
+      "stdout": "",
+      "stderr": "node:internal/assert/utils:77\r\n    throw err;\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\r\n\r\n  assert(museum && museum.opening.closed_weekdays.includes(7))\r\n\r\n    at Object.<anonymous> (C:\\MAI\\01_foundamental_informatics\\TripWise\\tests\\test_shanghai_data_final.cjs:13:1)\r\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: undefined,\r\n  expected: true,\r\n  operator: '==',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.3\r\n"
+    },
+    {
+      "file": "test_shanghai_engine.cjs",
+      "exit_code": 1,
+      "elapsed_ms": 196,
+      "error": null,
+      "stdout": "",
+      "stderr": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n\r\n5000 !== 500\r\n\r\n    at C:\\MAI\\01_foundamental_informatics\\TripWise\\tests\\test_shanghai_engine.cjs:30:9\r\n    at test (C:\\MAI\\01_foundamental_informatics\\TripWise\\tests\\test_shanghai_engine.cjs:10:24)\r\n    at Object.<anonymous> (C:\\MAI\\01_foundamental_informatics\\TripWise\\tests\\test_shanghai_engine.cjs:29:1)\r\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 5000,\r\n  expected: 500,\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.3\r\n"
+    },
+    {
+      "file": "test_shanghai_transit.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 1233,
+      "error": null,
+      "stdout": "PASS source topology and synthetic fleet are structurally distinct\nPASS Line 2 crosses the river using two published station segments\nPASS cache results are isolated from callers\nPASS inaccessible and unsupported transit is not fabricated\nPASS explicitly blocked interchange cannot be traversed\nPASS fictional bus path is labelled and never presented as real metro\nPASS active v4 planner carries real transit instructions into selected events\nPASS synthetic bus service hours are respected when departure is known\nPASS a ring has a direction via the next station, not an invented terminus\nPASS nearest cache preserves departures, changed coordinates, group and bank filters\nPASS nearest cache does not reuse a bus route across a service boundary\nPASS nearest cache has a strict 4096 entry bound without changing results\nPassed 12 transit tests\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_v2.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 168,
+      "error": null,
+      "stdout": "PASS 54 new places, all unique, marked synthetic, with eight categories\nPASS balanced uses at least 2 attractions per day, no idle wait gaps\nPASS pace controls durations and stop count, without isolated rest\nPASS all selected interests are covered if feasible\nPASS primary interests outrank only secondary interests\nPASS children and senior group discounts, transport fares per group\nPASS seasonal attractions excluded off-season and boosted in season\nPASS high weekend crowd spots excluded unless marked required\nPASS walk, taxi, transit and mixed use distinct travel assumptions\nPASS pets must be explicitly allowed, transit with pets rejected\nPASS budget infeasibility is explicit, no violation even if partial\nPASS schedules and opening hours remain valid for multiple days\nPASS reject invalid inputs and retain source data unmutated\n{\"passed\":13,\"network_requests\":0}\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_v4_meals.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 152,
+      "error": null,
+      "stdout": "PASS dinner is requested strictly after 17:00 including a 17:01 day end\nPASS a late one-hour day can contain dinner and honestly lacks museum time\nPASS breakfast is required at 11:30 but not at noon\nPASS a missing dinner is reported rather than pretending meals passed\nPASS a five-star distant restaurant cannot move attraction selection or visits\nPASS restaurants never cross the river merely because they are geometrically close\nPASS meal departure can be delayed with an honest gap, without fake rest or visits\nPASS published popularity input affects tie-quality ranking without outranking interests\nPASS the supplied transit graph is cached and its exact planned time and instructions reach schedule\nPASS a graph with no transit path does not silently produce fabricated transit\nPASS a deferred meal recomputes transit at actual departure and respects service closure\nPASS an expensive high-rated breakfast cannot spend the reserve for cheap lunch and dinner\nPASS optional tickets cannot consume money reserved for all remaining meals\nPASS failed previous-day meals release their reserve rather than blocking later meals forever\n{\"passed\":14,\"network_requests\":0}\n",
+      "stderr": ""
+    },
+    {
+      "file": "test_shanghai_worker.cjs",
+      "exit_code": 0,
+      "elapsed_ms": 234,
+      "error": null,
+      "stdout": "Shanghai worker: off-thread protocol, reuse, stale cancellation, errors and fallback passed\n",
+      "stderr": ""
+    }
+  ]
+}

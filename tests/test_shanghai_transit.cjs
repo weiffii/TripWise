@@ -55,4 +55,27 @@ test('a ring has a direction via the next station, not an invented terminus',()=
  const d={crs:'EPSG:4326',metro:{stations,lines:[{id:'4',name:'Line 4',kind:'metro',branches:[{station_ids:['a','b','c','d'],loop:true}]}]},buses:{stops:[],routes:[]}};
  const ride=createRouter(d).route(stations[0],stations[2],{}).instructions.filter(i=>i.mode==='metro');assert.equal(ride.length,1);assert.equal(ride[0].stop_count,2);assert(/^loop_/.test(ride[0].direction_key));
 });
+test('nearest cache preserves departures, changed coordinates, group and bank filters',()=>{
+ const d=fixture(false),r=createRouter(d),a=d.metro.stations[0],b=d.metro.stations[2];
+ for(const options of [{departure_min:540},{departure_min:541},{departure_min:542,group:{senior:1}},{departure_min:543,allow_synthetic_bus:false}]){
+  assert.deepEqual(r.route(a,b,options),createRouter(d).route(a,b,options));
+ }
+ const changed={...a,lat:0,lon:0};assert.equal(r.route(changed,b,{departure_min:544}),null);
+ assert.deepEqual(r.route({...a,river_bank:'west'},{...b,river_bank:'east'},{departure_min:545}),createRouter(d).route({...a,river_bank:'west'},{...b,river_bank:'east'},{departure_min:545}));
+ assert(r.stats.nearest_cache_size>0&&r.stats.nearest_cache_size<=4096);
+});
+test('nearest cache does not reuse a bus route across a service boundary',()=>{
+ const stops=[{id:'a',lat:31.2,lon:121.4},{id:'b',lat:31.2,lon:121.45}];
+ const d={crs:'EPSG:4326',metro:{stations:[],lines:[]},buses:{stops,routes:[{id:'DEMO-BUS-01',stop_ids:['a','b'],headway_minutes:10,speed_kmh:18,bidirectional:true,service_start:'06:00',service_end:'22:00'}]}};
+ const r=createRouter(d);
+ for(const departure_min of [720,1310,1320,1380,720])assert.deepEqual(r.route(stops[0],stops[1],{departure_min}),createRouter(d).route(stops[0],stops[1],{departure_min}));
+ assert.equal(r.route(stops[0],stops[1],{departure_min:1380}),null);
+});
+test('nearest cache has a strict 4096 entry bound without changing results',()=>{
+ const d=fixture(false),r=createRouter(d),b=d.metro.stations[2];
+ for(let i=0;i<4200;i++)r.route({id:'same-id',lat:1+i*.00001,lon:1},b,{departure_min:540});
+ assert.equal(r.stats.nearest_cache_size,4096);
+ assert.deepEqual(r.route(d.metro.stations[0],b,{departure_min:541}),createRouter(d).route(d.metro.stations[0],b,{departure_min:541}));
+ assert.equal(r.stats.nearest_cache_size,4096);
+});
 console.log('Passed '+count+' transit tests');

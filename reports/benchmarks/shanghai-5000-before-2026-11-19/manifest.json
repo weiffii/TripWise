@@ -1,0 +1,17 @@
+{
+  "source_sha256": {
+    "ai_ds/web_demo/shanghai-engine.js": "57c7df9b1a50d54b9f8d1e21610c30bf51d6a5210482390cf8949c04d1bb5dab",
+    "ai_ds/web_demo/shanghai-transit.js": "ef0f2e334858d7a0cdec984acfe08a73d3fdbfb3b0bbf901aaaa4c40c9f01e94",
+    "ai_ds/web_demo/shanghai-map.js": "11dbdae6cd5580ef41a42e4ade806a0e6df6e33b8cde46a6a7c5c41e8237acc8",
+    "scripts/build_shanghai_demo.py": "62fc32f3b8a60cb4335506028863674a102b0d716592a17e96f1d58e866a1288",
+    "examples/shanghai-demo/template.html": "2ba0ea845d4108d0409d6eb12389b3160037e8fe40fb7e2856e830dfff218a7b",
+    "tests/run_shanghai_5000_scenarios.cjs": "83bf575b65e60c8b485b00a26427574da63eb092abd377db5dfc4010de821111",
+    "data/demo/shanghai/qa_scenarios.json": "852ee406bfceca067844446e57b46ade19f71b0a8d07bf9bebdba2dc71bfa36c",
+    "data/demo/shanghai/pois.json": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d",
+    "data/demo/shanghai/transport.json": "21b6c7c5e7274cda6ae0ffa537fac51c7fbea90976da30255d98ebd70ab44ef1",
+    "artifacts/tripwise-shanghai.html": "907cbb1703531d62b582ca095822f89074d44f91a368436c15531642938ea4b5"
+  },
+  "runtime_engine_sha256": "c8d58a64d05f35cf022cbe3fb1de01edeba291b70c1476179dec7912024cd4cc",
+  "html_script_count": 4,
+  "runtime_differs_from_source": true
+}

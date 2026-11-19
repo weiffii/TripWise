@@ -13,7 +13,7 @@ test('dinner is requested strictly after 17:00 including a 17:01 day end',()=>{
  for(const end of ['17:00','17:01','17:30','19:00']){const o={...options,day_end:end},p=api.planTrip(dataset(),o);validate(p,o);const dinner=meals(p).filter(e=>e.meal_kind==='dinner');assert.equal(dinner.length,end==='17:00'?0:1,end);if(dinner.length){assert(dinner[0].start_min>=960);assert(dinner[0].end_min<=Number(end.slice(0,2))*60+Number(end.slice(3)));}}
 });
 test('a late one-hour day can contain dinner and honestly lacks museum time',()=>{
- const o={...options,day_start:'18:00',day_end:'19:00'},p=api.planTrip(dataset(),o);validate(p,o);assert.equal(meals(p).filter(e=>e.meal_kind==='dinner').length,1);assert.equal(p.checks.required_places,'failed');assert(p.unplaced_required_ids.includes('a'));
+ const d=dataset();d.pois.filter(p=>p.kind==='attraction').forEach(p=>p.duration_minutes=90);const o={...options,day_start:'18:00',day_end:'19:00'},p=api.planTrip(d,o);validate(p,o);assert.equal(meals(p).filter(e=>e.meal_kind==='dinner').length,1);assert.equal(p.checks.required_places,'failed');assert(p.unplaced_required_ids.includes('a'));
 });
 test('breakfast is required at 11:30 but not at noon',()=>{
  for(const start of ['11:30','12:00']){const o={...options,day_start:start},p=api.planTrip(dataset(),o);validate(p,o);assert.equal(meals(p).filter(e=>e.meal_kind==='breakfast').length,start==='11:30'?1:0);}
@@ -46,7 +46,7 @@ test('a graph with no transit path does not silently produce fabricated transit'
 test('a deferred meal recomputes transit at actual departure and respects service closure',()=>{
  const before=globalThis.TripWiseTransit;const departures=[];
  globalThis.TripWiseTransit={createRouter:()=>({route:(a,b,o)=>{departures.push(o.departure_min);if(o.departure_min>=15*60)return null;return {base_minutes:10,planned_minutes:15,buffer_minutes:5,transport_cost_cny:3,distance_m:500,mode:'transit',source:'SYNTHETIC_BUS',reason:'Fixture service closes at 15:00',instructions:[],geometry_segments:[]};}})};
- try{const d=dataset();d.pois=d.pois.filter(p=>p.id==='a'||p.kind==='restaurant');d.transport={fixture:true};const o={...options,transport:'transit',day_start:'14:00',day_end:'19:00'},p=api.planTrip(d,o);validate(p,o);assert(departures.some(v=>v<900));assert(departures.some(v=>v>=900));assert(!meals(p).some(e=>e.meal_kind==='dinner'));assert.equal(p.checks.meals,'failed');assert(!p.days.flatMap(d=>d.events).some(e=>e.type==='travel'&&e.start_min>=900));}
+ try{const d=dataset();d.pois=d.pois.filter(p=>p.id==='a'||p.kind==='restaurant');d.pois.find(p=>p.id==='a').duration_minutes=50;d.transport={fixture:true};const o={...options,transport:'transit',day_start:'14:00',day_end:'19:00'},p=api.planTrip(d,o);validate(p,o);assert(departures.some(v=>v<900));assert(departures.some(v=>v>=900));assert(!meals(p).some(e=>e.meal_kind==='dinner'));assert.equal(p.checks.meals,'failed');assert(!p.days.flatMap(d=>d.events).some(e=>e.type==='travel'&&e.start_min>=900));}
  finally{if(before===undefined)delete globalThis.TripWiseTransit;else globalThis.TripWiseTransit=before;}
 });
 test('an expensive high-rated breakfast cannot spend the reserve for cheap lunch and dinner',()=>{

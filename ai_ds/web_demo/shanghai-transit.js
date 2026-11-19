@@ -6,7 +6,7 @@ const point=p=>[p.lon,p.lat], label=p=>p.name||[p.name_en,p.name_zh].filter(Bool
 class Heap{constructor(){this.a=[];}push(x){let i=this.a.length;this.a.push(x);while(i){let p=(i-1)>>1;if(this.a[p].d<=x.d)break;this.a[i]=this.a[p];i=p;}this.a[i]=x;}pop(){const a=this.a,first=a[0],last=a.pop();if(a.length){let i=0;while(i*2+1<a.length){let c=i*2+1;if(c+1<a.length&&a[c+1].d<a[c].d)c++;if(a[c].d>=last.d)break;a[i]=a[c];i=c;}a[i]=last;}return first;}get length(){return this.a.length;}}
 function createRouter(data){
  if(!data||data.crs!=='EPSG:4326'||!data.metro||!data.buses)throw Error('Неверный локальный набор транспорта.');
- const nodes=new Map(),physical=new Map(),adj=new Map(),overrides=new Map(),cache=new Map();
+ const nodes=new Map(),physical=new Map(),adj=new Map(),overrides=new Map(),cache=new Map(),nearestCache=new Map();
  const pair=(a,b)=>[a,b].sort().join('|');
  for(const t of data.metro.transfers||[])for(let i=0;i<t.line_ids.length;i++)for(let j=i+1;j<t.line_ids.length;j++)overrides.set(t.station_id+'|'+pair(t.line_ids[i],t.line_ids[j]),t);
  const register=(kind,p)=>{const id=(kind==='metro'?'m:':'b:')+p.id;physical.set(id,{...p,physical_id:id,mode:kind,states:[]});};
@@ -37,7 +37,16 @@ function createRouter(data){
   const speed=group.senior?2800:group.child?3200:4200,maxWalk=group.senior?1200:1800;
   const allowed=n=>options.allow_synthetic_bus!==false||n.mode!=='bus';
   const busOpen=(n,elapsed)=>{if(n.mode!=='bus'||!Number.isFinite(options.departure_min))return true;const parse=t=>t.split(':').reduce((h,m)=>h*60+Number(m),0);const t=options.departure_min+elapsed;return t>=parse(n.line.service_start||'06:00')&&t<=parse(n.line.service_end||'22:00');};
-  function nearby(p){return ['metro','bus'].flatMap(mode=>[...physical.values()].filter(s=>s.mode===mode&&s.states.length&&(mode!=='bus'||options.allow_synthetic_bus!==false)).map(s=>({p:s,distance:dist(p,s)})).filter(s=>s.distance<=maxWalk&&(!p.river_bank||!s.p.river_bank||p.river_bank===s.p.river_bank)).sort((a,b)=>a.distance-b.distance).slice(0,3));}
+  function nearby(p){
+   // All dependencies: coordinates, bank filter, walking radius and bus permission.
+   // Graph is immutable within this router. Departure, fares and labels do not
+   // affect station selection; route/service checks remain time-specific below.
+   const key=JSON.stringify([p.lat,p.lon,p.river_bank||null,maxWalk,options.allow_synthetic_bus!==false]);
+   if(nearestCache.has(key))return nearestCache.get(key);
+   const result=['metro','bus'].flatMap(mode=>[...physical.values()].filter(s=>s.mode===mode&&s.states.length&&(mode!=='bus'||options.allow_synthetic_bus!==false)).map(s=>({p:s,distance:dist(p,s)})).filter(s=>s.distance<=maxWalk&&(!p.river_bank||!s.p.river_bank||p.river_bank===s.p.river_bank)).sort((a,b)=>a.distance-b.distance).slice(0,3));
+   if(nearestCache.size>=4096)nearestCache.delete(nearestCache.keys().next().value);
+   nearestCache.set(key,result);return result;
+  }
   const origins=nearby(from),destinations=nearby(to);if(!origins.length||!destinations.length)return null;
   const exits=new Map(destinations.map(d=>[d.p.physical_id,{...d,minutes:d.distance*1.25/speed*60+3}]));
   const best=new Map(),prev=new Map(),seeds=new Map(),heap=new Heap();
@@ -70,7 +79,7 @@ function createRouter(data){
   const result={base_minutes:base,planned_minutes:planned,buffer_minutes:planned-base,distance_m:Math.round(metres),transport_cost_cny:Math.round(cost*100)/100,mode:'transit',source:hasBus?(hasMetro?'MIXED_TRANSIT_ESTIMATED':'SYNTHETIC_BUS'):'REAL_METRO_TOPOLOGY_ESTIMATED_TIMES',instructions,geometry_segments:geometry,reason:'Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.',fare_basis:'synthetic',time_basis:'planning_estimate',service_verified:false};
   if(cache.size>5000)cache.clear();cache.set(cacheKey,result);return structuredCopy(result);
  }
- return {route,stats:{stations:rail.length,bus_stops:bus.length,states:nodes.size,edges:[...adj.values()].reduce((n,a)=>n+a.length,0)}};
+ return {route,stats:{stations:rail.length,bus_stops:bus.length,states:nodes.size,edges:[...adj.values()].reduce((n,a)=>n+a.length,0),get nearest_cache_size(){return nearestCache.size;}}};
 }
 function structuredCopy(x){return x===null?null:JSON.parse(JSON.stringify(x));}
 return {createRouter};

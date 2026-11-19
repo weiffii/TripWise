@@ -15,7 +15,7 @@ class ShanghaiMapBuilderTests(unittest.TestCase):
     def fixture(self, root):
         files = {
             'data/demo/shanghai/pois.json': json.dumps({'is_demo': True, 'pois': [
-                {'id': str(i), 'name': '</script>test' if i == 0 else 'demo'} for i in range(500)]}),
+                {'id': str(i), 'name': '</script>test' if i == 0 else 'demo', 'kind': 'restaurant' if i < 2000 else 'attraction', 'lat': 31.2, 'lon': 121.4, 'names': {'en':'Demo','ru':'Demo','zh':'Demo'}} for i in range(5000)]}),
             'data/demo/shanghai/transport.json': json.dumps({'schema_version': 'shanghai-transport-v1'}),
             'ai_ds/web_demo/shanghai-engine.js': 'globalThis.TripWiseShanghai={};',
             'ai_ds/web_demo/shanghai-transit.js': 'globalThis.TripWiseTransit={};',
@@ -33,7 +33,7 @@ class ShanghaiMapBuilderTests(unittest.TestCase):
             self.fixture(root)
             result = builder.build(root)
             html = Path(result['output']).read_text(encoding='utf-8')
-            self.assertEqual(result['pois'], 500)
+            self.assertEqual(result['pois'], 5000)
             self.assertIn('TripWiseMap', html)
             self.assertIn('shanghai-transport-v1', html)
             self.assertIn('\\u003c/script>', html)

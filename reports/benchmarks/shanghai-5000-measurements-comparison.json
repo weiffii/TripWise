@@ -1,0 +1,679 @@
+{
+  "generated_utc": "2026-11-19T17:04:20.324258+00:00",
+  "before": {
+    "attempted": 26,
+    "reported_status_counts": {
+      "demo": 11,
+      "partial": 15,
+      "infeasible": 0,
+      "exception": 0,
+      "timeout": 0
+    },
+    "independently_complete": 11,
+    "reported_demo_but_independently_incomplete": [],
+    "hard_violations": 0,
+    "mean_visits": 6.730769230769231,
+    "required_placed": 8,
+    "required_requested": 19,
+    "meals_placed": 131,
+    "meals_expected": 162,
+    "mean_travel_minutes": 251.34615384615384,
+    "engine_hashes": [
+      "3c9ffb9fd1005a3b58022427a77193a6603dc7732d1f5921f76b50cd4e763e53"
+    ],
+    "data_hashes": [
+      "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    ]
+  },
+  "after": {
+    "attempted": 26,
+    "reported_status_counts": {
+      "demo": 19,
+      "partial": 4,
+      "infeasible": 3,
+      "exception": 0,
+      "timeout": 0
+    },
+    "independently_complete": 19,
+    "reported_demo_but_independently_incomplete": [],
+    "hard_violations": 0,
+    "mean_visits": 6.346153846153846,
+    "required_placed": 12,
+    "required_requested": 19,
+    "meals_placed": 141,
+    "meals_expected": 162,
+    "mean_travel_minutes": 178.46153846153845,
+    "engine_hashes": [
+      "086603f0b162f829eaf053625c8835af81d1d8986623dc4c0a08f974278e39c3"
+    ],
+    "data_hashes": [
+      "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d"
+    ]
+  },
+  "speed_before": {
+    "speed_1": {
+      "cold_ms": 740.2239000014961,
+      "warm_ms": [
+        519.3580000028014,
+        476.5401999987662
+      ],
+      "warm_median_ms": 497.9491000007838,
+      "warm_min_ms": 476.5401999987662,
+      "warm_max_ms": 519.3580000028014,
+      "all3_median_ms": 519.3580000028014,
+      "load_ms": 68.71189999952912,
+      "status": "demo",
+      "engine_hash": "3c9ffb9fd1005a3b58022427a77193a6603dc7732d1f5921f76b50cd4e763e53"
+    },
+    "speed_3": {
+      "cold_ms": 3120.210299998522,
+      "warm_ms": [
+        2642.9323999993503,
+        2582.780600000173
+      ],
+      "warm_median_ms": 2612.8564999997616,
+      "warm_min_ms": 2582.780600000173,
+      "warm_max_ms": 2642.9323999993503,
+      "all3_median_ms": 2642.9323999993503,
+      "load_ms": 81.15880000218749,
+      "status": "demo",
+      "engine_hash": "3c9ffb9fd1005a3b58022427a77193a6603dc7732d1f5921f76b50cd4e763e53"
+    },
+    "speed_5": {
+      "cold_ms": 5712.374099999666,
+      "warm_ms": [
+        4776.826900001615,
+        4973.581700000912
+      ],
+      "warm_median_ms": 4875.204300001264,
+      "warm_min_ms": 4776.826900001615,
+      "warm_max_ms": 4973.581700000912,
+      "all3_median_ms": 4973.581700000912,
+      "load_ms": 72.49379999935627,
+      "status": "demo",
+      "engine_hash": "3c9ffb9fd1005a3b58022427a77193a6603dc7732d1f5921f76b50cd4e763e53"
+    }
+  },
+  "speed_after": {
+    "speed_1": {
+      "cold_ms": 2823.9950999990106,
+      "warm_ms": [
+        624.716099999845,
+        644.7873999997973
+      ],
+      "warm_median_ms": 634.7517499998212,
+      "warm_min_ms": 624.716099999845,
+      "warm_max_ms": 644.7873999997973,
+      "all3_median_ms": 644.7873999997973,
+      "load_ms": 97.21279999986291,
+      "status": "demo",
+      "engine_hash": "086603f0b162f829eaf053625c8835af81d1d8986623dc4c0a08f974278e39c3"
+    },
+    "speed_3": {
+      "cold_ms": 4011.817200001329,
+      "warm_ms": [
+        942.0985000021756,
+        1075.9726999998093
+      ],
+      "warm_median_ms": 1009.0356000009924,
+      "warm_min_ms": 942.0985000021756,
+      "warm_max_ms": 1075.9726999998093,
+      "all3_median_ms": 1075.9726999998093,
+      "load_ms": 100.28310000151396,
+      "status": "demo",
+      "engine_hash": "086603f0b162f829eaf053625c8835af81d1d8986623dc4c0a08f974278e39c3"
+    },
+    "speed_5": {
+      "cold_ms": 4452.103900000453,
+      "warm_ms": [
+        1286.4270000010729,
+        1293.3887000009418
+      ],
+      "warm_median_ms": 1289.9078500010073,
+      "warm_min_ms": 1286.4270000010729,
+      "warm_max_ms": 1293.3887000009418,
+      "all3_median_ms": 1293.3887000009418,
+      "load_ms": 96.60159999877214,
+      "status": "demo",
+      "engine_hash": "086603f0b162f829eaf053625c8835af81d1d8986623dc4c0a08f974278e39c3"
+    }
+  },
+  "per_case_changes": [
+    {
+      "id": "01_museum_weekend",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 9,
+      "visits_after": 6,
+      "meals_before": 6,
+      "meals_after": 6,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 250,
+      "travel_after": 105,
+      "cold_ms_before": 3116.8369000032544,
+      "cold_ms_after": 2330.2851999998093
+    },
+    {
+      "id": "02_historic_walk",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 3,
+      "visits_after": 4,
+      "meals_before": 3,
+      "meals_after": 3,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 85,
+      "travel_after": 105,
+      "cold_ms_before": 447.2778999991715,
+      "cold_ms_after": 678.0932000018656
+    },
+    {
+      "id": "03_nature_transit",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 11,
+      "visits_after": 11,
+      "meals_before": 9,
+      "meals_after": 9,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 655,
+      "travel_after": 585,
+      "cold_ms_before": 11513.02519999817,
+      "cold_ms_after": 4229.77009999752
+    },
+    {
+      "id": "04_shopping_taxi",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 7,
+      "visits_after": 6,
+      "meals_before": 6,
+      "meals_after": 6,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 240,
+      "travel_after": 175,
+      "cold_ms_before": 3146.5055999979377,
+      "cold_ms_after": 775.2393000014126
+    },
+    {
+      "id": "05_unusual_multiday",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 13,
+      "visits_after": 12,
+      "meals_before": 8,
+      "meals_after": 9,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 380,
+      "travel_after": 250,
+      "cold_ms_before": 3295.0537000000477,
+      "cold_ms_after": 4109.259100001305
+    },
+    {
+      "id": "06_family",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 10,
+      "visits_after": 8,
+      "meals_before": 6,
+      "meals_after": 6,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 225,
+      "travel_after": 160,
+      "cold_ms_before": 1595.2734999991953,
+      "cold_ms_after": 4365.561200000346
+    },
+    {
+      "id": "07_senior",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 4,
+      "visits_after": 7,
+      "meals_before": 6,
+      "meals_after": 6,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 235,
+      "travel_after": 130,
+      "cold_ms_before": 2526.636099997908,
+      "cold_ms_after": 3108.1588000021875
+    },
+    {
+      "id": "08_pets_walk",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 3,
+      "visits_after": 3,
+      "meals_before": 3,
+      "meals_after": 3,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 100,
+      "travel_after": 85,
+      "cold_ms_before": 278.8324000015855,
+      "cold_ms_after": 402.55429999902844
+    },
+    {
+      "id": "09_low_budget",
+      "status_before": "partial",
+      "status_after": "partial",
+      "visits_before": 0,
+      "visits_after": 0,
+      "meals_before": 0,
+      "meals_after": 0,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 0,
+      "travel_after": 0,
+      "cold_ms_before": 647.7587999999523,
+      "cold_ms_after": 517.3967999964952
+    },
+    {
+      "id": "10_five_days",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 28,
+      "visits_after": 21,
+      "meals_before": 15,
+      "meals_after": 15,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 585,
+      "travel_after": 380,
+      "cold_ms_before": 23639.64389999956,
+      "cold_ms_after": 5267.925500001758
+    },
+    {
+      "id": "11_required_landmarks",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 10,
+      "visits_after": 9,
+      "meals_before": 6,
+      "meals_after": 6,
+      "required_before": 2,
+      "required_after": 2,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 280,
+      "travel_after": 170,
+      "cold_ms_before": 6951.905200000852,
+      "cold_ms_after": 3071.8885000012815
+    },
+    {
+      "id": "12_conflicting_required",
+      "status_before": "partial",
+      "status_after": "infeasible",
+      "visits_before": 0,
+      "visits_after": 3,
+      "meals_before": 0,
+      "meals_after": 3,
+      "required_before": 0,
+      "required_after": 1,
+      "missing_required_before": [
+        "shanghai-demo:bund",
+        "shanghai-demo:yu-garden",
+        "shanghai-demo:shanghai-museum",
+        "shanghai-demo:oriental-pearl",
+        "shanghai-demo:shanghai-tower",
+        "shanghai-demo:jingan-temple"
+      ],
+      "missing_required_after": [
+        "shanghai-demo:bund",
+        "shanghai-demo:yu-garden",
+        "shanghai-demo:shanghai-museum",
+        "shanghai-demo:oriental-pearl",
+        "shanghai-demo:jingan-temple"
+      ],
+      "travel_before": 0,
+      "travel_after": 125,
+      "cold_ms_before": 575.1563000008464,
+      "cold_ms_after": 331.99639999866486
+    },
+    {
+      "id": "13_monday_museum_closed",
+      "status_before": "partial",
+      "status_after": "infeasible",
+      "visits_before": 4,
+      "visits_after": 5,
+      "meals_before": 3,
+      "meals_after": 3,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [
+        "shanghai-demo:shanghai-museum"
+      ],
+      "missing_required_after": [
+        "shanghai-demo:shanghai-museum"
+      ],
+      "travel_before": 60,
+      "travel_after": 90,
+      "cold_ms_before": 1421.5401999987662,
+      "cold_ms_after": 1759.5830999985337
+    },
+    {
+      "id": "14_business_cafe",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 8,
+      "visits_after": 7,
+      "meals_before": 6,
+      "meals_after": 6,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 485,
+      "travel_after": 345,
+      "cold_ms_before": 8989.153099998832,
+      "cold_ms_after": 2951.9269000031054
+    },
+    {
+      "id": "15_breakfast_early",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 5,
+      "visits_after": 5,
+      "meals_before": 2,
+      "meals_after": 3,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 115,
+      "travel_after": 80,
+      "cold_ms_before": 2489.5535000003874,
+      "cold_ms_after": 5074.543699998409
+    },
+    {
+      "id": "16_child_pet",
+      "status_before": "partial",
+      "status_after": "partial",
+      "visits_before": 0,
+      "visits_after": 2,
+      "meals_before": 2,
+      "meals_after": 0,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 0,
+      "travel_after": 0,
+      "cold_ms_before": 321.8201000019908,
+      "cold_ms_after": 822.4193000011146
+    },
+    {
+      "id": "17_songjiang_heritage",
+      "status_before": "partial",
+      "status_after": "partial",
+      "visits_before": 6,
+      "visits_after": 4,
+      "meals_before": 5,
+      "meals_after": 3,
+      "required_before": 0,
+      "required_after": 1,
+      "missing_required_before": [
+        "shanghai-demo:synthetic-ext-v2-0445"
+      ],
+      "missing_required_after": [],
+      "travel_before": 495,
+      "travel_after": 180,
+      "cold_ms_before": 2048.2479000017047,
+      "cold_ms_after": 2914.5036999993026
+    },
+    {
+      "id": "18_qingpu_nature",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 9,
+      "visits_after": 10,
+      "meals_before": 8,
+      "meals_after": 9,
+      "required_before": 1,
+      "required_after": 1,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 280,
+      "travel_after": 255,
+      "cold_ms_before": 710.7890000008047,
+      "cold_ms_after": 957.4287999980152
+    },
+    {
+      "id": "19_jiading_unusual",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 4,
+      "visits_after": 6,
+      "meals_before": 3,
+      "meals_after": 6,
+      "required_before": 0,
+      "required_after": 1,
+      "missing_required_before": [
+        "shanghai-demo:synthetic-ext-v2-1820"
+      ],
+      "missing_required_after": [],
+      "travel_before": 165,
+      "travel_after": 160,
+      "cold_ms_before": 1415.9194000028074,
+      "cold_ms_after": 3380.7811999991536
+    },
+    {
+      "id": "20_centre_walk",
+      "status_before": "demo",
+      "status_after": "demo",
+      "visits_before": 3,
+      "visits_after": 2,
+      "meals_before": 3,
+      "meals_after": 3,
+      "required_before": 1,
+      "required_after": 1,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 115,
+      "travel_after": 80,
+      "cold_ms_before": 764.8660000003874,
+      "cold_ms_after": 430.33850000053644
+    },
+    {
+      "id": "21_multicity_5days",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 20,
+      "visits_after": 17,
+      "meals_before": 15,
+      "meals_after": 15,
+      "required_before": 1,
+      "required_after": 2,
+      "missing_required_before": [
+        "shanghai-demo:synthetic-ext-v2-0046"
+      ],
+      "missing_required_after": [],
+      "travel_before": 645,
+      "travel_after": 375,
+      "cold_ms_before": 11143.57310000062,
+      "cold_ms_after": 5172.040800001472
+    },
+    {
+      "id": "22_suburb_museum_taxi",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 4,
+      "visits_after": 3,
+      "meals_before": 4,
+      "meals_after": 6,
+      "required_before": 1,
+      "required_after": 1,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 350,
+      "travel_after": 100,
+      "cold_ms_before": 421.4116999991238,
+      "cold_ms_after": 566.2837999984622
+    },
+    {
+      "id": "23_senior_family",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 7,
+      "visits_after": 8,
+      "meals_before": 8,
+      "meals_after": 9,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 510,
+      "travel_after": 495,
+      "cold_ms_before": 4619.22879999876,
+      "cold_ms_after": 3806.039999999106
+    },
+    {
+      "id": "24_impossible_budget",
+      "status_before": "partial",
+      "status_after": "partial",
+      "visits_before": 0,
+      "visits_after": 0,
+      "meals_before": 0,
+      "meals_after": 0,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 0,
+      "travel_after": 0,
+      "cold_ms_before": 738.7385000027716,
+      "cold_ms_after": 309.98410000279546
+    },
+    {
+      "id": "25_cross_river_1day",
+      "status_before": "partial",
+      "status_after": "demo",
+      "visits_before": 5,
+      "visits_after": 3,
+      "meals_before": 1,
+      "meals_after": 3,
+      "required_before": 2,
+      "required_after": 2,
+      "missing_required_before": [],
+      "missing_required_after": [],
+      "travel_before": 225,
+      "travel_after": 165,
+      "cold_ms_before": 2912.4648000001907,
+      "cold_ms_after": 1585.903900001198
+    },
+    {
+      "id": "26_closed_new_museum",
+      "status_before": "partial",
+      "status_after": "infeasible",
+      "visits_before": 2,
+      "visits_after": 3,
+      "meals_before": 3,
+      "meals_after": 3,
+      "required_before": 0,
+      "required_after": 0,
+      "missing_required_before": [
+        "shanghai-demo:synthetic-ext-v2-0001"
+      ],
+      "missing_required_after": [
+        "shanghai-demo:synthetic-ext-v2-0001"
+      ],
+      "travel_before": 55,
+      "travel_after": 45,
+      "cold_ms_before": 255.78029999881983,
+      "cold_ms_after": 456.1363000012934
+    }
+  ],
+  "remaining_required_missing_reasons": [
+    {
+      "case": "12_conflicting_required",
+      "poi_id": "shanghai-demo:bund",
+      "confirmed_reasons": [
+        "sum_required_entry_cost_exceeds_total_trip_budget"
+      ],
+      "required_entry_cost_lower_bound": 540.0,
+      "budget_cny": 300
+    },
+    {
+      "case": "12_conflicting_required",
+      "poi_id": "shanghai-demo:yu-garden",
+      "confirmed_reasons": [
+        "sum_required_entry_cost_exceeds_total_trip_budget"
+      ],
+      "required_entry_cost_lower_bound": 540.0,
+      "budget_cny": 300
+    },
+    {
+      "case": "12_conflicting_required",
+      "poi_id": "shanghai-demo:shanghai-museum",
+      "confirmed_reasons": [
+        "sum_required_entry_cost_exceeds_total_trip_budget"
+      ],
+      "required_entry_cost_lower_bound": 540.0,
+      "budget_cny": 300
+    },
+    {
+      "case": "12_conflicting_required",
+      "poi_id": "shanghai-demo:oriental-pearl",
+      "confirmed_reasons": [
+        "sum_required_entry_cost_exceeds_total_trip_budget"
+      ],
+      "required_entry_cost_lower_bound": 540.0,
+      "budget_cny": 300
+    },
+    {
+      "case": "12_conflicting_required",
+      "poi_id": "shanghai-demo:jingan-temple",
+      "confirmed_reasons": [
+        "sum_required_entry_cost_exceeds_total_trip_budget"
+      ],
+      "required_entry_cost_lower_bound": 540.0,
+      "budget_cny": 300
+    },
+    {
+      "case": "13_monday_museum_closed",
+      "poi_id": "shanghai-demo:shanghai-museum",
+      "confirmed_reasons": [
+        "closed_or_offseason_on_every_requested_date"
+      ],
+      "required_entry_cost_lower_bound": 30.0,
+      "budget_cny": 1800
+    },
+    {
+      "case": "26_closed_new_museum",
+      "poi_id": "shanghai-demo:synthetic-ext-v2-0001",
+      "confirmed_reasons": [
+        "closed_or_offseason_on_every_requested_date"
+      ],
+      "required_entry_cost_lower_bound": 0.0,
+      "budget_cny": 3000
+    }
+  ],
+  "denominator_note": "19 is all requested required POIs, including known conflicts; not 19 independently feasible POIs. No global optimality claim.",
+  "baseline_hash_note": "Frozen runtime CRLF bytes hash 3c9ffb..., normalized LF c8d58a... matches initial manifest."
+}
