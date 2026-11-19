@@ -1,0 +1,28 @@
+{
+  "count": 2000,
+  "original_preserved": 500,
+  "synthetic_selected": 1500,
+  "category_counts": {
+    "museums": 90,
+    "history": 200,
+    "nature": 180,
+    "cafes": 850,
+    "entertainment": 220,
+    "shopping": 240,
+    "viewpoints": 55,
+    "unusual": 165
+  },
+  "invalid_zero_weekdays_removed_from_original": 0,
+  "unique_ids": 2000,
+  "min_nearest_poi_m": 0.0,
+  "poi_nearest_below_20_m": 64,
+  "metro_stations_from_previous_archive": 344,
+  "median_straightline_metro_m": 498.4,
+  "poi_within_1km_straightline_metro_pct": 84.2,
+  "median_nearest_cafe_for_attractions_m": 347.3,
+  "synthetic_name_ru_chinese_fallbacks": 0,
+  "street_network_verified": false,
+  "route_scenarios_executed_on_merged_data": false,
+  "synthetic_building_verified": false,
+  "route_html_unchanged_outside_data_and_static_description": true
+}

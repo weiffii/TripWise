@@ -1,0 +1,105 @@
+{
+  "audit_date": "2026-11-19",
+  "passes": true,
+  "errors": [],
+  "original_count": 2000,
+  "additional_synthetic_count": 3000,
+  "total_count": 5000,
+  "originals_verbatim_preserved": true,
+  "original_poi_sha256": "baba0f6f57c952909dcc19a61cc877582a68d3cc99023f76b66e6f78b0e07dff",
+  "unchanged_original_poi_sha256": "baba0f6f57c952909dcc19a61cc877582a68d3cc99023f76b66e6f78b0e07dff",
+  "unique_ids": 5000,
+  "categories": {
+    "museums": {
+      "original": 90,
+      "added": 80,
+      "final": 170
+    },
+    "history": {
+      "original": 200,
+      "added": 380,
+      "final": 580
+    },
+    "nature": {
+      "original": 180,
+      "added": 280,
+      "final": 460
+    },
+    "cafes": {
+      "original": 850,
+      "added": 1150,
+      "final": 2000
+    },
+    "entertainment": {
+      "original": 220,
+      "added": 340,
+      "final": 560
+    },
+    "shopping": {
+      "original": 240,
+      "added": 460,
+      "final": 700
+    },
+    "viewpoints": {
+      "original": 55,
+      "added": 85,
+      "final": 140
+    },
+    "unusual": {
+      "original": 165,
+      "added": 225,
+      "final": 390
+    }
+  },
+  "radial_km": {
+    "0_7": {
+      "original": 918,
+      "added": 1582,
+      "final": 2500
+    },
+    "7_20": {
+      "original": 966,
+      "added": 784,
+      "final": 1750
+    },
+    "20_45": {
+      "original": 116,
+      "added": 634,
+      "final": 750
+    }
+  },
+  "metro_source_station_count": 418,
+  "metro_straight_line_distance_m": {
+    "median": 439.4,
+    "p90": 1048.6,
+    "percent_under_1000": 88.9
+  },
+  "attraction_to_nearest_food_straight_line_m": {
+    "median": 232.3,
+    "p90": 1010.2
+  },
+  "nearest_poi_distance_m": {
+    "p1": 13.6,
+    "median": 136.0,
+    "n_with_nearest_under_20m": 145
+  },
+  "full_duplicate_coordinate_extra_points": 2,
+  "original_duplicate_coordinate_extra_points": 2,
+  "new_duplicate_coordinate_extra_points": 0,
+  "unique_new_names_zh": 3000,
+  "unique_new_names_ru": 3000,
+  "new_museums_closed_on_one_or_more_weekdays": 54,
+  "new_ratings_distinct": 124,
+  "new_durations_distinct": 18,
+  "new_station_kernel_count": 2202,
+  "new_district_kernel_count": 798,
+  "new_osm_building_verified": 0,
+  "new_building_verified_share_percent": 0.0,
+  "new_street_access_verified": 0,
+  "new_street_access_unverified_share_percent": 100.0,
+  "total_synthetic_with_verified_buildings_share_percent": 0.0,
+  "authoritative_admin_polygon_verified": false,
+  "water_polygon_verified": false,
+  "road_network_verified": false,
+  "note": "Metro distances and cafe distances are Euclidean locally; all new locations are synthetic, metro coordinates in archived reference not independently rechecked; bbox and approximate Huangpu line are not authoritative polygons."
+}

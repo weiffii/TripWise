@@ -1,0 +1,1501 @@
+poi_id,kind,categories,sector,lat,lon,bank,nearest_baseline_distance_m,synthetic,road_verified,building_verified,water_verified
+shanghai-demo:source-n10108760331,restaurant,cafes,Луцзяцзуй,31.229874,121.508202,east,214.0,1,0,0,0
+shanghai-demo:source-n10212700718,restaurant,cafes,Цзинъань,31.249915,121.441723,west,107.0,1,0,0,0
+shanghai-demo:source-n10213922817,restaurant,cafes,Восточный Сюйхуэй,31.176724,121.486434,west,106.3,1,0,0,0
+shanghai-demo:source-n10291043396,restaurant,cafes,Хунцяо,31.212448,121.365832,west,174.8,1,0,0,0
+shanghai-demo:source-n10291043397,restaurant,cafes,Южный Пудун,31.160169,121.562326,west,172.3,1,0,0,0
+shanghai-demo:source-n10291107216,restaurant,cafes,Чаннин,31.198507,121.399954,west,183.6,1,0,0,0
+shanghai-demo:source-n10291107218,restaurant,cafes,Чаннин,31.219419,121.436429,west,86.2,1,0,0,0
+shanghai-demo:source-n10291107221,restaurant,cafes,Хунцяо,31.221161,121.34583,west,281.5,1,0,0,0
+shanghai-demo:source-n10296639646,restaurant,cafes,Минхан,31.140129,121.413485,west,146.2,1,0,0,0
+shanghai-demo:source-n10647272818,restaurant,cafes,Минхан,31.153199,121.428192,west,116.8,1,0,0,0
+shanghai-demo:source-n10729646866,restaurant,cafes,Чаннин,31.23336,121.40113,west,309.7,1,0,0,0
+shanghai-demo:source-n10738406264,restaurant,cafes,Минхан,31.147099,121.431134,west,288.9,1,0,0,0
+shanghai-demo:source-n10738406265,restaurant,cafes,Вайтань,31.23336,121.485846,west,283.0,1,0,0,0
+shanghai-demo:source-n10739128945,restaurant,cafes,Цзинъань,31.213319,121.464079,west,343.9,1,0,0,0
+shanghai-demo:source-n10739171244,restaurant,cafes,Южный Пудун,31.116603,121.587034,west,197.6,1,0,0,0
+shanghai-demo:source-n10739171245,restaurant,cafes,Хунцяо,31.192408,121.375833,west,368.0,1,0,0,0
+shanghai-demo:source-n10739171246,restaurant,cafes,Южный Хуанпу,31.186309,121.48467,west,288.5,1,0,0,0
+shanghai-demo:source-n10739171248,restaurant,cafes,Чаннин,31.222904,121.41172,west,186.6,1,0,0,0
+shanghai-demo:source-n10739171253,restaurant,cafes,Чаннин,31.215062,121.418191,west,171.9,1,0,0,0
+shanghai-demo:source-n10740230859,restaurant,cafes,Минхан,31.141872,121.429957,west,310.6,1,0,0,0
+shanghai-demo:source-n10779667232,restaurant,cafes,Восточный Сюйхуэй,31.12096,121.493494,west,137.1,1,0,0,0
+shanghai-demo:source-n10832433306,restaurant,cafes,Минхан,31.118346,121.452901,west,90.5,1,0,0,0
+shanghai-demo:source-n10911215750,restaurant,cafes,Сюйхуэй,31.182823,121.429369,west,323.2,1,0,0,0
+shanghai-demo:source-n11076377845,restaurant,cafes,Луцзяцзуй,31.231617,121.505849,east,351.6,1,0,0,0
+shanghai-demo:source-n11095228851,restaurant,cafes,Вайтань,31.239459,121.499377,east,255.1,1,0,0,0
+shanghai-demo:source-n11101243806,restaurant,cafes,Сюйхуэй,31.175853,121.450548,west,355.1,1,0,0,0
+shanghai-demo:source-n11107303005,restaurant,cafes,Северо-запад Шанхая,31.303936,121.415838,west,173.8,1,0,0,0
+shanghai-demo:source-n11109082106,restaurant,cafes,Чаннин,31.201992,121.414073,west,234.3,1,0,0,0
+shanghai-demo:source-n11111088805,restaurant,cafes,Хунцяо,31.140129,121.346418,west,385.2,1,0,0,0
+shanghai-demo:source-n11118122606,restaurant,cafes,Минхан,31.139258,121.417603,west,191.4,1,0,0,0
+shanghai-demo:source-n11121670253,restaurant,cafes,Южный Хуанпу,31.17411,121.511732,east,229.9,1,0,0,0
+shanghai-demo:source-n11121786206,restaurant,cafes,Чаннин,31.199378,121.411132,west,235.7,1,0,0,0
+shanghai-demo:source-n11121867102,restaurant,cafes,Луцзяцзуй,31.229874,121.512908,east,259.7,1,0,0,0
+shanghai-demo:source-n11125487305,restaurant,cafes,Народная площадь,31.235102,121.46702,west,111.0,1,0,0,0
+shanghai-demo:source-n11127439606,restaurant,cafes,Северо-запад Шанхая,31.321363,121.387599,west,399.8,1,0,0,0
+shanghai-demo:source-n11127448907,restaurant,cafes,Пудун,31.209834,121.555854,east,181.1,1,0,0,0
+shanghai-demo:source-n11140918584,restaurant,cafes,Чаннин,31.217676,121.383481,west,182.8,1,0,0,0
+shanghai-demo:source-n11142785475,restaurant,cafes,Цзинъань,31.229874,121.451725,west,109.1,1,0,0,0
+shanghai-demo:source-n11142856112,restaurant,cafes,Вайтань,31.23336,121.48467,west,288.6,1,0,0,0
+shanghai-demo:source-n11143143030,restaurant,cafes,Сюйхуэй,31.186309,121.455254,west,308.7,1,0,0,0
+shanghai-demo:source-n11148314248,restaurant,cafes,Южный Хуанпу,31.195022,121.505849,east,234.4,1,0,0,0
+shanghai-demo:source-n11149457701,restaurant,cafes,Цзинъань,31.225518,121.438194,west,241.7,1,0,0,0
+shanghai-demo:source-n11158410439,restaurant,cafes,Вайтань,31.245558,121.478787,west,210.4,1,0,0,0
+shanghai-demo:source-n11158417547,restaurant,cafes,Минхан,31.134901,121.447606,west,271.0,1,0,0,0
+shanghai-demo:source-n11158417550,restaurant,cafes,Минхан,31.141872,121.413485,west,222.4,1,0,0,0
+shanghai-demo:source-n11158427622,restaurant,cafes,Цзинъань,31.215933,121.463491,west,360.7,1,0,0,0
+shanghai-demo:source-n11158427628,restaurant,cafes,Южный Хуанпу,31.206349,121.520556,east,162.1,1,0,0,0
+shanghai-demo:source-n11159116853,restaurant,cafes,Хунцяо,31.215933,121.3423,west,204.0,1,0,0,0
+shanghai-demo:source-n11159225701,restaurant,cafes,Чаннин,31.236845,121.398777,west,181.9,1,0,0,0
+shanghai-demo:source-n11159225702,restaurant,cafes,Минхан,31.13403,121.397601,west,99.3,1,0,0,0
+shanghai-demo:source-n11160097060,restaurant,cafes,Хункоу,31.277797,121.44996,west,286.0,1,0,0,0
+shanghai-demo:source-n11160459946,restaurant,cafes,Чаннин,31.234231,121.401719,west,286.9,1,0,0,0
+shanghai-demo:source-n11160943715,restaurant,cafes,Цзинъань,31.226389,121.441135,west,115.6,1,0,0,0
+shanghai-demo:source-n11162649698,restaurant,cafes,Южный Хуанпу,31.209834,121.479375,west,102.7,1,0,0,0
+shanghai-demo:source-n11175751921,restaurant,cafes,Цзинъань,31.229003,121.451136,west,184.9,1,0,0,0
+shanghai-demo:source-n11176094543,restaurant,cafes,Луцзяцзуй,31.257757,121.527027,east,398.2,1,0,0,0
+shanghai-demo:source-n11176094622,restaurant,cafes,Луцзяцзуй,31.239459,121.50173,east,94.6,1,0,0,0
+shanghai-demo:source-n11176094623,restaurant,cafes,Янпу,31.27344,121.523498,east,113.6,1,0,0,0
+shanghai-demo:source-n11176094624,restaurant,cafes,Народная площадь,31.223775,121.467609,west,105.6,1,0,0,0
+shanghai-demo:source-n11176094626,restaurant,cafes,Хунцяо,31.229003,121.346418,west,360.8,1,0,0,0
+shanghai-demo:source-n11176094627,restaurant,cafes,Народная площадь,31.213319,121.465256,west,361.1,1,0,0,0
+shanghai-demo:source-n11176094628,restaurant,cafes,Пудун,31.198507,121.584681,east,376.5,1,0,0,0
+shanghai-demo:source-n11176094630,restaurant,cafes,Сюйхуэй,31.17411,121.449371,west,322.2,1,0,0,0
+shanghai-demo:source-n11176094631,restaurant,cafes,Чаннин,31.209834,121.421721,west,122.9,1,0,0,0
+shanghai-demo:source-n11178748134,restaurant,cafes,Южный Пудун,31.117475,121.562914,west,104.3,1,0,0,0
+shanghai-demo:source-n11201093153,restaurant,cafes,Минхан,31.13403,121.396424,west,143.7,1,0,0,0
+shanghai-demo:source-n11204236538,restaurant,cafes,Восточный Сюйхуэй,31.127059,121.498789,west,278.4,1,0,0,0
+shanghai-demo:source-n11204366611,restaurant,cafes,Хунцяо,31.215933,121.367009,west,320.6,1,0,0,0
+shanghai-demo:source-n11204366612,restaurant,cafes,Восточный Сюйхуэй,31.121831,121.496436,west,194.5,1,0,0,0
+shanghai-demo:source-n11204367958,restaurant,cafes,Луцзяцзуй,31.230746,121.51232,east,269.7,1,0,0,0
+shanghai-demo:source-n11209263519,restaurant,cafes,Южный Пудун,31.146228,121.519968,west,289.9,1,0,0,0
+shanghai-demo:source-n11209263520,restaurant,cafes,Цзинъань,31.245558,121.441135,west,250.9,1,0,0,0
+shanghai-demo:source-n11209263521,restaurant,cafes,Цзинъань,31.247301,121.439959,west,315.7,1,0,0,0
+shanghai-demo:source-n11209263522,restaurant,cafes,Цзинъань,31.214191,121.458784,west,389.4,1,0,0,0
+shanghai-demo:source-n11209263523,restaurant,cafes,Вайтань,31.242073,121.496436,east,102.9,1,0,0,0
+shanghai-demo:source-n11209263524,restaurant,cafes,Чаннин,31.204606,121.432311,west,141.3,1,0,0,0
+shanghai-demo:source-n11209263527,restaurant,cafes,Вайтань,31.247301,121.489376,west,103.6,1,0,0,0
+shanghai-demo:source-n11209263528,restaurant,cafes,Минхан,31.13403,121.448195,west,196.7,1,0,0,0
+shanghai-demo:source-n11209279783,restaurant,cafes,Сюйхуэй,31.173239,121.454666,west,371.6,1,0,0,0
+shanghai-demo:source-n11209279787,restaurant,cafes,Вайтань,31.239459,121.486434,west,104.0,1,0,0,0
+shanghai-demo:source-n11209279789,restaurant,cafes,Хунцяо,31.225518,121.347595,west,192.4,1,0,0,0
+shanghai-demo:source-n11209279790,restaurant,cafes,Чаннин,31.204606,121.401719,west,351.2,1,0,0,0
+shanghai-demo:source-n11209279791,restaurant,cafes,Народная площадь,31.210705,121.468197,west,393.6,1,0,0,0
+shanghai-demo:source-n11209279793,restaurant,cafes,Народная площадь,31.235102,121.468197,west,147.0,1,0,0,0
+shanghai-demo:source-n11209292950,restaurant,cafes,Сюйхуэй,31.191537,121.432899,west,386.9,1,0,0,0
+shanghai-demo:source-n11209292959,restaurant,cafes,Южный Пудун,31.125317,121.578798,west,146.8,1,0,0,0
+shanghai-demo:source-n11209292976,restaurant,cafes,Чаннин,31.205478,121.405837,west,392.5,1,0,0,0
+shanghai-demo:source-n11209292985,restaurant,cafes,Луцзяцзуй,31.232488,121.506437,east,242.9,1,0,0,0
+shanghai-demo:source-n11209293035,restaurant,cafes,Средний Пудун,31.271698,121.579975,east,358.4,1,0,0,0
+shanghai-demo:source-n11209293447,restaurant,cafes,Цзинъань,31.229874,121.438782,west,135.0,1,0,0,0
+shanghai-demo:source-n11209307219,restaurant,cafes,Цзинъань,31.213319,121.462902,west,362.3,1,0,0,0
+shanghai-demo:source-n11209307223,restaurant,cafes,Цзинъань,31.229003,121.447606,west,147.2,1,0,0,0
+shanghai-demo:source-n11209307224,restaurant,cafes,Чаннин,31.195893,121.398189,west,223.7,1,0,0,0
+shanghai-demo:source-n11209329485,restaurant,cafes,Южный Пудун,31.120089,121.575268,west,271.3,1,0,0,0
+shanghai-demo:source-n11209329486,restaurant,cafes,Чаннин,31.201992,121.41172,west,345.4,1,0,0,0
+shanghai-demo:source-n11209329489,restaurant,cafes,Южный Пудун,31.156684,121.559972,west,148.5,1,0,0,0
+shanghai-demo:source-n11209329490,restaurant,cafes,Чаннин,31.203735,121.416426,west,196.1,1,0,0,0
+shanghai-demo:source-n11209329493,restaurant,cafes,Южный Хуанпу,31.184566,121.512908,east,264.7,1,0,0,0
+shanghai-demo:source-n11209329494,restaurant,cafes,Вайтань,31.235974,121.481728,west,224.0,1,0,0,0
+shanghai-demo:source-n11209329495,restaurant,cafes,Сюйхуэй,31.193279,121.431722,west,363.6,1,0,0,0
+shanghai-demo:source-n11209329496,restaurant,cafes,Сюйхуэй,31.190665,121.438194,west,259.4,1,0,0,0
+shanghai-demo:source-n11209331682,restaurant,cafes,Сюйхуэй,31.209834,121.462902,west,122.2,1,0,0,0
+shanghai-demo:source-n11209331683,restaurant,cafes,Восточный Сюйхуэй,31.182823,121.488199,west,85.7,1,0,0,0
+shanghai-demo:source-n11209331688,restaurant,cafes,Луцзяцзуй,31.230746,121.514673,east,300.9,1,0,0,0
+shanghai-demo:source-n11209331690,restaurant,cafes,Сюйхуэй,31.193279,121.436429,west,143.1,1,0,0,0
+shanghai-demo:source-n11209331691,restaurant,cafes,Чаннин,31.256885,121.413485,west,319.3,1,0,0,0
+shanghai-demo:source-n11209331692,restaurant,cafes,Хункоу,31.283025,121.448783,west,293.0,1,0,0,0
+shanghai-demo:source-n11209331693,restaurant,cafes,Народная площадь,31.209834,121.467609,west,336.9,1,0,0,0
+shanghai-demo:source-n11209331694,restaurant,cafes,Цзинъань,31.212448,121.461137,west,374.8,1,0,0,0
+shanghai-demo:source-n11209334413,restaurant,cafes,Луцзяцзуй,31.230746,121.51585,east,188.9,1,0,0,0
+shanghai-demo:source-n11209334415,restaurant,cafes,Пудун,31.211577,121.558208,east,118.8,1,0,0,0
+shanghai-demo:source-n11209334417,restaurant,cafes,Минхан,31.111376,121.381128,west,252.5,1,0,0,0
+shanghai-demo:source-n11209334418,restaurant,cafes,Народная площадь,31.236845,121.463491,west,379.9,1,0,0,0
+shanghai-demo:source-n11209334431,restaurant,cafes,Хункоу,31.282153,121.448195,west,400.5,1,0,0,0
+shanghai-demo:source-n11209334434,restaurant,cafes,Чаннин,31.199378,121.412308,west,340.3,1,0,0,0
+shanghai-demo:source-n11209357660,restaurant,cafes,Сюйхуэй,31.18718,121.455843,west,392.3,1,0,0,0
+shanghai-demo:source-n11209357661,restaurant,cafes,Южный Хуанпу,31.177595,121.508202,east,346.7,1,0,0,0
+shanghai-demo:source-n11209381663,restaurant,cafes,Хунцяо,31.218547,121.344065,west,144.3,1,0,0,0
+shanghai-demo:source-n11209381664,restaurant,cafes,Южный Пудун,31.146228,121.511732,west,232.5,1,0,0,0
+shanghai-demo:source-n11209381672,restaurant,cafes,Сюйхуэй,31.201121,121.433487,west,381.0,1,0,0,0
+shanghai-demo:source-n11209381673,restaurant,cafes,Народная площадь,31.209834,121.469962,west,254.5,1,0,0,0
+shanghai-demo:source-n11209381674,restaurant,cafes,Сюйхуэй,31.188051,121.455254,west,396.7,1,0,0,0
+shanghai-demo:source-n11209381677,restaurant,cafes,Восточный Сюйхуэй,31.122703,121.497024,west,264.9,1,0,0,0
+shanghai-demo:source-n11209389789,restaurant,cafes,Южный Хуанпу,31.17411,121.514085,east,411.1,1,0,0,0
+shanghai-demo:source-n11209389790,restaurant,cafes,Хунцяо,31.216805,121.368774,west,210.4,1,0,0,0
+shanghai-demo:source-n11209389793,restaurant,cafes,Цзинъань,31.222904,121.435252,west,107.9,1,0,0,0
+shanghai-demo:source-n11209389805,restaurant,cafes,Цзинъань,31.222904,121.436429,west,145.9,1,0,0,0
+shanghai-demo:source-n11209389806,restaurant,cafes,Сюйхуэй,31.188923,121.428781,west,243.7,1,0,0,0
+shanghai-demo:source-n11209390786,restaurant,cafes,Южный Пудун,31.121831,121.574092,west,172.2,1,0,0,0
+shanghai-demo:source-n11209390787,restaurant,cafes,Южный Пудун,31.124445,121.579386,west,175.6,1,0,0,0
+shanghai-demo:source-n11209390788,restaurant,cafes,Южный Хуанпу,31.182823,121.512908,east,86.4,1,0,0,0
+shanghai-demo:source-n11209494677,restaurant,cafes,Вайтань,31.244687,121.488788,west,253.9,1,0,0,0
+shanghai-demo:source-n11209494678,restaurant,cafes,Хунцяо,31.170625,121.367009,west,272.3,1,0,0,0
+shanghai-demo:source-n11209494679,restaurant,cafes,Южный Хуанпу,31.175853,121.510555,east,172.7,1,0,0,0
+shanghai-demo:source-n11209494680,restaurant,cafes,Южный Хуанпу,31.17411,121.510555,east,125.4,1,0,0,0
+shanghai-demo:source-n11209494681,restaurant,cafes,Хунцяо,31.214191,121.3423,west,259.0,1,0,0,0
+shanghai-demo:source-n11209494682,restaurant,cafes,Сюйхуэй,31.186309,121.454078,west,200.4,1,0,0,0
+shanghai-demo:source-n11209494683,restaurant,cafes,Чаннин,31.219419,121.416426,west,126.0,1,0,0,0
+shanghai-demo:source-n11209494684,restaurant,cafes,Янпу,31.304808,121.509378,west,172.6,1,0,0,0
+shanghai-demo:source-n11209494685,restaurant,cafes,Вайтань,31.237716,121.486434,west,227.2,1,0,0,0
+shanghai-demo:source-n11209494686,restaurant,cafes,Чаннин,31.208092,121.418191,west,390.1,1,0,0,0
+shanghai-demo:source-n11209494687,restaurant,cafes,Цзинъань,31.22726,121.43937,west,243.3,1,0,0,0
+shanghai-demo:source-n11209494688,restaurant,cafes,Южный Хуанпу,31.183695,121.487611,west,189.1,1,0,0,0
+shanghai-demo:source-n11209494689,restaurant,cafes,Средний Пудун,31.262113,121.526439,east,304.9,1,0,0,0
+shanghai-demo:source-n11209494691,restaurant,cafes,Южный Пудун,31.135772,121.577622,west,231.4,1,0,0,0
+shanghai-demo:source-n11209494692,restaurant,cafes,Южный Пудун,31.147971,121.517615,west,155.3,1,0,0,0
+shanghai-demo:source-n11209494693,restaurant,cafes,Южный Пудун,31.136644,121.57821,west,171.4,1,0,0,0
+shanghai-demo:source-n11209494695,restaurant,cafes,Чаннин,31.201121,121.417015,west,211.4,1,0,0,0
+shanghai-demo:source-n11209494696,restaurant,cafes,Хунцяо,31.176724,121.368774,west,83.1,1,0,0,0
+shanghai-demo:source-n11209494697,restaurant,cafes,Минхан,31.108762,121.375833,west,172.9,1,0,0,0
+shanghai-demo:source-n11209494698,restaurant,cafes,Минхан,31.130544,121.445842,west,167.3,1,0,0,0
+shanghai-demo:source-n11209494699,restaurant,cafes,Хунцяо,31.19415,121.375833,west,298.8,1,0,0,0
+shanghai-demo:source-n11209494700,restaurant,cafes,Южный Пудун,31.181081,121.525851,east,416.6,1,0,0,0
+shanghai-demo:source-n11209494701,restaurant,cafes,Народная площадь,31.215062,121.479375,west,245.7,1,0,0,0
+shanghai-demo:source-n11209519510,restaurant,cafes,Минхан,31.139258,121.416426,west,166.1,1,0,0,0
+shanghai-demo:source-n11209519527,restaurant,cafes,Южный Хуанпу,31.181952,121.51585,east,155.3,1,0,0,0
+shanghai-demo:source-n11209519529,restaurant,cafes,Хунцяо,31.228132,121.34583,west,405.3,1,0,0,0
+shanghai-demo:source-n11209519531,restaurant,cafes,Чаннин,31.234231,121.395836,west,133.3,1,0,0,0
+shanghai-demo:source-n11209709824,restaurant,cafes,Хунцяо,31.218547,121.366421,west,169.2,1,0,0,0
+shanghai-demo:source-n11209709826,restaurant,cafes,Хункоу,31.283025,121.447606,west,300.8,1,0,0,0
+shanghai-demo:source-n11221719092,restaurant,cafes,Минхан,31.144485,121.405837,west,292.8,1,0,0,0
+shanghai-demo:source-n11221719093,restaurant,cafes,Минхан,31.145357,121.405249,west,384.4,1,0,0,0
+shanghai-demo:source-n11221719094,restaurant,cafes,Цзинъань,31.215062,121.457019,west,284.4,1,0,0,0
+shanghai-demo:source-n11221719098,restaurant,cafes,Чаннин,31.236845,121.40113,west,274.8,1,0,0,0
+shanghai-demo:source-n11221719100,restaurant,cafes,Хунцяо,31.170625,121.365832,west,200.1,1,0,0,0
+shanghai-demo:source-n11221740640,restaurant,cafes,Чаннин,31.206349,121.406425,west,392.1,1,0,0,0
+shanghai-demo:source-n11221740641,restaurant,cafes,Народная площадь,31.215062,121.478198,west,247.3,1,0,0,0
+shanghai-demo:source-n11221926452,restaurant,cafes,Вайтань,31.236845,121.488199,west,286.9,1,0,0,0
+shanghai-demo:source-n11224057536,restaurant,cafes,Хункоу,31.276054,121.447606,west,120.5,1,0,0,0
+shanghai-demo:source-n11224064537,restaurant,cafes,Цзинъань,31.236845,121.435252,west,321.0,1,0,0,0
+shanghai-demo:source-n11224170641,restaurant,cafes,Вайтань,31.241202,121.480551,west,173.1,1,0,0,0
+shanghai-demo:source-n11224212187,restaurant,cafes,Средний Пудун,31.262113,121.525263,east,209.0,1,0,0,0
+shanghai-demo:source-n11224212188,restaurant,cafes,Луцзяцзуй,31.23336,121.505849,east,178.5,1,0,0,0
+shanghai-demo:source-n11224212189,restaurant,cafes,Народная площадь,31.225518,121.469962,west,199.5,1,0,0,0
+shanghai-demo:source-n11224212190,restaurant,cafes,Минхан,31.109633,121.381128,west,166.8,1,0,0,0
+shanghai-demo:source-n11224458264,restaurant,cafes,Цзинъань,31.210705,121.455254,west,164.0,1,0,0,0
+shanghai-demo:source-n11230141737,restaurant,cafes,Минхан,31.119217,121.452313,west,197.3,1,0,0,0
+shanghai-demo:source-n11248521633,restaurant,cafes,Сюйхуэй,31.182823,121.41878,west,298.2,1,0,0,0
+shanghai-demo:source-n11256955746,restaurant,cafes,Народная площадь,31.234231,121.479375,west,201.0,1,0,0,0
+shanghai-demo:source-n11256955747,restaurant,cafes,Вайтань,31.244687,121.487611,west,261.1,1,0,0,0
+shanghai-demo:source-n11256955749,restaurant,cafes,Сюйхуэй,31.186309,121.430546,west,254.8,1,0,0,0
+shanghai-demo:source-n11256955750,restaurant,cafes,Восточный Сюйхуэй,31.125317,121.494082,west,167.7,1,0,0,0
+shanghai-demo:source-n11256955751,restaurant,cafes,Вайтань,31.245558,121.48114,west,101.5,1,0,0,0
+shanghai-demo:source-n11256955752,restaurant,cafes,Цзинъань,31.235974,121.460549,west,167.1,1,0,0,0
+shanghai-demo:source-n11256955755,restaurant,cafes,Средний Пудун,31.262984,121.527027,east,333.7,1,0,0,0
+shanghai-demo:source-n11256955756,restaurant,cafes,Хунцяо,31.216805,121.365244,west,305.5,1,0,0,0
+shanghai-demo:source-n11256955757,restaurant,cafes,Пудун,31.213319,121.553501,east,335.2,1,0,0,0
+shanghai-demo:source-n11256955760,restaurant,cafes,Сюйхуэй,31.209834,121.458196,west,174.0,1,0,0,0
+shanghai-demo:source-n11256955761,restaurant,cafes,Чаннин,31.215933,121.416426,west,163.0,1,0,0,0
+shanghai-demo:source-n11261847488,restaurant,cafes,Чаннин,31.199378,121.409955,west,142.9,1,0,0,0
+shanghai-demo:source-n11266492275,restaurant,cafes,Народная площадь,31.229003,121.466432,west,403.0,1,0,0,0
+shanghai-demo:source-n11266492285,restaurant,cafes,Северный Пудун,31.270826,121.58174,east,332.9,1,0,0,0
+shanghai-demo:source-n11266624144,restaurant,cafes,Южный Пудун,31.118346,121.587034,west,252.1,1,0,0,0
+shanghai-demo:source-n11268856302,restaurant,cafes,Южный Пудун,31.122703,121.579386,west,272.1,1,0,0,0
+shanghai-demo:source-n11276662108,restaurant,cafes,Минхан,31.142743,121.41172,west,299.9,1,0,0,0
+shanghai-demo:source-n11280892206,restaurant,cafes,Цзинъань,31.219419,121.456431,west,381.0,1,0,0,0
+shanghai-demo:source-n11280892207,restaurant,cafes,Южный Пудун,31.128802,121.578798,west,134.4,1,0,0,0
+shanghai-demo:source-n11280892217,restaurant,cafes,Хунцяо,31.217676,121.368185,west,106.1,1,0,0,0
+shanghai-demo:source-n11280892218,restaurant,cafes,Чаннин,31.204606,121.417015,west,255.2,1,0,0,0
+shanghai-demo:source-n11280892219,restaurant,cafes,Минхан,31.122703,121.448783,west,221.9,1,0,0,0
+shanghai-demo:source-n11280892485,restaurant,cafes,Пудун,31.211577,121.553501,east,146.7,1,0,0,0
+shanghai-demo:source-n11280892492,restaurant,cafes,Южный Хуанпу,31.180209,121.500554,east,175.1,1,0,0,0
+shanghai-demo:source-n11280892493,restaurant,cafes,Цзинъань,31.234231,121.458196,west,286.9,1,0,0,0
+shanghai-demo:source-n11280892495,restaurant,cafes,Южный Хуанпу,31.185437,121.513496,east,208.7,1,0,0,0
+shanghai-demo:source-n11280892496,restaurant,cafes,Луцзяцзуй,31.232488,121.504084,east,366.1,1,0,0,0
+shanghai-demo:source-n11280892498,restaurant,cafes,Народная площадь,31.210705,121.47761,west,91.3,1,0,0,0
+shanghai-demo:source-n11280892499,restaurant,cafes,Чаннин,31.199378,121.400542,west,229.3,1,0,0,0
+shanghai-demo:source-n11280892501,restaurant,cafes,Южный Пудун,31.117475,121.56762,west,276.9,1,0,0,0
+shanghai-demo:source-n11280971742,restaurant,cafes,Минхан,31.139258,121.419956,west,277.9,1,0,0,0
+shanghai-demo:source-n11285504017,restaurant,cafes,Хункоу,31.289124,121.487023,west,95.2,1,0,0,0
+shanghai-demo:source-n11285504018,restaurant,cafes,Южный Пудун,31.12096,121.585269,west,351.9,1,0,0,0
+shanghai-demo:source-n11285504024,restaurant,cafes,Вайтань,31.238588,121.499965,east,263.1,1,0,0,0
+shanghai-demo:source-n11285504025,restaurant,cafes,Восточный Сюйхуэй,31.181952,121.485258,west,362.1,1,0,0,0
+shanghai-demo:source-n11285504028,restaurant,cafes,Вайтань,31.235102,121.482316,west,298.6,1,0,0,0
+shanghai-demo:source-n11285504030,restaurant,cafes,Чаннин,31.235102,121.399954,west,276.8,1,0,0,0
+shanghai-demo:source-n11285504031,restaurant,cafes,Народная площадь,31.229874,121.47408,west,158.4,1,0,0,0
+shanghai-demo:source-n11285504037,restaurant,cafes,Сюйхуэй,31.189794,121.428192,west,160.0,1,0,0,0
+shanghai-demo:source-n11285504042,restaurant,cafes,Луцзяцзуй,31.230746,121.506437,east,380.4,1,0,0,0
+shanghai-demo:source-n11285504043,restaurant,cafes,Цзинъань,31.224647,121.436429,west,109.6,1,0,0,0
+shanghai-demo:source-n11285530459,restaurant,cafes,Вайтань,31.242944,121.486434,west,293.4,1,0,0,0
+shanghai-demo:source-n11285530460,restaurant,cafes,Цзинъань,31.230746,121.43937,west,180.0,1,0,0,0
+shanghai-demo:source-n11285530461,restaurant,cafes,Вайтань,31.24033,121.498789,east,293.3,1,0,0,0
+shanghai-demo:source-n11285561594,restaurant,cafes,Минхан,31.145357,121.431134,west,95.2,1,0,0,0
+shanghai-demo:source-n11285565726,restaurant,cafes,Южный Пудун,31.144485,121.515261,west,235.3,1,0,0,0
+shanghai-demo:source-n11285565728,restaurant,cafes,Хунцяо,31.216805,121.38054,west,133.1,1,0,0,0
+shanghai-demo:source-n11285565731,restaurant,cafes,Минхан,31.147971,121.430546,west,388.5,1,0,0,0
+shanghai-demo:source-n11285565736,restaurant,cafes,Сюйхуэй,31.179338,121.419956,west,98.7,1,0,0,0
+shanghai-demo:source-n11285565737,restaurant,cafes,Чаннин,31.218547,121.413485,west,326.7,1,0,0,0
+shanghai-demo:source-n11285565741,restaurant,cafes,Южный Хуанпу,31.184566,121.514085,east,309.1,1,0,0,0
+shanghai-demo:source-n11285565742,restaurant,cafes,Луцзяцзуй,31.229874,121.521144,east,85.4,1,0,0,0
+shanghai-demo:source-n11285565744,restaurant,cafes,Минхан,31.135772,121.397601,west,95.3,1,0,0,0
+shanghai-demo:source-n11285565745,restaurant,cafes,Северный Пудун,31.275183,121.595271,east,161.7,1,0,0,0
+shanghai-demo:source-n11285565746,restaurant,cafes,Сюйхуэй,31.174982,121.414661,west,300.2,1,0,0,0
+shanghai-demo:source-n11285565749,restaurant,cafes,Хунцяо,31.215933,121.343477,west,152.0,1,0,0,0
+shanghai-demo:source-n11285565750,restaurant,cafes,Южный Хуанпу,31.18718,121.487611,west,89.4,1,0,0,0
+shanghai-demo:source-n11285565751,restaurant,cafes,Пудун,31.238588,121.571739,east,142.8,1,0,0,0
+shanghai-demo:source-n11285729738,restaurant,cafes,Минхан,31.144485,121.402307,west,159.0,1,0,0,0
+shanghai-demo:source-n11285739612,restaurant,cafes,Южный Хуанпу,31.195022,121.507025,east,243.0,1,0,0,0
+shanghai-demo:source-n11293049066,restaurant,cafes,Северо-запад Шанхая,31.323976,121.391718,west,301.0,1,0,0,0
+shanghai-demo:source-n11293049068,restaurant,cafes,Минхан,31.113989,121.378187,west,349.0,1,0,0,0
+shanghai-demo:source-n11293049069,restaurant,cafes,Хунцяо,31.17411,121.368185,west,258.8,1,0,0,0
+shanghai-demo:source-n11293049181,restaurant,cafes,Чаннин,31.208963,121.425839,west,282.8,1,0,0,0
+shanghai-demo:source-n11293049183,restaurant,cafes,Чаннин,31.201121,121.409955,west,311.9,1,0,0,0
+shanghai-demo:source-n11293116120,restaurant,cafes,Сюйхуэй,31.208963,121.462314,west,160.4,1,0,0,0
+shanghai-demo:source-n11293116146,restaurant,cafes,Минхан,31.140129,121.421721,west,382.2,1,0,0,0
+shanghai-demo:source-n11293116148,restaurant,cafes,Чаннин,31.201992,121.417603,west,322.1,1,0,0,0
+shanghai-demo:source-n11293116149,restaurant,cafes,Минхан,31.145357,121.432311,west,115.6,1,0,0,0
+shanghai-demo:source-n11293116152,restaurant,cafes,Хунцяо,31.229874,121.34583,west,254.3,1,0,0,0
+shanghai-demo:source-n11303888715,restaurant,cafes,Цзинъань,31.22726,121.437017,west,355.3,1,0,0,0
+shanghai-demo:source-n11303912480,restaurant,cafes,Чаннин,31.20722,121.421133,west,297.3,1,0,0,0
+shanghai-demo:source-n11303956503,restaurant,cafes,Хункоу,31.276925,121.448195,west,179.8,1,0,0,0
+shanghai-demo:source-n11303956509,restaurant,cafes,Минхан,31.146228,121.40466,west,385.6,1,0,0,0
+shanghai-demo:source-n11303956511,restaurant,cafes,Минхан,31.135772,121.445842,west,178.5,1,0,0,0
+shanghai-demo:source-n11303956512,restaurant,cafes,Сюйхуэй,31.183695,121.420544,west,395.3,1,0,0,0
+shanghai-demo:source-n11303956513,restaurant,cafes,Пудун,31.237716,121.577033,east,216.2,1,0,0,0
+shanghai-demo:source-n11303956515,restaurant,cafes,Народная площадь,31.23336,121.48114,west,342.1,1,0,0,0
+shanghai-demo:source-n11303966320,restaurant,cafes,Цзинъань,31.213319,121.458196,west,321.5,1,0,0,0
+shanghai-demo:source-n11303966322,restaurant,cafes,Хунцяо,31.193279,121.374068,west,176.1,1,0,0,0
+shanghai-demo:source-n11303966324,restaurant,cafes,Южный Хуанпу,31.174982,121.51232,east,280.1,1,0,0,0
+shanghai-demo:source-n11303966328,restaurant,cafes,Восточный Сюйхуэй,31.181081,121.488199,west,174.6,1,0,0,0
+shanghai-demo:source-n11303966337,restaurant,cafes,Южный Пудун,31.145357,121.51585,west,205.2,1,0,0,0
+shanghai-demo:source-n11303982679,restaurant,cafes,Цзинъань,31.222033,121.462902,west,135.6,1,0,0,0
+shanghai-demo:source-n11304026628,restaurant,cafes,Восточный Сюйхуэй,31.178467,121.487611,west,280.5,1,0,0,0
+shanghai-demo:source-n11304029579,restaurant,cafes,Цзинъань,31.229003,121.454666,west,260.3,1,0,0,0
+shanghai-demo:source-n11306328371,restaurant,cafes,Сюйхуэй,31.188051,121.431722,west,392.6,1,0,0,0
+shanghai-demo:source-n11314399974,restaurant,cafes,Восточный Сюйхуэй,31.124445,121.498201,west,221.9,1,0,0,0
+shanghai-demo:source-n11330312416,restaurant,cafes,Южный Пудун,31.160169,121.563502,west,278.8,1,0,0,0
+shanghai-demo:source-n11330312494,restaurant,cafes,Восточный Сюйхуэй,31.180209,121.487611,west,286.5,1,0,0,0
+shanghai-demo:source-n11330312495,restaurant,cafes,Сюйхуэй,31.191537,121.436429,west,321.0,1,0,0,0
+shanghai-demo:source-n11330312496,restaurant,cafes,Сюйхуэй,31.183695,121.419368,west,388.2,1,0,0,0
+shanghai-demo:source-n11330883963,restaurant,cafes,Цзинъань,31.228132,121.439959,west,311.8,1,0,0,0
+shanghai-demo:source-n11330883966,restaurant,cafes,Сюйхуэй,31.178467,121.418191,west,97.9,1,0,0,0
+shanghai-demo:source-n11330884369,restaurant,cafes,Сюйхуэй,31.186309,121.425839,west,247.9,1,0,0,0
+shanghai-demo:source-n11330884618,restaurant,cafes,Чаннин,31.22029,121.412308,west,119.4,1,0,0,0
+shanghai-demo:source-n11330884620,restaurant,cafes,Южный Пудун,31.117475,121.561737,west,107.3,1,0,0,0
+shanghai-demo:source-n11330884621,restaurant,cafes,Народная площадь,31.239459,121.471139,west,307.6,1,0,0,0
+shanghai-demo:source-n11330884622,restaurant,cafes,Чаннин,31.208092,121.420544,west,269.4,1,0,0,0
+shanghai-demo:source-n11330884623,restaurant,cafes,Вайтань,31.237716,121.482905,west,225.4,1,0,0,0
+shanghai-demo:source-n11334718769,restaurant,cafes,Цзинъань,31.228132,121.445842,west,220.7,1,0,0,0
+shanghai-demo:source-n11335350796,restaurant,cafes,Хунцяо,31.217676,121.365832,west,240.4,1,0,0,0
+shanghai-demo:source-n11335350797,restaurant,cafes,Народная площадь,31.209834,121.475845,west,112.1,1,0,0,0
+shanghai-demo:source-n11338340571,restaurant,cafes,Пудун,31.238588,121.576445,east,143.5,1,0,0,0
+shanghai-demo:source-n11345796536,restaurant,cafes,Восточный Сюйхуэй,31.123574,121.497612,west,272.3,1,0,0,0
+shanghai-demo:source-n11345815587,restaurant,cafes,Народная площадь,31.222904,121.469374,west,151.7,1,0,0,0
+shanghai-demo:source-n11345815591,restaurant,cafes,Минхан,31.141872,121.401719,west,258.9,1,0,0,0
+shanghai-demo:source-n11345815595,restaurant,cafes,Минхан,31.141872,121.404072,west,413.9,1,0,0,0
+shanghai-demo:source-n11345815601,restaurant,cafes,Хункоу,31.289995,121.486434,west,207.1,1,0,0,0
+shanghai-demo:source-n11350316558,restaurant,cafes,Минхан,31.139258,121.399954,west,80.7,1,0,0,0
+shanghai-demo:source-n11374745929,restaurant,cafes,Минхан,31.119217,121.451136,west,205.4,1,0,0,0
+shanghai-demo:source-n11389444283,restaurant,cafes,Народная площадь,31.211577,121.469962,west,326.1,1,0,0,0
+shanghai-demo:source-n11389444285,restaurant,cafes,Минхан,31.112247,121.37348,west,100.6,1,0,0,0
+shanghai-demo:source-n11389444286,restaurant,cafes,Сюйхуэй,31.182823,121.423486,west,398.6,1,0,0,0
+shanghai-demo:source-n11389444305,restaurant,cafes,Чаннин,31.235102,121.397601,west,98.0,1,0,0,0
+shanghai-demo:source-n11389444307,restaurant,cafes,Пудун,31.212448,121.55056,east,406.3,1,0,0,0
+shanghai-demo:source-n11399724270,restaurant,cafes,Южный Пудун,31.121831,121.577622,west,110.0,1,0,0,0
+shanghai-demo:source-n11399724327,restaurant,cafes,Цзинъань,31.215062,121.454666,west,192.8,1,0,0,0
+shanghai-demo:source-n11399724328,restaurant,cafes,Цзинъань,31.247301,121.442312,west,368.6,1,0,0,0
+shanghai-demo:source-n11399724330,restaurant,cafes,Пудун,31.242073,121.567032,east,263.6,1,0,0,0
+shanghai-demo:source-n11399724488,restaurant,cafes,Восточный Сюйхуэй,31.12096,121.494671,west,110.2,1,0,0,0
+shanghai-demo:source-n11399746644,restaurant,cafes,Цзинъань,31.22726,121.44643,west,306.1,1,0,0,0
+shanghai-demo:source-n11399746645,restaurant,cafes,Южный Пудун,31.12096,121.57115,west,280.6,1,0,0,0
+shanghai-demo:source-n11399784241,restaurant,cafes,Чаннин,31.196764,121.394071,west,340.0,1,0,0,0
+shanghai-demo:source-n11403446670,restaurant,cafes,Народная площадь,31.229874,121.48467,west,216.4,1,0,0,0
+shanghai-demo:source-n11416870254,restaurant,cafes,Чаннин,31.199378,121.401719,west,340.6,1,0,0,0
+shanghai-demo:source-n11448974355,restaurant,cafes,Народная площадь,31.214191,121.478787,west,175.9,1,0,0,0
+shanghai-demo:source-n11448975275,restaurant,cafes,Южный Хуанпу,31.179338,121.516438,east,224.5,1,0,0,0
+shanghai-demo:source-n11449070728,restaurant,cafes,Минхан,31.140129,121.418191,west,99.4,1,0,0,0
+shanghai-demo:source-n11458986556,restaurant,cafes,Южный Хуанпу,31.178467,121.513496,east,286.3,1,0,0,0
+shanghai-demo:source-n11459464577,restaurant,cafes,Луцзяцзуй,31.232488,121.509967,east,130.2,1,0,0,0
+shanghai-demo:source-n11459509015,restaurant,cafes,Янпу,31.303936,121.509967,west,109.3,1,0,0,0
+shanghai-demo:source-n11459509097,restaurant,cafes,Северо-запад Шанхая,31.303936,121.412308,west,154.5,1,0,0,0
+shanghai-demo:source-n11459509098,restaurant,cafes,Южный Пудун,31.127059,121.499965,west,179.3,1,0,0,0
+shanghai-demo:source-n11459509099,restaurant,cafes,Пудун,31.237716,121.573503,east,88.8,1,0,0,0
+shanghai-demo:source-n11459550007,restaurant,cafes,Чаннин,31.201121,121.411132,west,363.9,1,0,0,0
+shanghai-demo:source-n11461464700,restaurant,cafes,Северный Пудун,31.274312,121.57821,east,276.6,1,0,0,0
+shanghai-demo:source-n11461464702,restaurant,cafes,Южный Хуанпу,31.201121,121.517026,east,174.3,1,0,0,0
+shanghai-demo:source-n11461464703,restaurant,cafes,Северный Пудун,31.272569,121.584093,east,125.8,1,0,0,0
+shanghai-demo:source-n11461534591,restaurant,cafes,Сюйхуэй,31.183695,121.424074,west,311.3,1,0,0,0
+shanghai-demo:source-n11461534592,restaurant,cafes,Луцзяцзуй,31.231617,121.508202,east,324.0,1,0,0,0
+shanghai-demo:source-n11461534593,restaurant,cafes,Минхан,31.15407,121.428781,west,82.8,1,0,0,0
+shanghai-demo:source-n11461534594,restaurant,cafes,Северный Пудун,31.27344,121.587034,east,231.6,1,0,0,0
+shanghai-demo:source-n11461534597,restaurant,cafes,Цзинъань,31.212448,121.462314,west,299.8,1,0,0,0
+shanghai-demo:source-n11461534611,restaurant,cafes,Сюйхуэй,31.174982,121.413485,west,245.0,1,0,0,0
+shanghai-demo:source-n11461755710,restaurant,cafes,Вайтань,31.246429,121.484081,west,162.7,1,0,0,0
+shanghai-demo:source-n11461755799,restaurant,cafes,Сюйхуэй,31.173239,121.451136,west,266.7,1,0,0,0
+shanghai-demo:source-n11461755800,restaurant,cafes,Южный Хуанпу,31.175853,121.515261,east,187.1,1,0,0,0
+shanghai-demo:source-n11462688060,restaurant,cafes,Южный Хуанпу,31.181081,121.510555,east,155.4,1,0,0,0
+shanghai-demo:source-n11462737524,restaurant,cafes,Южный Хуанпу,31.180209,121.513496,east,235.0,1,0,0,0
+shanghai-demo:source-n11465727941,restaurant,cafes,Цзинъань,31.225518,121.454666,west,339.0,1,0,0,0
+shanghai-demo:source-n11465730628,restaurant,cafes,Чаннин,31.206349,121.428781,west,353.6,1,0,0,0
+shanghai-demo:source-n11465730629,restaurant,cafes,Северный Пудун,31.275183,121.578798,east,244.9,1,0,0,0
+shanghai-demo:source-n11469416169,restaurant,cafes,Цзинъань,31.230746,121.460549,west,295.8,1,0,0,0
+shanghai-demo:source-n11473492770,restaurant,cafes,Цзинъань,31.213319,121.455843,west,97.6,1,0,0,0
+shanghai-demo:source-n11494685129,restaurant,cafes,Хунцяо,31.174982,121.366421,west,218.5,1,0,0,0
+shanghai-demo:source-n11508931823,restaurant,cafes,Минхан,31.145357,121.402895,west,248.2,1,0,0,0
+shanghai-demo:source-n11510016083,restaurant,cafes,Хунцяо,31.179338,121.370539,west,148.5,1,0,0,0
+shanghai-demo:source-n11510016084,restaurant,cafes,Янпу,31.307421,121.507613,west,88.9,1,0,0,0
+shanghai-demo:source-n11510016089,restaurant,cafes,Цзинъань,31.249043,121.439959,west,124.1,1,0,0,0
+shanghai-demo:source-n11552206969,restaurant,cafes,Сюйхуэй,31.185437,121.429957,west,240.7,1,0,0,0
+shanghai-demo:source-n11555528369,restaurant,cafes,Сюйхуэй,31.181952,121.420544,west,358.1,1,0,0,0
+shanghai-demo:source-n11633788362,restaurant,cafes,Хунцяо,31.171496,121.368774,west,344.5,1,0,0,0
+shanghai-demo:source-n11633816770,restaurant,cafes,Восточный Сюйхуэй,31.124445,121.497024,west,331.2,1,0,0,0
+shanghai-demo:source-n11633816771,restaurant,cafes,Вайтань,31.24033,121.496436,east,160.7,1,0,0,0
+shanghai-demo:source-n11633816773,restaurant,cafes,Северный Пудун,31.274312,121.595859,east,113.5,1,0,0,0
+shanghai-demo:source-n11633816774,restaurant,cafes,Северный Пудун,31.270826,121.584093,east,173.1,1,0,0,0
+shanghai-demo:source-n1166150609,restaurant,cafes,Средний Пудун,31.261242,121.528204,east,376.0,1,0,0,0
+shanghai-demo:source-n1168461427,restaurant,cafes,Цзинъань,31.269955,121.425839,west,283.5,1,0,0,0
+shanghai-demo:source-n11715892771,restaurant,cafes,Сюйхуэй,31.184566,121.427016,west,413.5,1,0,0,0
+shanghai-demo:source-n11715892790,restaurant,cafes,Сюйхуэй,31.179338,121.421133,west,207.2,1,0,0,0
+shanghai-demo:source-n1172174591,restaurant,cafes,Южный Пудун,31.178467,121.532322,east,271.9,1,0,0,0
+shanghai-demo:source-n11722335274,restaurant,cafes,Сюйхуэй,31.198507,121.432899,west,139.8,1,0,0,0
+shanghai-demo:source-n11722335275,restaurant,cafes,Янпу,31.30655,121.504672,west,86.9,1,0,0,0
+shanghai-demo:source-n11738346768,restaurant,cafes,Минхан,31.136644,121.397012,west,197.9,1,0,0,0
+shanghai-demo:source-n11743040179,restaurant,cafes,Сюйхуэй,31.182823,121.417603,west,194.3,1,0,0,0
+shanghai-demo:source-n1174646043,restaurant,cafes,Южный Хуанпу,31.181081,121.514085,east,197.6,1,0,0,0
+shanghai-demo:source-n11750749433,restaurant,cafes,Минхан,31.141872,121.402895,west,333.8,1,0,0,0
+shanghai-demo:source-n11750749435,restaurant,cafes,Северо-запад Шанхая,31.303936,121.413485,west,262.4,1,0,0,0
+shanghai-demo:source-n11750749436,restaurant,cafes,Луцзяцзуй,31.23336,121.507025,east,139.5,1,0,0,0
+shanghai-demo:source-n11750749442,restaurant,cafes,Чаннин,31.203735,121.41172,west,258.5,1,0,0,0
+shanghai-demo:source-n11750749443,restaurant,cafes,Южный Пудун,31.12096,121.572327,west,243.5,1,0,0,0
+shanghai-demo:source-n11750749444,restaurant,cafes,Южный Пудун,31.12096,121.57468,west,231.0,1,0,0,0
+shanghai-demo:source-n11750749445,restaurant,cafes,Чаннин,31.222033,121.412308,west,106.6,1,0,0,0
+shanghai-demo:source-n11750749446,restaurant,cafes,Сюйхуэй,31.178467,121.417015,west,197.7,1,0,0,0
+shanghai-demo:source-n11750749453,restaurant,cafes,Цзинъань,31.229874,121.454078,west,149.1,1,0,0,0
+shanghai-demo:source-n11757180270,restaurant,cafes,Вайтань,31.229874,121.485846,west,139.9,1,0,0,0
+shanghai-demo:source-n11757187569,restaurant,cafes,Сюйхуэй,31.196764,121.435252,west,201.0,1,0,0,0
+shanghai-demo:source-n11757187969,restaurant,cafes,Южный Хуанпу,31.183695,121.514673,east,277.4,1,0,0,0
+shanghai-demo:source-n11757188269,restaurant,cafes,Южный Пудун,31.147099,121.51585,west,259.2,1,0,0,0
+shanghai-demo:source-n11773090869,restaurant,cafes,Народная площадь,31.229874,121.478787,west,243.8,1,0,0,0
+shanghai-demo:source-n11776216369,restaurant,cafes,Хунцяо,31.216805,121.366421,west,264.1,1,0,0,0
+shanghai-demo:source-n11781013751,restaurant,cafes,Южный Хуанпу,31.205478,121.519968,east,151.4,1,0,0,0
+shanghai-demo:source-n11781013757,restaurant,cafes,Цзинъань,31.215933,121.455254,west,292.2,1,0,0,0
+shanghai-demo:source-n11786752290,restaurant,cafes,Народная площадь,31.236845,121.47408,west,173.5,1,0,0,0
+shanghai-demo:source-n11786752320,restaurant,cafes,Вайтань,31.241202,121.481728,west,173.1,1,0,0,0
+shanghai-demo:source-n11786752321,restaurant,cafes,Южный Хуанпу,31.188051,121.490553,west,260.3,1,0,0,0
+shanghai-demo:source-n11786752327,restaurant,cafes,Минхан,31.108762,121.374657,west,98.1,1,0,0,0
+shanghai-demo:source-n11786752328,restaurant,cafes,Сюйхуэй,31.198507,121.435252,west,257.3,1,0,0,0
+shanghai-demo:source-n11786752390,restaurant,cafes,Хунцяо,31.195022,121.377598,west,145.5,1,0,0,0
+shanghai-demo:source-n11789246469,restaurant,cafes,Южный Пудун,31.12096,121.57821,west,211.9,1,0,0,0
+shanghai-demo:source-n11789254669,restaurant,cafes,Восточный Сюйхуэй,31.179338,121.487023,west,386.7,1,0,0,0
+shanghai-demo:source-n11794936369,restaurant,cafes,Цзинъань,31.228132,121.442312,west,338.3,1,0,0,0
+shanghai-demo:source-n11799135769,restaurant,cafes,Сюйхуэй,31.195893,121.432311,west,164.3,1,0,0,0
+shanghai-demo:source-n11799135869,restaurant,cafes,Чаннин,31.208092,121.417015,west,395.8,1,0,0,0
+shanghai-demo:source-n11799151669,restaurant,cafes,Цзинъань,31.222904,121.459961,west,342.4,1,0,0,0
+shanghai-demo:source-n11799151769,restaurant,cafes,Минхан,31.110504,121.375833,west,175.7,1,0,0,0
+shanghai-demo:source-n11803604498,restaurant,cafes,Южный Пудун,31.159298,121.561737,west,106.6,1,0,0,0
+shanghai-demo:source-n11806078328,restaurant,cafes,Южный Пудун,31.122703,121.57821,west,163.3,1,0,0,0
+shanghai-demo:source-n11806484939,restaurant,cafes,Сюйхуэй,31.181081,121.419956,west,246.8,1,0,0,0
+shanghai-demo:source-n11806484940,restaurant,cafes,Народная площадь,31.231617,121.47408,west,315.0,1,0,0,0
+shanghai-demo:source-n11808662220,restaurant,cafes,Южный Хуанпу,31.195022,121.508202,east,232.1,1,0,0,0
+shanghai-demo:source-n11808662221,restaurant,cafes,Янпу,31.304808,121.504672,west,107.8,1,0,0,0
+shanghai-demo:source-n11808662222,restaurant,cafes,Хунцяо,31.172368,121.363479,west,111.1,1,0,0,0
+shanghai-demo:source-n11808662223,restaurant,cafes,Янпу,31.304808,121.505849,west,149.6,1,0,0,0
+shanghai-demo:source-n11813309371,restaurant,cafes,Народная площадь,31.235102,121.472904,west,118.2,1,0,0,0
+shanghai-demo:source-n11816090170,restaurant,cafes,Луцзяцзуй,31.232488,121.50879,east,232.2,1,0,0,0
+shanghai-demo:source-n11817844040,restaurant,cafes,Чаннин,31.215062,121.415838,west,263.9,1,0,0,0
+shanghai-demo:source-n11817844041,restaurant,cafes,Чаннин,31.195893,121.399366,west,161.4,1,0,0,0
+shanghai-demo:source-n11817878155,restaurant,cafes,Хунцяо,31.156684,121.347007,west,81.3,1,0,0,0
+shanghai-demo:source-n11817931578,restaurant,cafes,Минхан,31.113989,121.37348,west,103.5,1,0,0,0
+shanghai-demo:source-n11817931584,restaurant,cafes,Чаннин,31.236845,121.399954,west,264.1,1,0,0,0
+shanghai-demo:source-n11817931585,restaurant,cafes,Средний Пудун,31.269955,121.579975,east,362.3,1,0,0,0
+shanghai-demo:source-n11841684245,restaurant,cafes,Луцзяцзуй,31.234231,121.504084,east,282.6,1,0,0,0
+shanghai-demo:source-n11870626569,restaurant,cafes,Южный Пудун,31.118346,121.569385,west,314.7,1,0,0,0
+shanghai-demo:source-n11871309669,restaurant,cafes,Восточный Сюйхуэй,31.183695,121.486434,west,279.5,1,0,0,0
+shanghai-demo:source-n11871853569,restaurant,cafes,Сюйхуэй,31.192408,121.431134,west,259.8,1,0,0,0
+shanghai-demo:source-n11871853769,restaurant,cafes,Минхан,31.112247,121.378187,west,160.1,1,0,0,0
+shanghai-demo:source-n11881245047,restaurant,cafes,Хунцяо,31.218547,121.341712,west,184.2,1,0,0,0
+shanghai-demo:source-n11882965353,restaurant,cafes,Южный Хуанпу,31.19415,121.50526,east,122.5,1,0,0,0
+shanghai-demo:source-n11882965354,restaurant,cafes,Чаннин,31.211577,121.419368,west,148.0,1,0,0,0
+shanghai-demo:source-n11882965356,restaurant,cafes,Пудун,31.208963,121.557619,east,106.6,1,0,0,0
+shanghai-demo:source-n11882965357,restaurant,cafes,Чаннин,31.206349,121.405249,west,291.3,1,0,0,0
+shanghai-demo:source-n11882965358,restaurant,cafes,Цзинъань,31.229874,121.442312,west,408.4,1,0,0,0
+shanghai-demo:source-n11882965360,restaurant,cafes,Восточный Сюйхуэй,31.182823,121.487023,west,192.8,1,0,0,0
+shanghai-demo:source-n11885383030,restaurant,cafes,Южный Пудун,31.124445,121.580563,west,161.0,1,0,0,0
+shanghai-demo:source-n11904766830,restaurant,cafes,Чаннин,31.214191,121.41878,west,278.7,1,0,0,0
+shanghai-demo:source-n11904766831,restaurant,cafes,Минхан,31.120089,121.450548,west,122.3,1,0,0,0
+shanghai-demo:source-n11904766837,restaurant,cafes,Южный Пудун,31.122703,121.575857,west,84.8,1,0,0,0
+shanghai-demo:source-n11904766838,restaurant,cafes,Янпу,31.305679,121.506437,west,135.4,1,0,0,0
+shanghai-demo:source-n11911592673,restaurant,cafes,Луцзяцзуй,31.232488,121.51232,east,135.2,1,0,0,0
+shanghai-demo:source-n11911592682,restaurant,cafes,Луцзяцзуй,31.231617,121.512908,east,239.8,1,0,0,0
+shanghai-demo:source-n11911592683,restaurant,cafes,Минхан,31.133158,121.394659,west,176.7,1,0,0,0
+shanghai-demo:source-n11913688317,restaurant,cafes,Минхан,31.108762,121.378187,west,243.2,1,0,0,0
+shanghai-demo:source-n11913688319,restaurant,cafes,Хунцяо,31.215062,121.367597,west,401.1,1,0,0,0
+shanghai-demo:source-n11913688320,restaurant,cafes,Цзинъань,31.22029,121.458196,west,240.5,1,0,0,0
+shanghai-demo:source-n11913688321,restaurant,cafes,Южный Хуанпу,31.198507,121.508202,east,103.9,1,0,0,0
+shanghai-demo:source-n11913688322,restaurant,cafes,Цзинъань,31.224647,121.438782,west,204.0,1,0,0,0
+shanghai-demo:source-n11913688324,restaurant,cafes,Цзинъань,31.228132,121.455254,west,343.7,1,0,0,0
+shanghai-demo:source-n11914745241,restaurant,cafes,Южный Пудун,31.181081,121.527027,east,312.5,1,0,0,0
+shanghai-demo:source-n11915960069,restaurant,cafes,Хунцяо,31.195022,121.376422,west,251.5,1,0,0,0
+shanghai-demo:source-n11921138485,restaurant,cafes,Чаннин,31.208092,121.425251,west,266.6,1,0,0,0
+shanghai-demo:source-n11930131799,restaurant,cafes,Хункоу,31.277797,121.451136,west,343.5,1,0,0,0
+shanghai-demo:source-n11930131800,restaurant,cafes,Южный Пудун,31.144485,121.511732,west,294.4,1,0,0,0
+shanghai-demo:source-n11933335869,restaurant,cafes,Хунцяо,31.178467,121.36995,west,82.3,1,0,0,0
+shanghai-demo:source-n11941422538,restaurant,cafes,Минхан,31.113118,121.376422,west,272.9,1,0,0,0
+shanghai-demo:source-n11941422542,restaurant,cafes,Цзинъань,31.249043,121.443488,west,151.2,1,0,0,0
+shanghai-demo:source-n11941422545,restaurant,cafes,Хунцяо,31.219419,121.368185,west,87.9,1,0,0,0
+shanghai-demo:source-n11941422652,restaurant,cafes,Цзинъань,31.228132,121.444665,west,278.3,1,0,0,0
+shanghai-demo:source-n11959581066,restaurant,cafes,Чаннин,31.199378,121.413485,west,266.5,1,0,0,0
+shanghai-demo:source-n11959624265,restaurant,cafes,Северный Пудун,31.275183,121.591741,east,410.3,1,0,0,0
+shanghai-demo:source-n11959634970,restaurant,cafes,Минхан,31.112247,121.379363,west,224.0,1,0,0,0
+shanghai-demo:source-n11959656109,restaurant,cafes,Южный Пудун,31.118346,121.561149,west,218.8,1,0,0,0
+shanghai-demo:source-n11959656110,restaurant,cafes,Чаннин,31.197636,121.397012,west,196.1,1,0,0,0
+shanghai-demo:source-n11959676531,restaurant,cafes,Южный Пудун,31.120089,121.570562,west,245.8,1,0,0,0
+shanghai-demo:source-n11982611239,restaurant,cafes,Луцзяцзуй,31.232488,121.50526,east,289.8,1,0,0,0
+shanghai-demo:source-n11982699786,restaurant,cafes,Народная площадь,31.232488,121.472315,west,168.2,1,0,0,0
+shanghai-demo:source-n11989708306,restaurant,cafes,Сюйхуэй,31.192408,121.434664,west,329.9,1,0,0,0
+shanghai-demo:source-n11989708359,restaurant,cafes,Луцзяцзуй,31.256885,121.528792,east,271.4,1,0,0,0
+shanghai-demo:source-n11989708368,restaurant,cafes,Сюйхуэй,31.184566,121.428192,west,387.8,1,0,0,0
+shanghai-demo:source-n11989746497,restaurant,cafes,Сюйхуэй,31.172368,121.428192,west,166.8,1,0,0,0
+shanghai-demo:source-n11991340957,restaurant,cafes,Минхан,31.145357,121.404072,west,348.6,1,0,0,0
+shanghai-demo:source-n11991340962,restaurant,cafes,Минхан,31.146228,121.431722,west,202.7,1,0,0,0
+shanghai-demo:source-n11991340963,restaurant,cafes,Сюйхуэй,31.188051,121.454078,west,319.6,1,0,0,0
+shanghai-demo:source-n11991360289,restaurant,cafes,Южный Хуанпу,31.19415,121.506437,east,199.5,1,0,0,0
+shanghai-demo:source-n11991360290,restaurant,cafes,Сюйхуэй,31.180209,121.419368,west,136.9,1,0,0,0
+shanghai-demo:source-n11991360292,restaurant,cafes,Хунцяо,31.218547,121.374657,west,220.1,1,0,0,0
+shanghai-demo:source-n11993093203,restaurant,cafes,Чаннин,31.201121,121.415838,west,204.1,1,0,0,0
+shanghai-demo:source-n11993093206,restaurant,cafes,Сюйхуэй,31.181081,121.429369,west,131.1,1,0,0,0
+shanghai-demo:source-n11993093207,restaurant,cafes,Пудун,31.24033,121.570562,east,366.5,1,0,0,0
+shanghai-demo:source-n11993093214,restaurant,cafes,Народная площадь,31.232488,121.475845,west,352.7,1,0,0,0
+shanghai-demo:source-n11993093215,restaurant,cafes,Средний Пудун,31.269084,121.579386,east,274.9,1,0,0,0
+shanghai-demo:source-n11993093217,restaurant,cafes,Южный Пудун,31.123574,121.581151,west,269.9,1,0,0,0
+shanghai-demo:source-n11993093219,restaurant,cafes,Чаннин,31.237716,121.399366,west,186.5,1,0,0,0
+shanghai-demo:source-n11993093221,restaurant,cafes,Сюйхуэй,31.188051,121.430546,west,376.3,1,0,0,0
+shanghai-demo:source-n11993093222,restaurant,cafes,Южный Пудун,31.121831,121.584681,west,310.6,1,0,0,0
+shanghai-demo:source-n11993095100,restaurant,cafes,Янпу,31.305679,121.507613,west,121.0,1,0,0,0
+shanghai-demo:source-n11993463903,restaurant,cafes,Южный Хуанпу,31.181081,121.509378,east,252.5,1,0,0,0
+shanghai-demo:source-n11993463914,restaurant,cafes,Цзинъань,31.231617,121.438782,west,90.4,1,0,0,0
+shanghai-demo:source-n11993463929,restaurant,cafes,Народная площадь,31.235102,121.47055,west,161.0,1,0,0,0
+shanghai-demo:source-n11993463930,restaurant,cafes,Янпу,31.30655,121.505849,west,129.6,1,0,0,0
+shanghai-demo:source-n11993463933,restaurant,cafes,Пудун,31.213319,121.555854,east,360.9,1,0,0,0
+shanghai-demo:source-n11993463938,restaurant,cafes,Южный Пудун,31.146228,121.514085,west,196.3,1,0,0,0
+shanghai-demo:source-n11993463939,restaurant,cafes,Народная площадь,31.217676,121.476433,west,359.8,1,0,0,0
+shanghai-demo:source-n11993464277,restaurant,cafes,Чаннин,31.23336,121.402307,west,199.3,1,0,0,0
+shanghai-demo:source-n12011804670,restaurant,cafes,Южный Хуанпу,31.181081,121.508202,east,358.4,1,0,0,0
+shanghai-demo:source-n12012469198,restaurant,cafes,Народная площадь,31.23336,121.463491,west,162.5,1,0,0,0
+shanghai-demo:source-n12013144977,restaurant,cafes,Луцзяцзуй,31.229874,121.511732,east,162.4,1,0,0,0
+shanghai-demo:source-n12017573469,restaurant,cafes,Южный Пудун,31.157555,121.561737,west,245.8,1,0,0,0
+shanghai-demo:source-n12020467369,restaurant,cafes,Народная площадь,31.210705,121.471727,west,137.5,1,0,0,0
+shanghai-demo:source-n12020467370,restaurant,cafes,Южный Пудун,31.145357,121.511143,west,307.5,1,0,0,0
+shanghai-demo:source-n12020468270,restaurant,cafes,Южный Хуанпу,31.191537,121.508202,east,380.7,1,0,0,0
+shanghai-demo:source-n12021850370,restaurant,cafes,Вайтань,31.246429,121.486434,west,193.1,1,0,0,0
+shanghai-demo:source-n12027914398,restaurant,cafes,Вайтань,31.237716,121.488788,west,381.6,1,0,0,0
+shanghai-demo:source-n12027914399,restaurant,cafes,Пудун,31.238588,121.578798,east,363.4,1,0,0,0
+shanghai-demo:source-n12027949512,restaurant,cafes,Южный Пудун,31.124445,121.499377,west,118.0,1,0,0,0
+shanghai-demo:source-n12039836122,restaurant,cafes,Чаннин,31.196764,121.395247,west,379.9,1,0,0,0
+shanghai-demo:source-n12039836123,restaurant,cafes,Янпу,31.302194,121.509967,west,249.7,1,0,0,0
+shanghai-demo:source-n12039836124,restaurant,cafes,Цзинъань,31.212448,121.457608,west,283.3,1,0,0,0
+shanghai-demo:source-n12039836125,restaurant,cafes,Средний Пудун,31.262984,121.530557,east,91.7,1,0,0,0
+shanghai-demo:source-n12043091044,restaurant,cafes,Пудун,31.213319,121.557031,east,257.2,1,0,0,0
+shanghai-demo:source-n12045205907,restaurant,cafes,Южный Пудун,31.117475,121.587623,west,169.5,1,0,0,0
+shanghai-demo:source-n12045205908,restaurant,cafes,Цзинъань,31.215062,121.452313,west,256.3,1,0,0,0
+shanghai-demo:source-n12045205909,restaurant,cafes,Народная площадь,31.237716,121.474668,west,265.0,1,0,0,0
+shanghai-demo:source-n12045206243,restaurant,cafes,Вайтань,31.241202,121.499377,east,256.6,1,0,0,0
+shanghai-demo:source-n12045206303,restaurant,cafes,Цзинъань,31.217676,121.458784,west,290.0,1,0,0,0
+shanghai-demo:source-n12045248233,restaurant,cafes,Чаннин,31.198507,121.398777,west,88.9,1,0,0,0
+shanghai-demo:source-n12045248236,restaurant,cafes,Вайтань,31.244687,121.485258,west,97.3,1,0,0,0
+shanghai-demo:source-n12045248237,restaurant,cafes,Пудун,31.209834,121.554678,east,82.6,1,0,0,0
+shanghai-demo:source-n12045248238,restaurant,cafes,Вайтань,31.246429,121.489964,west,161.8,1,0,0,0
+shanghai-demo:source-n12045669660,restaurant,cafes,Южный Пудун,31.122703,121.58174,west,192.2,1,0,0,0
+shanghai-demo:source-n12045669663,restaurant,cafes,Южный Пудун,31.119217,121.568797,west,369.8,1,0,0,0
+shanghai-demo:source-n12047562568,restaurant,cafes,Сюйхуэй,31.176724,121.415838,west,351.3,1,0,0,0
+shanghai-demo:source-n12047614469,restaurant,cafes,Южный Пудун,31.144485,121.518791,west,100.8,1,0,0,0
+shanghai-demo:source-n12047614470,restaurant,cafes,Чаннин,31.203735,121.410543,west,369.7,1,0,0,0
+shanghai-demo:source-n12047614471,restaurant,cafes,Пудун,31.213319,121.552324,east,369.5,1,0,0,0
+shanghai-demo:source-n12047614472,restaurant,cafes,Народная площадь,31.24033,121.47761,west,373.4,1,0,0,0
+shanghai-demo:source-n12047614473,restaurant,cafes,Минхан,31.141872,121.411132,west,299.9,1,0,0,0
+shanghai-demo:source-n12047614474,restaurant,cafes,Южный Пудун,31.122703,121.582916,west,230.3,1,0,0,0
+shanghai-demo:source-n12048980397,restaurant,cafes,Южный Пудун,31.121831,121.582328,west,118.8,1,0,0,0
+shanghai-demo:source-n12060716087,restaurant,cafes,Вайтань,31.244687,121.481728,west,212.8,1,0,0,0
+shanghai-demo:source-n12060721143,restaurant,cafes,Южный Хуанпу,31.181081,121.499965,east,88.0,1,0,0,0
+shanghai-demo:source-n12060854641,restaurant,cafes,Минхан,31.147099,121.402895,west,205.0,1,0,0,0
+shanghai-demo:source-n12060854643,restaurant,cafes,Хунцяо,31.17411,121.365832,west,166.2,1,0,0,0
+shanghai-demo:source-n12060854644,restaurant,cafes,Минхан,31.165397,121.395247,west,82.6,1,0,0,0
+shanghai-demo:source-n12064876865,restaurant,cafes,Южный Пудун,31.145357,121.51232,west,291.9,1,0,0,0
+shanghai-demo:source-n12073097446,restaurant,cafes,Хункоу,31.283896,121.449371,west,190.9,1,0,0,0
+shanghai-demo:source-n12073097522,restaurant,cafes,Минхан,31.112247,121.37701,west,161.7,1,0,0,0
+shanghai-demo:source-n12073097523,restaurant,cafes,Хунцяо,31.193279,121.377598,west,287.6,1,0,0,0
+shanghai-demo:source-n12073097525,restaurant,cafes,Южный Хуанпу,31.18718,121.488788,west,126.8,1,0,0,0
+shanghai-demo:source-n12073097526,restaurant,cafes,Чаннин,31.201121,121.412308,west,385.0,1,0,0,0
+shanghai-demo:source-n10291117286,attraction,shopping,Хункоу,31.277797,121.44643,west,170.1,1,0,0,0
+shanghai-demo:source-n10680063605,attraction,shopping,Восточный Сюйхуэй,31.178467,121.485258,west,330.2,1,0,0,0
+shanghai-demo:source-n10680063606,attraction,shopping,Сюйхуэй,31.181952,121.417015,west,116.7,1,0,0,0
+shanghai-demo:source-n11142847500,attraction,shopping,Сюйхуэй,31.179338,121.414073,west,83.6,1,0,0,0
+shanghai-demo:source-n11142856616,attraction,shopping,Минхан,31.153199,121.429369,west,96.6,1,0,0,0
+shanghai-demo:source-n11171195447,attraction,shopping,Южный Хуанпу,31.19415,121.507613,east,299.4,1,0,0,0
+shanghai-demo:source-n11176094629,attraction,shopping,Чаннин,31.208963,121.436429,west,396.6,1,0,0,0
+shanghai-demo:source-n11204366613,attraction,shopping,Цзинъань,31.212448,121.456431,west,182.5,1,0,0,0
+shanghai-demo:source-n11209307216,attraction,shopping,Народная площадь,31.231617,121.46702,west,118.0,1,0,0,0
+shanghai-demo:source-n11209334432,attraction,shopping,Восточный Сюйхуэй,31.125317,121.498789,west,222.3,1,0,0,0
+shanghai-demo:source-n11209334433,attraction,shopping,Южный Пудун,31.126188,121.579386,west,86.0,1,0,0,0
+shanghai-demo:source-n11209381662,attraction,shopping,Луцзяцзуй,31.256014,121.528204,east,178.6,1,0,0,0
+shanghai-demo:source-n11209381665,attraction,shopping,Южный Хуанпу,31.181081,121.511732,east,98.2,1,0,0,0
+shanghai-demo:source-n11209381667,attraction,shopping,Чаннин,31.199378,121.414661,west,154.6,1,0,0,0
+shanghai-demo:source-n11209381668,attraction,shopping,Янпу,31.303065,121.509378,west,206.3,1,0,0,0
+shanghai-demo:source-n11209389791,attraction,shopping,Цзинъань,31.249915,121.440547,west,88.0,1,0,0,0
+shanghai-demo:source-n11209389803,attraction,shopping,Вайтань,31.241202,121.494671,east,95.0,1,0,0,0
+shanghai-demo:source-n11209519526,attraction,shopping,Хунцяо,31.19415,121.37701,west,245.8,1,0,0,0
+shanghai-demo:source-n11221719096,attraction,shopping,Сюйхуэй,31.181081,121.421133,west,306.8,1,0,0,0
+shanghai-demo:source-n11221719099,attraction,shopping,Луцзяцзуй,31.230746,121.50879,east,232.4,1,0,0,0
+shanghai-demo:source-n11266492281,attraction,shopping,Народная площадь,31.226389,121.468197,west,199.6,1,0,0,0
+shanghai-demo:source-n11266492282,attraction,shopping,Южный Хуанпу,31.20722,121.519968,east,136.1,1,0,0,0
+shanghai-demo:source-n11268856304,attraction,shopping,Восточный Сюйхуэй,31.120089,121.494082,west,162.3,1,0,0,0
+shanghai-demo:source-n11280892205,attraction,shopping,Чаннин,31.235102,121.398777,west,174.8,1,0,0,0
+shanghai-demo:source-n11280892491,attraction,shopping,Южный Хуанпу,31.185437,121.489964,west,228.4,1,0,0,0
+shanghai-demo:source-n11285530467,attraction,shopping,Сюйхуэй,31.182823,121.430546,west,252.9,1,0,0,0
+shanghai-demo:source-n11285561596,attraction,shopping,Цзинъань,31.249915,121.4429,west,175.2,1,0,0,0
+shanghai-demo:source-n11285565727,attraction,shopping,Чаннин,31.216805,121.417015,west,92.6,1,0,0,0
+shanghai-demo:source-n11285565740,attraction,shopping,Сюйхуэй,31.178467,121.422898,west,377.4,1,0,0,0
+shanghai-demo:source-n11285565743,attraction,shopping,Северный Пудун,31.27344,121.578798,east,388.6,1,0,0,0
+shanghai-demo:source-n11285565747,attraction,shopping,Южный Пудун,31.147971,121.515261,west,189.9,1,0,0,0
+shanghai-demo:source-n11285565752,attraction,shopping,Сюйхуэй,31.188051,121.432899,west,393.8,1,0,0,0
+shanghai-demo:source-n11293049065,attraction,shopping,Минхан,31.134901,121.395836,west,160.1,1,0,0,0
+shanghai-demo:source-n11293116108,attraction,shopping,Вайтань,31.243815,121.485846,west,196.4,1,0,0,0
+shanghai-demo:source-n11293116150,attraction,shopping,Чаннин,31.213319,121.420544,west,324.1,1,0,0,0
+shanghai-demo:source-n11293116151,attraction,shopping,Чаннин,31.205478,121.403484,west,257.9,1,0,0,0
+shanghai-demo:source-n11303956505,attraction,shopping,Цзинъань,31.22726,121.4429,west,291.7,1,0,0,0
+shanghai-demo:source-n11303956506,attraction,shopping,Южный Пудун,31.144485,121.510555,west,199.8,1,0,0,0
+shanghai-demo:source-n11303956507,attraction,shopping,Средний Пудун,31.272569,121.579386,east,363.0,1,0,0,0
+shanghai-demo:source-n11303956508,attraction,shopping,Цзинъань,31.223775,121.438194,west,250.8,1,0,0,0
+shanghai-demo:source-n11303966065,attraction,shopping,Хункоу,31.289995,121.485258,west,154.9,1,0,0,0
+shanghai-demo:source-n11303974776,attraction,shopping,Южный Пудун,31.146228,121.512908,west,183.7,1,0,0,0
+shanghai-demo:source-n11314399970,attraction,shopping,Чаннин,31.20025,121.398777,west,140.8,1,0,0,0
+shanghai-demo:source-n11465727947,attraction,shopping,Южный Хуанпу,31.18718,121.491141,west,327.9,1,0,0,0
+shanghai-demo:source-n11627041469,attraction,shopping,Сюйхуэй,31.173239,121.452313,west,340.5,1,0,0,0
+shanghai-demo:source-n11715892774,attraction,shopping,Сюйхуэй,31.195022,121.431722,west,275.8,1,0,0,0
+shanghai-demo:source-n11842008839,attraction,shopping,Хунцяо,31.174982,121.367597,west,164.9,1,0,0,0
+shanghai-demo:source-n11878513669,attraction,shopping,Южный Пудун,31.124445,121.575857,west,173.6,1,0,0,0
+shanghai-demo:source-n11941422526,attraction,shopping,Северо-запад Шанхая,31.323105,121.392306,west,320.3,1,0,0,0
+shanghai-demo:source-n11941438347,attraction,shopping,Южный Пудун,31.119217,121.559384,west,361.1,1,0,0,0
+shanghai-demo:source-n11959634974,attraction,shopping,Луцзяцзуй,31.229874,121.509378,east,121.8,1,0,0,0
+shanghai-demo:source-n11991318526,attraction,shopping,Южный Пудун,31.130544,121.578798,west,328.4,1,0,0,0
+shanghai-demo:source-n11991318527,attraction,shopping,Хунцяо,31.213319,121.366421,west,283.9,1,0,0,0
+shanghai-demo:source-n11993093209,attraction,shopping,Сюйхуэй,31.179338,121.41525,west,177.8,1,0,0,0
+shanghai-demo:source-n11993093210,attraction,shopping,Южный Пудун,31.120089,121.558796,west,253.2,1,0,0,0
+shanghai-demo:source-n11993093213,attraction,shopping,Южный Пудун,31.12096,121.584093,west,239.9,1,0,0,0
+shanghai-demo:source-n11993093223,attraction,shopping,Восточный Сюйхуэй,31.127059,121.496436,west,202.7,1,0,0,0
+shanghai-demo:source-n11993093224,attraction,shopping,Сюйхуэй,31.203735,121.432899,west,171.7,1,0,0,0
+shanghai-demo:source-n11993095154,attraction,shopping,Чаннин,31.22029,121.414661,west,175.4,1,0,0,0
+shanghai-demo:source-n12045205911,attraction,shopping,Чаннин,31.234231,121.397012,west,188.4,1,0,0,0
+shanghai-demo:source-n12045206114,attraction,shopping,Сюйхуэй,31.179338,121.416426,west,246.2,1,0,0,0
+shanghai-demo:source-n12045206115,attraction,shopping,Средний Пудун,31.262113,121.527616,east,356.2,1,0,0,0
+shanghai-demo:source-n12045206116,attraction,shopping,Пудун,31.212448,121.552913,east,257.9,1,0,0,0
+shanghai-demo:source-n12045206283,attraction,shopping,Вайтань,31.246429,121.482905,west,204.2,1,0,0,0
+shanghai-demo:source-n12173016960,attraction,shopping,Минхан,31.120089,121.451725,west,115.6,1,0,0,0
+shanghai-demo:source-n12190323441,attraction,shopping,Народная площадь,31.23336,121.479963,west,303.2,1,0,0,0
+shanghai-demo:source-n12190323446,attraction,shopping,Сюйхуэй,31.181081,121.422309,west,390.4,1,0,0,0
+shanghai-demo:source-n12219340816,attraction,shopping,Южный Хуанпу,31.180209,121.51585,east,269.4,1,0,0,0
+shanghai-demo:source-n12219340817,attraction,shopping,Цзинъань,31.229003,121.440547,west,328.9,1,0,0,0
+shanghai-demo:source-n12281710900,attraction,shopping,Сюйхуэй,31.178467,121.420544,west,160.7,1,0,0,0
+shanghai-demo:source-n12281710931,attraction,shopping,Хунцяо,31.218547,121.375833,west,312.3,1,0,0,0
+shanghai-demo:source-n12281710957,attraction,shopping,Чаннин,31.197636,121.405249,west,359.3,1,0,0,0
+shanghai-demo:source-n12281710960,attraction,shopping,Минхан,31.152327,121.428781,west,207.1,1,0,0,0
+shanghai-demo:source-n12281710961,attraction,shopping,Цзинъань,31.268212,121.425839,west,102.4,1,0,0,0
+shanghai-demo:source-n12281710962,attraction,shopping,Хунцяо,31.230746,121.345242,west,151.9,1,0,0,0
+shanghai-demo:source-n12281710974,attraction,shopping,Хункоу,31.279539,121.44643,west,364.0,1,0,0,0
+shanghai-demo:source-n12281767224,attraction,shopping,Народная площадь,31.210705,121.469374,west,328.3,1,0,0,0
+shanghai-demo:source-n12281767225,attraction,shopping,Хунцяо,31.219419,121.374068,west,118.5,1,0,0,0
+shanghai-demo:source-n12281767226,attraction,shopping,Пудун,31.212448,121.558796,east,220.5,1,0,0,0
+shanghai-demo:source-n12281767227,attraction,shopping,Чаннин,31.234231,121.398189,west,209.5,1,0,0,0
+shanghai-demo:source-n12281767228,attraction,shopping,Сюйхуэй,31.192408,121.43584,west,254.7,1,0,0,0
+shanghai-demo:source-n12281767229,attraction,shopping,Пудун,31.239459,121.57115,east,254.6,1,0,0,0
+shanghai-demo:source-n12281767230,attraction,shopping,Народная площадь,31.230746,121.472315,west,137.1,1,0,0,0
+shanghai-demo:source-n12291345353,attraction,shopping,Хунцяо,31.219419,121.343477,west,239.8,1,0,0,0
+shanghai-demo:source-n12298888541,attraction,shopping,Южный Хуанпу,31.178467,121.51232,east,389.9,1,0,0,0
+shanghai-demo:source-n12298888542,attraction,shopping,Вайтань,31.236845,121.485846,west,115.9,1,0,0,0
+shanghai-demo:source-n12301049457,attraction,shopping,Луцзяцзуй,31.228132,121.508202,east,115.3,1,0,0,0
+shanghai-demo:source-n12301049458,attraction,shopping,Народная площадь,31.215933,121.465844,west,373.9,1,0,0,0
+shanghai-demo:source-n12301059108,attraction,shopping,Восточный Сюйхуэй,31.125317,121.496436,west,271.8,1,0,0,0
+shanghai-demo:source-n12364491602,attraction,shopping,Южный Пудун,31.121831,121.583505,west,206.7,1,0,0,0
+shanghai-demo:source-n12373168701,attraction,shopping,Чаннин,31.212448,121.419956,west,225.7,1,0,0,0
+shanghai-demo:source-n12387701301,attraction,shopping,Хунцяо,31.213319,121.342888,west,148.2,1,0,0,0
+shanghai-demo:source-n12431373630,attraction,shopping,Цзинъань,31.234231,121.460549,west,166.7,1,0,0,0
+shanghai-demo:source-n12453137054,attraction,shopping,Южный Пудун,31.122703,121.580563,west,214.3,1,0,0,0
+shanghai-demo:source-n12498223982,attraction,shopping,Минхан,31.139258,121.423486,west,309.5,1,0,0,0
+shanghai-demo:source-n12498223984,attraction,shopping,Чаннин,31.209834,121.401719,west,122.2,1,0,0,0
+shanghai-demo:source-n12498223996,attraction,shopping,Южный Хуанпу,31.210705,121.48114,west,141.2,1,0,0,0
+shanghai-demo:source-n12498223998,attraction,shopping,Хунцяо,31.173239,121.366421,west,115.1,1,0,0,0
+shanghai-demo:source-n12498223999,attraction,shopping,Чаннин,31.20722,121.40466,west,201.8,1,0,0,0
+shanghai-demo:source-n12498228406,attraction,shopping,Чаннин,31.255143,121.411132,west,209.3,1,0,0,0
+shanghai-demo:source-n12498228411,attraction,shopping,Пудун,31.236845,121.575268,east,191.4,1,0,0,0
+shanghai-demo:source-n12498228418,attraction,shopping,Минхан,31.145357,121.401719,west,163.6,1,0,0,0
+shanghai-demo:source-n12498228419,attraction,shopping,Южный Пудун,31.118346,121.570562,west,204.8,1,0,0,0
+shanghai-demo:source-n12498228430,attraction,shopping,Цзинъань,31.235102,121.436429,west,370.4,1,0,0,0
+shanghai-demo:source-n12565509358,attraction,shopping,Южный Пудун,31.12096,121.573503,west,254.9,1,0,0,0
+shanghai-demo:source-n12565509359,attraction,shopping,Цзинъань,31.248172,121.441723,west,282.1,1,0,0,0
+shanghai-demo:source-n12568119116,attraction,shopping,Южный Пудун,31.145357,121.514673,west,307.8,1,0,0,0
+shanghai-demo:source-n12650144313,attraction,shopping,Цзинъань,31.23336,121.435252,west,297.6,1,0,0,0
+shanghai-demo:source-n12650144315,attraction,shopping,Хунцяо,31.215062,121.342888,west,260.1,1,0,0,0
+shanghai-demo:source-n12675523658,attraction,shopping,Северный Пудун,31.27344,121.588211,east,322.8,1,0,0,0
+shanghai-demo:source-n12830380537,attraction,shopping,Чаннин,31.209834,121.419368,west,244.4,1,0,0,0
+shanghai-demo:source-n12855536726,attraction,shopping,Народная площадь,31.210705,121.46702,west,283.0,1,0,0,0
+shanghai-demo:source-n12861747551,attraction,shopping,Вайтань,31.244687,121.489964,west,293.0,1,0,0,0
+shanghai-demo:source-n12947774537,attraction,shopping,Хункоу,31.284767,121.448783,west,108.6,1,0,0,0
+shanghai-demo:source-n13033943872,attraction,shopping,Южный Хуанпу,31.178467,121.514673,east,192.2,1,0,0,0
+shanghai-demo:source-n13033943873,attraction,shopping,Луцзяцзуй,31.231617,121.514085,east,329.1,1,0,0,0
+shanghai-demo:source-n13055547286,attraction,shopping,Минхан,31.116603,121.375245,west,140.6,1,0,0,0
+shanghai-demo:source-n13077782875,attraction,shopping,Чаннин,31.210705,121.40113,west,227.4,1,0,0,0
+shanghai-demo:source-n13081590413,attraction,shopping,Южный Пудун,31.121831,121.581151,west,102.7,1,0,0,0
+shanghai-demo:source-n13081592762,attraction,shopping,Вайтань,31.245558,121.47761,west,314.5,1,0,0,0
+shanghai-demo:source-n13323578385,attraction,shopping,Чаннин,31.222904,121.412897,west,167.0,1,0,0,0
+shanghai-demo:source-n13335355949,attraction,shopping,Минхан,31.110504,121.374657,west,149.6,1,0,0,0
+shanghai-demo:source-n13344537067,attraction,shopping,Южный Хуанпу,31.180209,121.51232,east,200.4,1,0,0,0
+shanghai-demo:source-n13352407601,attraction,shopping,Южный Пудун,31.134901,121.57821,west,342.0,1,0,0,0
+shanghai-demo:source-n13437141583,attraction,shopping,Цзинъань,31.249043,121.441135,west,176.4,1,0,0,0
+shanghai-demo:source-n13463303233,attraction,shopping,Чаннин,31.195893,121.402895,west,323.5,1,0,0,0
+shanghai-demo:source-n13463303235,attraction,shopping,Сюйхуэй,31.184566,121.429369,west,275.8,1,0,0,0
+shanghai-demo:source-n13463303245,attraction,shopping,Народная площадь,31.22726,121.466432,west,339.4,1,0,0,0
+shanghai-demo:source-n13521001353,attraction,shopping,Народная площадь,31.212448,121.48114,west,308.5,1,0,0,0
+shanghai-demo:source-n13583899001,attraction,shopping,Народная площадь,31.212448,121.464667,west,252.8,1,0,0,0
+shanghai-demo:source-n13646541001,attraction,shopping,Народная площадь,31.213319,121.480551,west,269.3,1,0,0,0
+shanghai-demo:source-n13720596908,attraction,shopping,Янпу,31.305679,121.509967,west,191.9,1,0,0,0
+shanghai-demo:source-n13764735105,attraction,shopping,Чаннин,31.217676,121.416426,west,116.4,1,0,0,0
+shanghai-demo:source-n13814151045,attraction,shopping,Северный Пудун,31.275183,121.594094,east,220.1,1,0,0,0
+shanghai-demo:source-n13814190890,attraction,shopping,Южный Хуанпу,31.182823,121.516438,east,119.0,1,0,0,0
+shanghai-demo:source-n13814196915,attraction,shopping,Луцзяцзуй,31.229874,121.517615,east,98.5,1,0,0,0
+shanghai-demo:source-n13814201166,attraction,shopping,Луцзяцзуй,31.230746,121.511143,east,205.5,1,0,0,0
+shanghai-demo:source-n13814201167,attraction,shopping,Южный Пудун,31.119217,121.560561,west,330.6,1,0,0,0
+shanghai-demo:source-n13816431112,attraction,shopping,Пудун,31.211577,121.555854,east,219.9,1,0,0,0
+shanghai-demo:source-n13819790442,attraction,shopping,Восточный Сюйхуэй,31.185437,121.484081,west,351.0,1,0,0,0
+shanghai-demo:source-n13819790448,attraction,shopping,Средний Пудун,31.261242,121.525851,east,315.7,1,0,0,0
+shanghai-demo:source-n13819790450,attraction,shopping,Сюйхуэй,31.177595,121.416426,west,291.0,1,0,0,0
+shanghai-demo:source-n13819912981,attraction,shopping,Минхан,31.138386,121.418191,west,289.3,1,0,0,0
+shanghai-demo:source-n13826596427,attraction,shopping,Южный Пудун,31.174982,121.51585,east,263.7,1,0,0,0
+shanghai-demo:source-n13826596428,attraction,shopping,Минхан,31.113989,121.372304,west,108.8,1,0,0,0
+shanghai-demo:source-n13826596429,attraction,shopping,Хунцяо,31.219419,121.3423,west,275.7,1,0,0,0
+shanghai-demo:source-n13826596430,attraction,shopping,Южный Хуанпу,31.178467,121.511143,east,394.1,1,0,0,0
+shanghai-demo:source-n13826596456,attraction,shopping,Вайтань,31.237716,121.485258,west,205.6,1,0,0,0
+shanghai-demo:source-n13826596461,attraction,shopping,Южный Пудун,31.143614,121.509967,west,101.9,1,0,0,0
+shanghai-demo:source-n13859990811,attraction,shopping,Хунцяо,31.219419,121.344653,west,253.1,1,0,0,0
+shanghai-demo:source-n14021729066,attraction,shopping,Минхан,31.118346,121.454078,west,96.2,1,0,0,0
+shanghai-demo:source-n1750779214,attraction,shopping,Сюйхуэй,31.197636,121.434664,west,165.7,1,0,0,0
+shanghai-demo:source-n1874352983,attraction,shopping,Чаннин,31.201121,121.414661,west,252.4,1,0,0,0
+shanghai-demo:source-n2025947401,attraction,shopping,Народная площадь,31.234231,121.481728,west,300.9,1,0,0,0
+shanghai-demo:source-n2151706898,attraction,shopping,Минхан,31.141,121.41878,west,90.8,1,0,0,0
+shanghai-demo:source-n2688309956,attraction,shopping,Южный Пудун,31.158427,121.562326,west,202.7,1,0,0,0
+shanghai-demo:source-n2775030097,attraction,shopping,Южный Хуанпу,31.186309,121.490553,west,273.7,1,0,0,0
+shanghai-demo:source-n2999351523,attraction,shopping,Цзинъань,31.215933,121.452901,west,342.0,1,0,0,0
+shanghai-demo:source-n2999351525,attraction,shopping,Пудун,31.212448,121.557619,east,215.0,1,0,0,0
+shanghai-demo:source-n3557819896,attraction,shopping,Цзинъань,31.225518,121.459373,west,413.2,1,0,0,0
+shanghai-demo:source-n3724312988,attraction,shopping,Сюйхуэй,31.183695,121.431134,west,144.2,1,0,0,0
+shanghai-demo:source-n3737443419,attraction,shopping,Вайтань,31.243815,121.487023,west,290.2,1,0,0,0
+shanghai-demo:source-n3737443420,attraction,shopping,Южный Хуанпу,31.186309,121.514085,east,121.4,1,0,0,0
+shanghai-demo:source-n3737443861,attraction,shopping,Цзинъань,31.235974,121.459373,west,88.6,1,0,0,0
+shanghai-demo:source-n3750147478,attraction,shopping,Сюйхуэй,31.185437,121.431134,west,145.8,1,0,0,0
+shanghai-demo:source-n3752568839,attraction,shopping,Минхан,31.112247,121.374657,west,172.5,1,0,0,0
+shanghai-demo:source-n3753073076,attraction,shopping,Хунцяо,31.221161,121.344653,west,293.3,1,0,0,0
+shanghai-demo:source-n398828768,attraction,shopping,Чаннин,31.196764,121.40113,west,276.1,1,0,0,0
+shanghai-demo:source-n4026977489,attraction,shopping,Южный Пудун,31.135772,121.578798,west,251.0,1,0,0,0
+shanghai-demo:source-n4161694595,attraction,shopping,Минхан,31.133158,121.447606,west,270.3,1,0,0,0
+shanghai-demo:source-n4161694596,attraction,shopping,Цзинъань,31.248172,121.440547,west,233.8,1,0,0,0
+shanghai-demo:source-n4161718102,attraction,shopping,Восточный Сюйхуэй,31.124445,121.495847,west,234.0,1,0,0,0
+shanghai-demo:source-n4161721103,attraction,shopping,Хунцяо,31.173239,121.364067,west,136.7,1,0,0,0
+shanghai-demo:source-n4161761589,attraction,shopping,Сюйхуэй,31.173239,121.426428,west,313.3,1,0,0,0
+shanghai-demo:source-n4161775690,attraction,shopping,Янпу,31.303936,121.506437,west,90.9,1,0,0,0
+shanghai-demo:source-n4161790989,attraction,shopping,Хунцяо,31.214191,121.364656,west,371.1,1,0,0,0
+shanghai-demo:source-n4161790991,attraction,shopping,Хунцяо,31.218547,121.364067,west,101.9,1,0,0,0
+shanghai-demo:source-n4163431390,attraction,shopping,Народная площадь,31.222904,121.468197,west,188.4,1,0,0,0
+shanghai-demo:source-n4163431492,attraction,shopping,Южный Пудун,31.13403,121.577622,west,419.6,1,0,0,0
+shanghai-demo:source-n4163431889,attraction,shopping,Южный Хуанпу,31.180209,121.502907,east,381.3,1,0,0,0
+shanghai-demo:source-n4163433589,attraction,shopping,Южный Пудун,31.145357,121.520556,west,206.5,1,0,0,0
+shanghai-demo:source-n4242437893,attraction,shopping,Минхан,31.113118,121.374068,west,87.7,1,0,0,0
+shanghai-demo:source-n4242550489,attraction,shopping,Хунцяо,31.171496,121.365244,west,88.5,1,0,0,0
+shanghai-demo:source-n4274865465,attraction,shopping,Сюйхуэй,31.181952,121.427604,west,264.4,1,0,0,0
+shanghai-demo:source-n4345426194,attraction,shopping,Пудун,31.239459,121.572327,east,215.8,1,0,0,0
+shanghai-demo:source-n4345426391,attraction,shopping,Южный Пудун,31.120089,121.583505,west,209.0,1,0,0,0
+shanghai-demo:source-n4347304094,attraction,shopping,Минхан,31.113118,121.375245,west,199.7,1,0,0,0
+shanghai-demo:source-n4349446393,attraction,shopping,Пудун,31.211577,121.549971,east,372.5,1,0,0,0
+shanghai-demo:source-n4356784864,attraction,shopping,Чаннин,31.196764,121.399954,west,250.1,1,0,0,0
+shanghai-demo:source-n4362285597,attraction,shopping,Цзинъань,31.219419,121.463491,west,98.3,1,0,0,0
+shanghai-demo:source-n4362286608,attraction,shopping,Чаннин,31.22029,121.415838,west,183.8,1,0,0,0
+shanghai-demo:source-n4367713195,attraction,shopping,Сюйхуэй,31.175853,121.412897,west,133.1,1,0,0,0
+shanghai-demo:source-n4367713196,attraction,shopping,Южный Пудун,31.181081,121.528204,east,216.4,1,0,0,0
+shanghai-demo:source-n4367735993,attraction,shopping,Минхан,31.123574,121.448195,west,324.4,1,0,0,0
+shanghai-demo:source-n4375715790,attraction,shopping,Хункоу,31.283896,121.448195,west,220.6,1,0,0,0
+shanghai-demo:source-n4379835506,attraction,shopping,Чаннин,31.222033,121.415838,west,191.2,1,0,0,0
+shanghai-demo:source-n4379916990,attraction,shopping,Чаннин,31.235102,121.396424,west,117.2,1,0,0,0
+shanghai-demo:source-n4382896193,attraction,shopping,Северо-запад Шанхая,31.324848,121.393483,west,117.9,1,0,0,0
+shanghai-demo:source-n4385108678,attraction,shopping,Луцзяцзуй,31.23336,121.509378,east,167.0,1,0,0,0
+shanghai-demo:source-n4393185605,attraction,shopping,Цзинъань,31.247301,121.441135,west,345.0,1,0,0,0
+shanghai-demo:source-n4394222089,attraction,shopping,Южный Хуанпу,31.204606,121.519379,east,211.3,1,0,0,0
+shanghai-demo:source-n4394529835,attraction,shopping,Южный Пудун,31.117475,121.566444,west,168.5,1,0,0,0
+shanghai-demo:source-n4394529839,attraction,shopping,Южный Пудун,31.115732,121.588799,west,105.0,1,0,0,0
+shanghai-demo:source-n4394750691,attraction,shopping,Средний Пудун,31.261242,121.527027,east,401.9,1,0,0,0
+shanghai-demo:source-n4397580815,attraction,shopping,Южный Пудун,31.143614,121.511143,west,211.2,1,0,0,0
+shanghai-demo:source-n4402436090,attraction,shopping,Луцзяцзуй,31.229874,121.516438,east,164.1,1,0,0,0
+shanghai-demo:source-n4405552104,attraction,shopping,Минхан,31.115732,121.37348,west,132.2,1,0,0,0
+shanghai-demo:source-n4416265763,attraction,shopping,Минхан,31.146228,121.403484,west,317.0,1,0,0,0
+shanghai-demo:source-n4423067991,attraction,shopping,Хункоу,31.283025,121.44996,west,293.6,1,0,0,0
+shanghai-demo:source-n4423071589,attraction,shopping,Цзинъань,31.232488,121.437017,west,103.7,1,0,0,0
+shanghai-demo:source-n4426125033,attraction,shopping,Луцзяцзуй,31.230746,121.507613,east,312.3,1,0,0,0
+shanghai-demo:source-n4450057189,attraction,shopping,Минхан,31.132287,121.447018,west,364.0,1,0,0,0
+shanghai-demo:source-n4451279457,attraction,shopping,Северо-запад Шанхая,31.320491,121.385835,west,206.0,1,0,0,0
+shanghai-demo:source-n4453103994,attraction,shopping,Южный Пудун,31.144485,121.516438,west,123.3,1,0,0,0
+shanghai-demo:source-n4457978296,attraction,shopping,Хункоу,31.277797,121.447606,west,207.0,1,0,0,0
+shanghai-demo:source-n4457978298,attraction,shopping,Восточный Сюйхуэй,31.177595,121.485846,west,218.2,1,0,0,0
+shanghai-demo:source-n4457978616,attraction,shopping,Чаннин,31.203735,121.417603,west,306.7,1,0,0,0
+shanghai-demo:source-n4457979194,attraction,shopping,Сюйхуэй,31.180209,121.420544,west,198.5,1,0,0,0
+shanghai-demo:source-n4457979720,attraction,shopping,Минхан,31.164526,121.397012,west,208.9,1,0,0,0
+shanghai-demo:source-n4458010101,attraction,shopping,Южный Хуанпу,31.189794,121.491729,west,297.0,1,0,0,0
+shanghai-demo:source-n4458011710,attraction,shopping,Луцзяцзуй,31.2534,121.525263,east,228.7,1,0,0,0
+shanghai-demo:source-n4458011799,attraction,shopping,Хунцяо,31.19415,121.374657,west,187.3,1,0,0,0
+shanghai-demo:source-n4466545723,attraction,shopping,Южный Пудун,31.124445,121.57821,west,246.6,1,0,0,0
+shanghai-demo:source-n4469538152,attraction,shopping,Цзинъань,31.226389,121.445842,west,409.0,1,0,0,0
+shanghai-demo:source-n4485375686,attraction,shopping,Хунцяо,31.138386,121.347595,west,162.1,1,0,0,0
+shanghai-demo:source-n4485489324,attraction,shopping,Чаннин,31.216805,121.414661,west,309.0,1,0,0,0
+shanghai-demo:source-n4485489325,attraction,shopping,Вайтань,31.245558,121.482316,west,175.9,1,0,0,0
+shanghai-demo:source-n4515449407,attraction,shopping,Восточный Сюйхуэй,31.182823,121.485846,west,303.5,1,0,0,0
+shanghai-demo:source-n4516477289,attraction,shopping,Сюйхуэй,31.191537,121.437605,west,255.4,1,0,0,0
+shanghai-demo:source-n4518245391,attraction,shopping,Вайтань,31.229874,121.487023,west,113.1,1,0,0,0
+shanghai-demo:source-n4522541389,attraction,shopping,Южный Пудун,31.127059,121.501142,west,109.1,1,0,0,0
+shanghai-demo:source-n4550330800,attraction,shopping,Южный Пудун,31.179338,121.531734,east,176.1,1,0,0,0
+shanghai-demo:source-n4558215752,attraction,shopping,Чаннин,31.20025,121.414073,west,234.1,1,0,0,0
+shanghai-demo:source-n4607480791,attraction,shopping,Хунцяо,31.191537,121.375245,west,395.5,1,0,0,0
+shanghai-demo:source-n4623058291,attraction,shopping,Чаннин,31.205478,121.402307,west,245.6,1,0,0,0
+shanghai-demo:source-n4670275405,attraction,shopping,Луцзяцзуй,31.2534,121.526439,east,116.8,1,0,0,0
+shanghai-demo:source-n4674875391,attraction,shopping,Южный Пудун,31.118346,121.588211,west,145.0,1,0,0,0
+shanghai-demo:source-n4686736452,attraction,shopping,Южный Пудун,31.145357,121.519379,west,185.9,1,0,0,0
+shanghai-demo:source-n4693177389,attraction,shopping,Вайтань,31.241202,121.486434,west,104.0,1,0,0,0
+shanghai-demo:source-n4696581489,attraction,shopping,Восточный Сюйхуэй,31.124445,121.494671,west,129.1,1,0,0,0
+shanghai-demo:source-n4697462593,attraction,shopping,Южный Хуанпу,31.176724,121.511143,east,283.8,1,0,0,0
+shanghai-demo:source-n4697523689,attraction,shopping,Южный Пудун,31.156684,121.561149,west,213.0,1,0,0,0
+shanghai-demo:source-n4697523691,attraction,shopping,Минхан,31.143614,121.431134,west,99.8,1,0,0,0
+shanghai-demo:source-n4697550990,attraction,shopping,Сюйхуэй,31.17411,121.427016,west,382.7,1,0,0,0
+shanghai-demo:source-n4730567823,attraction,shopping,Минхан,31.141872,121.412308,west,307.1,1,0,0,0
+shanghai-demo:source-n4744025923,attraction,shopping,Чаннин,31.210705,121.398777,west,126.5,1,0,0,0
+shanghai-demo:source-n4761268855,attraction,shopping,Сюйхуэй,31.179338,121.422309,west,318.2,1,0,0,0
+shanghai-demo:source-n4761313101,attraction,shopping,Южный Хуанпу,31.184566,121.488199,west,176.3,1,0,0,0
+shanghai-demo:source-n4761313102,attraction,shopping,Северный Пудун,31.274312,121.580563,east,244.4,1,0,0,0
+shanghai-demo:source-n4761313103,attraction,shopping,Хунцяо,31.222904,121.34583,west,90.0,1,0,0,0
+shanghai-demo:source-n4761536724,attraction,shopping,Цзинъань,31.234231,121.434664,west,384.6,1,0,0,0
+shanghai-demo:source-n477661623,attraction,shopping,Народная площадь,31.225518,121.466432,west,194.3,1,0,0,0
+shanghai-demo:source-n4782597521,attraction,shopping,Южный Хуанпу,31.181952,121.519379,east,185.3,1,0,0,0
+shanghai-demo:source-n4805339921,attraction,shopping,Минхан,31.109633,121.379952,west,262.3,1,0,0,0
+shanghai-demo:source-n4805449923,attraction,shopping,Сюйхуэй,31.19415,121.432311,west,351.2,1,0,0,0
+shanghai-demo:source-n4805461521,attraction,shopping,Южный Пудун,31.147099,121.514673,west,157.3,1,0,0,0
+shanghai-demo:source-n4885031821,attraction,shopping,Чаннин,31.235974,121.399366,west,205.7,1,0,0,0
+shanghai-demo:source-n4919057521,attraction,shopping,Народная площадь,31.211577,121.480551,west,232.0,1,0,0,0
+shanghai-demo:source-n4919057522,attraction,shopping,Южный Пудун,31.126188,121.499377,west,271.9,1,0,0,0
+shanghai-demo:source-n4919060521,attraction,shopping,Сюйхуэй,31.191537,121.435252,west,366.6,1,0,0,0
+shanghai-demo:source-n4927789621,attraction,shopping,Чаннин,31.221161,121.416426,west,104.5,1,0,0,0
+shanghai-demo:source-n5042024832,attraction,shopping,Цзинъань,31.222033,121.461726,west,242.6,1,0,0,0
+shanghai-demo:source-n5042024834,attraction,shopping,Хунцяо,31.173239,121.368774,west,325.7,1,0,0,0
+shanghai-demo:source-n5139506222,attraction,shopping,Луцзяцзуй,31.228132,121.507025,east,84.8,1,0,0,0
+shanghai-demo:source-n5166752521,attraction,shopping,Южный Пудун,31.145357,121.517026,west,120.5,1,0,0,0
+shanghai-demo:source-n5210532053,attraction,shopping,Сюйхуэй,31.186309,121.429369,west,337.9,1,0,0,0
+shanghai-demo:source-n5211783930,attraction,shopping,Восточный Сюйхуэй,31.179338,121.488199,west,359.0,1,0,0,0
+shanghai-demo:source-n5310297830,attraction,shopping,Минхан,31.115732,121.37701,west,301.7,1,0,0,0
+shanghai-demo:source-n5330152423,attraction,shopping,Янпу,31.302194,121.50879,west,248.3,1,0,0,0
+shanghai-demo:source-n5330218521,attraction,shopping,Чаннин,31.20025,121.399954,west,213.6,1,0,0,0
+shanghai-demo:source-n5346226592,attraction,shopping,Цзинъань,31.221161,121.436429,west,276.0,1,0,0,0
+shanghai-demo:source-n5346226600,attraction,shopping,Минхан,31.131416,121.445253,west,252.1,1,0,0,0
+shanghai-demo:source-n5502588523,attraction,shopping,Пудун,31.238588,121.572915,east,121.2,1,0,0,0
+shanghai-demo:source-n5502601021,attraction,shopping,Минхан,31.147099,121.401719,west,177.5,1,0,0,0
+shanghai-demo:source-n5510908925,attraction,shopping,Вайтань,31.245558,121.490553,west,258.3,1,0,0,0
+shanghai-demo:source-n558621392,attraction,shopping,Минхан,31.136644,121.398189,west,202.3,1,0,0,0
+shanghai-demo:source-n5650554236,attraction,shopping,Народная площадь,31.242944,121.477022,west,393.1,1,0,0,0
+shanghai-demo:source-n5699532030,attraction,shopping,Южный Пудун,31.123574,121.579975,west,255.3,1,0,0,0
+shanghai-demo:source-n5705195622,attraction,shopping,Южный Пудун,31.12096,121.580563,west,96.2,1,0,0,0
+shanghai-demo:source-n5705199015,attraction,shopping,Минхан,31.133158,121.44643,west,377.1,1,0,0,0
+shanghai-demo:source-n5716467925,attraction,shopping,Хункоу,31.283025,121.451136,west,334.1,1,0,0,0
+shanghai-demo:source-n5725619721,attraction,shopping,Минхан,31.141872,121.414661,west,170.6,1,0,0,0
+shanghai-demo:source-n573339616,attraction,shopping,Цзинъань,31.245558,121.439959,west,219.3,1,0,0,0
+shanghai-demo:source-n5820667411,attraction,shopping,Хунцяо,31.180209,121.371127,west,248.4,1,0,0,0
+shanghai-demo:source-n5847982387,attraction,shopping,Чаннин,31.205478,121.40466,west,312.6,1,0,0,0
+shanghai-demo:source-n5890126986,attraction,shopping,Цзинъань,31.22726,121.441723,west,226.7,1,0,0,0
+shanghai-demo:source-n6069091013,attraction,shopping,Чаннин,31.219419,121.41525,west,231.7,1,0,0,0
+shanghai-demo:source-n6111067909,attraction,shopping,Чаннин,31.196764,121.402307,west,339.0,1,0,0,0
+shanghai-demo:source-n6202778587,attraction,shopping,Чаннин,31.20025,121.416426,west,103.5,1,0,0,0
+shanghai-demo:source-n6215062785,attraction,shopping,Чаннин,31.219419,121.412897,west,231.4,1,0,0,0
+shanghai-demo:source-n6298348685,attraction,shopping,Южный Пудун,31.118346,121.568209,west,358.5,1,0,0,0
+shanghai-demo:source-n6298485400,attraction,shopping,Цзинъань,31.222904,121.437605,west,228.3,1,0,0,0
+shanghai-demo:source-n6315539493,attraction,shopping,Южный Пудун,31.125317,121.581151,west,101.4,1,0,0,0
+shanghai-demo:source-n6352342866,attraction,shopping,Минхан,31.142743,121.430546,west,201.7,1,0,0,0
+shanghai-demo:source-n6352391424,attraction,shopping,Хункоу,31.276925,121.447018,west,95.8,1,0,0,0
+shanghai-demo:source-n6356238629,attraction,shopping,Южный Пудун,31.119217,121.585269,west,403.0,1,0,0,0
+shanghai-demo:source-n6356271834,attraction,shopping,Чаннин,31.203735,121.412897,west,148.7,1,0,0,0
+shanghai-demo:source-n6358151580,attraction,shopping,Цзинъань,31.230746,121.4429,west,361.6,1,0,0,0
+shanghai-demo:source-n6361889985,attraction,shopping,Южный Хуанпу,31.185437,121.486434,west,139.7,1,0,0,0
+shanghai-demo:source-n6366808630,attraction,shopping,Минхан,31.13403,121.395247,west,237.7,1,0,0,0
+shanghai-demo:source-h1,attraction,entertainment|unusual,Минхан,31.133158,121.397012,west,82.1,1,0,0,0
+shanghai-demo:source-h1003,attraction,viewpoints,Народная площадь,31.223775,121.464079,west,141.3,1,0,0,0
+shanghai-demo:source-h1006,attraction,viewpoints|history,Сюйхуэй,31.17411,121.428192,west,360.3,1,0,0,0
+shanghai-demo:source-h1012,attraction,history,Минхан,31.141,121.412897,west,212.8,1,0,0,0
+shanghai-demo:source-h1018,attraction,history|unusual,Сюйхуэй,31.201992,121.434075,west,351.8,1,0,0,0
+shanghai-demo:source-h1019,attraction,entertainment,Народная площадь,31.225518,121.465256,west,295.3,1,0,0,0
+shanghai-demo:source-h1027,attraction,entertainment|unusual,Хунцяо,31.216805,121.367597,west,210.9,1,0,0,0
+shanghai-demo:source-h1032,attraction,nature,Сюйхуэй,31.183695,121.425251,west,356.8,1,0,0,0
+shanghai-demo:source-h1033,attraction,viewpoints,Северный Пудун,31.276054,121.593506,east,219.5,1,0,0,0
+shanghai-demo:source-h1034,attraction,viewpoints,Минхан,31.143614,121.401719,west,118.5,1,0,0,0
+shanghai-demo:source-h104,attraction,nature,Хункоу,31.276054,121.44996,west,127.7,1,0,0,0
+shanghai-demo:source-h1042,attraction,viewpoints,Цзинъань,31.211577,121.458196,west,279.6,1,0,0,0
+shanghai-demo:source-h1043,attraction,history,Хунцяо,31.218547,121.37348,west,156.5,1,0,0,0
+shanghai-demo:source-h1046,attraction,entertainment,Пудун,31.238588,121.574092,east,84.3,1,0,0,0
+shanghai-demo:source-h1049,attraction,nature,Пудун,31.209834,121.558208,east,82.4,1,0,0,0
+shanghai-demo:source-h1052,attraction,entertainment,Южный Пудун,31.158427,121.563502,west,298.5,1,0,0,0
+shanghai-demo:source-h1053,attraction,history,Народная площадь,31.213319,121.479375,west,160.6,1,0,0,0
+shanghai-demo:source-h1056,attraction,entertainment,Вайтань,31.237716,121.499377,east,282.2,1,0,0,0
+shanghai-demo:source-h1058,attraction,viewpoints,Луцзяцзуй,31.236845,121.501142,east,132.1,1,0,0,0
+shanghai-demo:source-h1061,attraction,museums|history,Цзинъань,31.22726,121.447606,west,320.3,1,0,0,0
+shanghai-demo:source-h1062,attraction,museums|history,Народная площадь,31.214191,121.479963,west,255.2,1,0,0,0
+shanghai-demo:source-h1065,attraction,history,Южный Пудун,31.147971,121.518791,west,189.1,1,0,0,0
+shanghai-demo:source-h1066,attraction,entertainment,Хунцяо,31.139258,121.347007,west,273.4,1,0,0,0
+shanghai-demo:source-h1067,attraction,nature,Янпу,31.303936,121.50879,west,135.1,1,0,0,0
+shanghai-demo:source-h107,attraction,history,Чаннин,31.202864,121.418191,west,384.8,1,0,0,0
+shanghai-demo:source-h1072,attraction,entertainment,Южный Пудун,31.119217,121.57468,west,198.6,1,0,0,0
+shanghai-demo:source-h1074,attraction,entertainment,Восточный Сюйхуэй,31.180209,121.488788,west,254.5,1,0,0,0
+shanghai-demo:source-h1077,attraction,viewpoints,Хунцяо,31.169754,121.367597,west,383.4,1,0,0,0
+shanghai-demo:source-h1082,attraction,history,Чаннин,31.198507,121.396424,west,177.6,1,0,0,0
+shanghai-demo:source-h1086,attraction,history,Южный Пудун,31.143614,121.513496,west,414.1,1,0,0,0
+shanghai-demo:source-h1090,attraction,viewpoints,Восточный Сюйхуэй,31.178467,121.486434,west,293.3,1,0,0,0
+shanghai-demo:source-h1091,attraction,history,Южный Хуанпу,31.175853,121.508202,east,175.6,1,0,0,0
+shanghai-demo:source-h1092,attraction,viewpoints|history,Сюйхуэй,31.209834,121.461726,west,230.3,1,0,0,0
+shanghai-demo:source-h1097,attraction,history,Хунцяо,31.171496,121.366421,west,160.7,1,0,0,0
+shanghai-demo:source-h1098,attraction,history,Южный Пудун,31.120089,121.577622,west,260.7,1,0,0,0
+shanghai-demo:source-h11,attraction,entertainment|unusual,Минхан,31.135772,121.396424,west,141.0,1,0,0,0
+shanghai-demo:source-h110,attraction,history|unusual,Сюйхуэй,31.188923,121.426428,west,336.4,1,0,0,0
+shanghai-demo:source-h1100,attraction,viewpoints,Минхан,31.165397,121.398777,west,356.1,1,0,0,0
+shanghai-demo:source-h1104,attraction,history,Сюйхуэй,31.190665,121.454666,west,397.2,1,0,0,0
+shanghai-demo:source-h1110,attraction,nature,Хунцяо,31.222033,121.345242,west,185.8,1,0,0,0
+shanghai-demo:source-h1112,attraction,nature|history,Южный Хуанпу,31.181081,121.516438,east,158.0,1,0,0,0
+shanghai-demo:source-h1113,attraction,history,Южный Пудун,31.120089,121.576445,west,241.4,1,0,0,0
+shanghai-demo:source-h1118,attraction,history,Южный Хуанпу,31.176724,121.514673,east,159.9,1,0,0,0
+shanghai-demo:source-h112,attraction,nature|history,Народная площадь,31.211577,121.477022,west,105.5,1,0,0,0
+shanghai-demo:source-h1124,attraction,nature,Вайтань,31.238588,121.487023,west,215.3,1,0,0,0
+shanghai-demo:source-h1125,attraction,museums|history|unusual,Чаннин,31.208963,121.421133,west,176.9,1,0,0,0
+shanghai-demo:source-h113,attraction,museums|history,Вайтань,31.246429,121.485258,west,185.7,1,0,0,0
+shanghai-demo:source-h1132,attraction,nature,Восточный Сюйхуэй,31.125317,121.497612,west,311.9,1,0,0,0
+shanghai-demo:source-h1135,attraction,history,Южный Пудун,31.146228,121.516438,west,232.3,1,0,0,0
+shanghai-demo:source-h1136,attraction,entertainment,Сюйхуэй,31.175853,121.449371,west,255.2,1,0,0,0
+shanghai-demo:source-h1138,attraction,history,Цзинъань,31.269084,121.426428,west,171.6,1,0,0,0
+shanghai-demo:source-h1143,attraction,nature,Южный Хуанпу,31.176724,121.506437,east,364.3,1,0,0,0
+shanghai-demo:source-h1147,attraction,history,Чаннин,31.218547,121.414661,west,256.6,1,0,0,0
+shanghai-demo:source-h1148,attraction,museums|history,Луцзяцзуй,31.237716,121.502907,east,280.6,1,0,0,0
+shanghai-demo:source-h1149,attraction,entertainment|unusual,Луцзяцзуй,31.230746,121.509967,east,188.6,1,0,0,0
+shanghai-demo:source-h115,attraction,nature,Пудун,31.201992,121.581151,east,121.1,1,0,0,0
+shanghai-demo:source-h1155,attraction,history,Хунцяо,31.214191,121.365832,west,366.3,1,0,0,0
+shanghai-demo:source-h1160,attraction,history|unusual,Южный Пудун,31.126188,121.57821,west,167.6,1,0,0,0
+shanghai-demo:source-h1168,attraction,nature,Средний Пудун,31.269084,121.58174,east,304.7,1,0,0,0
+shanghai-demo:source-h117,attraction,history,Сюйхуэй,31.181081,121.41878,west,229.8,1,0,0,0
+shanghai-demo:source-h1177,attraction,history,Цзинъань,31.246429,121.441723,west,362.9,1,0,0,0
+shanghai-demo:source-h1180,attraction,nature,Северо-запад Шанхая,31.303936,121.414661,west,284.7,1,0,0,0
+shanghai-demo:source-h1183,attraction,entertainment,Хунцяо,31.214191,121.343477,west,212.4,1,0,0,0
+shanghai-demo:source-h1186,attraction,nature,Минхан,31.108762,121.37701,west,244.2,1,0,0,0
+shanghai-demo:source-h1191,attraction,viewpoints,Южный Пудун,31.119217,121.569974,west,259.2,1,0,0,0
+shanghai-demo:source-h1198,attraction,history,Минхан,31.151456,121.429369,west,288.1,1,0,0,0
+shanghai-demo:source-h120,attraction,museums|history,Народная площадь,31.23336,121.46702,west,90.7,1,0,0,0
+shanghai-demo:source-h1201,attraction,history,Минхан,31.113989,121.375833,west,274.1,1,0,0,0
+shanghai-demo:source-h1208,attraction,history,Вайтань,31.238588,121.488199,west,282.6,1,0,0,0
+shanghai-demo:source-h1209,attraction,viewpoints|history,Чаннин,31.223775,121.412308,west,134.1,1,0,0,0
+shanghai-demo:source-h121,attraction,museums|history,Вайтань,31.237716,121.500554,east,235.1,1,0,0,0
+shanghai-demo:source-h1214,attraction,entertainment,Южный Хуанпу,31.181081,121.501142,east,200.0,1,0,0,0
+shanghai-demo:source-h1217,attraction,viewpoints,Минхан,31.141872,121.400542,west,215.9,1,0,0,0
+shanghai-demo:source-h1219,attraction,history,Народная площадь,31.235974,121.464079,west,272.2,1,0,0,0
+shanghai-demo:source-h122,attraction,entertainment,Южный Хуанпу,31.179338,121.510555,east,315.8,1,0,0,0
+shanghai-demo:source-h1226,attraction,viewpoints,Восточный Сюйхуэй,31.183695,121.485258,west,352.9,1,0,0,0
+shanghai-demo:source-h1228,attraction,history,Минхан,31.142743,121.405837,west,294.0,1,0,0,0
+shanghai-demo:source-h123,attraction,history,Цзинъань,31.22726,121.448783,west,282.1,1,0,0,0
+shanghai-demo:source-h1232,attraction,history,Хунцяо,31.168882,121.370539,west,359.0,1,0,0,0
+shanghai-demo:source-h1237,attraction,nature,Южный Хуанпу,31.199378,121.511143,east,348.6,1,0,0,0
+shanghai-demo:source-h1238,attraction,entertainment|unusual,Луцзяцзуй,31.229874,121.515261,east,263.1,1,0,0,0
+shanghai-demo:source-h1245,attraction,nature,Сюйхуэй,31.177595,121.412897,west,108.0,1,0,0,0
+shanghai-demo:source-h1249,attraction,nature|history,Чаннин,31.23336,121.403484,west,93.0,1,0,0,0
+shanghai-demo:source-h1251,attraction,museums|history,Пудун,31.201121,121.58174,east,225.3,1,0,0,0
+shanghai-demo:source-h1255,attraction,viewpoints|history,Хунцяо,31.170625,121.368185,west,347.2,1,0,0,0
+shanghai-demo:source-h1258,attraction,entertainment,Южный Хуанпу,31.174982,121.514673,east,299.1,1,0,0,0
+shanghai-demo:source-h126,attraction,nature,Народная площадь,31.24033,121.464667,west,177.0,1,0,0,0
+shanghai-demo:source-h1260,attraction,history,Сюйхуэй,31.181081,121.41525,west,116.6,1,0,0,0
+shanghai-demo:source-h1262,attraction,history,Южный Пудун,31.118346,121.571739,west,98.4,1,0,0,0
+shanghai-demo:source-h1263,attraction,nature,Цзинъань,31.229003,121.441723,west,411.0,1,0,0,0
+shanghai-demo:source-h1270,attraction,history,Чаннин,31.202864,121.412308,west,241.1,1,0,0,0
+shanghai-demo:source-h1274,attraction,nature,Чаннин,31.202864,121.414661,west,137.4,1,0,0,0
+shanghai-demo:source-h1276,attraction,history,Минхан,31.13403,121.447018,west,308.7,1,0,0,0
+shanghai-demo:source-h1277,attraction,viewpoints|history,Чаннин,31.218547,121.38407,west,294.7,1,0,0,0
+shanghai-demo:source-h1279,attraction,history,Чаннин,31.210705,121.421133,west,164.6,1,0,0,0
+shanghai-demo:source-h1282,attraction,museums|history,Цзинъань,31.213319,121.451136,west,88.9,1,0,0,0
+shanghai-demo:source-h1283,attraction,history,Южный Хуанпу,31.179338,121.509378,east,373.3,1,0,0,0
+shanghai-demo:source-h1288,attraction,nature,Хунцяо,31.176724,121.36995,west,111.8,1,0,0,0
+shanghai-demo:source-h1289,attraction,entertainment|unusual,Чаннин,31.20025,121.409367,west,203.1,1,0,0,0
+shanghai-demo:source-h1293,attraction,history,Минхан,31.143614,121.405249,west,332.9,1,0,0,0
+shanghai-demo:source-h1294,attraction,nature,Цзинъань,31.226389,121.444665,west,390.1,1,0,0,0
+shanghai-demo:source-h1297,attraction,history,Минхан,31.114861,121.375245,west,268.8,1,0,0,0
+shanghai-demo:source-h1298,attraction,history,Минхан,31.114861,121.374068,west,156.9,1,0,0,0
+shanghai-demo:source-h1299,attraction,history,Сюйхуэй,31.189794,121.430546,west,217.0,1,0,0,0
+shanghai-demo:source-h13,attraction,entertainment|unusual,Народная площадь,31.23336,121.476433,west,353.5,1,0,0,0
+shanghai-demo:source-h1301,attraction,history,Цзинъань,31.212448,121.455254,west,107.1,1,0,0,0
+shanghai-demo:source-h1302,attraction,museums|history,Чаннин,31.195893,121.394659,west,404.5,1,0,0,0
+shanghai-demo:source-h1306,attraction,museums|history,Пудун,31.237716,121.579386,east,323.7,1,0,0,0
+shanghai-demo:source-h1307,attraction,entertainment,Сюйхуэй,31.18718,121.429957,west,365.6,1,0,0,0
+shanghai-demo:source-h1312,attraction,history|unusual,Северный Пудун,31.274312,121.586446,east,278.8,1,0,0,0
+shanghai-demo:source-h1314,attraction,history|unusual,Вайтань,31.238588,121.498789,east,300.7,1,0,0,0
+shanghai-demo:source-h1317,attraction,nature,Южный Хуанпу,31.185437,121.485258,west,242.5,1,0,0,0
+shanghai-demo:source-h1321,attraction,history,Хунцяо,31.226389,121.34583,west,211.5,1,0,0,0
+shanghai-demo:source-h1323,attraction,history,Хунцяо,31.172368,121.367009,west,154.7,1,0,0,0
+shanghai-demo:source-h1327,attraction,nature,Цзинъань,31.224647,121.457608,west,233.2,1,0,0,0
+shanghai-demo:source-h133,attraction,viewpoints,Южный Хуанпу,31.208092,121.520556,east,243.9,1,0,0,0
+shanghai-demo:source-h1334,attraction,history,Цзинъань,31.212448,121.454078,west,121.3,1,0,0,0
+shanghai-demo:source-h1335,attraction,viewpoints,Луцзяцзуй,31.236845,121.504672,east,334.1,1,0,0,0
+shanghai-demo:source-h1337,attraction,nature,Восточный Сюйхуэй,31.122703,121.494671,west,90.9,1,0,0,0
+shanghai-demo:source-h1341,attraction,history,Южный Хуанпу,31.208963,121.521144,east,215.9,1,0,0,0
+shanghai-demo:source-h1342,attraction,museums|history,Чаннин,31.206349,121.415838,west,287.2,1,0,0,0
+shanghai-demo:source-h1346,attraction,history,Сюйхуэй,31.188923,121.432311,west,408.6,1,0,0,0
+shanghai-demo:source-h1351,attraction,museums|history,Народная площадь,31.234231,121.477022,west,241.7,1,0,0,0
+shanghai-demo:source-h1357,attraction,viewpoints,Средний Пудун,31.262984,121.524674,east,112.9,1,0,0,0
+shanghai-demo:source-h136,attraction,nature|history,Южный Хуанпу,31.181952,121.514673,east,219.0,1,0,0,0
+shanghai-demo:source-h1360,attraction,viewpoints|history,Луцзяцзуй,31.238588,121.501142,east,202.8,1,0,0,0
+shanghai-demo:source-h1362,attraction,museums|history|unusual,Пудун,31.212448,121.556443,east,255.9,1,0,0,0
+shanghai-demo:source-h1364,attraction,history,Южный Хуанпу,31.18718,121.489964,west,221.9,1,0,0,0
+shanghai-demo:source-h1368,attraction,history,Минхан,31.144485,121.403484,west,269.5,1,0,0,0
+shanghai-demo:source-h1369,attraction,museums|history,Хункоу,31.276925,121.449371,west,175.9,1,0,0,0
+shanghai-demo:source-h1371,attraction,museums|history|unusual,Народная площадь,31.209834,121.465256,west,118.5,1,0,0,0
+shanghai-demo:source-h1377,attraction,history|unusual,Хунцяо,31.224647,121.347007,west,100.4,1,0,0,0
+shanghai-demo:source-h1380,attraction,entertainment,Хунцяо,31.217676,121.367009,west,154.9,1,0,0,0
+shanghai-demo:source-h1381,attraction,viewpoints|history,Минхан,31.141,121.402307,west,233.9,1,0,0,0
+shanghai-demo:source-h1386,attraction,history,Минхан,31.134901,121.44643,west,289.0,1,0,0,0
+shanghai-demo:source-h1389,attraction,history,Вайтань,31.246429,121.487611,west,92.1,1,0,0,0
+shanghai-demo:source-h1396,attraction,nature,Цзинъань,31.229003,121.437017,west,165.1,1,0,0,0
+shanghai-demo:source-h1400,attraction,nature,Народная площадь,31.237716,121.466432,west,277.3,1,0,0,0
+shanghai-demo:source-h1405,attraction,museums|history,Луцзяцзуй,31.231617,121.507025,east,333.5,1,0,0,0
+shanghai-demo:source-h1408,attraction,history,Минхан,31.138386,121.399366,west,191.1,1,0,0,0
+shanghai-demo:source-h1411,attraction,entertainment,Сюйхуэй,31.204606,121.433487,west,186.3,1,0,0,0
+shanghai-demo:source-h1412,attraction,entertainment,Южный Хуанпу,31.175853,121.511732,east,258.8,1,0,0,0
+shanghai-demo:source-h1414,attraction,viewpoints,Северный Пудун,31.275183,121.592917,east,309.6,1,0,0,0
+shanghai-demo:source-h1416,attraction,entertainment,Народная площадь,31.210705,121.475257,west,217.3,1,0,0,0
+shanghai-demo:source-h1418,attraction,history,Минхан,31.113118,121.377598,west,247.8,1,0,0,0
+shanghai-demo:source-h142,attraction,entertainment|unusual,Вайтань,31.246429,121.491141,west,181.7,1,0,0,0
+shanghai-demo:source-h1422,attraction,entertainment,Чаннин,31.206349,121.417015,west,354.4,1,0,0,0
+shanghai-demo:source-h1426,attraction,entertainment,Сюйхуэй,31.182823,121.427016,west,376.4,1,0,0,0
+shanghai-demo:source-h143,attraction,history,Цзинъань,31.22726,121.440547,west,206.7,1,0,0,0
+shanghai-demo:source-h1431,attraction,history,Сюйхуэй,31.18718,121.425251,west,210.5,1,0,0,0
+shanghai-demo:source-h1434,attraction,history,Чаннин,31.214191,121.416426,west,304.4,1,0,0,0
+shanghai-demo:source-h1439,attraction,history,Минхан,31.143614,121.406425,west,220.9,1,0,0,0
+shanghai-demo:source-h1444,attraction,museums|history,Чаннин,31.198507,121.402307,west,400.7,1,0,0,0
+shanghai-demo:source-h1450,attraction,viewpoints,Пудун,31.211577,121.554678,east,149.7,1,0,0,0
+shanghai-demo:source-h1452,attraction,history,Хунцяо,31.219419,121.365832,west,137.0,1,0,0,0
+shanghai-demo:source-h1453,attraction,nature,Цзинъань,31.222033,121.460549,west,241.8,1,0,0,0
+shanghai-demo:source-h1454,attraction,entertainment,Вайтань,31.245558,121.488199,west,154.7,1,0,0,0
+shanghai-demo:source-h1458,attraction,nature,Хункоу,31.289995,121.487611,west,176.6,1,0,0,0
+shanghai-demo:source-h1461,attraction,history,Цзинъань,31.270826,121.426428,west,356.0,1,0,0,0
+shanghai-demo:source-h1463,attraction,nature,Янпу,31.272569,121.522909,east,166.9,1,0,0,0
+shanghai-demo:source-h1464,attraction,history,Южный Пудун,31.125317,121.499965,west,160.1,1,0,0,0
+shanghai-demo:source-h1469,attraction,entertainment,Чаннин,31.197636,121.399366,west,199.8,1,0,0,0
+shanghai-demo:source-h1473,attraction,entertainment,Восточный Сюйхуэй,31.182823,121.48467,west,414.8,1,0,0,0
+shanghai-demo:source-h1474,attraction,entertainment,Чаннин,31.196764,121.397601,west,265.5,1,0,0,0
+shanghai-demo:source-h1479,attraction,nature,Народная площадь,31.213319,121.466432,west,409.3,1,0,0,0
+shanghai-demo:source-h1486,attraction,museums|history,Хункоу,31.278668,121.450548,west,397.1,1,0,0,0
+shanghai-demo:source-h1497,attraction,history,Сюйхуэй,31.186309,121.456431,west,419.0,1,0,0,0
+shanghai-demo:source-h1498,attraction,entertainment|unusual,Цзинъань,31.226389,121.438782,west,215.1,1,0,0,0
+shanghai-demo:source-h1499,attraction,nature|history,Средний Пудун,31.262984,121.528204,east,263.4,1,0,0,0
+shanghai-demo:source-h1502,attraction,nature,Вайтань,31.230746,121.485258,west,251.9,1,0,0,0
+shanghai-demo:source-h1504,attraction,history,Хунцяо,31.174982,121.368774,west,178.2,1,0,0,0
+shanghai-demo:source-h1505,attraction,history,Сюйхуэй,31.184566,121.425839,west,320.9,1,0,0,0
+shanghai-demo:source-h1507,attraction,history,Минхан,31.109633,121.377598,west,140.2,1,0,0,0
+shanghai-demo:source-h151,attraction,history,Народная площадь,31.238588,121.469374,west,214.8,1,0,0,0
+shanghai-demo:source-h1512,attraction,history,Цзинъань,31.222033,121.438194,west,331.4,1,0,0,0
+shanghai-demo:source-h1521,attraction,entertainment,Народная площадь,31.238588,121.46702,west,247.7,1,0,0,0
+shanghai-demo:source-h1526,attraction,history|unusual,Вайтань,31.237716,121.487611,west,293.4,1,0,0,0
+shanghai-demo:source-h1534,attraction,entertainment,Минхан,31.110504,121.379363,west,171.2,1,0,0,0
+shanghai-demo:source-h1537,attraction,entertainment,Цзинъань,31.211577,121.455843,west,218.7,1,0,0,0
+shanghai-demo:source-h1539,attraction,history,Цзинъань,31.211577,121.453489,west,233.0,1,0,0,0
+shanghai-demo:source-h1542,attraction,entertainment,Восточный Сюйхуэй,31.184566,121.48467,west,333.6,1,0,0,0
+shanghai-demo:source-h1543,attraction,history,Минхан,31.13403,121.445842,west,348.0,1,0,0,0
+shanghai-demo:source-h1548,attraction,entertainment,Народная площадь,31.229003,121.482905,west,346.6,1,0,0,0
+shanghai-demo:source-h155,attraction,viewpoints,Восточный Сюйхуэй,31.181081,121.485846,west,339.5,1,0,0,0
+shanghai-demo:source-h1557,attraction,history,Цзинъань,31.229003,121.455843,west,326.4,1,0,0,0
+shanghai-demo:source-h1561,attraction,history|unusual,Пудун,31.211577,121.557031,east,144.3,1,0,0,0
+shanghai-demo:source-h1563,attraction,history,Чаннин,31.20025,121.41525,west,142.2,1,0,0,0
+shanghai-demo:source-h1566,attraction,history,Чаннин,31.215933,121.417603,west,80.7,1,0,0,0
+shanghai-demo:source-h1568,attraction,history,Цзинъань,31.229874,121.461137,west,373.3,1,0,0,0
+shanghai-demo:source-h1576,attraction,entertainment,Чаннин,31.205478,121.432899,west,84.1,1,0,0,0
+shanghai-demo:source-h1578,attraction,history|unusual,Народная площадь,31.236845,121.478787,west,97.0,1,0,0,0
+shanghai-demo:source-h1579,attraction,history,Сюйхуэй,31.188923,121.453489,west,378.5,1,0,0,0
+shanghai-demo:source-h1585,attraction,entertainment|unusual,Южный Пудун,31.158427,121.561149,west,134.7,1,0,0,0
+shanghai-demo:source-h1592,attraction,museums|history,Чаннин,31.234231,121.402895,west,196.7,1,0,0,0
+shanghai-demo:source-h1599,attraction,nature,Пудун,31.239459,121.577033,east,212.5,1,0,0,0
+shanghai-demo:source-h1601,attraction,entertainment,Хунцяо,31.193279,121.375245,west,269.6,1,0,0,0
+shanghai-demo:source-h1607,attraction,history,Минхан,31.133158,121.448783,west,170.3,1,0,0,0
+shanghai-demo:source-h1610,attraction,entertainment,Восточный Сюйхуэй,31.181952,121.487611,west,145.9,1,0,0,0
+shanghai-demo:source-h1615,attraction,history,Цзинъань,31.22726,121.438194,west,317.4,1,0,0,0
+shanghai-demo:source-h1616,attraction,nature,Чаннин,31.210705,121.417603,west,99.5,1,0,0,0
+shanghai-demo:source-h1617,attraction,nature,Пудун,31.208963,121.555266,east,144.2,1,0,0,0
+shanghai-demo:source-h162,attraction,history,Минхан,31.165397,121.397601,west,248.4,1,0,0,0
+shanghai-demo:source-h1623,attraction,museums|history,Сюйхуэй,31.193279,121.437605,west,119.1,1,0,0,0
+shanghai-demo:source-h1624,attraction,nature,Южный Пудун,31.12096,121.579386,west,208.1,1,0,0,0
+shanghai-demo:source-h1631,attraction,viewpoints|history,Цзинъань,31.235974,121.434664,west,278.1,1,0,0,0
+shanghai-demo:source-h1636,attraction,entertainment|unusual,Цзинъань,31.249043,121.442312,west,217.7,1,0,0,0
+shanghai-demo:source-h1638,attraction,history,Хунцяо,31.216805,121.341712,west,121.2,1,0,0,0
+shanghai-demo:source-h1639,attraction,entertainment|unusual,Южный Пудун,31.180209,121.528792,east,120.3,1,0,0,0
+shanghai-demo:source-h164,attraction,nature|history,Хунцяо,31.219419,121.371715,west,90.9,1,0,0,0
+shanghai-demo:source-h1643,attraction,history,Южный Пудун,31.116603,121.588211,west,85.7,1,0,0,0
+shanghai-demo:source-h1644,attraction,history|unusual,Сюйхуэй,31.19415,121.431134,west,387.6,1,0,0,0
+shanghai-demo:source-h1648,attraction,entertainment,Вайтань,31.242073,121.478787,west,233.7,1,0,0,0
+shanghai-demo:source-h1649,attraction,history,Южный Пудун,31.160169,121.564679,west,284.5,1,0,0,0
+shanghai-demo:source-h1654,attraction,nature,Чаннин,31.196764,121.396424,west,308.0,1,0,0,0
+shanghai-demo:source-h1655,attraction,viewpoints,Цзинъань,31.229003,121.4429,west,369.4,1,0,0,0
+shanghai-demo:source-h1656,attraction,nature,Янпу,31.271698,121.523498,east,275.9,1,0,0,0
+shanghai-demo:source-h1657,attraction,history,Минхан,31.144485,121.40466,west,381.0,1,0,0,0
+shanghai-demo:source-h167,attraction,viewpoints,Южный Пудун,31.121831,121.575268,west,133.2,1,0,0,0
+shanghai-demo:source-h1673,attraction,viewpoints|history,Южный Пудун,31.159298,121.562914,west,216.5,1,0,0,0
+shanghai-demo:source-h1675,attraction,nature,Северный Пудун,31.271698,121.581151,east,276.6,1,0,0,0
+shanghai-demo:source-h1682,attraction,history,Сюйхуэй,31.201121,121.432311,west,326.8,1,0,0,0
+shanghai-demo:source-h1690,attraction,history,Хунцяо,31.218547,121.342888,west,163.7,1,0,0,0
+shanghai-demo:source-h1691,attraction,history,Минхан,31.140129,121.420544,west,274.9,1,0,0,0
+shanghai-demo:source-h1692,attraction,history,Народная площадь,31.23336,121.482316,west,406.1,1,0,0,0
+shanghai-demo:source-h1695,attraction,nature,Северный Пудун,31.274312,121.592329,east,410.6,1,0,0,0
+shanghai-demo:source-h1696,attraction,nature,Янпу,31.301322,121.510555,west,147.7,1,0,0,0
+shanghai-demo:source-h17,attraction,history,Минхан,31.121831,121.449371,west,131.4,1,0,0,0
+shanghai-demo:source-h1702,attraction,nature,Вайтань,31.246429,121.481728,west,92.2,1,0,0,0
+shanghai-demo:source-h1705,attraction,entertainment,Минхан,31.113118,121.378775,west,271.0,1,0,0,0
+shanghai-demo:source-h1706,attraction,nature,Чаннин,31.197636,121.401719,west,376.5,1,0,0,0
+shanghai-demo:source-h1707,attraction,viewpoints,Луцзяцзуй,31.23336,121.503495,east,328.9,1,0,0,0
+shanghai-demo:source-h1712,attraction,viewpoints,Хунцяо,31.219419,121.367009,west,143.1,1,0,0,0
+shanghai-demo:source-h1713,attraction,history,Южный Пудун,31.126188,121.500554,west,220.0,1,0,0,0
+shanghai-demo:source-h1715,attraction,viewpoints,Пудун,31.212448,121.555266,east,261.3,1,0,0,0
+shanghai-demo:source-h1718,attraction,nature,Хунцяо,31.215933,121.365832,west,375.0,1,0,0,0
+shanghai-demo:source-h1725,attraction,entertainment,Южный Пудун,31.159298,121.564091,west,327.8,1,0,0,0
+shanghai-demo:source-h1727,attraction,history|unusual,Средний Пудун,31.262984,121.525851,east,222.5,1,0,0,0
+shanghai-demo:source-h1728,attraction,nature|history,Южный Хуанпу,31.180209,121.511143,east,205.3,1,0,0,0
+shanghai-demo:source-h1732,attraction,entertainment,Восточный Сюйхуэй,31.121831,121.495259,west,82.9,1,0,0,0
+shanghai-demo:source-h1736,attraction,museums|history,Пудун,31.210705,121.555266,east,122.7,1,0,0,0
+shanghai-demo:source-h1737,attraction,viewpoints,Вайтань,31.245558,121.489376,west,181.1,1,0,0,0
+shanghai-demo:source-h1738,attraction,history,Чаннин,31.20025,121.412897,west,338.4,1,0,0,0
+shanghai-demo:source-h1742,attraction,museums|history,Чаннин,31.205478,121.429369,west,243.5,1,0,0,0
+shanghai-demo:source-h1743,attraction,history,Южный Пудун,31.118346,121.562326,west,191.9,1,0,0,0
+shanghai-demo:source-h1745,attraction,history,Чаннин,31.206349,121.404072,west,202.7,1,0,0,0
+shanghai-demo:source-h1751,attraction,history,Хунцяо,31.22029,121.344065,west,336.6,1,0,0,0
+shanghai-demo:source-h1755,attraction,history,Хунцяо,31.226389,121.347007,west,233.1,1,0,0,0
+shanghai-demo:source-h1756,attraction,nature,Сюйхуэй,31.183695,121.429957,west,239.7,1,0,0,0
+shanghai-demo:source-h1757,attraction,viewpoints,Сюйхуэй,31.174982,121.44996,west,358.0,1,0,0,0
+shanghai-demo:source-h1758,attraction,nature,Луцзяцзуй,31.23336,121.504672,east,263.4,1,0,0,0
+shanghai-demo:source-h1759,attraction,history,Цзинъань,31.211577,121.459373,west,359.5,1,0,0,0
+shanghai-demo:source-h1761,attraction,history,Минхан,31.140129,121.419368,west,173.8,1,0,0,0
+shanghai-demo:source-h1763,attraction,history,Цзинъань,31.229003,121.445253,west,169.9,1,0,0,0
+shanghai-demo:source-h1764,attraction,history,Минхан,31.110504,121.381716,west,144.4,1,0,0,0
+shanghai-demo:source-h1768,attraction,history,Чаннин,31.235974,121.400542,west,317.6,1,0,0,0
+shanghai-demo:source-h177,attraction,viewpoints,Северный Пудун,31.27344,121.581151,east,176.9,1,0,0,0
+shanghai-demo:source-h1779,attraction,entertainment|unusual,Южный Хуанпу,31.181081,121.502319,east,312.0,1,0,0,0
+shanghai-demo:source-h1783,attraction,museums|history,Народная площадь,31.209834,121.466432,west,226.3,1,0,0,0
+shanghai-demo:source-h1785,attraction,entertainment,Народная площадь,31.221161,121.471727,west,145.4,1,0,0,0
+shanghai-demo:source-h1789,attraction,history,Чаннин,31.256014,121.41172,west,307.8,1,0,0,0
+shanghai-demo:source-h1791,attraction,history,Южный Пудун,31.119217,121.584093,west,310.0,1,0,0,0
+shanghai-demo:source-h18,attraction,nature,Средний Пудун,31.262113,121.528792,east,267.0,1,0,0,0
+shanghai-demo:source-h1801,attraction,museums|history,Вайтань,31.243815,121.488199,west,348.2,1,0,0,0
+shanghai-demo:source-h1803,attraction,history,Южный Хуанпу,31.175853,121.509378,east,133.4,1,0,0,0
+shanghai-demo:source-h1804,attraction,entertainment,Цзинъань,31.212448,121.463491,west,253.6,1,0,0,0
+shanghai-demo:source-h1807,attraction,history,Южный Хуанпу,31.179338,121.515261,east,240.4,1,0,0,0
+shanghai-demo:source-h1813,attraction,nature,Средний Пудун,31.257757,121.529381,east,374.9,1,0,0,0
+shanghai-demo:source-h1816,attraction,history,Народная площадь,31.237716,121.473492,west,180.9,1,0,0,0
+shanghai-demo:source-h1817,attraction,museums|history,Вайтань,31.236845,121.48467,west,128.9,1,0,0,0
+shanghai-demo:source-h1819,attraction,history,Минхан,31.111376,121.378775,west,122.1,1,0,0,0
+shanghai-demo:source-h1821,attraction,entertainment,Цзинъань,31.234231,121.43584,west,316.8,1,0,0,0
+shanghai-demo:source-h1824,attraction,museums|history,Сюйхуэй,31.190665,121.453489,west,375.1,1,0,0,0
+shanghai-demo:source-h1829,attraction,entertainment,Хунцяо,31.217676,121.369362,west,153.6,1,0,0,0
+shanghai-demo:source-h1832,attraction,nature,Южный Пудун,31.118346,121.567032,west,258.1,1,0,0,0
+shanghai-demo:source-h1835,attraction,nature,Хункоу,31.283896,121.451725,west,295.4,1,0,0,0
+shanghai-demo:source-h1840,attraction,history,Минхан,31.163654,121.396424,west,139.7,1,0,0,0
+shanghai-demo:source-h1841,attraction,history,Цзинъань,31.230746,121.441723,west,385.0,1,0,0,0
+shanghai-demo:source-h1842,attraction,nature,Луцзяцзуй,31.237716,121.50173,east,236.5,1,0,0,0
+shanghai-demo:source-h1845,attraction,entertainment,Сюйхуэй,31.17411,121.414073,west,188.3,1,0,0,0
+shanghai-demo:source-h1846,attraction,nature,Минхан,31.111376,121.375245,west,232.7,1,0,0,0
+shanghai-demo:source-h185,attraction,history,Сюйхуэй,31.201992,121.432899,west,270.0,1,0,0,0
+shanghai-demo:source-h1855,attraction,museums|history,Сюйхуэй,31.185437,121.428781,west,346.0,1,0,0,0
+shanghai-demo:source-h1856,attraction,history,Цзинъань,31.226389,121.454078,west,250.6,1,0,0,0
+shanghai-demo:source-h1857,attraction,nature,Цзинъань,31.215933,121.454078,west,297.7,1,0,0,0
+shanghai-demo:source-h186,attraction,nature,Хунцяо,31.174982,121.36995,west,247.8,1,0,0,0
+shanghai-demo:source-h1860,attraction,entertainment|unusual,Народная площадь,31.235102,121.463491,west,268.0,1,0,0,0
+shanghai-demo:source-h1861,attraction,nature,Хункоу,31.283896,121.450548,west,222.1,1,0,0,0
+shanghai-demo:source-h1863,attraction,history,Сюйхуэй,31.18718,121.452313,west,161.4,1,0,0,0
+shanghai-demo:source-h1865,attraction,nature|history,Минхан,31.138386,121.415838,west,91.3,1,0,0,0
+shanghai-demo:source-h1869,attraction,museums|history,Янпу,31.303065,121.507025,west,116.8,1,0,0,0
+shanghai-demo:source-h187,attraction,viewpoints,Народная площадь,31.211577,121.468785,west,419.3,1,0,0,0
+shanghai-demo:source-h1870,attraction,entertainment|unusual,Минхан,31.132287,121.448195,west,275.5,1,0,0,0
+shanghai-demo:source-h1871,attraction,nature,Хунцяо,31.193279,121.376422,west,353.2,1,0,0,0
+shanghai-demo:source-h1873,attraction,viewpoints,Цзинъань,31.23336,121.459961,west,175.8,1,0,0,0
+shanghai-demo:source-h1885,attraction,history|unusual,Сюйхуэй,31.195893,121.434664,west,182.5,1,0,0,0
+shanghai-demo:source-h1895,attraction,history,Цзинъань,31.229874,121.444665,west,184.7,1,0,0,0
+shanghai-demo:source-h1896,attraction,museums|history,Сюйхуэй,31.181081,121.428192,west,152.5,1,0,0,0
+shanghai-demo:source-h1899,attraction,entertainment,Луцзяцзуй,31.236845,121.503495,east,251.9,1,0,0,0
+shanghai-demo:source-h19,attraction,history,Южный Хуанпу,31.203735,121.518791,east,213.4,1,0,0,0
+shanghai-demo:source-h1903,attraction,entertainment|unusual,Южный Пудун,31.120089,121.571739,west,168.6,1,0,0,0
+shanghai-demo:source-h1905,attraction,museums|history,Луцзяцзуй,31.231617,121.515261,east,263.7,1,0,0,0
+shanghai-demo:source-h1917,attraction,museums|history,Народная площадь,31.234231,121.473492,west,136.6,1,0,0,0
+shanghai-demo:source-h1918,attraction,entertainment,Восточный Сюйхуэй,31.126188,121.495847,west,169.0,1,0,0,0
+shanghai-demo:source-h1924,attraction,history,Чаннин,31.202864,121.413485,west,161.1,1,0,0,0
+shanghai-demo:source-h1929,attraction,nature,Южный Пудун,31.12096,121.575857,west,159.5,1,0,0,0
+shanghai-demo:source-h193,attraction,history,Южный Хуанпу,31.177595,121.511732,east,395.4,1,0,0,0
+shanghai-demo:source-h1932,attraction,museums|history,Чаннин,31.201992,121.41525,west,245.7,1,0,0,0
+shanghai-demo:source-h1933,attraction,museums|history,Народная площадь,31.237716,121.478198,west,190.6,1,0,0,0
+shanghai-demo:source-h1934,attraction,entertainment,Минхан,31.135772,121.398777,west,152.9,1,0,0,0
+shanghai-demo:source-h1936,attraction,entertainment,Цзинъань,31.229874,121.455254,west,235.9,1,0,0,0
+shanghai-demo:source-h1938,attraction,museums|history,Пудун,31.237716,121.57821,east,251.4,1,0,0,0
+shanghai-demo:source-h1939,attraction,viewpoints,Восточный Сюйхуэй,31.180209,121.486434,west,352.8,1,0,0,0
+shanghai-demo:source-h1942,attraction,nature|history,Южный Пудун,31.139258,121.574092,west,310.9,1,0,0,0
+shanghai-demo:source-h1945,attraction,history,Цзинъань,31.22726,121.454666,west,279.1,1,0,0,0
+shanghai-demo:source-h1949,attraction,history|unusual,Северо-запад Шанхая,31.304808,121.41172,west,94.6,1,0,0,0
+shanghai-demo:source-h195,attraction,history,Южный Пудун,31.144485,121.512908,west,376.0,1,0,0,0
+shanghai-demo:source-h1950,attraction,entertainment,Сюйхуэй,31.196764,121.434075,west,117.4,1,0,0,0
+shanghai-demo:source-h1952,attraction,history|unusual,Сюйхуэй,31.18718,121.426428,west,315.9,1,0,0,0
+shanghai-demo:source-h1959,attraction,nature,Луцзяцзуй,31.229003,121.506437,east,196.1,1,0,0,0
+shanghai-demo:source-h1962,attraction,history,Минхан,31.113989,121.37701,west,349.7,1,0,0,0
+shanghai-demo:source-h1965,attraction,museums|history,Чаннин,31.208092,121.405249,west,227.8,1,0,0,0
+shanghai-demo:source-h1966,attraction,viewpoints,Пудун,31.20025,121.583505,east,398.6,1,0,0,0
+shanghai-demo:source-h1976,attraction,entertainment,Вайтань,31.243815,121.47761,west,359.2,1,0,0,0
+shanghai-demo:source-h1980,attraction,entertainment|unusual,Сюйхуэй,31.189794,121.431722,west,309.0,1,0,0,0
+shanghai-demo:source-h1985,attraction,history,Чаннин,31.218547,121.415838,west,145.2,1,0,0,0
+shanghai-demo:source-h1986,attraction,nature,Янпу,31.304808,121.508202,west,113.5,1,0,0,0
+shanghai-demo:source-h1987,attraction,nature,Минхан,31.139258,121.421133,west,367.7,1,0,0,0
+shanghai-demo:source-h1988,attraction,history,Минхан,31.133158,121.395836,west,186.8,1,0,0,0
+shanghai-demo:source-h199,attraction,history,Сюйхуэй,31.175853,121.414073,west,214.8,1,0,0,0
+shanghai-demo:source-h1992,attraction,viewpoints,Чаннин,31.221161,121.41525,west,174.4,1,0,0,0
+shanghai-demo:source-h1994,attraction,museums|history,Народная площадь,31.231617,121.468197,west,187.1,1,0,0,0
+shanghai-demo:source-h1995,attraction,history,Минхан,31.144485,121.407013,west,190.4,1,0,0,0
+shanghai-demo:source-h2000,attraction,entertainment,Восточный Сюйхуэй,31.126188,121.497024,west,271.8,1,0,0,0
+shanghai-demo:source-h2003,attraction,viewpoints,Чаннин,31.235102,121.402307,west,306.3,1,0,0,0
+shanghai-demo:source-h2004,attraction,museums|history,Чаннин,31.204606,121.402895,west,342.1,1,0,0,0
+shanghai-demo:source-h2008,attraction,history,Южный Пудун,31.119217,121.573503,west,94.1,1,0,0,0
+shanghai-demo:source-h2009,attraction,museums|history,Сюйхуэй,31.208963,121.459961,west,347.2,1,0,0,0
+shanghai-demo:source-h201,attraction,viewpoints,Средний Пудун,31.269955,121.582328,east,361.3,1,0,0,0
+shanghai-demo:source-h2013,attraction,museums|history|unusual,Чаннин,31.215062,121.417015,west,192.5,1,0,0,0
+shanghai-demo:source-h2015,attraction,entertainment,Чаннин,31.20025,121.410543,west,252.7,1,0,0,0
+shanghai-demo:source-h2016,attraction,nature,Народная площадь,31.22029,121.465256,west,156.4,1,0,0,0
+shanghai-demo:source-h2020,attraction,entertainment,Луцзяцзуй,31.234231,121.502907,east,219.5,1,0,0,0
+shanghai-demo:source-h2022,attraction,history,Минхан,31.146228,121.402307,west,275.0,1,0,0,0
+shanghai-demo:source-h2034,attraction,history,Хунцяо,31.171496,121.367597,west,244.3,1,0,0,0
+shanghai-demo:source-h2038,attraction,history,Южный Хуанпу,31.182823,121.514085,east,181.4,1,0,0,0
+shanghai-demo:source-h2040,attraction,history,Сюйхуэй,31.209834,121.460549,west,340.9,1,0,0,0
+shanghai-demo:source-h2041,attraction,viewpoints,Средний Пудун,31.261242,121.529381,east,313.5,1,0,0,0
+shanghai-demo:source-h2045,attraction,entertainment|unusual,Восточный Сюйхуэй,31.122703,121.495847,west,163.3,1,0,0,0
+shanghai-demo:source-h2052,attraction,entertainment|unusual,Цзинъань,31.213319,121.453489,west,126.5,1,0,0,0
+shanghai-demo:source-h2057,attraction,history,Сюйхуэй,31.185437,121.426428,west,322.0,1,0,0,0
+shanghai-demo:source-h206,attraction,history|unusual,Чаннин,31.198507,121.397601,west,84.7,1,0,0,0
+shanghai-demo:source-h2060,attraction,entertainment|unusual,Южный Хуанпу,31.180209,121.50173,east,274.7,1,0,0,0
+shanghai-demo:source-h2062,attraction,history,Минхан,31.142743,121.40113,west,167.0,1,0,0,0
+shanghai-demo:source-h2063,attraction,nature,Народная площадь,31.209834,121.474668,west,193.9,1,0,0,0
+shanghai-demo:source-h2064,attraction,history,Чаннин,31.214191,121.417603,west,269.5,1,0,0,0
+shanghai-demo:source-h2066,attraction,nature,Хунцяо,31.180209,121.372304,west,342.1,1,0,0,0
+shanghai-demo:source-h2068,attraction,viewpoints,Народная площадь,31.239459,121.469962,west,296.6,1,0,0,0
+shanghai-demo:source-h2069,attraction,viewpoints,Южный Пудун,31.145357,121.513496,west,278.3,1,0,0,0
+shanghai-demo:source-h207,attraction,museums|history,Янпу,31.324848,121.522909,west,285.7,1,0,0,0
+shanghai-demo:source-h2070,attraction,entertainment,Южный Хуанпу,31.195893,121.506437,east,189.4,1,0,0,0
+shanghai-demo:source-h2072,attraction,history|unusual,Минхан,31.139258,121.422309,west,419.7,1,0,0,0
+shanghai-demo:source-h2082,attraction,history,Цзинъань,31.229003,121.444077,west,264.8,1,0,0,0
+shanghai-demo:source-h2086,attraction,nature,Чаннин,31.206349,121.420544,west,409.0,1,0,0,0
+shanghai-demo:source-h2087,attraction,viewpoints,Чаннин,31.196764,121.398777,west,266.9,1,0,0,0
+shanghai-demo:source-h2089,attraction,entertainment,Цзинъань,31.218547,121.460549,west,122.9,1,0,0,0
+shanghai-demo:source-h2090,attraction,history,Южный Хуанпу,31.192408,121.506437,east,186.8,1,0,0,0
+shanghai-demo:source-h2094,attraction,entertainment|unusual,Чаннин,31.208092,121.419368,west,368.3,1,0,0,0
+shanghai-demo:source-h2096,attraction,nature|history,Чаннин,31.20025,121.41172,west,334.0,1,0,0,0
+shanghai-demo:source-h2107,attraction,history,Хунцяо,31.218547,121.362891,west,131.2,1,0,0,0
+shanghai-demo:source-h2108,attraction,viewpoints,Хунцяо,31.219419,121.369362,west,141.7,1,0,0,0
+shanghai-demo:source-h2110,attraction,entertainment,Пудун,31.213319,121.559384,east,114.7,1,0,0,0
+shanghai-demo:source-h2117,attraction,nature,Минхан,31.116603,121.374068,west,167.0,1,0,0,0
+shanghai-demo:source-h2127,attraction,nature,Южный Хуанпу,31.181081,121.515261,east,243.3,1,0,0,0
+shanghai-demo:source-h2128,attraction,history,Южный Хуанпу,31.182823,121.515261,east,220.0,1,0,0,0
+shanghai-demo:source-h213,attraction,entertainment,Вайтань,31.239459,121.500554,east,156.4,1,0,0,0
+shanghai-demo:source-h2131,attraction,viewpoints,Луцзяцзуй,31.229874,121.505849,east,307.9,1,0,0,0
+shanghai-demo:source-h2133,attraction,history,Цзинъань,31.228132,121.448195,west,258.1,1,0,0,0
+shanghai-demo:source-h2142,attraction,viewpoints,Средний Пудун,31.262113,121.529969,east,202.0,1,0,0,0
+shanghai-demo:source-h2149,attraction,museums|history,Вайтань,31.244687,121.491141,west,363.8,1,0,0,0
+shanghai-demo:source-h2150,attraction,museums|history|unusual,Цзинъань,31.229874,121.441135,west,349.8,1,0,0,0
+shanghai-demo:source-h216,attraction,nature,Минхан,31.109633,121.374068,west,118.0,1,0,0,0
+shanghai-demo:source-h2161,attraction,museums|history,Пудун,31.212448,121.554089,east,234.2,1,0,0,0
+shanghai-demo:source-h2164,attraction,history,Чаннин,31.22029,121.43584,west,178.9,1,0,0,0
+shanghai-demo:source-h2167,attraction,nature|history,Луцзяцзуй,31.230746,121.513496,east,349.0,1,0,0,0
+shanghai-demo:source-h2170,attraction,entertainment,Хунцяо,31.175853,121.369362,west,147.0,1,0,0,0
+shanghai-demo:source-h2174,attraction,entertainment,Вайтань,31.249043,121.491729,west,118.2,1,0,0,0
+shanghai-demo:source-h2176,attraction,nature,Сюйхуэй,31.18718,121.454666,west,293.6,1,0,0,0
+shanghai-demo:source-h2177,attraction,entertainment,Луцзяцзуй,31.236845,121.502319,east,169.0,1,0,0,0
+shanghai-demo:source-h2181,attraction,history,Цзинъань,31.210705,121.458784,west,259.2,1,0,0,0
+shanghai-demo:source-h2183,attraction,entertainment,Минхан,31.141,121.429369,west,364.9,1,0,0,0
+shanghai-demo:source-h2186,attraction,history,Цзинъань,31.229003,121.452313,west,184.0,1,0,0,0
+shanghai-demo:source-h2191,attraction,viewpoints|history,Цзинъань,31.224647,121.462314,west,298.6,1,0,0,0
+shanghai-demo:source-h2193,attraction,history,Народная площадь,31.237716,121.472315,west,142.5,1,0,0,0
+shanghai-demo:source-h2198,attraction,history,Хунцяо,31.216805,121.342888,west,98.0,1,0,0,0
+shanghai-demo:source-h2202,attraction,history,Минхан,31.150585,121.429957,west,385.0,1,0,0,0
+shanghai-demo:source-h2203,attraction,entertainment,Луцзяцзуй,31.229874,121.514085,east,365.6,1,0,0,0
+shanghai-demo:source-h2204,attraction,history|unusual,Сюйхуэй,31.195022,121.435252,west,116.1,1,0,0,0
+shanghai-demo:source-h2205,attraction,museums|history|unusual,Народная площадь,31.228132,121.47055,west,233.6,1,0,0,0
+shanghai-demo:source-h221,attraction,entertainment,Янпу,31.304808,121.507025,west,88.7,1,0,0,0
+shanghai-demo:source-h2213,attraction,nature,Луцзяцзуй,31.235102,121.503495,east,219.5,1,0,0,0
+shanghai-demo:source-h2220,attraction,nature,Сюйхуэй,31.175853,121.448195,west,170.9,1,0,0,0
+shanghai-demo:source-h2226,attraction,viewpoints,Янпу,31.303065,121.508202,west,136.6,1,0,0,0
+shanghai-demo:source-h2230,attraction,entertainment,Вайтань,31.242944,121.487611,west,327.2,1,0,0,0
+shanghai-demo:source-h2232,attraction,viewpoints,Южный Пудун,31.119217,121.586446,west,338.3,1,0,0,0
+shanghai-demo:source-h2235,attraction,entertainment|unusual,Народная площадь,31.22726,121.467609,west,301.3,1,0,0,0
+shanghai-demo:source-h2237,attraction,entertainment,Цзинъань,31.212448,121.458784,west,390.2,1,0,0,0
+shanghai-demo:source-h2238,attraction,history,Восточный Сюйхуэй,31.181081,121.487023,west,245.6,1,0,0,0
+shanghai-demo:source-h224,attraction,nature,Вайтань,31.235102,121.48467,west,110.9,1,0,0,0
+shanghai-demo:source-h2240,attraction,history,Южный Пудун,31.120089,121.587034,west,350.4,1,0,0,0
+shanghai-demo:source-h2245,attraction,viewpoints,Пудун,31.236845,121.576445,east,124.5,1,0,0,0
+shanghai-demo:source-h2255,attraction,history,Цзинъань,31.219419,121.462314,west,146.3,1,0,0,0
+shanghai-demo:source-h226,attraction,nature,Средний Пудун,31.270826,121.580563,east,387.5,1,0,0,0
+shanghai-demo:source-h2264,attraction,nature,Южный Пудун,31.147099,121.519379,west,300.8,1,0,0,0
+shanghai-demo:source-h2265,attraction,entertainment,Чаннин,31.203735,121.41525,west,88.9,1,0,0,0
+shanghai-demo:source-h227,attraction,viewpoints,Сюйхуэй,31.198507,121.434075,west,174.1,1,0,0,0
+shanghai-demo:source-h2271,attraction,history,Цзинъань,31.210705,121.461137,west,286.9,1,0,0,0
+shanghai-demo:source-h2275,attraction,history,Минхан,31.143614,121.404072,west,329.9,1,0,0,0
+shanghai-demo:source-h2298,attraction,history|unusual,Южный Хуанпу,31.183695,121.51585,east,225.7,1,0,0,0
+shanghai-demo:source-h2303,attraction,entertainment,Минхан,31.13403,121.449371,west,84.7,1,0,0,0
+shanghai-demo:source-h231,attraction,history,Южный Пудун,31.121831,121.578798,west,216.6,1,0,0,0
+shanghai-demo:source-h2324,attraction,history|unusual,Хунцяо,31.215933,121.364656,west,392.4,1,0,0,0
+shanghai-demo:source-h233,attraction,nature,Хункоу,31.284767,121.447606,west,135.2,1,0,0,0
+shanghai-demo:source-h2346,attraction,history|unusual,Чаннин,31.257757,121.41525,west,142.9,1,0,0,0
+shanghai-demo:source-h2351,attraction,viewpoints|history,Южный Пудун,31.12096,121.582916,west,127.9,1,0,0,0
+shanghai-demo:source-h238,attraction,entertainment,Сюйхуэй,31.177595,121.41525,west,306.0,1,0,0,0
+shanghai-demo:source-h239,attraction,entertainment,Южный Пудун,31.139258,121.575268,west,225.3,1,0,0,0
+shanghai-demo:source-h2392,attraction,history|unusual,Вайтань,31.245558,121.491729,west,269.8,1,0,0,0
+shanghai-demo:source-h2393,attraction,history|unusual,Южный Пудун,31.121831,121.572915,west,230.2,1,0,0,0
+shanghai-demo:source-h2421,attraction,museums|history,Сюйхуэй,31.17411,121.455254,west,287.4,1,0,0,0
+shanghai-demo:source-h2424,attraction,history|unusual,Минхан,31.131416,121.44643,west,278.7,1,0,0,0
+shanghai-demo:source-h243,attraction,museums|history,Луцзяцзуй,31.235974,121.504084,east,270.7,1,0,0,0
+shanghai-demo:source-h245,attraction,history,Южный Хуанпу,31.181952,121.513496,east,107.6,1,0,0,0
+shanghai-demo:source-h247,attraction,museums|history,Луцзяцзуй,31.261242,121.524674,east,250.9,1,0,0,0
+shanghai-demo:source-h2512,attraction,history|unusual,Народная площадь,31.210705,121.476433,west,160.7,1,0,0,0
+shanghai-demo:source-h253,attraction,history,Цзинъань,31.248172,121.4429,west,258.5,1,0,0,0
+shanghai-demo:source-h254,attraction,nature,Хунцяо,31.171496,121.364067,west,91.2,1,0,0,0
+shanghai-demo:source-h255,attraction,viewpoints,Вайтань,31.245558,121.483493,west,99.9,1,0,0,0
+shanghai-demo:source-h2550,attraction,viewpoints|history,Южный Хуанпу,31.185437,121.514673,east,233.0,1,0,0,0
+shanghai-demo:source-h257,attraction,history,Чаннин,31.208963,121.419956,west,286.1,1,0,0,0
+shanghai-demo:source-h2578,attraction,history|unusual,Сюйхуэй,31.177595,121.414073,west,200.3,1,0,0,0
+shanghai-demo:source-h262,attraction,entertainment,Южный Хуанпу,31.176724,121.51232,east,360.8,1,0,0,0
+shanghai-demo:source-h2620,attraction,history|unusual,Цзинъань,31.229874,121.449371,west,264.3,1,0,0,0
+shanghai-demo:source-h2638,attraction,nature|history,Вайтань,31.242073,121.487023,west,215.4,1,0,0,0
+shanghai-demo:source-h2657,attraction,nature|history,Южный Хуанпу,31.178467,121.51585,east,130.5,1,0,0,0
+shanghai-demo:source-h267,attraction,nature,Хункоу,31.289124,121.488199,west,111.4,1,0,0,0
+shanghai-demo:source-h275,attraction,history|unusual,Южный Пудун,31.119217,121.57115,west,150.5,1,0,0,0
+shanghai-demo:source-h276,attraction,museums|history,Луцзяцзуй,31.230746,121.50526,east,419.8,1,0,0,0
+shanghai-demo:source-h278,attraction,history,Минхан,31.134901,121.445253,west,238.5,1,0,0,0
+shanghai-demo:source-h28,attraction,history,Южный Хуанпу,31.186309,121.489376,west,162.5,1,0,0,0
+shanghai-demo:source-h280,attraction,history|unusual,Пудун,31.237716,121.57468,east,120.0,1,0,0,0
+shanghai-demo:source-h281,attraction,history,Чаннин,31.212448,121.397601,west,115.9,1,0,0,0
+shanghai-demo:source-h284,attraction,entertainment,Пудун,31.238588,121.577622,east,254.9,1,0,0,0
+shanghai-demo:source-h285,attraction,viewpoints|history,Сюйхуэй,31.188923,121.427604,west,271.6,1,0,0,0
+shanghai-demo:source-h288,attraction,history,Хунцяо,31.22726,121.346418,west,311.1,1,0,0,0
+shanghai-demo:source-h289,attraction,museums|history,Чаннин,31.201121,121.408778,west,295.3,1,0,0,0
+shanghai-demo:source-h29,attraction,entertainment,Южный Хуанпу,31.195893,121.507613,east,134.8,1,0,0,0
+shanghai-demo:source-h295,attraction,entertainment|unusual,Южный Пудун,31.157555,121.560561,west,223.6,1,0,0,0
+shanghai-demo:source-h297,attraction,history|unusual,Хунцяо,31.156684,121.348183,west,113.1,1,0,0,0
+shanghai-demo:source-h31,attraction,entertainment,Вайтань,31.234231,121.485258,west,183.4,1,0,0,0
+shanghai-demo:source-h313,attraction,viewpoints,Сюйхуэй,31.18718,121.453489,west,208.8,1,0,0,0
+shanghai-demo:source-h316,attraction,history|unusual,Сюйхуэй,31.191537,121.431722,west,276.1,1,0,0,0
+shanghai-demo:source-h32,attraction,viewpoints,Янпу,31.305679,121.50879,west,189.8,1,0,0,0
+shanghai-demo:source-h320,attraction,nature,Северный Пудун,31.27344,121.584681,east,161.4,1,0,0,0
+shanghai-demo:source-h324,attraction,entertainment,Хунцяо,31.218547,121.36995,west,104.9,1,0,0,0
+shanghai-demo:source-h325,attraction,viewpoints,Северный Пудун,31.272569,121.582916,east,116.8,1,0,0,0
+shanghai-demo:source-h328,attraction,nature|history,Минхан,31.164526,121.398189,west,315.8,1,0,0,0
+shanghai-demo:source-h330,attraction,museums|history,Сюйхуэй,31.181081,121.425839,west,332.7,1,0,0,0
+shanghai-demo:source-h331,attraction,nature,Вайтань,31.247301,121.490553,west,135.3,1,0,0,0
+shanghai-demo:source-h334,attraction,history,Южный Пудун,31.147099,121.517026,west,259.3,1,0,0,0
+shanghai-demo:source-h336,attraction,history,Чаннин,31.201121,121.413485,west,332.9,1,0,0,0
+shanghai-demo:source-h338,attraction,entertainment,Минхан,31.142743,121.40466,west,401.3,1,0,0,0
+shanghai-demo:source-h34,attraction,history,Цзинъань,31.210705,121.456431,west,123.5,1,0,0,0
+shanghai-demo:source-h340,attraction,history,Чаннин,31.208092,121.421721,west,185.9,1,0,0,0
+shanghai-demo:source-h342,attraction,museums|history,Чаннин,31.234231,121.399366,west,278.2,1,0,0,0
+shanghai-demo:source-h343,attraction,viewpoints,Цзинъань,31.217676,121.459961,west,231.7,1,0,0,0
+shanghai-demo:source-h345,attraction,viewpoints,Хунцяо,31.216805,121.364067,west,295.8,1,0,0,0
+shanghai-demo:source-h357,attraction,nature|history,Минхан,31.142743,121.402307,west,224.0,1,0,0,0
+shanghai-demo:source-h359,attraction,viewpoints|history,Сюйхуэй,31.181952,121.426428,west,337.1,1,0,0,0
+shanghai-demo:source-h362,attraction,nature,Минхан,31.139258,121.41878,west,210.7,1,0,0,0
+shanghai-demo:source-h363,attraction,entertainment|unusual,Цзинъань,31.216805,121.454666,west,386.5,1,0,0,0
+shanghai-demo:source-h365,attraction,history|unusual,Минхан,31.109633,121.378775,west,178.0,1,0,0,0
+shanghai-demo:source-h375,attraction,viewpoints,Южный Хуанпу,31.198507,121.509378,east,196.5,1,0,0,0
+shanghai-demo:source-h382,attraction,nature,Народная площадь,31.230746,121.467609,west,228.9,1,0,0,0
+shanghai-demo:source-h384,attraction,history,Хунцяо,31.19415,121.378187,west,175.8,1,0,0,0
+shanghai-demo:source-h387,attraction,entertainment,Луцзяцзуй,31.235974,121.50526,east,225.8,1,0,0,0
+shanghai-demo:source-h391,attraction,history,Южный Пудун,31.125317,121.577622,west,253.1,1,0,0,0
+shanghai-demo:source-h393,attraction,nature,Северо-запад Шанхая,31.323976,121.394071,west,132.3,1,0,0,0
+shanghai-demo:source-h399,attraction,nature,Восточный Сюйхуэй,31.122703,121.493494,west,122.2,1,0,0,0
+shanghai-demo:source-h401,attraction,history,Южный Пудун,31.145357,121.518203,west,109.5,1,0,0,0
+shanghai-demo:source-h404,attraction,museums|history|unusual,Чаннин,31.235102,121.40113,west,384.4,1,0,0,0
+shanghai-demo:source-h406,attraction,nature,Пудун,31.212448,121.551736,east,321.3,1,0,0,0
+shanghai-demo:source-h407,attraction,entertainment,Народная площадь,31.235974,121.465256,west,201.7,1,0,0,0
+shanghai-demo:source-h408,attraction,museums|history,Цзинъань,31.213319,121.457019,west,209.5,1,0,0,0
+shanghai-demo:source-h409,attraction,entertainment,Восточный Сюйхуэй,31.184566,121.48114,west,409.1,1,0,0,0
+shanghai-demo:source-h410,attraction,viewpoints,Янпу,31.270826,121.522909,east,358.7,1,0,0,0
+shanghai-demo:source-h417,attraction,entertainment,Сюйхуэй,31.186309,121.427016,west,359.8,1,0,0,0
+shanghai-demo:source-h421,attraction,viewpoints,Вайтань,31.245558,121.487023,west,200.5,1,0,0,0
+shanghai-demo:source-h430,attraction,history,Цзинъань,31.215933,121.457608,west,392.7,1,0,0,0
+shanghai-demo:source-h436,attraction,viewpoints|history,Северный Пудун,31.274312,121.587623,east,340.2,1,0,0,0
+shanghai-demo:source-h439,attraction,viewpoints,Луцзяцзуй,31.232488,121.507613,east,243.2,1,0,0,0
+shanghai-demo:source-h44,attraction,viewpoints,Сюйхуэй,31.199378,121.433487,west,241.4,1,0,0,0
+shanghai-demo:source-h442,attraction,entertainment,Чаннин,31.210705,121.399954,west,235.2,1,0,0,0
+shanghai-demo:source-h444,attraction,viewpoints|history,Цзинъань,31.235102,121.437605,west,341.6,1,0,0,0
+shanghai-demo:source-h450,attraction,history,Чаннин,31.195893,121.401719,west,231.0,1,0,0,0
+shanghai-demo:source-h462,attraction,history,Чаннин,31.211577,121.421721,west,139.5,1,0,0,0
+shanghai-demo:source-h463,attraction,viewpoints,Восточный Сюйхуэй,31.126188,121.498201,west,331.7,1,0,0,0
+shanghai-demo:source-h467,attraction,nature,Северный Пудун,31.274312,121.579386,east,349.1,1,0,0,0
+shanghai-demo:source-h469,attraction,entertainment,Чаннин,31.204606,121.415838,west,148.5,1,0,0,0
+shanghai-demo:source-h477,attraction,history,Южный Хуанпу,31.192408,121.50879,east,399.7,1,0,0,0
+shanghai-demo:source-h484,attraction,history,Хунцяо,31.217676,121.363479,west,208.2,1,0,0,0
+shanghai-demo:source-h489,attraction,nature,Чаннин,31.20722,121.430546,west,254.1,1,0,0,0
+shanghai-demo:source-h49,attraction,nature,Луцзяцзуй,31.256885,121.527616,east,287.6,1,0,0,0
+shanghai-demo:source-h490,attraction,history,Хунцяо,31.22029,121.345242,west,363.9,1,0,0,0
+shanghai-demo:source-h491,attraction,history,Сюйхуэй,31.195022,121.434075,west,226.5,1,0,0,0
+shanghai-demo:source-h493,attraction,nature,Хункоу,31.276925,121.450548,west,233.7,1,0,0,0
+shanghai-demo:source-h498,attraction,history,Сюйхуэй,31.209834,121.459373,west,285.2,1,0,0,0
+shanghai-demo:source-h501,attraction,history,Минхан,31.152327,121.429957,west,192.1,1,0,0,0
+shanghai-demo:source-h502,attraction,history,Вайтань,31.248172,121.489964,west,169.4,1,0,0,0
+shanghai-demo:source-h505,attraction,history,Хунцяо,31.218547,121.365244,west,129.2,1,0,0,0
+shanghai-demo:source-h507,attraction,viewpoints,Хунцяо,31.22726,121.345242,west,315.7,1,0,0,0
+shanghai-demo:source-h509,attraction,history,Сюйхуэй,31.179338,121.417603,west,136.3,1,0,0,0
+shanghai-demo:source-h51,attraction,history|unusual,Чаннин,31.235974,121.398189,west,93.8,1,0,0,0
+shanghai-demo:source-h511,attraction,history,Южный Пудун,31.12096,121.577033,west,150.5,1,0,0,0
+shanghai-demo:source-h512,attraction,museums|history,Сюйхуэй,31.183695,121.422898,west,302.7,1,0,0,0
+shanghai-demo:source-h513,attraction,nature|history,Вайтань,31.249043,121.490553,west,162.8,1,0,0,0
+shanghai-demo:source-h514,attraction,entertainment|unusual,Минхан,31.165397,121.40466,west,237.2,1,0,0,0
+shanghai-demo:source-h517,attraction,history,Южный Пудун,31.123574,121.576445,west,147.5,1,0,0,0
+shanghai-demo:source-h52,attraction,museums|history,Вайтань,31.230746,121.486434,west,220.8,1,0,0,0
+shanghai-demo:source-h525,attraction,museums|history,Цзинъань,31.211577,121.464079,west,149.9,1,0,0,0
+shanghai-demo:source-h526,attraction,nature|history,Минхан,31.113989,121.374657,west,174.3,1,0,0,0
+shanghai-demo:source-h532,attraction,history,Чаннин,31.216805,121.415838,west,202.9,1,0,0,0
+shanghai-demo:source-h533,attraction,history,Южный Пудун,31.123574,121.578798,west,257.5,1,0,0,0
+shanghai-demo:source-h534,attraction,museums|history,Луцзяцзуй,31.237716,121.504084,east,355.2,1,0,0,0
+shanghai-demo:source-h539,attraction,history,Минхан,31.140129,121.417015,west,105.8,1,0,0,0
+shanghai-demo:source-h542,attraction,entertainment,Луцзяцзуй,31.238588,121.502319,east,195.4,1,0,0,0
+shanghai-demo:source-h544,attraction,history|unusual,Южный Хуанпу,31.177595,121.507025,east,397.9,1,0,0,0
+shanghai-demo:source-h549,attraction,nature,Средний Пудун,31.262984,121.529381,east,162.4,1,0,0,0
+shanghai-demo:source-h553,attraction,entertainment,Чаннин,31.20722,121.405837,west,311.6,1,0,0,0
+shanghai-demo:source-h554,attraction,viewpoints,Южный Пудун,31.138386,121.575857,west,117.6,1,0,0,0
+shanghai-demo:source-h557,attraction,history,Южный Хуанпу,31.180209,121.509967,east,263.0,1,0,0,0
+shanghai-demo:source-h565,attraction,history,Цзинъань,31.210705,121.462314,west,178.1,1,0,0,0
+shanghai-demo:source-h57,attraction,history|unusual,Чаннин,31.199378,121.399366,west,119.3,1,0,0,0
+shanghai-demo:source-h577,attraction,museums|history,Цзинъань,31.23336,121.437605,west,150.0,1,0,0,0
+shanghai-demo:source-h578,attraction,museums|history,Народная площадь,31.229874,121.47761,west,137.8,1,0,0,0
+shanghai-demo:source-h579,attraction,history|unusual,Сюйхуэй,31.190665,121.437017,west,348.2,1,0,0,0
+shanghai-demo:source-h582,attraction,nature|history,Хунцяо,31.217676,121.3423,west,145.5,1,0,0,0
+shanghai-demo:source-h59,attraction,history|unusual,Чаннин,31.219419,121.414073,west,237.1,1,0,0,0
+shanghai-demo:source-h593,attraction,history,Сюйхуэй,31.181952,121.419368,west,328.0,1,0,0,0
+shanghai-demo:source-h594,attraction,history,Сюйхуэй,31.193279,121.435252,west,227.7,1,0,0,0
+shanghai-demo:source-h596,attraction,entertainment,Народная площадь,31.235974,121.469962,west,96.2,1,0,0,0
+shanghai-demo:source-h598,attraction,museums|history,Хункоу,31.278668,121.448195,west,318.7,1,0,0,0
+shanghai-demo:source-h601,attraction,nature,Вайтань,31.242944,121.485258,west,244.4,1,0,0,0
+shanghai-demo:source-h602,attraction,nature,Южный Пудун,31.121831,121.579975,west,179.1,1,0,0,0
+shanghai-demo:source-h604,attraction,entertainment|unusual,Сюйхуэй,31.178467,121.425251,west,398.1,1,0,0,0
+shanghai-demo:source-h606,attraction,entertainment,Вайтань,31.244687,121.477022,west,404.3,1,0,0,0
+shanghai-demo:source-h612,attraction,entertainment,Хунцяо,31.217676,121.364656,west,199.2,1,0,0,0
+shanghai-demo:source-h621,attraction,history,Южный Пудун,31.120089,121.574092,west,199.3,1,0,0,0
+shanghai-demo:source-h622,attraction,history,Чаннин,31.204606,121.404072,west,368.4,1,0,0,0
+shanghai-demo:source-h623,attraction,history,Южный Пудун,31.117475,121.586446,west,270.2,1,0,0,0
+shanghai-demo:source-h625,attraction,history|unusual,Чаннин,31.201992,121.40819,west,397.8,1,0,0,0
+shanghai-demo:source-h626,attraction,nature,Янпу,31.30655,121.508202,west,97.1,1,0,0,0
+shanghai-demo:source-h629,attraction,viewpoints,Пудун,31.210705,121.552913,east,115.3,1,0,0,0
+shanghai-demo:source-h637,attraction,history,Минхан,31.147971,121.402307,west,93.0,1,0,0,0
+shanghai-demo:source-h638,attraction,entertainment,Сюйхуэй,31.195022,121.432899,west,248.5,1,0,0,0
+shanghai-demo:source-h642,attraction,history|unusual,Цзинъань,31.246429,121.440547,west,323.0,1,0,0,0
+shanghai-demo:source-h647,attraction,history|unusual,Цзинъань,31.22726,121.445253,west,331.4,1,0,0,0
+shanghai-demo:source-h648,attraction,entertainment|unusual,Сюйхуэй,31.172368,121.449371,west,129.5,1,0,0,0
+shanghai-demo:source-h654,attraction,history,Южный Хуанпу,31.196764,121.507025,east,86.7,1,0,0,0
+shanghai-demo:source-h657,attraction,nature,Чаннин,31.205478,121.431722,west,144.1,1,0,0,0
+shanghai-demo:source-h658,attraction,viewpoints,Южный Хуанпу,31.193279,121.507025,east,223.0,1,0,0,0
+shanghai-demo:source-h663,attraction,entertainment,Янпу,31.302194,121.511143,west,217.5,1,0,0,0
+shanghai-demo:source-h664,attraction,nature|history,Сюйхуэй,31.180209,121.421721,west,291.8,1,0,0,0
+shanghai-demo:source-h667,attraction,nature,Вайтань,31.24033,121.48467,west,130.4,1,0,0,0
+shanghai-demo:source-h669,attraction,nature|history,Цзинъань,31.22726,121.44996,west,170.4,1,0,0,0
+shanghai-demo:source-h672,attraction,nature|history,Янпу,31.304808,121.510555,west,80.2,1,0,0,0
+shanghai-demo:source-h674,attraction,entertainment,Южный Пудун,31.120089,121.572915,west,146.8,1,0,0,0
+shanghai-demo:source-h680,attraction,viewpoints,Северный Пудун,31.275183,121.577622,east,164.7,1,0,0,0
+shanghai-demo:source-h688,attraction,viewpoints|history,Минхан,31.138386,121.419368,west,322.5,1,0,0,0
+shanghai-demo:source-h69,attraction,history,Цзинъань,31.214191,121.451725,west,155.8,1,0,0,0
+shanghai-demo:source-h692,attraction,museums|history|unusual,Цзинъань,31.229874,121.450548,west,198.0,1,0,0,0
+shanghai-demo:source-h695,attraction,viewpoints,Минхан,31.138386,121.420544,west,386.5,1,0,0,0
+shanghai-demo:source-h697,attraction,history,Южный Хуанпу,31.185437,121.488788,west,127.2,1,0,0,0
+shanghai-demo:source-h70,attraction,entertainment,Народная площадь,31.231617,121.464667,west,216.8,1,0,0,0
+shanghai-demo:source-h701,attraction,history|unusual,Вайтань,31.241202,121.485258,west,122.3,1,0,0,0
+shanghai-demo:source-h704,attraction,history,Цзинъань,31.213319,121.452313,west,198.2,1,0,0,0
+shanghai-demo:source-h706,attraction,history,Минхан,31.142743,121.403484,west,312.4,1,0,0,0
+shanghai-demo:source-h72,attraction,history,Чаннин,31.210705,121.419956,west,226.1,1,0,0,0
+shanghai-demo:source-h720,attraction,nature,Северный Пудун,31.270826,121.582916,east,259.2,1,0,0,0
+shanghai-demo:source-h722,attraction,entertainment,Пудун,31.239459,121.57821,east,319.5,1,0,0,0
+shanghai-demo:source-h724,attraction,viewpoints,Чаннин,31.20722,121.419956,west,372.7,1,0,0,0
+shanghai-demo:source-h725,attraction,history,Минхан,31.138386,121.417015,west,196.9,1,0,0,0
+shanghai-demo:source-h728,attraction,history,Народная площадь,31.216805,121.465256,west,263.9,1,0,0,0
+shanghai-demo:source-h734,attraction,entertainment,Южный Хуанпу,31.177595,121.515261,east,93.6,1,0,0,0
+shanghai-demo:source-h735,attraction,museums|history,Чаннин,31.222904,121.414073,west,168.8,1,0,0,0
+shanghai-demo:source-h739,attraction,viewpoints,Южный Хуанпу,31.177595,121.509378,east,327.3,1,0,0,0
+shanghai-demo:source-h74,attraction,history,Сюйхуэй,31.193279,121.432899,west,403.2,1,0,0,0
+shanghai-demo:source-h744,attraction,history|unusual,Сюйхуэй,31.172368,121.450548,west,154.9,1,0,0,0
+shanghai-demo:source-h749,attraction,entertainment,Пудун,31.211577,121.551148,east,308.2,1,0,0,0
+shanghai-demo:source-h750,attraction,entertainment,Луцзяцзуй,31.235102,121.505849,east,124.0,1,0,0,0
+shanghai-demo:source-h759,attraction,nature,Северо-запад Шанхая,31.323976,121.392894,west,227.3,1,0,0,0
+shanghai-demo:source-h760,attraction,viewpoints,Народная площадь,31.242073,121.47055,west,239.2,1,0,0,0
+shanghai-demo:source-h761,attraction,history,Минхан,31.141,121.414073,west,114.0,1,0,0,0
+shanghai-demo:source-h767,attraction,museums|history,Вайтань,31.236845,121.487023,west,188.0,1,0,0,0
+shanghai-demo:source-h768,attraction,entertainment,Хунцяо,31.17411,121.367009,west,221.3,1,0,0,0
+shanghai-demo:source-h770,attraction,viewpoints,Вайтань,31.241202,121.498201,east,183.5,1,0,0,0
+shanghai-demo:source-h776,attraction,museums|history,Цзинъань,31.22726,121.453489,west,167.5,1,0,0,0
+shanghai-demo:source-h777,attraction,viewpoints,Вайтань,31.242944,121.484081,west,227.4,1,0,0,0
+shanghai-demo:source-h782,attraction,history,Народная площадь,31.212448,121.465844,west,297.5,1,0,0,0
+shanghai-demo:source-h786,attraction,museums|history|unusual,Цзинъань,31.214191,121.457608,west,282.1,1,0,0,0
+shanghai-demo:source-h787,attraction,history,Цзинъань,31.223775,121.458196,west,203.0,1,0,0,0
+shanghai-demo:source-h788,attraction,museums|history,Чаннин,31.206349,121.429957,west,285.4,1,0,0,0
+shanghai-demo:source-h79,attraction,history,Восточный Сюйхуэй,31.178467,121.484081,west,396.3,1,0,0,0
+shanghai-demo:source-h792,attraction,nature,Средний Пудун,31.268212,121.581151,east,192.7,1,0,0,0
+shanghai-demo:source-h793,attraction,museums|history,Цзинъань,31.230746,121.440547,west,284.4,1,0,0,0
+shanghai-demo:source-h804,attraction,nature,Янпу,31.307421,121.506437,west,101.5,1,0,0,0
+shanghai-demo:source-h806,attraction,viewpoints,Народная площадь,31.235102,121.47761,west,130.4,1,0,0,0
+shanghai-demo:source-h814,attraction,nature,Южный Пудун,31.177595,121.53291,east,376.7,1,0,0,0
+shanghai-demo:source-h815,attraction,history|unusual,Минхан,31.137515,121.398777,west,302.7,1,0,0,0
+shanghai-demo:source-h817,attraction,history,Южный Хуанпу,31.180209,121.514673,east,302.7,1,0,0,0
+shanghai-demo:source-h819,attraction,nature,Сюйхуэй,31.192408,121.438194,west,185.3,1,0,0,0
+shanghai-demo:source-h820,attraction,history,Народная площадь,31.23336,121.472904,west,112.2,1,0,0,0
+shanghai-demo:source-h823,attraction,history,Минхан,31.132287,121.445842,west,354.6,1,0,0,0
+shanghai-demo:source-h825,attraction,museums|history,Народная площадь,31.232488,121.474668,west,303.8,1,0,0,0
+shanghai-demo:source-h829,attraction,entertainment|unusual,Южный Хуанпу,31.176724,121.509967,east,236.5,1,0,0,0
+shanghai-demo:source-h83,attraction,history|unusual,Народная площадь,31.238588,121.463491,west,371.8,1,0,0,0
+shanghai-demo:source-h831,attraction,nature,Северный Пудун,31.271698,121.583505,east,170.2,1,0,0,0
+shanghai-demo:source-h832,attraction,nature,Северо-запад Шанхая,31.323105,121.391129,west,408.8,1,0,0,0
+shanghai-demo:source-h841,attraction,history|unusual,Янпу,31.303936,121.50526,west,202.2,1,0,0,0
+shanghai-demo:source-h848,attraction,nature,Народная площадь,31.232488,121.471139,west,101.2,1,0,0,0
+shanghai-demo:source-h849,attraction,entertainment|unusual,Минхан,31.114861,121.376422,west,358.3,1,0,0,0
+shanghai-demo:source-h852,attraction,history,Чаннин,31.20722,121.403484,west,97.3,1,0,0,0
+shanghai-demo:source-h854,attraction,museums|history,Вайтань,31.238588,121.479963,west,145.6,1,0,0,0
+shanghai-demo:source-h857,attraction,entertainment,Северный Пудун,31.276054,121.594682,east,115.6,1,0,0,0
+shanghai-demo:source-h864,attraction,entertainment|unusual,Цзинъань,31.215062,121.453489,west,230.1,1,0,0,0
+shanghai-demo:source-h872,attraction,nature,Цзинъань,31.229003,121.448783,west,236.0,1,0,0,0
+shanghai-demo:source-h875,attraction,nature,Минхан,31.146228,121.430546,west,197.2,1,0,0,0
+shanghai-demo:source-h880,attraction,history,Минхан,31.150585,121.428781,west,392.7,1,0,0,0
+shanghai-demo:source-h884,attraction,entertainment,Луцзяцзуй,31.231617,121.510555,east,176.3,1,0,0,0
+shanghai-demo:source-h885,attraction,history,Южный Пудун,31.17411,121.515261,east,369.5,1,0,0,0
+shanghai-demo:source-h887,attraction,nature,Южный Хуанпу,31.193279,121.505849,east,111.4,1,0,0,0
+shanghai-demo:source-h889,attraction,museums|history,Сюйхуэй,31.208963,121.465844,west,209.3,1,0,0,0
+shanghai-demo:source-h890,attraction,entertainment|unusual,Южный Пудун,31.123574,121.498789,west,162.1,1,0,0,0
+shanghai-demo:source-h891,attraction,museums|history,Цзинъань,31.229003,121.458196,west,351.2,1,0,0,0
+shanghai-demo:source-h900,attraction,museums|history,Цзинъань,31.211577,121.462902,west,188.3,1,0,0,0
+shanghai-demo:source-h902,attraction,history,Южный Хуанпу,31.193279,121.508202,east,334.9,1,0,0,0
+shanghai-demo:source-h914,attraction,nature|history,Южный Пудун,31.118346,121.585858,west,362.2,1,0,0,0
+shanghai-demo:source-h915,attraction,museums|history,Цзинъань,31.228132,121.447018,west,212.4,1,0,0,0
+shanghai-demo:source-h920,attraction,entertainment,Минхан,31.142743,121.410543,west,197.6,1,0,0,0
+shanghai-demo:source-h923,attraction,viewpoints,Цзинъань,31.229003,121.43937,west,236.9,1,0,0,0
+shanghai-demo:source-h930,attraction,nature,Сюйхуэй,31.182823,121.422309,west,407.6,1,0,0,0
+shanghai-demo:source-h932,attraction,history,Хунцяо,31.215933,121.368185,west,300.1,1,0,0,0
+shanghai-demo:source-h933,attraction,history|unusual,Вайтань,31.232488,121.485258,west,377.2,1,0,0,0
+shanghai-demo:source-h935,attraction,entertainment,Вайтань,31.241202,121.495847,east,104.5,1,0,0,0
+shanghai-demo:source-h938,attraction,nature,Луцзяцзуй,31.23336,121.508202,east,179.3,1,0,0,0
+shanghai-demo:source-h94,attraction,viewpoints|history,Сюйхуэй,31.188923,121.431134,west,325.6,1,0,0,0
+shanghai-demo:source-h941,attraction,history,Хунцяо,31.229003,121.345242,west,331.7,1,0,0,0
+shanghai-demo:source-h944,attraction,entertainment,Южный Пудун,31.120089,121.584681,west,312.1,1,0,0,0
+shanghai-demo:source-h945,attraction,history,Хунцяо,31.222033,121.346418,west,182.0,1,0,0,0
+shanghai-demo:source-h954,attraction,museums|history,Народная площадь,31.234231,121.475845,west,318.9,1,0,0,0
+shanghai-demo:source-h956,attraction,history|unusual,Южный Пудун,31.180209,121.531146,east,93.3,1,0,0,0
+shanghai-demo:source-h960,attraction,nature,Восточный Сюйхуэй,31.184566,121.485846,west,243.9,1,0,0,0
+shanghai-demo:source-h961,attraction,nature,Южный Хуанпу,31.179338,121.514085,east,300.4,1,0,0,0
+shanghai-demo:source-h964,attraction,nature,Южный Хуанпу,31.197636,121.50879,east,108.0,1,0,0,0
+shanghai-demo:source-h967,attraction,museums|history|unusual,Чаннин,31.213319,121.418191,west,196.8,1,0,0,0
+shanghai-demo:source-h968,attraction,history,Южный Пудун,31.117475,121.568797,west,380.6,1,0,0,0
+shanghai-demo:source-h969,attraction,nature,Восточный Сюйхуэй,31.127059,121.495259,west,91.2,1,0,0,0
+shanghai-demo:source-h971,attraction,museums|history,Цзинъань,31.226389,121.442312,west,185.9,1,0,0,0
+shanghai-demo:source-h972,attraction,museums|history,Цзинъань,31.216805,121.453489,west,406.4,1,0,0,0
+shanghai-demo:source-h976,attraction,history|unusual,Вайтань,31.231617,121.485846,west,324.3,1,0,0,0
+shanghai-demo:source-h977,attraction,entertainment|unusual,Восточный Сюйхуэй,31.123574,121.496436,west,267.6,1,0,0,0
+shanghai-demo:source-h98,attraction,history,Южный Хуанпу,31.184566,121.515261,east,335.9,1,0,0,0
+shanghai-demo:source-h983,attraction,nature,Восточный Сюйхуэй,31.123574,121.495259,west,174.0,1,0,0,0
+shanghai-demo:source-h988,attraction,entertainment|unusual,Восточный Сюйхуэй,31.181952,121.486434,west,252.3,1,0,0,0
+shanghai-demo:source-h989,attraction,nature,Пудун,31.212448,121.548206,east,184.3,1,0,0,0
+shanghai-demo:source-h990,attraction,entertainment,Хунцяо,31.225518,121.346418,west,121.9,1,0,0,0
+shanghai-demo:source-h991,attraction,museums|history,Чаннин,31.196764,121.392894,west,228.1,1,0,0,0
+shanghai-demo:source-h995,attraction,nature|history,Минхан,31.141,121.40113,west,147.5,1,0,0,0
+shanghai-demo:source-h998,attraction,viewpoints,Янпу,31.30655,121.509378,west,164.9,1,0,0,0
+shanghai-demo:source-h1645,attraction,viewpoints|history,Южный Пудун,31.146228,121.515261,west,261.6,1,0,0,0
+shanghai-demo:source-h1849,attraction,viewpoints,Чаннин,31.208092,121.426428,west,365.3,1,0,0,0
+shanghai-demo:source-h754,attraction,history,Сюйхуэй,31.183695,121.428781,west,345.3,1,0,0,0

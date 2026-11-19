@@ -1,0 +1,19 @@
+{
+  "unchanged_engine_sha256": [
+    "ef0f2e334858d7a0cdec984acfe08a73d3fdbfb3b0bbf901aaaa4c40c9f01e94",
+    "c8d58a64d05f35cf022cbe3fb1de01edeba291b70c1476179dec7912024cd4cc",
+    "3ed1e5cbae55713ff1a0fd8a2ada3c55d5c55293f6a7c1f2cee25ea2c6c067cb"
+  ],
+  "artifacts/tripwise-shanghai.html": {
+    "before_sha256": "fba15ec7efd43192c9c8aceebd08197750c109aa9c647d07bceaab16d667c6df",
+    "after_sha256": "907cbb1703531d62b582ca095822f89074d44f91a368436c15531642938ea4b5",
+    "embedded_count": 5000,
+    "javascript_algorithms_unmodified": true
+  },
+  "artifacts/tripwise-shanghai-coverage.html": {
+    "before_sha256": "948df799c2b17c509a3847fe5764226ee3da0083d263e0c49bf0bd8071bd12db",
+    "after_sha256": "38c864879c2f239e2e15d06e70e466495624b5c01f188ef80018d5f7e30ee826",
+    "embedded_count": 5000,
+    "javascript_algorithms_unmodified": true
+  }
+}

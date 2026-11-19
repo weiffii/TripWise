@@ -1,0 +1,594 @@
+{
+  "schema": "tripwise-city-generation-config-v2",
+  "city_slug": "shanghai",
+  "city_name_ru": "Шанхай",
+  "city_name_en": "Shanghai",
+  "country_code": "CN",
+  "timezone": "Asia/Shanghai",
+  "currency": "CNY",
+  "coordinate_crs": "EPSG:4326",
+  "center": {
+    "lat": 31.2304,
+    "lon": 121.4737
+  },
+  "seed": 20261119,
+  "existing_count": 2000,
+  "new_count": 3000,
+  "target_total": 5000,
+  "category_additions": {
+    "museums": 80,
+    "history": 380,
+    "nature": 280,
+    "cafes": 1150,
+    "entertainment": 340,
+    "shopping": 460,
+    "viewpoints": 85,
+    "unusual": 225
+  },
+  "radial_additions": {
+    "0_7": 1582,
+    "7_20": 784,
+    "20_45": 634
+  },
+  "radial_bands_km": {
+    "0_7": [
+      0,
+      7
+    ],
+    "7_20": [
+      7,
+      20
+    ],
+    "20_45": [
+      20,
+      45
+    ]
+  },
+  "category_ring_preferences": {
+    "museums": [
+      0.69,
+      0.24,
+      0.07
+    ],
+    "history": [
+      0.59,
+      0.25,
+      0.16
+    ],
+    "nature": [
+      0.3,
+      0.29,
+      0.41
+    ],
+    "cafes": [
+      0.59,
+      0.27,
+      0.14
+    ],
+    "entertainment": [
+      0.54,
+      0.28,
+      0.18
+    ],
+    "shopping": [
+      0.48,
+      0.31,
+      0.21
+    ],
+    "viewpoints": [
+      0.43,
+      0.26,
+      0.31
+    ],
+    "unusual": [
+      0.44,
+      0.25,
+      0.31
+    ]
+  },
+  "metro_source": "data/sources/shanghai_metro_centres_418.csv",
+  "transit_component_share": 0.65,
+  "district_centers": [
+    {
+      "name_ru": "Народная площадь",
+      "name_en": "People’s Square",
+      "name_zh": "人民广场",
+      "lat": 31.233,
+      "lon": 121.471,
+      "weight": 2.3,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Вайтань",
+      "name_en": "The Bund",
+      "name_zh": "外滩",
+      "lat": 31.24,
+      "lon": 121.486,
+      "weight": 1.7,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Цзинъань",
+      "name_en": "Jing’an",
+      "name_zh": "静安",
+      "lat": 31.226,
+      "lon": 121.439,
+      "weight": 3.3,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Луцзяцзуй",
+      "name_en": "Lujiazui",
+      "name_zh": "陆家嘴",
+      "lat": 31.24,
+      "lon": 121.506,
+      "weight": 2.7,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Юйюань",
+      "name_en": "Yuyuan",
+      "name_zh": "豫园",
+      "lat": 31.229,
+      "lon": 121.49,
+      "weight": 1.5,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Синьтяньди",
+      "name_en": "Xintiandi",
+      "name_zh": "新天地",
+      "lat": 31.22,
+      "lon": 121.468,
+      "weight": 2.1,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Сюйцзяхуэй",
+      "name_en": "Xujiahui",
+      "name_zh": "徐家汇",
+      "lat": 31.196,
+      "lon": 121.433,
+      "weight": 3.6,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Северный Вайтань",
+      "name_en": "North Bund",
+      "name_zh": "北外滩",
+      "lat": 31.253,
+      "lon": 121.499,
+      "weight": 2.9,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Хункоу",
+      "name_en": "Hongkou",
+      "name_zh": "虹口",
+      "lat": 31.272,
+      "lon": 121.481,
+      "weight": 4.0,
+      "zone_type": "cultural_core"
+    },
+    {
+      "name_ru": "Янпу",
+      "name_en": "Yangpu",
+      "name_zh": "杨浦",
+      "lat": 31.292,
+      "lon": 121.532,
+      "weight": 6.2,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Уцзяочан",
+      "name_en": "Wujiaochang",
+      "name_zh": "五角场",
+      "lat": 31.301,
+      "lon": 121.515,
+      "weight": 3.1,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Чаннин",
+      "name_en": "Changning",
+      "name_zh": "长宁",
+      "lat": 31.217,
+      "lon": 121.401,
+      "weight": 5.2,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Хунцяо",
+      "name_en": "Hongqiao",
+      "name_zh": "虹桥",
+      "lat": 31.203,
+      "lon": 121.331,
+      "weight": 6.2,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Миньхан",
+      "name_en": "Minhang",
+      "name_zh": "闵行",
+      "lat": 31.129,
+      "lon": 121.396,
+      "weight": 7.8,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Цибао",
+      "name_en": "Qibao",
+      "name_zh": "七宝",
+      "lat": 31.158,
+      "lon": 121.35,
+      "weight": 3.5,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Чжанцзян",
+      "name_en": "Zhangjiang",
+      "name_zh": "张江",
+      "lat": 31.205,
+      "lon": 121.596,
+      "weight": 6.2,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Цзиньцяо",
+      "name_en": "Jinqiao",
+      "name_zh": "金桥",
+      "lat": 31.254,
+      "lon": 121.588,
+      "weight": 5.9,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Баошань",
+      "name_en": "Baoshan",
+      "name_zh": "宝山",
+      "lat": 31.354,
+      "lon": 121.434,
+      "weight": 7.5,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Цзядин",
+      "name_en": "Jiading",
+      "name_zh": "嘉定",
+      "lat": 31.337,
+      "lon": 121.249,
+      "weight": 7.0,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Сунцзян",
+      "name_en": "Songjiang",
+      "name_zh": "松江",
+      "lat": 31.045,
+      "lon": 121.226,
+      "weight": 7.5,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Цинпу",
+      "name_en": "Qingpu",
+      "name_zh": "青浦",
+      "lat": 31.151,
+      "lon": 121.117,
+      "weight": 7.5,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Парк Дисней",
+      "name_en": "Shanghai Disney Resort",
+      "name_zh": "上海迪士尼",
+      "lat": 31.144,
+      "lon": 121.657,
+      "weight": 7.8,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Пудун — юг",
+      "name_en": "South Pudong",
+      "name_zh": "浦东南部",
+      "lat": 31.105,
+      "lon": 121.55,
+      "weight": 8.7,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Цаолу",
+      "name_en": "Caolu",
+      "name_zh": "曹路",
+      "lat": 31.28,
+      "lon": 121.658,
+      "weight": 5.0,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Чуаньша",
+      "name_en": "Chuansha",
+      "name_zh": "川沙",
+      "lat": 31.187,
+      "lon": 121.699,
+      "weight": 3.6,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Наньсян",
+      "name_en": "Nanxiang",
+      "name_zh": "南翔",
+      "lat": 31.295,
+      "lon": 121.312,
+      "weight": 3.9,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Чжуцзяцзяо",
+      "name_en": "Zhujiajiao",
+      "name_zh": "朱家角",
+      "lat": 31.112,
+      "lon": 121.049,
+      "weight": 3.5,
+      "zone_type": "heritage_suburban"
+    },
+    {
+      "name_ru": "Юйцяо",
+      "name_en": "Yuqiao",
+      "name_zh": "御桥",
+      "lat": 31.159,
+      "lon": 121.527,
+      "weight": 3.6,
+      "zone_type": "mixed_urban"
+    },
+    {
+      "name_ru": "Антин",
+      "name_en": "Anting",
+      "name_zh": "安亭",
+      "lat": 31.289,
+      "lon": 121.167,
+      "weight": 4.3,
+      "zone_type": "suburban_centre"
+    },
+    {
+      "name_ru": "Чжуанцяо",
+      "name_en": "Zhuangqiao",
+      "name_zh": "庄桥",
+      "lat": 31.063,
+      "lon": 121.447,
+      "weight": 3.3,
+      "zone_type": "suburban_centre"
+    }
+  ],
+  "nature_hub_proxies": [
+    {
+      "lat": 31.2339,
+      "lon": 121.4687
+    },
+    {
+      "lat": 31.2191,
+      "lon": 121.4644
+    },
+    {
+      "lat": 31.2367,
+      "lon": 121.459
+    },
+    {
+      "lat": 31.2403,
+      "lon": 121.5019
+    },
+    {
+      "lat": 31.183,
+      "lon": 121.44
+    },
+    {
+      "lat": 31.275,
+      "lon": 121.553
+    },
+    {
+      "lat": 31.306,
+      "lon": 121.493
+    },
+    {
+      "lat": 31.205,
+      "lon": 121.412
+    },
+    {
+      "lat": 31.143,
+      "lon": 121.659
+    },
+    {
+      "lat": 31.151,
+      "lon": 121.362
+    },
+    {
+      "lat": 31.328,
+      "lon": 121.472
+    },
+    {
+      "lat": 31.17,
+      "lon": 121.514
+    },
+    {
+      "lat": 31.25,
+      "lon": 121.61
+    },
+    {
+      "lat": 31.075,
+      "lon": 121.439
+    }
+  ],
+  "cultural_hub_proxies": [
+    {
+      "lat": 31.23,
+      "lon": 121.471
+    },
+    {
+      "lat": 31.239,
+      "lon": 121.485
+    },
+    {
+      "lat": 31.219,
+      "lon": 121.466
+    },
+    {
+      "lat": 31.249,
+      "lon": 121.445
+    },
+    {
+      "lat": 31.205,
+      "lon": 121.432
+    },
+    {
+      "lat": 31.24,
+      "lon": 121.493
+    },
+    {
+      "lat": 31.255,
+      "lon": 121.503
+    },
+    {
+      "lat": 31.275,
+      "lon": 121.483
+    },
+    {
+      "lat": 31.194,
+      "lon": 121.434
+    },
+    {
+      "lat": 31.28,
+      "lon": 121.52
+    }
+  ],
+  "commercial_hub_proxies": [
+    {
+      "lat": 31.234,
+      "lon": 121.471
+    },
+    {
+      "lat": 31.226,
+      "lon": 121.44
+    },
+    {
+      "lat": 31.196,
+      "lon": 121.432
+    },
+    {
+      "lat": 31.239,
+      "lon": 121.506
+    },
+    {
+      "lat": 31.216,
+      "lon": 121.46
+    },
+    {
+      "lat": 31.21,
+      "lon": 121.399
+    },
+    {
+      "lat": 31.201,
+      "lon": 121.335
+    },
+    {
+      "lat": 31.302,
+      "lon": 121.515
+    },
+    {
+      "lat": 31.159,
+      "lon": 121.35
+    },
+    {
+      "lat": 31.205,
+      "lon": 121.595
+    }
+  ],
+  "river_centreline_approximation": [
+    {
+      "lat": 31.075,
+      "lon": 121.56
+    },
+    {
+      "lat": 31.102,
+      "lon": 121.551
+    },
+    {
+      "lat": 31.134,
+      "lon": 121.525
+    },
+    {
+      "lat": 31.17,
+      "lon": 121.492
+    },
+    {
+      "lat": 31.192,
+      "lon": 121.482
+    },
+    {
+      "lat": 31.208,
+      "lon": 121.484
+    },
+    {
+      "lat": 31.223,
+      "lon": 121.497
+    },
+    {
+      "lat": 31.233,
+      "lon": 121.495
+    },
+    {
+      "lat": 31.241,
+      "lon": 121.49
+    },
+    {
+      "lat": 31.251,
+      "lon": 121.49
+    },
+    {
+      "lat": 31.262,
+      "lon": 121.506
+    },
+    {
+      "lat": 31.279,
+      "lon": 121.522
+    },
+    {
+      "lat": 31.3,
+      "lon": 121.532
+    },
+    {
+      "lat": 31.322,
+      "lon": 121.544
+    },
+    {
+      "lat": 31.345,
+      "lon": 121.558
+    }
+  ],
+  "conservative_sampling_box_approx": {
+    "min_lat": 30.95,
+    "max_lat": 31.5,
+    "min_lon": 121.04,
+    "max_lon": 121.93
+  },
+  "max_center_distance_km": 45.0,
+  "geom_validation": {
+    "osm_buildings_available": false,
+    "osm_landuse_polygons_available": false,
+    "osm_water_polygons_available": false,
+    "osm_pedestrian_graph_available": false,
+    "osm_admin_boundary_available": false,
+    "notes": "Offline fallback; bbox, centerline and district points are modeling safeguards, NOT verification against authoritative geometry."
+  },
+  "source_metadata": {
+    "metro": "Archived 2026-11-19 synthetic generator contained 418 rounded station coordinates with transfer proxies; independently unverified against 2026 OSM snapshot",
+    "osm_extract_url": "https://download.geofabrik.de/asia/china/shanghai.html",
+    "osm_extract_downloaded": false,
+    "license": "OSM data © OpenStreetMap contributors; ODbL 1.0; existing original POIs retained verbatim"
+  },
+  "languages": [
+    "zh",
+    "en",
+    "ru"
+  ],
+  "name_lexicon": "config/shanghai_name_lexicon.json"
+}

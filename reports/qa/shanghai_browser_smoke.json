@@ -1,0 +1,13 @@
+{
+  "coverage": {
+    "total": 2000,
+    "categories": 8,
+    "museum_search_hits": 79,
+    "filters": "passed"
+  },
+  "algorithm": {
+    "embedded_pois": 2000,
+    "build_button": "passed",
+    "status": "! Есть ограничения"
+  }
+}

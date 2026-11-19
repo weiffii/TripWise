@@ -1,0 +1,96 @@
+{
+  "source_git_blob_sha": "bcdf282c63e1e78e214087ff36e678a61bc280b4",
+  "selected_candidate_positions": 1500,
+  "eligible_sites": 2219,
+  "placement_method": "regular hex parcel grid clipped inside same-bank triangles of baseline OSM POIs <=1300m per edge; no random offsets",
+  "category_counts_before": {
+    "history": 695,
+    "viewpoints": 22,
+    "nature": 30,
+    "museums": 90,
+    "unusual": 84,
+    "shopping": 444,
+    "entertainment": 70,
+    "cafes": 850
+  },
+  "category_counts_after": {
+    "history": 385,
+    "viewpoints": 92,
+    "nature": 140,
+    "museums": 90,
+    "unusual": 115,
+    "shopping": 444,
+    "entertainment": 200,
+    "cafes": 850
+  },
+  "restaurants": 850,
+  "records": 2000,
+  "synthetic_museums_sunday_closed": 79,
+  "scenarios_added": {
+    "nature": 110,
+    "viewpoints": 70,
+    "entertainment": 130
+  },
+  "sectors": {
+    "Луцзяцзуй": 66,
+    "Цзинъань": 157,
+    "Восточный Сюйхуэй": 53,
+    "Хунцяо": 115,
+    "Южный Пудун": 153,
+    "Чаннин": 177,
+    "Минхан": 162,
+    "Вайтань": 83,
+    "Южный Хуанпу": 109,
+    "Сюйхуэй": 151,
+    "Северо-запад Шанхая": 13,
+    "Народная площадь": 98,
+    "Пудун": 51,
+    "Хункоу": 29,
+    "Янпу": 32,
+    "Средний Пудун": 24,
+    "Северный Пудун": 27
+  },
+  "bank_distribution": {
+    "east": 287,
+    "west": 1213
+  },
+  "nearest_median_m": 229.6,
+  "min_to_nearest_m": 80.2,
+  "coordinate_min_max": {
+    "lat": [
+      31.10198,
+      31.355993
+    ],
+    "lon": [
+      121.334358,
+      121.60811
+    ]
+  },
+  "gis_water_buildings_roads_verified": false,
+  "max_points_per_3km_cell": 150,
+  "occupied_3km_cells": 70,
+  "new_to_new_min_distance_approx_m": 111.8,
+  "new_attractions_with_restaurant_within_500m": 981,
+  "new_attractions_total": 981,
+  "nearby_restaurant_metric": "straight_line_not_street_route",
+  "museums_fictional_scenarios": 79,
+  "fictional_new_nature_scenarios": 110,
+  "fictional_new_viewpoints_scenarios": 70,
+  "fictional_new_entertainment_scenarios": 130,
+  "known_pet_only_walk_no_gaps_issue": true,
+  "code_changes_to_algorithm": false,
+  "push_to_github": false,
+  "base_branch_tree_sha": "c7eca94d74fa6681c3e1311d3b1e593635669118",
+  "source_engine_js_unchanged": true,
+  "current_html_js_syntax_check_count": 5,
+  "python_tests_passed": 6,
+  "node_trip_length_scenarios_passed": 5,
+  "node_group_scenarios_passed": 4,
+  "browser_smoke_passed": true,
+  "preexisting_duplicate_coordinate_pairs_not_changed": 2,
+  "newly_created_coordinate_duplicates": 0,
+  "needs_street_water_building_gis_recheck": true,
+  "remaining_pets_walk_no_gaps_failed_scenarios": 2,
+  "source_data_first_500_unchanged": true,
+  "source_html_js_markup_unchanged": true
+}

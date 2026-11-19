@@ -1,0 +1,1023 @@
+{
+  "data_poi_count": 5000,
+  "original_engine_loaded_from_html": true,
+  "engine_modified": false,
+  "scenarios_attempted": 26,
+  "full_routes": 14,
+  "partial_routes": 12,
+  "exceptions": 0,
+  "core_invariants_passed": 26,
+  "full_road_network_verified_routes": 0,
+  "osm_routed_legs": 0,
+  "transport_note": "The unchanged offline engine computes demo/fallback transport. No real road routing or Huangpu-crossing verification was performed.",
+  "cases": [
+    {
+      "id": "01_museum_weekend",
+      "purpose": "Музеи за два дня с питанием",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 9,
+      "total_meals": 6,
+      "daily_visits": [
+        4,
+        5
+      ],
+      "days_count": 2,
+      "cost_cny": 792,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: Шанхайский музей на Народной площади."
+      ],
+      "performance_ms": 962
+    },
+    {
+      "id": "02_historic_walk",
+      "purpose": "Пешая прогулка по истории за день",
+      "transport": "walk",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 3,
+      "total_meals": 3,
+      "daily_visits": [
+        3
+      ],
+      "days_count": 1,
+      "cost_cny": 190,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ],
+      "performance_ms": 235
+    },
+    {
+      "id": "03_nature_transit",
+      "purpose": "Парки с использованием городского транспорта",
+      "transport": "transit",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 13,
+      "total_meals": 9,
+      "daily_visits": [
+        4,
+        4,
+        5
+      ],
+      "days_count": 3,
+      "cost_cny": 1538,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: 沿街·云栖生态庭院（人民广场）, 流云街心绿地, 云岚寻味社区小花园（人民广场）.",
+        "Не поместились в этот день: 望江街心绿地, 拾光花园小径, 清欢·江月植物花境（新天地）.",
+        "Не поместились в этот день: 东篱街心绿地, 晓月小白鹭街心绿地（外滩）."
+      ],
+      "performance_ms": 1438
+    },
+    {
+      "id": "04_shopping_taxi",
+      "purpose": "Шопинг и развлечения на такси",
+      "transport": "taxi",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 7,
+      "total_meals": 6,
+      "daily_visits": [
+        3,
+        4
+      ],
+      "days_count": 2,
+      "cost_cny": 1089.32,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: 新宜街, 飞洲国际大厦.",
+        "Не поместились в этот день: 泡泡玛特."
+      ],
+      "performance_ms": 1903
+    },
+    {
+      "id": "05_unusual_multiday",
+      "purpose": "Необычные места и музеи на три дня",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 13,
+      "total_meals": 9,
+      "daily_visits": [
+        5,
+        4,
+        4
+      ],
+      "days_count": 3,
+      "cost_cny": 1730,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: Шанхайский музей на Народной площади.",
+        "Не поместились в этот день: 静湖初见街区记忆室（静安）."
+      ],
+      "performance_ms": 1739
+    },
+    {
+      "id": "06_family",
+      "purpose": "Семья с двумя детьми; совместимость мест и меню",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 10,
+      "total_meals": 6,
+      "daily_visits": [
+        5,
+        5
+      ],
+      "days_count": 2,
+      "cost_cny": 2527.6,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ],
+      "performance_ms": 838
+    },
+    {
+      "id": "07_senior",
+      "purpose": "Пожилые туристы, спокойный темп",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 4,
+      "total_meals": 6,
+      "daily_visits": [
+        2,
+        2
+      ],
+      "days_count": 2,
+      "cost_cny": 1544.2,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: Шанхайский музей на Народной площади.",
+        "Не поместились в этот день: 初见·拾光海派生活展廊（人民广场）."
+      ],
+      "performance_ms": 390
+    },
+    {
+      "id": "08_pets_walk",
+      "purpose": "Путешествие с животным, только пешком",
+      "transport": "walk",
+      "expected": "may_warn",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 3,
+      "total_meals": 3,
+      "daily_visits": [
+        3
+      ],
+      "days_count": 1,
+      "cost_cny": 260,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ],
+      "performance_ms": 92
+    },
+    {
+      "id": "09_low_budget",
+      "purpose": "Стресс-тест: крайне низкий бюджет",
+      "transport": "mixed",
+      "expected": "infeasible_with_warnings",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "failed",
+        "primary_interests": "failed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 0,
+      "total_meals": 0,
+      "daily_visits": [
+        0,
+        0
+      ],
+      "days_count": 2,
+      "cost_cny": 0,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Бюджет ниже минимальной оценки обязательных билетов и предусмотренных приёмов пищи. Полное питание и все обязательные места нельзя обещать в этом сценарии.",
+        "Менее трёх посещений в дни 1, 2: кандидаты этого района не вместились из-за расстояний, режима транспорта, часов или бюджета. Для более плотного дня попробуйте смешанный транспорт, другой интервал или дополнительные дни.",
+        "Не покрыты главные интересы: Смотровые, Музеи. Это не полный маршрут по заданным требованиям.",
+        "Не представлены категории: Смотровые, Музеи, Кафе.",
+        "Не найден завтрак рядом с дневным кластером в указанное время.",
+        "Обед: не удалось найти подходящее кафе в выбранном окне.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне.",
+        "Не поместились в этот день: Набережная Вайтань, 南塘晓月影像艺术馆（外滩）, 春山南塘公共观景廊（外滩）, 远山青禾微型美术馆（外滩）, 望江·清泉高处景观平台（外滩）.",
+        "Не поместились в этот день: 望江城市眺望点, 远山小锦绣滨河观景角（北外滩）, 两岸观景平台, 观澜高层观景廊, 茶山·云栖当代艺术空间（陆家嘴）."
+      ],
+      "performance_ms": 355
+    },
+    {
+      "id": "10_five_days",
+      "purpose": "Длинный насыщенный маршрут 5 дней",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 28,
+      "total_meals": 15,
+      "daily_visits": [
+        5,
+        6,
+        5,
+        6,
+        6
+      ],
+      "days_count": 5,
+      "cost_cny": 2418,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: 鹤鸣·小满原创设计店（人民广场）, 春山小青禾文创商店（人民广场）.",
+        "Не поместились в этот день: 晓月·栖木建筑故事展厅（新天地）.",
+        "Не поместились в этот день: 云帆小茶山茶叶店（人民广场）, 寻味·流云独立书店（人民广场）.",
+        "Не поместились в этот день: 禾木小未央文创商店（人民广场）.",
+        "Не поместились в этот день: 江月与松风文创商店（新天地）."
+      ],
+      "performance_ms": 10234
+    },
+    {
+      "id": "11_required_landmarks",
+      "purpose": "Обязательные Восточная жемчужина и Вайтань",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:bund",
+        "shanghai-demo:oriental-pearl"
+      ],
+      "unplaced_required_ids": [],
+      "total_visits": 10,
+      "total_meals": 6,
+      "daily_visits": [
+        5,
+        5
+      ],
+      "days_count": 2,
+      "cost_cny": 1364,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ],
+      "performance_ms": 651
+    },
+    {
+      "id": "12_conflicting_required",
+      "purpose": "Слишком много обязательных мест для одного спокойного дня",
+      "transport": "walk",
+      "expected": "infeasible_with_warnings",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "failed",
+        "interest_coverage": "failed",
+        "primary_interests": "failed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:bund",
+        "shanghai-demo:yu-garden",
+        "shanghai-demo:shanghai-museum",
+        "shanghai-demo:oriental-pearl",
+        "shanghai-demo:shanghai-tower",
+        "shanghai-demo:jingan-temple"
+      ],
+      "unplaced_required_ids": [
+        "shanghai-demo:bund",
+        "shanghai-demo:yu-garden",
+        "shanghai-demo:shanghai-museum",
+        "shanghai-demo:oriental-pearl",
+        "shanghai-demo:shanghai-tower",
+        "shanghai-demo:jingan-temple"
+      ],
+      "total_visits": 0,
+      "total_meals": 0,
+      "daily_visits": [
+        0
+      ],
+      "days_count": 1,
+      "cost_cny": 0,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Обязательных мест больше, чем вместимость выбранного темпа: 6 мест на 1 дн. Лучше добавить дни или изменить темп.",
+        "Нижняя оценка стоимости обязательных билетов выше бюджета. Некоторые обязательные объекты разместить невозможно.",
+        "Бюджет ниже минимальной оценки обязательных билетов и предусмотренных приёмов пищи. Полное питание и все обязательные места нельзя обещать в этом сценарии.",
+        "Не выполнены обязательные посещения (6): Набережная Вайтань, Сад Юйюань, Шанхайский музей на Народной площади, Телебашня Восточная жемчужина, Смотровая Шанхайской башни, Храм Цзинъань. Попробуйте больше дней или бюджет; некоторые объекты могут быть закрыты.",
+        "Не покрыты главные интересы: История. Это не полный маршрут по заданным требованиям.",
+        "Не представлены категории: История, Музеи.",
+        "Не найден завтрак рядом с дневным кластером в указанное время.",
+        "Обед: не удалось найти подходящее кафе в выбранном окне.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне.",
+        "Не поместились в этот день: Набережная Вайтань, Сад Юйюань, Шанхайский музей на Народной площади, Телебашня Восточная жемчужина."
+      ],
+      "performance_ms": 64
+    },
+    {
+      "id": "13_monday_museum_closed",
+      "purpose": "Закрытый в понедельник музей из сохранённого базового набора (исправлен устаревший ID теста)",
+      "transport": "mixed",
+      "expected": "infeasible_with_warnings",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "failed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:shanghai-museum"
+      ],
+      "unplaced_required_ids": [
+        "shanghai-demo:shanghai-museum"
+      ],
+      "total_visits": 4,
+      "total_meals": 3,
+      "daily_visits": [
+        4
+      ],
+      "days_count": 1,
+      "cost_cny": 180,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не выполнены обязательные посещения (1): Шанхайский музей на Народной площади. Попробуйте больше дней или бюджет; некоторые объекты могут быть закрыты.",
+        "Не поместились в этот день: 墨香·花间设计陈列馆（静安）."
+      ],
+      "performance_ms": 307
+    },
+    {
+      "id": "14_business_cafe",
+      "purpose": "Кафе и шопинг в пределах бюджета",
+      "transport": "transit",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 10,
+      "total_meals": 6,
+      "daily_visits": [
+        5,
+        5
+      ],
+      "days_count": 2,
+      "cost_cny": 778,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание."
+      ],
+      "performance_ms": 838
+    },
+    {
+      "id": "15_breakfast_early",
+      "purpose": "Раннее питание и достопримечательности",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 5,
+      "total_meals": 2,
+      "daily_visits": [
+        5
+      ],
+      "days_count": 1,
+      "cost_cny": 219,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Ужин: не найдено подходящего кафе рядом с маршрутом.",
+        "Не поместились в этот день: Сад Юйюань, 青禾街心绿地（豫园店）."
+      ],
+      "performance_ms": 601
+    },
+    {
+      "id": "16_child_pet",
+      "purpose": "Несовместимые предпочтения: ребёнок, питомец и музеи",
+      "transport": "transit",
+      "expected": "may_warn",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "failed",
+        "primary_interests": "failed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 0,
+      "total_meals": 2,
+      "daily_visits": [
+        0,
+        0
+      ],
+      "days_count": 2,
+      "cost_cny": 337.5,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Менее трёх посещений в дни 1, 2: кандидаты этого района не вместились из-за расстояний, режима транспорта, часов или бюджета. Для более плотного дня попробуйте смешанный транспорт, другой интервал или дополнительные дни.",
+        "Не покрыты главные интересы: Музеи. Это не полный маршрут по заданным требованиям.",
+        "Не представлены категории: Музеи, Смотровые.",
+        "Обед: не удалось найти подходящее кафе в выбранном окне.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне.",
+        "Не поместились в этот день: 云岚文化展览馆, 禾木文化展览馆, 清泉远山当代艺术空间（北外滩）, 半夏与晨光当代艺术空间（人民广场）, 白鹭梧桐互动展厅（新天地）.",
+        "Не поместились в этот день: 清溪小半夏公共观景廊（陆家嘴）, 海派云帆城市观景台（陆家嘴）, 春山·锦绣互动展厅（陆家嘴）, 清泉影像艺术空间, 稻香城市眺望点."
+      ],
+      "performance_ms": 129
+    },
+    {
+      "id": "17_songjiang_heritage",
+      "purpose": "Пригород Сунцзян, обязательный историко-культурный POI",
+      "transport": "transit",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0445"
+      ],
+      "unplaced_required_ids": [],
+      "total_visits": 9,
+      "total_meals": 6,
+      "daily_visits": [
+        4,
+        5
+      ],
+      "days_count": 2,
+      "cost_cny": 750,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: 云岚与拾月绿荫休憩区（松江）."
+      ],
+      "performance_ms": 754
+    },
+    {
+      "id": "18_qingpu_nature",
+      "purpose": "Пригород Цинпу, природные POI и еда",
+      "transport": "taxi",
+      "expected": "feasible_or_partial",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0699"
+      ],
+      "unplaced_required_ids": [],
+      "total_visits": 9,
+      "total_meals": 8,
+      "daily_visits": [
+        3,
+        3,
+        3
+      ],
+      "days_count": 3,
+      "cost_cny": 1975.52,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне."
+      ],
+      "performance_ms": 255
+    },
+    {
+      "id": "19_jiading_unusual",
+      "purpose": "Пригород Цзядин, необычное место",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "failed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:synthetic-ext-v2-1820"
+      ],
+      "unplaced_required_ids": [
+        "shanghai-demo:synthetic-ext-v2-1820"
+      ],
+      "total_visits": 4,
+      "total_meals": 3,
+      "daily_visits": [
+        0,
+        4
+      ],
+      "days_count": 2,
+      "cost_cny": 914,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Менее трёх посещений в дни 1: кандидаты этого района не вместились из-за расстояний, режима транспорта, часов или бюджета. Для более плотного дня попробуйте смешанный транспорт, другой интервал или дополнительные дни.",
+        "Не выполнены обязательные посещения (1): 观澜小里弄旧物艺术屋（嘉定）. Попробуйте больше дней или бюджет; некоторые объекты могут быть закрыты.",
+        "Не найден завтрак рядом с дневным кластером в указанное время.",
+        "Обед: не удалось найти подходящее кафе в выбранном окне.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне.",
+        "Не поместились в этот день: 观澜小里弄旧物艺术屋（嘉定）, 春山与静湖旧物艺术屋（嘉定）, 墨香·禾木实验展览室（嘉定）, 风铃小慢巷旧物艺术屋（嘉定）, 莲影墨香花艺店（嘉定）.",
+        "Не поместились в этот день: 梧桐小拾月非遗体验室（嘉定）."
+      ],
+      "performance_ms": 847
+    },
+    {
+      "id": "20_centre_walk",
+      "purpose": "Центр: пешие музеи, обязательный новый музей",
+      "transport": "walk",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0046"
+      ],
+      "unplaced_required_ids": [],
+      "total_visits": 3,
+      "total_meals": 3,
+      "daily_visits": [
+        3
+      ],
+      "days_count": 1,
+      "cost_cny": 800,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: Музей истории Шанхая, Шанхайский музей на Народной площади, 初见·拾光海派生活展廊（人民广场）, 清欢与花露石库门文化馆（人民广场）."
+      ],
+      "performance_ms": 396
+    },
+    {
+      "id": "21_multicity_5days",
+      "purpose": "Пятидневный смешанный маршрут центр и пригороды",
+      "transport": "mixed",
+      "expected": "feasible_or_partial",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "failed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0445",
+        "shanghai-demo:synthetic-ext-v2-0046"
+      ],
+      "unplaced_required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0046"
+      ],
+      "total_visits": 23,
+      "total_meals": 14,
+      "daily_visits": [
+        4,
+        4,
+        5,
+        5,
+        5
+      ],
+      "days_count": 5,
+      "cost_cny": 3546,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не выполнены обязательные посещения (1): 墨香·花间设计陈列馆（静安）. Попробуйте больше дней или бюджет; некоторые объекты могут быть закрыты.",
+        "Обед: не найдено подходящего кафе рядом с маршрутом.",
+        "Не поместились в этот день: 南塘晓月影像艺术馆（外滩）.",
+        "Не поместились в этот день: 墨香·花间设计陈列馆（静安）, Шанхайский музей естественной истории, 禾木小松风海派生活展廊（人民广场）, 清溪·朴里影像艺术馆（人民广场）.",
+        "Не поместились в этот день: Музей истории Шанхая, Шанхайский музей на Народной площади, 花间小众展厅.",
+        "Не поместились в этот день: 半夏远山影像艺术馆（静安）.",
+        "Не поместились в этот день: 青禾社区花园（人民广场店）, 东篱街心绿地, 笃合书局."
+      ],
+      "performance_ms": 6036
+    },
+    {
+      "id": "22_suburb_museum_taxi",
+      "purpose": "Пригородный музей на такси с едой",
+      "transport": "taxi",
+      "expected": "feasible_or_partial",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0078"
+      ],
+      "unplaced_required_ids": [],
+      "total_visits": 4,
+      "total_meals": 4,
+      "daily_visits": [
+        2,
+        2
+      ],
+      "days_count": 2,
+      "cost_cny": 787.95,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Обед: не найдено подходящего кафе рядом с маршрутом.",
+        "Не поместились в этот день: 木槿设计陈列馆, 朴里城市记忆馆."
+      ],
+      "performance_ms": 182
+    },
+    {
+      "id": "23_senior_family",
+      "purpose": "Семья с ребёнком и пожилым путешественником",
+      "transport": "transit",
+      "expected": "feasible_or_partial",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 8,
+      "total_meals": 8,
+      "daily_visits": [
+        3,
+        3,
+        2
+      ],
+      "days_count": 3,
+      "cost_cny": 3250.6,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне.",
+        "Не поместились в этот день: Центральный парк Луцзяцзуй."
+      ],
+      "performance_ms": 533
+    },
+    {
+      "id": "24_impossible_budget",
+      "purpose": "Невыполнимый бюджет 1 CNY",
+      "transport": "mixed",
+      "expected": "infeasible_with_warnings",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "failed",
+        "required_places": "passed",
+        "interest_coverage": "failed",
+        "primary_interests": "failed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [],
+      "unplaced_required_ids": [],
+      "total_visits": 0,
+      "total_meals": 0,
+      "daily_visits": [
+        0,
+        0
+      ],
+      "days_count": 2,
+      "cost_cny": 0,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Бюджет ниже минимальной оценки обязательных билетов и предусмотренных приёмов пищи. Полное питание и все обязательные места нельзя обещать в этом сценарии.",
+        "Не покрыты главные интересы: Музеи. Это не полный маршрут по заданным требованиям.",
+        "Не представлены категории: Музеи, Кафе.",
+        "Не найден завтрак рядом с дневным кластером в указанное время.",
+        "Обед: не удалось найти подходящее кафе в выбранном окне.",
+        "Ужин: не удалось найти подходящее кафе в выбранном окне.",
+        "Не поместились в этот день: 山海·流云互动展厅（徐家汇）, 初见城市记忆馆, 白鹭梧桐互动展厅（新天地）, Музей мадам Тюссо, 竹泉小静湖地方工艺馆（豫园） и ещё 2.",
+        "Не поместились в этот день: 石榴与玉兰微型美术馆（新天地）, 清溪·朴里影像艺术馆（人民广场）, 鹤鸣小渡口当代艺术空间（人民广场）, 云岚小春山当代艺术空间（人民广场）, 半夏与晨光当代艺术空间（人民广场） и ещё 2."
+      ],
+      "performance_ms": 372
+    },
+    {
+      "id": "25_cross_river_1day",
+      "purpose": "Речной переход за один день и культурные достопримечательности",
+      "transport": "transit",
+      "expected": "feasible_or_partial",
+      "status": "demo",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "passed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:bund",
+        "shanghai-demo:oriental-pearl"
+      ],
+      "unplaced_required_ids": [],
+      "total_visits": 4,
+      "total_meals": 3,
+      "daily_visits": [
+        4
+      ],
+      "days_count": 1,
+      "cost_cny": 858,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не поместились в этот день: 望江·清泉高处景观平台（外滩）."
+      ],
+      "performance_ms": 231
+    },
+    {
+      "id": "26_closed_new_museum",
+      "purpose": "Новый демонстрационный музей закрыт в понедельник",
+      "transport": "walk",
+      "expected": "infeasible_with_warnings",
+      "status": "partial",
+      "valid_core_invariants": true,
+      "checks": {
+        "time": "passed",
+        "budget": "passed",
+        "opening_hours": "passed",
+        "meals": "passed",
+        "required_places": "failed",
+        "interest_coverage": "passed",
+        "primary_interests": "passed",
+        "no_gaps": "passed",
+        "no_duplicates": "passed"
+      },
+      "required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0001"
+      ],
+      "unplaced_required_ids": [
+        "shanghai-demo:synthetic-ext-v2-0001"
+      ],
+      "total_visits": 2,
+      "total_meals": 3,
+      "daily_visits": [
+        2
+      ],
+      "days_count": 1,
+      "cost_cny": 500,
+      "osm_leg_count": 0,
+      "warnings": [
+        "Цены, часы, рейтинги, скидки, загруженность и сезонность моделируются. Время ОТ — оценка, не расписание.",
+        "Не выполнены обязательные посещения (1): 海棠小云栖微型美术馆（虹口）. Попробуйте больше дней или бюджет; некоторые объекты могут быть закрыты.",
+        "Не поместились в этот день: 星河设计陈列馆."
+      ],
+      "performance_ms": 89
+    }
+  ]
+}

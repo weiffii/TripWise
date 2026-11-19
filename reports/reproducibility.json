@@ -1,0 +1,10 @@
+{
+  "executed": true,
+  "identical_output_from_same_base_and_seed": true,
+  "seed": 20261119,
+  "actual_sha256": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d",
+  "rerun_sha256": "72184b2b6a221be96535529fb70e78fb3146b1707c4411ec1b4bcd34d240380d",
+  "return_code": 0,
+  "stderr": "",
+  "already_5000_idempotent": true
+}
