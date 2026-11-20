@@ -1,0 +1,132 @@
+{
+  "new_source_records": [
+    {
+      "name": "Роща сакуры в Бирюлёвском дендропарке",
+      "sources": [
+        {
+          "name": "City nature geodata point",
+          "url": "https://t.me/s/mospriroda/472"
+        }
+      ]
+    },
+    {
+      "name": "Двор с павлинами на Красноказарменной",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://moydom.moscow/2026/07/08/gde-v-moskve-najti-dvor-s-pavlinami/"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Пальмовая оранжерея Аптекарского огорода",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://hortus.msu.ru/palmhouse.html"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Розарий Главного ботанического сада РАН",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://www.gbsad.ru/rozarij"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Памятный знак первому советскому электроплугу",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://park-yauza.info/park/goncharovskiy-park/"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Петровский путевой дворец",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://www.culture.ru/institutes/12035/petrovskii-putevoi-dvorec"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Площадь Соловецких юнг",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://base.garant.ru/3607072/"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Площадь Туманяна",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://ru.wikipedia.org/wiki/Площадь_Туманяна"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Соловьиная роща в Куркино",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://yandex.com/maps/org/solovyinaya_roshcha/90371372434/reviews/"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    },
+    {
+      "name": "Головинский парк",
+      "sources": [
+        {
+          "name": "Independent place existence confirmation",
+          "url": "https://gk-osnova.ru/golovinskie-prudy"
+        },
+        {
+          "name": "Historic open geodata (2020), coordinate only",
+          "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+        }
+      ]
+    }
+  ],
+  "baseline_sources_file": "sources_v4.json",
+  "historic_coordinate_source_caution": "2020 coordinates from public 2020 research snapshot; not independently geocoded in 2026"
+}

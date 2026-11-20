@@ -1,0 +1,520 @@
+[
+  {
+    "id": "moscow-v5-fa849e32286e56",
+    "name": "Роща сакуры в Бирюлёвском дендропарке",
+    "name_ru": "Роща сакуры в Бирюлёвском дендропарке",
+    "name_original": "Роща сакуры в Бирюлёвском дендропарке",
+    "alternative_names": [],
+    "lat": 55.593328,
+    "lon": 37.682164,
+    "categories": [
+      "nature",
+      "unusual"
+    ],
+    "primary_category": "nature",
+    "kind": "place",
+    "source": "https://t.me/s/mospriroda/472",
+    "sources": [
+      {
+        "name": "City nature geodata point",
+        "url": "https://t.me/s/mospriroda/472"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "source_2026_point",
+    "coordinate_method": "source_2026_point",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.593328,
+      "lon": 37.682164,
+      "type": "source_2026_point"
+    }
+  },
+  {
+    "id": "moscow-v5-ac92aa43a725ea",
+    "name": "Двор с павлинами на Красноказарменной",
+    "name_ru": "Двор с павлинами на Красноказарменной",
+    "name_original": "Двор с павлинами на Красноказарменной",
+    "alternative_names": [],
+    "lat": 55.7579636135,
+    "lon": 37.6993381374,
+    "categories": [
+      "unusual"
+    ],
+    "primary_category": "unusual",
+    "kind": "place",
+    "source": "https://moydom.moscow/2026/07/08/gde-v-moskve-najti-dvor-s-pavlinami/",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://moydom.moscow/2026/07/08/gde-v-moskve-najti-dvor-s-pavlinami/"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.7579636135,
+      "lon": 37.6993381374,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-054066f4afba6f",
+    "name": "Пальмовая оранжерея Аптекарского огорода",
+    "name_ru": "Пальмовая оранжерея Аптекарского огорода",
+    "name_original": "Пальмовая оранжерея Аптекарского огорода",
+    "alternative_names": [],
+    "lat": 55.7775814117,
+    "lon": 37.6359571196,
+    "categories": [
+      "nature",
+      "unusual"
+    ],
+    "primary_category": "nature",
+    "kind": "place",
+    "source": "https://hortus.msu.ru/palmhouse.html",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://hortus.msu.ru/palmhouse.html"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.7775814117,
+      "lon": 37.6359571196,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-6350630aeeb87e",
+    "name": "Розарий Главного ботанического сада РАН",
+    "name_ru": "Розарий Главного ботанического сада РАН",
+    "name_original": "Розарий Главного ботанического сада РАН",
+    "alternative_names": [],
+    "lat": 55.8317488405,
+    "lon": 37.6025976173,
+    "categories": [
+      "nature"
+    ],
+    "primary_category": "nature",
+    "kind": "place",
+    "source": "https://www.gbsad.ru/rozarij",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://www.gbsad.ru/rozarij"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.8317488405,
+      "lon": 37.6025976173,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-31d22650a5a8e0",
+    "name": "Памятный знак первому советскому электроплугу",
+    "name_ru": "Памятный знак первому советскому электроплугу",
+    "name_original": "Памятный знак первому советскому электроплугу",
+    "alternative_names": [],
+    "lat": 55.8128815437,
+    "lon": 37.5873613358,
+    "categories": [
+      "history",
+      "unusual"
+    ],
+    "primary_category": "history",
+    "kind": "place",
+    "source": "https://park-yauza.info/park/goncharovskiy-park/",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://park-yauza.info/park/goncharovskiy-park/"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.8128815437,
+      "lon": 37.5873613358,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-a2ca7d3050a4a3",
+    "name": "Петровский путевой дворец",
+    "name_ru": "Петровский путевой дворец",
+    "name_original": "Петровский путевой дворец",
+    "alternative_names": [],
+    "lat": 55.7931815127,
+    "lon": 37.5517980959,
+    "categories": [
+      "history"
+    ],
+    "primary_category": "history",
+    "kind": "place",
+    "source": "https://www.culture.ru/institutes/12035/petrovskii-putevoi-dvorec",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://www.culture.ru/institutes/12035/petrovskii-putevoi-dvorec"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.7931815127,
+      "lon": 37.5517980959,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-4ef7bdbcde7865",
+    "name": "Площадь Соловецких юнг",
+    "name_ru": "Площадь Соловецких юнг",
+    "name_original": "Площадь Соловецких юнг",
+    "alternative_names": [],
+    "lat": 55.8032800044,
+    "lon": 37.8296235987,
+    "categories": [
+      "history"
+    ],
+    "primary_category": "history",
+    "kind": "place",
+    "source": "https://base.garant.ru/3607072/",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://base.garant.ru/3607072/"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.8032800044,
+      "lon": 37.8296235987,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-5f7062a52ed319",
+    "name": "Площадь Туманяна",
+    "name_ru": "Площадь Туманяна",
+    "name_original": "Площадь Туманяна",
+    "alternative_names": [],
+    "lat": 55.8648607382,
+    "lon": 37.5469565392,
+    "categories": [
+      "history"
+    ],
+    "primary_category": "history",
+    "kind": "place",
+    "source": "https://ru.wikipedia.org/wiki/Площадь_Туманяна",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://ru.wikipedia.org/wiki/Площадь_Туманяна"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.8648607382,
+      "lon": 37.5469565392,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-a30ea26d6dbbb4",
+    "name": "Соловьиная роща в Куркино",
+    "name_ru": "Соловьиная роща в Куркино",
+    "name_original": "Соловьиная роща в Куркино",
+    "alternative_names": [],
+    "lat": 55.8905715925,
+    "lon": 37.4014949799,
+    "categories": [
+      "nature"
+    ],
+    "primary_category": "nature",
+    "kind": "place",
+    "source": "https://yandex.com/maps/org/solovyinaya_roshcha/90371372434/reviews/",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://yandex.com/maps/org/solovyinaya_roshcha/90371372434/reviews/"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.8905715925,
+      "lon": 37.4014949799,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  },
+  {
+    "id": "moscow-v5-7d9e3d74bdffea",
+    "name": "Головинский парк",
+    "name_ru": "Головинский парк",
+    "name_original": "Головинский парк",
+    "alternative_names": [],
+    "lat": 55.8459519205,
+    "lon": 37.5078821182,
+    "categories": [
+      "nature"
+    ],
+    "primary_category": "nature",
+    "kind": "place",
+    "source": "https://gk-osnova.ru/golovinskie-prudy",
+    "sources": [
+      {
+        "name": "Independent place existence confirmation",
+        "url": "https://gk-osnova.ru/golovinskie-prudy"
+      },
+      {
+        "name": "Historic open geodata (2020), coordinate only",
+        "url": "https://github.com/romapres2010/Coursera_Capstone/blob/master/data/old/2020.01.18/Moscow_venues.csv"
+      }
+    ],
+    "source_ids": {
+      "osm_id": null,
+      "overture_id": null,
+      "wikidata_id": null
+    },
+    "coordinate_type": "historic_point_2020",
+    "coordinate_method": "historic_point_2020",
+    "entrance_verified": false,
+    "opening_hours": null,
+    "price_rub": null,
+    "rating": null,
+    "review_count": null,
+    "address": null,
+    "website": null,
+    "operating_status": "unknown",
+    "routing_entrance_lat": null,
+    "routing_entrance_lon": null,
+    "routing_ready": false,
+    "quality_level": "C",
+    "data_as_of": "2026-11-20",
+    "new_in_v5": true,
+    "source_coordinate": {
+      "lat": 55.8459519205,
+      "lon": 37.5078821182,
+      "type": "historic_point_2020"
+    },
+    "coordinate_reverification_required": true
+  }
+]
