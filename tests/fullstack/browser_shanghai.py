@@ -27,6 +27,7 @@ def authenticate(page, base, email, *, register):
 
 def scenario(browser, base, operations):
     owner = browser.new_page(viewport={'width': 1280, 'height': 900})
+    owner.route('https://**/*', lambda route: route.abort())
     errors = []
     owner.on('pageerror', lambda error: errors.append(str(error)))
     authenticate(owner, base, 'owner@example.org', register=True)
@@ -49,13 +50,23 @@ def scenario(browser, base, operations):
     assert owner.locator('.route-chat').bounding_box()['x'] < owner.locator('#street-map').bounding_box()['x']
     initial = owner.request.get(api_url).json()
     removed = initial['plan']['days'][0]['visit_ids'][0]
-    operations.append({'op': 'remove_poi', 'poi_id': removed})
     markers = owner.locator('#route-map [data-stop] title')
     initial_map = markers.all_text_contents()
-    for selector in ('#reject-edit', '#confirm-edit'):
-        owner.locator('#chat-text').fill('Убери первое посещение')
+    live = operations is None
+    if not live:
+        expect(owner.locator('#chat-status')).to_contain_text('Тестовый режим')
+        owner.locator('#chat-text').fill('Убери музей')
         owner.locator('#edit-route button').click()
-        expect(owner.locator(selector)).to_be_visible(timeout=45_000)
+        expect(owner.locator('#chat-status')).to_have_text('В какой день?')
+        assert owner.request.get(api_url).json() == initial
+        operations.append({'op': 'remove_poi', 'poi_id': removed})
+    for selector in (('#confirm-edit',) if live else ('#reject-edit', '#confirm-edit')):
+        owner.locator('#chat-text').fill('Убери первое посещение первого дня. Остальные посещения и питание оставь.')
+        owner.locator('#edit-route button').click()
+        try:
+            expect(owner.locator(selector)).to_be_visible(timeout=45_000)
+        except AssertionError as error:
+            raise AssertionError(owner.locator('#chat-status').inner_text()) from error
         assert owner.request.get(api_url).json() == initial
         assert markers.all_text_contents() == initial_map
         owner.locator(selector).click()
@@ -79,28 +90,22 @@ def scenario(browser, base, operations):
     assert other.request.get(base + '/api/planned-trips').json() == {'trips': []}
     other.goto(base + '/trip/new')
     expect(other.locator('#trip-fields')).to_be_enabled()
-    other.locator('#first-walk').fill('2026-12-05T09:00')
-    other.locator('#last-walk').fill('2026-12-06T19:00')
-    other.locator('#budget').fill('3000')
-    other.locator('#primary-interests input').first.check()
-    other.locator('#finish-questionnaire').click()
-    other.wait_for_url('**/trip/result?route=*', timeout=15_000)
-    expect(other.locator('#route-title')).to_have_text('Москва')
-    expect(other.locator('#route-cost')).to_contain_text('₽')
-    expect(other.locator('#route-map circle').first).to_be_visible()
+    expect(other.locator('#city option')).to_have_text(['Шанхай'])
 
 
 def main():
-    operations = []
+    operations = None if os.environ.get('TRIPWISE_TEST_LIVE_LLM') == '1' else []
 
-    def interpreter(_payload):
+    def interpreter(payload):
+        if payload['text'] == 'Убери музей':
+            return {'action': 'needs_clarification', 'operations': [], 'clarification': 'В какой день?'}
         return {'action': 'propose', 'operations': operations, 'clarification': None}
 
     with TemporaryDirectory() as path, socket.socket() as listener, sync_playwright() as playwright:
         listener.bind(('127.0.0.1', 0))
         listener.listen()
         port = listener.getsockname()[1]
-        service = ShanghaiAssistantService(interpreter=interpreter, mode='mock')
+        service = ShanghaiAssistantService() if operations is None else ShanghaiAssistantService(interpreter=interpreter, mode='mock')
         with patch.object(accounts, 'DB_PATH', Path(path) / 'browser.sqlite3'), patch.object(shanghai, 'assistant', return_value=service):
             server = uvicorn.Server(uvicorn.Config(app, log_level='warning'))
             thread = Thread(target=server.run, kwargs={'sockets': [listener]})
@@ -114,6 +119,7 @@ def main():
                 browser = playwright.chromium.launch(channel=os.environ.get('TRIPWISE_BROWSER_CHANNEL', 'chrome'))
                 try:
                     scenario(browser, f'http://127.0.0.1:{port}', operations)
+                    print('Browser E2E passed:', 'live OpenRouter' if operations is None else 'mock LLM', flush=True)
                 finally:
                     browser.close()
             finally:

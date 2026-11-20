@@ -44,7 +44,7 @@ class ShanghaiIntegrationTests(unittest.TestCase):
         self.assertEqual(self.client.post(ENDPOINT, headers=ORIGIN, json={**PREFERENCES, 'city': 'moscow'}).status_code, 422)
         self.assertEqual(self.client.post(ENDPOINT, json=PREFERENCES).status_code, 403)
 
-    def test_moscow_uses_its_own_catalog_and_assistant(self):
+    def test_saved_moscow_route_remains_accessible_but_new_routes_are_disabled(self):
         self.register(self.client, 'moscow@example.org')
         service = MoscowAssistant()
         service.configured = True
@@ -52,10 +52,17 @@ class ShanghaiIntegrationTests(unittest.TestCase):
             {'op': 'set_day_pace', 'day': PREFERENCES['start_date'], 'pace': 'relaxed'},
         ], 'clarification': None}
         with patch.object(moscow, 'moscow_assistant', return_value=service):
-            built = self.client.post(ENDPOINT, headers=ORIGIN, json={**PREFERENCES, 'city': 'moscow',
-                'timezone': 'Europe/Moscow', 'transport': 'walk', 'budget_currency': 'RUB', 'budget_amount': 3000})
-            self.assertEqual(built.status_code, 201, built.text)
-            route = built.json()
+            inputs = {**PREFERENCES, 'city': 'moscow', 'timezone': 'Europe/Moscow',
+                      'transport': 'walk', 'budget_currency': 'RUB', 'budget_amount': 3000}
+            blocked = self.client.post(ENDPOINT, headers=ORIGIN, json=inputs)
+            self.assertEqual(blocked.status_code, 422)
+            self.assertEqual(self.client.get(ENDPOINT).json()['trips'], [])
+            preferences = shanghai.MoscowPreferences.model_validate(inputs)
+            plan, options, snapshot = moscow.plan_moscow(preferences)
+            user = self.client.get('/api/auth/me').json()['user']
+            with accounts.database() as db:
+                owner_id = db.execute('SELECT id FROM users WHERE email=?', (user['email'],)).fetchone()['id']
+            route = shanghai.store_trip(preferences, {'id': owner_id}, plan, options, snapshot)
             self.assertTrue(any(day['visits'] for day in route['plan']['days']))
             path = ENDPOINT + '/' + route['route_id']
             chat = path + '/assistant/'

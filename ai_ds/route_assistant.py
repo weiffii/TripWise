@@ -10,6 +10,7 @@ import json
 from threading import RLock
 from uuid import uuid4
 from ai_ds.data import CATEGORIES, nonempty
+from ai_ds.openrouter import OpenRouterError
 from ai_ds.recommendation import recommend
 OPERATIONS = {
     'replace_poi': {'op', 'day', 'target_poi_id', 'desired_category'},
@@ -255,6 +256,8 @@ class RouteAssistant:
             parsed = self.interpretation_parser(self.interpreter(deepcopy(self._payload(base, request['text']))))
         except AssistantError:
             raise
+        except OpenRouterError as error:
+            raise AssistantError(error.code) from None
         except Exception:
             raise AssistantError('INTERPRETER_UNAVAILABLE') from None
         if parsed['action'] != 'propose':

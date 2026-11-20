@@ -161,10 +161,11 @@ async function load() {
   for (const place of catalog) places.set(place.id,place);
   renderTrip();
   const status = await request(chatPath + 'status');
-  chatStatus.textContent = status.reason || '';
+  chatStatus.textContent = status.reason || (status.mode === 'mock' ? 'Тестовый режим: ответы подставляет проверочный сценарий, а не ИИ.' : '');
   if (!status.available) return;
   csrf = status.csrf_token;
   registration = await request(chatPath + 'register',{});
+  if (!status.reason && status.mode !== 'mock') chatStatus.textContent = 'Помощник подключён.';
   control(false);
 }
 
@@ -212,4 +213,4 @@ async function decide(decision) {
 }
 element('confirm-edit').addEventListener('click',() => void decide('confirm'));
 element('reject-edit').addEventListener('click',() => void decide('reject'));
-load().catch(error => { element('route-meta').textContent = error.message; });
+load().catch(error => { (trip ? chatStatus : element('route-meta')).textContent = error.message; });

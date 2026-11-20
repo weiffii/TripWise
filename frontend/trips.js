@@ -36,7 +36,6 @@ async function loadAccount() {
     if (!draftResponse.ok) throw new Error('draft');
     const { draft } = await draftResponse.json();
     document.querySelector('#draft-card').hidden = !draft;
-    document.querySelector('#empty-trips').hidden = Boolean(draft);
     if (draft) {
       const preferences = draft.preferences;
       const formatDate = value => new Date(value).toLocaleDateString('ru-RU', { timeZone: 'Europe/Moscow' });

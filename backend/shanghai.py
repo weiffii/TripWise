@@ -122,9 +122,7 @@ def read_trip(route_id: str, user: dict = Depends(current_user)):
 def plan_trip(preferences: Annotated[ShanghaiPreferences | MoscowPreferences, Field(discriminator='city')],
               user: dict = Depends(current_user)):
     if preferences.city == 'moscow':
-        from backend.moscow import plan_moscow
-        plan, options, snapshot = plan_moscow(preferences)
-        return store_trip(preferences, user, plan, options, snapshot)
+        raise HTTPException(422, 'Создание маршрутов по Москве временно отключено. Выберите Шанхай.')
     service = assistant()
     options = preferences.options()
     known = {poi['id'] for poi in service.data['pois']}
@@ -191,8 +189,10 @@ def assistant_for(route):
 def assistant_status(route_id: str, request: Request, user: dict = Depends(current_user)):
     route = owned_route(route_id, user['id'])
     service = assistant_for(route)
-    if not service.configured or route['poi_snapshot_id'] != service.snapshot or route['plan']['status'] == 'infeasible':
-        return {'available': False, 'reason': 'ИИ-помощник недоступен для этой поездки или не настроен.'}
+    if not service.configured:
+        return {'available': False, 'reason': 'Задайте OPENROUTER_API_KEY в окружении терминала, из которого запускается FastAPI, и перезапустите сервер. Без ключа маршруты работают, чат отключён.'}
+    if route['poi_snapshot_id'] != service.snapshot or route['plan']['status'] == 'infeasible':
+        return {'available': False, 'reason': 'Для этой версии маршрута чат недоступен. Постройте новый выполнимый маршрут.'}
     try:
         _, state = assistant_binding(request, route, True)
     except AssistantError as error:
