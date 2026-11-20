@@ -6,8 +6,8 @@ import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError
 
-from ai_ds.moscow_road import rail_pairs, road_pair, travel_matrix
 from ai_ds.moscow_catalog import load_moscow_v7
+from ai_ds.moscow_road import PILOT_RAIL_CONFIG, rail_pairs, road_pair, travel_matrix
 from ai_ds.moscow_transit import build_graph
 
 
@@ -114,3 +114,24 @@ class MoscowRoadTests(unittest.TestCase):
         self.assertEqual(steps[-1]['geometry']['type'], 'LineString')
         self.assertIn('mcd:2', {step['line'] for step in steps if step['kind'] == 'rail_estimate'})
         self.assertTrue(any(step['kind'] == 'walk_transfer' and step['source_id'] for step in steps))
+
+    def test_required_transit_is_kept_as_an_alternative_to_faster_walking(self):
+        origin, destination = 'moscow-osm-node-5076035172', 'moscow-osm-relation-9464465'
+        pois, _ = load_moscow_v7(poi_ids=[origin, destination])
+        walking = {'status': 'known', 'basis': 'routing_provider', 'source_id': 'test-road',
+                   'duration_seconds': 100, 'distance_meters': 85,
+                   'geometry': {'type': 'LineString', 'coordinates': [[37.62, 55.75], [37.625, 55.751]]}}
+        with (patch.dict('os.environ', {'MOSCOW_OSRM_FOOT': 'http://example.test',
+                                       'MOSCOW_RAIL_CONFIG': str(PILOT_RAIL_CONFIG)}),
+              patch('ai_ds.moscow_road.road_pair', return_value=walking),
+              patch('ai_ds.moscow_road.routed_station_access', return_value={})):
+            matrix = travel_matrix(pois, 'public_transit', require_transit=('mcd',))
+            excluded = travel_matrix(pois, 'public_transit', avoid_transit=('metro',), require_transit=('mcd',))
+        row = next(row for row in matrix['pairs'] if row['from_poi_id'] == origin)
+        self.assertEqual(row['duration_seconds'], 100)
+        self.assertEqual(row['geometry'], walking['geometry'])
+        transit = row['required_transit_alternative']
+        self.assertGreater(transit['duration_seconds'], row['duration_seconds'])
+        self.assertIn('mcd:2', {step['line'] for step in transit['transport_steps']})
+        row = next(row for row in excluded['pairs'] if row['from_poi_id'] == origin)
+        self.assertNotIn('required_transit_alternative', row)

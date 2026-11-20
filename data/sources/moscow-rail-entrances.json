@@ -1,7 +1,7 @@
 {
   "attribution": "? OpenStreetMap contributors",
   "license": "https://opendatacommons.org/licenses/odbl/1-0/",
-  "retrieved_at": "2026-11-20T21:09:23.874765+00:00",
+  "retrieved_at": "2026-11-20T22:09:59.746335+00:00",
   "station_entrances": {
     "297148175": [
       {
@@ -140,6 +140,196 @@
         "name": "Площадь трёх вокзалов",
         "ref": "1",
         "can_enter": true,
+        "can_exit": true
+      }
+    ],
+    "1810711553": [
+      {
+        "latitude": 55.7407801,
+        "longitude": 37.5343442,
+        "source_id": "osm:node:10090567702",
+        "source_url": "https://www.openstreetmap.org/node/10090567702",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "5",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.740595,
+        "longitude": 37.5342842,
+        "source_id": "osm:node:1252399151",
+        "source_url": "https://www.openstreetmap.org/node/1252399151",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "4",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7396048,
+        "longitude": 37.5340934,
+        "source_id": "osm:node:4487685301",
+        "source_url": "https://www.openstreetmap.org/node/4487685301",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "2",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7401745,
+        "longitude": 37.5334709,
+        "source_id": "osm:node:5048415322",
+        "source_url": "https://www.openstreetmap.org/node/5048415322",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "3",
+        "can_enter": true,
+        "can_exit": true
+      }
+    ],
+    "253745256": [
+      {
+        "latitude": 55.7407801,
+        "longitude": 37.5343442,
+        "source_id": "osm:node:10090567702",
+        "source_url": "https://www.openstreetmap.org/node/10090567702",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "5",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.740595,
+        "longitude": 37.5342842,
+        "source_id": "osm:node:1252399151",
+        "source_url": "https://www.openstreetmap.org/node/1252399151",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "4",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7396048,
+        "longitude": 37.5340934,
+        "source_id": "osm:node:4487685301",
+        "source_url": "https://www.openstreetmap.org/node/4487685301",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "2",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7401745,
+        "longitude": 37.5334709,
+        "source_id": "osm:node:5048415322",
+        "source_url": "https://www.openstreetmap.org/node/5048415322",
+        "stop_area_url": "https://www.openstreetmap.org/relation/6604098",
+        "name": "Кутузовская",
+        "ref": "3",
+        "can_enter": true,
+        "can_exit": true
+      }
+    ],
+    "534957385": [
+      {
+        "latitude": 55.8864574,
+        "longitude": 37.6430028,
+        "source_id": "osm:node:1857159383",
+        "source_url": "https://www.openstreetmap.org/node/1857159383",
+        "platform_url": "https://www.openstreetmap.org/way/175071626",
+        "route_url": "https://www.openstreetmap.org/relation/540139",
+        "name": "Медведково",
+        "ref": null,
+        "can_enter": true,
+        "can_exit": false
+      }
+    ],
+    "3236023227": [
+      {
+        "latitude": 55.8227455,
+        "longitude": 37.6178396,
+        "source_id": "osm:node:10881000150",
+        "source_url": "https://www.openstreetmap.org/node/10881000150",
+        "platform_url": "https://www.openstreetmap.org/way/662847918",
+        "route_url": "https://www.openstreetmap.org/relation/540139",
+        "name": "Усадьба Останкино",
+        "ref": null,
+        "can_enter": false,
+        "can_exit": true
+      }
+    ],
+    "444863659": [
+      {
+        "latitude": 55.8238406,
+        "longitude": 37.6152831,
+        "source_id": "osm:node:10881000147",
+        "source_url": "https://www.openstreetmap.org/node/10881000147",
+        "platform_url": "https://www.openstreetmap.org/way/1170822754",
+        "route_url": "https://www.openstreetmap.org/relation/540033",
+        "name": "Усадьба Останкино",
+        "ref": null,
+        "can_enter": true,
+        "can_exit": false
+      }
+    ],
+    "535844808": [
+      {
+        "latitude": 55.8875343,
+        "longitude": 37.6430476,
+        "source_id": "osm:node:1857159365",
+        "source_url": "https://www.openstreetmap.org/node/1857159365",
+        "platform_url": "https://www.openstreetmap.org/node/1857159365",
+        "route_url": "https://www.openstreetmap.org/relation/540033",
+        "name": "Медведково",
+        "ref": null,
+        "can_enter": false,
+        "can_exit": true
+      }
+    ],
+    "2488185904": [
+      {
+        "latitude": 55.7071351,
+        "longitude": 37.3958634,
+        "source_id": "osm:node:1491898854",
+        "source_url": "https://www.openstreetmap.org/node/1491898854",
+        "platform_url": "https://www.openstreetmap.org/node/1491898854",
+        "route_url": "https://www.openstreetmap.org/relation/3253708",
+        "name": "Беловежская улица",
+        "ref": null,
+        "can_enter": true,
+        "can_exit": false
+      }
+    ],
+    "10774112377": [
+      {
+        "latitude": 55.7438905,
+        "longitude": 37.5683576,
+        "source_id": "osm:node:10774112378",
+        "source_url": "https://www.openstreetmap.org/node/10774112378",
+        "platform_url": "https://www.openstreetmap.org/node/10774112378",
+        "route_url": "https://www.openstreetmap.org/relation/3255156",
+        "name": "Киевский вокзал",
+        "ref": null,
+        "can_enter": true,
+        "can_exit": true
+      }
+    ],
+    "2489160581": [
+      {
+        "latitude": 55.7079705,
+        "longitude": 37.394357,
+        "source_id": "osm:node:1107130491",
+        "source_url": "https://www.openstreetmap.org/node/1107130491",
+        "platform_url": "https://www.openstreetmap.org/node/1107130491",
+        "route_url": "https://www.openstreetmap.org/relation/3255156",
+        "name": "Беловежская улица",
+        "ref": null,
+        "can_enter": false,
         "can_exit": true
       }
     ]

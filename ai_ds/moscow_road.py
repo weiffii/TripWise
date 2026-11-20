@@ -41,7 +41,7 @@ def rail_inputs(config_path):
     return graph, section('approaches', {}), nodes, section('station_entrances', {})
 
 
-def rail_pairs(pois, endpoint=None, window=0):
+def rail_pairs(pois, endpoint=None, window=0, *, avoid_transit=(), require_transit=()):
     config = os.environ.get('MOSCOW_RAIL_CONFIG', str(PILOT_RAIL_CONFIG))
     if not config:
         return {}
@@ -62,17 +62,16 @@ def rail_pairs(pois, endpoint=None, window=0):
                     }
                 else:
                     slots[str(stop)] = value
-    candidates = routed_station_access(pois, entrances, graph, endpoint, window) if entrances and endpoint else {}
+    candidates = (routed_station_access(pois, entrances, graph, endpoint, window,
+                                        avoid_transit=avoid_transit, require_transit=require_transit)
+                  if entrances and endpoint else {})
     for (poi, direction, stop), leg in candidates.items():
         slots = normalized.setdefault(poi, {}).setdefault(direction, {})
         if str(stop) not in slots:
             slots[str(stop)] = leg['duration_seconds']
             access[poi, direction, stop] = leg
-    pairs = {}
-    for pair in build_matrix(graph, [poi['id'] for poi in pois], normalized)['pairs']:
+    def leg(pair):
         steps = pair['transport_steps']
-        if not any(step['kind'] == 'rail_estimate' for step in steps):
-            continue
         for step in steps:
             if step['kind'] == 'walk_access':
                 key = pair['from_poi_id'], 'enter', step['to_stop']
@@ -87,11 +86,22 @@ def rail_pairs(pois, endpoint=None, window=0):
                     node = nodes[step[key]]
                     step[key + '_location'] = {'name': node.get('tags', {}).get('name'),
                                                'coordinates': [node['lon'], node['lat']]}
-        pairs[pair['from_poi_id'], pair['to_poi_id']] = {
+        return {
             'status': 'known', 'duration_seconds': ceil(pair['duration_seconds']) + 90,
-            'distance_meters': None, 'transport_steps': steps,
+            'distance_meters': None, 'geometry': None, 'transport_steps': steps,
             'basis': 'geometric_estimate', 'source_id': 'osm-rail-estimated-time',
         }
+    ids = [poi['id'] for poi in pois]
+    matrix = build_matrix(graph, ids, normalized, avoid_transit=avoid_transit)
+    pairs = {(pair['from_poi_id'], pair['to_poi_id']): leg(pair)
+             for pair in matrix['pairs'] if pair['status'] == 'known'}
+    alternatives = {}
+    if require_transit:
+        constrained = build_matrix(graph, ids, normalized, avoid_transit=avoid_transit, require_transit=require_transit)
+        alternatives = {(pair['from_poi_id'], pair['to_poi_id']): leg(pair)
+                        for pair in constrained['pairs'] if pair['status'] == 'known'}
+    for key, alternative in alternatives.items():
+        pairs[key] = {**pairs[key], 'required_transit_alternative': alternative}
     return pairs
 
 
@@ -99,12 +109,16 @@ def coordinates(poi):
     return {'lat': poi['coordinates']['latitude'], 'lon': poi['coordinates']['longitude']}
 
 
-def routed_station_access(pois, entrances, graph, endpoint, window):
+def routed_station_access(pois, entrances, graph, endpoint, window, *, avoid_transit=(), require_transit=()):
     """Связывает POI с указанными входами, сохраняя раздельные направления."""
-    board = {stop for (stop, trip), links in graph.items()
-             if trip is None and any(edge[0] == 'wait_estimate' for edge in links.values())}
-    alight = {stop for links in graph.values() for (stop, trip), edge in links.items()
-              if trip is None and edge[0] == 'alight'}
+    board, alight = {}, {}
+    for (stop, trip), links in graph.items():
+        for (target, target_trip), edge in links.items():
+            kind = edge[0]
+            if kind == 'wait_estimate' and target_trip[0].split(':', 1)[0] not in avoid_transit:
+                board.setdefault(stop, set()).add(target_trip[0].split(':', 1)[0])
+            if kind == 'alight' and trip[0].split(':', 1)[0] not in avoid_transit:
+                alight.setdefault(target, set()).add(trip[0].split(':', 1)[0])
     by_entrance = {}
     for stop, points in entrances.items():
         stop = int(stop)
@@ -126,11 +140,20 @@ def routed_station_access(pois, entrances, graph, endpoint, window):
             location = coordinates(poi)
             origin = location['lat'], location['lon']
             for direction in ('enter', 'exit'):
-                nearby = sorted(
+                reachable = board if direction == 'enter' else alight
+                nearby = [
                     (_distance(location, {'lat': position[0], 'lon': position[1]}), position, source_id)
                     for (position, source_id), directions in by_entrance.items() if directions[direction]
-                )[:MAX_STATION_ENTRANCES]
-                for distance, position, source_id in nearby:
+                ]
+                nearby.sort()
+                selected = set(nearby[:MAX_STATION_ENTRANCES])
+                for kind in require_transit:
+                    chosen = next((entry for entry in nearby if any(
+                        kind in reachable[stop] for stop in by_entrance[entry[1], entry[2]][direction]
+                    )), None)
+                    if chosen is not None:
+                        selected.add(chosen)
+                for distance, position, source_id in sorted(selected):
                     if distance <= STATION_SEARCH_METERS:
                         start, end = (origin, position) if direction == 'enter' else (position, origin)
                         yield poi['id'], position, source_id, direction, start, end
@@ -219,7 +242,7 @@ def road_pair(endpoint, origin, target, cache_window, radii=(MAX_SNAP_METERS, MA
         return missing_pair('unknown')
 
 
-def travel_matrix(pois, mode):
+def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
     endpoint = os.environ.get({'walking': 'MOSCOW_OSRM_FOOT', 'car': 'MOSCOW_OSRM_CAR',
                                'public_transit': 'MOSCOW_OSRM_FOOT'}[mode])
     rows = [(a, b) for a in pois for b in pois if a['id'] != b['id']]
@@ -235,6 +258,7 @@ def travel_matrix(pois, mode):
     def pair(row, data=None):
         a, b = row
         by_rail = rail.get((a['id'], b['id']))
+        alternative = by_rail.get('required_transit_alternative') if by_rail else None
         if by_rail and (data is None or data['status'] != 'known' or
                         by_rail['duration_seconds'] < data['duration_seconds']):
             data = by_rail
@@ -242,13 +266,17 @@ def travel_matrix(pois, mode):
             distance = _distance(coordinates(a), coordinates(b))
             data = dict(status='known', duration_seconds=ceil(distance * 1.45 / (5 if mode == 'car' else 1.05)) + 180,
                         distance_meters=None, basis='geometric_estimate', source_id='moscow-straight-line-estimate')
-        return dict(from_poi_id=a['id'], to_poi_id=b['id'], **data)
+        result = dict(from_poi_id=a['id'], to_poi_id=b['id'], **data)
+        if alternative:
+            result['required_transit_alternative'] = alternative
+        return result
 
     if endpoint and rows:
         # При недоступном локальном сервере не запускаем серию одинаковых тайм-аутов.
         first = provider(rows[0])
     if mode == 'public_transit':
-        rail = rail_pairs(pois, endpoint if first is not None else None, window)
+        rail = rail_pairs(pois, endpoint if first is not None else None, window,
+                          avoid_transit=avoid_transit, require_transit=require_transit)
     if endpoint and rows:
         if first is not None:
             with ThreadPoolExecutor(max_workers=8) as executor:

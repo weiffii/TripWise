@@ -17,6 +17,41 @@ ESTIMATES = {mode: {'meters_per_second': 10, 'wait_seconds': 120} for mode in ('
 
 
 class MoscowV7RoutingTests(unittest.TestCase):
+    def test_mock_interpreter_confirms_real_mcc_after_walking_plan(self):
+        from ai_ds.multiday import schedule_sequences
+        from backend.moscow import MoscowAssistant, moscow_inputs, transit_modes
+        from backend.shanghai import MoscowPreferences
+
+        pair = ['moscow-osm-node-5076035172', 'moscow-cultural-188']
+        prefs = MoscowPreferences(
+            city='moscow', timezone='Europe/Moscow', start_date='2026-11-21', days=1,
+            day_start='09:00', day_end='21:00', pace='balanced', transport='walk',
+            group=dict(adult=1, child=0, senior=0, pet=0), primary_interests=['history'],
+            secondary_interests=[], required_ids=list(pair), budget_amount=10000,
+            budget_currency='RUB', budget_basis='per_group',
+        )
+        with patch.dict('os.environ', {'MOSCOW_OSRM_FOOT': ''}):
+            inputs = moscow_inputs(prefs)
+            route = schedule_sequences(*inputs, {prefs.start_date.isoformat(): list(pair)})
+            service = MoscowAssistant()
+            service.configured = True
+            service.interpreter = lambda _: {'action': 'propose', 'operations': [
+                {'op': 'set_transit_preferences', 'avoid': [], 'require': ['mcc']},
+            ], 'clarification': None}
+            token, state = service.session()
+            state['route_options'] = {'transport': 'walk'}
+            csrf = state['csrf']
+            service.request(token, csrf, 'register', dict(request_id='register-1', route_id='route-1',
+                version=1, preferences=prefs.model_dump(mode='json'), plan=route))
+            proposal = service.request(token, csrf, 'message', dict(request_id='message-01', route_id='route-1',
+                base_version=1, poi_snapshot_id=service.snapshot, text='Используй МЦК.'))
+            self.assertEqual(proposal['type'], 'proposal', proposal)
+            self.assertIn('mcc', transit_modes(proposal['plan']))
+            saved = service.request(token, csrf, 'decide', dict(request_id='decision-1',
+                proposal_id=proposal['proposal_id'], base_version=1, decision='confirm'))
+        self.assertEqual(saved['type'], 'confirmed', saved)
+        self.assertEqual(saved['options']['transport'], 'transit')
+
     def test_sqlite_trip_is_updated_only_after_confirmation(self):
         from backend import accounts, shanghai
         from backend.moscow import MoscowAssistant, plan_moscow
@@ -90,8 +125,9 @@ class MoscowV7RoutingTests(unittest.TestCase):
             service = MoscowAssistant()
         self.assertFalse(service.status()[1]['available'])
         self.assertEqual(len(plan['days']), 3)
-        self.assertTrue(all(day['visits'] and any(item['kind'] == 'meal' for item in day['breaks'])
-                            for day in plan['days']))
+        self.assertTrue(all(day['visits'] and (any(item['kind'] == 'meal' for item in day['breaks'])
+                            or plan.get('moscow_meals', {}).get(day['date'], {}).get('lunch')) for day in plan['days']))
+        self.assertTrue(any('lunch' in meals for meals in plan['moscow_meals'].values()))
         self.assertTrue(all(leg['basis'] == 'geometric_estimate' and leg['geometry'] is None
                             for day in plan['days'] for leg in day['legs']))
         day = plan['days'][0]
@@ -117,7 +153,13 @@ class MoscowV7RoutingTests(unittest.TestCase):
         self.assertEqual(confirmed['version'], 2)
         first = confirmed['plan']['days'][0]
         self.assertNotIn(removed, [item['poi_id'] for item in first['visits']])
-        self.assertTrue(any(item['kind'] == 'meal' and 'T14:00:' in item['start_at'] for item in first['breaks']))
+        lunch = confirmed['plan'].get('moscow_meals', {}).get(first['date'], {}).get('lunch')
+        if lunch:
+            self.assertIn('T14:00:', lunch['start_at'])
+            self.assertTrue(any(item['poi_id'] == lunch['poi_id'] and item['start_at'] == lunch['start_at']
+                                for item in first['visits']))
+        else:
+            self.assertTrue(any(item['kind'] == 'meal' and 'T14:00:' in item['start_at'] for item in first['breaks']))
         self.assertEqual(len(confirmed['options']['conversation']), 2)
 
     def test_transport_changes_on_confirmation_and_unavailable_mode_leaves_plan_intact(self):
