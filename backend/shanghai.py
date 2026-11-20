@@ -82,6 +82,7 @@ def assistant():
 class MoscowPreferences(ShanghaiPreferences):
     city: Literal['moscow']
     timezone: Literal['Europe/Moscow']
+    visit_minutes: Annotated[int, Field(strict=True, ge=15, le=480)] | None = None
 
 
 def init_routes():
@@ -154,9 +155,11 @@ def shanghai_page(route: str | None = None):
 
 
 @router.get('/api/planned-trips/catalog/{city}')
-def catalog(city: Literal['moscow', 'shanghai']):
-    from backend.moscow import moscow_pois
-    places = moscow_pois() if city == 'moscow' else assistant().data['pois']
+def catalog(city: Literal['moscow', 'shanghai'], include_legacy: bool = False):
+    from backend.moscow import moscow_pois, moscow_v7
+    places = moscow_v7()[0] if city == 'moscow' else assistant().data['pois']
+    if city == 'moscow' and include_legacy:
+        places = [*places, *moscow_pois()]
     return [{'id': poi['id'], 'name': (poi.get('names') or {}).get('ru') or poi['name'], 'kind': poi.get('kind'),
              'lat': poi.get('lat', (poi.get('coordinates') or {}).get('latitude')),
              'lon': poi.get('lon', (poi.get('coordinates') or {}).get('longitude'))} for poi in places]
@@ -199,7 +202,8 @@ def assistant_status(route_id: str, request: Request, user: dict = Depends(curre
         _, state = assistant_binding(request, route, True)
     except AssistantError as error:
         raise HTTPException(503, human_error(error.code)) from error
-    return {'available': True, 'csrf_token': state['csrf'], 'mode': service.mode}
+    return {'available': True, 'csrf_token': state['csrf'], 'mode': service.mode,
+            'conversation': route['options'].get('conversation', [])}
 
 
 @router.post('/api/planned-trips/{route_id}/assistant/{action}', dependencies=[Depends(same_origin)])
@@ -232,7 +236,8 @@ def apply_assistant(route_id, action, request, user, body):
             csrf = request.headers.get('X-TripWise-CSRF', '')
             if not secrets.compare_digest(state['csrf'].encode(), csrf.encode()):
                 raise AssistantError('CSRF_REJECTED')
-            if owned_route(route_id, user['id'])['version'] != route['version']:
+            current = owned_route(route_id, user['id'])
+            if current['version'] != route['version']:
                 raise HTTPException(409, 'Маршрут уже изменён. Откройте поездку заново.')
             if action == 'register':
                 if state.get('registration'):
@@ -241,7 +246,13 @@ def apply_assistant(route_id, action, request, user, body):
                 if route['city'] == 'moscow':
                     body.update({field: route[field] for field in ('preferences', 'route_id', 'version')})
                     state['route_options'] = route['options']
+            if route['city'] == 'moscow' and action == 'message':
+                state['moscow_history'] = current['options'].get('conversation', [])
             result = service.request(token, csrf, action, body)
+            if (route['city'] == 'moscow' and action == 'message' and isinstance(body.get('text'), str)
+                    and body.get('route_id') == route_id and body.get('base_version') == route['version']
+                    and 0 < len(body['text'].strip()) <= 3000 and result.get('message')):
+                append_moscow_conversation(route_id, user['id'], route['version'], body, result['message'])
             if result['type'] == 'registered':
                 state['registration'] = {field: result[field] for field in ('type', 'route_id', 'version', 'poi_snapshot_id')}
                 return state['registration']
@@ -252,9 +263,13 @@ def apply_assistant(route_id, action, request, user, body):
             if result['type'] == 'confirmed':
                 plan = {**result['plan'], 'ranking': route['plan'].get('ranking', [])}
                 with database() as db:
-                    changed = db.execute('''UPDATE planned_trips SET version=version+1, plan=?, options=?, updated_at=?
+                    changed = db.execute('''UPDATE planned_trips SET version=version+1, plan=?,
+                                            options=CASE WHEN city='moscow' THEN json_set(?, '$.conversation',
+                                              json(COALESCE(json_extract(options, '$.conversation'), '[]'))) ELSE ? END,
+                                            updated_at=?
                                             WHERE route_id=? AND owner_id=? AND version=?''', (
-                        json.dumps(plan), json.dumps(result['options']), int(timestamp()), route_id, user['id'], route['version'],
+                        json.dumps(plan), json.dumps(result['options']), json.dumps(result['options']),
+                        int(timestamp()), route_id, user['id'], route['version'],
                     )).rowcount
                 if not changed:
                     raise HTTPException(409, 'Маршрут уже изменён. Откройте поездку заново.')
@@ -266,3 +281,22 @@ def apply_assistant(route_id, action, request, user, body):
             return result
     except AssistantError as error:
         raise HTTPException(403 if error.code in {'SESSION_REQUIRED', 'CSRF_REJECTED'} else 400, human_error(error.code)) from error
+
+
+def append_moscow_conversation(route_id, owner_id, version, body, message):
+    # Запись нескольких вкладок сериализуется после LLM, без блокировки базы на время запроса.
+    with database() as db:
+        db.execute('BEGIN IMMEDIATE')
+        row = db.execute('SELECT options FROM planned_trips WHERE route_id=? AND owner_id=? AND version=?',
+                         (route_id, owner_id, version)).fetchone()
+        if row is None:
+            raise HTTPException(409, 'Маршрут уже изменён. Откройте поездку заново.')
+        options = json.loads(row['options'])
+        history = options.get('conversation', [])
+        if any(item.get('request_id') == body['request_id'] for item in history):
+            return
+        history.extend([{'role': 'user', 'content': body['text'].strip()},
+                        {'role': 'assistant', 'content': message, 'request_id': body['request_id']}])
+        options['conversation'] = history[-24:]
+        db.execute('UPDATE planned_trips SET options=? WHERE route_id=? AND owner_id=?',
+                   (json.dumps(options), route_id, owner_id))

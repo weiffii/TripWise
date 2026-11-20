@@ -91,7 +91,7 @@ def _minimal_context(payload, *, rich_context=False):
         safe[field] = []
         for value in values:
             if field == 'catalog':
-                allowed = ('poi_id', 'id', 'name', 'categories') + (('kind', 'price_cny') if rich_context else ())
+                allowed = ('poi_id', 'id', 'name', 'categories') + (('kind', 'price_cny', 'price_rub') if rich_context else ())
             else:
                 allowed = ('date', 'pace', 'day_start', 'day_end')
             row = {key: value[key] for key in allowed if key in value}
@@ -125,7 +125,7 @@ def _minimal_context(payload, *, rich_context=False):
                 if key == 'categories':
                     if not isinstance(item, list) or not all(isinstance(c, str) for c in item):
                         raise OpenRouterError('LLM_INVALID_CONTEXT')
-                elif key == 'price_cny' and rich_context:
+                elif key in ('price_cny', 'price_rub') and rich_context:
                     if type(item) not in (int, float) or not math.isfinite(item) or item < 0:
                         raise OpenRouterError('LLM_INVALID_CONTEXT')
                 elif not isinstance(item, str):

@@ -114,7 +114,7 @@ def unique_pairs(pairs):
 def reject_constant(value):
     raise AssistantError('INVALID_INTERPRETER_JSON')
 
-def parse_interpretation(value):
+def parse_interpretation(value, *, extra_operations=None):
     if isinstance(value, str):
         try:
             value = json.loads(value, parse_constant=reject_constant, object_pairs_hook=unique_pairs)
@@ -128,10 +128,11 @@ def parse_interpretation(value):
         require(not value['operations'] and nonempty(value['clarification']), 'INVALID_CLARIFICATION')
         return deepcopy(value)
     require(bool(value['operations']) and value['clarification'] is None, 'INVALID_PROPOSAL')
+    operations = {**OPERATIONS, **(extra_operations or {})}
     for index, op in enumerate(value['operations']):
         path = f'operations[{index}]'
-        require(isinstance(op, dict) and isinstance(op.get('op'), str) and op['op'] in OPERATIONS, 'UNSUPPORTED_OPERATION', path)
-        exact(op, OPERATIONS[op['op']], path)
+        require(isinstance(op, dict) and isinstance(op.get('op'), str) and op['op'] in operations, 'UNSUPPORTED_OPERATION', path)
+        exact(op, operations[op['op']], path)
         if 'day' in op:
             require((op['day'] is None and op['op'] == 'add_poi') or nonempty(op['day']), 'INVALID_DAY', path)
         for field in ('poi_id', 'target_poi_id'):

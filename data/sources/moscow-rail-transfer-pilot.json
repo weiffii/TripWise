@@ -1,0 +1,79 @@
+{
+  "description": "Пилотные переходы между остановочными позициями OSM. Источник подтверждает наличие пересадки. Геометрия и продолжительность внутреннего перехода не измерялись.",
+  "duration_basis": "planning_estimate",
+  "estimation_method": "Время на основе прямого расстояния между остановочными позициями при 1 м/с с запасом 180 с, округлённое вверх до минуты.",
+  "transfers": [
+    {
+      "from_stop": 6937381503,
+      "to_stop": 6937381505,
+      "duration_seconds": 360,
+      "source_id": "https://transport.mos.ru/mostrans/special_projects/metro_music"
+    },
+    {
+      "from_stop": 6937381505,
+      "to_stop": 6937381503,
+      "duration_seconds": 360,
+      "source_id": "https://transport.mos.ru/mostrans/special_projects/metro_music"
+    },
+    {
+      "from_stop": 297148175,
+      "to_stop": 11195666136,
+      "duration_seconds": 480,
+      "source_id": "https://transport.mos.ru/mostrans/for_journs/press_releases/102984"
+    },
+    {
+      "from_stop": 11195666136,
+      "to_stop": 297148175,
+      "duration_seconds": 480,
+      "source_id": "https://transport.mos.ru/mostrans/for_journs/press_releases/102984"
+    },
+    {
+      "from_stop": 6938823563,
+      "to_stop": 4379061180,
+      "duration_seconds": 600,
+      "source_id": "https://mosmetro.ru/passengers/information/stations/377"
+    },
+    {
+      "from_stop": 4379061180,
+      "to_stop": 6938823563,
+      "duration_seconds": 600,
+      "source_id": "https://mosmetro.ru/passengers/information/stations/377"
+    },
+    {
+      "from_stop": 6938823563,
+      "to_stop": 4379061182,
+      "duration_seconds": 600,
+      "source_id": "https://mosmetro.ru/passengers/information/stations/377"
+    },
+    {
+      "from_stop": 4379061182,
+      "to_stop": 6938823563,
+      "duration_seconds": 600,
+      "source_id": "https://mosmetro.ru/passengers/information/stations/377"
+    },
+    {
+      "from_stop": 6938823546,
+      "to_stop": 5176376259,
+      "duration_seconds": 300,
+      "source_id": "https://www.mosmetro.ru/news/details/10202"
+    },
+    {
+      "from_stop": 5176376259,
+      "to_stop": 6938823546,
+      "duration_seconds": 300,
+      "source_id": "https://www.mosmetro.ru/news/details/10202"
+    },
+    {
+      "from_stop": 6938823546,
+      "to_stop": 4375786518,
+      "duration_seconds": 300,
+      "source_id": "https://www.mosmetro.ru/news/details/10202"
+    },
+    {
+      "from_stop": 4375786518,
+      "to_stop": 6938823546,
+      "duration_seconds": 300,
+      "source_id": "https://www.mosmetro.ru/news/details/10202"
+    }
+  ]
+}
