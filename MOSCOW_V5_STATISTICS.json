@@ -1,0 +1,43 @@
+{
+  "version": "v5-partial",
+  "goal": 5000,
+  "baseline_total": 1816,
+  "current_total": 1826,
+  "new_unique": 10,
+  "remaining_to_goal": 3174,
+  "goal_reached": false,
+  "counts_before": {
+    "unusual": 31,
+    "viewpoints": 13,
+    "history": 173,
+    "shopping": 190,
+    "cafes": 211,
+    "nature": 438,
+    "entertainment": 403,
+    "museums": 501
+  },
+  "counts_after": {
+    "unusual": 35,
+    "viewpoints": 13,
+    "history": 182,
+    "shopping": 190,
+    "cafes": 211,
+    "nature": 443,
+    "entertainment": 403,
+    "museums": 501
+  },
+  "new_by_category": {
+    "unusual": 4,
+    "viewpoints": 0,
+    "history": 4,
+    "shopping": 0,
+    "cafes": 0,
+    "nature": 5,
+    "entertainment": 0,
+    "museums": 0
+  },
+  "museum_reclassification_count": 5,
+  "review_count": 1,
+  "verified_2026_coordinate": 1,
+  "historic_coordinates_to_reverify": 9
+}
