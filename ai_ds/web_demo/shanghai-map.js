@@ -32,7 +32,7 @@
   function segments(leg){if(Array.isArray(leg.geometry_segments)&&leg.geometry_segments.length)return leg.geometry_segments;
    const request=streetRequest(leg);return request?[{mode:leg.mode,coordinates:[request.a,request.b],source:leg.source||'estimate',synthetic:true}]:[];
   }
-  function segmentRoad(seg,leg){if(seg.mode==='bus'&&seg.coordinates?.length>=2)return {a:seg.coordinates[0],b:seg.coordinates[seg.coordinates.length-1],via:seg.coordinates,mode:'car',synthetic_bus:true};if(seg.mode==='walk'||seg.mode==='taxi'||seg.mode==='car'){
+  function segmentRoad(seg,leg){if(leg.use_plan_geometry)return null;if(seg.mode==='bus'&&seg.coordinates?.length>=2)return {a:seg.coordinates[0],b:seg.coordinates[seg.coordinates.length-1],via:seg.coordinates,mode:'car',synthetic_bus:true};if(seg.mode==='walk'||seg.mode==='taxi'||seg.mode==='car'){
     const c=seg.coordinates;if(c?.length>=2)return {a:c[0],b:c[c.length-1],mode:seg.mode==='walk'?'foot':'car'};
    }if(!leg.geometry_segments&&['walk','taxi'].includes(leg.mode))return streetRequest(leg);return null;
   }
@@ -56,7 +56,8 @@
    if(leg.source==='SYNTHETIC_BUS'||leg.geometry_segments?.some(s=>s.mode==='bus'))html+='<p class="tw-map-caution">DEMO-BUS — вымышленные автобусные маршруты. Не использовать как инструкции для настоящей поездки.</p>';
    let streetFound=false,streetMinutes=0;for(const seg of segments(leg)){const req=segmentRoad(seg,leg);if(!req)continue;const road=roadCache.get(roadKey(req.a,req.b,req.mode,req.via));if(road?.coordinates){streetFound=true;if(!req.synthetic_bus)streetMinutes+=Math.ceil(road.duration_seconds/60);html+='<p><b>'+(req.synthetic_bus?'Учебный автобус: форма пути по автомобильным дорогам':req.mode==='foot'?'Пешком по улицам':'По автомобильной дороге')+'</b> · автомобильный/пеший расчёт провайдера '+Math.ceil(road.duration_seconds/60)+' мин, '+Math.round(road.distance_meters)+' м'+(req.synthetic_bus?'; это не действующий рейс и не проверка автобусной проходимости':'')+'</p><ol>'+road.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>';}}
    if(streetMinutes>leg.planned_minutes)html+='<p class="tw-map-caution"><b>Уличный расчёт занимает больше времени, чем отведено в плане.</b> Предусмотрите дополнительный запас.</p>';
-   if(!streetFound)html+='<p>Пошаговые указания пока недоступны. Пунктир — условная связь, не проверенный путь.</p>';
+   if(leg.use_plan_geometry&&leg.geometry?.type==='LineString')html+='<p>Линия и время рассчитаны по дорожной сети OpenStreetMap. Время включает резерв на задержки.</p>';
+   else if(!streetFound)html+='<p>Пошаговые указания пока недоступны. Пунктир — условная связь, не проверенный путь.</p>';
    return html;
   }
   function selectLeg(index){selected=index;popup.hidden=true;settings.onSelect?.(instructions(index),index);

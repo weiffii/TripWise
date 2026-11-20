@@ -78,7 +78,9 @@
               <span class="section-number">05 / ОБЯЗАТЕЛЬНЫЕ МЕСТА</span>
               <h2 id="places-title">Есть что-то особенное?</h2>
               <label for="route-required">Обязательные места (необязательно)</label>
+              <input id="poi-filter" type="search" placeholder="Найти место по названию">
               <select id="route-required" multiple size="5"></select>
+              <div id="moscow-duration" hidden><label for="visit-minutes">Плановое время на каждое выбранное место, минут (необязательно)</label><input id="visit-minutes" type="number" min="15" max="480" step="1"></div>
             </section>
             <button id="finish-questionnaire" class="submit-button" type="submit"><span>Построить маршрут</span><span aria-hidden="true">↗</span></button>
           </fieldset>

@@ -18,7 +18,8 @@ async function request(path, body) {
 function events(day) {
   if (day.events) return day.events;
   return [...day.visits.map(item => ({...item, type:'visit'})),
-    ...day.legs.map(item => ({...item, type:'travel'})),
+    ...day.legs.map(item => ({...item, type:'travel', mode:item.transport_steps?.length ? 'transit' :
+      (trip.options.transport === 'taxi' ? 'taxi' : 'walk')})),
     ...day.breaks.map(item => ({...item, type:item.kind}))].sort((left, right) => left.start_at.localeCompare(right.start_at));
 }
 
@@ -30,11 +31,13 @@ function clock(row, key) {
 
 function eventLabel(row) {
   const name = places.get(row.poi_id)?.name;
-  const kind = {visit:'Посещение', meal:'Питание', travel:'Переход', rest:'Отдых', wait:'Ожидание'};
+  const kind = {visit:'Посещение', meal:'Перерыв на питание', travel:'Переход', rest:'Отдых', wait:'Ожидание', waiting:'Ожидание'};
   const mode = {walk:'Пешком',transit:'Общественный транспорт',taxi:'Такси'}[row.mode];
   const minutes = row.planned_minutes ?? (row.duration_seconds == null ? null : Math.ceil(row.duration_seconds / 60));
   const cost = row.price_cny ?? row.cost_cny ?? row.transport_cost_cny;
+  const estimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate';
   return [clock(row,'start') + '–' + clock(row,'end'), row.type === 'travel' ? mode || 'Пеший переход' : name || kind[row.type] || 'Перерыв',
+    estimate ? 'ориентировочно' : '',
     minutes == null ? '' : minutes + ' мин', cost == null ? '' : cost + ' CNY'].filter(Boolean).join(' · ');
 }
 
@@ -58,10 +61,16 @@ function drawMap(rows) {
   const mapPlaces = new Map([...places].filter(([,place]) => Number.isFinite(place.lat) && Number.isFinite(place.lon)));
   const mappedRows = rows.map(row => {
     if (row.type !== 'travel' || trip.city !== 'moscow') return row;
-    return {...row, mode:'walk', planned_minutes:Math.ceil(row.duration_seconds / 60),
+    const rail = (row.transport_steps || []).flatMap(step => {
+      if (step.geometry?.type === 'LineString') return [{mode:'walk', verified:true, coordinates:step.geometry.coordinates}];
+      if (step.kind !== 'rail_estimate' || !step.from_stop_location || !step.to_stop_location) return [];
+      return [{mode:'transit', verified:false,
+        coordinates:[step.from_stop_location.coordinates, step.to_stop_location.coordinates]}];
+    });
+    return {...row, use_plan_geometry:true, planned_minutes:Math.ceil(row.duration_seconds / 60),
       ...(row.geometry?.type === 'LineString' ? {geometry_segments:[
-        {mode:'walk', coordinates:row.geometry.coordinates, verified:true},
-      ]} : {})};
+        {mode:row.mode, coordinates:row.geometry.coordinates, verified:true},
+      ]} : rail.length ? {geometry_segments: rail} : {})};
   });
   routeMap.setDay({events:mappedRows}, mapPlaces);
   const visibleStops = stops.filter(row => mapPlaces.has(row.poi_id));
@@ -100,6 +109,16 @@ function renderDay() {
       };
     }
     card.append(title);
+    if (row.transport_steps) {
+      const sequence = document.createElement('ol');
+      for (const step of row.transport_steps) {
+        const label = {walk_access:'Подход', walk_egress:'Выход к месту', walk_transfer:'Пересадка',
+          wait_estimate:'Ожидание', rail_estimate:'Поездка', alight:'Выход со станции'}[step.kind];
+        const stop = step.to_stop_location || step.from_stop_location;
+        appendText(sequence, [label, step.line, stop?.name, Math.ceil(step.duration_seconds / 60) + ' мин'].filter(Boolean).join(' · '));
+      }
+      card.append(sequence);
+    }
     item.append(time,card);
     stops.append(item);
   }
@@ -118,7 +137,7 @@ function renderTrip() {
   element('route-meta').textContent = 'Версия ' + trip.version + ' · ' + trip.plan.days.length + ' дн.';
   element('route-cost').textContent = total == null ? 'Оценка недоступна' :
     (moscow && budget.status !== 'passed' ? 'От ' : '≈ ') + new Intl.NumberFormat('ru-RU',{style:'currency',currency}).format(Number(total));
-  element('cost-note').textContent = moscow ? 'Известные расходы на посещения для всей группы. Питание и неподтверждённые расходы не включены.' :
+  element('cost-note').textContent = moscow ? 'Ориентировочная сумма для всей группы. Расходы без оценки и питание во время обеденного перерыва не включены.' :
     'Учебная оценка на всю поездку: посещения, питание и переходы.';
   const select = element('route-day');
   const selected = select.value || '0';
@@ -137,9 +156,13 @@ function renderTrip() {
   });
   select.value = Number(selected) < trip.plan.days.length ? selected : '0';
   element('route-warnings').textContent = moscow
-    ? 'Ограниченный пеший пилот по трём музеям. Уточните часы работы и актуальную стоимость перед поездкой.'
+    ? (trip.poi_snapshot_id.startsWith('moscow-v7:') ? 'Уточните часы работы, цены и доступ к входам. Переходы без дорожной геометрии ориентировочны.' : 'Сохранённый маршрут прежнего пилота. Уточните часы и цены.')
     : ['Учебные цены и условия посещения.', ...(trip.plan.warnings || [])].join(' ');
   renderDay();
+  const suggestions = element('route-suggestions');
+  suggestions.replaceChildren();
+  for (const id of trip.plan.suggested_poi_ids || []) if (places.has(id)) appendText(suggestions, places.get(id).name);
+  suggestions.parentElement.hidden = !suggestions.childElementCount;
 }
 
 const chatForm = element('edit-route');
@@ -147,9 +170,11 @@ const chatPath = endpoint + '/assistant/';
 const chatStatus = element('chat-status');
 function chatLine(author, message) {
   const line = document.createElement('p');
+  line.className = author === 'Вы' ? 'chat-message chat-user' : 'chat-message chat-assistant';
   line.textContent = author + ': ' + message;
-  element('chat-log').append(line);
-  if (element('chat-log').children.length > 16) element('chat-log').firstElementChild.remove();
+  const log = element('chat-log');
+  log.append(line);
+  log.scrollTop = log.scrollHeight;
 }
 const control = busy => {
   for (const button of [chatForm.querySelector('button'),element('confirm-edit'),element('reject-edit')]) button.disabled = busy;
@@ -157,10 +182,12 @@ const control = busy => {
 
 async function load() {
   trip = await request(endpoint);
-  const catalog = await request('/api/planned-trips/catalog/' + trip.city);
-  for (const place of catalog) places.set(place.id,place);
+  const legacy = trip.city === 'moscow' && !trip.poi_snapshot_id.startsWith('moscow-v7:');
+  const catalog = await request('/api/planned-trips/catalog/' + trip.city + (legacy ? '?include_legacy=true' : ''));
+  for (const place of catalog) places.set(place.id,{...place, area:trip.city === 'moscow' ? 'Москва' : 'Шанхай'});
   renderTrip();
   const status = await request(chatPath + 'status');
+  for (const item of status.conversation || []) chatLine(item.role === 'user' ? 'Вы' : 'TripWise', item.content);
   chatStatus.textContent = status.reason || (status.mode === 'mock' ? 'Тестовый режим: ответы подставляет проверочный сценарий, а не ИИ.' : '');
   if (!status.available) return;
   csrf = status.csrf_token;
@@ -191,9 +218,13 @@ chatForm.addEventListener('submit',async event => {
     preview.replaceChildren();
     for (const item of result.diff?.added || []) appendText(preview, '+ ' + item.name + ' · ' + item.day);
     for (const item of result.diff?.removed || []) appendText(preview, '− ' + item.name + ' · ' + item.day);
+    if (trip.city === 'moscow' && result.diff?.before_cost !== result.diff?.after_cost) {
+      appendText(preview, 'Оценка затрат · ' + result.diff.before_cost + ' → ' + result.diff.after_cost + ' ₽');
+    }
+    if (result.diff?.transport) appendText(preview, 'Транспорт · ' + {walk:'пешком', transit:'общественный', taxi:'такси'}[result.diff.transport]);
     for (const day of result.plan.days) for (const row of events(day)) appendText(preview, day.date + ' · ' + eventLabel(row));
     element('chat-preview').hidden = false;
-  } catch (error) { chatStatus.textContent = error.message; }
+  } catch (error) { chatStatus.textContent = error.message; chatLine('TripWise', error.message); }
   finally { control(false); }
 });
 

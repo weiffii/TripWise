@@ -112,6 +112,8 @@ def _day_schedule(sequence, day, context, matrix):
                 raise _Issue('ACTIVE_LIMIT_EXCEEDED')
             leg = {key: deepcopy(pair.get(key)) for key in ('from_poi_id', 'to_poi_id', 'duration_seconds', 'distance_meters', 'geometry', 'navigation_url', 'retrieved_at', 'basis', 'source_id')}
             leg.update(start_at=stamp(departure), end_at=stamp(current))
+            if pair.get('transport_steps'):
+                leg['transport_steps'] = deepcopy(pair['transport_steps'])
             legs.append(leg)
             if pair['distance_meters'] is None:
                 warnings.add('DISTANCE_UNKNOWN')
@@ -216,7 +218,9 @@ def build_route(preferences, pois, recommendation, travel_times, routing_context
                     failures.append({'code': 'BUDGET_EXCEEDED', 'check': 'budget', 'unknown': False})
                     continue
                 delta = scheduled['_travel_us'] - schedules[day['date']]['_travel_us']
-                choices.append(((delta, scheduled['_end_us'], day['date'], position), day['date'], new, scheduled))
+                defer_occupied = bool(routing_context.get('optimize_local_order') and previous)
+                choices.append(((defer_occupied, delta, scheduled['_end_us'], day['date'], position),
+                                day['date'], new, scheduled))
         choices.sort(key=lambda option: option[0])
         return choices, failures
     pending = set(required)
@@ -242,6 +246,22 @@ def build_route(preferences, pois, recommendation, travel_times, routing_context
                 if any(f.get('unknown') for f in failures):
                     unresolved.add(poi_id)
                 diagnostics.append({'poi_id': poi_id, 'code': 'CANDIDATE_NOT_PLACED', 'reasons': sorted({f['code'] for f in failures})})
+    if routing_context.get('optimize_local_order'):
+        for settings in context['days']:
+            day = settings['date']
+            for _ in range(2):
+                sequence = sequences[day]
+                best = schedules[day]
+                improved = sequence
+                for first in range(len(sequence) - 1):
+                    for last in range(first + 2, len(sequence) + 1):
+                        candidate = sequence[:first] + sequence[first:last][::-1] + sequence[last:]
+                        scheduled = _day_schedule(candidate, settings, context, matrix)
+                        if scheduled['valid'] and scheduled['_travel_us'] < best['_travel_us']:
+                            improved, best = candidate, scheduled
+                if improved == sequence:
+                    break
+                sequences[day], schedules[day] = improved, best
     result = _result(preferences, by_id, context, matrix, ranked, required, sequences, unresolved=unresolved, diagnostics=diagnostics)
     verified = validate_route(result, preferences, pois, recommendation, travel_times, routing_context)
     require(verified['valid'], 'route', 'INTERNAL_SCHEDULE_VALIDATION_FAILED')
@@ -311,16 +331,37 @@ def main(argv=None):
         if hasattr(stream, 'reconfigure'):
             stream.reconfigure(encoding='utf-8', errors='strict')
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--pois', required=True)
+    catalog = parser.add_mutually_exclusive_group(required=True)
+    catalog.add_argument('--pois')
+    catalog.add_argument('--moscow-v7', action='store_true')
     parser.add_argument('--preferences', required=True)
     parser.add_argument('--scenario', required=True)
     args = parser.parse_args(argv)
     try:
-        pois, preferences, scenario = (load_pois(p) for p in (args.pois, args.preferences, args.scenario))
+        preferences, scenario = (load_pois(p) for p in (args.preferences, args.scenario))
+        if args.moscow_v7:
+            from ai_ds.moscow_catalog import load_moscow_v7
+            pois, snapshot = load_moscow_v7()
+        else:
+            pois = load_pois(args.pois)
         require(isinstance(scenario, dict), 'scenario', 'EXPECTED_OBJECT')
-        for name in ('travel_times', 'routing_context'):
-            require(name in scenario, 'scenario.' + name, 'MISSING_FIELD')
-        result = build_route(preferences, pois, recommend(preferences, pois), scenario['travel_times'], scenario['routing_context'])
+        require('routing_context' in scenario, 'scenario.routing_context', 'MISSING_FIELD')
+        if args.moscow_v7:
+            pin = scenario['routing_context'].get('poi_snapshot_id')
+            require(pin is None or pin == snapshot, 'routing_context.poi_snapshot_id', 'SNAPSHOT_MISMATCH')
+            scenario['routing_context']['poi_snapshot_id'] = snapshot
+        recommendation = recommend(preferences, pois)
+        if args.moscow_v7 and 'moscow_rail' in scenario:
+            from ai_ds.moscow_transit import build_graph, build_matrix
+            require(preferences['transport'] == 'public_transit', 'preferences.transport', 'MODE_MISMATCH')
+            rail = scenario['moscow_rail']
+            document = load_pois(rail['osm_snapshot'])
+            graph = build_graph(document, rail['estimates'], rail.get('transfers', []))
+            ids = sorted({row['poi_id'] for row in recommendation['items']} | set(preferences['required_poi_ids']))
+            require(len(ids) <= 40, 'preferences.top_k', 'RAIL_MATRIX_LIMIT')
+            scenario['travel_times'] = build_matrix(graph, ids, rail['approaches'])
+        require('travel_times' in scenario, 'scenario.travel_times', 'MISSING_FIELD')
+        result = build_route(preferences, pois, recommendation, scenario['travel_times'], scenario['routing_context'])
         print(json.dumps(result, ensure_ascii=False, allow_nan=False, indent=2))
         return 0
     except (RoutingV02Error, RecommendationError) as error:

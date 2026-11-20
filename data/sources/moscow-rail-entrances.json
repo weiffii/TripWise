@@ -1,0 +1,147 @@
+{
+  "attribution": "? OpenStreetMap contributors",
+  "license": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "retrieved_at": "2026-11-20T21:09:23.874765+00:00",
+  "station_entrances": {
+    "297148175": [
+      {
+        "latitude": 55.7580468,
+        "longitude": 37.6600475,
+        "source_id": "osm:node:1123668136",
+        "source_url": "https://www.openstreetmap.org/node/1123668136",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588424",
+        "name": "Курская",
+        "ref": "2",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7561554,
+        "longitude": 37.6599618,
+        "source_id": "osm:node:1237885220",
+        "source_url": "https://www.openstreetmap.org/node/1237885220",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588424",
+        "name": "Курская",
+        "ref": "6",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7600228,
+        "longitude": 37.6617905,
+        "source_id": "osm:node:249654986",
+        "source_url": "https://www.openstreetmap.org/node/249654986",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588424",
+        "name": "Курская",
+        "ref": "4",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7584931,
+        "longitude": 37.6601852,
+        "source_id": "osm:node:5312494395",
+        "source_url": "https://www.openstreetmap.org/node/5312494395",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588424",
+        "name": "Курская",
+        "ref": "3",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7586037,
+        "longitude": 37.6588733,
+        "source_id": "osm:node:912010984",
+        "source_url": "https://www.openstreetmap.org/node/912010984",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588424",
+        "name": "Курская",
+        "ref": "1",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7559622,
+        "longitude": 37.6583138,
+        "source_id": "osm:node:912010995",
+        "source_url": "https://www.openstreetmap.org/node/912010995",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588424",
+        "name": "Курская",
+        "ref": "7",
+        "can_enter": true,
+        "can_exit": true
+      }
+    ],
+    "6938823552": [
+      {
+        "latitude": 55.7799806,
+        "longitude": 37.6660946,
+        "source_id": "osm:node:1157637178",
+        "source_url": "https://www.openstreetmap.org/node/1157637178",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588419",
+        "name": "Красносельская",
+        "ref": "1",
+        "can_enter": false,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7799853,
+        "longitude": 37.6660322,
+        "source_id": "osm:node:4933885896",
+        "source_url": "https://www.openstreetmap.org/node/4933885896",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588419",
+        "name": "Красносельская",
+        "ref": "1",
+        "can_enter": true,
+        "can_exit": false
+      }
+    ],
+    "6938823563": [
+      {
+        "latitude": 55.7240138,
+        "longitude": 37.5655401,
+        "source_id": "osm:node:2321282232",
+        "source_url": "https://www.openstreetmap.org/node/2321282232",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588474",
+        "name": "Спортивная",
+        "ref": "2",
+        "can_enter": false,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.7222816,
+        "longitude": 37.5619305,
+        "source_id": "osm:node:295552735",
+        "source_url": "https://www.openstreetmap.org/node/295552735",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588474",
+        "name": "Спортивная",
+        "ref": "1",
+        "can_enter": true,
+        "can_exit": true
+      },
+      {
+        "latitude": 55.723846,
+        "longitude": 37.5657452,
+        "source_id": "osm:node:295552834",
+        "source_url": "https://www.openstreetmap.org/node/295552834",
+        "stop_area_url": "https://www.openstreetmap.org/relation/7588474",
+        "name": "Спортивная",
+        "ref": "2",
+        "can_enter": true,
+        "can_exit": true
+      }
+    ],
+    "8815720351": [
+      {
+        "latitude": 55.77513,
+        "longitude": 37.6523521,
+        "source_id": "osm:node:10948918513",
+        "source_url": "https://www.openstreetmap.org/node/10948918513",
+        "stop_area_url": "https://www.openstreetmap.org/relation/10309299",
+        "name": "Площадь трёх вокзалов",
+        "ref": "1",
+        "can_enter": true,
+        "can_exit": true
+      }
+    ]
+  }
+}
