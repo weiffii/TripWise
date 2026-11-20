@@ -1,0 +1,518 @@
+﻿id,name,old_categories,new_categories,old_primary,new_primary,changed,reason,evidence_osm_id
+moscow-cultural-1,Музей Рерихов,museums,museums,museums,museums,False,existing_classification_retained,node/253038783
+moscow-cultural-100,Выставочный зал истории войны в Афганистане,history|museums,history|museums,history,history,False,history,node/2675521498
+moscow-cultural-101,Дом Высоцкого на Таганке,museums,museums,museums,museums,False,existing_classification_retained,node/2715045290
+moscow-cultural-102,Музей книги,museums,museums,museums,museums,False,existing_classification_retained,node/2758278217
+moscow-cultural-103,Галерея XXI века,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-104,Государственный музей Л.Н. Толстого,museums,museums,museums,museums,False,existing_classification_retained,node/2798179186
+moscow-cultural-106,Научно-мемориальный музей профессора Н.Е. Жуковского,history|museums,history|museums,history,history,False,history,node/2820078760
+moscow-cultural-109,"Выставочный зал ""АхДи""",museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-110,Политехнический музей на ВДНХ,history|museums,history|museums,history,history,False,history,node/3114388064
+moscow-cultural-112,Московский музей современного искусства (отдельное здание),museums,museums,museums,museums,False,contemporary_art,
+moscow-cultural-113,Музей уникальных кукол,museums,museums|unusual,museums,museums,True,explicit_museum_specialty,node/3206046372
+moscow-cultural-114,"Музейный комплекс ""Бункер Сталина""",museums|unusual,history|museums,museums,history,True,history,node/3251246210
+moscow-cultural-115,Музей русской гармоники А. Мирека,museums,museums,museums,museums,False,existing_classification_retained,node/3325191509
+moscow-cultural-118,"Политехнический музей, открытые фонды",history|museums,history|museums,history,history,False,history,node/3350346072
+moscow-cultural-119,Государственный музей М. А. Булгакова,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-120,Дом-музей А.П. Чехова,history|museums,history|museums,history,history,False,history,node/3387496562
+moscow-cultural-121,Дом-музей В.Л. Пушкина,history|museums,history|museums,history,history,False,history,node/3390705964
+moscow-cultural-125,Мемориальный музей-квартира Е.Ф.Гнесиной,history|museums,history|museums,history,history,False,history,node/3423510101
+moscow-cultural-128,Музей воды,museums,museums,museums,museums,False,existing_classification_retained,node/3437732377
+moscow-cultural-129,Музей детства,museums,museums,museums,museums,False,existing_classification_retained,node/3441521467
+moscow-cultural-130,Экспериментаниум,museums,museums,museums,museums,False,existing_classification_retained,node/3454298446
+moscow-cultural-131,Дом И.С. Остроухова в Трубниках,museums,museums,museums,museums,False,existing_classification_retained,node/3466483914
+moscow-cultural-133,Усыпальница бояр Романовых,museums,museums,museums,museums,False,existing_classification_retained,node/3484120452
+moscow-cultural-134,Мемориальная квартира Андрея Белого,history|museums,history|museums,history,history,False,history,node/3500710699
+moscow-cultural-135,Дом-музей А. И. Герцена,history|museums,history|museums,history,history,False,history,node/3500729458
+moscow-cultural-136,Творческое наследие академика Юрия Орехова,museums,museums,museums,museums,False,existing_classification_retained,node/3500790779
+moscow-cultural-137,Музей-квартира Г. С. Улановой,history|museums,history|museums,history,history,False,history,node/3500852153
+moscow-cultural-138,Музей Императорского православного палестинского общества,museums,history|museums,museums,history,True,history,node/3500887936
+moscow-cultural-139,"Археологический выставочный комплекс ""Старый ""Гостиный двор""",history|museums,history|museums,history,history,False,history,node/3501032524
+moscow-cultural-140,П. И. Чайковский и Москва,museums,museums,museums,museums,False,existing_classification_retained,node/3501044091
+moscow-cultural-141,"Интерактивный музей ""Лунариум""",museums,museums,museums,museums,False,existing_classification_retained,node/3501050337
+moscow-cultural-142,Stella Art Foundation,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-143,Педагогический музей А.С.Макаренко,museums,museums,museums,museums,False,existing_classification_retained,node/3501078381
+moscow-cultural-144,Музей барона Мюнхгаузена,museums,museums,museums,museums,False,existing_classification_retained,node/3501090950
+moscow-cultural-145,Самоцветы,museums,museums,museums,museums,False,existing_classification_retained,node/3501092305
+moscow-cultural-146,Центральный музей им. Б.В.Зимина Всероссийского общества слепых,museums,museums,museums,museums,False,existing_classification_retained,node/3501093152
+moscow-cultural-147,Музей истории телефонной связи МГТС,history|museums,history|museums,history,history,False,history,node/3501108218
+moscow-cultural-148,"Музей памяти погибших воинов в Афганистане, Чечне и других горячих точках",museums,history|museums,museums,history,True,history,node/3501114729
+moscow-cultural-149,Музей истории евреев в России,history|museums,history|museums,history,history,False,history,node/3501119667
+moscow-cultural-150,Музей охоты и рыболовства,museums,museums,museums,museums,False,existing_classification_retained,node/3501148879
+moscow-cultural-151,Музей Морского космического флота,museums,museums,museums,museums,False,existing_classification_retained,node/3502556677
+moscow-cultural-152,Музей экономики и быта,museums,museums,museums,museums,False,existing_classification_retained,node/3502560194
+moscow-cultural-153,Музей денег,museums,museums,museums,museums,False,existing_classification_retained,node/3502599105
+moscow-cultural-154,Научно-художественный музей коневодства,museums,museums,museums,museums,False,existing_classification_retained,node/3502676039
+moscow-cultural-155,Музей русского костюма,museums,history|museums,museums,history,True,history,node/3502683505
+moscow-cultural-156,Музей истории телефона,history|museums,history|museums,history,history,False,history,node/3502818838
+moscow-cultural-157,Забавушка,museums,museums,museums,museums,False,existing_classification_retained,node/3502825887
+moscow-cultural-158,Музей истории Российского флота,history|museums,history|museums,history,history,False,history,node/3502875291
+moscow-cultural-159,Музей янтаря,museums,museums,museums,museums,False,existing_classification_retained,node/3502875292
+moscow-cultural-160,Музей колоколов,museums|unusual,museums|unusual,museums,museums,False,existing_classification_retained,node/3502875693
+moscow-cultural-161,Музей национального костюма,museums,history|museums,museums,history,True,history,node/3502875694
+moscow-cultural-162,Музей русской игрушки,museums,museums,museums,museums,False,existing_classification_retained,node/3502875695
+moscow-cultural-163,Музей русской сказки,museums,museums,museums,museums,False,existing_classification_retained,node/3502875696
+moscow-cultural-164,Музей истории водки,history|museums,history|museums,history,history,False,history,node/3502875697
+moscow-cultural-165,Музей хлеба,museums,museums,museums,museums,False,existing_classification_retained,node/3502875698
+moscow-cultural-166,Всемирная история в пластилине,museums,history|museums,museums,history,True,history,node/3502875699
+moscow-cultural-167,Центральный музей войск национальной гвардии Российской Федерации,museums,history|museums,museums,history,True,history,node/3502923947
+moscow-cultural-168,Музей-квартира А.М. Васнецова,history|museums,history|museums,history,history,False,history,node/3502941745
+moscow-cultural-169,Музей службы внешней разведки,museums,history|museums,museums,history,True,history,node/3502959734
+moscow-cultural-170,Музей кочевой культуры,museums,history|museums,museums,history,True,history,node/3502990779
+moscow-cultural-171,"Музей предпринимателей, меценатов и благотворителей",museums,museums,museums,museums,False,existing_classification_retained,node/3503033016
+moscow-cultural-172,Московский музей образования,museums,museums,museums,museums,False,existing_classification_retained,node/3503058809
+moscow-cultural-173,Музей Игоря Талькова,museums,museums,museums,museums,False,existing_classification_retained,node/3503097494
+moscow-cultural-174,Экоцентр «Воробьёвы горы»,museums,museums,museums,museums,False,existing_classification_retained,node/3503118696
+moscow-cultural-175,Музей-кабинет П. Л. Капицы,museums,museums,museums,museums,False,existing_classification_retained,node/3503120479
+moscow-cultural-176,Мемориальный кабинет-музей академика А. П. Виноградова,history|museums,history|museums,history,history,False,history,node/3503130075
+moscow-cultural-177,Музей традиционных русских напитков,museums,museums,museums,museums,False,existing_classification_retained,node/3503152531
+moscow-cultural-178,Родные истоки,museums,museums,museums,museums,False,existing_classification_retained,node/3504855620
+moscow-cultural-179,Победные дни России,history|museums,history|museums,history,history,False,history,node/3504886574
+moscow-cultural-18,Московский музей современного искусства (отдельное здание),museums,museums,museums,museums,False,contemporary_art,
+moscow-cultural-181,Brusov Art Space,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-182,Masterskaya,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-183,Выставочный зал дома Гоголя,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-184,Арт-Трофи,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-19,Беляево,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-20,Музей-квартира А. С. Пушкина,history|museums,history|museums,history,history,False,history,node/703628600
+moscow-cultural-216,Музей шахмат Российской шахматной федерации,museums,museums,museums,museums,False,existing_classification_retained,node/3794298653
+moscow-cultural-217,Центральный дом художника,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-218,Музей истории зоопарка,history|museums,history|museums,history,history,False,history,node/3865094589
+moscow-cultural-219,Музей советских игровых автоматов,history|museums,history|museums,history,history,False,history,node/3876474244
+moscow-cultural-220,На Шаболовке,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-223,Мемориальная квартира-музей Е. Б. Вахтангова,history|museums,history|museums,history,history,False,history,node/4088301220
+moscow-cultural-224,Музей техники Apple,history|museums,history|museums,history,history,False,history,node/4116418323
+moscow-cultural-225,Московский государственный музей С. А. Есенина (филиал),museums,museums,museums,museums,False,existing_classification_retained,node/4118442289
+moscow-cultural-226,Театральная галерея на Малой Ордынке,museums,museums,museums,museums,False,existing_classification_retained,node/4139540604
+moscow-cultural-227,Садовое кольцо,museums,museums,museums,museums,False,existing_classification_retained,node/4197044090
+moscow-cultural-228,Музей оптических иллюзий,museums|unusual,museums|unusual,museums,museums,False,explicit_museum_specialty,node/4250506199
+moscow-cultural-229,Музей русского лубка и наивного искусства,museums,museums,museums,museums,False,existing_classification_retained,node/4268290189
+moscow-cultural-23,"Фонд культуры ""Екатерина""",museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-232,Артефакт,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-233,Музей оптических иллюзий,museums|unusual,museums|unusual,museums,museums,False,explicit_museum_specialty,node/4311296093
+moscow-cultural-234,Московский государственный музей С.А. Есенина (филиал),museums,museums,museums,museums,False,existing_classification_retained,node/4320816461
+moscow-cultural-235,Московский литературный музей-центр К. Г. Паустовского,museums,museums,museums,museums,False,existing_classification_retained,node/4322816346
+moscow-cultural-236,Музей мёда,museums,museums,museums,museums,False,existing_classification_retained,node/4322817538
+moscow-cultural-237,Музей истории шоколада и какао «Мишка»,history|museums,history|museums,history,history,False,history,node/4322849512
+moscow-cultural-238,Мир тайн,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-239,РОСИЗО,museums,museums,museums,museums,False,existing_classification_retained,node/4402371491
+moscow-cultural-241,Наши художники,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-243,Школьный музей 2-й Дивизии Народного Ополчения,museums,history|museums,museums,history,True,history,node/4462006506
+moscow-cultural-244,Мемориальная квартира Святослава Рихтера,history|museums,history|museums,history,history,False,history,node/4491847389
+moscow-cultural-245,Ходынка,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-248,Музей истории усадьбы Кузьминки,history|museums,history|museums,history,history,False,history,node/4518520587
+moscow-cultural-251,Триумф,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-252,Центр профориентации Московского метрополитена,museums,museums,museums,museums,False,existing_classification_retained,node/4579285186
+moscow-cultural-253,"Районный краеведческий музей ""Ивановское""",museums,history|museums,museums,history,True,history,node/4625222504
+moscow-cultural-254,Выставочный комплекс Российской академии художеств,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-255,Выставочный центр «Рабочий и колхозница»,museums,history|museums,museums,history,True,history,node/4658944491
+moscow-cultural-257,Мемориальный музей-квартира А. М. Горького,history|museums,history|museums,history,history,False,history,node/4692951498
+moscow-cultural-258,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-259,Галерея «Нагорная»,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-26,Русские валенки,museums,history|museums,museums,history,True,history,node/913308087
+moscow-cultural-260,Музей ОСАО «Ингосстрах»,museums,museums,museums,museums,False,existing_classification_retained,node/4749731883
+moscow-cultural-264,Музейно-просветительский центр МЧС России,museums,museums,museums,museums,False,existing_classification_retained,node/4932922184
+moscow-cultural-267,Алмазный фонд,museums,museums,museums,museums,False,existing_classification_retained,node/4988219028
+moscow-cultural-269,РотФронт,museums,museums,museums,museums,False,existing_classification_retained,node/4994579237
+moscow-cultural-27,Музей Героев Советского Союза Зои и Александра Космодемьянских,museums,history|museums,museums,history,True,history,node/922497297
+moscow-cultural-270,Школьный музей С. М. Прокудина-Горского,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-271,Музей-квартира Владимира Маяковского,history|museums,history|museums,history,history,False,history,node/5015396706
+moscow-cultural-272,Подземный музей,museums,history|museums,museums,history,True,history,node/5022259604
+moscow-cultural-273,Музей истории РУДН,history|museums,history|museums,history,history,False,history,node/5022284106
+moscow-cultural-274,Музей Московской окружной железной дороги,museums,museums,museums,museums,False,existing_classification_retained,node/5040880586
+moscow-cultural-275,Кадашевская слобода,museums,museums,museums,museums,False,existing_classification_retained,node/5054946060
+moscow-cultural-276,На Трубной,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-277,А3,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-278,Ковчег,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-279,Картинная галерея Василия Нестеренко,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-280,Культурный центр «Интеграция» на Саянской,museums,museums,museums,museums,False,existing_classification_retained,node/5073205785
+moscow-cultural-281,Выставочные залы на Арбате,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-282,Музей-мастерская народного художника СССР Д.А. Налбандяна,museums,museums,museums,museums,False,existing_classification_retained,node/5073205788
+moscow-cultural-286,Музей скорой помощи,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-287,Советская живопись,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-288,Музей кино,museums,museums,museums,museums,False,existing_classification_retained,node/5177441732
+moscow-cultural-289,Выхино,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-290,Варшавка,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-291,Загорье,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-292,21,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-293,Риджина,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-294,11.12,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-295,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-296,Музей шоколада,museums|unusual,museums|unusual,museums,museums,False,existing_classification_retained,node/5180914982
+moscow-cultural-297,Музей-квартира А. Б. Гольденвейзера,history|museums,history|museums,history,history,False,history,node/5181346005
+moscow-cultural-298,Музей-квартира Н.С. Голованова,history|museums,history|museums,history,history,False,history,node/5181397887
+moscow-cultural-299,ФотоЛофт,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-3,Галерея искусства стран Европы и Америки XIX—XX веков,museums,museums,museums,museums,False,existing_classification_retained,node/273354762
+moscow-cultural-300,Vincent,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-301,XL,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-302,K35,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-303,Эритаж,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-304,Галерея На Чистых Прудах,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-305,Проун,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-306,Galerie Iragui,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-307,Крокин галерея,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-308,Кино,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-309,ТНК Арт,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-310,MustART,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-311,Musivum,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-312,73 улица,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-313,Галерея классической фотографии,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-314,Дом Коллекционера,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-315,"Выставочный зал РОО ""Товарищество живописцев МСХ""",museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-316,"Выставочный зал ""АРТ-Измайлово"" (филиал Музея наивного искусства)",museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-318,"Музей-квартира актерской семьи М. В., А. А. Мироновых — А. С. Менакера",history|museums,history|museums,history,history,False,history,node/5332088685
+moscow-cultural-320,Усадьба коломенского крестьянина,history|museums,history|museums,history,history,False,history,node/5366587317
+moscow-cultural-321,Усадьба кузнеца,history|museums,history|museums,history,history,False,history,node/5366588722
+moscow-cultural-322,Соколиный двор,museums|unusual,museums|unusual,museums,museums,False,existing_classification_retained,node/5366770763
+moscow-cultural-323,Водяная мельница,museums,history|museums,museums,history,True,history,node/5366770779
+moscow-cultural-324,Голландский домик царя Петра I,museums,museums,museums,museums,False,existing_classification_retained,node/5366770786
+moscow-cultural-326,Музей акварели,museums,museums,museums,museums,False,existing_classification_retained,node/5409424523
+moscow-cultural-327,Центральный музей МЧС России,museums,museums,museums,museums,False,existing_classification_retained,node/5507326929
+moscow-cultural-328,Art4,museums,museums,museums,museums,False,existing_classification_retained,node/5527925431
+moscow-cultural-329,Музей-мастерская Людмилы Гурченко,museums,museums,museums,museums,False,existing_classification_retained,node/5538400321
+moscow-cultural-330,Центр Гиляровского,museums,museums,museums,museums,False,existing_classification_retained,node/5543842449
+moscow-cultural-331,Подпольная типография 1905-1906 гг.,history|museums,history|museums,history,history,False,history,node/5556451146
+moscow-cultural-332,Музей международного нумизматического клуба,museums,museums,museums,museums,False,existing_classification_retained,node/5581175521
+moscow-cultural-333,Музей танкистов и танкостроителей,museums,history|museums,museums,history,True,history,node/5614559233
+moscow-cultural-334,Граунд Солянка,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-335,Галерея Александра Шилова,museums,museums,museums,museums,False,existing_classification_retained,node/5630505421
+moscow-cultural-336,Музей оружия,history|museums,history|museums,history,history,False,history,node/5643612021
+moscow-cultural-337,Музей Великий почин,museums,history|museums,museums,history,True,history,node/5647683845
+moscow-cultural-341,Музей истории астрономии в Московском университете,history|museums,history|museums,history,history,False,history,node/5667413924
+moscow-cultural-342,Яндекс,museums,museums,museums,museums,False,existing_classification_retained,node/5676700486
+moscow-cultural-343,Музей автомобильных историй,history|museums,history|museums,history,history,False,history,node/5682498988
+moscow-cultural-344,Дом-музей архитектора Фёдора Шехтеля,history|museums,history|museums,history,history,False,history,node/5748806571
+moscow-cultural-345,Стрелецкие палаты,museums,history|museums,museums,history,True,history,node/5754225235
+moscow-cultural-347,25 кадр,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-348,Собрание,museums,museums,museums,museums,False,existing_classification_retained,node/5906743571
+moscow-cultural-349,Тапан,museums,history|museums,museums,history,True,history,node/5908246786
+moscow-cultural-350,Doll's Lane,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-351,Сцена,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-352,Музей авангарда на Шаболовке,museums,museums,museums,museums,False,existing_classification_retained,node/5997597309
+moscow-cultural-353,Nadja Brykina Gallery,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-354,Музей экслибриса и миниатюрной книги,museums,museums,museums,museums,False,existing_classification_retained,node/6008487169
+moscow-cultural-355,Artplay,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-356,Во имя Родины,museums,museums,museums,museums,False,existing_classification_retained,node/6050521001
+moscow-cultural-357,Государственный музей Л. Н. Толстого,museums,museums,museums,museums,False,existing_classification_retained,node/6054425459
+moscow-cultural-358,Музей Отечественной войны 1812 года,history|museums,history|museums,history,history,False,history,node/6055217813
+moscow-cultural-36,Музей В.В. Маяковского,museums,museums,museums,museums,False,existing_classification_retained,node/1106845052
+moscow-cultural-360,Музей археологии Москвы,history|museums,history|museums,history,history,False,history,node/6061084594
+moscow-cultural-361,Выставочный зал Московского союза художников,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-363,Музей истории Бутырской тюрьмы,history|museums,history|museums,history,history,False,history,node/6181492324
+moscow-cultural-365,Лаврушинский15,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-366,Музей-квартира Александра Солженицына,history|museums,history|museums,history,history,False,history,node/6232167786
+moscow-cultural-367,Выставочный зал Московского союза художников,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-368,Мемориальный музей-квартира А.И. Сумбатова-Южина,history|museums,history|museums,history,history,False,history,node/6294334620
+moscow-cultural-369,Мемориальная музей-квартира Г.М. Кржижановского,history|museums,history|museums,history,history,False,history,node/6303242526
+moscow-cultural-370,Еврейский музей и центр толерантности,museums,history|museums,museums,history,True,history,node/6307571438
+moscow-cultural-371,Народный музей музыкальных инструментов,museums,museums,museums,museums,False,existing_classification_retained,node/6387808396
+moscow-cultural-372,Omelchenko Gallery,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-374,Интерактивный музей оружия,history|museums,history|museums,history,history,False,history,node/6573803423
+moscow-cultural-375,Дом-музей Героя Советского Союза Зайцева Ивана Петровича,history|museums,history|museums,history,history,False,history,node/6603989145
+moscow-cultural-377,Автомобили мира,museums,museums,museums,museums,False,existing_classification_retained,node/6684329185
+moscow-cultural-378,Музей истории телесных наказаний,history|museums|unusual,history|museums,history,history,True,history,node/6977883849
+moscow-cultural-379,Лесная сказка,museums,museums,museums,museums,False,existing_classification_retained,node/6990743036
+moscow-cultural-380,Музей Златоустовского монастыря,museums,history|museums,museums,history,True,history,node/6990965187
+moscow-cultural-381,Государственный музей истории российской литературы имени В.И. Даля,history|museums,history|museums,history,history,False,history,node/7058162907
+moscow-cultural-385,Глаз,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-386,Музей истории медицины МГМСУ,history|museums,history|museums,history,history,False,history,node/7146957794
+moscow-cultural-387,Музей истории органов внутренних дел Москвы,history|museums,history|museums,history,history,False,history,node/7147335439
+moscow-cultural-388,Взгляд ребёнка,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-389,Art Future Gallery,museums,museums,museums,museums,False,existing_classification_retained,node/7576068785
+moscow-cultural-39,На Песчаной,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-390,Музей ратной истории Москвы,history|museums,history|museums,history,history,False,history,node/7644099785
+moscow-cultural-391,Музей основания Российского флота,museums,museums,museums,museums,False,existing_classification_retained,node/7650608907
+moscow-cultural-394,Artdynamics,museums,museums,museums,museums,False,existing_classification_retained,node/7734616137
+moscow-cultural-395,Музей эмоций,museums|unusual,museums|unusual,museums,museums,False,explicit_museum_specialty,node/7734616141
+moscow-cultural-396,Музей Парка Горького,museums,museums,museums,museums,False,existing_classification_retained,node/7797262065
+moscow-cultural-397,Бункер-703,museums|unusual,museums|unusual,museums,museums,False,explicit_museum_specialty,node/7804955746
+moscow-cultural-398,Музей мертвых кукол,museums,museums|unusual,museums,museums,True,explicit_museum_specialty,node/7810650304
+moscow-cultural-399,Музей Серебряного века,museums,history|museums,museums,history,True,history,node/7824274685
+moscow-cultural-4,Государственный музей А.С.Пушкина,museums,museums,museums,museums,False,existing_classification_retained,node/273355916
+moscow-cultural-400,Музей истории индустриализации земледелия им. В. П. Горячкина,history|museums,history|museums,history,history,False,history,node/7834237775
+moscow-cultural-401,Музей животноводства имени Е. Ф. Лискуна,museums,museums,museums,museums,False,existing_classification_retained,node/7865868136
+moscow-cultural-402,Музей советских игровых автоматов,history|museums,history|museums,history,history,False,history,node/7887532120
+moscow-cultural-403,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-404,Государственный музей животноводства им. Е. Ф. Лискуна,museums,museums,museums,museums,False,existing_classification_retained,node/8006259865
+moscow-cultural-405,Центральный дом авиации и космонавтики,history|museums,history|museums,history,history,False,history,node/8115503181
+moscow-cultural-406,Школьный музей Соловецкой школы Юнг Северного флота,museums,museums,museums,museums,False,existing_classification_retained,node/8117585723
+moscow-cultural-407,HSE Art gallery,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-408,Радиомузей Валерия Громова,museums,museums,museums,museums,False,existing_classification_retained,node/8209683163
+moscow-cultural-409,Войти и разрешить,museums,museums,museums,museums,False,existing_classification_retained,node/8219364084
+moscow-cultural-41,Музей С. С. Прокофьева,museums,museums,museums,museums,False,existing_classification_retained,node/1161887242
+moscow-cultural-412,Музей восстания машин,museums|unusual,museums|unusual,museums,museums,False,existing_classification_retained,node/8662419217
+moscow-cultural-413,Российский музей медицины,museums,museums,museums,museums,False,existing_classification_retained,node/8664353717
+moscow-cultural-415,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-417,Царь-макет,museums,museums,museums,museums,False,existing_classification_retained,node/8839210222
+moscow-cultural-418,Музей колоколов,museums|unusual,museums|unusual,museums,museums,False,existing_classification_retained,node/8840921870
+moscow-cultural-440,Музей военной формы,history|museums,history|museums,history,history,False,history,node/9057239196
+moscow-cultural-441,Национальная портретная галерея,museums,museums,museums,museums,False,existing_classification_retained,node/9200610269
+moscow-cultural-442,Центральный музей таможенной службы,museums,museums,museums,museums,False,existing_classification_retained,node/9325438931
+moscow-cultural-445,Музей криптографии,museums|unusual,museums|unusual,museums,museums,False,explicit_museum_specialty,node/9354087767
+moscow-cultural-446,Бомба,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-447,Музей Императора Николая II,museums,museums,museums,museums,False,existing_classification_retained,node/9366831219
+moscow-cultural-448,Art & Brut,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-449,Музей МХАТ,museums,history|museums,museums,history,True,history,node/9397686740
+moscow-cultural-451,Музей спорта,museums,museums,museums,museums,False,existing_classification_retained,node/9526600833
+moscow-cultural-452,Ruarts,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-453,Музей Павла и Сергея Третьяковых,museums,museums,museums,museums,False,existing_classification_retained,node/9610774317
+moscow-cultural-454,Квартира В.В. Маяковского в Студенецком переулке,museums,museums,museums,museums,False,existing_classification_retained,node/9620616847
+moscow-cultural-455,Музей городского хозяйства Москвы,museums,museums,museums,museums,False,existing_classification_retained,node/9680858679
+moscow-cultural-457,Мемориальный кабинет-музей Владимира Ивановича Вернадского,history|museums,history|museums,history,history,False,history,node/9688468309
+moscow-cultural-458,Здесь на Таганке,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-459,Пересветов переулок,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-46,"Музей ""Храм Покрова в Филях""",museums,museums,museums,museums,False,existing_classification_retained,node/1327904475
+moscow-cultural-460,На Каширке,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-461,Печатники,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-462,Солнцево,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-463,Богородское,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-466,Bis art gallery,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-467,Vladey,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-468,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-469,Выставочное пространство в Саду им. Баумана,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-470,Комната воинской и трудовой славы,museums,museums,museums,museums,False,existing_classification_retained,node/9788786351
+moscow-cultural-472,Парк,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-473,По сусекам,museums,history|museums,museums,history,True,history,node/9905840317
+moscow-cultural-474,U contemporary,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-475,Музей боевой славы,museums,museums,museums,museums,False,existing_classification_retained,node/9927721938
+moscow-cultural-477,Музейно-выставочный центр им. А. И. Шокина,museums,museums,museums,museums,False,existing_classification_retained,node/9957821698
+moscow-cultural-478,РОСИЗО,museums,museums,museums,museums,False,existing_classification_retained,node/9978554504
+moscow-cultural-480,Дом-музей и экспедиционный штаб Федора Конюхова,history|museums,history|museums,history,history,False,history,node/10015992717
+moscow-cultural-481,Музей рециклинга и экологичного образа жизни,museums,museums,museums,museums,False,existing_classification_retained,node/10263479155
+moscow-cultural-482,Восточная,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-483,Vekarta,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-484,Мемориальный музей-квартира Тимирязева Климента Аркадьевича,history|museums,history|museums,history,history,False,history,node/10572977039
+moscow-cultural-485,Выставочный зал Объединения московских скульпторов,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-486,Музей спортивной славы Зеленограда,museums,museums,museums,museums,False,existing_classification_retained,node/10689567676
+moscow-cultural-487,Artstory,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-488,Галерея Василия Нестеренко,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-489,Sistema gallery,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-49,Дом-музей А.Н. Островского,history|museums,history|museums,history,history,False,history,node/1359123836
+moscow-cultural-490,Это не здесь,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-491,Музей транспорта Москвы,history|museums,history|museums,history,history,False,history,
+moscow-cultural-492,Музей русского зарубежья,museums,history|museums,museums,history,True,history,node/10796949181
+moscow-cultural-493,Музей Зеленограда,museums,museums,museums,museums,False,existing_classification_retained,node/10809105347
+moscow-cultural-494,Ордынка арт,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-495,Динамо,museums,museums,museums,museums,False,existing_classification_retained,node/10829439699
+moscow-cultural-496,Память,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-497,Eva Art,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-498,Sare art,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-499,Музей истории ВДНХ,history|museums,history|museums,history,history,False,history,node/10971892284
+moscow-cultural-5,Государственный центральный театральный музей им. А. А. Бахрушина,museums,museums,museums,museums,False,existing_classification_retained,node/273356351
+moscow-cultural-500,AZ Art,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-501,Галеев - галерея,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-502,G1,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-506,Музей времени и часов,museums,museums,museums,museums,False,existing_classification_retained,node/11294806126
+moscow-cultural-507,Другое дело,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-508,Творческая мастерская С.Т. Конёнкова,museums,museums,museums,museums,False,existing_classification_retained,node/11323317893
+moscow-cultural-509,Музей боевой славы,museums,museums,museums,museums,False,existing_classification_retained,node/11363917580
+moscow-cultural-51,Московский дом Достоевского,museums,museums,museums,museums,False,existing_classification_retained,node/1396324038
+moscow-cultural-511,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-516,Виноделие России,museums,museums,museums,museums,False,existing_classification_retained,node/11668418169
+moscow-cultural-518,Нехорошая квартира,museums,museums,museums,museums,False,existing_classification_retained,node/11741417323
+moscow-cultural-52,Музей Спорта,museums,museums,museums,museums,False,existing_classification_retained,node/1406961084
+moscow-cultural-520,Glubina,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-521,Е.К.Артбюро,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-522,Vincent,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-523,Рудно-петрографический музей,museums,museums,museums,museums,False,existing_classification_retained,node/11780094310
+moscow-cultural-524,"Музей ПАО ""Лукойл""",museums,museums,museums,museums,False,existing_classification_retained,node/11809152313
+moscow-cultural-525,Люмьер,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-526,Музей Николая Островского,museums,museums,museums,museums,False,existing_classification_retained,node/11831304488
+moscow-cultural-529,Музей собаки,museums,museums,museums,museums,False,existing_classification_retained,node/11903324468
+moscow-cultural-53,Музейно-выставочный центр «Тушино»,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-530,Музей Русского Афона,museums,museums,museums,museums,False,existing_classification_retained,node/11916294313
+moscow-cultural-531,Студия 82,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-532,Музей истории русского шоколада,history|museums,history|museums,history,history,False,history,node/12164297413
+moscow-cultural-533,In Artibus,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-534,Ruarts,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-535,Fabula,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-536,Оружейный подвал,museums,museums,museums,museums,False,existing_classification_retained,node/12309870570
+moscow-cultural-537,Галерея Мамонтовых,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-538,Музей Юрия АлександровичаСенкевича,museums,museums,museums,museums,False,existing_classification_retained,node/12330459484
+moscow-cultural-54,Точка G,museums,museums,museums,museums,False,existing_classification_retained,node/1429094469
+moscow-cultural-542,Музей кино. Библиотека киноискусства,museums,museums,museums,museums,False,existing_classification_retained,node/12451669493
+moscow-cultural-544,Sareh Art Gallery,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-545,Галерея Натальи Ушаковой,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-546,Гельминтологический музей,museums,museums,museums,museums,False,existing_classification_retained,node/12533875543
+moscow-cultural-547,MEYN,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-551,Выставочный зал Московского союза художников,museums,museums,museums,museums,False,existing_classification_retained,node/12600924997
+moscow-cultural-552,Московский музей Рахманинова,museums,museums,museums,museums,False,existing_classification_retained,node/12803628465
+moscow-cultural-554,Палеонтологический музей имени Ю.А. Орлова РАН,museums,museums,museums,museums,False,existing_classification_retained,node/12811381906
+moscow-cultural-555,Музей-квартира М.М. Плисецкой,history|museums,history|museums,history,history,False,history,node/12855637229
+moscow-cultural-556,Особняк-Небылица,museums,museums,museums,museums,False,existing_classification_retained,node/12891738501
+moscow-cultural-557,Музей фокусов,museums,museums,museums,museums,False,existing_classification_retained,node/13082071414
+moscow-cultural-558,Музей истории АО Государственного космического научно-производственного центра имени М.В. Хруничева,history|museums,history|museums,history,history,False,history,node/13147735201
+moscow-cultural-559,Я Музей,museums,museums,museums,museums,False,existing_classification_retained,node/13176871061
+moscow-cultural-56,Дом на набережной,museums,museums,museums,museums,False,existing_classification_retained,node/1592025111
+moscow-cultural-560,Краснохолмская,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-562,Центральный музей российского казачества,history|museums,history|museums,history,history,False,history,node/13256127291
+moscow-cultural-563,Ostashov Sculpture,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-564,Летай,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-565,Гербовый зал города Москвы,museums,museums,museums,museums,False,existing_classification_retained,node/13286612022
+moscow-cultural-566,13/20,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-567,Власть,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-568,Музей Русской Культуры,museums,museums,museums,museums,False,existing_classification_retained,node/13342467884
+moscow-cultural-570,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-571,Музей быта советских физиков-ядерщиков 1940-50 гг.,museums,museums,museums,museums,False,existing_classification_retained,node/13430845749
+moscow-cultural-572,Béton,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-574,Музей Магии,museums,museums|unusual,museums,museums,True,explicit_museum_specialty,node/13564464004
+moscow-cultural-576,Artbox Etalon,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-577,Комплекс центрального музея радиолюбительства имени Э.Т. Кренкеля,museums,museums,museums,museums,False,existing_classification_retained,node/13726305624
+moscow-cultural-579,Роза Эйнема,museums,museums,museums,museums,False,existing_classification_retained,node/13787357719
+moscow-cultural-580,Linda De La,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-581,Музей пинбола,museums,museums|unusual,museums,museums,True,explicit_museum_specialty,node/13787357730
+moscow-cultural-582,Экспозиция «100 лет сатиры»,museums,museums,museums,museums,False,existing_classification_retained,node/13835483984
+moscow-cultural-585,Музей далёкой галактики,museums,museums,museums,museums,False,existing_classification_retained,node/13984145601
+moscow-cultural-586,Музей Восстания Машин,museums|unusual,museums|unusual,museums,museums,False,existing_classification_retained,node/14000858297
+moscow-cultural-591,Патриаршие палаты,museums,museums,museums,museums,False,existing_classification_retained,relation/1359248
+moscow-cultural-592,Оружейная палата,museums,history|museums,museums,history,True,history,relation/1359335
+moscow-cultural-593,Потешный дворец,museums,history|museums,museums,history,True,history,relation/1359337
+moscow-cultural-594,Почвенно-агрономический музей им. В. Р. Вильямса,museums,museums,museums,museums,False,existing_classification_retained,relation/1813336
+moscow-cultural-595,Третьяковская галерея,museums,museums,museums,museums,False,existing_classification_retained,relation/1907261
+moscow-cultural-596,Мемориальный дом-музей академика С. П. Королева,history|museums,history|museums,history,history,False,history,relation/2110469
+moscow-cultural-597,Музей Победы,history|museums,history|museums,history,history,False,history,relation/2219994
+moscow-cultural-598,Музей изобразительных искусств им. Пушкина,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-6,Государственный Дарвиновский музей,museums,museums,museums,museums,False,existing_classification_retained,node/288506766
+moscow-cultural-60,Музей холодной войны (экспозиционный комплекс Бункер-42),history|museums|unusual,history|museums,history,history,True,history,node/1733057309
+moscow-cultural-600,Московский дом художника,museums,museums,museums,museums,False,existing_classification_retained,relation/2669510
+moscow-cultural-601,Музей Вооружённых сил,history|museums,history|museums,history,history,False,history,relation/2792560
+moscow-cultural-602,Усадьба Деда Мороза,history|museums,history|museums,history,history,False,history,relation/3089361
+moscow-cultural-603,Парк искусств Музеон,museums,museums,museums,museums,False,existing_classification_retained,relation/3224482
+moscow-cultural-604,Музей землеведения МГУ,museums,museums,museums,museums,False,existing_classification_retained,relation/3436776
+moscow-cultural-606,Музей Н. В. Гоголя,museums,museums,museums,museums,False,existing_classification_retained,relation/5371132
+moscow-cultural-608,Исторический музей,history|museums,history|museums,history,history,False,history,relation/5963922
+moscow-cultural-609,Музей Москвы,history|museums,history|museums,history,history,False,history,relation/6011324
+moscow-cultural-61,Музей-квартира священника Павла Флоренского,history|museums,history|museums,history,history,False,history,node/1826640863
+moscow-cultural-611,Государственный музей обороны Москвы,history|museums,history|museums,history,history,False,history,relation/6358574
+moscow-cultural-613,Большой Дворец,museums,museums,museums,museums,False,existing_classification_retained,relation/6455367
+moscow-cultural-615,Хлебный Дом,museums,museums,museums,museums,False,existing_classification_retained,relation/6525824
+moscow-cultural-618,Студия военных художников имени М. Б. Грекова,museums,museums,museums,museums,False,existing_classification_retained,relation/7075596
+moscow-cultural-619,Сытный двор,museums,history|museums,museums,history,True,history,relation/7253307
+moscow-cultural-62,Выставочный зал музея Зеленограда,museums,museums,museums,museums,False,existing_classification_retained,node/1845312017
+moscow-cultural-620,"Музейно – производственный комплекс ""Паровозное депо"" на станции ""Подмосковная""",museums,museums,museums,museums,False,existing_classification_retained,relation/7476078
+moscow-cultural-621,Усадьба Н.А. Дурасова,history|museums,history|museums,history,history,False,history,relation/7486944
+moscow-cultural-624,Грановитая палата,museums,museums,museums,museums,False,existing_classification_retained,relation/7679578
+moscow-cultural-625,Музей-усадьба Л. Н. Толстого в Хамовниках,history|museums,history|museums,history,history,False,history,relation/7964002
+moscow-cultural-626,Центр «Космонавтика и авиация»,museums,museums,museums,museums,False,existing_classification_retained,relation/8273120
+moscow-cultural-627,Музей-панорама «Бородинская битва»,history|museums,history|museums,history,history,False,history,relation/8310817
+moscow-cultural-629,Галерея Ильи Глазунова,museums,museums,museums,museums,False,existing_classification_retained,relation/10048315
+moscow-cultural-630,Всероссийский музей декоративно-прикладного и народного искусства,museums,museums,museums,museums,False,existing_classification_retained,relation/12265556
+moscow-cultural-632,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-634,Дворец царя Алексея Михайловича,museums,museums,museums,museums,False,existing_classification_retained,relation/14065287
+moscow-cultural-636,Народный музей истории вагонного депо Москва Октябрьской железной дороги,history|museums,history|museums,history,history,False,history,
+moscow-cultural-637,"Павильон № 57. ""Россия - моя история""",museums,history|museums,museums,history,True,history,relation/14523199
+moscow-cultural-64,Музей истории Лефортово,history|museums,history|museums,history,history,False,history,node/1933730593
+moscow-cultural-642,Государственный центральный музей современной истории России,history|museums,history|museums,history,history,False,history,relation/16685841
+moscow-cultural-645,"музей-усадьба ""Останкино""",history|museums,history|museums,history,history,False,history,relation/17970371
+moscow-cultural-646,Макет Москвы,museums,museums,museums,museums,False,existing_classification_retained,relation/18081076
+moscow-cultural-647,Мемориальный музей космонавтики,history|museums,history|museums,history,history,False,history,relation/18440666
+moscow-cultural-648,Дом бояр Романовых,history|museums,history|museums,history,history,False,history,
+moscow-cultural-650,Царская башня,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-653,Московский государственный музей С. А. Есенина,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-654,Центральный музей МВД России,museums,museums,museums,museums,False,existing_classification_retained,relation/21039371
+moscow-cultural-655,Российский национальный музей музыки,museums,museums,museums,museums,False,existing_classification_retained,way/24776578
+moscow-cultural-656,Музей наивного искусства,museums,museums,museums,museums,False,existing_classification_retained,way/28918627
+moscow-cultural-66,Измайлово,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-660,Государственный геологический музей им. В. И. Вернадского,museums,museums,museums,museums,False,existing_classification_retained,way/31482144
+moscow-cultural-661,Зоологический музей МГУ,museums,museums,museums,museums,False,existing_classification_retained,way/31482160
+moscow-cultural-662,Ивановский зал РГБ,museums,museums,museums,museums,False,existing_classification_retained,way/32693328
+moscow-cultural-663,Усадьба князей Голицыных,history|museums,history|museums,history,history,False,history,way/32693356
+moscow-cultural-664,Государственный музей архитектуры им. А. В. Щусева,museums,museums,museums,museums,False,existing_classification_retained,way/32693733
+moscow-cultural-666,Музей Героев,museums,museums,museums,museums,False,existing_classification_retained,way/35036437
+moscow-cultural-667,Дом-музей Матвея Муравьева-Апостола,history|museums,history|museums,history,history,False,history,way/35693441
+moscow-cultural-669,Музей русского лубка и наивного искусства,museums,museums,museums,museums,False,existing_classification_retained,way/36358910
+moscow-cultural-672,Музей киноконцерна «Мосфильм»,museums,museums,museums,museums,False,existing_classification_retained,way/37082779
+moscow-cultural-674,Второй Кавалерский Корпус,museums,museums,museums,museums,False,existing_classification_retained,way/38446449
+moscow-cultural-678,"Исторический музей ""Наша эпоха""",history|museums,history|museums,history,history,False,history,way/45466668
+moscow-cultural-679,Дом-музей В.М. Васнецова,history|museums,history|museums,history,history,False,history,way/45627008
+moscow-cultural-680,Государственный Биологический музей им. К.А. Тимирязева,museums,museums,museums,museums,False,existing_classification_retained,way/46353941
+moscow-cultural-681,Городская Усадьба П.И. Щукина,history|museums,history|museums,history,history,False,history,way/46353975
+moscow-cultural-686,Музей В.И. Даля,museums,museums,museums,museums,False,existing_classification_retained,way/46960718
+moscow-cultural-688,Московский музей современного искусства,museums,museums,museums,museums,False,contemporary_art,
+moscow-cultural-689,Музей-квартира А. М. Горького,history|museums,history|museums,history,history,False,history,way/47296416
+moscow-cultural-690,Музей-мастерская А. С. Голубкиной,museums,museums,museums,museums,False,existing_classification_retained,way/47513274
+moscow-cultural-693,Гараж,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-694,Дом-музей И. В. Курчатова,history|museums,history|museums,history,history,False,history,way/48673499
+moscow-cultural-695,Музей хоккея,museums,museums,museums,museums,False,existing_classification_retained,way/48841578
+moscow-cultural-696,Дом-музей П. Д. Корина,history|museums,history|museums,history,history,False,history,way/51545026
+moscow-cultural-697,Музей истории медицины,history|museums,history|museums,history,history,False,history,way/51549224
+moscow-cultural-698,"Историко-мемориальный музей ""Пресня""",history|museums,history|museums,history,history,False,history,way/52509049
+moscow-cultural-70,Минералогический музей им. Ферсмана,museums,museums,museums,museums,False,existing_classification_retained,node/2161495261
+moscow-cultural-702,Третьяковская галерея. Инженерный корпус,museums,museums,museums,museums,False,existing_classification_retained,way/53548436
+moscow-cultural-703,Российский музей леса,museums,museums,museums,museums,False,existing_classification_retained,way/53830818
+moscow-cultural-705,Дом-музей И. С. Тургенева,history|museums,history|museums,history,history,False,history,way/76618921
+moscow-cultural-706,Музей памяти,museums,history|museums,museums,history,True,history,way/79561160
+moscow-cultural-707,Филиал Государственного музея Л.Н. Толстого,museums,museums,museums,museums,False,existing_classification_retained,way/79980545
+moscow-cultural-708,без названия,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-709,Третий Кавалерский корпус,museums,museums,museums,museums,False,existing_classification_retained,way/93038201
+moscow-cultural-713,Музейно-мемориальный комплекс истории Военно-морского флота России,history|museums,history|museums,history,history,False,history,way/118989786
+moscow-cultural-714,Музей истории МСХА им. К.А. Тимирязева,history|museums,history|museums,history,history,False,history,way/120677029
+moscow-cultural-715,Дом-музей Щепкина,history|museums,history|museums,history,history,False,history,way/125674952
+moscow-cultural-717,Музей Московской железной дороги,museums,museums,museums,museums,False,existing_classification_retained,way/132469316
+moscow-cultural-718,Кутузовская изба,history|museums,history|museums,history,history,False,history,way/135548362
+moscow-cultural-719,Музей русской иконы,museums,museums,museums,museums,False,existing_classification_retained,way/151077489
+moscow-cultural-722,Музей славянской культуры им. Константина Васильева,museums,history|museums,museums,history,True,history,way/157053052
+moscow-cultural-724,Ломаковский АвтоМотоМузей,museums,museums,museums,museums,False,existing_classification_retained,way/160282311
+moscow-cultural-725,Музей русского импрессионизма,museums,museums,museums,museums,False,existing_classification_retained,way/160527076
+moscow-cultural-728,Музей русской усадебной культуры,museums,history|museums,museums,history,True,history,way/162959682
+moscow-cultural-729,Музей В.А. Тропинина и московских художников его времени,museums,museums,museums,museums,False,existing_classification_retained,way/164210810
+moscow-cultural-73,Мемориальный музей-квартира А. Н. Толстого,history|museums,history|museums,history,history,False,history,node/2219502268
+moscow-cultural-730,Дом Бурганова,museums,museums,museums,museums,False,existing_classification_retained,way/173172365
+moscow-cultural-731,Центральный музей древнерусской культуры и искусства им. Андрея Рублева,museums,history|museums,museums,history,True,history,way/176331572
+moscow-cultural-733,Московский музей анимации,museums,museums,museums,museums,False,existing_classification_retained,way/183947434
+moscow-cultural-734,Мультимедиа Арт Музей,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-735,Огни Москвы,museums,museums,museums,museums,False,existing_classification_retained,way/204855051
+moscow-cultural-736,Дом-музей К. С. Станиславского,history|museums,history|museums,history,history,False,history,way/205731716
+moscow-cultural-737,Государственный центр современного искусства,museums,museums,museums,museums,False,contemporary_art,
+moscow-cultural-738,Дом архитектора Мельникова,museums,museums,museums,museums,False,existing_classification_retained,way/224146643
+moscow-cultural-74,Центральный пограничный музей ФСБ России,museums,history|museums,museums,history,True,history,node/2250142414
+moscow-cultural-741,Музей путешествий и паломничества по святым местам,museums,museums,museums,museums,False,existing_classification_retained,way/241751698
+moscow-cultural-743,Дом-музей М. Ю. Лермонтова,history|museums,history|museums,history,history,False,history,way/300426887
+moscow-cultural-744,Дом-музей Марины Цветаевой,history|museums,history|museums,history,history,False,history,way/300426888
+moscow-cultural-745,Дом-музей М. Н. Ермоловой,history|museums,history|museums,history,history,False,history,way/312412195
+moscow-cultural-748,Мемориальный музей А. Н. Скрябина,history|museums,history|museums,history,history,False,history,way/343180316
+moscow-cultural-75,Галерея Дамирова,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-751,Fili Hall,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-754,Третьяковская галерея на Кадашёвской набережной,museums,museums,museums,museums,False,existing_classification_retained,way/642091604
+moscow-cultural-755,В тишине,museums,museums,museums,museums,False,existing_classification_retained,way/643176115
+moscow-cultural-757,Музей истории храма,history|museums,history|museums,history,history,False,history,way/956266909
+moscow-cultural-759,Подземная Москва,museums,museums,museums,museums,False,existing_classification_retained,way/1240218096
+moscow-cultural-760,Творческая мастерская художника Зураба Церетели,museums,museums,museums,museums,False,existing_classification_retained,way/1265160764
+moscow-cultural-761,Коллекция. Зиларт,museums,museums,museums,museums,False,existing_classification_retained,way/1304073654
+moscow-cultural-763,Коллекция музейных автобусов Мосгортранса,museums,museums,museums,museums,False,existing_classification_retained,way/1337590874
+moscow-cultural-78,Историко-краеведческий музей,museums,history|museums,museums,history,True,history,node/2465851425
+moscow-cultural-79,Новая Третьяковка,museums,museums,museums,museums,False,existing_classification_retained,node/2468882311
+moscow-cultural-82,Музей Буратино-Пиноккио,museums,museums,museums,museums,False,existing_classification_retained,node/2506932067
+moscow-cultural-83,Заочный народный университет искусств,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-84,Музей книги,museums,museums,museums,museums,False,existing_classification_retained,node/2511951122
+moscow-cultural-87,"Фотогалерея ""Метро""",museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-90,Выставочный зал фонда Андрея Чеглакова,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-91,Московский дом Ахматовой,museums,museums,museums,museums,False,existing_classification_retained,node/2587146329
+moscow-cultural-93,Музей-квартира В. Э. Мейерхольда,history|museums,history|museums,history,history,False,history,node/2590877091
+moscow-cultural-94,Московский музей современного искусства,museums,museums,museums,museums,False,contemporary_art,
+moscow-cultural-95,Роза Азора,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-cultural-96,Музей искусства народов Востока,museums,museums,museums,museums,False,existing_classification_retained,node/2613597034
+moscow-cultural-97,Дом-музей Шаляпина,history|museums,history|museums,history,history,False,history,node/2640796034
+moscow-cultural-99,Московский государственный музей Вадима Сидура,museums,museums,museums,museums,False,existing_classification_retained,node/2675498162
+osm-r-19077852,Палаты бояр Романовых,history|museums,history|museums,history,history,False,history,relation/19077852
+osm-r-2421978,Государственный музей изобразительных искусств имени А. С. Пушкина,museums,museums,museums,museums,False,existing_classification_retained,relation/2421978
+osm-n-3361538621,Музей М. А. Булгакова,museums,museums,museums,museums,False,existing_classification_retained,node/3361538621
+osm-n-5108493980,Музей станции скорой помощи г. Москвы,museums,museums,museums,museums,False,existing_classification_retained,node/5108493980
+osm-r-1287067,Музей транспорта Москвы,history|museums,history|museums,history,history,False,history,relation/1287067
+moscow-v4-museum_21,Старый Английский двор,museums,museums,museums,museums,False,existing_classification_retained,
+moscow-osm-way-60779144,Дом-музей Б. Пастернака,history|museums,history|museums,history,history,False,history,way/60779144
+moscow-osm-node-13371152786,"Постоянная выставка, посвящённая 6-му съезду КПК Китая",history|museums,history|museums,history,history,False,history,node/13371152786
+moscow-osm-node-13673376501,Вороновская картинная галерея,museums,museums,museums,museums,False,existing_classification_retained,node/13673376501
+moscow-osm-node-14095020452,Artful Gallery,museums,museums,museums,museums,False,existing_classification_retained,node/14095020452
+moscow-osm-node-14162331914,Музей Гарри Поттера,museums,museums,museums,museums,False,existing_classification_retained,node/14162331914
+moscow-osm-node-14177882401,Дом В.Д. Катаева,museums,museums,museums,museums,False,existing_classification_retained,node/14177882401
+moscow-osm-node-14213569057,Спутник,museums,museums,museums,museums,False,existing_classification_retained,node/14213569057
+moscow-osm-node-14223754059,АвтоКиноВыставка Вадимо Задорожного,museums,museums,museums,museums,False,existing_classification_retained,node/14223754059
+moscow-osm-node-14300175778,Галерея 9/1,museums,museums,museums,museums,False,existing_classification_retained,node/14300175778
+moscow-osm-node-14384505906,Советское фото,museums,museums,museums,museums,False,existing_classification_retained,node/14384505906
+moscow-osm-node-14394968539,Музей российского Красного Креста,museums,museums,museums,museums,False,existing_classification_retained,node/14394968539
+moscow-osm-node-2451397153,Музей-галерея Е. А. Евтушенко,museums,museums,museums,museums,False,existing_classification_retained,node/2451397153
+moscow-osm-node-4736041824,Дом-музей Зураба Церетели,history|museums,history|museums,history,history,False,history,node/4736041824
+moscow-osm-node-864424236,Государственный мемориальный музей Б.Ш. Окуджавы,museums,museums,museums,museums,False,existing_classification_retained,node/864424236
+moscow-osm-way-339398105,Музей истории усадьбы Щапово,history|museums,history|museums,history,history,False,history,way/339398105
+moscow-osm-way-380351830,Дом-музей К.И. Чуковского,history|museums,history|museums,history,history,False,history,way/380351830
