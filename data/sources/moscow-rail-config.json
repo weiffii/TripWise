@@ -1,0 +1,13 @@
+{
+  "osm_snapshot": "moscow-rail-osm.json",
+  "approaches": "moscow-rail-approaches-pilot.json",
+  "station_entrances": "moscow-rail-entrances.json",
+  "transfers": "moscow-rail-transfer-pilot.json",
+  "estimates": {
+    "metro": {"meters_per_second": 11, "wait_seconds": 180},
+    "mcc": {"meters_per_second": 13, "wait_seconds": 360},
+    "mcd": {"meters_per_second": 15, "wait_seconds": 480},
+    "tram": {"meters_per_second": 5.5, "wait_seconds": 480},
+    "bus": {"meters_per_second": 5, "wait_seconds": 600}
+  }
+}

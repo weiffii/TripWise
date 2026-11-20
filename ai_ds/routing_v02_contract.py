@@ -266,7 +266,14 @@ def validate_matrix(matrix, preferences, by_id):
         if url is not None:
             _url(url, p + '.navigation_url', https_only=True)
         normalized = deepcopy(pair)
-        normalized.update(duration_us=duration_us, geometry=deepcopy(geometry), navigation_url=url, valid_for=validity, retrieved_at=retrieved, basis=matrix['basis'], source_id=matrix['source_id'])
+        basis = pair.get('basis', matrix['basis'])
+        require(basis in ('test_matrix', 'routing_provider', 'geometric_estimate'), p + '.basis')
+        if basis == 'routing_provider':
+            require(retrieved is not None, p + '.retrieved_at')
+        source_id = pair.get('source_id', matrix['source_id'])
+        require(nonempty(source_id), p + '.source_id')
+        normalized.update(duration_us=duration_us, geometry=deepcopy(geometry), navigation_url=url,
+                          valid_for=validity, retrieved_at=retrieved, basis=basis, source_id=source_id)
         result[source, target] = normalized
     return result
 

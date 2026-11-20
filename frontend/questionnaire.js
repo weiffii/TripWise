@@ -94,22 +94,33 @@ const placeSelect = document.querySelector('#route-required');
 const citySelect = form.elements.city;
 const isMoscow = () => citySelect.value === 'Москва';
 let catalogRevision = 0;
+let catalogPlaces = [];
+const poiFilter = document.querySelector('#poi-filter');
+function renderPlaces() {
+  const picked = new Set(Array.from(placeSelect.selectedOptions, option => option.value));
+  const query = poiFilter.value.trim().toLocaleLowerCase('ru');
+  const matches = catalogPlaces.filter(place => !picked.has(place.id) && place.name.toLocaleLowerCase('ru').includes(query)).slice(0,100);
+  placeSelect.replaceChildren();
+  for (const place of [...catalogPlaces.filter(item => picked.has(item.id)), ...matches]) {
+    placeSelect.add(new Option(place.name, place.id, false, picked.has(place.id)));
+  }
+}
+poiFilter.addEventListener('input', renderPlaces);
 async function loadCatalog() {
   const revision = ++catalogRevision;
   const moscow = isMoscow();
+  catalogPlaces = [];
+  poiFilter.value = '';
+  document.querySelector('#moscow-duration').hidden = !moscow;
   placeSelect.replaceChildren();
   placeSelect.disabled = true;
   form.elements.country.replaceChildren(new Option(moscow ? 'Россия' : 'Китай', moscow ? 'RU' : 'CN'));
   document.querySelector('#summary-title').textContent = citySelect.value;
   document.querySelector('#city-note').textContent = moscow
-    ? 'Москва, UTC+3. Доступны три музея и пешие переходы между ними.'
+    ? 'Москва, UTC+3. Для маршрута используются реальные места V7 и ориентировочные часы и цены.'
     : 'Шанхай, UTC+8. Цены и часть данных учебные.';
   form.elements.budget_currency.value = moscow ? 'RUB' : 'CNY';
   for (const option of form.elements.budget_currency.options) option.disabled = moscow && option.value !== 'RUB';
-  for (const mode of form.querySelectorAll('[name="transport_modes"]')) {
-    mode.disabled = moscow && mode.value !== 'walking';
-    if (moscow) mode.checked = mode.value === 'walking';
-  }
   updateSummary();
   try {
     const response = await fetch('/api/planned-trips/catalog/' + (moscow ? 'moscow' : 'shanghai'));
@@ -117,7 +128,8 @@ async function loadCatalog() {
     if (!response.ok) throw Error();
     const places = await response.json();
     if (revision !== catalogRevision) return;
-    for (const place of places) placeSelect.add(new Option(place.name, place.id));
+    catalogPlaces = places;
+    renderPlaces();
     placeSelect.disabled = false;
     fields.disabled = false;
     updateSummary();
@@ -142,6 +154,7 @@ form.addEventListener('submit', async event => {
     const response = await fetch('/api/planned-trips', {method:'POST', headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         city:isMoscow() ? 'moscow' : 'shanghai', timezone:isMoscow() ? 'Europe/Moscow' : 'Asia/Shanghai',
+        ...(isMoscow() && document.querySelector('#visit-minutes').value ? {visit_minutes:Number(document.querySelector('#visit-minutes').value)} : {}),
         start_date:firstWalk.value.slice(0, 10), days, day_start:firstWalk.value.slice(11, 16),
         day_end:lastWalk.value.slice(11, 16), pace:selected('pace')[0], transport,
         group:{adult:counts.adults, child:counts.children, senior:counts.seniors, pet:0},

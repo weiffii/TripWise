@@ -32,7 +32,7 @@
   function segments(leg){if(Array.isArray(leg.geometry_segments)&&leg.geometry_segments.length)return leg.geometry_segments;
    const request=streetRequest(leg);return request?[{mode:leg.mode,coordinates:[request.a,request.b],source:leg.source||'estimate',synthetic:true}]:[];
   }
-  function segmentRoad(seg,leg){if(seg.mode==='bus'&&seg.coordinates?.length>=2)return {a:seg.coordinates[0],b:seg.coordinates[seg.coordinates.length-1],via:seg.coordinates,mode:'car',synthetic_bus:true};if(seg.mode==='walk'||seg.mode==='taxi'||seg.mode==='car'){
+  function segmentRoad(seg,leg){if(leg.use_plan_geometry)return null;if(seg.mode==='bus'&&seg.coordinates?.length>=2)return {a:seg.coordinates[0],b:seg.coordinates[seg.coordinates.length-1],via:seg.coordinates,mode:'car',synthetic_bus:true};if(seg.mode==='walk'||seg.mode==='taxi'||seg.mode==='car'){
     const c=seg.coordinates;if(c?.length>=2)return {a:c[0],b:c[c.length-1],mode:seg.mode==='walk'?'foot':'car'};
    }if(!leg.geometry_segments&&['walk','taxi'].includes(leg.mode))return streetRequest(leg);return null;
   }
@@ -56,7 +56,8 @@
    if(leg.source==='SYNTHETIC_BUS'||leg.geometry_segments?.some(s=>s.mode==='bus'))html+='<p class="tw-map-caution">DEMO-BUS — вымышленные автобусные маршруты. Не использовать как инструкции для настоящей поездки.</p>';
    let streetFound=false,streetMinutes=0;for(const seg of segments(leg)){const req=segmentRoad(seg,leg);if(!req)continue;const road=roadCache.get(roadKey(req.a,req.b,req.mode,req.via));if(road?.coordinates){streetFound=true;if(!req.synthetic_bus)streetMinutes+=Math.ceil(road.duration_seconds/60);html+='<p><b>'+(req.synthetic_bus?'Учебный автобус: форма пути по автомобильным дорогам':req.mode==='foot'?'Пешком по улицам':'По автомобильной дороге')+'</b> · автомобильный/пеший расчёт провайдера '+Math.ceil(road.duration_seconds/60)+' мин, '+Math.round(road.distance_meters)+' м'+(req.synthetic_bus?'; это не действующий рейс и не проверка автобусной проходимости':'')+'</p><ol>'+road.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>';}}
    if(streetMinutes>leg.planned_minutes)html+='<p class="tw-map-caution"><b>Уличный расчёт занимает больше времени, чем отведено в плане.</b> Предусмотрите дополнительный запас.</p>';
-   if(!streetFound)html+='<p>Пошаговые указания пока недоступны. Пунктир — условная связь, не проверенный путь.</p>';
+   if(leg.use_plan_geometry&&leg.geometry?.type==='LineString')html+='<p>Линия и время рассчитаны по дорожной сети OpenStreetMap. Время включает резерв на задержки.</p>';
+   else if(!streetFound)html+='<p>Пошаговые указания пока недоступны. Пунктир — условная связь, не проверенный путь.</p>';
    return html;
   }
   function selectLeg(index){selected=index;popup.hidden=true;settings.onSelect?.(instructions(index),index);
@@ -86,10 +87,23 @@
    background.setAttribute('viewBox',`0 0 ${w} ${h}`);background.innerHTML=`<rect width="${w}" height="${h}" fill="#edf1f2"/><text x="12" y="${h-18}" fill="#73858a" font-size="11">Координаты WGS84</text>`;
    drawTiles(w,h,c);svg.setAttribute('viewBox',`0 0 ${w} ${h}`);let html='';
    legs.forEach((leg,index)=>{for(const seg of segments(leg)){const req=segmentRoad(seg,leg),road=req&&roadCache.get(roadKey(req.a,req.b,req.mode,req.via)),coords=road?.coordinates||seg.coordinates||[];
-    const color=seg.mode==='bus'?'#bd5555':seg.mode==='metro'?'#287fa5':leg.mode==='taxi'?'#c18b38':'#6b51ba';
+    const color=({metro:'#287fa5',mcc:'#ce4242',mcd:'#b55b21',tram:'#286b55',bus:'#257693'})[seg.network]||
+      (seg.mode==='bus'?'#bd5555':seg.mode==='metro'?'#287fa5':leg.mode==='taxi'?'#c18b38':'#6b51ba');
     const hasStreetGeometry=Boolean(road?.coordinates||seg.verified);
-    html+=`<polyline data-leg="${index}" points="${linePath(coords,project)}" fill="none" stroke="${color}" stroke-width="${selected===index?7:4}" stroke-dasharray="${hasStreetGeometry?'':'8 5'}" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:stroke;cursor:pointer"><title>${esc(seg.mode==='bus'?'Вымышленный автобус':seg.mode==='metro'?'Топология станций метро, не точный тоннель':hasStreetGeometry?'Расчёт по уличной сети':'Приблизительная связь')} · нажмите для инструкции</title></polyline>`;
+    const label=seg.network?(seg.verified?'Геометрия маршрута OSM':'Схема между остановками'):seg.mode==='bus'?'Вымышленный автобус':seg.mode==='metro'?'Топология станций метро, не точный тоннель':hasStreetGeometry?'Расчёт по уличной сети':'Приблизительная связь';
+    html+=`<polyline data-leg="${index}" points="${linePath(coords,project)}" fill="none" stroke="${color}" stroke-width="${selected===index?7:4}" stroke-dasharray="${hasStreetGeometry?'':'8 5'}" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:stroke;cursor:pointer"><title>${esc(label)} · нажмите для инструкции</title></polyline>`;
    }});
+   const stations=new Map();
+   legs.forEach((leg,index)=>{for(const station of leg.stations||[]){
+     if(!validCoord(station.coordinates))continue;
+     const key=station.coordinates.join(',');
+     if(!stations.has(key)||station.transfer)stations.set(key,{...station,index});
+   }});
+   for(const station of stations.values()){
+     const [x,y]=project(station.coordinates);
+     const label=(station.transfer?'Пересадка · ':'')+(station.name||'Остановка');
+     html+=`<circle data-leg="${station.index}" cx="${x}" cy="${y}" r="${station.transfer?6:4}" fill="white" stroke="#206379" stroke-width="${station.transfer?3:2}" style="pointer-events:all;cursor:pointer"><title>${esc(label)}</title></circle>`;
+   }
    stops.forEach((p,index)=>{const [x,y]=project(coordinate(p));html+=`<g data-stop="${index}" role="button" tabindex="0" aria-label="${esc(placeName(p))}" style="pointer-events:all;cursor:pointer"><title>${esc(placeName(p))}</title><circle cx="${x}" cy="${y}" r="13" fill="${p.kind==='restaurant'?'#db8c33':'#5b40b0'}" stroke="white" stroke-width="3"/><text x="${x}" y="${y+4}" fill="white" text-anchor="middle" font-size="12" font-weight="700">${index+1}</text></g>`;});
    if(!stops.length)html=`<text x="${w/2}" y="${h/2}" text-anchor="middle" fill="#657881">Нет точек маршрута</text>`;
    svg.innerHTML=html;
