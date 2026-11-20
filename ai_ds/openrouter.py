@@ -95,6 +95,8 @@ def _minimal_context(payload, *, rich_context=False):
             else:
                 allowed = ('date', 'pace', 'day_start', 'day_end')
             row = {key: value[key] for key in allowed if key in value}
+            if rich_context and field == 'days' and type(value.get('day_number')) is int and 1 <= value['day_number'] <= 5:
+                row['day_number'] = value['day_number']
             if field == 'days':
                 visits = value.get('visits', [])
                 if not isinstance(visits, list):
@@ -106,6 +108,8 @@ def _minimal_context(payload, *, rich_context=False):
                     elif isinstance(visit, dict) and isinstance(visit.get('poi_id'), str):
                         entry = {'poi_id': visit['poi_id']}
                         if rich_context:
+                            if type(visit.get('visit_number')) is int and 1 <= visit['visit_number'] <= 80:
+                                entry['visit_number'] = visit['visit_number']
                             for key in ('type', 'meal_kind', 'name', 'start_time', 'end_time'):
                                 if key in visit:
                                     if not isinstance(visit[key], str):
@@ -116,7 +120,7 @@ def _minimal_context(payload, *, rich_context=False):
                         raise OpenRouterError('LLM_INVALID_CONTEXT')
             # Nested objects are rejected in scalar context fields.
             for key, item in row.items():
-                if key == 'visits':
+                if key in ('visits', 'day_number'):
                     continue
                 if key == 'categories':
                     if not isinstance(item, list) or not all(isinstance(c, str) for c in item):

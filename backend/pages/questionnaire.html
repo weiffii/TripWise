@@ -25,11 +25,11 @@
               <h2 id="where-title">Куда и когда?</h2>
               <div class="form-grid">
                 <div class="field"><label for="country">Страна</label><select id="country" name="country_code"><option value="CN">Китай</option></select></div>
-                <div class="field"><label for="city">Город</label><select id="city" name="city"><option value="Шанхай">Шанхай</option></select></div>
+                <div class="field"><label for="city">Город</label><select id="city" name="city"><option value="Шанхай">Шанхай</option><option value="Москва">Москва — ограниченный пилот</option></select></div>
                 <div class="field"><label for="first-walk">Начало первой прогулки</label><input id="first-walk" name="first_walk_at" type="datetime-local" required><p class="field-hint">Когда вы уже готовы гулять, после дороги и заселения.</p></div>
                 <div class="field"><label for="last-walk">Окончание последней прогулки</label><input id="last-walk" name="last_walk_end_at" type="datetime-local" required><p class="field-hint">Когда нужно закончить гулять в день отъезда.</p></div>
               </div>
-              <p class="field-hint">Местное время Шанхая (UTC+8). Выбранные часы применяются к каждому дню поездки. Доступно от 1 до 5 дней.</p>
+              <p class="field-hint" id="city-note"></p><p class="field-hint">Выбранные часы применяются к каждому дню. Доступно от 1 до 5 дней.</p>
             </section>
 
             <section class="form-section" aria-labelledby="budget-title">

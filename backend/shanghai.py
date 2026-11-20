@@ -122,7 +122,9 @@ def read_trip(route_id: str, user: dict = Depends(current_user)):
 def plan_trip(preferences: Annotated[ShanghaiPreferences | MoscowPreferences, Field(discriminator='city')],
               user: dict = Depends(current_user)):
     if preferences.city == 'moscow':
-        raise HTTPException(422, 'Создание маршрутов по Москве временно отключено. Выберите Шанхай.')
+        from backend.moscow import plan_moscow
+        plan, options, snapshot = plan_moscow(preferences)
+        return store_trip(preferences, user, plan, options, snapshot)
     service = assistant()
     options = preferences.options()
     known = {poi['id'] for poi in service.data['pois']}

@@ -90,7 +90,16 @@ def scenario(browser, base, operations):
     assert other.request.get(base + '/api/planned-trips').json() == {'trips': []}
     other.goto(base + '/trip/new')
     expect(other.locator('#trip-fields')).to_be_enabled()
-    expect(other.locator('#city option')).to_have_text(['Шанхай'])
+    expect(other.locator('#city option')).to_have_text(['Шанхай', 'Москва — ограниченный пилот'])
+    other.locator('#city').select_option(label='Москва — ограниченный пилот')
+    expect(other.locator('#route-required option')).to_have_count(3)
+    other.locator('#first-walk').fill('2026-12-05T09:00')
+    other.locator('#last-walk').fill('2026-12-06T19:00')
+    other.locator('#budget').fill('3000')
+    other.locator('#primary-interests input').first.check()
+    other.locator('#finish-questionnaire').click()
+    other.wait_for_url('**/trip/result?route=*', timeout=15_000)
+    expect(other.locator('#route-title')).to_have_text('Москва')
 
 
 def main():

@@ -175,6 +175,7 @@ chatForm.addEventListener('submit',async event => {
   const input = element('chat-text');
   if (!registration || !input.value.trim()) return;
   control(true);
+  proposal = null;
   element('chat-preview').hidden = true;
   chatStatus.textContent = 'Готовим предложение…';
   try {
@@ -188,6 +189,8 @@ chatForm.addEventListener('submit',async event => {
     proposal = result;
     const preview = element('preview-stops');
     preview.replaceChildren();
+    for (const item of result.diff?.added || []) appendText(preview, '+ ' + item.name + ' · ' + item.day);
+    for (const item of result.diff?.removed || []) appendText(preview, '− ' + item.name + ' · ' + item.day);
     for (const day of result.plan.days) for (const row of events(day)) appendText(preview, day.date + ' · ' + eventLabel(row));
     element('chat-preview').hidden = false;
   } catch (error) { chatStatus.textContent = error.message; }

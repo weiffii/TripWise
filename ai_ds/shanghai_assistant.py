@@ -67,7 +67,8 @@ adjust_visits: day ISO, count_delta integer от -2 до 2 кроме 0, desired
 Для уменьшения утомительности можно совместно уменьшить посещения и задать relaxed.
 Для меньшего количества пеших переходов optimize_day goal walking; транспортный режим
 не меняй без соответствующего пожелания. Порядковый номер достопримечательности считает
-только type=visit, а не питание/travel. Required POI нельзя удалять/заменять; полные приёмы
+только type=visit, а не питание/travel. Используй day_number и visit_number из контекста,
+но в операции передавай дату ISO и исходный poi_id. Required POI нельзя удалять/заменять; полные приёмы
 пищи нельзя просто удалить, только заменить/перенести; необязательный snack удалить можно.
 Если день/место действительно неоднозначны, задай ОДИН короткий вопрос через
 needs_clarification, operations=[],clarification=вопрос. Не спрашивай очевидный единственный
@@ -265,16 +266,20 @@ class ShanghaiRouteAssistant(RouteAssistant):
         days, anchors = [], []
         for day in plan['days']:
             events = []
+            visit_number = 0
             for event in day['events']:
                 if event['type'] not in ('visit', 'meal'):
                     continue
                 p = self.by_id[event['poi_id']]
                 anchors.append(p)
+                if event['type'] == 'visit':
+                    visit_number += 1
                 events.append({'poi_id': p['id'], 'name': p.get('names', {}).get('ru') or p['name'],
+                               **({'visit_number': visit_number} if event['type'] == 'visit' else {}),
                                'type': event['type'], 'meal_kind': event.get('meal_kind', ''),
                                'start_time': time_text(event['start_min']), 'end_time': time_text(event['end_min'])})
             settings = state['route']['native_options'].get('day_settings', {}).get(day['date'], {})
-            days.append({'date': day['date'], 'pace': settings.get('pace', state['preferences']['pace']),
+            days.append({'date': day['date'], 'day_number': len(days) + 1, 'pace': settings.get('pace', state['preferences']['pace']),
                          'day_start': settings.get('day_start', state['route']['native_options'].get('day_start', '09:00')),
                          'day_end': settings.get('day_end', state['route']['native_options'].get('day_end', '19:00')),
                          'visits': events[:60]})
@@ -433,8 +438,18 @@ class ShanghaiAssistantService:
             require(self.configured, 'LLM_KEY_NOT_CONFIGURED')
             request = {k: body[k] for k in ('route_id', 'base_version', 'poi_snapshot_id', 'text')}
             request['schema_version'] = '0.2'
-            assistant.excluded_ids = session['last_added'][-30:]
-            result = assistant.propose(actor, request)
+            asks_alternative = re.search(r'\b(?:другой|другая|другое|другую|другие|альтернатив\w*|another|different)\b', body['text'], re.IGNORECASE)
+            assistant.excluded_ids = session['last_added'][-30:] if asks_alternative else []
+            try:
+                result = assistant.propose(actor, request)
+            except AssistantError as error:
+                if not error.code.startswith(('LLM_', 'INTERPRETER_', 'ROUTER_')):
+                    session['history'].extend([
+                        {'role': 'user', 'content': body['text']},
+                        {'role': 'assistant', 'content': 'Запрос не применён: ' + human_error(error.code)},
+                    ])
+                    del session['history'][:-12]
+                raise
             session['history'].append({'role': 'user', 'content': body['text']})
             if result['validation_status'] != 'ready_for_confirmation':
                 message = result.get('clarification') or 'Уточните, пожалуйста, что изменить.'
