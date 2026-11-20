@@ -5,14 +5,18 @@
 const fs=require('fs'),path=require('path'),vm=require('vm');
 const root=path.resolve(__dirname,'..');
 const data=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/pois.json'),'utf8'));
+data.transport=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/transport.json'),'utf8'));
 const profiles=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/qa_scenarios.json'),'utf8'));
 const html=fs.readFileSync(path.join(root,'artifacts/tripwise-shanghai.html'),'utf8');
-const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
-if(scripts.length!==4)throw Error('Unexpected HTML scripts count: '+scripts.length);
+const scriptById=id=>{
+ const match=[...html.matchAll(/<script\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/script>/g)].find(script=>script[1]===id);
+ if(!match)throw Error('Missing script: '+id);
+ return match[2];
+};
 // UMD engine only, no UI code execution. Every script is read from CURRENT HTML.
 const sandbox={console}; vm.createContext(sandbox);
-vm.runInContext(scripts[0],sandbox,{filename:'unaltered-shanghai-transit.js'});
-vm.runInContext(scripts[1],sandbox,{filename:'unaltered-shanghai-engine.js'});
+vm.runInContext(scriptById('shanghai-transit-source'),sandbox,{filename:'unaltered-shanghai-transit.js'});
+vm.runInContext(scriptById('shanghai-engine-source'),sandbox,{filename:'unaltered-shanghai-engine.js'});
 const engine=sandbox.TripWiseShanghai;
 if(!engine||typeof engine.planTrip!=='function')throw Error('Original engine did not load');
 const output=[];
@@ -41,7 +45,7 @@ const rep={data_poi_count:data.pois.length,original_engine_loaded_from_html:true
  full_road_network_verified_routes:0,osm_routed_legs:output.reduce((acc,x)=>acc+(x.osm_leg_count||0),0),
  transport_note:'The unchanged offline engine computes demo/fallback transport. No real road routing or Huangpu-crossing verification was performed.',
  cases:output};
-const dest=path.join(root,'reports/shanghai_26_route_scenarios.json');
+const dest=process.env.TRIPWISE_QA_REPORT||path.join(root,'reports/shanghai_26_route_scenarios.json');
 fs.writeFileSync(dest,JSON.stringify(rep,null,2)+'\n');
 console.log(JSON.stringify({attempted:rep.scenarios_attempted,full:rep.full_routes,partial:rep.partial_routes,
  exceptions:rep.exceptions,valid_core:rep.core_invariants_passed,osm_legs:rep.osm_routed_legs,

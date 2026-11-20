@@ -12,7 +12,7 @@
   let day=null,byId=new Map(),stops=[],legs=[],zoom=13,center=[121.48,31.23],online=false;
   let selected=-1,epoch=0,planEpoch=0,calls=0,loaded=0,failed=0,lastRequest=0,controller=null,drag=null,drawPending=false;
   let tileGeneration='',tileTimeout=null,tilesTimedOut=false;const tileNodes=new Map(),roadCache=new Map();
-  const localProxy=location.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname);
+  const localProxy=!settings.directTiles&&location.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname);
   let proxyState=localProxy?'checking':'external';
   const status=text=>settings.onStatus?.(text);
   const controls=document.createElement('div');controls.className='tw-map-controls';

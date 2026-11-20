@@ -11,3 +11,6 @@ __pycache__/
 artifacts/*.zip
 artifacts/ai-ds-clean-*/
 artifacts/osm-tile-cache/
+.venv/
+.DS_Store
+/runtime/

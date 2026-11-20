@@ -19,7 +19,7 @@ function createController(config){
   try{
    const response=await fetcher('/api/assistant/'+path,{method:body===undefined?'GET':'POST',credentials:'same-origin',cache:'no-store',headers:body===undefined?{}:{'Content-Type':'application/json','X-TripWise-CSRF':csrf||''},...(body===undefined?{}:{body:JSON.stringify(body)}),...(controller?{signal:controller.signal}:{})});
    let data;try{data=await response.json();}catch(error){throw {code:'INVALID_API_RESPONSE'};}
-   if(!response.ok){const code=data?.error?.code||data?.code;throw {code,userMessage:typeof data?.message==='string'?data.message:null};}
+   if(!response.ok){const code=data?.error?.code||data?.code;throw {code,userMessage:typeof data?.message==='string'?data.message:typeof data?.detail==='string'?data.detail:null};}
    if(!data||typeof data!=='object')throw {code:'INVALID_API_RESPONSE'};
    return data;
   }catch(error){if(error?.name==='AbortError')throw {userMessage:'Ответ задерживается. Исходный маршрут сохранён. Попробуйте ещё раз.'};throw error;}finally{clearTimeout(timer);if(controller)activeRequests.delete(controller);}
@@ -37,7 +37,7 @@ function createController(config){
   if(registerPromise)return registerPromise;
   registerPromise=(async()=>{if(!state.available&&!await connect())return false;if(captured!==epoch)return false;
    const snapshot=current;
-   try{const result=await request('register',{options:snapshot.options,plan:compactPlan(snapshot.plan),request_id:uid()});if(captured!==epoch)return false;
+   try{const result=await request('register',{...(config.serverSnapshot?{}:{options:snapshot.options,plan:compactPlan(snapshot.plan)}),request_id:uid()});if(captured!==epoch)return false;
     if(typeof result.route_id!=='string'||!Number.isInteger(result.version)||typeof result.poi_snapshot_id!=='string')throw {code:'INVALID_API_RESPONSE'};
     registration={route_id:result.route_id,version:result.version,poi_snapshot_id:result.poi_snapshot_id};state.version=result.version;state.status='ready';state.statusText='Помощник готов. Расскажите, что изменить в маршруте.';notify();return true;
    }catch(error){if(captured===epoch){state.status='offline';state.statusText=safeError(error);notify();}return false;}
@@ -45,6 +45,7 @@ function createController(config){
   try{return await registerPromise;}finally{if(captured===epoch)registerPromise=null;}
  }
  function setRoute(plan,options){
+  if(config.serverSnapshot){state.available=false;csrf=null;}
   epoch++;for(const request of activeRequests)request.abort();statusPromise=null;const captured=epoch;current={plan:copy(plan),options:copy(options)};registration=null;registerPromise=null;state.proposal=null;state.version=null;
   for(const item of queue)item.resolve(false);queue=[];
   state.messages=[];message('assistant','Опишите пожелание обычными словами. Я предложу изменения и сначала покажу, что поменяется.');notify();

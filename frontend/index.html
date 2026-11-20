@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TripWise — персональные маршруты для ваших путешествий.">
+    <title>Вход — TripWise</title>
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="auth.js" defer></script>
+  </head>
+  <body class="auth-page">
+    <header class="header">
+      <a class="brand" href="/" aria-label="TripWise — начало">
+        <span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span>
+      </a>
+      <div class="header-actions"><span class="header-caption">Искусство путешествовать по-своему</span><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button></div>
+    </header>
+
+    <main class="layout">
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-content">
+          <p class="eyebrow">НЕ ПРОСТО МЕСТА. ВАШИ ВПЕЧАТЛЕНИЯ.</p>
+          <h1 id="intro-title">Путешествия,<br>в которых<br><em>есть вы.</em></h1>
+          <p class="intro-copy">Любимые места, маленькие открытия и время для себя. Спланируйте город в своём ритме.</p>
+        </div>
+        <div class="photo-caption"><span>01 / НАЧНИТЕ С МОСКВЫ</span><span>55°45′ С. Ш. &nbsp; 37°37′ В. Д.</span></div>
+      </section>
+
+      <section class="auth-card" aria-labelledby="auth-title">
+        <span class="card-label">ВАШЕ СЛЕДУЮЩЕЕ ОТКРЫТИЕ</span>
+        <h2 id="auth-title">С возвращением!</h2>
+        <p id="auth-description" class="card-description">Войдите, чтобы планировать новые поездки и возвращаться к сохранённым.</p>
+
+        <div class="mode-switch" role="group" aria-label="Вход или регистрация">
+          <button id="login-mode" type="button" class="mode-button selected" aria-pressed="true">Вход</button>
+          <button id="register-mode" type="button" class="mode-button" aria-pressed="false">Регистрация</button>
+        </div>
+
+        <form id="auth-form" method="post" action="/api/auth/login">
+          <div class="field">
+            <label for="email">Электронная почта</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="254">
+          </div>
+          <div class="field">
+            <label for="password">Пароль</label>
+            <div class="password-field">
+              <input id="password" name="password" type="password" placeholder="Введите пароль" autocomplete="current-password" required maxlength="128">
+              <button id="toggle-password" type="button" class="show-password" aria-controls="password" aria-pressed="false">Показать</button>
+            </div>
+            <p id="password-hint" class="field-hint" hidden>От 8 до 128 символов. Для проверки учебного проекта используйте вымышленный пароль.</p>
+          </div>
+          <div id="confirm-field" class="field" hidden>
+            <label for="confirm-password">Повторите пароль</label>
+            <input id="confirm-password" name="confirm_password" type="password" placeholder="Ещё раз, чтобы не ошибиться" autocomplete="new-password" maxlength="128" disabled>
+          </div>
+          <button id="submit-button" class="submit-button" type="submit"><span id="submit-label">Войти</span><span aria-hidden="true">↗</span></button>
+          <p id="form-message" class="form-message" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <div class="prototype-note"><span class="prototype-mark" aria-hidden="true">i</span><p><strong>Учебный проект.</strong> Аккаунт сохраняется на сервере TripWise. Для тестирования используйте вымышленную почту и отдельный тестовый пароль. Подтверждение почты пока не подключено.</p></div>
+      </section>
+    </main>
+    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span class="photo-credit">Фото: <a href="https://commons.wikimedia.org/wiki/File:Sunset_over_Moscow_City.jpg" target="_blank" rel="noopener noreferrer">Юрий Д.К.</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></footer>
+  </body>
+</html>

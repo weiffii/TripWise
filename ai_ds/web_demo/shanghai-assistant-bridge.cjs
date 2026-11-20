@@ -10,10 +10,11 @@ process.stdin.on('end',()=>{
  try{
   const request=JSON.parse(raw);if(!request||typeof request!=='object'||Array.isArray(request))throw Object.assign(Error(),{code:'INVALID_REQUEST'});
   const allowed=new Set(['action','options','base_plan','operations','sequences','changed_days','day_settings','meal_times','edit_spec','plan']);
-  if(Object.keys(request).some(k=>!allowed.has(k))||!['edit','schedule','validate'].includes(request.action))throw Object.assign(Error(),{code:'INVALID_REQUEST'});
+  if(Object.keys(request).some(k=>!allowed.has(k))||!['plan','edit','schedule','validate'].includes(request.action))throw Object.assign(Error(),{code:'INVALID_REQUEST'});
   const data=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/pois.json'),'utf8').replace(/^\uFEFF/,''));
   data.transport=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/transport.json'),'utf8').replace(/^\uFEFF/,''));
   let result;
+  if(request.action==='plan')result=api.planTrip(data,request.options);
   if(request.action==='edit')result=api.editTrip(data,request.options,request.base_plan,request.operations);
   if(request.action==='schedule')result=api.scheduleSequences(data,request.options,request.edit_spec||{base_plan:request.base_plan,sequences:request.sequences,changed_days:request.changed_days,day_settings:request.day_settings,meal_times:request.meal_times});
   if(request.action==='validate')result=api.validateEditedTrip(data,request.options,request.plan||request.base_plan);

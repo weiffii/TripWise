@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-def build(root:Path=ROOT,output:Path|None=None)->dict:
+def render_html(root:Path=ROOT, *, integrated=False):
     path=root/'data/demo/shanghai/pois.json'
     data=json.loads(path.read_text(encoding='utf-8-sig'))
     assert data.get('is_demo') is True and len(data['pois'])==5000, 'Expected 5000 demo POIs'
@@ -23,10 +23,16 @@ def build(root:Path=ROOT,output:Path|None=None)->dict:
     assert all('</script' not in src.lower() for src in [engine,*modules.values()]), 'Unsafe inline module terminator'
     rendered=template.replace('__SHANGHAI_ENGINE__',engine).replace('__SHANGHAI_DATA__',json.dumps(data,ensure_ascii=False,allow_nan=False).replace('<','\\u003c'))
     for marker,src in modules.items():rendered=rendered.replace(marker,src)
+    if integrated:
+        rendered=rendered.replace('<body>', '<body data-integrated><script src=/theme.js></script><nav class=pilot-nav><a href=/trips>← Мои поездки</a> · Шанхай — пилот <button type=button data-theme-toggle>Тема</button></nav>', 1)
+    return rendered, len(data['pois'])
+
+def build(root:Path=ROOT,output:Path|None=None)->dict:
+    rendered, count=render_html(root)
     output=output or root/'artifacts/tripwise-shanghai.html'
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(rendered,encoding='utf-8')
-    return {'pois':len(data['pois']),'output':str(output),'offline_core':True}
+    return {'pois':count,'output':str(output),'offline_core':True}
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--output',type=Path)
     a=p.parse_args();print(build(output=a.output))
