@@ -26,8 +26,8 @@ async function loadAccount() {
       for (const trip of trips) {
         const entry = document.createElement('li');
         const link = document.createElement('a');
-        link.href = '/trip/shanghai?route=' + encodeURIComponent(trip.route_id);
-        link.textContent = `Шанхай · ${trip.start_date} · версия ${trip.version}`;
+        link.href = '/trip/result?route=' + encodeURIComponent(trip.route_id);
+        link.textContent = `${trip.city === 'moscow' ? 'Москва' : 'Шанхай'} · ${trip.start_date} · версия ${trip.version}`;
         entry.append(link);
         list.append(entry);
       }

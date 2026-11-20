@@ -65,8 +65,13 @@ function validate() {
   const total = travelerTotal();
   form.elements.adults.setCustomValidity(Number.isInteger(total) && total >= 1 && total <= 100 ? '' : 'Укажите от 1 до 100 путешественников в сумме.');
   firstWalk.setCustomValidity('');
-  lastWalk.setCustomValidity(firstWalk.value && lastWalk.value && firstWalk.value >= lastWalk.value
-    ? 'Окончание последней прогулки должно быть позже начала первой.' : '');
+  const firstDate = firstWalk.value.slice(0,10);
+  const lastDate = lastWalk.value.slice(0,10);
+  const days = (Date.parse(lastDate) - Date.parse(firstDate)) / 86400000 + 1;
+  const minutes = value => Number(value.slice(11,13))*60 + Number(value.slice(14,16));
+  lastWalk.setCustomValidity(!firstWalk.value || !lastWalk.value ? '' : days < 1 || days > 5
+    ? 'Выберите от 1 до 5 дней.' : minutes(lastWalk.value) - minutes(firstWalk.value) < 60
+      ? 'Ежедневное окно прогулок должно быть не короче часа.' : '');
   const primary = selected('primary_interests');
   form.querySelector('[name="primary_interests"]').setCustomValidity(primary.length < 1 || primary.length > 2 ? 'Выберите один или два главных интереса.' : '');
   form.querySelector('[name="transport_modes"]').setCustomValidity(selected('transport_modes').length ? '' : 'Выберите хотя бы один способ передвижения.');
@@ -135,6 +140,7 @@ async function loadDraft() {
     if (draft) { fillForm(draft.preferences); revision = draft.revision; }
     fields.disabled = false;
     loaded = true;
+    syncCityControls();
     syncInterestChoices();
     updateSummary();
     validate();
@@ -146,6 +152,7 @@ async function loadDraft() {
 
 // Сохранения идут последовательно: медленный ответ не перезапишет более новую правку.
 async function saveLatest(manualRetry = false) {
+  if (cityKey() !== 'moscow') return false;
   if (pendingSave) return pendingSave;
   pendingSave = (async () => {
     while (savedVersion < editVersion) {
@@ -202,7 +209,7 @@ async function saveLatest(manualRetry = false) {
 
 form.addEventListener('input', () => {
   if (!loaded) return;
-  editVersion += 1;
+  if (cityKey() === 'moscow') editVersion += 1;
   syncInterestChoices();
   updateSummary();
   clearTimeout(saveTimer);
@@ -212,8 +219,44 @@ form.addEventListener('input', () => {
     return;
   }
   setStatus('Есть изменения — скоро сохраним…');
-  saveTimer = setTimeout(saveLatest, 800);
+  if (cityKey() === 'moscow') saveTimer = setTimeout(saveLatest, 800);
+  else setStatus('Параметры сохранятся вместе с маршрутом.');
 });
+
+const citySelect = form.elements.city;
+const cityKey = () => citySelect.value === 'Шанхай' ? 'shanghai' : 'moscow';
+const placeSelect = document.querySelector('#route-required');
+function syncCityControls() {
+  const moscow = cityKey() === 'moscow';
+  for (const option of form.elements.budget_currency.options) option.disabled = moscow && option.value !== 'RUB';
+  if (moscow) form.elements.budget_currency.value = 'RUB';
+  for (const mode of form.querySelectorAll('[name="transport_modes"]')) {
+    mode.disabled = moscow && mode.value !== 'walking';
+    if (moscow) mode.checked = mode.value === 'walking';
+  }
+  updateSummary();
+}
+async function updateCity() {
+  const city = cityKey();
+  form.elements.country.replaceChildren(new Option(city === 'moscow' ? 'Россия' : 'Китай', city === 'moscow' ? 'RU' : 'CN'));
+  form.elements.budget_currency.value = city === 'moscow' ? 'RUB' : 'CNY';
+  syncCityControls();
+  document.querySelector('#city-note').textContent = city === 'moscow'
+    ? 'Московское время. Пилот: три музея, пешком, бюджет в рублях.'
+    : 'Время Шанхая. Для расчёта используются учебные цены и оценочные переходы.';
+  document.querySelector('#summary-title').textContent = citySelect.value;
+  placeSelect.replaceChildren();
+  try {
+    const response = await fetch('/api/planned-trips/catalog/' + city);
+    if (!response.ok) throw Error();
+    const places = await response.json();
+    if (city !== cityKey()) return;
+    for (const place of places) placeSelect.add(new Option(place.name, place.id));
+  } catch { setStatus('Не удалось загрузить список мест.'); }
+}
+citySelect.addEventListener('change', () => void updateCity());
+if (new URLSearchParams(location.search).get('city') === 'shanghai') citySelect.value = 'Шанхай';
+void updateCity();
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
@@ -221,7 +264,32 @@ form.addEventListener('submit', async event => {
   clearTimeout(saveTimer);
   finishButton.disabled = true;
   try {
-    if (await saveLatest(true)) window.location.assign('/trips');
+    const city = cityKey();
+    if (city === 'moscow' && !await saveLatest(true)) return;
+    const data = preferences();
+    const days = Math.round((Date.parse(lastWalk.value.slice(0, 10)) - Date.parse(firstWalk.value.slice(0, 10))) / 86400000) + 1;
+    const modes = data.transport_modes;
+    if (city === 'moscow' && (modes.length !== 1 || modes[0] !== 'walking')) throw Error('Для Москвы выберите только пеший режим.');
+    if (city === 'shanghai' && modes.length !== 1 && modes.length !== 3) throw Error('Для Шанхая выберите один вид транспорта или все три для смешанного режима.');
+    const transport = modes.length === 3 ? 'mixed' : {walking:'walk', public_transit:'transit', car:'taxi'}[modes[0]];
+    setStatus('Строим маршрут…');
+    const response = await fetch('/api/planned-trips', {method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        city, timezone:city === 'moscow' ? 'Europe/Moscow' : 'Asia/Shanghai',
+        start_date:firstWalk.value.slice(0, 10), days, day_start:firstWalk.value.slice(11, 16),
+        day_end:lastWalk.value.slice(11, 16), pace:data.pace, transport,
+        group:{adult:data.traveler_counts.adults, child:data.traveler_counts.children, senior:data.traveler_counts.seniors, pet:0},
+        primary_interests:data.primary_interests, secondary_interests:data.secondary_interests,
+        required_ids:Array.from(placeSelect.selectedOptions, option => option.value),
+        budget_amount:Number(data.budget_amount), budget_currency:data.budget_currency,
+        budget_basis:data.budget_basis === 'group' ? 'per_group' : 'per_person',
+      })});
+    const result = await response.json();
+    if (!response.ok) throw Error(result.detail || 'Маршрут не построен.');
+    savedVersion = editVersion;
+    window.location.assign('/trip/result?route=' + encodeURIComponent(result.route_id));
+  } catch (error) {
+    setStatus(error.message);
   } finally { finishButton.disabled = false; }
 });
 

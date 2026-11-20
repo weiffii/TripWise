@@ -9,6 +9,8 @@ from fastapi.testclient import TestClient
 from ai_ds.shanghai_assistant import ShanghaiAssistantService
 from backend import accounts, shanghai
 from backend.main import app
+from backend.moscow import MoscowAssistant
+from backend import moscow
 
 
 PREFERENCES = {
@@ -41,6 +43,35 @@ class ShanghaiIntegrationTests(unittest.TestCase):
         self.assertEqual(self.client.get('/trip/shanghai').status_code, 200)
         self.assertEqual(self.client.post(ENDPOINT, headers=ORIGIN, json={**PREFERENCES, 'city': 'moscow'}).status_code, 422)
         self.assertEqual(self.client.post(ENDPOINT, json=PREFERENCES).status_code, 403)
+
+    def test_moscow_uses_its_own_catalog_and_assistant(self):
+        self.register(self.client, 'moscow@example.org')
+        service = MoscowAssistant()
+        service.configured = True
+        service.interpreter = lambda _: {'action': 'propose', 'operations': [
+            {'op': 'set_day_pace', 'day': PREFERENCES['start_date'], 'pace': 'relaxed'},
+        ], 'clarification': None}
+        with patch.object(moscow, 'moscow_assistant', return_value=service):
+            built = self.client.post(ENDPOINT, headers=ORIGIN, json={**PREFERENCES, 'city': 'moscow',
+                'timezone': 'Europe/Moscow', 'transport': 'walk', 'budget_currency': 'RUB', 'budget_amount': 3000})
+            self.assertEqual(built.status_code, 201, built.text)
+            route = built.json()
+            self.assertTrue(any(day['visits'] for day in route['plan']['days']))
+            path = ENDPOINT + '/' + route['route_id']
+            chat = path + '/assistant/'
+            status = self.client.get(chat + 'status').json()
+            headers = {**ORIGIN, 'X-TripWise-CSRF': status['csrf_token']}
+            registered = self.client.post(chat + 'register', headers=headers, json={'request_id': 'moscow-register'}).json()
+            proposal = self.client.post(chat + 'message', headers=headers, json={
+                'request_id': 'moscow-message', 'route_id': registered['route_id'], 'base_version': 1,
+                'poi_snapshot_id': registered['poi_snapshot_id'], 'text': 'Сделай темп спокойнее',
+            }).json()
+            self.assertEqual(proposal['type'], 'proposal', proposal)
+            self.assertEqual(self.client.get(path).json(), route)
+            decision = self.client.post(chat + 'decide', headers=headers, json={'request_id': 'moscow-confirm',
+                'proposal_id': proposal['proposal_id'], 'base_version': 1, 'decision': 'confirm'}).json()
+            self.assertEqual(decision['type'], 'confirmed', decision)
+            self.assertEqual(self.client.get(path).json()['version'], 2)
 
     @unittest.skipUnless(shutil.which('node'), 'Требуется Node.js')
     def test_route_owner_preview_reject_confirm_and_reopen(self):

@@ -223,3 +223,33 @@ label.choice { display: flex; align-items: center; gap: 10px; border: 1px solid 
 .photo-credit a { text-underline-offset: 3px; }
 .footer > .photo-credit { display: inline; }
 @media(max-width:500px) { .footer { flex-wrap: wrap; gap: 12px; } }
+#route-map { width: 100%; display: block; border-radius: 16px; background: rgba(105, 92, 162, .09); }
+#route-stops li, #preview-stops li { padding: .55rem 0; }
+#edit-route { display: grid; gap: .75rem; }
+#chat-text { width: 100%; resize: vertical; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 12px; padding: .75rem; }
+#chat-preview { margin-top: 1rem; }
+.result-layout { max-width: 1320px; }
+.result-layout > * { min-width: 0; }
+#street-map { position: relative; height: 390px; overflow: hidden; border-radius: 14px; touch-action: none; }
+#map-tiles, #map-background, #route-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+#map-tiles img { position: absolute; width: 256px; height: 256px; max-width: none; }
+#street-map .tw-map-controls { position: absolute; top: 10px; right: 10px; display: grid; gap: 4px; }
+#street-map .tw-map-controls button { width: 34px; height: 34px; }
+#street-map .tw-map-popup { position: absolute; left: 10px; top: 10px; max-width: 65%; padding: .5rem; background: white; color: #222; border-radius: 8px; }
+.map-credit { position: absolute; bottom: 3px; right: 5px; padding: 2px 4px; font-size: .7rem; background: white; color: #343062; }
+@media (min-width: 761px) {
+  .result-layout { grid-template-columns: minmax(250px, 310px) minmax(0, 1fr); }
+  .result-layout .route-chat { grid-column: 1; grid-row: 1; }
+  .result-layout > div { grid-column: 2; grid-row: 1; }
+}
+#route-cost { font-size: 1.65rem; }
+#route-tabs { display: flex; flex-wrap: wrap; gap: .5rem; }
+#route-tabs button, .route-event button { font: inherit; color: inherit; cursor: pointer; }
+#route-tabs button { background: transparent; border: 1px solid #9288b677; border-radius: 10px; padding: .65rem .8rem; }
+#route-tabs button[aria-pressed=true] { background: #594790; color: white; }
+#route-stops { list-style: none; padding: 0; }
+.route-event { display: grid; grid-template-columns: minmax(6.2rem,auto) 1fr; align-items: start; gap: .75rem; }
+.route-event-time { padding-top: .8rem; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.route-event > div { padding: .75rem; border: 1px solid #9288b677; border-radius: 12px; overflow-wrap: anywhere; }
+.route-event-travel > div { border-style: dashed; }
+.route-event button { background: none; border: 0; padding: 0; text-align: left; font-weight: 700; text-decoration: underline; }

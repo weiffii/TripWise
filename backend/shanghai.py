@@ -8,14 +8,13 @@ from typing import Annotated, Literal
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from starlette.concurrency import run_in_threadpool
 
 from ai_ds.route_assistant import AssistantError, reject_constant, unique_pairs
 from ai_ds.shanghai_assistant import ROOT, ShanghaiAssistantService, bridge_call, human_error
 from backend.accounts import COOKIE_NAME, current_user, database, same_origin, token_hash
-from scripts.build_shanghai_demo import render_html
 
 router = APIRouter(dependencies=[Depends(current_user)], tags=['Шанхай'])
 Count = Annotated[int, Field(strict=True, ge=0, le=30)]
@@ -44,7 +43,7 @@ class ShanghaiPreferences(BaseModel):
     group: Group
     primary_interests: list[Interest] = Field(max_length=8)
     secondary_interests: list[Interest] = Field(max_length=8)
-    required_ids: list[Annotated[str, Field(min_length=1, max_length=128)]] = Field(max_length=60)
+    required_ids: list[Annotated[str, Field(min_length=1, max_length=512)]] = Field(max_length=60)
     budget_amount: float = Field(strict=True, ge=0, le=10_000_000, allow_inf_nan=False)
     budget_currency: Literal['CNY', 'RUB', 'USD', 'EUR']
     budget_basis: Literal['per_group', 'per_person']
@@ -80,9 +79,9 @@ def assistant():
     return ShanghaiAssistantService()
 
 
-@lru_cache(maxsize=1)
-def pilot_page():
-    return render_html(ROOT, integrated=True)[0]
+class MoscowPreferences(ShanghaiPreferences):
+    city: Literal['moscow']
+    timezone: Literal['Europe/Moscow']
 
 
 def init_routes():
@@ -120,7 +119,12 @@ def read_trip(route_id: str, user: dict = Depends(current_user)):
 
 
 @router.post('/api/planned-trips', status_code=201, dependencies=[Depends(same_origin)])
-def plan_trip(preferences: ShanghaiPreferences, user: dict = Depends(current_user)):
+def plan_trip(preferences: Annotated[ShanghaiPreferences | MoscowPreferences, Field(discriminator='city')],
+              user: dict = Depends(current_user)):
+    if preferences.city == 'moscow':
+        from backend.moscow import plan_moscow
+        plan, options, snapshot = plan_moscow(preferences)
+        return store_trip(preferences, user, plan, options, snapshot)
     service = assistant()
     options = preferences.options()
     known = {poi['id'] for poi in service.data['pois']}
@@ -130,18 +134,32 @@ def plan_trip(preferences: ShanghaiPreferences, user: dict = Depends(current_use
         plan = bridge_call({'action': 'plan', 'options': options})
     except AssistantError as error:
         raise HTTPException(503 if 'UNAVAILABLE' in error.code else 422, human_error(error.code)) from error
+    return store_trip(preferences, user, plan, options, service.snapshot)
+
+
+def store_trip(preferences, user, plan, options, snapshot):
     route_id, now = uuid4().hex, int(timestamp())
     with database() as db:
         db.execute('INSERT INTO planned_trips VALUES (?, ?, ?, 1, ?, ?, ?, ?, ?, ?)', (
-            route_id, user['id'], preferences.city, service.snapshot, preferences.model_dump_json(),
+            route_id, user['id'], preferences.city, snapshot, preferences.model_dump_json(),
             json.dumps(options), json.dumps(plan), now, now,
         ))
     return owned_route(route_id, user['id'])
 
 
 @router.get('/trip/shanghai', include_in_schema=False)
-def shanghai_page():
-    return HTMLResponse(pilot_page())
+def shanghai_page(route: str | None = None):
+    from urllib.parse import urlencode
+    return RedirectResponse('/trip/result?' + urlencode({'route': route}) if route else '/trip/new?city=shanghai')
+
+
+@router.get('/api/planned-trips/catalog/{city}')
+def catalog(city: Literal['moscow', 'shanghai']):
+    from backend.moscow import moscow_pois
+    places = moscow_pois() if city == 'moscow' else assistant().data['pois']
+    return [{'id': poi['id'], 'name': (poi.get('names') or {}).get('ru') or poi['name'], 'kind': poi.get('kind'),
+             'lat': poi.get('lat', (poi.get('coordinates') or {}).get('latitude')),
+             'lon': poi.get('lon', (poi.get('coordinates') or {}).get('longitude'))} for poi in places]
 
 
 _bindings = {}
@@ -149,11 +167,11 @@ _bindings_lock = threading.Lock()
 
 
 def assistant_binding(request, route, create):
-    service = assistant()
-    key = (token_hash(request.cookies[COOKIE_NAME]), route['route_id'], route['version'])
+    service = assistant_for(route)
+    key = (route['city'], token_hash(request.cookies[COOKIE_NAME]), route['route_id'], route['version'])
     with _bindings_lock, service.lock:
         for old_key, old_token in list(_bindings.items()):
-            if old_token not in service.sessions:
+            if old_key[0] == route['city'] and old_token not in service.sessions:
                 del _bindings[old_key]
         if key not in _bindings and not create:
             raise HTTPException(409, 'Версия маршрута изменилась. Откройте поездку заново.')
@@ -162,10 +180,17 @@ def assistant_binding(request, route, create):
         return token, state
 
 
+def assistant_for(route):
+    if route['city'] == 'moscow':
+        from backend.moscow import moscow_assistant
+        return moscow_assistant()
+    return assistant()
+
+
 @router.get('/api/planned-trips/{route_id}/assistant/status')
 def assistant_status(route_id: str, request: Request, user: dict = Depends(current_user)):
     route = owned_route(route_id, user['id'])
-    service = assistant()
+    service = assistant_for(route)
     if not service.configured or route['poi_snapshot_id'] != service.snapshot or route['plan']['status'] == 'infeasible':
         return {'available': False, 'reason': 'ИИ-помощник недоступен для этой поездки или не настроен.'}
     try:
@@ -196,7 +221,7 @@ async def assistant_action(route_id: str, action: Literal['register', 'message',
 
 def apply_assistant(route_id, action, request, user, body):
     route = owned_route(route_id, user['id'])
-    service = assistant()
+    service = assistant_for(route)
     if route['poi_snapshot_id'] != service.snapshot:
         raise HTTPException(409, 'Каталог изменился. Постройте новый маршрут.')
     try:
@@ -211,6 +236,9 @@ def apply_assistant(route_id, action, request, user, body):
                 if state.get('registration'):
                     return state['registration']
                 body = {'request_id': body.get('request_id'), 'plan': route['plan'], 'options': route['options']}
+                if route['city'] == 'moscow':
+                    body.update({field: route[field] for field in ('preferences', 'route_id', 'version')})
+                    state['route_options'] = route['options']
             result = service.request(token, csrf, action, body)
             if result['type'] == 'registered':
                 state['registration'] = {field: result[field] for field in ('type', 'route_id', 'version', 'poi_snapshot_id')}
@@ -231,8 +259,8 @@ def apply_assistant(route_id, action, request, user, body):
                 state['registration']['version'] = result['version']
                 session_key = token_hash(request.cookies[COOKIE_NAME])
                 with _bindings_lock:
-                    _bindings.pop((session_key, route_id, route['version']), None)
-                    _bindings[(session_key, route_id, route['version'] + 1)] = token
+                    _bindings.pop((route['city'], session_key, route_id, route['version']), None)
+                    _bindings[(route['city'], session_key, route_id, route['version'] + 1)] = token
             return result
     except AssistantError as error:
         raise HTTPException(403 if error.code in {'SESSION_REQUIRED', 'CSRF_REJECTED'} else 400, human_error(error.code)) from error

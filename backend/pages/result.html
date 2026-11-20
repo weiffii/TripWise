@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ваш маршрут — TripWise</title>
+  <script src="/theme.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/route-map.js" defer></script>
+  <script src="/trip-result.js" defer></script>
+</head>
+<body class="questionnaire-page">
+  <header class="header"><a class="brand" href="/trips">TripWise<span class="brand-dot">.</span></a>
+    <div class="header-actions"><a class="back-link" href="/trips">← Мои поездки</a><button class="theme-toggle" data-theme-toggle type="button">Тема</button></div>
+  </header>
+  <main class="questionnaire-main">
+    <section class="page-hero questionnaire-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
+    <div class="questionnaire-layout result-layout">
+      <div>
+        <section class="form-section"><h2>Планируемые затраты</h2><strong id="route-cost">—</strong><p id="cost-note" class="field-hint"></p></section>
+        <section class="form-section"><h2>Расписание по дням</h2><div id="route-tabs" role="group" aria-label="День поездки"></div><select id="route-day" hidden aria-label="День поездки"></select>
+          <ol id="route-stops"></ol><p id="route-warnings" class="field-hint"></p>
+        </section>
+        <section class="form-section"><h2>Карта остановок</h2>
+          <div id="street-map" aria-label="Карта маршрута">
+            <svg id="map-background" aria-hidden="true"></svg><div id="map-tiles" aria-hidden="true"></div>
+            <svg id="route-map" aria-label="Точки и линии маршрута"></svg>
+            <a class="map-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a>
+          </div>
+          <p id="map-status" class="field-hint"></p>
+          <p id="road-status" class="field-hint" role="status"></p>
+          <div id="route-directions" aria-live="polite"></div>
+        </section>
+      </div>
+      <section class="trip-summary form-section route-chat"><span class="section-number">ПОМОЩНИК TRIPWISE</span><h2>Изменить маршрут</h2>
+        <p class="field-hint">Опишите пожелание. Изменения сохранятся только после подтверждения.</p>
+        <div id="chat-log" role="log"></div>
+        <form id="edit-route"><label for="chat-text">Ваше пожелание</label><textarea id="chat-text" required maxlength="3000" rows="4"></textarea><button class="submit-button" disabled>Предложить изменения</button></form>
+        <p id="chat-status" role="status"></p>
+        <div id="chat-preview" hidden><h3>Предлагаемый маршрут</h3><ol id="preview-stops"></ol>
+          <button type="button" class="submit-button" id="confirm-edit">Применить изменения</button>
+          <button type="button" class="theme-toggle" id="reject-edit">Оставить прежний</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

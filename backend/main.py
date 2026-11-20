@@ -70,6 +70,16 @@ def questionnaire_page(request: Request):
     return protected_page(request, "questionnaire.html")
 
 
+@app.get('/trip/result', include_in_schema=False)
+def result_page(request: Request):
+    return protected_page(request, 'result.html')
+
+
+@app.get('/route-map.js', include_in_schema=False)
+def route_map_script():
+    return FileResponse(PROJECT_ROOT / 'ai_ds/web_demo/shanghai-map.js', media_type='text/javascript')
+
+
 def protected_page(request: Request, filename: str):
     try:
         current_user(request)

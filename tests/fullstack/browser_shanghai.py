@@ -30,30 +30,36 @@ def scenario(browser, base, operations):
     errors = []
     owner.on('pageerror', lambda error: errors.append(str(error)))
     authenticate(owner, base, 'owner@example.org', register=True)
-    owner.locator('a[href="/trip/shanghai"]').click()
-    owner.locator('#start-date').fill('2026-12-05')
-    owner.locator('#days').select_option('2')
+    owner.goto(base + '/trip/new?city=shanghai')
+    expect(owner.locator('#trip-fields')).to_be_enabled()
+    owner.locator('#first-walk').fill('2026-12-05T09:00')
+    owner.locator('#last-walk').fill('2026-12-06T19:00')
     owner.locator('#budget').fill('1500')
-    owner.locator('#build-button').click()
-    owner.wait_for_url('**/trip/shanghai?route=*', timeout=45_000)
+    owner.locator('#primary-interests input').first.check()
+    owner.locator('#finish-questionnaire').click()
+    owner.wait_for_url('**/trip/result?route=*', timeout=45_000)
     saved_url = owner.url
     route_id = saved_url.split('route=')[1]
     api_url = base + '/api/planned-trips/' + route_id
-    expect(owner.locator('#timeline')).not_to_be_empty()
+    expect(owner.locator('#route-stops')).not_to_be_empty()
     expect(owner.locator('#route-map circle').first).to_be_attached()
+    expect(owner.locator('#route-map polyline').first).to_be_visible()
+    owner.locator('.route-event-travel button').first.click()
+    expect(owner.locator('#route-directions strong').first).to_contain_text('Переход')
+    assert owner.locator('.route-chat').bounding_box()['x'] < owner.locator('#street-map').bounding_box()['x']
     initial = owner.request.get(api_url).json()
     removed = initial['plan']['days'][0]['visit_ids'][0]
     operations.append({'op': 'remove_poi', 'poi_id': removed})
     markers = owner.locator('#route-map [data-stop] title')
     initial_map = markers.all_text_contents()
-    for selector in ('[data-chat-reject]', '[data-chat-confirm]'):
-        owner.locator('#chat-input').fill('Убери первое посещение')
-        owner.locator('[data-chat-send]').click()
+    for selector in ('#reject-edit', '#confirm-edit'):
+        owner.locator('#chat-text').fill('Убери первое посещение')
+        owner.locator('#edit-route button').click()
         expect(owner.locator(selector)).to_be_visible(timeout=45_000)
         assert owner.request.get(api_url).json() == initial
         assert markers.all_text_contents() == initial_map
         owner.locator(selector).click()
-        expect(owner.locator('[data-chat-preview]')).to_be_hidden(timeout=45_000)
+        expect(owner.locator('#chat-preview')).to_be_hidden(timeout=45_000)
     assert markers.all_text_contents() != initial_map
     assert owner.request.get(api_url).json()['version'] == 2
     owner.goto(base + '/trips')
@@ -62,7 +68,7 @@ def scenario(browser, base, operations):
     assert owner.request.get(api_url).status == 401
     authenticate(owner, base, 'owner@example.org', register=False)
     owner.locator('#planned-trips a').click()
-    expect(owner.locator('#timeline')).not_to_be_empty()
+    expect(owner.locator('#route-stops')).not_to_be_empty()
     assert owner.url == saved_url
     assert removed not in owner.request.get(api_url).json()['plan']['selected_ids']
     assert not errors, errors
@@ -71,6 +77,17 @@ def scenario(browser, base, operations):
     assert other.request.get(api_url).status == 404
     assert other.request.get(api_url + '/assistant/status').status == 404
     assert other.request.get(base + '/api/planned-trips').json() == {'trips': []}
+    other.goto(base + '/trip/new')
+    expect(other.locator('#trip-fields')).to_be_enabled()
+    other.locator('#first-walk').fill('2026-12-05T09:00')
+    other.locator('#last-walk').fill('2026-12-06T19:00')
+    other.locator('#budget').fill('3000')
+    other.locator('#primary-interests input').first.check()
+    other.locator('#finish-questionnaire').click()
+    other.wait_for_url('**/trip/result?route=*', timeout=15_000)
+    expect(other.locator('#route-title')).to_have_text('Москва')
+    expect(other.locator('#route-cost')).to_contain_text('₽')
+    expect(other.locator('#route-map circle').first).to_be_visible()
 
 
 def main():

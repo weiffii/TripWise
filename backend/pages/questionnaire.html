@@ -25,11 +25,11 @@
               <h2 id="where-title">Куда и когда?</h2>
               <div class="form-grid">
                 <div class="field"><label for="country">Страна</label><select id="country" name="country_code"><option value="RU">Россия</option></select></div>
-                <div class="field"><label for="city">Город</label><select id="city" name="city"><option value="Москва">Москва</option></select></div>
+                <div class="field"><label for="city">Город</label><select id="city" name="city"><option value="Москва">Москва</option><option value="Шанхай">Шанхай</option></select></div>
                 <div class="field"><label for="first-walk">Начало первой прогулки</label><input id="first-walk" name="first_walk_at" type="datetime-local" required><p class="field-hint">Когда вы уже готовы гулять, после дороги и заселения.</p></div>
                 <div class="field"><label for="last-walk">Окончание последней прогулки</label><input id="last-walk" name="last_walk_end_at" type="datetime-local" required><p class="field-hint">Когда нужно закончить гулять в день отъезда.</p></div>
               </div>
-              <p class="field-hint">Время московское, UTC+3. Для первого рабочего варианта выбрана Москва.</p>
+              <p id="city-note" class="field-hint"></p><p class="field-hint">Время начала и окончания применяется к каждому дню поездки. Доступно от 1 до 5 дней.</p>
             </section>
 
             <section class="form-section" aria-labelledby="budget-title">
@@ -77,11 +77,10 @@
             <section class="form-section" aria-labelledby="places-title">
               <span class="section-number">05 / ОБЯЗАТЕЛЬНЫЕ МЕСТА</span>
               <h2 id="places-title">Есть что-то особенное?</h2>
-              <label for="required-search">Найти достопримечательность</label>
-              <input id="required-search" type="search" placeholder="Поиск по местам Москвы" disabled aria-describedby="places-note">
-              <p id="places-note" class="field-hint">Каталог мест Москвы ещё не подключён. Выбор обязательных мест появится после загрузки проверенных данных.</p>
+              <label for="route-required">Обязательные места (необязательно)</label>
+              <select id="route-required" multiple size="5"></select>
             </section>
-            <button id="finish-questionnaire" class="submit-button" type="submit"><span>Готово — к моим поездкам</span><span aria-hidden="true">↗</span></button>
+            <button id="finish-questionnaire" class="submit-button" type="submit"><span>Построить маршрут</span><span aria-hidden="true">↗</span></button>
           </fieldset>
         </form>
         <aside class="trip-summary" aria-labelledby="summary-title">
@@ -89,7 +88,7 @@
           <h2 id="summary-title">Москва <span aria-hidden="true">↗</span></h2>
           <dl><dt>Время прогулок</dt><dd id="summary-dates">Выберите даты и время</dd><dt>Компания</dt><dd id="summary-people">1 человек</dd><dt>Бюджет на компанию</dt><dd id="summary-budget">Укажите сумму</dd><dt>Главные интересы</dt><dd id="summary-interests">Выберите 1–2 интереса</dd></dl>
           <p id="save-status" class="save-status" role="status" aria-live="polite">Загружаем анкету…</p>
-          <p class="field-hint">Заполненная анкета сохраняется автоматически. Пока сохраняем параметры: построение маршрута ещё не подключено.</p>
+          <p class="field-hint">Московский черновик сохраняется автоматически. Готовые маршруты обоих городов доступны в разделе «Мои поездки».</p>
         </aside>
       </div>
     </main>
