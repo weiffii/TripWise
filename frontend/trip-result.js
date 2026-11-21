@@ -16,12 +16,21 @@ async function request(path, body) {
 }
 
 function events(day, plan = trip.plan) {
-  if (day.events) return day.events;
+  if (day.events) return day.events.filter(showScheduleEvent);
   const meals = new Map(Object.entries(plan.moscow_meals?.[day.date] || {}).map(([kind, slot]) => [slot.poi_id, kind]));
   return [...day.visits.map(item => ({...item, type:meals.has(item.poi_id) ? 'meal' : 'visit', meal_kind:meals.get(item.poi_id)})),
     ...day.legs.map(item => ({...item, type:'travel', mode:item.transport_steps?.length ? 'transit' :
       (trip.options.transport === 'taxi' ? 'taxi' : 'walk')})),
-    ...day.breaks.map(item => ({...item, type:item.kind}))].sort((left, right) => left.start_at.localeCompare(right.start_at));
+    ...day.breaks.map(item => ({...item, type:item.kind}))].filter(showScheduleEvent)
+    .sort((left, right) => left.start_at.localeCompare(right.start_at));
+}
+
+function showScheduleEvent(row) {
+  if (!['wait', 'waiting'].includes(row.type)) return true;
+  const minutes = row.start_at
+    ? (Date.parse(row.end_at) - Date.parse(row.start_at)) / 60000
+    : row.end_min - row.start_min;
+  return minutes > 60;
 }
 
 function clock(row, key) {
@@ -99,7 +108,9 @@ function renderDay() {
   for (const [rowIndex,row] of rows.entries()) {
     const previous = rows[rowIndex-1];
     const wait = row.wait_before_min ?? (previous && Number.isFinite(row.start_min) ? row.start_min - previous.end_min : 0);
-    if (wait > 0) appendText(stops, 'Ожидание · ' + wait + ' мин' + (row.waiting_reason ? ' · ' + row.waiting_reason : ''));
+    if (wait > 60 && !['wait', 'waiting'].includes(row.type) && !['wait', 'waiting'].includes(previous?.type)) {
+      appendText(stops, 'Ожидание · ' + wait + ' мин' + (row.waiting_reason ? ' · ' + row.waiting_reason : ''));
+    }
     const item = document.createElement('li');
     item.className = 'route-event route-event-' + row.type;
     const time = document.createElement('span');
@@ -127,7 +138,8 @@ function renderDay() {
           wait_estimate:'Ожидание', rail_estimate:'Поездка', alight:'Выход со станции'}[step.kind];
         const stop = step.to_stop_location || step.from_stop_location;
         const [mode, line] = (step.line || '').split(':');
-        const service = {metro:'Метро', mcc:'МЦК', mcd:'МЦД', tram:'Трамвай', bus:'Автобус', trolleybus:'Троллейбус'}[mode];
+        const service = {metro:'Метро', mcc:'МЦК', mcd:'МЦД', tram:'Трамвай', bus:'Автобус',
+          electric_bus:'Электробус', trolleybus:'Троллейбус'}[mode];
         appendText(sequence, [label, service && service + ' ' + line, stop?.name, Math.ceil(step.duration_seconds / 60) + ' мин'].filter(Boolean).join(' · '));
       }
       card.append(sequence);
@@ -170,10 +182,14 @@ function renderTrip() {
   select.value = Number(selected) < trip.plan.days.length ? selected : '0';
   const railMissing = moscow && ['transit','mixed'].includes(trip.options.transport) &&
     !trip.plan.days.some(day => day.legs.some(leg => leg.transport_steps?.length));
+  const interests = {museums:'музеи', history:'история', nature:'природа', cafes:'кафе',
+    entertainment:'развлечения', shopping:'шопинг', viewpoints:'смотровые', unusual:'необычные места'};
+  const uncovered = (trip.plan.uncovered_interests || []).map(key => interests[key]).filter(Boolean);
   element('route-warnings').textContent = moscow
     ? (trip.poi_snapshot_id.startsWith('moscow-v7:') ? [
       'Уточните часы работы, цены и доступ к входам. Переходы без дорожной геометрии ориентировочны.',
       railMissing ? 'Для выбранных мест подошли только пешие переходы из доступных данных.' : '',
+      uncovered.length ? 'Не удалось включить интересы: ' + uncovered.join(', ') + '.' : '',
     ].join(' ').trim() : 'Сохранённый маршрут прежнего пилота. Уточните часы и цены.')
     : ['Учебные цены и условия посещения.', ...(trip.plan.warnings || [])].join(' ');
   renderDay();
@@ -240,6 +256,10 @@ chatForm.addEventListener('submit',async event => {
       appendText(preview, 'Оценка затрат · ' + result.diff.before_cost + ' → ' + result.diff.after_cost + ' ₽');
     }
     if (result.diff?.transport) appendText(preview, 'Транспорт · ' + {walk:'пешком', transit:'общественный', taxi:'такси'}[result.diff.transport]);
+    for (const change of result.diff?.optimization || []) {
+      const label = {travel:'Дорога', waiting:'Ожидание между остановками', walking:'Пешие переходы'}[change.goal];
+      appendText(preview, label + ' · ' + change.day + ' · ' + change.before + ' → ' + change.after + ' мин');
+    }
     if (result.diff?.transit_filters) {
       const names = {metro:'метро', mcc:'МЦК', mcd:'МЦД', tram:'трамвай', bus:'автобус', electric_bus:'электробус'};
       for (const [key, label] of [['require_transit','Включить'], ['avoid_transit','Исключить']]) {

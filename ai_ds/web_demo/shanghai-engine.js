@@ -22,7 +22,11 @@ function transitRouter(data){
  TRANSIT_ROUTERS.set(data,router);return router;
 }
 function normalize(dataset,o){
- must(dataset&&Array.isArray(dataset.pois)&&dataset.pois.length,'Каталог Шанхая пуст.');must(o&&typeof o==='object','Нет анкеты.');
+ must(dataset&&Array.isArray(dataset.pois)&&dataset.pois.length,'Каталог мест пуст.');must(o&&typeof o==='object','Нет анкеты.');
+ const currency=dataset.currency??'CNY',profiles=dataset.leg_profiles??null;
+ must(typeof currency==='string'&&/^[A-Z]{3}$/.test(currency),'Неверная валюта каталога.');
+ must(profiles===null||typeof profiles==='object'&&!Array.isArray(profiles),'Неверные профили переходов.');
+ const globalCoordinates=currency!=='CNY'||profiles!==null;
  const primary=unique(o.primary_interests||o.interests||[]),secondary=unique(o.secondary_interests||[]).filter(x=>!primary.includes(x)),interests=primary.concat(secondary);
  must(interests.length>0&&interests.every(x=>CATEGORIES.includes(x)),'Выберите хотя бы один интерес.');
  const pace=o.pace||'balanced';must(!!PACES[pace],'Неизвестный темп.');
@@ -31,29 +35,44 @@ function normalize(dataset,o){
  const budget=o.budget_cny??1500;must(Number.isFinite(budget)&&budget>=0&&budget<=1e7,'Неверный бюджет.');
  const group={adult:1,child:0,senior:0,pet:0,...(o.group||{})};must(['adult','child','senior','pet'].every(k=>Number.isInteger(group[k])&&group[k]>=0&&group[k]<=30)&&group.adult+group.child+group.senior>0,'Проверьте состав группы.');
  const transport=o.transport||'mixed';must(['mixed','walk','transit','taxi'].includes(transport),'Неверный вид транспорта.');
- const byId=new Map();for(const p of dataset.pois){must(p&&typeof p.id==='string'&&!byId.has(p.id),'Повторный ID объекта.');must(['attraction','restaurant'].includes(p.kind)&&Array.isArray(p.categories),'Неверный тип объекта.');must(Number.isFinite(p.lat)&&Number.isFinite(p.lon)&&p.lat>=30&&p.lat<=32&&p.lon>=120&&p.lon<=123,'Неверные координаты.');must(p.opening&&Array.isArray(p.opening.closed_weekdays),'Отсутствуют часы работы.');byId.set(p.id,p);}
+ const byId=new Map();for(const p of dataset.pois){must(p&&typeof p.id==='string'&&!byId.has(p.id),'Повторный ID объекта.');must(['attraction','restaurant'].includes(p.kind)&&Array.isArray(p.categories),'Неверный тип объекта.');must(Number.isFinite(p.lat)&&Number.isFinite(p.lon)&&(globalCoordinates?Math.abs(p.lat)<=90&&Math.abs(p.lon)<=180:p.lat>=30&&p.lat<=32&&p.lon>=120&&p.lon<=123),'Неверные координаты.');must(p.opening&&Array.isArray(p.opening.closed_weekdays),'Отсутствуют часы работы.');byId.set(p.id,p);}
  const required=unique(o.required_ids||[]);must(required.every(id=>byId.has(id)),'Обязательное место отсутствует в каталоге.');
-  return {primary,secondary,interests,pace,days:dates(o.start_date||'2026-11-18',n),start,end,budget,group,transport,required,pois:dataset.pois,byId,osm_tables:o.osm_tables||null,transit_router:transitRouter(dataset.transport)};
+  return {primary,secondary,interests,pace,days:dates(o.start_date||'2026-11-18',n),start,end,budget,group,transport,required,pois:dataset.pois,byId,currency,leg_profiles:profiles,osm_tables:o.osm_tables||null,transit_router:transitRouter(dataset.transport)};
 }
 function distance(a,b){if(!a||!b)return 0;const r=n=>n*Math.PI/180,dl=r(b.lat-a.lat),dn=r(b.lon-a.lon),h=Math.sin(dl/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dn/2)**2;return 12742000*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)));}
 function groupPrice(p,g){const rates={adult:1,child:p.kind==='restaurant'?.65:.5,senior:p.kind==='restaurant'?.9:.7,...(p.price_multipliers||{})};const unit=p.kind==='restaurant'&&Number.isFinite(p.avg_check_cny)&&p.avg_check_cny>=0?p.avg_check_cny:p.price_cny;return round(unit*(g.adult*rates.adult+g.child*rates.child+g.senior*rates.senior)+(p.pet_fee_cny||0)*g.pet);}
 function flags(p,date){const d=new Date(date+'T00:00:00Z'),dow=d.getUTCDay()||7,month=d.getUTCMonth()+1,weekend=dow>=6;
  const seasonal=Array.isArray(p.season_months)&&p.season_months.length>0;
- const closed=(p.opening.closed_weekdays||[]).includes(dow)||(p.opening.closed_dates||[]).includes(date);
+ const override=p.opening.by_date?.[date];
+ const closed=override?.closed??((p.opening.closed_weekdays||[]).includes(dow)||(p.opening.closed_dates||[]).includes(date));
  const offSeason=seasonal&&!p.season_months.includes(month);
  const crowd=weekend?(p.weekend_crowd_level||'medium'):(p.weekday_crowd_level||'low');
- return {available:!closed&&!offSeason,crowd,weekend,seasonal,offSeason,closed,open:minute(p.opening.open),close:minute(p.opening.close),crowdPenalty:weekend&&crowd==='high'?90:weekend&&crowd==='medium'?15:0};
+ return {available:!closed&&!offSeason,crowd,weekend,seasonal,offSeason,closed,open:minute(override?.open??p.opening.open),close:minute(override?.close??p.opening.close),crowdPenalty:weekend&&crowd==='high'?90:weekend&&crowd==='medium'?15:0};
 }
 function suitable(p,g){return !(g.pet&&p.pet_friendly!==true)&&!(g.child&&p.family_friendly===false)&&!(g.senior&&p.senior_friendly===false);}
 function duration(p,pace){const base=Number.isFinite(p.duration_minutes)&&p.duration_minutes>0?p.duration_minutes:60;return Math.max(20,Math.ceil(base*({relaxed:1.15,balanced:1,intensive:.9}[pace]||1)/5)*5);}
 function matrixCell(osm,a,b,mode){if(!osm||!a||!b)return null;const table=osm[mode==='walk'?'foot':'car'];if(!table||!Array.isArray(table.ids))return null;const i=table.ids.indexOf(a.id),j=table.ids.indexOf(b.id);if(i<0||j<0)return null;const n=table.durations?.[i]?.[j],d=table.distances?.[i]?.[j];return Number.isFinite(n)&&n>=0?{seconds:n,metres:Number.isFinite(d)&&d>=0?d:null}:null;}
-function transportLeg(a,b,transport,g,date,osm=null,router=null,departureMinute=null,maxCost=Infinity){
+function hasLegProfile(profiles,mode){return profiles!==null&&Object.hasOwn(profiles,mode);}
+function transportLeg(a,b,transport,g,date,osm=null,router=null,departureMinute=null,maxCost=Infinity,profiles=null){
  if(!a||a.id===b.id)return {base_minutes:0,buffer_minutes:0,planned_minutes:0,distance_m:0,transport_cost_cny:0,mode:'start',source:'start',reason:'Отель не задан.'};
  if(transport==='mixed'){
   const preference={walk:0,transit:1,taxi:2};
-  const candidates=['walk','transit','taxi'].map(mode=>transportLeg(a,b,mode,g,date,osm,router,departureMinute,maxCost)).filter(Boolean);
+  const candidates=['walk','transit','taxi'].map(mode=>transportLeg(a,b,mode,g,date,osm,router,departureMinute,maxCost,profiles)).filter(Boolean);
   candidates.sort((a,b)=>a.planned_minutes-b.planned_minutes||a.base_minutes-b.base_minutes||preference[a.mode]-preference[b.mode]||a.transport_cost_cny-b.transport_cost_cny);
   return candidates.length?{...candidates[0],selection_reason:'fastest_affordable_planned_time',mixed_candidates:candidates.map(c=>({mode:c.mode,planned_minutes:c.planned_minutes,transport_cost_cny:c.transport_cost_cny,source:c.source}))}:null;
+ }
+ if(hasLegProfile(profiles,transport)){
+  const row=profiles[transport];
+  const origin=row&&Object.hasOwn(row,a.id)?row[a.id]:null;
+  const leg=origin&&Object.hasOwn(origin,b.id)?origin[b.id]:null;
+  if(!leg||g.pet&&transport==='transit')return null;
+  const mode=leg.mode??transport;
+  must((mode===transport||transport==='transit'&&mode==='walk')&&typeof leg.source==='string'&&
+   Number.isFinite(leg.base_minutes)&&leg.base_minutes>=0&&Number.isFinite(leg.planned_minutes)&&leg.planned_minutes>0&&leg.planned_minutes>=leg.base_minutes&&
+   Number.isFinite(leg.buffer_minutes)&&Math.abs(leg.planned_minutes-leg.base_minutes-leg.buffer_minutes)<1e-7&&
+   Number.isFinite(leg.transport_cost_cny)&&leg.transport_cost_cny>=0&&(leg.distance_m===null||Number.isFinite(leg.distance_m)&&leg.distance_m>=0),
+   'Некорректный переход в профиле маршрута.');
+  return leg.transport_cost_cny<=maxCost+1e-7?{...leg,mode,leg_profile:transport}:null;
  }
  const direct=distance(a,b),cross=!!(a.river_bank&&b.river_bank&&a.river_bank!==b.river_bank);const persons=g.adult+g.child+g.senior;
  let mode=transport;
@@ -184,12 +203,12 @@ function legacyPlanTrip(dataset,options){
   const picks=[];
   for(const p of restaurants){if(used.has(p.id)||!suitable(p,x.group))continue;const f=flags(p,state.date);if(!f.available)continue;
     const allowance=x.budget-spent-groupPrice(p,x.group)-requiredReserve(p.id)-foodReserve(true);
-    const from=state.position;let leg=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance);if(!leg)continue;
+    const from=state.position;let leg=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance,x.leg_profiles);if(!leg)continue;
    const duration=Math.max(50,Math.min(60,Math.round(p.duration_minutes)));
     const rawArrival=state.now+leg.planned_minutes;let arrival=Math.max(rawArrival,f.open,slot.earliest);
     const depart=state.now+(arrival-rawArrival);
     if(depart!==state.now&&leg.mode==='transit'&&x.transit_router){
-     const revised=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,depart,allowance);if(!revised)continue;
+     const revised=transportLeg(from,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,depart,allowance,x.leg_profiles);if(!revised)continue;
      leg=revised;arrival=depart+leg.planned_minutes;
      // Один консервативный пересчёт: если нужен ещё один сдвиг, кандидат неустойчив.
      if(arrival<f.open||arrival<slot.earliest)continue;
@@ -215,14 +234,14 @@ function legacyPlanTrip(dataset,options){
   function visitChoices(state){const picks=[];for(const p of state.queue){if(used.has(p.id))continue;const f=flags(p,state.date);if(!f.available||!suitable(p,x.group))continue;
    if(state.blockedForFood?.has(p.id))continue;
    const allowance=x.budget-spent-groupPrice(p,x.group)-requiredReserve(p.id)-foodReserve();
-   const leg=transportLeg(state.position,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance);if(!leg)continue;const dur=duration(p,x.pace),arrival=state.now+leg.planned_minutes;
+   const leg=transportLeg(state.position,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance,x.leg_profiles);if(!leg)continue;const dur=duration(p,x.pace),arrival=state.now+leg.planned_minutes;
    if(arrival<f.open||arrival+dur>f.close||arrival+dur>x.end){skipped.opening++;continue;}
    const ticket=groupPrice(p,x.group);if(spent+ticket+leg.transport_cost_cny+requiredReserve(p.id)+foodReserve()>x.budget+1e-7){skipped.budget++;continue;}
    const mandatory=required.has(p.id),newPrimary=x.primary.filter(c=>p.categories.includes(c)&&!covered.has(c)).length;
    const newSecondary=x.secondary.filter(c=>p.categories.includes(c)&&!covered.has(c)).length;
    // Geographic proximity determines ordering once the attraction shortlist has been fixed.
    const anchor=state.lastAttraction||state.queue[0]||null;
-   const anchorLeg=transportLeg(anchor,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance);
+   const anchorLeg=transportLeg(anchor,p,x.transport,x.group,state.date,x.osm_tables,x.transit_router,state.now,allowance,x.leg_profiles);
    const spatial=anchorLeg?anchorLeg.planned_minutes+anchorLeg.distance_m/200:leg.planned_minutes+leg.distance_m/200;
    const popularity=Math.min(10,Math.log2(1+Math.max(0,p.review_count||0))*.5);
    const score=(mandatory?600:0)+newPrimary*180+newSecondary*65+((p.rating||4)*2)+popularity-spatial*2-f.crowdPenalty*12-(dur>140?12:0);
@@ -282,6 +301,18 @@ function legacyPlanTrip(dataset,options){
    transport legs later emitted to the UI. No DB mutation and no network calls. */
 function planTrip(dataset,options){
  const x=normalize(dataset,options),required=new Set(x.required),slots=mealSlots(x),cafesOnly=x.interests.every(c=>c==='cafes'),cost=new Map(),available=new Map(),durations=new Map();
+ const anchors=x.days.map(date=>{const anchor=dataset.day_anchors?.[date];
+  return anchor&&Number.isFinite(anchor.lat)&&Math.abs(anchor.lat)<=90&&Number.isFinite(anchor.lon)&&Math.abs(anchor.lon)<=180&&Number.isFinite(anchor.radius_m)&&anchor.radius_m>0
+   ?{...anchor,id:'@day-anchor:'+date}:null;});
+ const anchored=anchors.some(Boolean),anchorDistances=anchors.map(()=>new Map());
+ function anchorPenalty(p,day){
+  const anchor=anchors[day];if(!anchor)return 0;
+  const cache=anchorDistances[day];if(!cache.has(p.id)){
+   const radial=distance(anchor,p)/Math.max(250,anchor.radius_m);
+   cache.set(p.id,Math.min(400,Math.min(1,radial)*55+Math.max(0,radial-1)*150));
+  }return cache.get(p.id);
+ }
+ const waitingPenalty=minutes=>Math.min(180,Math.max(0,minutes-45));
  const MAX_EVALUATIONS=6000,metrics={evaluations:0,evaluation_limit:MAX_EVALUATIONS,search_limited:false,transport_calls:0,transport_cache_hits:0,food_candidates:0};
  for(const p of x.pois){cost.set(p.id,groupPrice(p,x.group));durations.set(p.id,p.kind==='restaurant'?Math.max(50,Math.min(60,p.duration_minutes||50)):duration(p,x.pace));available.set(p.id,x.days.map(date=>flags(p,date)));}
  const allowed=p=>suitable(p,x.group)&&Number.isFinite(cost.get(p.id))&&cost.get(p.id)>=0;
@@ -302,7 +333,14 @@ function planTrip(dataset,options){
  // Reserve alternatives per category and district; quality alone cannot fill the
  // whole shortlist with one distant district, nor replace interest relevance.
  const cells=new Map();for(const p of matching){const key=Math.floor(p.lat/.025)+':'+Math.floor(p.lon/.025);if(!cells.has(key))cells.set(key,[]);cells.get(key).push(p);}
- for(const c of x.primary.concat(x.secondary).filter(c=>c!=='cafes'||cafesOnly))matching.filter(p=>p.categories.includes(c)).slice(0,Math.max(4,x.days.length*3)).forEach(include);
+ const attractionCategories=x.primary.concat(x.secondary).filter(c=>c!=='cafes'||cafesOnly);
+ if(anchored)for(const category of attractionCategories)include(matching.find(p=>p.categories.includes(category)));
+ if(anchored)for(let day=0;day<anchors.length;day++){
+  if(!anchors[day])continue;
+  matching.filter(p=>available.get(p.id)[day].available)
+   .sort((a,b)=>anchorPenalty(a,day)-anchorPenalty(b,day)||utility(b)-utility(a)||a.id.localeCompare(b.id)).slice(0,6).forEach(include);
+ }
+ for(const c of attractionCategories)matching.filter(p=>p.categories.includes(c)).slice(0,Math.max(4,x.days.length*3)).forEach(include);
  for(const list of [...cells.values()].sort((a,b)=>utility(b[0])-utility(a[0])).slice(0,20))list.slice(0,1).forEach(include);
  matching.slice(0,Math.max(24,x.days.length*12)).forEach(include);
  const shortlist=candidates.slice(0,Math.max(x.required.length,Math.min(96,24+x.days.length*12)));
@@ -316,18 +354,53 @@ function planTrip(dataset,options){
   found.sort((p,q)=>distance(anchor,p)-distance(anchor,q)||cost.get(p.id)-cost.get(q.id)||p.id.localeCompare(q.id));
   const out=unique(found.slice(0,18).concat(found.slice().sort((a,b)=>cost.get(a.id)-cost.get(b.id)).slice(0,6)));nearCache.set(anchor.id,out);return out;
  }
- const legCache=new Map();function leg(a,b,day,at,allowance=Infinity){if(allowance<-.00001)return null;const key=(a?.id||'@')+'>'+b.id+'|'+day+'|'+at;let values;if(legCache.has(key)){metrics.transport_cache_hits++;values=legCache.get(key);}else{metrics.transport_calls++;
-  values=(x.transport==='mixed'?['walk','transit','taxi']:[x.transport]).map(mode=>transportLeg(a,b,mode,x.group,x.days[day],x.osm_tables,x.transit_router,at,Infinity)).filter(Boolean);
-  if(!values.length&&x.transport==='transit'&&a&&distance(a,b)<=(x.group.senior||x.group.child?1200:1800)){const local=transportLeg(a,b,'walk',x.group,x.days[day],x.osm_tables,null,at,Infinity);if(local)values.push({...local,selection_reason:'local_walking_access_in_transit_itinerary'});}legCache.set(key,values);}
+ const legModes=x.transport==='mixed'?['walk','transit','taxi']:[x.transport];
+ const staticLegs=legModes.every(mode=>hasLegProfile(x.leg_profiles,mode));
+ const legCache=new Map();function leg(a,b,day,at,allowance=Infinity){if(allowance<-.00001)return null;const key=(a?.id||'@')+'>'+b.id+(staticLegs?'':'|'+day+'|'+at);let values;if(legCache.has(key)){metrics.transport_cache_hits++;values=legCache.get(key);}else{metrics.transport_calls++;
+  values=legModes.map(mode=>transportLeg(a,b,mode,x.group,x.days[day],x.osm_tables,x.transit_router,at,Infinity,x.leg_profiles)).filter(Boolean);
+  if(!values.length&&x.transport==='transit'&&!hasLegProfile(x.leg_profiles,'transit')&&a&&distance(a,b)<=(x.group.senior||x.group.child?1200:1800)){const local=transportLeg(a,b,'walk',x.group,x.days[day],x.osm_tables,null,at,Infinity,x.leg_profiles);if(local)values.push({...local,selection_reason:'local_walking_access_in_transit_itinerary'});}legCache.set(key,values);}
   const possible=values.filter(v=>v.transport_cost_cny<=Math.max(0,allowance)+1e-7).sort((a,b)=>a.planned_minutes-b.planned_minutes||a.transport_cost_cny-b.transport_cost_cny);return possible[0]||null;
  }
  const sumCost=plans=>sum(plans.map(p=>p.cost));
  const proxyCache=new Map();function proxy(a,b){if(!a||!b||a.id===b.id)return 0;const key=a.id+'>'+b.id;if(proxyCache.has(key))return proxyCache.get(key);const metres=distance(a,b)*1.25,cross=a.river_bank&&b.river_bank&&a.river_bank!==b.river_bank;
+  if(staticLegs){const known=leg(a,b,0,x.start)?.planned_minutes??2*(x.end-x.start);proxyCache.set(key,known);return known;}
   const modes=x.transport==='mixed'?['walk','taxi']:x.transport==='transit'?[]:[x.transport],roads=modes.map(mode=>matrixCell(x.osm_tables,a,b,mode)).filter(Boolean);if(roads.length){const known=Math.min(...roads.map(r=>r.seconds/60));proxyCache.set(key,known);return known;}
   const value=x.transport==='walk'?metres/(x.group.senior?2800:x.group.child||x.group.pet?3200:4200)*60+(cross?60:0):x.transport==='transit'?13+metres/370+(cross?12:0):4+metres/285+(cross?7:0);proxyCache.set(key,value);return value;
  }
  const insertionProxy=(seq,p,pos)=>proxy(seq[pos-1],p)+proxy(p,seq[pos])-proxy(seq[pos-1],seq[pos]);
  const sequenceProxy=seq=>sum(seq.slice(1).map((p,i)=>proxy(seq[i],p)));
+ function compactScheduleWaits(events,day){
+  if(!dataset.compact_waits||!staticLegs)return;
+  for(let i=1;i<events.length;i++){
+   const gap=events[i].start_min-events[i-1].end_min;if(gap<=60)continue;
+   let shift=gap-45;
+   for(let j=0;j<i;j++){
+    const event=events[j];if(!event.poi_id)continue;
+    shift=Math.min(shift,available.get(event.poi_id)[day].close-event.end_min);
+    const slot=slots.find(item=>item.kind===event.meal_kind);
+    if(slot)shift=Math.min(shift,slot.latest-event.start_min);
+   }
+   for(const [before,after,minimum] of [['breakfast','lunch',150],['lunch','dinner',180]]){
+    const first=events.findIndex(event=>event.meal_kind===before),next=events.findIndex(event=>event.meal_kind===after);
+    if(first>=0&&first<i&&next>=i)shift=Math.min(shift,events[next].start_min-events[first].end_min-minimum);
+   }
+   if(shift<=0)continue;
+   for(let j=0;j<i;j++){events[j].start_min+=shift;events[j].end_min+=shift;}
+  }
+  for(let i=0;i<events.length;i++){
+   const gap=i?events[i].start_min-events[i-1].end_min:0;
+   if(gap>0)events[i].wait_before_min=gap;
+   else{delete events[i].wait_before_min;delete events[i].waiting_reason;}
+  }
+ }
+ function forecastWaiting(sequence,day){
+  let time=x.start,previous=null,wait=0;
+  for(const p of sequence){
+   const arrival=time+proxy(previous,p),opens=available.get(p.id)[day].open;
+   wait+=waitingPenalty(opens-arrival);
+   time=Math.max(opens,arrival)+durations.get(p.id);previous=p;
+  }return wait;
+ }
  function scheduleAttempt(sequence,day,otherPlans=[],pendingRequired=[],skipMeals=false){if(metrics.evaluations>=MAX_EVALUATIONS){metrics.search_limited=true;return null;}metrics.evaluations++;let now=x.start,position=null,spent=0,slotIndex=0,missed=0;const events=[],used=new Set(otherPlans.flatMap(p=>p.meal_ids)),otherCost=sumCost(otherPlans),meal_ids=[],visit_ids=[];
   const requiredReserve=sum(pendingRequired.filter(id=>!sequence.some(p=>p.id===id)).map(id=>cost.get(id)||0));
   const futureFood=sequence.some(p=>required.has(p.id))||pendingRequired.length?0:Math.max(0,x.days.length-1-otherPlans.length)*slots.length*minFood;
@@ -336,7 +409,7 @@ function planTrip(dataset,options){
   function add(p,type,travel,start,kind){const d=durations.get(p.id);const depart=start-travel.planned_minutes,gap=Math.max(0,depart-now),opening=available.get(p.id)[day].open;const wait=gap?{wait_before_min:gap,waiting_reason:opening>=start?'Ожидание открытия «'+p.name+'» по указанным часам.':type==='meal'?'Ожидание допустимого времени '+(kind==='lunch'?'обеда и интервала 150 минут после завтрака':kind==='dinner'?'ужина и интервала 180 минут после обеда':'приёма пищи')+'.':'Ожидание открытия следующего места; отправление отложено на время подхода.'}:{};if(travel.planned_minutes)events.push({type:'travel',from_poi_id:position.id,to_poi_id:p.id,start_min:depart,end_min:start,...travel,...wait});
    const e={type,poi_id:p.id,start_min:start,end_min:start+d,price_cny:cost.get(p.id),matched_interests:x.interests.filter(c=>p.categories.includes(c)),reason:type==='meal'?'Питание по минимальному дополнительному времени вдоль маршрута.':(required.has(p.id)?'Обязательное место. ':'')+(p.categories.some(c=>x.primary.includes(c))?'Главный интерес. ':'Дополнительный интерес. ')+'Проверены часы, группа, бюджет и переход.',...(!travel.planned_minutes?wait:{})};if(kind)e.meal_kind=kind;events.push(e);now=e.end_min;spent+=cost.get(p.id)+travel.transport_cost_cny;position=p;used.add(p.id);(type==='meal'?meal_ids:visit_ids).push(p.id);
   }
-  function meal(slot,next){if(skipMeals)return false;const anchor=position||next||shortlist[0]||food[0];if(!anchor)return false;const pool=unique(nearby(anchor).concat(next?nearby(next):[])),picks=[];const remainingMeals=(slots.length-slotIndex-1)*minFood;
+  function meal(slot,next){if(skipMeals)return false;const anchor=position||next||shortlist[0]||food[0];if(!anchor)return false;const pool=unique(nearby(anchor).concat(next?nearby(next):[],anchors[day]?nearby(anchors[day]):[])),picks=[];const remainingMeals=(slots.length-slotIndex-1)*minFood;
    const remainingTickets=sum(sequence.filter(p=>!used.has(p.id)).map(p=>cost.get(p.id)));
    const prospective=pool.filter(p=>!used.has(p.id)&&!required.has(p.id)&&!sequence.some(z=>z.id===p.id)&&available.get(p.id)[day].available&&cost.get(p.id)+remainingTickets+remainingMeals<=left()+1e-7).sort((a,b)=>{const d=p=>(position?distance(position,p):0)+(next?distance(p,next):0);return d(a)-d(b)||cost.get(a.id)-cost.get(b.id)||a.id.localeCompare(b.id);}).slice(0,24);
    for(let candidateIndex=0;candidateIndex<prospective.length;candidateIndex++){if(candidateIndex>=8&&picks.length)break;const p=prospective[candidateIndex];metrics.food_candidates++;const f=available.get(p.id)[day];const allowance=left()-cost.get(p.id)-remainingTickets-remainingMeals;
@@ -352,7 +425,7 @@ function planTrip(dataset,options){
     // No hard river ban: a genuine routed bridge may win. An expensive detour
     // cannot win on synthetic stars; food is subordinate to the attractions.
     if(detour>45)continue;
-    picks.push({p,t,start,score:detour*12+Math.abs(start-slot.target)*.04+cost.get(p.id)*.08-(p.rating||0)*2-Math.min(2,Math.log2(1+(p.review_count||0))*.1)});
+    picks.push({p,t,start,score:detour*12+Math.abs(start-slot.target)*.04+cost.get(p.id)*.08-(p.rating||0)*2-Math.min(2,Math.log2(1+(p.review_count||0))*.1)+(anchored?anchorPenalty(p,day)*.22+waitingPenalty(start-now-t.planned_minutes)*.45:0)});
    }
    picks.sort((a,b)=>a.score-b.score||a.p.id.localeCompare(b.p.id));if(!picks.length)return false;const best=picks[0];add(best.p,'meal',best.t,best.start,slot.kind);return true;
   }
@@ -371,18 +444,31 @@ function planTrip(dataset,options){
   }
   while(slotIndex<slots.length){if(!meal(slots[slotIndex],null))missed++;slotIndex++;}
   if(spent+otherCost>x.budget+1e-7)return null;
-  const crossings=events.filter(e=>e.type==='travel'&&x.byId.get(e.from_poi_id)?.river_bank&&x.byId.get(e.to_poi_id)?.river_bank&&x.byId.get(e.from_poi_id).river_bank!==x.byId.get(e.to_poi_id).river_bank).length;return {date:x.days[day],sequence,events,visit_ids,meal_ids,cost:round(spent),missed,travel:sum(events.filter(e=>e.type==='travel').map(e=>e.planned_minutes)),idle:sum(events.map(e=>e.wait_before_min||0)),crossings};
+  compactScheduleWaits(events,day);
+  const crossings=events.filter(e=>e.type==='travel'&&x.byId.get(e.from_poi_id)?.river_bank&&x.byId.get(e.to_poi_id)?.river_bank&&x.byId.get(e.from_poi_id).river_bank!==x.byId.get(e.to_poi_id).river_bank).length;
+  let preferencePenalty=0;
+  if(anchored){
+   const stops=events.filter(e=>e.poi_id).map(e=>x.byId.get(e.poi_id));
+   for(let i=2;i<stops.length;i++){
+    const [a,b,c]=[stops[i-2],stops[i-1],stops[i]];
+    preferencePenalty+=Math.min(65,Math.max(0,(distance(a,b)+distance(b,c)-distance(a,c))/90));
+   }
+   preferencePenalty+=sum(sequence.map(p=>anchorPenalty(p,day)))+sum(meal_ids.map(id=>anchorPenalty(x.byId.get(id),day)))*.22;
+   preferencePenalty+=sum(events.map(e=>waitingPenalty(e.wait_before_min||0)))*2.5;
+   if(anchors[day]&&sequence.length)preferencePenalty-=190;
+  }
+  return {date:x.days[day],sequence,events,visit_ids,meal_ids,cost:round(spent),missed,travel:sum(events.filter(e=>e.type==='travel').map(e=>e.planned_minutes)),idle:sum(events.map(e=>e.wait_before_min||0)),crossings,preferencePenalty};
  }
  function schedule(sequence,day,otherPlans=[],pendingRequired=[]){return scheduleAttempt(sequence,day,otherPlans,pendingRequired)||scheduleAttempt(sequence,day,otherPlans,pendingRequired,true);}
  const blank=day=>({date:x.days[day],sequence:[],events:[],visit_ids:[],meal_ids:[],cost:0,missed:slots.length,travel:0});
- const score=plans=>{const visited=plans.flatMap(p=>p.sequence),covered=new Set(visited.flatMap(p=>p.categories));return visited.filter(p=>required.has(p.id)).length*1e7-plans.reduce((s,p)=>s+p.missed,0)*20000+x.primary.filter(c=>c!=='cafes'&&covered.has(c)).length*12000+x.secondary.filter(c=>c!=='cafes'&&covered.has(c)).length*3000+sum(visited.map(utility))-sum(plans.map(p=>p.travel))*9-sum(plans.map(p=>p.sequence.length*p.sequence.length))*65-sum(plans.map(p=>p.idle||0))*.5-sum(plans.map(p=>p.crossings||0))*.1;};
+ const score=plans=>{const visited=plans.flatMap(p=>p.sequence),covered=new Set(visited.flatMap(p=>p.categories));return visited.filter(p=>required.has(p.id)).length*1e7-plans.reduce((s,p)=>s+p.missed,0)*20000+x.primary.filter(c=>c!=='cafes'&&covered.has(c)).length*12000+x.secondary.filter(c=>c!=='cafes'&&covered.has(c)).length*3000+sum(visited.map(utility))-sum(plans.map(p=>p.travel))*9-sum(plans.map(p=>p.sequence.length*p.sequence.length))*65-sum(plans.map(p=>p.idle||0))*.5-sum(plans.map(p=>p.crossings||0))*.1-sum(plans.map(p=>p.preferencePenalty||0));};
  function insertions(plans,p,pending){const results=[];let dayOrder=x.days.map((_,i)=>i);if(!required.has(p.id)&&dayOrder.length>3)dayOrder.sort((a,b)=>{const proxy=i=>plans[i].sequence.length*1200+(plans[i].sequence.length?Math.min(...plans[i].sequence.map(z=>distance(z,p))):0);return proxy(a)-proxy(b)||a-b;}).splice(3);
   for(const day of dayOrder){if(!available.get(p.id)?.[day]?.available)continue;const old=plans[day],other=plans.filter((_,i)=>i!==day);let positions=Array.from({length:old.sequence.length+1},(_,i)=>i);
    if(!required.has(p.id)&&positions.length>4)positions.sort((a,b)=>{const detour=i=>(i?distance(old.sequence[i-1],p):0)+(i<old.sequence.length?distance(p,old.sequence[i]):0)-(i&&i<old.sequence.length?distance(old.sequence[i-1],old.sequence[i]):0);return detour(a)-detour(b)||a-b;}).splice(4);
    for(const pos of positions){const seq=old.sequence.slice();seq.splice(pos,0,p);const candidate=schedule(seq,day,other,pending);if(candidate){const moved=plans.slice();moved[day]=candidate;results.push(moved);}}
   }return results;
  }
- function optionalMoves(plans,p,coverage){const out=[];for(let day=0;day<plans.length;day++){if(!available.get(p.id)?.[day]?.available)continue;const seq=plans[day].sequence;for(let pos=0;pos<=seq.length;pos++){const detour=insertionProxy(seq,p,pos),emptyBonus=seq.length?0:plans[day].missed*20000;out.push({p,day,pos,priority:utility(p)+coverage*2000+emptyBonus-detour*9-65*(2*seq.length+1)});}}return out;}
+ function optionalMoves(plans,p,coverage){const out=[];for(let day=0;day<plans.length;day++){if(!available.get(p.id)?.[day]?.available)continue;const seq=plans[day].sequence;for(let pos=0;pos<=seq.length;pos++){const detour=insertionProxy(seq,p,pos),emptyBonus=seq.length?0:plans[day].missed*20000+(anchors[day]?190:0);out.push({p,day,pos,priority:utility(p)+coverage*2000+emptyBonus-detour*9-65*(2*seq.length+1)-anchorPenalty(p,day)});}}return out;}
  function applyMove(plans,move){const seq=plans[move.day].sequence.slice();seq.splice(move.pos,0,move.p);const candidate=schedule(seq,move.day,plans.filter((_,i)=>i!==move.day),[]);if(!candidate)return null;const moved=plans.slice();moved[move.day]=candidate;return moved;}
  let beam=[x.days.map((_,i)=>blank(i))];const mandatory=shortlist.filter(p=>required.has(p.id));
  // Protect mandatory objects before any optional visits. Keeping alternative
@@ -395,7 +481,9 @@ function planTrip(dataset,options){
  // insertions and chooses the best whole-trip move, rather than filling day 1.
  for(let roundIndex=0;roundIndex<40&&!metrics.search_limited;roundIndex++){let best=null,bestValue=value;
   const uncovered=x.primary.concat(x.secondary).filter(c=>c!=='cafes'&&!plans.some(d=>d.sequence.some(p=>p.categories.includes(c))));
-  const choices=optional.filter(p=>!selected.has(p.id)).map(p=>{const nearest=selected.size?Math.min(...plans.flatMap(d=>d.sequence).map(a=>distance(a,p))):0;return {p,priority:utility(p)+uncovered.filter(c=>p.categories.includes(c)).length*2000-nearest*.025};}).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)).slice(0,8);
+  const choices=optional.filter(p=>!selected.has(p.id)).map(p=>{const nearest=selected.size?Math.min(...plans.flatMap(d=>d.sequence).map(a=>distance(a,p))):0;
+   const geographic=anchored?Math.min(...x.days.map((_,i)=>available.get(p.id)[i].available?anchorPenalty(p,i)-(anchors[i]&&!plans[i].sequence.length?190:0):400)):nearest*.025;
+   return {p,priority:utility(p)+uncovered.filter(c=>p.categories.includes(c)).length*2000-geographic};}).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)).slice(0,8);
   const moves=choices.flatMap(({p})=>optionalMoves(plans,p,uncovered.filter(c=>p.categories.includes(c)).length)).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)||a.day-b.day||a.pos-b.pos);
   // Cheap proxy ranks proposals, never accepts them. Expand the exact schedule
   // neighborhood only if the first block yields no improving feasible move.
@@ -404,10 +492,10 @@ function planTrip(dataset,options){
  }
  // Bounded relocate/2-opt: accept only fully revalidated schedules and a strict
  // whole-trip objective improvement. Mandatory membership cannot change.
- for(let pass=0;pass<2;pass++){let best=null,bestValue=value;const moves=[];for(let day=0;day<plans.length;day++){const seq=plans[day].sequence,before=sequenceProxy(seq);for(let i=0;i<seq.length-1;i++)for(let j=i+1;j<seq.length;j++){const revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),saving=before-sequenceProxy(revised);moves.push({day,i,j,saving});}}
+ for(let pass=0;pass<2;pass++){let best=null,bestValue=value;const moves=[];for(let day=0;day<plans.length;day++){const seq=plans[day].sequence,before=sequenceProxy(seq),wait=anchored?forecastWaiting(seq,day):0;for(let i=0;i<seq.length-1;i++)for(let j=i+1;j<seq.length;j++){const revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),saving=before-sequenceProxy(revised)+(anchored?(wait-forecastWaiting(revised,day))*.3:0);moves.push({day,i,j,saving});}}
   moves.sort((a,b)=>b.saving-a.saving||a.day-b.day||a.i-b.i||a.j-b.j);for(const move of moves.slice(0,12)){const {day,i,j}=move,seq=plans[day].sequence,revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),candidate=schedule(revised,day,plans.filter((_,k)=>k!==day),[]);if(!candidate)continue;const moved=plans.slice();moved[day]=candidate;const v=score(moved);if(v>bestValue+.0001){best=moved;bestValue=v;}}if(!best)break;plans=best;value=bestValue;
  }
- if(plans.length>1){let best=null,bestValue=value;const moves=[];for(let from=0;from<plans.length;from++){const seq=plans[from].sequence;for(let index=0;index<seq.length;index++){const p=seq[index];if(required.has(p.id))continue;const removed=insertionProxy(seq.filter(z=>z!==p),p,index);for(let day=0;day<plans.length;day++){if(day===from||!available.get(p.id)[day].available)continue;for(let pos=0;pos<=plans[day].sequence.length;pos++){const saving=(removed-insertionProxy(plans[day].sequence,p,pos))*9+130*(seq.length-plans[day].sequence.length-1);moves.push({p,from,day,pos,saving});}}}}
+ if(plans.length>1){let best=null,bestValue=value;const moves=[];for(let from=0;from<plans.length;from++){const seq=plans[from].sequence;for(let index=0;index<seq.length;index++){const p=seq[index];if(required.has(p.id))continue;const removed=insertionProxy(seq.filter(z=>z!==p),p,index);for(let day=0;day<plans.length;day++){if(day===from||!available.get(p.id)[day].available)continue;for(let pos=0;pos<=plans[day].sequence.length;pos++){const saving=(removed-insertionProxy(plans[day].sequence,p,pos))*9+130*(seq.length-plans[day].sequence.length-1)+anchorPenalty(p,from)-anchorPenalty(p,day);moves.push({p,from,day,pos,saving});}}}}
   moves.sort((a,b)=>b.saving-a.saving||a.p.id.localeCompare(b.p.id)||a.day-b.day||a.pos-b.pos);for(const move of moves.slice(0,8)){const reduced=schedule(plans[move.from].sequence.filter(z=>z.id!==move.p.id),move.from,plans.filter((_,i)=>i!==move.from),[]);if(!reduced)continue;const base=plans.slice();base[move.from]=reduced;const candidate=applyMove(base,move);if(!candidate)continue;const v=score(candidate);if(v>bestValue+.0001){best=candidate;bestValue=v;}}if(best){plans=best;value=bestValue;}
  }
  for(let i=0;i<plans.length;i++)if(!plans[i].sequence.length)plans[i]=schedule([],i,plans.filter((_,j)=>j!==i),[])||plans[i];
@@ -416,10 +504,10 @@ function planTrip(dataset,options){
  const unplaced=x.required.filter(id=>!used.includes(id)),uncovered=x.interests.filter(c=>!covered.has(c)),missingPrimary=x.primary.filter(c=>!covered.has(c)),spent=round(sumCost(plans));
  const checks={time:days.every(d=>d.events.every((e,i)=>e.start_min>=x.start&&e.end_min<=x.end&&e.end_min>e.start_min&&(!i||e.start_min>=d.events[i-1].end_min)))?'passed':'failed',budget:spent<=x.budget+1e-7?'passed':'failed',opening_hours:days.every((d,i)=>d.events.filter(e=>e.poi_id).every(e=>{const f=available.get(e.poi_id)[i];return f.available&&e.start_min>=f.open&&e.end_min<=f.close;}))?'passed':'failed',meals:plans.some(p=>p.missed)?'failed':'passed',required_places:unplaced.length?'failed':'passed',interest_coverage:uncovered.length?'failed':'passed',primary_interests:missingPrimary.length?'failed':'passed',no_gaps:days.every(d=>d.events.every((e,i)=>!i||e.start_min===d.events[i-1].end_min))?'passed':'failed',no_duplicates:new Set(used).size===used.length?'passed':'failed'};
  const reasons=[];for(const id of x.required){const p=x.byId.get(id),fs=available.get(id);if(!suitable(p,x.group))reasons.push('Обязательное место «'+p.name+'» не подходит заданному составу группы по признакам каталога.');else if(!allowed(p))reasons.push('Для обязательного места «'+p.name+'» нет допустимой цены для расчёта бюджета.');if(!fs.some(f=>f.available))reasons.push('Обязательное место «'+p.name+'» закрыто или вне сезона во все выбранные даты: '+x.days.join(', ')+'.');else if(!fs.some(f=>f.available&&Math.max(x.start,f.open)+durations.get(id)<=Math.min(x.end,f.close)))reasons.push('Для обязательного места «'+p.name+'» требуется '+durations.get(id)+' мин; ни в один выбранный день окно работы не пересекается с дневным интервалом на достаточную длительность.');}
- const requiredTickets=sum(x.required.map(id=>cost.get(id)));if(requiredTickets>x.budget)reasons.push('Обязательные билеты и выбранные обязательные заведения для всей группы стоят не менее '+round(requiredTickets)+' CNY, бюджет '+x.budget+' CNY; даже без транспорта и остального питания бюджет недостаточен.');if(mandatoryMinutes>availableMinutes)reasons.push('На обязательные посещения требуется '+mandatoryMinutes+' мин, доступно '+availableMinutes+' мин за все дни; даже без транспорта времени недостаточно.');const impossible=reasons.length>0;
+ const requiredTickets=sum(x.required.map(id=>cost.get(id)));if(requiredTickets>x.budget)reasons.push('Обязательные билеты и выбранные обязательные заведения для всей группы стоят не менее '+round(requiredTickets)+' '+x.currency+', бюджет '+x.budget+' '+x.currency+'; даже без транспорта и остального питания бюджет недостаточен.');if(mandatoryMinutes>availableMinutes)reasons.push('На обязательные посещения требуется '+mandatoryMinutes+' мин, доступно '+availableMinutes+' мин за все дни; даже без транспорта времени недостаточно.');const impossible=reasons.length>0;
  const warnings=['Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием.',...reasons];if(metrics.search_limited)warnings.push('Достигнут детерминированный лимит '+MAX_EVALUATIONS+' проверок расписаний. Сохранён лучший найденный маршрут; полнота поиска не гарантируется.');
  if(x.transport==='transit')warnings.push('В режиме общественного транспорта короткие местные переходы могут быть пешком: до '+(x.group.senior||x.group.child?1200:1800)+' м по прямой. Дорожная доступность оценочная, источник указан у каждого перехода.');
- if(slots.length&&minFood*slots.length*x.days.length>x.budget)warnings.push('Бюджет '+x.budget+' CNY ниже минимальной оценки питания для всей группы ('+round(minFood*slots.length*x.days.length)+' CNY). Сохранены доступные посещения по интересам; полное питание не обеспечено.');
+ if(slots.length&&minFood*slots.length*x.days.length>x.budget)warnings.push('Бюджет '+x.budget+' '+x.currency+' ниже минимальной оценки питания для всей группы ('+round(minFood*slots.length*x.days.length)+' '+x.currency+'). Сохранены доступные посещения по интересам; полное питание не обеспечено.');
  if(unplaced.length)warnings.push('Не размещены обязательные места: '+unplaced.map(id=>x.byId.get(id).name).join(', ')+(impossible?'. Выше указан подтверждённый конфликт в пределах исходной модели данных.':'. Проверены альтернативные дни и порядки; ограниченный поиск не доказывает невозможность.'));if(uncovered.length)warnings.push('Не представлены интересы: '+uncovered.map(c=>LABELS[c]).join(', ')+'.');if(plans.some(p=>p.missed))warnings.push('Завтрак, Обед или Ужин: не все необходимые приёмы пищи найдены в заданных условиях.');
  return {schema_version:'shanghai-demo-v1',model_version:'bounded-joint-insertion-v5',status:impossible?'infeasible':(visits.length||cafesOnly&&meals.length)&&Object.entries(checks).every(([k,v])=>k==='no_gaps'||v==='passed')?'demo':'partial',days,selected_ids:used,warnings:warnings.concat(days.flatMap(d=>d.warnings)),ranking:rankPois(dataset,options),checks,unplaced_required_ids:unplaced,uncovered_interests:uncovered,summary:{total_cost_cny:spent,budget_cny:x.budget,visit_count:visits.length,meal_count:meals.length,planned_travel_minutes:sum(legs.map(e=>e.planned_minutes)),estimated_travel_minutes:sum(legs.map(e=>e.base_minutes)),transport_cost_cny:round(sum(legs.map(e=>e.transport_cost_cny))),covered_interests:[...covered],days_count:days.length,group:x.group,transport_mode:x.transport,synthetic_data:true,first_last_poi:true,skipped_filters:{},daily_visits:days.map(d=>d.visit_ids.length),osm_legs:legs.filter(e=>e.source==='OSM_OSRM').length,stage1_selected_ids:shortlist.map(p=>p.id),stage1_count:shortlist.length,clusters:plans.map(p=>({date:p.date,ids:p.visit_ids,geographic_optimization:{method:'validated_bounded_insertion_2opt',basis:'buffered_transport_time'}})),required_total:x.required.length,required_placed:x.required.length-unplaced.length,meal_repair_count:0,optimizer:metrics}};
 }
@@ -436,9 +524,9 @@ function editSettings(options,date){
 }
 function editedLeg(x,settings,a,b,date,at,maxCost,policy='fastest'){
  const modes=settings.transport==='mixed'?['walk','transit','taxi']:[settings.transport];
- const values=modes.map(mode=>transportLeg(a,b,mode,x.group,date,x.osm_tables,x.transit_router,at,maxCost)).filter(Boolean);
- if(!values.length&&a&&settings.transport==='transit'&&!x.group.pet&&distance(a,b)<=(x.group.senior||x.group.child?1200:1800)){
-  const walk=transportLeg(a,b,'walk',x.group,date,x.osm_tables,null,at,maxCost);if(walk)values.push({...walk,selection_reason:'local_walking_access_in_transit_itinerary'});
+ const values=modes.map(mode=>transportLeg(a,b,mode,x.group,date,x.osm_tables,x.transit_router,at,maxCost,x.leg_profiles)).filter(Boolean);
+ if(!values.length&&a&&settings.transport==='transit'&&!hasLegProfile(x.leg_profiles,'transit')&&!x.group.pet&&distance(a,b)<=(x.group.senior||x.group.child?1200:1800)){
+  const walk=transportLeg(a,b,'walk',x.group,date,x.osm_tables,null,at,maxCost,x.leg_profiles);if(walk)values.push({...walk,selection_reason:'local_walking_access_in_transit_itinerary'});
  }
  values.sort((a,b)=>settings.prefer_less_walking?((a.mode==='walk'?a.planned_minutes:0)-(b.mode==='walk'?b.planned_minutes:0)||a.planned_minutes-b.planned_minutes||a.transport_cost_cny-b.transport_cost_cny):policy==='cheapest'?(a.transport_cost_cny-b.transport_cost_cny||a.planned_minutes-b.planned_minutes):(a.planned_minutes-b.planned_minutes||a.transport_cost_cny-b.transport_cost_cny));
  return values[0]||null;
@@ -468,10 +556,13 @@ function validateEditedTrip(dataset,options,plan){
    if(event.type==='travel'){
     const target=x.byId.get(event.to_poi_id),origin=x.byId.get(event.from_poi_id);
     if(!last||origin?.id!==last.id||!target||pendingTravel){transport=false;fail('INVALID_TRAVEL_CONTINUITY',date);continue;}
-    const modes=settings.transport==='mixed'?['walk','transit','taxi']:settings.transport==='transit'?['transit','walk']:[''+settings.transport];
-    if(!modes.includes(event.mode)||settings.transport==='transit'&&event.mode==='walk'&&distance(origin,target)>(x.group.senior||x.group.child?1200:1800)){transport=false;fail('INVALID_TRANSPORT_MODE',date);}
-    const expected=transportLeg(origin,target,event.mode,x.group,date,x.osm_tables,x.transit_router,event.start_min,Infinity);
-    if(!expected||!Number.isFinite(event.transport_cost_cny)||!Number.isFinite(event.base_minutes)||!Number.isFinite(event.buffer_minutes)||!Number.isFinite(event.planned_minutes)||!Number.isFinite(event.distance_m)||event.distance_m<0||event.base_minutes<0||event.transport_cost_cny<0||expected.planned_minutes!==event.planned_minutes||event.end_min-event.start_min!==expected.planned_minutes||Math.abs(expected.transport_cost_cny-event.transport_cost_cny)>.011||Math.abs(expected.base_minutes-event.base_minutes)>.000001||Math.abs(expected.buffer_minutes-event.buffer_minutes)>.000001||Math.abs(expected.distance_m-event.distance_m)>1||expected.source!==event.source){transport=false;fail('INVALID_TRAVEL_COST_OR_DURATION',date);}
+    const modes=settings.transport==='mixed'?['walk','transit','taxi']:[settings.transport];
+    const legacyWalk=settings.transport==='transit'&&!hasLegProfile(x.leg_profiles,'transit')&&event.mode==='walk'&&distance(origin,target)<=(x.group.senior||x.group.child?1200:1800);
+    const profile=event.leg_profile??event.mode;
+    if(!modes.includes(profile)&&!legacyWalk){transport=false;fail('INVALID_TRANSPORT_MODE',date);}
+    const expected=transportLeg(origin,target,profile,x.group,date,x.osm_tables,x.transit_router,event.start_min,Infinity,x.leg_profiles);
+    const distanceMatches=expected?.distance_m===null?event.distance_m===null:Number.isFinite(event.distance_m)&&event.distance_m>=0&&Math.abs(expected?.distance_m-event.distance_m)<=1;
+    if(!expected||expected.mode!==event.mode||expected.leg_profile!==event.leg_profile||!Number.isFinite(event.transport_cost_cny)||!Number.isFinite(event.base_minutes)||!Number.isFinite(event.buffer_minutes)||!Number.isFinite(event.planned_minutes)||!distanceMatches||event.base_minutes<0||event.transport_cost_cny<0||expected.planned_minutes!==event.planned_minutes||event.end_min-event.start_min!==expected.planned_minutes||Math.abs(expected.transport_cost_cny-event.transport_cost_cny)>.011||Math.abs(expected.base_minutes-event.base_minutes)>.000001||Math.abs(expected.buffer_minutes-event.buffer_minutes)>.000001||expected.source!==event.source){transport=false;fail('INVALID_TRAVEL_COST_OR_DURATION',date);}
     pendingTravel=event;dayCost+=Number.isFinite(event.transport_cost_cny)?event.transport_cost_cny:0;continue;
    }
    const p=x.byId.get(event.poi_id);if(!p){fail('UNKNOWN_POI_ID',String(event.poi_id));continue;}

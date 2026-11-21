@@ -1,7 +1,7 @@
 {
   "attribution": "? OpenStreetMap contributors",
   "license": "https://opendatacommons.org/licenses/odbl/1-0/",
-  "retrieved_at": "2026-11-20T22:09:59.746335+00:00",
+  "retrieved_at": "2026-11-21T13:36:07.397599+00:00",
   "station_entrances": {
     "297148175": [
       {
@@ -330,6 +330,34 @@
         "name": "Беловежская улица",
         "ref": null,
         "can_enter": false,
+        "can_exit": true
+      }
+    ],
+    "3661352238": [
+      {
+        "latitude": 55.7312597,
+        "longitude": 37.6381328,
+        "source_id": "osm:node:292141169",
+        "source_url": "https://www.openstreetmap.org/node/292141169",
+        "platform_url": "https://www.openstreetmap.org/node/292141169",
+        "route_url": "https://www.openstreetmap.org/relation/1343003",
+        "name": "Павелецкий вокзал",
+        "ref": null,
+        "can_enter": true,
+        "can_exit": true
+      }
+    ],
+    "2407376796": [
+      {
+        "latitude": 55.7731922,
+        "longitude": 37.607832,
+        "source_id": "osm:node:5107445739",
+        "source_url": "https://www.openstreetmap.org/node/5107445739",
+        "platform_url": "https://www.openstreetmap.org/node/5107445739",
+        "route_url": "https://www.openstreetmap.org/relation/1343003",
+        "name": "Улица Каретный Ряд",
+        "ref": null,
+        "can_enter": true,
         "can_exit": true
       }
     ]

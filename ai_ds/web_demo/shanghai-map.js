@@ -87,7 +87,7 @@
    background.setAttribute('viewBox',`0 0 ${w} ${h}`);background.innerHTML=`<rect width="${w}" height="${h}" fill="#edf1f2"/><text x="12" y="${h-18}" fill="#73858a" font-size="11">Координаты WGS84</text>`;
    drawTiles(w,h,c);svg.setAttribute('viewBox',`0 0 ${w} ${h}`);let html='';
    legs.forEach((leg,index)=>{for(const seg of segments(leg)){const req=segmentRoad(seg,leg),road=req&&roadCache.get(roadKey(req.a,req.b,req.mode,req.via)),coords=road?.coordinates||seg.coordinates||[];
-    const color=({metro:'#287fa5',mcc:'#ce4242',mcd:'#b55b21',tram:'#286b55',bus:'#257693'})[seg.network]||
+    const color=({metro:'#287fa5',mcc:'#ce4242',mcd:'#b55b21',tram:'#286b55',bus:'#257693',electric_bus:'#187f91'})[seg.network]||
       (seg.mode==='bus'?'#bd5555':seg.mode==='metro'?'#287fa5':leg.mode==='taxi'?'#c18b38':'#6b51ba');
     const hasStreetGeometry=Boolean(road?.coordinates||seg.verified);
     const label=seg.network?(seg.verified?'Геометрия маршрута OSM':'Схема между остановками'):seg.mode==='bus'?'Вымышленный автобус':seg.mode==='metro'?'Топология станций метро, не точный тоннель':hasStreetGeometry?'Расчёт по уличной сети':'Приблизительная связь';

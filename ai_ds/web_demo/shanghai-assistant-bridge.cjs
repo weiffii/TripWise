@@ -48,10 +48,13 @@ process.stdin.on('data',chunk=>{bytes+=Buffer.byteLength(chunk);if(bytes>LIMIT){
 process.stdin.on('end',()=>{
  try{
   const request=JSON.parse(raw);if(!request||typeof request!=='object'||Array.isArray(request))throw Object.assign(Error(),{code:'INVALID_REQUEST'});
-  const allowed=new Set(['action','options','base_plan','operations','sequences','changed_days','day_settings','meal_times','edit_spec','plan']);
+  const allowed=new Set(['action','options','base_plan','operations','sequences','changed_days','day_settings','meal_times','edit_spec','plan','dataset']);
   if(Object.keys(request).some(k=>!allowed.has(k))||!['plan','edit','schedule','validate'].includes(request.action))throw Object.assign(Error(),{code:'INVALID_REQUEST'});
-  const data=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/pois.json'),'utf8').replace(/^\uFEFF/,''));
-  data.transport=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/transport.json'),'utf8').replace(/^\uFEFF/,''));
+  let data=request.dataset;
+  if(!Object.hasOwn(request,'dataset')){
+   data=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/pois.json'),'utf8').replace(/^\uFEFF/,''));
+   data.transport=JSON.parse(fs.readFileSync(path.join(root,'data/demo/shanghai/transport.json'),'utf8').replace(/^\uFEFF/,''));
+  }
   let result;
   if(request.action==='plan')result=fillWaiting(data,request.options,api.planTrip(data,request.options));
   if(request.action==='edit')result=api.editTrip(data,request.options,request.base_plan,request.operations);
