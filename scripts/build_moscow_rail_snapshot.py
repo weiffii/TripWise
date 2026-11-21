@@ -169,7 +169,8 @@ def build_snapshot(document):
                    if member['type'] == 'node' and member.get('role') in STOP_ROLES]
         if len({member['ref'] for member in members}) < 2:
             continue
-        record = {key: element[key] for key in ('type', 'id', 'version', 'timestamp') if key in element}
+        record = {key: element[key] for key in ('type', 'id', 'version', 'timestamp', 'vehicle_mode_source_url')
+                  if key in element}
         segments = route_way_segments(element, members, ways, coordinates) or element.get('segments', [])
         if segments:
             record['segments'] = segments

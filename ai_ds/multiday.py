@@ -2,6 +2,7 @@
 import argparse
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
+from itertools import zip_longest
 import json
 import sys
 from ai_ds.data import load_pois
@@ -194,6 +195,63 @@ def _result(preferences, by_id, context, matrix, ranked, required, sequences, *,
     status = ('infeasible' if proof else 'unknown' if any(v in ('unknown', 'failed') for v in checks.values()) or warnings & uncertainty else 'feasible')
     return {'schema_version': '0.2', 'model_version': MODEL_VERSION, 'route_id': None, 'version': None, 'status': status, 'poi_snapshot_id': context.get('poi_snapshot_id'), 'days': days, 'unplaced_required_poi_ids': sorted(unplaced), 'unresolved_candidate_ids': sorted(unresolved), 'warnings': sorted(warnings), 'constraint_checks': checks, 'budget_summary': budget, 'diagnostics': diagnostics, 'planning_metadata': {'algorithm': MODEL_VERSION, 'search_complete': False, 'candidate_count': len(set(ranked) | required), 'selected_count': len(selected), 'pool_scope': pool_scope, 'pace_policy_version': 'pace-policy-v0.2', 'unknown_duration_policy': 'strict'}}
 
+def _improve_trip(sequences, schedules, context, matrix, preferences, ranked, required):
+    """Bounded neighborhood search over complete, budget-checked day assignments."""
+    days = {row['date']: row for row in context['days']}
+    primary, secondary = map(set, (preferences['primary_interests'], preferences['secondary_interests']))
+    categories = {key: set(poi['categories']) for key, poi in context['by_id'].items()}
+
+    def quality(plan, timetable):
+        selected = {key for sequence in plan.values() for key in sequence}
+        covered = set().union(*(categories[key] for key in selected))
+        minutes = 60_000_000
+        idle = sum((datetime.fromisoformat(row['end_at']) - datetime.fromisoformat(row['start_at'])).total_seconds() / 60
+                   for day in timetable.values() for row in day['breaks'] if row['kind'] == 'waiting')
+        travel = sum(day['_travel_us'] for day in timetable.values()) / minutes
+        loads = [day['active_seconds'] / 60 for day in timetable.values()]
+        matching = sum(3 * len(primary & categories[key]) + len(secondary & categories[key]) for key in selected)
+        return (len(required & selected), len(primary & covered), len(secondary & covered),
+                matching * 25 - travel - idle * 1.5 - (max(loads) - min(loads)) * .15)
+
+    def neighbors(plan, date):
+        reserve = [key for key in ranked if all(key not in seq for seq in plan.values())][:12]
+        seq = plan[date]
+        for first, key in enumerate(seq):
+            for last in range(first + 2, len(seq) + 1):
+                yield {date: seq[:first] + seq[first:last][::-1] + seq[last:]}
+            reduced = seq[:first] + seq[first + 1:]
+            for other, target in plan.items():
+                if date != other:
+                    for pos in range(len(target) + 1):
+                        yield {date: reduced, other: target[:pos] + [key] + target[pos:]}
+            if key not in required:
+                for incoming in reserve:
+                    yield {date: seq[:first] + [incoming] + seq[first + 1:]}
+        for pos in range(len(seq) + 1):
+            for key in reserve:
+                yield {date: seq[:pos] + [key] + seq[pos:]}
+
+    for _ in range(3):
+        best_quality, best = quality(sequences, schedules), None
+        batches = zip_longest(*(neighbors(sequences, date) for date in sequences))
+        for index, changes in enumerate(item for batch in batches for item in batch if item is not None):
+            if index >= 384:
+                break
+            timetable = schedules.copy()
+            for date, seq in changes.items():
+                timetable[date] = _day_schedule(seq, days[date], context, matrix)
+            if not all(day['valid'] for day in timetable.values()):
+                continue
+            plan = {**sequences, **changes}
+            value = quality(plan, timetable)
+            if value > best_quality and _budget(plan, preferences, context)['status'] != 'failed':
+                best_quality, best = value, (plan, timetable)
+        if best is None:
+            break
+        sequences, schedules = best
+    return sequences
+
+
 def build_route(preferences, pois, recommendation, travel_times, routing_context):
     """Construct a deterministic draft without modifying inputs or the old 0.1 API."""
     by_id, context, matrix, ranked, required, eligible = _prepare(preferences, pois, recommendation, travel_times, routing_context)
@@ -246,22 +304,11 @@ def build_route(preferences, pois, recommendation, travel_times, routing_context
                 if any(f.get('unknown') for f in failures):
                     unresolved.add(poi_id)
                 diagnostics.append({'poi_id': poi_id, 'code': 'CANDIDATE_NOT_PLACED', 'reasons': sorted({f['code'] for f in failures})})
-    if routing_context.get('optimize_local_order'):
-        for settings in context['days']:
-            day = settings['date']
-            for _ in range(2):
-                sequence = sequences[day]
-                best = schedules[day]
-                improved = sequence
-                for first in range(len(sequence) - 1):
-                    for last in range(first + 2, len(sequence) + 1):
-                        candidate = sequence[:first] + sequence[first:last][::-1] + sequence[last:]
-                        scheduled = _day_schedule(candidate, settings, context, matrix)
-                        if scheduled['valid'] and scheduled['_travel_us'] < best['_travel_us']:
-                            improved, best = candidate, scheduled
-                if improved == sequence:
-                    break
-                sequences[day], schedules[day] = improved, best
+    if routing_context.get('optimize_local_order') and not pending:
+        sequences = _improve_trip(sequences, schedules, context, matrix, preferences, ranked, required)
+        selected = {key for day in sequences.values() for key in day}
+        unresolved.difference_update(selected)
+        diagnostics = [row for row in diagnostics if row.get('poi_id') not in selected]
     result = _result(preferences, by_id, context, matrix, ranked, required, sequences, unresolved=unresolved, diagnostics=diagnostics)
     verified = validate_route(result, preferences, pois, recommendation, travel_times, routing_context)
     require(verified['valid'], 'route', 'INTERNAL_SCHEDULE_VALIDATION_FAILED')

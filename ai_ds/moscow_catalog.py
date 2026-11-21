@@ -85,6 +85,11 @@ def load_moscow_v7(directory=CATALOG, *, poi_ids=None, planning=False):
             item['planning'] = planning_fields(row)
             item['search_names'] = row.get('alternative_names') or []
             item['area'] = row.get('city_area')
+            item['catalog_signals'] = {
+                'multiple_sources': len(row.get('sources') or []) > 1,
+                'has_hours': bool(row.get('opening_hours')),
+                'verified_entrance': bool(row.get('entrance_verified') or row.get('verified_entrance')),
+            }
         records.append(item)
     ids = {row['id'] for row in records}
     if len(ids) != len(records) or (selected is not None and selected != ids):

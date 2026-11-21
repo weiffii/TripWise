@@ -41,7 +41,7 @@ def rail_inputs(config_path):
     return graph, section('approaches', {}), nodes, section('station_entrances', {})
 
 
-def rail_pairs(pois, endpoint=None, window=0, *, avoid_transit=(), require_transit=()):
+def rail_pairs(pois, endpoint=None, window=0, *, avoid_transit=(), require_transit=(), only_pairs=None):
     config = os.environ.get('MOSCOW_RAIL_CONFIG', str(PILOT_RAIL_CONFIG))
     if not config:
         return {}
@@ -92,12 +92,13 @@ def rail_pairs(pois, endpoint=None, window=0, *, avoid_transit=(), require_trans
             'basis': 'geometric_estimate', 'source_id': 'osm-rail-estimated-time',
         }
     ids = [poi['id'] for poi in pois]
-    matrix = build_matrix(graph, ids, normalized, avoid_transit=avoid_transit)
+    matrix = build_matrix(graph, ids, normalized, avoid_transit=avoid_transit, only_pairs=only_pairs)
     pairs = {(pair['from_poi_id'], pair['to_poi_id']): leg(pair)
              for pair in matrix['pairs'] if pair['status'] == 'known'}
     alternatives = {}
     if require_transit:
-        constrained = build_matrix(graph, ids, normalized, avoid_transit=avoid_transit, require_transit=require_transit)
+        constrained = build_matrix(graph, ids, normalized, avoid_transit=avoid_transit,
+                                   require_transit=require_transit, only_pairs=only_pairs)
         alternatives = {(pair['from_poi_id'], pair['to_poi_id']): leg(pair)
                         for pair in constrained['pairs'] if pair['status'] == 'known'}
     for key, alternative in alternatives.items():
@@ -242,10 +243,13 @@ def road_pair(endpoint, origin, target, cache_window, radii=(MAX_SNAP_METERS, MA
         return missing_pair('unknown')
 
 
-def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
+def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=(), allow_walking=True, pair_cache=None):
     endpoint = os.environ.get({'walking': 'MOSCOW_OSRM_FOOT', 'car': 'MOSCOW_OSRM_CAR',
                                'public_transit': 'MOSCOW_OSRM_FOOT'}[mode])
     rows = [(a, b) for a in pois for b in pois if a['id'] != b['id']]
+    keys = [(a['id'], b['id']) for a, b in rows]
+    if pair_cache is not None:
+        rows = [row for row, key in zip(rows, keys) if key not in pair_cache]
     now = datetime.now(timezone.utc).isoformat()
     window = int(monotonic() // 300)
     first = None
@@ -258,6 +262,9 @@ def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
     def pair(row, data=None):
         a, b = row
         by_rail = rail.get((a['id'], b['id']))
+        if mode == 'public_transit' and not allow_walking:
+            data = by_rail or {'status': 'unknown', 'duration_seconds': None, 'distance_meters': None,
+                               'basis': 'geometric_estimate', 'source_id': 'osm-rail-coverage-unknown'}
         alternative = by_rail.get('required_transit_alternative') if by_rail else None
         if by_rail and (data is None or data['status'] != 'known' or
                         by_rail['duration_seconds'] < data['duration_seconds']):
@@ -274,10 +281,11 @@ def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
     if endpoint and rows:
         # При недоступном локальном сервере не запускаем серию одинаковых тайм-аутов.
         first = provider(rows[0])
-    if mode == 'public_transit':
+    if mode == 'public_transit' and rows:
         rail = rail_pairs(pois, endpoint if first is not None else None, window,
-                          avoid_transit=avoid_transit, require_transit=require_transit)
-    if endpoint and rows:
+                          avoid_transit=avoid_transit, require_transit=require_transit,
+                          only_pairs={(a['id'], b['id']) for a, b in rows})
+    if endpoint and rows and (mode != 'public_transit' or allow_walking):
         if first is not None:
             with ThreadPoolExecutor(max_workers=8) as executor:
                 pairs = [pair(rows[0], first), *map(pair, rows[1:], executor.map(provider, rows[1:]))]
@@ -285,6 +293,9 @@ def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
             pairs = [pair(row) for row in rows]
     else:
         pairs = [pair(row) for row in rows]
+    if pair_cache is not None:
+        pair_cache.update({(leg['from_poi_id'], leg['to_poi_id']): leg for leg in pairs})
+        pairs = [pair_cache[key] for key in keys]
     basis = ('routing_provider' if pairs and all(pair['basis'] == 'routing_provider' for pair in pairs)
              else 'geometric_estimate')
     return dict(mode=mode, basis=basis, source_id='moscow-directional-matrix',

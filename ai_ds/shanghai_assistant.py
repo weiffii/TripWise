@@ -138,8 +138,10 @@ def bridge_call(payload):
     executable = node_executable()
     require(bool(executable), 'ROUTER_RUNTIME_UNAVAILABLE')
     try:
-        raw = json.dumps(payload, ensure_ascii=False, allow_nan=False)
-        require(len(raw.encode('utf-8')) <= 2 * 1024 * 1024, 'REQUEST_TOO_LARGE')
+        injected = 'dataset' in payload
+        raw = json.dumps(payload, ensure_ascii=False, allow_nan=False,
+                         separators=(',', ':') if injected else None)
+        require(len(raw.encode('utf-8')) <= (8 if injected else 2) * 1024 * 1024, 'REQUEST_TOO_LARGE')
         result = subprocess.run([executable, str(ROOT / 'ai_ds/web_demo/shanghai-assistant-bridge.cjs')],
                                 input=raw, text=True, encoding='utf-8', capture_output=True,
                                 timeout=30, cwd=ROOT)
@@ -227,6 +229,7 @@ def human_error(code):
         'TRANSPORT_UNAVAILABLE': 'По имеющимся данным запрошенный транспорт недоступен для этих переходов или не укладывается в расписание. Можно сохранить прежний транспорт или выбрать другой день.',
         'MEAL_TIME_UNAVAILABLE': 'Запрошенное время не укладывается в доступное окно заведения. Попробуйте другое время обеда.',
         'NO_ROUTE_CHANGE': 'Запрошенное условие уже выполнено. Уточните, если нужно поменять день, время или место.',
+        'NO_ROUTE_IMPROVEMENT': 'Не нашёл более короткий вариант с теми же местами и ограничениями. Попробуйте изменить время или убрать необязательную остановку.',
         'VERSION_CONFLICT': 'Маршрут уже изменился. Отправьте пожелание ещё раз для текущей версии.',
         'VERSION_OR_DATA_CONFLICT': 'Маршрут изменился во время расчёта. Исходный маршрут сохранён; повторите пожелание.',
         'INPUT_DATA_CHANGED': 'Исходные данные изменились. Нужно построить новый маршрут.',
