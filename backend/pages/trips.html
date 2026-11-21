@@ -4,32 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Мои поездки — TripWise</title>
-    <script src="/theme.js"></script>
-    <link rel="stylesheet" href="/styles.css">
-    <script src="/trips.js" defer></script>
+    <script src="/theme.js?v=20261121-trips3"></script>
+    <link rel="stylesheet" href="/styles.css?v=20261121-trips3">
+    <script src="/destination-visuals.js?v=20261121-trips3" defer></script>
+    <script src="/trips.js?v=20261121-trips3" defer></script>
   </head>
   <body class="trips-page">
     <header class="header">
-      <a class="brand" href="/trips" aria-label="TripWise — мои поездки"><span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span></a>
+      <a class="brand" href="/" aria-label="TripWise — главная"><span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span></a>
       <div class="header-actions"><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button><button id="logout-button" class="outline-button" type="button">Выйти ↗</button></div>
     </header>
     <main class="trips-main">
-      <section class="page-hero trips-hero"><div class="hero-content"><p class="eyebrow">МЕСТО ДЛЯ НОВЫХ ВОСПОМИНАНИЙ</p><h1 class="trips-heading">Ваши планы.<br><em>Большие впечатления.</em></h1><p>Пусть следующее путешествие будет вашим.</p></div><span class="hero-location">МОСКВА · РОССИЯ</span></section>
-      <div class="section-heading"><div><p class="eyebrow">ЛИЧНАЯ КОЛЛЕКЦИЯ</p><h2>Мои поездки</h2></div><p id="account-email" class="account-email">Проверяем аккаунт…</p></div>
-      <section id="draft-card" class="saved-draft" aria-labelledby="draft-title" hidden>
-        <span class="section-number">ЧЕРНОВИК АНКЕТЫ · МАРШРУТ НЕ ПОСТРОЕН</span>
-        <h2 id="draft-title">Москва</h2><span class="draft-status">Анкета сохранена</span>
-        <p id="draft-details"></p>
-        <a class="submit-button create-trip-button" href="/trip/new"><span>Продолжить анкету</span><span aria-hidden="true">↗</span></a>
-      </section>
+      <section class="page-hero trips-hero"><div class="hero-content"><p class="eyebrow">МЕСТО ДЛЯ НОВЫХ ВОСПОМИНАНИЙ</p><h1 class="trips-heading">Ваши планы.<br><em>Большие впечатления.</em></h1><p>Пусть следующее путешествие будет вашим.</p></div><span class="hero-location">ГОРОДА МЕНЯЮТСЯ. ИСТОРИИ ОСТАЮТСЯ.</span></section>
+      <div class="section-heading"><div><p class="eyebrow">ЛИЧНАЯ КОЛЛЕКЦИЯ</p><h2>Мои поездки</h2></div><div class="collection-actions"><p id="account-email" class="account-email">Проверяем аккаунт…</p><a class="submit-button new-trip-button" href="/trip/new?new=1">Создать новую поездку</a></div></div>
+      <div id="saved-trips" class="saved-trips-grid" aria-label="Сохранённые поездки"></div>
       <section id="empty-trips" class="empty-trips" aria-labelledby="empty-title">
         <span class="empty-icon" aria-hidden="true">✧</span>
         <h2 id="empty-title">Каждая история начинается с идеи</h2>
-        <p>Начните с Москвы. Расскажите о своих интересах,<br>а мы сохраним ваши планы в одном месте.</p>
-        <a class="submit-button create-trip-button" href="/trip/new"><span>Создать поездку</span><span aria-hidden="true">↗</span></a>
+        <p>Выберите город и расскажите о своих интересах.<br>Нажмите «Сохранить анкету», когда будете готовы.</p>
+        <a class="submit-button create-trip-button" href="/trip/new?new=1"><span>Создать поездку</span><span aria-hidden="true">↗</span></a>
       </section>
       <p id="trips-message" class="form-message" role="status" hidden></p>
     </main>
-    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span class="photo-credit">Фото: <a href="https://commons.wikimedia.org/wiki/File:Sunset_over_Moscow_City.jpg" target="_blank" rel="noopener noreferrer">Юрий Д.К.</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></footer>
+    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><a href="/assets/README.md">Авторы изображений и лицензии</a></footer>
   </body>
 </html>

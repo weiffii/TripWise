@@ -1,232 +1,158 @@
+// Анкета сохраняется только явным действием пользователя.
 const form = document.querySelector('#trip-form');
 const fields = document.querySelector('#trip-fields');
 const statusText = document.querySelector('#save-status');
 const finishButton = document.querySelector('#finish-questionnaire');
 const firstWalk = document.querySelector('#first-walk');
 const lastWalk = document.querySelector('#last-walk');
-const categories = [
-  ['museums', 'Музеи'], ['history', 'История'], ['nature', 'Природа'], ['cafes', 'Кафе'],
-  ['entertainment', 'Развлечения'], ['shopping', 'Шопинг'], ['viewpoints', 'Смотровые площадки'], ['unusual', 'Необычные места'],
-];
+const countryInput = document.querySelector('#country');
+const cityInput = document.querySelector('#city');
+const searchInput = document.querySelector('#required-search');
+const categories = [['museums','Музеи'],['history','История'],['nature','Природа'],['cafes','Кафе'],['entertainment','Развлечения'],['shopping','Шопинг'],['viewpoints','Смотровые площадки'],['unusual','Необычные места']];
+let catalog = null;
 let revision = 0;
-// Удерживаем владельца именно загруженной формы, даже если другая вкладка сменит вход.
+const editId = new URLSearchParams(window.location.search).get('id');
+let tripId = editId === null ? null : (/^[1-9]\d*$/.test(editId) && Number.isSafeInteger(Number(editId)) ? Number(editId) : NaN);
+const creationKey = crypto.randomUUID();
+let unresolvedCreation = null;
 let ownerContext = null;
 let editVersion = 0;
 let savedVersion = 0;
 let loaded = false;
 let blocked = false;
-let pendingSave = null;
-let saveTimer;
-
-function setStatus(text, state = '') {
-  statusText.textContent = text;
-  statusText.dataset.state = state;
+let saving = false;
+let lastCountry = "";
+let lastCity = "";
+const requiredPlaces = new Set();
+function setStatus(text,state='') {statusText.textContent=text;statusText.dataset.state=state;}
+function selected(name) {return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(input=>input.value);}
+function currentCity() {return catalog?.countries.find(country=>country.code===countryInput.value)?.cities.find(city=>city.name===cityInput.value);}
+function option(value,label) {const result=document.createElement('option');result.value=value;result.textContent=label;return result;}
+function populateCities(desired) {
+  const cities=catalog.countries.find(country=>country.code===countryInput.value)?.cities||[];
+  cityInput.replaceChildren(option('','Выберите город'),...cities.map(city=>option(city.name,city.name)));
+  if(cities.some(city=>city.name===desired)) cityInput.value=desired;
+  requiredPlaces.clear();searchInput.value='';renderPlaces();updateSummary();
 }
-
-function selected(name) {
-  return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(input => input.value);
-}
-
-for (const [group, target] of [['primary_interests', '#primary-interests'], ['secondary_interests', '#secondary-interests']]) {
-  for (const [value, title] of categories) {
-    const label = document.createElement('label');
-    label.className = 'choice';
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.name = group;
-    input.value = value;
-    const text = document.createElement('span');
-    text.textContent = title;
-    label.append(input, text);
-    document.querySelector(target).append(label);
+function renderPlaces() {
+  const city=currentCity();
+  document.querySelector('#timezone-note').textContent=city?`Местное время города: ${city.timezone}.`:'Выберите город — время указывается по местному часовому поясу.';
+  const pois=city?.pois||[];
+  const query=searchInput.value.trim().toLocaleLowerCase('ru');
+  const visible=pois.filter(poi=>poi.name.toLocaleLowerCase('ru').includes(query));
+  const list=document.querySelector('#poi-options');list.replaceChildren();
+  for(const poi of visible) {
+    const label=document.createElement('label');label.className='choice poi-choice';
+    const input=document.createElement('input');input.type='checkbox';input.name='required_poi_ids';input.value=poi.id;input.checked=requiredPlaces.has(poi.id);
+    const name=document.createElement('span');name.textContent=poi.name;
+    input.addEventListener('change',()=>{if(input.checked) requiredPlaces.add(poi.id);else requiredPlaces.delete(poi.id);renderPlaces();});
+    label.append(input,name);list.append(label);
   }
+  const chips=document.querySelector('#selected-places');chips.replaceChildren();
+  for(const id of requiredPlaces) {
+    const poi=pois.find(item=>item.id===id);if(!poi)continue;
+    const chip=document.createElement('button');chip.type='button';chip.className='place-chip';chip.textContent=`${poi.name} ×`;chip.setAttribute('aria-label',`Убрать ${poi.name}`);
+    chip.addEventListener('click',()=>{requiredPlaces.delete(id);renderPlaces();markEdited();});chips.append(chip);
+  }
+  document.querySelector('#poi-empty').hidden=visible.length>0;
+  document.querySelector('#poi-empty').textContent=!city?'Сначала выберите город.':pois.length?'Места не найдены. Попробуйте другое название.':'Для этого города подборка обязательных мест пока не подготовлена.';
 }
-
+for(const [group,target] of [['primary_interests','#primary-interests'],['secondary_interests','#secondary-interests']]) {
+  for(const [value,title]of categories){const label=document.createElement('label');label.className='choice';const input=document.createElement('input');input.type='checkbox';input.name=group;input.value=value;const span=document.createElement('span');span.textContent=title;if(group==='primary_interests'){const image=document.createElement('img');image.src=`/assets/card-${value}.svg`;image.alt='';image.loading='lazy';image.className='interest-image';label.append(image);label.classList.add('interest-card');}label.append(input,span);document.querySelector(target).append(label);}
+}
 function syncInterestChoices() {
-  const primary = selected('primary_interests');
-  for (const input of form.querySelectorAll('[name="primary_interests"]')) {
-    input.disabled = primary.length >= 2 && !input.checked;
-  }
-  for (const input of form.querySelectorAll('[name="secondary_interests"]')) {
-    input.disabled = primary.includes(input.value);
-    if (input.disabled) input.checked = false;
-  }
+  const primary=selected('primary_interests');
+  for(const input of form.querySelectorAll('[name="primary_interests"]'))input.disabled=false;
+  for(const input of form.querySelectorAll('[name="secondary_interests"]')){input.disabled=primary.includes(input.value);if(input.disabled)input.checked=false;}
 }
-
-function travelerCounts() {
-  return Object.fromEntries(['adults', 'children', 'seniors'].map(key => [key, form.elements[key].value === '' ? NaN : Number(form.elements[key].value)]));
-}
-
-function travelerTotal() {
-  return Object.values(travelerCounts()).reduce((sum, value) => sum + value, 0);
-}
-
+function travelerCounts(){return Object.fromEntries(['adults','children','seniors'].map(key=>[key,form.elements[key].value===''?NaN:Number(form.elements[key].value)]));}
+function travelerTotal(){return Object.values(travelerCounts()).reduce((sum,value)=>sum+value,0);}
 function validate() {
-  const total = travelerTotal();
-  form.elements.adults.setCustomValidity(Number.isInteger(total) && total >= 1 && total <= 100 ? '' : 'Укажите от 1 до 100 путешественников в сумме.');
-  firstWalk.setCustomValidity('');
-  lastWalk.setCustomValidity(firstWalk.value && lastWalk.value && firstWalk.value >= lastWalk.value
-    ? 'Окончание последней прогулки должно быть позже начала первой.' : '');
-  const primary = selected('primary_interests');
-  form.querySelector('[name="primary_interests"]').setCustomValidity(primary.length < 1 || primary.length > 2 ? 'Выберите один или два главных интереса.' : '');
-  form.querySelector('[name="transport_modes"]').setCustomValidity(selected('transport_modes').length ? '' : 'Выберите хотя бы один способ передвижения.');
+  const total=travelerTotal();form.elements.adults.setCustomValidity(Number.isInteger(total)&&total>=1&&total<=100?'':'Укажите от 1 до 100 путешественников в сумме.');
+  lastWalk.setCustomValidity(firstWalk.value&&lastWalk.value&&firstWalk.value>=lastWalk.value?'Окончание последней прогулки должно быть позже начала первой.':'');
+  form.querySelector('[name="primary_interests"]').setCustomValidity(selected('primary_interests').length?'':'Выберите хотя бы один главный интерес.');
+  form.querySelector('[name="transport_modes"]').setCustomValidity(selected('transport_modes').length?'':'Выберите хотя бы один способ передвижения.');
   return form.checkValidity();
 }
-
-function validationText() {
-  const invalidInput = form.querySelector('input:invalid, select:invalid');
-  return invalidInput?.validationMessage || 'Проверьте заполнение полей.';
+function preferences(){return {
+  schema_version:'fullstack-draft-0.2',country_code:countryInput.value,city:cityInput.value,timezone:currentCity().timezone,
+  first_walk_at:firstWalk.value,last_walk_end_at:lastWalk.value,travelers:travelerTotal(),traveler_counts:travelerCounts(),
+  budget_amount:form.elements.budget_amount.value,budget_currency:form.elements.budget_currency.value,budget_basis:selected('budget_basis')[0],budget_scope:'trip_food_and_entertainment',
+  primary_interests:selected('primary_interests'),secondary_interests:selected('secondary_interests'),pace:selected('pace')[0],transport_modes:selected('transport_modes'),required_poi_ids:[...requiredPlaces],
+};}
+function updateSummary(){
+  window.setDestinationVisual(cityInput.value);
+  document.querySelector('#summary-title').textContent=cityInput.value||'Ваша поездка';
+  const counts=travelerCounts();const total=travelerTotal();const valid=Number.isInteger(total)&&total>=1&&total<=100&&Object.values(counts).every(n=>Number.isInteger(n)&&n>=0);
+  document.querySelector('#party-total').textContent=valid?`Всего путешественников: ${total}`:'Укажите от 1 до 100 путешественников';
+  document.querySelector('#summary-people').textContent=valid?`Взрослые: ${counts.adults} · Дети: ${counts.children} · Пожилые: ${counts.seniors}`:'Укажите количество';
+  document.querySelector('#summary-dates').textContent=firstWalk.value&&lastWalk.value?`${firstWalk.value.replace('T',' ')} — ${lastWalk.value.replace('T',' ')}`:'Выберите даты и время';
+  const amount=form.elements.budget_amount.value;const sum=Number(amount)*(selected('budget_basis')[0]==='per_person'?total:1);
+  document.querySelector('#summary-budget').textContent=amount!==''&&valid&&Number.isFinite(sum)&&sum>=0?new Intl.NumberFormat('ru-RU',{style:'currency',currency:form.elements.budget_currency.value||'RUB',maximumFractionDigits:2}).format(sum):'Укажите сумму';
+  document.querySelector('#summary-interests').textContent=categories.filter(([id])=>selected('primary_interests').includes(id)).map(([,title])=>title).join(', ')||'Выберите хотя бы один интерес';
 }
-
-function isoMoscow(value) {
-  return `${value.length === 16 ? `${value}:00` : value}+03:00`;
+function markEdited(){
+  if(!loaded)return;editVersion+=1;syncInterestChoices();updateSummary();validate();
+  if(!blocked)setStatus(saving?'Есть новые правки. Сохраните их отдельным нажатием после завершения запроса.':'Изменения не сохранены. Нажмите «Сохранить анкету».');
 }
-
-function preferences() {
-  return {
-    schema_version: 'fullstack-draft-0.1', country_code: 'RU', city: 'Москва', timezone: 'Europe/Moscow',
-    first_walk_at: isoMoscow(firstWalk.value), last_walk_end_at: isoMoscow(lastWalk.value),
-    travelers: travelerTotal(), traveler_counts: travelerCounts(),
-    budget_amount: form.elements.budget_amount.value,
-    budget_currency: form.elements.budget_currency.value, budget_basis: selected('budget_basis')[0], budget_scope: 'trip_food_and_entertainment',
-    primary_interests: selected('primary_interests'), secondary_interests: selected('secondary_interests'),
-    pace: selected('pace')[0], transport_modes: selected('transport_modes'), required_poi_ids: [],
-  };
+function fillForm(data){
+  countryInput.value=data.country_code;populateCities(data.city);
+  firstWalk.value=data.first_walk_at.slice(0,16);lastWalk.value=data.last_walk_end_at.slice(0,16);
+  const counts=data.traveler_counts||{adults:data.travelers,children:0,seniors:0};for(const key of ['adults','children','seniors'])form.elements[key].value=counts[key];
+  form.elements.budget_amount.value=data.budget_amount;form.elements.budget_currency.value=data.budget_currency||'RUB';
+  for(const name of ['budget_basis','pace','primary_interests','secondary_interests','transport_modes']){const values=Array.isArray(data[name])?data[name]:[data[name]];for(const input of form.querySelectorAll(`[name="${name}"]`))input.checked=values.includes(input.value);}
+  for(const id of data.required_poi_ids||[])requiredPlaces.add(id);renderPlaces();
 }
-
-function updateSummary() {
-  const people = travelerTotal();
-  const counts = travelerCounts();
-  const validPeople = Number.isInteger(people) && people >= 1 && people <= 100 && Object.values(counts).every(value => Number.isInteger(value) && value >= 0);
-  document.querySelector('#party-total').textContent = validPeople ? `Всего путешественников: ${people}` : 'Укажите от 1 до 100 путешественников';
-  document.querySelector('#summary-people').textContent = validPeople ? `Взрослые: ${counts.adults} · Дети: ${counts.children} · Пожилые: ${counts.seniors} · Всего: ${people}` : 'Укажите количество';
-  document.querySelector('#summary-dates').textContent = firstWalk.value && lastWalk.value
-    ? `${firstWalk.value.replace('T', ' ')} — ${lastWalk.value.replace('T', ' ')}` : 'Выберите даты и время';
-  const amountText = form.elements.budget_amount.value;
-  const amount = Number(amountText);
-  const total = selected('budget_basis')[0] === 'per_person' ? amount * people : amount;
-  document.querySelector('#summary-budget').textContent = amountText !== '' && validPeople && Number.isFinite(total) && total >= 0
-    ? new Intl.NumberFormat('ru-RU', { style: 'currency', currency: form.elements.budget_currency.value, maximumFractionDigits: 2 }).format(total) : 'Укажите сумму';
-  const primary = selected('primary_interests');
-  document.querySelector('#summary-interests').textContent = categories.filter(([key]) => primary.includes(key)).map(([, title]) => title).join(', ') || 'Выберите 1–2 интереса';
+async function loadDraft(){
+  try{
+    if(Number.isNaN(tripId))throw Error('invalid trip id');
+    const [catalogResponse,response]=await Promise.all([fetch('/api/catalog',{cache:'no-store'}),fetch(tripId===null?'/api/trips':`/api/trips/${tripId}`,{cache:'no-store',credentials:'same-origin'})]);
+    if(response.status===401){window.location.replace('/');return;}
+    if(!catalogResponse.ok||!response.ok)throw Error('load');
+    catalog=await catalogResponse.json();
+    countryInput.replaceChildren(option('','Выберите страну'),...catalog.countries.map(country=>option(country.code,country.name)));
+    const currency=form.elements.budget_currency;const main=document.createElement('optgroup');main.label='Основные валюты';const other=document.createElement('optgroup');other.label='Другие валюты';
+    let names=null;try{names=new Intl.DisplayNames(['ru'],{type:'currency'});}catch{}
+    catalog.currencies.forEach((item,index)=>(index<4?main:other).append(option(item.code,`${item.code} · ${names?.of(item.code)||item.name}`)));currency.replaceChildren(main,other);
+    const {trip,owner_context}=await response.json();if(typeof owner_context!=='string'||!owner_context)throw Error('owner');ownerContext=owner_context;
+    if(tripId!==null){if(!trip)throw Error('missing trip');fillForm(trip.preferences);revision=trip.revision;}
+    fields.disabled=false;loaded=true;lastCountry=countryInput.value;lastCity=cityInput.value;syncInterestChoices();renderPlaces();updateSummary();validate();
+    setStatus(tripId!==null?'Сохранённая анкета загружена':'Новая поездка. Заполните анкету и нажмите «Сохранить анкету».',tripId!==null?'saved':'');
+  }catch{setStatus('Не удалось загрузить анкету и направления. Проверьте соединение и обновите страницу.','error');}
 }
-
-function fillForm(data) {
-  firstWalk.value = data.first_walk_at.slice(0, 16);
-  lastWalk.value = data.last_walk_end_at.slice(0, 16);
-  const counts = data.traveler_counts || { adults: data.travelers, children: 0, seniors: 0 };
-  for (const key of ['adults', 'children', 'seniors']) form.elements[key].value = counts[key];
-  form.elements.budget_currency.value = data.budget_currency || 'RUB';
-  form.elements.budget_amount.value = data.budget_amount;
-  for (const name of ['budget_basis', 'pace', 'primary_interests', 'secondary_interests', 'transport_modes']) {
-    const values = Array.isArray(data[name]) ? data[name] : [data[name]];
-    for (const input of form.querySelectorAll(`[name="${name}"]`)) input.checked = values.includes(input.value);
-  }
-}
-
-async function loadDraft() {
-  try {
-    const response = await fetch('/api/trip-draft', { cache: 'no-store', credentials: 'same-origin' });
-    if (response.status === 401) { window.location.replace('/'); return; }
-    if (!response.ok) throw new Error('load');
-    const { draft, owner_context } = await response.json();
-    if (typeof owner_context !== 'string' || !owner_context.trim()) throw new Error('owner context');
-    ownerContext = owner_context;
-    if (draft) { fillForm(draft.preferences); revision = draft.revision; }
-    fields.disabled = false;
-    loaded = true;
-    syncInterestChoices();
-    updateSummary();
-    validate();
-    setStatus(draft ? 'Сохранённая анкета загружена' : 'Заполните поля — затем анкета сохранится автоматически', draft ? 'saved' : '');
-  } catch {
-    setStatus('Не удалось загрузить анкету. Проверьте сервер и обновите страницу.', 'error');
-  }
-}
-
-// Сохранения идут последовательно: медленный ответ не перезапишет более новую правку.
-async function saveLatest(manualRetry = false) {
-  if (pendingSave) return pendingSave;
-  pendingSave = (async () => {
-    while (savedVersion < editVersion) {
-      const retrySameOwner = manualRetry && ['account_changed', 'reauth_required'].includes(blocked);
-      if ((blocked && !retrySameOwner) || !validate()) return false;
-      const version = editVersion;
-      const body = JSON.stringify({ revision, preferences: preferences() });
-      setStatus('Сохраняем анкету…', 'saving');
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 10000);
-      try {
-        const response = await fetch('/api/trip-draft', {
-          method: 'PUT', credentials: 'same-origin', headers: {
-            'Content-Type': 'application/json',
-            'X-TripWise-Draft-Owner': ownerContext,
-          },
-          body, signal: controller.signal,
-        });
-        if (response.status === 401) {
-          blocked = 'reauth_required';
-          clearTimeout(saveTimer);
-          setStatus('Сеанс закончился. Войдите в тот же аккаунт в другой вкладке и нажмите «Готово». Поля остаются в этой вкладке.', 'error');
-          return false;
-        }
-        const result = await response.json();
-        if (!response.ok) {
-          const draftError = response.headers.get('X-TripWise-Draft-Error');
-          if (draftError === 'ACCOUNT_CHANGED') blocked = 'account_changed';
-          else if (draftError === 'CONTEXT_REQUIRED') blocked = 'context_required';
-          else if (response.status === 409) blocked = 'revision_conflict';
-          if (blocked) clearTimeout(saveTimer);
-          setStatus(typeof result.detail === 'string' ? result.detail : 'Не удалось сохранить анкету.', 'error');
-          return false;
-        }
-        revision = result.draft.revision;
-        savedVersion = version;
-        blocked = false;
-        if (!validate()) {
-          setStatus(`Изменения не сохранены: ${validationText()}`, 'error');
-          return false;
-        }
-      } catch {
-        setStatus('Не удалось подтвердить сохранение. Проверьте сервер. При конфликте версий обновите страницу.', 'error');
-        return false;
-      } finally {
-        clearTimeout(timeout);
-      }
-    }
-    setStatus('Анкета сохранена в аккаунте', 'saved');
-    return true;
-  })();
-  try { return await pendingSave; } finally { pendingSave = null; }
-}
-
-form.addEventListener('input', () => {
-  if (!loaded) return;
-  editVersion += 1;
-  syncInterestChoices();
-  updateSummary();
-  clearTimeout(saveTimer);
-  if (blocked) return;
-  if (!validate()) {
-    setStatus(`Изменения не сохранены: ${validationText()}`);
-    return;
-  }
-  setStatus('Есть изменения — скоро сохраним…');
-  saveTimer = setTimeout(saveLatest, 800);
+countryInput.addEventListener('change',()=>{
+  if(requiredPlaces.size && !window.confirm('При смене страны выбранные обязательные места будут убраны. Продолжить?')) { countryInput.value=lastCountry; return; }
+  populateCities();lastCountry=countryInput.value;lastCity=cityInput.value;markEdited();
 });
-
-form.addEventListener('submit', async event => {
-  event.preventDefault();
-  if (!validate() || !form.reportValidity()) return;
-  clearTimeout(saveTimer);
-  finishButton.disabled = true;
-  try {
-    if (await saveLatest(true)) window.location.assign('/trips');
-  } finally { finishButton.disabled = false; }
+cityInput.addEventListener('change',()=>{
+  if(requiredPlaces.size && !window.confirm('При смене города выбранные обязательные места будут убраны. Продолжить?')) {cityInput.value=lastCity;return;}
+  requiredPlaces.clear();searchInput.value='';lastCity=cityInput.value;renderPlaces();markEdited();
 });
-
-window.addEventListener('beforeunload', event => {
-  if (loaded && editVersion > savedVersion) { event.preventDefault(); event.returnValue = ''; }
+searchInput.addEventListener('input',()=>renderPlaces());
+form.addEventListener('input',event=>{if([searchInput,countryInput,cityInput].includes(event.target))return;markEdited();});
+// checkbox input происходит до change: выбранные POI обновляем в change, не отправляя запрос.
+form.addEventListener('change',event=>{if(event.target.name==='required_poi_ids'){updateSummary();}});
+form.addEventListener('submit',async event=>{
+  event.preventDefault();if(saving||!loaded||!validate()||!form.reportValidity())return;
+  if(blocked&&!['account_changed','reauth_required'].includes(blocked))return;
+  // Неопределённый результат POST повторяем тем же ключом и тем же снимком.
+  // Это защищает от дубликата после сетевого обрыва, сохраняя новые правки в форме.
+  const creating = tripId === null;
+  if(creating && !unresolvedCreation)unresolvedCreation={version:editVersion,preferences:preferences(),creation_key:creationKey};
+  const version=creating?unresolvedCreation.version:editVersion;
+  const body=JSON.stringify(creating?{preferences:unresolvedCreation.preferences,creation_key:unresolvedCreation.creation_key}:{revision,preferences:preferences()});
+  saving=true;finishButton.disabled=true;setStatus('Сохраняем анкету…','saving');
+  const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),10000);
+  try{
+    const response=await fetch(creating?'/api/trips':`/api/trips/${tripId}`,{method:creating?'POST':'PUT',credentials:'same-origin',headers:{'Content-Type':'application/json','X-TripWise-Draft-Owner':ownerContext},body,signal:controller.signal});
+    if(response.status===401){blocked='reauth_required';setStatus('Сеанс закончился. Войдите в прежний аккаунт в другой вкладке, затем нажмите «Сохранить анкету».','error');return;}
+    const result=await response.json();
+    if(!response.ok){if(creating&&[400,422].includes(response.status))unresolvedCreation=null;const reason=response.headers.get('X-TripWise-Draft-Error');blocked=reason==='ACCOUNT_CHANGED'?'account_changed':reason==='CONTEXT_REQUIRED'?'context_required':response.status===409?'revision_conflict':false;setStatus(typeof result.detail==='string'?result.detail:'Не удалось сохранить анкету.','error');return;}
+    revision=result.trip.revision;tripId=result.trip.id;unresolvedCreation=null;savedVersion=version;blocked=false;window.history.replaceState(null,'',`/trip/new?id=${tripId}`);
+    if(editVersion!==version){setStatus('Предыдущая версия сохранена. Новые правки ещё не сохранены — нажмите кнопку снова.');return;}
+    setStatus('Анкета сохранена в аккаунте','saved');window.location.assign('/trips');
+  }catch{setStatus('Не удалось подтвердить сохранение. Ваши поля остаются на странице. Нажмите «Сохранить» для проверки прежнего снимка; новые правки останутся для следующего сохранения.','error');}
+  finally{clearTimeout(timeout);saving=false;finishButton.disabled=false;}
 });
-
+window.addEventListener('beforeunload',event=>{if(loaded&&editVersion>savedVersion){event.preventDefault();event.returnValue='';}});
 loadDraft();

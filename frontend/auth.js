@@ -10,6 +10,31 @@ const registerButton = document.querySelector('#register-mode');
 const togglePassword = document.querySelector('#toggle-password');
 let mode = 'login';
 let submitting = false;
+const dialog = document.querySelector('#auth-dialog');
+let destination = '/trips';
+let opener = null;
+function openAuth(nextMode, target, source) {
+  destination = target; opener = source; setMode(nextMode); dialog.showModal();
+}
+document.querySelectorAll('[data-open-auth]').forEach(button => button.addEventListener('click', () => openAuth(button.dataset.openAuth, '/trips', button)));
+document.querySelectorAll('[data-create-trip]').forEach(button => button.addEventListener('click', async () => {
+  try {
+    const response = await fetch('/api/auth/me', {cache:'no-store', credentials:'same-origin'});
+    if (response.ok) { window.location.assign('/trip/new?new=1'); return; }
+  } catch { /* Форма покажет сетевую ошибку при отправке. */ }
+  openAuth('register', '/trip/new?new=1', button);
+}));
+document.querySelector('#close-auth').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', event => { if (event.target === dialog) { const r=dialog.getBoundingClientRect(); if(event.clientX<r.left || event.clientX>r.right || event.clientY<r.top || event.clientY>r.bottom) dialog.close(); } });
+dialog.addEventListener('close', () => { passwordInput.value=''; confirmInput.value=''; opener?.focus(); });
+fetch('/api/auth/me', {cache:'no-store', credentials:'same-origin'}).then(response => {
+  if (!response.ok) return;
+  document.querySelectorAll('[data-open-auth]').forEach(button => button.hidden=true);
+  document.querySelector('#home-account').hidden=false;
+}).catch(() => {});
+const pauseScenes=document.querySelector('#pause-scenes');
+pauseScenes.addEventListener('click',()=>{const paused=pauseScenes.getAttribute('aria-pressed')!=='true';pauseScenes.setAttribute('aria-pressed',String(paused));document.querySelector('.city-scenes').classList.toggle('paused',paused);pauseScenes.textContent=paused?'Продолжить анимацию':'Приостановить анимацию';});
+
 
 // Одна форма используется для двух режимов, поэтому поля не дублируются.
 function setMode(nextMode) {
@@ -33,7 +58,7 @@ function setMode(nextMode) {
     ? 'Создайте аккаунт, чтобы хранить поездки и собирать маршруты под себя.'
     : 'Войдите, чтобы планировать новые поездки и возвращаться к сохранённым.';
   document.querySelector('#submit-label').textContent = isRegistration ? 'Создать аккаунт' : 'Войти';
-  document.title = `${isRegistration ? 'Регистрация' : 'Вход'} — TripWise`;
+  // Главная остаётся главной и при открытом окне входа.
   loginButton.classList.toggle('selected', !isRegistration);
   registerButton.classList.toggle('selected', isRegistration);
   loginButton.setAttribute('aria-pressed', String(!isRegistration));
@@ -99,7 +124,7 @@ form.addEventListener('submit', async (event) => {
       message.hidden = false;
       return;
     }
-    window.location.assign('/trips');
+    window.location.assign(destination);
   } catch {
     message.textContent = 'Не удалось получить ответ сервера. Проверьте, запущен ли он. Если отправляли регистрацию, попробуйте затем войти с теми же данными.';
     message.hidden = false;

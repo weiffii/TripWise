@@ -9,6 +9,8 @@ from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from backend.accounts import current_user, init_database, router
+from backend.catalog import router as catalog_router
+from backend.trips import router as trips_router
 from backend.drafts import init_drafts, router as drafts_router
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -30,12 +32,14 @@ app = FastAPI(
 
 app.include_router(router)
 app.include_router(drafts_router)
+app.include_router(catalog_router)
+app.include_router(trips_router)
 
 
 @app.middleware("http")
 async def private_responses(request: Request, call_next):
     response = await call_next(request)
-    if request.url.path.startswith(("/api/auth/", "/api/trip-draft")) or request.url.path in {"/trips", "/trip/new"}:
+    if request.url.path.startswith(("/api/auth/", "/api/trip-draft", "/api/trips")) or request.url.path in {"/trips", "/trip/new"}:
         response.headers["Cache-Control"] = "no-store"
     response.headers["X-Content-Type-Options"] = "nosniff"
     return response
@@ -44,7 +48,7 @@ async def private_responses(request: Request, call_next):
 @app.exception_handler(RequestValidationError)
 async def invalid_request(request: Request, error: RequestValidationError):
     # Стандартные ошибки могут содержать input с паролем. Возвращаем только текст.
-    if request.url.path == "/api/trip-draft":
+    if request.url.path == "/api/trip-draft" or request.url.path.startswith("/api/trips"):
         return JSONResponse(status_code=422, content={"detail": "Проверьте поля анкеты: время, количество людей, бюджет и выбранные варианты."}, headers={"Cache-Control": "no-store"})
     return JSONResponse(status_code=422, content={"detail": "Проверьте почту и пароль. При регистрации: от 8 до 128 символов и одинаковый повтор пароля."}, headers={"Cache-Control": "no-store"})
 
