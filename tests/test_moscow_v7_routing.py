@@ -65,7 +65,10 @@ class MoscowV7RoutingTests(unittest.TestCase):
         )
         plan, options, snapshot = plan_moscow(preferences)
         day = plan['days'][0]
-        poi_id = day['visits'][0]['poi_id']
+        meals = {row['poi_id'] for row in plan['moscow_meals'].get(day['date'], {}).values()}
+        poi_id = max((row for row in day['visits'] if row['poi_id'] not in meals),
+                     key=lambda row: (int(row['end_at'][11:13]) * 60 + int(row['end_at'][14:16])
+                                      - int(row['start_at'][11:13]) * 60 - int(row['start_at'][14:16])))['poi_id']
         added = 'moscow-osm-relation-1577673'
         self.assertNotIn(added, [item['poi_id'] for item in day['visits']])
         service = MoscowAssistant()
@@ -125,6 +128,7 @@ class MoscowV7RoutingTests(unittest.TestCase):
             service = MoscowAssistant()
         self.assertFalse(service.status()[1]['available'])
         self.assertEqual(len(plan['days']), 3)
+        self.assertEqual(plan['engine'], 'shared-js')
         self.assertTrue(all(day['visits'] and (any(item['kind'] == 'meal' for item in day['breaks'])
                             or plan.get('moscow_meals', {}).get(day['date'], {}).get('lunch')) for day in plan['days']))
         self.assertTrue(any('lunch' in meals for meals in plan['moscow_meals'].values()))
