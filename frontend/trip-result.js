@@ -15,11 +15,23 @@ async function request(path, body) {
   return result;
 }
 
+function gapExplanation(gap) {
+  const labels = {budget:'бюджет', opening:'часы работы', transport:'переходы', time:'дневное окно',
+    meals:'интервалы питания', unknown:'недостающие данные', search_limit:'предел проверки'};
+  const rejected = Object.entries(gap.rejections || {}).sort((a,b) => b[1]-a[1]).slice(0,2)
+    .map(([reason,count]) => (labels[reason] || 'прочие ограничения') + ' (' + count + ')');
+  const advice = {budget:'Более высокий бюджет расширит выбор.', opening:'Другая дата может добавить доступные места.',
+    time:'Более широкое дневное окно позволит проверить дополнительные варианты.',
+    transport:'Другой разрешённый режим транспорта может сократить переход.'}[gap.reason_code];
+  return [gap.reason, gap.candidate_count ? 'Кандидатов рассмотрено: ' + gap.candidate_count + '.' : '',
+    rejected.length ? 'Основные причины отклонения: ' + rejected.join(', ') + '.' : '', advice].filter(Boolean).join(' ');
+}
+
 function events(day, plan = trip.plan) {
   if (day.events) return day.events.filter(showScheduleEvent);
   const meals = new Map(Object.entries(plan.moscow_meals?.[day.date] || {}).map(([kind, slot]) => [slot.poi_id, kind]));
   const diagnostics = new Map((plan.gap_diagnostics?.remaining || []).filter(gap => gap.date === day.date)
-    .map(gap => [gap.start_at + '/' + gap.end_at, gap.reason]));
+    .map(gap => [gap.start_at + '/' + gap.end_at, gapExplanation(gap)]));
   return [...day.visits.map(item => ({...item, type:meals.has(item.poi_id) ? 'meal' : 'visit', meal_kind:meals.get(item.poi_id)})),
     ...day.legs.map(item => ({...item, type:'travel', mode:item.mode || (item.transport_steps?.length ? 'transit' :
       (trip.options.transport === 'taxi' ? 'taxi' : 'walk'))})),
@@ -164,7 +176,7 @@ function renderDay() {
   for (const warning of day?.warnings || []) appendText(stops, warning);
   for (const gap of trip.plan.gap_diagnostics?.remaining || []) {
     if (gap.date === day?.date && gap.minutes > 30 && (gap.kind !== 'internal' || gap.minutes <= 60)) {
-      appendText(stops, gap.start_at.slice(11,16) + '–' + gap.end_at.slice(11,16) + ' · ' + gap.reason);
+      appendText(stops, gap.start_at.slice(11,16) + '–' + gap.end_at.slice(11,16) + ' · ' + gapExplanation(gap));
     }
   }
   drawMap(rows);

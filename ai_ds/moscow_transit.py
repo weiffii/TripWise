@@ -158,11 +158,11 @@ def route_between(graph, entrances, exits, *, avoid_transit=(), require_transit=
     return None
 
 
-def build_matrix(graph, poi_ids, approaches, *, avoid_transit=(), require_transit=()):
+def build_matrix(graph, poi_ids, approaches, *, avoid_transit=(), require_transit=(), only_pairs=None):
     pairs = []
     for origin in poi_ids:
         for target in poi_ids:
-            if origin == target:
+            if origin == target or only_pairs is not None and (origin, target) not in only_pairs:
                 continue
             entrance = approaches.get(origin, {}).get('enter', {})
             exit = approaches.get(target, {}).get('exit', {})

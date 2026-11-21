@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from ai_ds.moscow_road import coordinates
 from ai_ds.moscow_transit import _distance
+from backend import moscow
 from backend.moscow import MoscowAssistant, indexes, plan_moscow, source_hours
 from backend.shanghai import MoscowPreferences
 
@@ -37,6 +38,35 @@ CASES = {
     'assistant_edit': {'primary_interests': ['nature'], 'day_end': '21:00'},
     'no_repeats': {'days': 5}, 'avoidable_gaps': {'days': 3, 'day_start': '08:00', 'day_end': '21:00'},
 }
+
+GAP_CASES = {
+    'C_river_groups': {'required_ids': [RED_SQUARE, 'moscow-cultural-595', *DISTANT], 'day_end': '22:00'},
+    'D_balanced_candidates': {'primary_interests': ['museums', 'history'], 'secondary_interests': ['nature', 'unusual']},
+    'E_three_day_balance': {'days': 3, 'budget_amount': 6500},
+    'E_stale_gap_positions': {'days': 3, 'required_ids': DISTANT, 'budget_amount': 3500},
+    'F_intensive_five_days': {'days': 5, 'pace': 'intensive', 'secondary_interests': ['history', 'unusual', 'viewpoints']},
+    'G_unavoidable_wait': {'required_ids': [RED_SQUARE]},
+    'H_required_opening_conflict': {'required_ids': [RED_SQUARE, 'moscow-cultural-595'], 'visit_minutes': 30},
+}
+
+
+def opening_fixture(case, preferences):
+    """Проверяем гарантированный конфликт/позднее открытие с настоящими POI и тестовыми часами."""
+    inputs = moscow.moscow_inputs
+    clocks = ('17:00', '18:00') if case == 'G_unavoidable_wait' else ('12:00', '12:35')
+    required = set(preferences.required_ids)
+
+    def constrained(*args, **kwargs):
+        profile, pois, ranking, matrix, context = inputs(*args, **kwargs)
+        day = context['days'][0]['date']
+        context['opening_intervals'] = [row for row in context['opening_intervals'] if row['poi_id'] not in required]
+        for key in sorted(required):
+            context['opening_intervals'].append({'poi_id': key, 'date': day, 'timezone': 'Europe/Moscow',
+                'intervals': [{'start_at': f'{day}T{clocks[0]}:00+03:00', 'end_at': f'{day}T{clocks[1]}:00+03:00'}],
+                'source_id': 'quality-test-fixture', 'retrieved_at': f'{day}T00:00:00+03:00', 'source_url': None})
+        return profile, pois, ranking, matrix, context
+
+    return constrained, clocks
 
 
 def minute(value):
@@ -142,7 +172,13 @@ def run(case, overrides):
         'secondary_interests': ['history'], 'required_ids': [], 'budget_amount': 25000,
         'budget_currency': 'RUB', 'budget_basis': 'per_group', **overrides,
     })
-    plan, options, snapshot = plan_moscow(prefs)
+    clocks = None
+    if case in {'G_unavoidable_wait', 'H_required_opening_conflict'}:
+        constrained, clocks = opening_fixture(case, prefs)
+        with patch.object(moscow, 'moscow_inputs', side_effect=constrained):
+            plan, options, snapshot = plan_moscow(prefs)
+    else:
+        plan, options, snapshot = plan_moscow(prefs)
     outcome = None
     if case == 'assistant_edit':
         plan, outcome = edit(plan, prefs, options, snapshot, [
@@ -153,6 +189,13 @@ def run(case, overrides):
             {'op': 'set_transit_preferences', 'avoid': ['metro'], 'require': ['bus']},
         ])
     result = measure(plan, prefs)
+    result['visits_per_day'] = [len(day['visits']) for day in plan['days']]
+    if clocks:
+        result['test_opening_window'] = clocks
+        result['test_window_violations'] = sum(not (clocks[0] <= row['start_at'][11:16] <= row['end_at'][11:16] <= clocks[1])
+            for day in plan['days'] for row in day['visits'] if row['poi_id'] in prefs.required_ids)
+        result['wait_reasons'] = [row.get('waiting_reason') for day in plan.get('engine_days', [])
+                                  for row in day['events'] if row.get('wait_before_min')]
     if outcome:
         result['mock_assistant_outcome'] = outcome
     if case == 'assistant_edit':
@@ -168,6 +211,7 @@ def main():
     parser.add_argument('output', type=Path)
     parser.add_argument('--label', required=True)
     parser.add_argument('--head', help='Commit being measured when run from an exported tree')
+    parser.add_argument('--gap-regressions', action='store_true')
     args = parser.parse_args()
     report = {'label': args.label, 'head': args.head or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
               'conditions': 'Moscow V7; offline, bundled transport fixtures; mock LLM; one adult; RUB',
@@ -177,7 +221,7 @@ def main():
                               'When an edit is refused the metrics describe the saved original plan.',
               'results': {}}
     with patch.dict(os.environ, {'MOSCOW_OSRM_FOOT': '', 'MOSCOW_OSRM_CAR': ''}):
-        for case, overrides in CASES.items():
+        for case, overrides in (GAP_CASES if args.gap_regressions else CASES).items():
             try:
                 report['results'][case] = run(case, overrides)
             except Exception as error:

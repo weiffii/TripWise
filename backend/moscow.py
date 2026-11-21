@@ -36,13 +36,16 @@ def selected_moscow_modes(preferences):
     return None
 
 
-def chosen_moscow_matrix(pois, mode, selected, filters=None, *, legacy=False):
+def chosen_moscow_matrix(pois, mode, selected, filters=None, *, legacy=False, pair_caches=None):
     filters = filters or {}
+    def cached(label, **kwargs):
+        if pair_caches is not None:
+            kwargs['pair_cache'] = pair_caches.setdefault(label, {})
+        return travel_matrix(pois, MATRIX_MODES[label], **kwargs)
     if not selected:
-        return travel_matrix(pois, mode, **filters)
+        return cached(MODES[mode], **filters)
     profiles = {
-        label: travel_matrix(pois, MATRIX_MODES[label], **(
-            {**filters, 'allow_walking': legacy} if label == 'transit' else {}))
+        label: cached(label, **({**filters, 'allow_walking': legacy} if label == 'transit' else {}))
         for label in selected
     }
     return {**profiles[MODES[mode]], 'profiles': profiles}
@@ -262,7 +265,8 @@ def source_hours(raw, weekday):
     return windows[0] if len(windows) == 1 else None
 
 
-def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_filters=None, *, include_food=False, explicit_pois=None):
+def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_filters=None, *,
+                  include_food=False, explicit_pois=None, pair_caches=None):
     if preferences.budget_currency != 'RUB':
         raise HTTPException(422, 'Для Москвы выберите бюджет в рублях.')
     pois = (shortlist(preferences, retained, query, prior_query) if explicit_pois is None
@@ -328,7 +332,7 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
                    duration_overrides=durations, opening_intervals=openings,
                    cost_context=dict(currency='RUB', coverage_complete=False, visit_costs=costs, meal_costs=[]))
     filters = transport_filters or {}
-    matrix = chosen_moscow_matrix(pois, mode, selected, filters,
+    matrix = chosen_moscow_matrix(pois, mode, selected, filters, pair_caches=pair_caches,
                                   legacy=preferences.transport_modes is None and bool(retained))
     if selected:
         context['moscow_transport_modes'] = selected
@@ -355,7 +359,8 @@ def fix_meal_time(context, date, key, kind, start, end):
 
 
 def plan_moscow(preferences):
-    inputs = moscow_inputs(preferences, include_food=True)
+    pair_caches = {}
+    inputs = moscow_inputs(preferences, include_food=True, pair_caches=pair_caches)
     try:
         plan = plan_city(inputs[0], inputs[1], inputs[3], inputs[4])
     except AssistantError as error:
@@ -363,7 +368,7 @@ def plan_moscow(preferences):
             raise HTTPException(503, 'Маршрутизатор недоступен. Проверьте запуск Node.js.') from error
         raise HTTPException(422, 'Маршрутизатор не смог построить план с этими параметрами.') from error
     def make_repair_state(ids):
-        profile, places, _, matrix, context = moscow_inputs(preferences, explicit_pois=ids)
+        profile, places, _, matrix, context = moscow_inputs(preferences, explicit_pois=ids, pair_caches=pair_caches)
         return {'preferences': profile, 'pois': places, 'travel_times': matrix, 'routing_context': context}
 
     plan = repair_gaps(plan, inputs[0], inputs[4], gap_index(), make_repair_state)

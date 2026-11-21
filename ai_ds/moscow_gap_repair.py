@@ -3,6 +3,7 @@
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import date
+from functools import lru_cache
 from math import ceil, floor, isfinite
 
 from ai_ds.moscow_engine_adapter import fixed_sequence, timestamp
@@ -12,10 +13,11 @@ from ai_ds.route_assistant import AssistantError, sequences_of
 
 
 LONG_GAP = 45
-EDGE_GAP = 75
-MAX_SCHEDULE_TRIALS = 10
-MAX_SEARCHED_WINDOWS = 6
+EDGE_GAP = 55
+MAX_SCHEDULE_TRIALS = 36
+MAX_SEARCHED_WINDOWS = 12
 WINDOW_CANDIDATES = 4
+SEARCH_RADII = (650, 1500, 3000, 5000)
 LATITUDE_TILE = .01
 LONGITUDE_TILE = .015
 
@@ -30,7 +32,7 @@ REASONS = {
     'no_matching_pois': 'В проверенных окрестностях не найдено незапланированных мест по вашим интересам.',
     'required': 'Сначала требуется разрешить конфликт с обязательными посещениями.',
     'within_preference': 'Пауза находится в пределах запаса времени для выбранного темпа.',
-    'search_limit': 'Окно осталось после ограниченного поиска. Другие варианты могут существовать.',
+    'search_limit': 'Достигнут вычислительный лимит пересчёта расписаний.',
 }
 
 
@@ -78,7 +80,8 @@ class MoscowGapIndex:
             for category in poi['categories']:
                 self.tiles[category][grid].append(poi['id'])
 
-    def candidates(self, gap, profile, context, used, budget_left):
+    def candidates(self, gap, profile, context, used, budget_left, *, radii=(600, 1200, 2400),
+                   limit=WINDOW_CANDIDATES, stats=None, checked=None):
         interests = list(dict.fromkeys(profile['primary_interests'] + profile['secondary_interests']))
         points = [coordinates(self.by_id[key]) for key in (gap.previous, gap.following) if key in self.by_id]
         anchor = context.get('day_anchors', {}).get(gap.day)
@@ -86,14 +89,15 @@ class MoscowGapIndex:
             points = [anchor or {'lat': 55.752, 'lon': 37.620}]
         elif len(points) == 2:
             a, b = points
-            points.append({coordinate: (a[coordinate] + b[coordinate]) / 2 for coordinate in ('lat', 'lon')})
+            points.extend({coordinate: a[coordinate] + ratio * (b[coordinate] - a[coordinate])
+                           for coordinate in ('lat', 'lon')} for ratio in (.25, .5, .75))
         group = context['moscow_group']
         people = sum(group.get(key, 0) for key in ('adult', 'child', 'senior'))
         day_meals = context.get('moscow_meals', {}).get(gap.day, {})
         weekday = date.fromisoformat(gap.day).weekday()
         primary = set(profile['primary_interests'])
         candidates, inspected, discarded = {}, set(used), Counter()
-        for radius in (600, 1200, 2400):
+        for radius in radii:
             for key in self._neighborhood(points, interests, radius) - inspected:
                 poi = self.by_id[key]
                 location = coordinates(poi)
@@ -101,7 +105,11 @@ class MoscowGapIndex:
                 if min(distances) > radius:
                     continue
                 inspected.add(key)
+                unseen = checked is None or key not in checked
+                if checked is not None:
+                    checked.add(key)
                 if anchor and _distance(location, anchor) > anchor['radius_m']:
+                    discarded['transport'] += unseen
                     continue
                 data = poi['planning']
                 is_food = 'average_check_rub' in data
@@ -110,14 +118,14 @@ class MoscowGapIndex:
                 minutes = data.get('duration_minutes', {}).get('value')
                 price = data.get('price_rub', {}).get('value')
                 if not _number(minutes) or not _number(price):
-                    discarded['unknown'] += 1
+                    discarded['unknown'] += unseen
                     continue
                 minimum = max(20, floor(minutes * .9)) if not is_food else 50
                 if minimum > gap.minutes:
-                    discarded['time'] += 1
+                    discarded['time'] += unseen
                     continue
                 if price * people > budget_left:
-                    discarded['budget'] += 1
+                    discarded['budget'] += unseen
                     continue
                 hours = data.get('opening_hours', {})
                 estimated = hours.get('value')
@@ -125,17 +133,19 @@ class MoscowGapIndex:
                     opening = estimated[weekday]
                     if not opening or min(_clock_minutes(opening[1]), gap.end) - max(
                             _clock_minutes(opening[0]), gap.start) < minimum:
-                        discarded['opening'] += 1
+                        discarded['opening'] += unseen
                         continue
                 categories = set(poi['categories'])
-                detour = sum(distances[:2]) if len(points) == 3 else distances[0]
+                detour = sum(distances[:2]) if len(points) > 2 else distances[0]
                 sources = poi.get('catalog_signals', {})
                 score = (-len(primary & categories), round(detour / 200), -sum(bool(value) for value in sources.values()),
                          abs(gap.minutes - minimum - detour / 75), price, key)
                 candidates[key] = (score, minimum, is_food)
-            if len(candidates) >= WINDOW_CANDIDATES:
+            if len(candidates) >= limit:
                 break
-        ranked = sorted(candidates, key=lambda key: candidates[key][0])[:WINDOW_CANDIDATES]
+        if stats is not None:
+            stats.update(discarded)
+        ranked = sorted(candidates, key=lambda key: candidates[key][0])[:limit]
         reason = min(discarded, key=lambda key: (-discarded[key], key)) if discarded else 'no_matching_pois'
         return [(key, *candidates[key][1:]) for key in ranked], reason
 
@@ -143,14 +153,17 @@ class MoscowGapIndex:
         keys = set()
         for point in points:
             lat, lon = _tile(point)
-            lat_span = ceil(radius / 111_000 / LATITUDE_TILE)
-            lon_span = ceil(radius / 59_000 / LONGITUDE_TILE)
-            for category in interests:
-                cells = self.tiles[category]
-                for dy in range(-lat_span, lat_span + 1):
-                    for dx in range(-lon_span, lon_span + 1):
-                        keys.update(cells.get((lat + dy, lon + dx), ()))
+            keys.update(self._nearby_tiles(lat, lon, tuple(interests), radius))
         return keys
+
+    @lru_cache(maxsize=160)
+    def _nearby_tiles(self, lat, lon, interests, radius):
+        lat_span = ceil(radius / 111_000 / LATITUDE_TILE)
+        lon_span = ceil(radius / 59_000 / LONGITUDE_TILE)
+        return frozenset(key for category in interests
+                         for dy in range(-lat_span, lat_span + 1)
+                         for dx in range(-lon_span, lon_span + 1)
+                         for key in self.tiles[category].get((lat + dy, lon + dx), ()))
 
 
 def route_gaps(plan, context):
@@ -196,6 +209,8 @@ def _repaired(original, candidate, gap, context, expected, profile):
         return False
     if original.get('native_checks', {}).get('meals') == 'passed' and checks.get('meals') != 'passed':
         return False
+    if set(candidate.get('uncovered_interests') or ()) - set(original.get('uncovered_interests') or ()):
+        return False
     total = candidate['budget_summary']['known_total']
     if not _number(total) or total > profile['budget']['amount'] + .01:
         return False
@@ -223,7 +238,7 @@ def _repaired(original, candidate, gap, context, expected, profile):
     return extra_travel <= min(18, max(0, extra_useful // 2))
 
 
-def _travel_fit(matrix, gap, key, minimum):
+def _durations(matrix):
     durations = {}
     matrices = matrix.get('profiles', {'default': matrix})
     for profile in matrices.values():
@@ -233,16 +248,95 @@ def _travel_fit(matrix, gap, key, minimum):
                 continue
             direction = pair['from_poi_id'], pair['to_poi_id']
             durations[direction] = min(seconds, durations.get(direction, seconds))
+    return durations
+
+
+def _travel_fit(matrix, gap, key, minimum):
+    durations = _durations(matrix)
     outbound = durations.get((gap.previous, key)) if gap.previous else 0
     inbound = durations.get((key, gap.following)) if gap.following else 0
     return (_number(outbound) and _number(inbound) and
             minimum + ceil(outbound / 60) + ceil(inbound / 60) <= gap.minutes + gap.next_leg_minutes)
 
 
-def _description(gap, reason):
-    return {'date': gap.day, 'start_at': timestamp(gap.day, gap.start), 'end_at': timestamp(gap.day, gap.end),
+def _description(gap, reason, *, checked=0, attempts=0, rejections=None):
+    changes = {'budget': 'Повышение общего бюджета расширит выбор мест в этом окне.',
+               'opening': 'Более гибкое время дня или другие даты расширят пересечение с часами работы.',
+               'transport': 'Другой разрешённый режим или более компактная группа мест могут уменьшить дорогу.',
+               'time': 'Более гибкое время посещений даст планировщику больше вариантов.'}
+    result = {'date': gap.day, 'start_at': timestamp(gap.day, gap.start), 'end_at': timestamp(gap.day, gap.end),
             'minutes': gap.minutes, 'kind': gap.kind, 'reason_code': reason,
-            'reason': REASONS[reason], 'observed_reason': gap.observed_reason}
+            'reason': REASONS[reason], 'observed_reason': gap.observed_reason,
+            'candidate_count': checked, 'attempts': attempts, 'rejections': dict(rejections or {})}
+    if reason in changes:
+        result['possible_adjustment'] = changes[reason]
+    return result
+
+
+def _placement_options(matrix, gap, candidates):
+    """Небольшой beam по фактическим направленным времени, включая путь назад к следующему POI."""
+    durations = _durations(matrix)
+    capacity = gap.minutes + gap.next_leg_minutes
+    maximum = min(5, max(1, capacity // 55))
+    beam = [((), 0, 0)]
+    levels = []
+    for _ in range(maximum):
+        following = []
+        for keys, useful, road in beam:
+            previous = keys[-1] if keys else gap.previous
+            for key, minimum, food in candidates:
+                if key in keys or (keys and food):
+                    continue
+                outbound = durations.get((previous, key), float('inf')) if previous else 0
+                inbound = durations.get((key, gap.following), float('inf')) if gap.following else 0
+                if not _number(outbound) or not _number(inbound):
+                    continue
+                legs = road + ceil(outbound / 60)
+                total = useful + minimum + legs + ceil(inbound / 60)
+                if total <= capacity:
+                    following.append(((*keys, key), useful + minimum, legs))
+        if not following:
+            break
+        beam = sorted(following, key=lambda row: (-(row[1] - row[2]), row[2], row[0]))[:12]
+        levels.append(beam)
+    if not levels:
+        return []
+    chains = [level[0][0] for level in reversed(levels[1:])]
+    singles = {row[0][0] for row in levels[0]}
+    return chains + [(key,) for key, _, _ in candidates if key in singles]
+
+
+def _relocations(sequence, position, meals, excluded):
+    for index in range(max(0, position - 2), min(len(sequence), position + 3)):
+        point = sequence[index]
+        if point in meals or point in excluded:
+            continue
+        other = list(sequence)
+        other.pop(index)
+        target = position - (index < position)
+        other.insert(target, point)
+        if other != sequence:
+            yield other
+
+
+def _replacement_options(sequence, position, candidates, protected, index, profile):
+    primary = set(profile['primary_interests'])
+    secondary = set(profile['secondary_interests'])
+    def score(key):
+        categories = set(index.by_id[key]['categories'])
+        duration = index.by_id[key]['planning']['duration_minutes']['value']
+        return len(primary & categories), len(secondary & categories), duration
+
+    for slot in (position - 1, position):
+        if not 0 <= slot < len(sequence) or sequence[slot] in protected:
+            continue
+        old = score(sequence[slot])
+        if not _number(old[2]):
+            continue
+        for replacement, _, food in candidates:
+            if not food and all(a >= b for a, b in zip(score(replacement), old)):
+                yield [*sequence[:slot], replacement, *sequence[slot + 1:]], replacement
+                break
 
 
 def describe_edited_gaps(plan, context, previous):
@@ -279,6 +373,14 @@ def repair_gaps(plan, profile, context, index, make_state):
     initial = route_gaps(plan, context)
     visited, rejected = set(), {}
     current, trials, searched, inserted = plan, 0, 0, []
+    replaced = []
+    counts = {}
+    all_checked = set()
+
+    @lru_cache(maxsize=8)
+    def state_for(ids):
+        return make_state(list(ids))
+
     while trials < MAX_SCHEDULE_TRIALS and searched < MAX_SEARCHED_WINDOWS:
         options = sorted((gap for gap in route_gaps(current, context) if gap not in visited and
                           gap.minutes > (LONG_GAP if gap.kind == 'internal' else EDGE_GAP)),
@@ -303,51 +405,88 @@ def repair_gaps(plan, profile, context, index, make_state):
             continue
         remaining = profile['budget']['amount'] - spent
         active_context = {**context, 'moscow_meals': current.get('moscow_meals', {})}
-        candidates, reason = index.candidates(gap, profile, active_context, used, remaining)
         meal_ids = {slot['poi_id'] for slot in active_context['moscow_meals'].get(gap.day, {}).values()}
         position = sequences[gap.day].index(gap.following) if gap.following else len(sequences[gap.day])
-        can_swap = (gap.kind == 'internal' and position > 0
-                    and sequences[gap.day][position - 1] == gap.previous
-                    and not {gap.previous, gap.following} & meal_ids)
-        if not candidates and not can_swap:
-            rejected[gap] = reason
-            continue
-        ids = list(dict.fromkeys([*(key for values in sequences.values() for key in values),
-                                  *(candidate[0] for candidate in candidates)]))
-        state = make_state(ids)
-        base_context = {**active_context, **state['routing_context'], 'moscow_meals': active_context['moscow_meals']}
-        rejected[gap] = 'transport' if candidates else reason
+        retained = tuple(dict.fromkeys(key for values in sequences.values() for key in values))
+        tested, checked, reasons = set(), set(), Counter()
+        started = trials
         accepted = False
-        for key, minimum, food in candidates:
-            if trials >= MAX_SCHEDULE_TRIALS:
-                rejected[gap] = 'search_limit'
-                break
-            if not _travel_fit(state['travel_times'], gap, key, minimum):
+        width = 9 if gap.minutes >= 120 else 5
+        replacement_batch = None
+        for radius in SEARCH_RADII:
+            candidates, _ = index.candidates(gap, profile, active_context, used | tested, remaining,
+                                             radii=(radius,), limit=width, stats=reasons, checked=checked)
+            if not candidates:
                 continue
-            trial_context = base_context
-            if food:
-                meals = base_context['moscow_meals']
-                trial_context = {**base_context, 'moscow_meals': {**meals, gap.day: {
-                    **meals.get(gap.day, {}), 'snack': {'poi_id': key}}}}
-            trial = dict(sequences, **{gap.day: [*sequences[gap.day][:position], key, *sequences[gap.day][position:]]})
-            trials += 1
-            changed, failure = _try_schedule(state, current, trial_context, trial, gap, profile)
-            if changed:
-                current = changed
-                inserted.append(key)
-                accepted = True
+            options = {key: (minimum, food) for key, minimum, food in candidates}
+            tested.update(options)
+            state = state_for((*retained, *sorted(options)))
+            base_context = {**active_context, **state['routing_context'], 'moscow_meals': active_context['moscow_meals']}
+            replacement_batch = (state, base_context, candidates)
+            paths = _placement_options(state['travel_times'], gap, candidates)
+            reachable = {point for path in paths for point in path}
+            reasons['transport'] += len(options.keys() - reachable)
+            for keys in paths[:6]:
+                if trials >= MAX_SCHEDULE_TRIALS or trials - started >= 14:
+                    break
+                hints = base_context.get('moscow_start_hints', {})
+                day_hints = {**hints.get(gap.day, {}), keys[0]: gap.start}
+                trial_context = {**base_context, 'moscow_start_hints': {**hints, gap.day: day_hints}}
+                if options[keys[0]][1]:
+                    meals = base_context['moscow_meals']
+                    trial_context['moscow_meals'] = {**meals, gap.day: {
+                        **meals.get(gap.day, {}), 'snack': {'poi_id': keys[0]}}}
+                old = sequences[gap.day]
+                trial = dict(sequences, **{gap.day: [*old[:position], *keys, *old[position:]]})
+                trials += 1
+                changed, failure = _try_schedule(state, current, trial_context, trial, gap, profile)
+                if changed:
+                    current = changed
+                    inserted.extend(keys)
+                    accepted = True
+                    break
+                reasons[failure] += 1
+            if accepted or trials >= MAX_SCHEDULE_TRIALS or trials - started >= 14:
                 break
-            rejected[gap] = failure
-        if not accepted and can_swap and trials < MAX_SCHEDULE_TRIALS:
-            reordered = sequences[gap.day].copy()
-            reordered[position - 1], reordered[position] = reordered[position], reordered[position - 1]
-            trials += 1
-            changed, failure = _try_schedule(state, current, base_context, dict(sequences, **{gap.day: reordered}),
-                                             gap, profile, reflow=True)
-            if changed:
-                current = changed
-            elif not candidates:
-                rejected[gap] = failure
+        if not accepted and gap.kind == 'internal' and len(retained) >= 2:
+            pinned = context.get('moscow_start_hints', {}).get(gap.day, {})
+            for reordered in _relocations(sequences[gap.day], position, meal_ids, pinned):
+                if trials >= MAX_SCHEDULE_TRIALS or trials - started >= 16:
+                    break
+                state = state_for(retained)
+                base_context = {**active_context, **state['routing_context'], 'moscow_meals': active_context['moscow_meals']}
+                trials += 1
+                changed, failure = _try_schedule(state, current, base_context, dict(sequences, **{gap.day: reordered}),
+                                                 gap, profile, reflow=True)
+                if changed:
+                    current = changed
+                    accepted = True
+                    break
+                reasons[failure] += 1
+        if not accepted and replacement_batch and gap.minutes >= 90:
+            state, base_context, choices = replacement_batch
+            original_order = sequences[gap.day]
+            protected = meal_ids | set(profile['required_poi_ids']) | set(
+                context.get('moscow_start_hints', {}).get(gap.day, {}))
+            for proposed, replacement in _replacement_options(original_order, position, choices, protected, index, profile):
+                if trials >= MAX_SCHEDULE_TRIALS:
+                    break
+                trials += 1
+                changed, failure = _try_schedule(state, current, base_context, dict(sequences, **{gap.day: proposed}),
+                                                 gap, profile, reflow=True)
+                if changed:
+                    current = changed
+                    removed = next(key for key in original_order if key not in proposed)
+                    replaced.append({'removed': removed, 'added': replacement})
+                    accepted = True
+                    break
+                reasons[failure] += 1
+        if not accepted:
+            ranked = [reason for reason, count in sorted(reasons.items(), key=lambda entry: (-entry[1], entry[0]))
+                      if count > 0]
+            rejected[gap] = ranked[0] if ranked else 'no_matching_pois'
+        counts[gap] = (len(checked), trials - started, reasons)
+        all_checked.update(checked)
     remaining_gaps = route_gaps(current, context)
     diagnostics = []
     for gap in remaining_gaps:
@@ -361,7 +500,13 @@ def repair_gaps(plan, profile, context, index, make_state):
                 reason = 'rest'
             elif gap.minutes <= (LONG_GAP if gap.kind == 'internal' else EDGE_GAP):
                 reason = 'within_preference'
-        diagnostics.append(_description(gap, reason or 'search_limit'))
+        checked, attempted, reasons = counts.get(gap, (0, 0, {}))
+        diagnostics.append(_description(gap, reason or 'search_limit', checked=checked,
+                                        attempts=attempted, rejections=reasons))
     return {**current, 'gap_diagnostics': {'before': sum(gap.minutes > LONG_GAP for gap in initial),
                                           'after': sum(gap.minutes > LONG_GAP for gap in remaining_gaps),
-                                          'attempts': trials, 'inserted_poi_ids': inserted, 'remaining': diagnostics}}
+                                          'before_over_60': sum(gap.minutes > 60 for gap in initial),
+                                          'after_over_60': sum(gap.minutes > 60 for gap in remaining_gaps),
+                                          'attempts': trials, 'candidate_count': len(all_checked),
+                                          'inserted_poi_ids': inserted, 'replacements': replaced,
+                                          'remaining': diagnostics}}
