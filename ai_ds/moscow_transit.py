@@ -29,6 +29,8 @@ def _line(tags):
         return 'mcd:' + mcd[1]
     if route in ('train', 'light_rail', 'subway') and ref in ('14', 'МЦК'):
         return 'mcc:14'
+    if route == 'bus' and ref and tags.get('electric_bus') == 'yes':
+        return 'electric_bus:' + ref
     if route in ('tram', 'bus') and ref:
         return route + ':' + ref
     return 'metro:' + ref if route == 'subway' and ref else None

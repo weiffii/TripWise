@@ -21,6 +21,8 @@ from ai_ds.route_assistant import AssistantError, InMemoryRouteStore, RouteAssis
 from ai_ds.shanghai_assistant import ShanghaiAssistantService
 
 BASE = Path(__file__).resolve().parents[1] / 'examples/routing/v02'
+CITY_CENTRE = {'lat': 55.752, 'lon': 37.620}
+DAY_RADIUS_METERS = 2400
 
 
 @lru_cache(maxsize=1)
@@ -56,12 +58,74 @@ def indexes():
     return by_id, categories, words
 
 
+def nearby_places(anchor, cells, limit, excluded=()):
+    by_id = indexes()[0]
+    lat, lon = cell(anchor)
+    occupied = set(excluded)
+    nearby_cells = sorted(cells, key=lambda grid: (max(abs(grid[0] - lat), abs(grid[1] - lon)), grid))
+    rows = set()
+    for grid in nearby_cells:
+        rows.update(set(cells[grid]) - occupied)
+        if len(rows) >= limit * 4:
+            break
+    return nsmallest(limit, rows, key=lambda key: (_distance(coordinates(by_id[key]), anchor), key))
+
+
+def geographic_days(preferences):
+    by_id, categories, _ = indexes()
+    anchors = []
+    for key in preferences.required_ids:
+        point = coordinates(by_id[key])
+        if all(_distance(point, other) >= DAY_RADIUS_METERS for other in anchors):
+            anchors.append(point)
+    if len(anchors) >= preferences.days:
+        return anchors[:preferences.days]
+    primary = preferences.primary_interests
+    secondary = preferences.secondary_interests
+    interests = [category for category in [*primary, *secondary] if category != 'cafes'] or ['cafes']
+    candidate_cells = set().union(*(categories.get(category, {}) for category in interests))
+    scores = []
+    for lat, lon in candidate_cells:
+        point = {'lat': (lat + .5) / 40, 'lon': (lon + .5) / 25}
+        distance = _distance(point, CITY_CENTRE)
+        if distance > 15_000:
+            continue
+        # Считаем доступные категории в ячейке и соседних кварталах с насыщением.
+        neighbours = [(lat + dy, lon + dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1)]
+        quality = sum((3 if category in primary else 1) * min(5, sum(
+            len(categories[category].get(grid, ())) for grid in neighbours)) for category in interests)
+        quality += min(4, len(categories.get('cafes', {}).get((lat, lon), ())))
+        scores.append((-quality, distance, lat, lon, point))
+    if preferences.days == 1 and not anchors:
+        return [CITY_CENTRE]
+    for _, _, _, _, point in sorted(scores):
+        if all(_distance(point, other) >= DAY_RADIUS_METERS * 1.35 for other in anchors):
+            anchors.append(point)
+            if len(anchors) == preferences.days:
+                break
+    return anchors or [CITY_CENTRE]
+
+
+def geographic_shortlist(preferences, anchors):
+    by_id, categories, _ = indexes()
+    selected = dict.fromkeys(preferences.required_ids)
+    interests = [category for category in (*preferences.primary_interests, *preferences.secondary_interests)
+                 if category != 'cafes']
+    for anchor in anchors:
+        for category in interests:
+            selected.update(dict.fromkeys(nearby_places(anchor, categories.get(category, {}), 1, selected)))
+        for category in interests[:max(0, 6 - len(interests))]:
+            selected.update(dict.fromkeys(nearby_places(anchor, categories.get(category, {}), 1, selected)))
+        selected.update(dict.fromkeys(nearby_places(anchor, categories.get('cafes', {}), 4, selected)))
+    return [by_id[key] for key in selected]
+
+
 def shortlist(preferences, retained=(), query='', prior_query=''):
     by_id, categories, words = indexes()
     ids = list(dict.fromkeys([*preferences.required_ids, *retained]))
     if not set(ids) <= by_id.keys():
         raise HTTPException(422, 'Место отсутствует в каталоге Москвы V7.')
-    anchors = [coordinates(by_id[key]) for key in preferences.required_ids] or [{'lat': 55.752, 'lon': 37.620}]
+    anchors = [coordinates(by_id[key]) for key in preferences.required_ids] or [CITY_CENTRE]
     def location(key):
         return min(_distance(coordinates(by_id[key]), anchor) for anchor in anchors)
     if query:
@@ -74,6 +138,21 @@ def shortlist(preferences, retained=(), query='', prior_query=''):
                 for key in candidates:
                     matches[key] += 4 if term in terms else 1
         ids.extend(sorted(matches, key=lambda key: (-matches[key], location(key), key))[:5])
+        named = sorted((key for key in retained if key in matches), key=lambda key: (-matches[key], key))
+        if named:
+            anchors = [coordinates(by_id[key]) for key in named[:3]]
+        elif retained and not preferences.required_ids:
+            anchors = [coordinates(by_id[key]) for key in retained]
+        category_words = {
+            'музе': 'museums', 'парк': 'nature', 'сад': 'nature', 'истор': 'history',
+            'кафе': 'cafes', 'рестор': 'cafes', 'необыч': 'unusual', 'смотров': 'viewpoints',
+            'магазин': 'shopping', 'театр': 'entertainment',
+        }
+        requested_categories = {category for word in terms for prefix, category in category_words.items()
+                                if word.startswith(prefix)}
+        for category in sorted(requested_categories):
+            for anchor in anchors[:5]:
+                ids.extend(nearby_places(anchor, categories.get(category, {}), 2, ids))
     interests = preferences.primary_interests + preferences.secondary_interests
     for category in interests:
         cells = categories.get(category, {})
@@ -107,14 +186,18 @@ def source_hours(raw, weekday):
     windows = []
     for rule in raw.split(';'):
         match = re.fullmatch(r'(?:(Mo|Tu|We|Th|Fr|Sa|Su)(?:-(Mo|Tu|We|Th|Fr|Sa|Su))? )?'
-                             r'((?:[01]\d|2[0-3]):[0-5]\d)-((?:[01]\d|2[0-3]):[0-5]\d|24:00)', rule.strip())
+                             r'(?:((?:[01]\d|2[0-3]):[0-5]\d)-((?:[01]\d|2[0-3]):[0-5]\d|24:00)|off)', rule.strip())
         if match is None:
             return None
         first, last, opens, closes = match.groups()
+        if first and last and WEEKDAYS.index(last) < WEEKDAYS.index(first):
+            return None
+        if opens and opens >= closes:
+            return None
         if first is None or WEEKDAYS.index(first) <= weekday <= WEEKDAYS.index(last or first):
-            if opens >= closes:
-                return None
-            windows.append((opens, '23:59' if closes == '24:00' else closes))
+            windows.append((opens, '23:59' if closes == '24:00' else closes) if opens else ())
+    if not windows:
+        return ()
     return windows[0] if len(windows) == 1 else None
 
 
@@ -122,18 +205,17 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
     if preferences.budget_currency != 'RUB':
         raise HTTPException(422, 'Для Москвы выберите бюджет в рублях.')
     pois = shortlist(preferences, retained, query, prior_query)
+    anchors = []
     if include_food:
-        by_id = {poi['id']: poi for poi in pois}
-        anchors = list(dict.fromkeys([*preferences.required_ids, *(poi['id'] for poi in pois if 'cafes' not in poi['categories'])]))
-        for anchor in anchors[:max(2, preferences.days)]:
-            search = preferences.model_copy(update={
-                'required_ids': [anchor], 'primary_interests': ['cafes'], 'secondary_interests': [],
-            })
-            nearby_food = [place for place in shortlist(search)
-                           if 'cafes' in place['categories'] and place['id'] not in by_id]
-            for place in nearby_food[:4]:
-                by_id[place['id']] = place
-        pois = list(by_id.values())
+        anchors = geographic_days(preferences)
+        if len(anchors) > 1:
+            pois = geographic_shortlist(preferences, anchors)
+        else:
+            by_id, categories, _ = indexes()
+            selected = {poi['id']: poi for poi in pois}
+            for key in nearby_places(anchors[0], categories['cafes'], 6, selected):
+                selected[key] = by_id[key]
+            pois = list(selected.values())
     mode = {'walk': 'walking', 'taxi': 'car', 'transit': 'public_transit', 'mixed': 'public_transit'}[preferences.transport]
     people = preferences.group.adult + preferences.group.child + preferences.group.senior
     amount = preferences.budget_amount * (people if preferences.budget_basis == 'per_person' else 1)
@@ -177,7 +259,7 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
             if window is None and not estimated:
                 continue
             openings.append(dict(poi_id=key, date=day, timezone=profile['timezone'],
-                                 intervals=[] if window is None else [dict(start_at=stamp(day, window[0]), end_at=stamp(day, window[1]))],
+                                 intervals=[] if not window else [dict(start_at=stamp(day, window[0]), end_at=stamp(day, window[1]))],
                                  source_id=hours['model_version'] if estimated else provenance['source_id'],
                                  retrieved_at=provenance['retrieved_at'], source_url=None if estimated else provenance['source_url']))
     context = dict(schema_version='0.2', endpoint_policy='first_last_poi', pace_policy_version='pace-policy-v0.2',
@@ -189,6 +271,9 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
     matrix = travel_matrix(pois, mode, **filters)
     if filters:
         context['moscow_transit_filters'] = filters
+    if len(anchors) > 1:
+        context['day_anchors'] = {day['date']: {**point, 'radius_m': DAY_RADIUS_METERS}
+                                  for day, point in zip(days, anchors)}
     return profile, pois, recommend(profile, pois), matrix, context
 
 
@@ -211,7 +296,9 @@ def plan_moscow(preferences):
     try:
         plan = plan_city(inputs[0], inputs[1], inputs[3], inputs[4])
     except AssistantError as error:
-        raise HTTPException(503, '????? ??????????? ??????????. ????????? ?????? Node.js.') from error
+        if error.code in {'ROUTER_RUNTIME_UNAVAILABLE', 'ROUTER_UNAVAILABLE'}:
+            raise HTTPException(503, 'Маршрутизатор недоступен. Проверьте запуск Node.js.') from error
+        raise HTTPException(422, 'Маршрутизатор не смог построить план с этими параметрами.') from error
     return plan, {'start_date': preferences.start_date.isoformat(), 'transport': preferences.transport}, plan['poi_snapshot_id']
 
 
@@ -221,6 +308,10 @@ TRANSPORTS = {'walking': 'walk', 'car': 'taxi', 'public_transit': 'transit'}
 class MoscowRouteAssistant(RouteAssistant):
     def _payload(self, state, text):
         result = super()._payload(state, text)
+        result['transport'] = TRANSPORTS[state['preferences']['transport']]
+        filters = state['routing_context'].get('moscow_transit_filters')
+        if filters:
+            result['transit_filters'] = filters
         names = {poi['id']: poi['name'] for poi in state['pois']}
         cafes = {poi['id']: poi['planning']['average_check_rub']['value'] for poi in state['pois']
                  if 'average_check_rub' in poi['planning']}
@@ -241,10 +332,26 @@ class MoscowRouteAssistant(RouteAssistant):
     def _settings(self, state, day):
         return {**super()._settings(state, day), 'transport': state['preferences']['transport'],
                 'meals': state['routing_context'].get('moscow_meals', {}).get(day, {}),
-                'transit_filters': state['routing_context'].get('moscow_transit_filters', {})}
+                'transit_filters': state['routing_context'].get('moscow_transit_filters', {}),
+                'start_hints': state['routing_context'].get('moscow_start_hints', {}).get(day, {})}
 
     def _apply(self, state, sequences, op):
         context = state['routing_context']
+        if op['op'] == 'optimize_day':
+            day, goal = op['day'], op['goal']
+            require(day in sequences, 'UNKNOWN_DAY')
+            require(goal in ('travel', 'waiting', 'walking'), 'INVALID_OPTIMIZATION_GOAL')
+            baseline = fixed_sequence(state, sequences)
+            optimized = fixed_sequence(state, sequences, optimize=op)
+            before = day_metric(baseline, day, goal)
+            require(day_metric(optimized, day, goal) < before, 'NO_ROUTE_IMPROVEMENT')
+            sequences[day] = sequences_of(optimized)[day]
+            events = next(item['events'] for item in optimized['engine_days'] if item['date'] == day)
+            context.setdefault('moscow_start_hints', {})[day] = {
+                event['poi_id']: event['start_min'] for event in events if 'poi_id' in event
+            }
+            context.setdefault('moscow_optimization_checks', {})[day] = (goal, before)
+            return
         if op['op'] == 'set_transit_preferences':
             require(not context['moscow_has_pet'], 'TRANSPORT_UNAVAILABLE')
             allowed = {'metro', 'mcc', 'mcd', 'tram', 'bus', 'electric_bus'}
@@ -252,12 +359,13 @@ class MoscowRouteAssistant(RouteAssistant):
             require(all(isinstance(value, list) and all(isinstance(mode, str) and mode in allowed for mode in value)
                         for value in values), 'TRANSPORT_UNAVAILABLE')
             avoid, required = map(set, values)
-            require(not avoid & required and (avoid or required), 'TRANSPORT_UNAVAILABLE')
+            require(not avoid & required, 'TRANSPORT_UNAVAILABLE')
             filters = {'avoid_transit': sorted(avoid), 'require_transit': sorted(required)}
             state['preferences']['transport'] = 'public_transit'
             state['travel_times'] = travel_matrix(state['pois'], 'public_transit', **filters)
             context['moscow_transit_filters'] = filters
             state['requested_transport'] = 'public_transit'
+            state['filters_only'] = True
             return
         if op['op'] == 'move_poi':
             day, key = op['day'], op['poi_id']
@@ -300,6 +408,7 @@ class MoscowRouteAssistant(RouteAssistant):
         state['travel_times'] = matrix
         context.pop('moscow_transit_filters', None)
         state['requested_transport'] = mode
+        state.pop('filters_only', None)
 
     def _candidate(self, state, sequences):
         context = deepcopy(state['routing_context'])
@@ -343,12 +452,14 @@ class MoscowRouteAssistant(RouteAssistant):
             result['moscow_transit_filters'] = filters
         if mode:
             legs = [leg for day in result['days'] for leg in day['legs']]
-            if mode == 'public_transit' and not filters.get('avoid_transit'):
+            if mode == 'public_transit' and not state.get('filters_only'):
                 require(any(leg.get('transport_steps') for leg in legs), 'TRANSPORT_UNAVAILABLE')
             elif mode != 'public_transit':
                 require(legs and all(leg['basis'] == 'routing_provider' for leg in legs), 'TRANSPORT_UNAVAILABLE')
         if context.get('moscow_meal_pins'):
             result['moscow_meal_pins'] = context['moscow_meal_pins']
+        for day, (goal, before) in context.get('moscow_optimization_checks', {}).items():
+            require(day_metric(result, day, goal) < before, 'NO_ROUTE_IMPROVEMENT')
         return result
 
 
@@ -357,10 +468,19 @@ def transit_modes(plan):
             for step in leg.get('transport_steps', []) if step['kind'] == 'rail_estimate'}
 
 
+def day_metric(plan, date, goal):
+    events = next(day['events'] for day in plan['engine_days'] if day['date'] == date)
+    if goal == 'waiting':
+        return sum(max(0, event['start_min'] - previous['end_min']) for previous, event in zip(events, events[1:]))
+    return sum(event['planned_minutes'] for event in events
+               if event['type'] == 'travel' and (goal != 'walking' or event['mode'] == 'walk'))
+
+
 def moscow_interpretation(value):
     return parse_interpretation(value, extra_operations={
         'set_transport': {'op', 'transport'}, 'move_poi': {'op', 'poi_id', 'day'},
         'set_transit_preferences': {'op', 'avoid', 'require'},
+        'optimize_day': {'op', 'day', 'goal'},
     })
 
 
@@ -371,7 +491,10 @@ class MoscowAssistant(ShanghaiAssistantService):
             'op, transport (walking|car|public_transit). Для явного запрета или включения отдельных '
             'видов транспорта используй set_transit_preferences: op, avoid, require. '
             'Два массива содержат значения metro, mcc, mcd, tram, bus, electric_bus. '
-            'Для переноса уже запланированного места между днями используй move_poi: op, poi_id, day (YYYY-MM-DD).')
+            'Поля transport и transit_filters описывают текущий выбор. Чтобы снять фильтры, передай два пустых массива. '
+            'Для переноса уже запланированного места между днями используй move_poi: op, poi_id, day (YYYY-MM-DD). '
+            'Для сокращения дороги, ожидания или пеших переходов в указанном дне используй optimize_day: '
+            'op, day (YYYY-MM-DD), goal (travel|waiting|walking).')
         prompt += ('\nprice_rub — ориентировочный чек одного человека. Для явной просьбы убрать '
                    'заведение дороже указанного порога удаляй подходящие по оценке запланированные '
                    'необязательные заведения. Если порог неоднозначен, уточни его.')
@@ -439,6 +562,13 @@ class MoscowAssistant(ShanghaiAssistantService):
                                    for key in diff[first][day] if key not in diff[second][day]]
             changes['before_cost'] = route['budget_summary']['known_total']
             changes['after_cost'] = result['candidate_route']['budget_summary']['known_total']
+            if route.get('engine_days'):
+                changes['optimization'] = [
+                    {'day': op['day'], 'goal': op['goal'],
+                     'before': day_metric(route, op['day'], op['goal']),
+                     'after': day_metric(result['candidate_route'], op['day'], op['goal'])}
+                    for op in result['operations'] if op['op'] == 'optimize_day'
+                ]
             move = next((op['transport'] for op in reversed(result['operations']) if op['op'] == 'set_transport'), None)
             if result['candidate_route'].get('moscow_transit_filters'):
                 move = 'public_transit'

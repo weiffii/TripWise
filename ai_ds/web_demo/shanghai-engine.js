@@ -301,6 +301,18 @@ function legacyPlanTrip(dataset,options){
    transport legs later emitted to the UI. No DB mutation and no network calls. */
 function planTrip(dataset,options){
  const x=normalize(dataset,options),required=new Set(x.required),slots=mealSlots(x),cafesOnly=x.interests.every(c=>c==='cafes'),cost=new Map(),available=new Map(),durations=new Map();
+ const anchors=x.days.map(date=>{const anchor=dataset.day_anchors?.[date];
+  return anchor&&Number.isFinite(anchor.lat)&&Math.abs(anchor.lat)<=90&&Number.isFinite(anchor.lon)&&Math.abs(anchor.lon)<=180&&Number.isFinite(anchor.radius_m)&&anchor.radius_m>0
+   ?{...anchor,id:'@day-anchor:'+date}:null;});
+ const anchored=anchors.some(Boolean),anchorDistances=anchors.map(()=>new Map());
+ function anchorPenalty(p,day){
+  const anchor=anchors[day];if(!anchor)return 0;
+  const cache=anchorDistances[day];if(!cache.has(p.id)){
+   const radial=distance(anchor,p)/Math.max(250,anchor.radius_m);
+   cache.set(p.id,Math.min(400,Math.min(1,radial)*55+Math.max(0,radial-1)*150));
+  }return cache.get(p.id);
+ }
+ const waitingPenalty=minutes=>Math.min(180,Math.max(0,minutes-45));
  const MAX_EVALUATIONS=6000,metrics={evaluations:0,evaluation_limit:MAX_EVALUATIONS,search_limited:false,transport_calls:0,transport_cache_hits:0,food_candidates:0};
  for(const p of x.pois){cost.set(p.id,groupPrice(p,x.group));durations.set(p.id,p.kind==='restaurant'?Math.max(50,Math.min(60,p.duration_minutes||50)):duration(p,x.pace));available.set(p.id,x.days.map(date=>flags(p,date)));}
  const allowed=p=>suitable(p,x.group)&&Number.isFinite(cost.get(p.id))&&cost.get(p.id)>=0;
@@ -321,7 +333,14 @@ function planTrip(dataset,options){
  // Reserve alternatives per category and district; quality alone cannot fill the
  // whole shortlist with one distant district, nor replace interest relevance.
  const cells=new Map();for(const p of matching){const key=Math.floor(p.lat/.025)+':'+Math.floor(p.lon/.025);if(!cells.has(key))cells.set(key,[]);cells.get(key).push(p);}
- for(const c of x.primary.concat(x.secondary).filter(c=>c!=='cafes'||cafesOnly))matching.filter(p=>p.categories.includes(c)).slice(0,Math.max(4,x.days.length*3)).forEach(include);
+ const attractionCategories=x.primary.concat(x.secondary).filter(c=>c!=='cafes'||cafesOnly);
+ if(anchored)for(const category of attractionCategories)include(matching.find(p=>p.categories.includes(category)));
+ if(anchored)for(let day=0;day<anchors.length;day++){
+  if(!anchors[day])continue;
+  matching.filter(p=>available.get(p.id)[day].available)
+   .sort((a,b)=>anchorPenalty(a,day)-anchorPenalty(b,day)||utility(b)-utility(a)||a.id.localeCompare(b.id)).slice(0,6).forEach(include);
+ }
+ for(const c of attractionCategories)matching.filter(p=>p.categories.includes(c)).slice(0,Math.max(4,x.days.length*3)).forEach(include);
  for(const list of [...cells.values()].sort((a,b)=>utility(b[0])-utility(a[0])).slice(0,20))list.slice(0,1).forEach(include);
  matching.slice(0,Math.max(24,x.days.length*12)).forEach(include);
  const shortlist=candidates.slice(0,Math.max(x.required.length,Math.min(96,24+x.days.length*12)));
@@ -350,6 +369,38 @@ function planTrip(dataset,options){
  }
  const insertionProxy=(seq,p,pos)=>proxy(seq[pos-1],p)+proxy(p,seq[pos])-proxy(seq[pos-1],seq[pos]);
  const sequenceProxy=seq=>sum(seq.slice(1).map((p,i)=>proxy(seq[i],p)));
+ function compactScheduleWaits(events,day){
+  if(!dataset.compact_waits||!staticLegs)return;
+  for(let i=1;i<events.length;i++){
+   const gap=events[i].start_min-events[i-1].end_min;if(gap<=60)continue;
+   let shift=gap-45;
+   for(let j=0;j<i;j++){
+    const event=events[j];if(!event.poi_id)continue;
+    shift=Math.min(shift,available.get(event.poi_id)[day].close-event.end_min);
+    const slot=slots.find(item=>item.kind===event.meal_kind);
+    if(slot)shift=Math.min(shift,slot.latest-event.start_min);
+   }
+   for(const [before,after,minimum] of [['breakfast','lunch',150],['lunch','dinner',180]]){
+    const first=events.findIndex(event=>event.meal_kind===before),next=events.findIndex(event=>event.meal_kind===after);
+    if(first>=0&&first<i&&next>=i)shift=Math.min(shift,events[next].start_min-events[first].end_min-minimum);
+   }
+   if(shift<=0)continue;
+   for(let j=0;j<i;j++){events[j].start_min+=shift;events[j].end_min+=shift;}
+  }
+  for(let i=0;i<events.length;i++){
+   const gap=i?events[i].start_min-events[i-1].end_min:0;
+   if(gap>0)events[i].wait_before_min=gap;
+   else{delete events[i].wait_before_min;delete events[i].waiting_reason;}
+  }
+ }
+ function forecastWaiting(sequence,day){
+  let time=x.start,previous=null,wait=0;
+  for(const p of sequence){
+   const arrival=time+proxy(previous,p),opens=available.get(p.id)[day].open;
+   wait+=waitingPenalty(opens-arrival);
+   time=Math.max(opens,arrival)+durations.get(p.id);previous=p;
+  }return wait;
+ }
  function scheduleAttempt(sequence,day,otherPlans=[],pendingRequired=[],skipMeals=false){if(metrics.evaluations>=MAX_EVALUATIONS){metrics.search_limited=true;return null;}metrics.evaluations++;let now=x.start,position=null,spent=0,slotIndex=0,missed=0;const events=[],used=new Set(otherPlans.flatMap(p=>p.meal_ids)),otherCost=sumCost(otherPlans),meal_ids=[],visit_ids=[];
   const requiredReserve=sum(pendingRequired.filter(id=>!sequence.some(p=>p.id===id)).map(id=>cost.get(id)||0));
   const futureFood=sequence.some(p=>required.has(p.id))||pendingRequired.length?0:Math.max(0,x.days.length-1-otherPlans.length)*slots.length*minFood;
@@ -358,7 +409,7 @@ function planTrip(dataset,options){
   function add(p,type,travel,start,kind){const d=durations.get(p.id);const depart=start-travel.planned_minutes,gap=Math.max(0,depart-now),opening=available.get(p.id)[day].open;const wait=gap?{wait_before_min:gap,waiting_reason:opening>=start?'Ожидание открытия «'+p.name+'» по указанным часам.':type==='meal'?'Ожидание допустимого времени '+(kind==='lunch'?'обеда и интервала 150 минут после завтрака':kind==='dinner'?'ужина и интервала 180 минут после обеда':'приёма пищи')+'.':'Ожидание открытия следующего места; отправление отложено на время подхода.'}:{};if(travel.planned_minutes)events.push({type:'travel',from_poi_id:position.id,to_poi_id:p.id,start_min:depart,end_min:start,...travel,...wait});
    const e={type,poi_id:p.id,start_min:start,end_min:start+d,price_cny:cost.get(p.id),matched_interests:x.interests.filter(c=>p.categories.includes(c)),reason:type==='meal'?'Питание по минимальному дополнительному времени вдоль маршрута.':(required.has(p.id)?'Обязательное место. ':'')+(p.categories.some(c=>x.primary.includes(c))?'Главный интерес. ':'Дополнительный интерес. ')+'Проверены часы, группа, бюджет и переход.',...(!travel.planned_minutes?wait:{})};if(kind)e.meal_kind=kind;events.push(e);now=e.end_min;spent+=cost.get(p.id)+travel.transport_cost_cny;position=p;used.add(p.id);(type==='meal'?meal_ids:visit_ids).push(p.id);
   }
-  function meal(slot,next){if(skipMeals)return false;const anchor=position||next||shortlist[0]||food[0];if(!anchor)return false;const pool=unique(nearby(anchor).concat(next?nearby(next):[])),picks=[];const remainingMeals=(slots.length-slotIndex-1)*minFood;
+  function meal(slot,next){if(skipMeals)return false;const anchor=position||next||shortlist[0]||food[0];if(!anchor)return false;const pool=unique(nearby(anchor).concat(next?nearby(next):[],anchors[day]?nearby(anchors[day]):[])),picks=[];const remainingMeals=(slots.length-slotIndex-1)*minFood;
    const remainingTickets=sum(sequence.filter(p=>!used.has(p.id)).map(p=>cost.get(p.id)));
    const prospective=pool.filter(p=>!used.has(p.id)&&!required.has(p.id)&&!sequence.some(z=>z.id===p.id)&&available.get(p.id)[day].available&&cost.get(p.id)+remainingTickets+remainingMeals<=left()+1e-7).sort((a,b)=>{const d=p=>(position?distance(position,p):0)+(next?distance(p,next):0);return d(a)-d(b)||cost.get(a.id)-cost.get(b.id)||a.id.localeCompare(b.id);}).slice(0,24);
    for(let candidateIndex=0;candidateIndex<prospective.length;candidateIndex++){if(candidateIndex>=8&&picks.length)break;const p=prospective[candidateIndex];metrics.food_candidates++;const f=available.get(p.id)[day];const allowance=left()-cost.get(p.id)-remainingTickets-remainingMeals;
@@ -374,7 +425,7 @@ function planTrip(dataset,options){
     // No hard river ban: a genuine routed bridge may win. An expensive detour
     // cannot win on synthetic stars; food is subordinate to the attractions.
     if(detour>45)continue;
-    picks.push({p,t,start,score:detour*12+Math.abs(start-slot.target)*.04+cost.get(p.id)*.08-(p.rating||0)*2-Math.min(2,Math.log2(1+(p.review_count||0))*.1)});
+    picks.push({p,t,start,score:detour*12+Math.abs(start-slot.target)*.04+cost.get(p.id)*.08-(p.rating||0)*2-Math.min(2,Math.log2(1+(p.review_count||0))*.1)+(anchored?anchorPenalty(p,day)*.22+waitingPenalty(start-now-t.planned_minutes)*.45:0)});
    }
    picks.sort((a,b)=>a.score-b.score||a.p.id.localeCompare(b.p.id));if(!picks.length)return false;const best=picks[0];add(best.p,'meal',best.t,best.start,slot.kind);return true;
   }
@@ -393,18 +444,31 @@ function planTrip(dataset,options){
   }
   while(slotIndex<slots.length){if(!meal(slots[slotIndex],null))missed++;slotIndex++;}
   if(spent+otherCost>x.budget+1e-7)return null;
-  const crossings=events.filter(e=>e.type==='travel'&&x.byId.get(e.from_poi_id)?.river_bank&&x.byId.get(e.to_poi_id)?.river_bank&&x.byId.get(e.from_poi_id).river_bank!==x.byId.get(e.to_poi_id).river_bank).length;return {date:x.days[day],sequence,events,visit_ids,meal_ids,cost:round(spent),missed,travel:sum(events.filter(e=>e.type==='travel').map(e=>e.planned_minutes)),idle:sum(events.map(e=>e.wait_before_min||0)),crossings};
+  compactScheduleWaits(events,day);
+  const crossings=events.filter(e=>e.type==='travel'&&x.byId.get(e.from_poi_id)?.river_bank&&x.byId.get(e.to_poi_id)?.river_bank&&x.byId.get(e.from_poi_id).river_bank!==x.byId.get(e.to_poi_id).river_bank).length;
+  let preferencePenalty=0;
+  if(anchored){
+   const stops=events.filter(e=>e.poi_id).map(e=>x.byId.get(e.poi_id));
+   for(let i=2;i<stops.length;i++){
+    const [a,b,c]=[stops[i-2],stops[i-1],stops[i]];
+    preferencePenalty+=Math.min(65,Math.max(0,(distance(a,b)+distance(b,c)-distance(a,c))/90));
+   }
+   preferencePenalty+=sum(sequence.map(p=>anchorPenalty(p,day)))+sum(meal_ids.map(id=>anchorPenalty(x.byId.get(id),day)))*.22;
+   preferencePenalty+=sum(events.map(e=>waitingPenalty(e.wait_before_min||0)))*2.5;
+   if(anchors[day]&&sequence.length)preferencePenalty-=190;
+  }
+  return {date:x.days[day],sequence,events,visit_ids,meal_ids,cost:round(spent),missed,travel:sum(events.filter(e=>e.type==='travel').map(e=>e.planned_minutes)),idle:sum(events.map(e=>e.wait_before_min||0)),crossings,preferencePenalty};
  }
  function schedule(sequence,day,otherPlans=[],pendingRequired=[]){return scheduleAttempt(sequence,day,otherPlans,pendingRequired)||scheduleAttempt(sequence,day,otherPlans,pendingRequired,true);}
  const blank=day=>({date:x.days[day],sequence:[],events:[],visit_ids:[],meal_ids:[],cost:0,missed:slots.length,travel:0});
- const score=plans=>{const visited=plans.flatMap(p=>p.sequence),covered=new Set(visited.flatMap(p=>p.categories));return visited.filter(p=>required.has(p.id)).length*1e7-plans.reduce((s,p)=>s+p.missed,0)*20000+x.primary.filter(c=>c!=='cafes'&&covered.has(c)).length*12000+x.secondary.filter(c=>c!=='cafes'&&covered.has(c)).length*3000+sum(visited.map(utility))-sum(plans.map(p=>p.travel))*9-sum(plans.map(p=>p.sequence.length*p.sequence.length))*65-sum(plans.map(p=>p.idle||0))*.5-sum(plans.map(p=>p.crossings||0))*.1;};
+ const score=plans=>{const visited=plans.flatMap(p=>p.sequence),covered=new Set(visited.flatMap(p=>p.categories));return visited.filter(p=>required.has(p.id)).length*1e7-plans.reduce((s,p)=>s+p.missed,0)*20000+x.primary.filter(c=>c!=='cafes'&&covered.has(c)).length*12000+x.secondary.filter(c=>c!=='cafes'&&covered.has(c)).length*3000+sum(visited.map(utility))-sum(plans.map(p=>p.travel))*9-sum(plans.map(p=>p.sequence.length*p.sequence.length))*65-sum(plans.map(p=>p.idle||0))*.5-sum(plans.map(p=>p.crossings||0))*.1-sum(plans.map(p=>p.preferencePenalty||0));};
  function insertions(plans,p,pending){const results=[];let dayOrder=x.days.map((_,i)=>i);if(!required.has(p.id)&&dayOrder.length>3)dayOrder.sort((a,b)=>{const proxy=i=>plans[i].sequence.length*1200+(plans[i].sequence.length?Math.min(...plans[i].sequence.map(z=>distance(z,p))):0);return proxy(a)-proxy(b)||a-b;}).splice(3);
   for(const day of dayOrder){if(!available.get(p.id)?.[day]?.available)continue;const old=plans[day],other=plans.filter((_,i)=>i!==day);let positions=Array.from({length:old.sequence.length+1},(_,i)=>i);
    if(!required.has(p.id)&&positions.length>4)positions.sort((a,b)=>{const detour=i=>(i?distance(old.sequence[i-1],p):0)+(i<old.sequence.length?distance(p,old.sequence[i]):0)-(i&&i<old.sequence.length?distance(old.sequence[i-1],old.sequence[i]):0);return detour(a)-detour(b)||a-b;}).splice(4);
    for(const pos of positions){const seq=old.sequence.slice();seq.splice(pos,0,p);const candidate=schedule(seq,day,other,pending);if(candidate){const moved=plans.slice();moved[day]=candidate;results.push(moved);}}
   }return results;
  }
- function optionalMoves(plans,p,coverage){const out=[];for(let day=0;day<plans.length;day++){if(!available.get(p.id)?.[day]?.available)continue;const seq=plans[day].sequence;for(let pos=0;pos<=seq.length;pos++){const detour=insertionProxy(seq,p,pos),emptyBonus=seq.length?0:plans[day].missed*20000;out.push({p,day,pos,priority:utility(p)+coverage*2000+emptyBonus-detour*9-65*(2*seq.length+1)});}}return out;}
+ function optionalMoves(plans,p,coverage){const out=[];for(let day=0;day<plans.length;day++){if(!available.get(p.id)?.[day]?.available)continue;const seq=plans[day].sequence;for(let pos=0;pos<=seq.length;pos++){const detour=insertionProxy(seq,p,pos),emptyBonus=seq.length?0:plans[day].missed*20000+(anchors[day]?190:0);out.push({p,day,pos,priority:utility(p)+coverage*2000+emptyBonus-detour*9-65*(2*seq.length+1)-anchorPenalty(p,day)});}}return out;}
  function applyMove(plans,move){const seq=plans[move.day].sequence.slice();seq.splice(move.pos,0,move.p);const candidate=schedule(seq,move.day,plans.filter((_,i)=>i!==move.day),[]);if(!candidate)return null;const moved=plans.slice();moved[move.day]=candidate;return moved;}
  let beam=[x.days.map((_,i)=>blank(i))];const mandatory=shortlist.filter(p=>required.has(p.id));
  // Protect mandatory objects before any optional visits. Keeping alternative
@@ -417,7 +481,9 @@ function planTrip(dataset,options){
  // insertions and chooses the best whole-trip move, rather than filling day 1.
  for(let roundIndex=0;roundIndex<40&&!metrics.search_limited;roundIndex++){let best=null,bestValue=value;
   const uncovered=x.primary.concat(x.secondary).filter(c=>c!=='cafes'&&!plans.some(d=>d.sequence.some(p=>p.categories.includes(c))));
-  const choices=optional.filter(p=>!selected.has(p.id)).map(p=>{const nearest=selected.size?Math.min(...plans.flatMap(d=>d.sequence).map(a=>distance(a,p))):0;return {p,priority:utility(p)+uncovered.filter(c=>p.categories.includes(c)).length*2000-nearest*.025};}).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)).slice(0,8);
+  const choices=optional.filter(p=>!selected.has(p.id)).map(p=>{const nearest=selected.size?Math.min(...plans.flatMap(d=>d.sequence).map(a=>distance(a,p))):0;
+   const geographic=anchored?Math.min(...x.days.map((_,i)=>available.get(p.id)[i].available?anchorPenalty(p,i)-(anchors[i]&&!plans[i].sequence.length?190:0):400)):nearest*.025;
+   return {p,priority:utility(p)+uncovered.filter(c=>p.categories.includes(c)).length*2000-geographic};}).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)).slice(0,8);
   const moves=choices.flatMap(({p})=>optionalMoves(plans,p,uncovered.filter(c=>p.categories.includes(c)).length)).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)||a.day-b.day||a.pos-b.pos);
   // Cheap proxy ranks proposals, never accepts them. Expand the exact schedule
   // neighborhood only if the first block yields no improving feasible move.
@@ -426,10 +492,10 @@ function planTrip(dataset,options){
  }
  // Bounded relocate/2-opt: accept only fully revalidated schedules and a strict
  // whole-trip objective improvement. Mandatory membership cannot change.
- for(let pass=0;pass<2;pass++){let best=null,bestValue=value;const moves=[];for(let day=0;day<plans.length;day++){const seq=plans[day].sequence,before=sequenceProxy(seq);for(let i=0;i<seq.length-1;i++)for(let j=i+1;j<seq.length;j++){const revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),saving=before-sequenceProxy(revised);moves.push({day,i,j,saving});}}
+ for(let pass=0;pass<2;pass++){let best=null,bestValue=value;const moves=[];for(let day=0;day<plans.length;day++){const seq=plans[day].sequence,before=sequenceProxy(seq),wait=anchored?forecastWaiting(seq,day):0;for(let i=0;i<seq.length-1;i++)for(let j=i+1;j<seq.length;j++){const revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),saving=before-sequenceProxy(revised)+(anchored?(wait-forecastWaiting(revised,day))*.3:0);moves.push({day,i,j,saving});}}
   moves.sort((a,b)=>b.saving-a.saving||a.day-b.day||a.i-b.i||a.j-b.j);for(const move of moves.slice(0,12)){const {day,i,j}=move,seq=plans[day].sequence,revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),candidate=schedule(revised,day,plans.filter((_,k)=>k!==day),[]);if(!candidate)continue;const moved=plans.slice();moved[day]=candidate;const v=score(moved);if(v>bestValue+.0001){best=moved;bestValue=v;}}if(!best)break;plans=best;value=bestValue;
  }
- if(plans.length>1){let best=null,bestValue=value;const moves=[];for(let from=0;from<plans.length;from++){const seq=plans[from].sequence;for(let index=0;index<seq.length;index++){const p=seq[index];if(required.has(p.id))continue;const removed=insertionProxy(seq.filter(z=>z!==p),p,index);for(let day=0;day<plans.length;day++){if(day===from||!available.get(p.id)[day].available)continue;for(let pos=0;pos<=plans[day].sequence.length;pos++){const saving=(removed-insertionProxy(plans[day].sequence,p,pos))*9+130*(seq.length-plans[day].sequence.length-1);moves.push({p,from,day,pos,saving});}}}}
+ if(plans.length>1){let best=null,bestValue=value;const moves=[];for(let from=0;from<plans.length;from++){const seq=plans[from].sequence;for(let index=0;index<seq.length;index++){const p=seq[index];if(required.has(p.id))continue;const removed=insertionProxy(seq.filter(z=>z!==p),p,index);for(let day=0;day<plans.length;day++){if(day===from||!available.get(p.id)[day].available)continue;for(let pos=0;pos<=plans[day].sequence.length;pos++){const saving=(removed-insertionProxy(plans[day].sequence,p,pos))*9+130*(seq.length-plans[day].sequence.length-1)+anchorPenalty(p,from)-anchorPenalty(p,day);moves.push({p,from,day,pos,saving});}}}}
   moves.sort((a,b)=>b.saving-a.saving||a.p.id.localeCompare(b.p.id)||a.day-b.day||a.pos-b.pos);for(const move of moves.slice(0,8)){const reduced=schedule(plans[move.from].sequence.filter(z=>z.id!==move.p.id),move.from,plans.filter((_,i)=>i!==move.from),[]);if(!reduced)continue;const base=plans.slice();base[move.from]=reduced;const candidate=applyMove(base,move);if(!candidate)continue;const v=score(candidate);if(v>bestValue+.0001){best=candidate;bestValue=v;}}if(best){plans=best;value=bestValue;}
  }
  for(let i=0;i<plans.length;i++)if(!plans[i].sequence.length)plans[i]=schedule([],i,plans.filter((_,j)=>j!==i),[])||plans[i];

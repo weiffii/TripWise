@@ -136,6 +136,25 @@ def _minimal_context(payload, *, rich_context=False):
         raise OpenRouterError('LLM_INVALID_CONTEXT')
     safe['required_poi_ids'] = list(required)
     if rich_context:
+        if 'transport' in payload:
+            transport = payload['transport']
+            if transport not in ('walk', 'taxi', 'transit', 'mixed'):
+                raise OpenRouterError('LLM_INVALID_CONTEXT')
+            safe['transport'] = transport
+        if 'transit_filters' in payload:
+            filters = payload['transit_filters']
+            filter_keys = ('avoid_transit', 'require_transit')
+            modes = ('metro', 'mcc', 'mcd', 'tram', 'bus', 'electric_bus')
+            if not isinstance(filters, dict):
+                raise OpenRouterError('LLM_INVALID_CONTEXT')
+            safe['transit_filters'] = {}
+            for key in filter_keys:
+                if key not in filters:
+                    continue
+                selected = filters[key]
+                if not isinstance(selected, list) or len(selected) > len(modes) or any(mode not in modes for mode in selected):
+                    raise OpenRouterError('LLM_INVALID_CONTEXT')
+                safe['transit_filters'][key] = list(selected)
         history = payload.get('conversation', [])
         if not isinstance(history, list) or len(history) > 12:
             raise OpenRouterError('LLM_INVALID_CONTEXT')

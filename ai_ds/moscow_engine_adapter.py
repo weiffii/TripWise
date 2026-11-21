@@ -70,7 +70,10 @@ def engine_input(profile, pois, matrix, context):
                'pace': profile['pace'], 'transport': mode, 'group': group,
                'primary_interests': profile['primary_interests'], 'secondary_interests': profile['secondary_interests'],
                'required_ids': profile['required_poi_ids'], 'budget_cny': profile['budget']['amount']}
-    return {'pois': catalog, 'leg_profiles': profiles, 'currency': 'RUB'}, options, rows
+    dataset = {'pois': catalog, 'leg_profiles': profiles, 'currency': 'RUB', 'compact_waits': True}
+    if context.get('day_anchors'):
+        dataset['day_anchors'] = context['day_anchors']
+    return dataset, options, rows
 
 
 def saved_plan(native, context, rows, pace):
@@ -78,9 +81,9 @@ def saved_plan(native, context, rows, pace):
     for day in native['days']:
         date = day['date']
         visits, legs, breaks = [], [], []
-        for event in day['events']:
+        for index, event in enumerate(day['events']):
             start, end = (timestamp(date, event[f'{kind}_min']) for kind in ('start', 'end'))
-            if event.get('wait_before_min'):
+            if index and event.get('wait_before_min'):
                 breaks.append({'kind': 'waiting', 'start_at': timestamp(date, event['start_min'] - event['wait_before_min']),
                                'end_at': start})
             if event['type'] == 'travel':
@@ -102,6 +105,7 @@ def saved_plan(native, context, rows, pace):
             'status': 'infeasible' if native['status'] == 'infeasible' else 'unknown',
             'poi_snapshot_id': context['poi_snapshot_id'], 'days': days,
             'unplaced_required_poi_ids': native.get('unplaced_required_ids', []),
+            'uncovered_interests': native.get('uncovered_interests', []),
             'budget_summary': {'currency': 'RUB', 'known_total': native['summary']['total_cost_cny'], 'status': 'unknown'},
             'constraint_checks': checks, 'native_checks': native.get('checks', {}),
             'moscow_meals': meals, 'warnings': native.get('warnings', []),
@@ -114,7 +118,7 @@ def plan_city(profile, pois, matrix, context):
     return saved_plan(native, context, rows, profile['pace'])
 
 
-def fixed_sequence(state, sequences):
+def fixed_sequence(state, sequences, *, optimize=None):
     profile, context, pois = (state[key] for key in ('preferences', 'routing_context', 'pois'))
     dataset, options, rows = engine_input(profile, pois, state['travel_times'],
         {**context, 'opening_intervals': context.get('moscow_original_hours', context['opening_intervals'])})
@@ -133,13 +137,17 @@ def fixed_sequence(state, sequences):
             entry = {'poi_id': key}
             if key in by_poi:
                 entry['meal_kind'] = by_poi[key]
-            if key in old_visits:
+            hint = context.get('moscow_start_hints', {}).get(date, {}).get(key)
+            if hint is not None:
+                entry['start_min'] = hint
+            elif key in old_visits:
                 hour, minute = map(int, clock(old_visits[key]['start_at']).split(':'))
                 entry['start_min'] = hour * 60 + minute
             entries[date].append(entry)
         base_days.append(originals.get(date, {'date': date, 'events': []}))
         old_meals = state['route'].get('moscow_meals', {}).get(date, {})
-        if (date not in originals or list(old_visits) != sequences[date] or meals != old_meals
+        if (date not in originals or date in context.get('moscow_start_hints', {})
+                or list(old_visits) != sequences[date] or meals != old_meals
                 or settings.get(date, {}).get('pace', profile['pace']) != day.get('pace')
                 or state.get('requested_transport')):
             changed_days.append(date)
@@ -150,7 +158,11 @@ def fixed_sequence(state, sequences):
             'meal_times': {day: meal_times[day] for day in changed_days if meal_times[day]}}
     options['day_settings'] = settings
     options['meal_times'] = meal_times
-    result = saved_plan(bridge_call(args)['plan'], context, rows, profile['pace'])
+    scheduled = bridge_call(args)
+    if optimize:
+        scheduled = bridge_call({'action': 'edit', 'dataset': dataset, 'options': scheduled['options'],
+                                 'base_plan': scheduled['plan'], 'operations': [optimize]})
+    result = saved_plan(scheduled['plan'], context, rows, profile['pace'])
     for day in result['days']:
         day['pace'] = context.get('day_pace_overrides', {}).get(day['date'], profile['pace'])
     return result

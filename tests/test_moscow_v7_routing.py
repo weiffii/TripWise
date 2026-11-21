@@ -1,4 +1,5 @@
 from pathlib import Path
+from itertools import combinations
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
@@ -17,6 +18,39 @@ ESTIMATES = {mode: {'meters_per_second': 10, 'wait_seconds': 120} for mode in ('
 
 
 class MoscowV7RoutingTests(unittest.TestCase):
+    def test_moscow_days_cover_different_areas_with_short_waits(self):
+        from ai_ds.moscow_road import coordinates
+        from ai_ds.moscow_transit import _distance
+        from backend.moscow import indexes, plan_moscow
+        from backend.shanghai import MoscowPreferences
+
+        prefs = MoscowPreferences(
+            city='moscow', timezone='Europe/Moscow', start_date='2026-11-21', days=5,
+            day_start='09:00', day_end='20:00', pace='balanced', transport='walk',
+            group=dict(adult=1, child=0, senior=0, pet=0), primary_interests=['museums', 'nature'],
+            secondary_interests=['history', 'cafes', 'viewpoints', 'unusual'], required_ids=[],
+            budget_amount=30000, budget_currency='RUB', budget_basis='per_group',
+        )
+        with patch.dict('os.environ', {'MOSCOW_OSRM_FOOT': ''}):
+            plan, _, _ = plan_moscow(prefs)
+        centers = []
+        for day in plan['engine_days']:
+            events = day['events']
+            points = [coordinates(indexes()[0][row['poi_id']]) for row in events if row['type'] == 'visit']
+            self.assertTrue(points)
+            centers.append({key: sum(point[key] for point in points) / len(points) for key in ('lat', 'lon')})
+            self.assertTrue(all(0 <= right['start_min'] - left['end_min'] <= 60 for left, right in zip(events, events[1:])))
+        self.assertTrue(all(_distance(a, b) > 2000 for a, b in combinations(centers, 2)))
+        self.assertEqual(plan['uncovered_interests'], [])
+
+    def test_simple_osm_hours_distinguish_closed_and_unknown(self):
+        from backend.moscow import source_hours
+
+        self.assertEqual(source_hours('Mo-Fr 10:00-18:00', 5), ())
+        self.assertEqual(source_hours('Mo off; Tu-Su 10:00-18:00', 0), ())
+        self.assertEqual(source_hours('Mo off; Tu-Su 10:00-18:00', 1), ('10:00', '18:00'))
+        self.assertIsNone(source_hours('PH 10:00-14:00', 0))
+
     def test_mock_interpreter_confirms_real_mcc_after_walking_plan(self):
         from ai_ds.multiday import schedule_sequences
         from backend.moscow import MoscowAssistant, moscow_inputs, transit_modes
