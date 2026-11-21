@@ -81,8 +81,21 @@ class MoscowGapIndex:
                 self.tiles[category][grid].append(poi['id'])
 
     def candidates(self, gap, profile, context, used, budget_left, *, radii=(600, 1200, 2400),
-                   limit=WINDOW_CANDIDATES, stats=None, checked=None):
+                   limit=WINDOW_CANDIDATES, stats=None, checked=None, allow_any_categories=False):
         interests = list(dict.fromkeys(profile['primary_interests'] + profile['secondary_interests']))
+        people = max(1, sum(context.get('moscow_group', {}).get(k, 0) for k in ('adult', 'child', 'senior')))
+        total_budget = profile.get('budget', {}).get('amount')
+        day_count = max(1, len(context.get('days', [])))
+        constrained = _number(total_budget) and total_budget / people / day_count < 4000
+        if allow_any_categories:
+            # An explicit request for "any categories" must not silently fall
+            # back to the original narrow interest shortlist.
+            interests.extend(c for c in ('museums', 'history', 'nature', 'entertainment',
+                                         'shopping', 'viewpoints', 'unusual') if c not in interests)
+        if constrained:
+            # A free nearby park is a legitimate gap repair even if the primary
+            # interest (for example theatre tickets) exceeds the trip budget.
+            interests.extend(c for c in ('nature', 'history', 'viewpoints', 'unusual') if c not in interests)
         points = [coordinates(self.by_id[key]) for key in (gap.previous, gap.following) if key in self.by_id]
         anchor = context.get('day_anchors', {}).get(gap.day)
         if not points:
@@ -138,8 +151,11 @@ class MoscowGapIndex:
                 categories = set(poi['categories'])
                 detour = sum(distances[:2]) if len(points) > 2 else distances[0]
                 sources = poi.get('catalog_signals', {})
-                score = (-len(primary & categories), round(detour / 200), -sum(bool(value) for value in sources.values()),
-                         abs(gap.minutes - minimum - detour / 75), price, key)
+                score = ((price * people, -len(primary & categories), round(detour / 200),
+                          abs(gap.minutes - minimum - detour / 75), key) if constrained else
+                         (-len(primary & categories), round(detour / 200),
+                          -sum(bool(value) for value in sources.values()),
+                          abs(gap.minutes - minimum - detour / 75), price, key))
                 candidates[key] = (score, minimum, is_food)
             if len(candidates) >= limit:
                 break
@@ -368,9 +384,13 @@ def _try_schedule(state, current, context, trial, gap, profile, *, reflow=False)
     return {**current, **changed, 'ranking': current.get('ranking', [])}, None
 
 
-def repair_gaps(plan, profile, context, index, make_state):
+def repair_gaps(plan, profile, context, index, make_state, *, only_days=None,
+                max_schedule_trials=MAX_SCHEDULE_TRIALS, max_searched_windows=MAX_SEARCHED_WINDOWS,
+                allow_any_categories=False):
     """Расширяет список только возле окон и проверяет вставки тем же JS-движком."""
-    initial = route_gaps(plan, context)
+    selected_days = None if only_days is None else frozenset(only_days)
+    initial = [gap for gap in route_gaps(plan, context)
+               if selected_days is None or gap.day in selected_days]
     visited, rejected = set(), {}
     current, trials, searched, inserted = plan, 0, 0, []
     replaced = []
@@ -381,8 +401,9 @@ def repair_gaps(plan, profile, context, index, make_state):
     def state_for(ids):
         return make_state(list(ids))
 
-    while trials < MAX_SCHEDULE_TRIALS and searched < MAX_SEARCHED_WINDOWS:
-        options = sorted((gap for gap in route_gaps(current, context) if gap not in visited and
+    while trials < max_schedule_trials and searched < max_searched_windows:
+        options = sorted((gap for gap in route_gaps(current, context)
+                          if (selected_days is None or gap.day in selected_days) and gap not in visited and
                           gap.minutes > (LONG_GAP if gap.kind == 'internal' else EDGE_GAP)),
                          key=lambda gap: (gap.kind != 'internal', -gap.minutes, gap.day, gap.start))
         if not options:
@@ -415,7 +436,8 @@ def repair_gaps(plan, profile, context, index, make_state):
         replacement_batch = None
         for radius in SEARCH_RADII:
             candidates, _ = index.candidates(gap, profile, active_context, used | tested, remaining,
-                                             radii=(radius,), limit=width, stats=reasons, checked=checked)
+                                             radii=(radius,), limit=width, stats=reasons, checked=checked,
+                                             allow_any_categories=allow_any_categories)
             if not candidates:
                 continue
             options = {key: (minimum, food) for key, minimum, food in candidates}
@@ -427,7 +449,7 @@ def repair_gaps(plan, profile, context, index, make_state):
             reachable = {point for path in paths for point in path}
             reasons['transport'] += len(options.keys() - reachable)
             for keys in paths[:6]:
-                if trials >= MAX_SCHEDULE_TRIALS or trials - started >= 14:
+                if trials >= max_schedule_trials or trials - started >= 14:
                     break
                 hints = base_context.get('moscow_start_hints', {})
                 day_hints = {**hints.get(gap.day, {}), keys[0]: gap.start}
@@ -446,12 +468,12 @@ def repair_gaps(plan, profile, context, index, make_state):
                     accepted = True
                     break
                 reasons[failure] += 1
-            if accepted or trials >= MAX_SCHEDULE_TRIALS or trials - started >= 14:
+            if accepted or trials >= max_schedule_trials or trials - started >= 14:
                 break
         if not accepted and gap.kind == 'internal' and len(retained) >= 2:
             pinned = context.get('moscow_start_hints', {}).get(gap.day, {})
             for reordered in _relocations(sequences[gap.day], position, meal_ids, pinned):
-                if trials >= MAX_SCHEDULE_TRIALS or trials - started >= 16:
+                if trials >= max_schedule_trials or trials - started >= 16:
                     break
                 state = state_for(retained)
                 base_context = {**active_context, **state['routing_context'], 'moscow_meals': active_context['moscow_meals']}
@@ -469,7 +491,7 @@ def repair_gaps(plan, profile, context, index, make_state):
             protected = meal_ids | set(profile['required_poi_ids']) | set(
                 context.get('moscow_start_hints', {}).get(gap.day, {}))
             for proposed, replacement in _replacement_options(original_order, position, choices, protected, index, profile):
-                if trials >= MAX_SCHEDULE_TRIALS:
+                if trials >= max_schedule_trials:
                     break
                 trials += 1
                 changed, failure = _try_schedule(state, current, base_context, dict(sequences, **{gap.day: proposed}),
@@ -487,7 +509,8 @@ def repair_gaps(plan, profile, context, index, make_state):
             rejected[gap] = ranked[0] if ranked else 'no_matching_pois'
         counts[gap] = (len(checked), trials - started, reasons)
         all_checked.update(checked)
-    remaining_gaps = route_gaps(current, context)
+    remaining_gaps = [gap for gap in route_gaps(current, context)
+                      if selected_days is None or gap.day in selected_days]
     diagnostics = []
     for gap in remaining_gaps:
         reason = rejected.get(gap)

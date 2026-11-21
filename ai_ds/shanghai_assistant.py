@@ -225,11 +225,15 @@ def human_error(code):
         'FULL_MEAL_PROTECTED': 'Полный приём пищи нельзя удалить. Могу подобрать другой ресторан или время.',
         'NO_FEASIBLE_EDIT': 'Все пожелания одновременно не помещаются в часы, время и бюджет. Исходный маршрут сохранён. Можно убрать одно необязательное посещение или выбрать другое время.',
         'NO_FEASIBLE_INSERTION': 'Добавление не помещается в допустимое расписание. Можно заменить одно необязательное место вместо добавления.',
+        'NO_FEASIBLE_NAMED_INSERTION': 'Запрошенное место найдено в каталоге, но ни один проверенный вариант не поместился в дневные окна, транспорт и бюджет. Ничего не заменено. Можно уточнить день или разрешить замену необязательного места.',
+        'NAMED_POI_NOT_IN_CATALOG': 'Запрошенный объект отсутствует в подготовленном списке POI. Никакое другое место не добавлено.',
+        'NAMED_POI_NOT_ADDED': 'Требуемый объект не появился в проверенном предложении, поэтому обновление отменено.',
         'NO_FEASIBLE_REPLACEMENT': 'Подходящая замена в заданных условиях не найдена. Можно попробовать другой день или категорию.',
         'TRANSPORT_UNAVAILABLE': 'По имеющимся данным запрошенный транспорт недоступен для этих переходов или не укладывается в расписание. Можно сохранить прежний транспорт или выбрать другой день.',
         'MEAL_TIME_UNAVAILABLE': 'Запрошенное время не укладывается в доступное окно заведения. Попробуйте другое время обеда.',
         'NO_ROUTE_CHANGE': 'Запрошенное условие уже выполнено. Уточните, если нужно поменять день, время или место.',
         'NO_ROUTE_IMPROVEMENT': 'Не нашёл более короткий вариант с теми же местами и ограничениями. Попробуйте изменить время или убрать необязательную остановку.',
+        'NO_FEASIBLE_GAP_FILL': 'Для указанных дней не удалось добавить выполнимые посещения: в пределах проверенного поиска мешают часы работы, бюджет, транспорт или занятое время. Прежний маршрут сохранён. Это не доказательство отсутствия подходящих мест во всём городе.',
         'VERSION_CONFLICT': 'Маршрут уже изменился. Отправьте пожелание ещё раз для текущей версии.',
         'VERSION_OR_DATA_CONFLICT': 'Маршрут изменился во время расчёта. Исходный маршрут сохранён; повторите пожелание.',
         'INPUT_DATA_CHANGED': 'Исходные данные изменились. Нужно построить новый маршрут.',
@@ -237,7 +241,7 @@ def human_error(code):
         'INTERPRETER_UNAVAILABLE': 'ИИ-помощник сейчас недоступен. Маршрут сохранён; попробуйте позже.',
         'ROUTER_UNAVAILABLE': 'Не удалось пересчитать маршрут. Исходный план сохранён.',
         'LLM_KEY_NOT_CONFIGURED': 'На локальном сервере не настроен ключ OpenRouter. Маршрут работает, но чат пока недоступен.',
-        'LLM_RATE_LIMITED': 'Бесплатный ИИ достиг лимита запросов. Попробуйте позже; маршрут сохранён.',
+        'LLM_RATE_LIMITED': 'OpenRouter вернул HTTP 429: лимит частоты или квоты запросов к бесплатной модели. Маршрут сохранён. Простые локальные команды (например, «добавь Уголок дедушки Дурова») доступны без ИИ.',
         'LLM_ACCESS_DENIED': 'OpenRouter отклонил запрос. Проверьте ключ и состояние аккаунта; маршрут не изменён.',
         'LLM_NETWORK_ERROR': 'Сервер не смог связаться с OpenRouter. Проверьте подключение и попробуйте ещё раз.',
         'LLM_HTTP_ERROR': 'OpenRouter не смог обработать запрос. Возможно, бесплатная модель сейчас недоступна. Маршрут не изменён.',
@@ -355,12 +359,19 @@ def diff_plan(before, after, by_id):
 
 class ShanghaiAssistantService:
     def __init__(self, *, interpreter=None, bridge=bridge_call, data=None, mode='live'):
-        raw = (ROOT / 'data/demo/shanghai/pois.json').read_bytes()
+        # Moscow injects its own planning catalog and uses the shared assistant
+        # lifecycle; it must not need the unrelated Shanghai dataset to start.
+        # Normal Shanghai sessions still pin both source-file fingerprints.
         self.check_snapshot = data is None
-        self.input_hashes = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in
-                             (ROOT / 'data/demo/shanghai/pois.json', ROOT / 'data/demo/shanghai/transport.json')}
-        self.data = data if data is not None else json.loads(raw)
-        self.snapshot = fingerprint({str(path.relative_to(ROOT)): digest for path, digest in self.input_hashes.items()})
+        if self.check_snapshot:
+            paths = (ROOT / 'data/demo/shanghai/pois.json', ROOT / 'data/demo/shanghai/transport.json')
+            self.input_hashes = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in paths}
+            self.data = json.loads(paths[0].read_text(encoding='utf-8'))
+            self.snapshot = fingerprint({str(path.relative_to(ROOT)): digest for path, digest in self.input_hashes.items()})
+        else:
+            self.input_hashes = {}
+            self.data = deepcopy(data)
+            self.snapshot = fingerprint({'injected_catalog': self.data})
         self.interpreter = interpreter or OpenRouterInterpreter(system_prompt=PROMPT, rich_context=True, max_output_tokens=2200, timeout=35)
         self.bridge, self.mode = bridge, mode
         self.configured = interpreter is not None or bool(os.environ.get('OPENROUTER_API_KEY', '').strip())

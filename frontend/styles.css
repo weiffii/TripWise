@@ -262,3 +262,8 @@ label.choice { display: flex; align-items: center; gap: 10px; border: 1px solid 
 @media (max-width: 760px) {
   .route-chat #chat-log { max-height: 16rem; }
 }
+
+/* Route map semantics; matches the existing SVG renderer. */
+.route-map-legend {display:flex; flex-wrap:wrap; gap:8px 14px; margin:12px 0; font-size:.8rem; align-items:center;}
+.route-map-legend span {display:inline-flex; align-items:center; gap:6px;}
+.route-map-legend i {display:inline-block; width:11px; height:11px; border-radius:50%; flex:none; border:1px solid rgba(0,0,0,.12);}

@@ -39,6 +39,7 @@ class ShanghaiPreferences(BaseModel):
     days: Annotated[int, Field(strict=True, ge=1, le=5)]
     day_start: Annotated[str, Field(pattern=r'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$')]
     day_end: Annotated[str, Field(pattern=r'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$')]
+    day_settings: dict[date, dict[str, str]] | None = None
     pace: Literal['relaxed', 'balanced', 'intensive']
     transport: Literal['mixed', 'walk', 'transit', 'taxi']
     transport_modes: list[TravelMode] | None = Field(default=None, min_length=1, max_length=3)
@@ -62,6 +63,20 @@ class ShanghaiPreferences(BaseModel):
             raise ValueError('Дневное окно должно быть не короче часа.')
         if self.start_date > date.max - timedelta(days=self.days):
             raise ValueError('Недопустимая дата поездки.')
+        dates = {self.start_date + timedelta(days=i) for i in range(self.days)}
+        for day, settings in (self.day_settings or {}).items():
+            if day not in dates or not settings or not set(settings).issubset({'day_start', 'day_end'}):
+                raise ValueError('Недопустимая индивидуальная настройка дня.')
+            start_value = settings.get('day_start', self.day_start)
+            end_value = settings.get('day_end', self.day_end)
+            try:
+                start_minutes = time.fromisoformat(start_value)
+                end_minutes = time.fromisoformat(end_value)
+            except (TypeError, ValueError):
+                raise ValueError('Неверное время индивидуального дня.') from None
+            if ((end_minutes.hour * 60 + end_minutes.minute) -
+                    (start_minutes.hour * 60 + start_minutes.minute)) < 60:
+                raise ValueError('Индивидуальное дневное окно должно быть от 60 минут.')
         if self.group.pet and self.transport == 'transit':
             raise ValueError('Питомцы не поддерживаются в режиме общественного транспорта.')
         if self.transport_modes is not None:
@@ -210,8 +225,14 @@ def assistant_status(route_id: str, request: Request, user: dict = Depends(curre
         _, state = assistant_binding(request, route, True)
     except AssistantError as error:
         raise HTTPException(503, human_error(error.code)) from error
-    return {'available': True, 'csrf_token': state['csrf'], 'mode': service.mode,
-            'conversation': route['options'].get('conversation', [])}
+    response = {'available': True, 'csrf_token': state['csrf'], 'mode': service.mode,
+                'conversation': route['options'].get('conversation', [])}
+    if route['city'] == 'moscow':
+        # Let the browser confirm which server-side named-POI handler is live;
+        # stale FastAPI processes otherwise make fresh ZIP installs appear broken.
+        response['agent_version'] = 'moscow-offline-v9'
+        response['mode'] = 'local' if not service.llm_configured else service.mode
+    return response
 
 
 @router.post('/api/planned-trips/{route_id}/assistant/{action}', dependencies=[Depends(same_origin)])

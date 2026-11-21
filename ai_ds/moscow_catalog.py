@@ -3,6 +3,7 @@
 import csv
 from hashlib import sha256
 import json
+import re
 from pathlib import Path
 
 from ai_ds.data import valid_url, validate_poi
@@ -11,36 +12,187 @@ from ai_ds.data import valid_url, validate_poi
 CATALOG = Path(__file__).resolve().parents[1] / 'data/demo/moscow/v7'
 
 
-MODEL_VERSION = 'moscow-planning-estimates-v1'
+MODEL_VERSION = 'moscow-planning-estimates-v3'
+
+
+def _food_type(row):
+    """Определение класса еды, без предположений о реально проверенном меню."""
+    tags = row.get('tags') or row.get('osm_tags') or {}
+    if not isinstance(tags, dict):
+        tags = {}
+    source = str(row.get('source_type') or tags.get('amenity') or tags.get('shop') or '').lower()
+    name = str(row.get('name') or '').casefold()
+    for code, terms in (
+        ('canteen', ('столовая', 'буфет', 'canteen')),
+        ('food_court', ('фудкорт', 'фуд-корт', 'food court')),
+        ('bakery', ('пекарня', 'булочная', 'bakery')),
+        ('fast_food', ('fast_food', 'fast food', 'фастфуд', 'бургер', 'шаурма',
+                       'burger king', 'kfc', 'ростикс', 'rostics', 'вкусно и точка',
+                       'вкусно — и точка', 'вкусно - и точка')),
+        ('coffee_shop', ('coffee_shop', 'coffee', 'кофейня', 'кофе с собой', 'coffee to go')),
+        ('restaurant', ('restaurant', 'ресторан', 'бистро')),
+        ('cafe', ('cafe', 'кафе')),
+    ):
+        if source == code or source in terms or any(term in name for term in terms if len(term) > 3 or term == 'kfc'):
+            return code
+    if source in ('bar', 'pub', 'nightclub'):
+        return source
+    return 'cafe'  # осторожное предположение, не подтверждённая классификация
+
+
+def _meal_suitability(kind):
+    # Значения - оценки пригодности, не доказательство наличия меню.
+    return {
+        'canteen': {'breakfast': 'possible', 'lunch': 'likely', 'dinner': 'possible'},
+        'food_court': {'breakfast': 'unlikely', 'lunch': 'likely', 'dinner': 'likely'},
+        'bakery': {'breakfast': 'likely', 'lunch': 'possible', 'dinner': 'unlikely'},
+        'fast_food': {'breakfast': 'possible', 'lunch': 'likely', 'dinner': 'likely'},
+        'coffee_shop': {'breakfast': 'possible', 'lunch': 'unlikely', 'dinner': 'unlikely'},
+        'restaurant': {'breakfast': 'possible', 'lunch': 'likely', 'dinner': 'likely'},
+        'cafe': {'breakfast': 'possible', 'lunch': 'possible', 'dinner': 'possible'},
+        'bar': {'breakfast': 'unlikely', 'lunch': 'unlikely', 'dinner': 'possible'},
+        'pub': {'breakfast': 'unlikely', 'lunch': 'possible', 'dinner': 'possible'},
+        'nightclub': {'breakfast': 'unlikely', 'lunch': 'unlikely', 'dinner': 'unlikely'},
+    }[kind]
+
+
+def _visit_type(row, category):
+    """Separate a full shopping mall or museum from a small shop or monument.
+
+    Labels and OpenStreetMap tags are *signals*, not verified visit durations.
+    This runs only on the normalized planning layer, never mutating Moscow V7.
+    """
+    tags = row.get('tags') or row.get('osm_tags') or {}
+    if not isinstance(tags, dict):
+        tags = {}
+    name = str(row.get('name') or '').casefold()
+    source = str(row.get('source_type') or '').casefold()
+    categories = set(row.get('categories') or ())
+    mall_tags = (str(tags.get('shop', '')).casefold() in {'mall', 'department_store'} or
+                 str(tags.get('building', '')).casefold() in {'retail', 'shopping_mall'} or
+                 source in {'mall', 'shopping_mall', 'shopping_center', 'shopping_centre', 'department_store'})
+    mall_name = bool(re.search(
+        r'\b(?:трц|трк|тц|торговый\s+центр|торгово[-\s]?развлекательный\s+(?:центр|комплекс)|'
+        r'торговый\s+комплекс|торговый\s+дом|молл|универмаг|гум|цум|mall|'
+        r'shopping\s+(?:center|centre|mall)|department\s+store|аутлет|outlet)\b', name))
+    # Some well-known centres are indexed only by their brand name. These
+    # hints are used solely when a POI is already classified as shopping.
+    known_malls = bool(re.search(
+        r'\b(?:авиапарк|афимолл|метрополис|атриум|океания|саларис|мега|'
+        r'вегас|капитолий|охотный\s+ряд|цветной|цдм|европейский|ривьера|'
+        r'галерея\s+москва|хорошо!)\b', name))
+    museum = ('museums' in categories or category == 'museums' or
+              bool(re.search(r'\b(?:музей|музея|музее|музеи|museum|галерея|gallery|'
+                             r'экспозиция|выставочный\s+центр)\b', name)) or
+              source == 'museum' or tags.get('tourism') == 'museum')
+    if museum:
+        major = bool(re.search(r'\b(?:третьяковск\w*|эрмитаж|государственный\s+исторический\s+музей|'
+                               r'пушкинский\s+музей|музей[-\s]?заповедник)\b', name))
+        return 'large_museum' if major else 'museum'
+    if category == 'shopping' or 'shopping' in categories:
+        if mall_tags or mall_name or known_malls:
+            return 'shopping_mall'
+        if re.search(r'\b(?:рынок|маркет|market|ярмарка|базар)\b', name):
+            return 'market'
+        return 'shop'
+    if category == 'history':
+        return 'historic_site'
+    if category == 'nature':
+        return 'park'
+    if category == 'entertainment':
+        return 'entertainment'
+    if category == 'viewpoints':
+        return 'viewpoint'
+    if category == 'unusual':
+        return 'unusual'
+    return 'general'
 
 
 def planning_fields(row):
-    seed = int.from_bytes(sha256(row['id'].encode()).digest()[:4], 'big')
+    """Стабильные оценки со статусом происхождения; исходные факты не заменяем."""
+    seed = int.from_bytes(sha256(str(row['id']).encode('utf-8')).digest()[:4], 'big')
     category = row.get('primary_category') or row['categories'][0]
+    food_kind = _food_type(row) if category == 'cafes' else None
+    # Не назначаем неизвестным объектам стоимость 0: бесплатность должна быть доказана.
     ranges = {
-        'cafes': (35, 700), 'museums': (55, 450), 'nature': (40, 0),
+        'cafes': (35, 650), 'museums': (55, 450), 'nature': (40, 100),
         'history': (25, 250), 'entertainment': (55, 750),
-        'shopping': (30, 500), 'viewpoints': (20, 250), 'unusual': (30, 300),
+        'shopping': (30, 250), 'viewpoints': (20, 250), 'unusual': (30, 300),
     }
     minutes, price = ranges.get(category, (30, 350))
-    if row.get('source_type') == 'fast_food':
-        minutes, price = 20, 400
+    visit_type = None if category == 'cafes' else _visit_type(row, category)
+    # Typical time actually spent inside the venue, before traveller pace is
+    # applied. These are deterministic *estimates*, not opening-hour facts.
+    # The old 25-50 minute estimates for museums and shopping centres were
+    # unrealistically short and could create implausibly dense itineraries.
+    visit_bases = {
+        'large_museum': (150, 10),  # 2h30-3h15, major collection
+        'museum': (90, 8),         # 1h30-2h05, regular exhibition
+        'shopping_mall': (140, 7), # 2h20-2h50, adjusted by pace below
+        'market': (75, 6),
+        'shop': (35, 6),
+        'historic_site': (45, 7),
+        'park': (70, 9),
+        'entertainment': (80, 9),
+        'viewpoint': (30, 6),
+        'unusual': (55, 8),
+        'general': (60, 7),
+    }
+    food_specs = {
+        'canteen': (30, 400), 'food_court': (35, 500), 'bakery': (20, 260),
+        'fast_food': (25, 400), 'coffee_shop': (25, 310), 'restaurant': (65, 1100),
+        'cafe': (45, 650), 'bar': (55, 850), 'pub': (60, 850), 'nightclub': (90, 1400),
+    }
+    if food_kind:
+        minutes, price = food_specs[food_kind]
     area = row.get('source_geometry_area_ha')
-    duration = minutes + 5 * (seed % 6) + (20 if isinstance(area, (int, float)) and area >= 20 else 0)
+    if visit_type:
+        base, steps = visit_bases[visit_type]
+        # A huge mapped park merits more time. Avoid adding land area to a
+        # shopping centre: a normal mall visit should remain 2-3 hours.
+        area_bonus = 20 if visit_type == 'park' and isinstance(area, (int, float)) and area >= 20 else 0
+        duration = base + 5 * (seed % steps) + area_bonus
+    else:
+        duration = minutes + 5 * (seed % 6)
     start = (8 if category in ('nature', 'cafes') else 10) + seed % 2
     end = (22 if category in ('cafes', 'entertainment') else 19) + seed % 3
+    if visit_type == 'shopping_mall':
+        # Synthetic opening window; do not imply that real mall hours were checked.
+        start, end = 10, 22
+    if food_kind == 'coffee_shop' or food_kind == 'bakery':
+        start, end = 8, 20
+    elif food_kind in ('bar', 'pub', 'nightclub'):
+        start, end = 14, 23
     closed = {seed % 2} if category == 'museums' and seed % 4 else set()
     hours = [[f'{start:02}:00', f'{min(end, 23):02}:00'] if day not in closed else None for day in range(7)]
-    estimates = {'duration_minutes': duration, 'price_rub': price + 50 * (seed % 7),
-                 'opening_hours': hours, 'preferred_period': 'afternoon' if category == 'viewpoints' else 'daytime'}
-    if category == 'cafes':
-        estimates['average_check_rub'] = row.get('price_rub') if row.get('price_rub') is not None else estimates['price_rub']
-    return {key: {'value': row.get(key) if row.get(key) is not None else estimate,
-                  'source_type': 'source' if row.get(key) is not None else 'synthetic',
-                  'estimation_method': None if row.get(key) is not None else 'category_type_area_stable_hash',
-                  'confidence': None if row.get(key) is not None else 'low',
-                  'model_version': MODEL_VERSION}
-            for key, estimate in estimates.items()}
+    price += 50 * (seed % 7)
+    estimates = {'duration_minutes': duration, 'price_rub': price,
+                 'opening_hours': hours,
+                 'preferred_period': 'afternoon' if category == 'viewpoints' else 'daytime'}
+    if visit_type:
+        estimates['visit_type'] = visit_type
+    if food_kind:
+        estimates['average_check_rub'] = price
+        estimates['food_type'] = food_kind
+        estimates['meal_suitability'] = _meal_suitability(food_kind)
+        estimates['price_segment'] = 'budget' if price <= 600 else 'midrange' if price <= 1200 else 'expensive'
+    fields = {}
+    for key, estimate in estimates.items():
+        provided = row.get(key)
+        if key == 'price_segment' and provided is None and row.get('price_category') is not None:
+            provided = row['price_category']
+        fields[key] = {
+            'value': provided if provided is not None else estimate,
+            'source_type': 'source' if provided is not None else 'synthetic',
+            'estimation_method': None if provided is not None else 'category_type_area_stable_hash',
+            'confidence': None if provided is not None else 'low',
+            'model_version': MODEL_VERSION,
+        }
+    # A genuine explicit free-entry flag overrides only an unverified estimate.
+    tags = row.get('tags') or row.get('osm_tags') or {}
+    if isinstance(tags, dict) and (tags.get('fee') == 'no' or tags.get('charge') == '0') and row.get('price_rub') is None:
+        fields['price_rub'].update(value=0, source_type='source', estimation_method=None, confidence=None)
+    return fields
 
 
 def load_moscow_v7(directory=CATALOG, *, poi_ids=None, planning=False):

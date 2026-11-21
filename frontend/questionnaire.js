@@ -4,6 +4,49 @@ const statusText = document.querySelector('#save-status');
 const finishButton = document.querySelector('#finish-questionnaire');
 const firstWalk = document.querySelector('#first-walk');
 const lastWalk = document.querySelector('#last-walk');
+const fullDayStart = document.querySelector('#full-day-start');
+const fullDayEnd = document.querySelector('#full-day-end');
+const individualDays = document.querySelector('#individual-day-windows');
+const dayWindows = new Map();
+const tripDates = () => {
+  if (!firstWalk.value || !lastWalk.value) return [];
+  const first = Date.parse(firstWalk.value.slice(0,10) + 'T00:00:00Z');
+  const last = Date.parse(lastWalk.value.slice(0,10) + 'T00:00:00Z');
+  if (!Number.isFinite(first) || !Number.isFinite(last) || last < first || (last-first)/86400000 > 4) return [];
+  return Array.from({length:Math.round((last-first)/86400000)+1}, (_, i) => new Date(first + 86400000*i).toISOString().slice(0,10));
+};
+function baseWindow(index, count) {
+  return {
+    day_start: index === 0 ? firstWalk.value.slice(11, 16) : fullDayStart.value,
+    day_end: index === count - 1 ? lastWalk.value.slice(11, 16) : fullDayEnd.value,
+  };
+}
+function renderDayWindows() {
+  const dates = tripDates();
+  for (const [date, fields] of dayWindows) if (!dates.includes(date)) dayWindows.delete(date);
+  individualDays.replaceChildren();
+  dates.forEach((date, i) => {
+    const defaults = baseWindow(i, dates.length);
+    const current = dayWindows.get(date) || {};
+    const row = document.createElement('div'); row.className = 'field';
+    const label = document.createElement('label'); label.textContent = `День ${i+1} · ${date}`;
+    const times = document.createElement('div'); times.className = 'choice-row';
+    for (const key of ['day_start', 'day_end']) {
+      const input = document.createElement('input'); input.type = 'time'; input.value = current[key] || defaults[key];
+      input.title = key === 'day_start' ? 'Начало прогулок' : 'Окончание прогулок';
+      input.dataset.date = date; input.dataset.key = key;
+      input.addEventListener('change', () => { dayWindows.set(date, {...(dayWindows.get(date)||{}),[key]:input.value}); validate(); });
+      times.append(input);
+    }
+    row.append(label, times); individualDays.append(row);
+  });
+}
+function resolvedWindows() {
+  const dates = tripDates();
+  return Object.fromEntries(dates.map((date, i) => [date, {...baseWindow(i, dates.length), ...dayWindows.get(date)}]));
+}
+function timeMinutes(time) {const [h, m] = (time||'').split(':').map(Number);return h*60 + m;}
+
 const categories = [
   ['museums', 'Музеи'], ['history', 'История'], ['nature', 'Природа'], ['cafes', 'Кафе'],
   ['entertainment', 'Развлечения'], ['shopping', 'Шопинг'], ['viewpoints', 'Смотровые площадки'], ['unusual', 'Необычные места'],
@@ -58,10 +101,13 @@ function validate() {
   const firstDate = firstWalk.value.slice(0,10);
   const lastDate = lastWalk.value.slice(0,10);
   const days = (Date.parse(lastDate) - Date.parse(firstDate)) / 86400000 + 1;
-  const minutes = value => Number(value.slice(11,13))*60 + Number(value.slice(14,16));
+  const windows = Object.values(resolvedWindows());
+  const invalid = windows.some(w => !w.day_start || !w.day_end || timeMinutes(w.day_end)-timeMinutes(w.day_start)<60) ||
+    (windows.length > 0 && (timeMinutes(windows[0].day_start)<timeMinutes(firstWalk.value.slice(11,16)) ||
+     timeMinutes(windows.at(-1).day_end)>timeMinutes(lastWalk.value.slice(11,16))));
   lastWalk.setCustomValidity(!firstWalk.value || !lastWalk.value ? '' : days < 1 || days > 5
-    ? 'Выберите от 1 до 5 дней.' : minutes(lastWalk.value) - minutes(firstWalk.value) < 60
-      ? 'Ежедневное окно прогулок должно быть не короче часа.' : '');
+    ? 'Выберите от 1 до 5 дней.' : invalid
+      ? 'Каждый день должен иметь окно не короче 60 минут. Проверьте индивидуальные интервалы.' : '');
   const primary = selected('primary_interests');
   form.querySelector('[name="primary_interests"]').setCustomValidity(primary.length < 1 || primary.length > 2 ? 'Выберите один или два главных интереса.' : '');
   form.querySelector('[name="transport_modes"]').setCustomValidity(selected('transport_modes').length ? '' : 'Выберите хотя бы один способ передвижения.');
@@ -140,6 +186,10 @@ async function loadCatalog() {
 }
 citySelect.addEventListener('change', () => void loadCatalog());
 form.addEventListener('input', () => { syncInterestChoices(); updateSummary(); validate(); });
+for (const control of [firstWalk, lastWalk, fullDayStart, fullDayEnd]) {
+  control.addEventListener('change', () => { renderDayWindows(); validate(); updateSummary(); });
+}
+renderDayWindows();
 form.addEventListener('submit', async event => {
   event.preventDefault();
   if (!validate() || !form.reportValidity()) return;
@@ -154,8 +204,8 @@ form.addEventListener('submit', async event => {
       body:JSON.stringify({
         city:isMoscow() ? 'moscow' : 'shanghai', timezone:isMoscow() ? 'Europe/Moscow' : 'Asia/Shanghai',
         ...(isMoscow() && document.querySelector('#visit-minutes').value ? {visit_minutes:Number(document.querySelector('#visit-minutes').value)} : {}),
-        start_date:firstWalk.value.slice(0, 10), days, day_start:firstWalk.value.slice(11, 16),
-        day_end:lastWalk.value.slice(11, 16), pace:selected('pace')[0], transport, transport_modes:transportModes,
+        start_date:firstWalk.value.slice(0, 10), days, day_start:fullDayStart.value,
+        day_end:fullDayEnd.value, day_settings:resolvedWindows(), pace:selected('pace')[0], transport, transport_modes:transportModes,
         group:{adult:counts.adults, child:counts.children, senior:counts.seniors, pet:0},
         primary_interests:selected('primary_interests'), secondary_interests:selected('secondary_interests'),
         required_ids:Array.from(placeSelect.selectedOptions, option => option.value),

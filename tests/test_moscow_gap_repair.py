@@ -98,3 +98,18 @@ class MoscowGapRepairTests(TestCase):
         self.assertFalse(any(gap.kind == 'internal' and gap.minutes > 45 for gap in route_gaps(result, context)))
         self.assertEqual(result['native_checks']['time'], 'passed')
         self.assertEqual(result['native_checks']['required_places'], 'passed')
+
+class FreeFallbackGapTests(TestCase):
+    def test_free_nature_candidate_can_fill_cheap_trip_with_unaffordable_interest(self):
+        index = MoscowGapIndex([
+            poi('paid-theatre', 37.621, price=1600, category='entertainment'),
+            poi('free-square', 37.622, price=0, category='nature'),
+            poi('unknown-entry', 37.623, price=None, category='nature'),
+        ])
+        profile = {'primary_interests': ['entertainment'], 'secondary_interests': [],
+                   'budget': {'amount': 0}}
+        ctx = {'moscow_group': {'adult': 1, 'child': 0, 'senior': 0},
+               'days': [{'date': DAY}]}
+        gap = Gap(DAY, 600, 840, 'tail', None, None)
+        results, _ = index.candidates(gap, profile, ctx, set(), 0)
+        self.assertEqual([row[0] for row in results], ['free-square'])

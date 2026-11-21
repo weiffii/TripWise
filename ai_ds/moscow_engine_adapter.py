@@ -1,7 +1,8 @@
-﻿"""Адаптер московских данных к общему маршрутизатору и формату сохранённых поездок."""
+"""Адаптер московских данных к общему маршрутизатору и формату сохранённых поездок."""
 from math import ceil
 
 from ai_ds.shanghai_assistant import bridge_call
+from ai_ds.moscow_fares import estimate_fare
 
 
 MODES = {'walking': 'walk', 'car': 'taxi', 'public_transit': 'transit'}
@@ -42,6 +43,12 @@ def engine_input(profile, pois, matrix, context):
             'opening': {'open': '00:00', 'close': '24:00', 'closed_weekdays': [], 'by_date': openings.get(key, {})},
             'price_cny': price / people, 'price_multipliers': {'adult': 1, 'child': 1, 'senior': 1},
             'catalog_signals': poi.get('catalog_signals', {}),
+            'visit_type': poi['planning'].get('visit_type', {}).get('value'),
+            'duration_source': poi['planning'].get('duration_minutes', {}).get('source_type'),
+            'duration_locked': key in context.get('moscow_user_duration_ids', ()),
+            'food_type': poi['planning'].get('food_type', {}).get('value'),
+            'meal_suitability': poi['planning'].get('meal_suitability', {}).get('value'),
+            'price_basis': next((c.get('basis', 'unknown') for c in context['cost_context']['visit_costs'] if c['poi_id'] == key), 'unknown'),
         })
     selected = context.get('moscow_transport_modes')
     mode = ('mixed' if len(selected) > 1 else selected[0]) if selected else MODES[profile['transport']]
@@ -54,18 +61,25 @@ def engine_input(profile, pois, matrix, context):
             a, b = pair['from_poi_id'], pair['to_poi_id']
             actual_mode = 'walk' if name == 'transit' and not pair.get('transport_steps') else name
             value = None
-            if pair['status'] == 'known' and (not selected or actual_mode in selected):
+            if pair['status'] == 'known':
                 group_factor = (1.2 if group['senior'] else 1.12 if group['child'] else 1) if actual_mode == 'walk' else 1
-                minutes = max(1, ceil(pair['duration_seconds'] * group_factor / 60))
-                cost_basis = 'no_fare' if actual_mode == 'walk' else 'unknown'
-                value = {'base_minutes': minutes, 'planned_minutes': minutes, 'buffer_minutes': 0,
-                         'mode': actual_mode, 'distance_m': pair['distance_meters'] or 0, 'transport_cost_cny': 0,
-                         'source': pair['source_id'], 'basis': pair['basis'], 'transport_cost_basis': cost_basis}
-                rows[a, b, name] = {**pair, 'mode': actual_mode,
-                                    'provider_duration_seconds': pair['duration_seconds'],
-                                    'group_time_factor': group_factor,
-                                    'transport_cost_rub': 0 if actual_mode == 'walk' else None,
-                                    'transport_cost_basis': cost_basis}
+                provider_minutes = max(1, ceil(pair['duration_seconds'] * group_factor / 60))
+                fare = estimate_fare(actual_mode, distance_meters=pair.get('distance_meters'),
+                                    driving_minutes=provider_minutes, group=group)
+                cost = fare['rub']
+                # Unknown price is not zero: do not route through that profile.
+                if cost is not None:
+                    minutes = provider_minutes + fare['additional_minutes']
+                    value = {'base_minutes': provider_minutes, 'planned_minutes': minutes,
+                             'buffer_minutes': minutes - provider_minutes,
+                             'mode': actual_mode, 'distance_m': pair.get('distance_meters'),
+                             'transport_cost_cny': cost, 'source': pair['source_id'],
+                             'basis': pair['basis'], 'transport_cost_basis': fare['basis']}
+                    rows[a, b, name] = {**pair, 'mode': actual_mode,
+                                        'provider_duration_seconds': pair['duration_seconds'],
+                                        'group_time_factor': group_factor,
+                                        'transport_cost_rub': cost,
+                                        'transport_cost_basis': fare['basis']}
             profile_rows.setdefault(a, {})[b] = value
     first = context['days'][0]
     options = {'start_date': profile['date_start'], 'days': len(context['days']),
@@ -73,6 +87,9 @@ def engine_input(profile, pois, matrix, context):
                'pace': profile['pace'], 'transport': mode, 'group': group,
                'primary_interests': profile['primary_interests'], 'secondary_interests': profile['secondary_interests'],
                'required_ids': profile['required_poi_ids'], 'budget_cny': profile['budget']['amount']}
+    options['day_settings'] = {entry['date']: {'day_start': clock(entry['day_start']),
+                                               'day_end': clock(entry['day_end'])}
+                               for entry in context['days']}
     if selected:
         options['transport_modes'] = selected
     dataset = {'pois': catalog, 'leg_profiles': profiles, 'currency': 'RUB', 'compact_waits': True}
@@ -104,7 +121,10 @@ def saved_plan(native, context, rows, pace):
                              'duration_seconds': (event['end_min'] - event['start_min']) * 60,
                              'from_poi_id': a, 'to_poi_id': b})
             elif event['type'] in ('visit', 'meal'):
-                visits.append({'poi_id': event['poi_id'], 'start_at': start, 'end_at': end, 'price_rub': event.get('price_cny'),
+                price_basis = next((row.get('basis', 'unknown') for row in context['cost_context']['visit_costs']
+                                    if row['poi_id'] == event['poi_id']), 'unknown')
+                visits.append({'poi_id': event['poi_id'], 'start_at': start, 'end_at': end,
+                               'price_rub': event.get('price_cny'), 'price_basis': price_basis,
                                'duration_basis': 'expert_estimate'})
                 if event.get('meal_kind'):
                     meals.setdefault(date, {})[event['meal_kind']] = {'poi_id': event['poi_id'], 'start_at': start, 'end_at': end}
@@ -115,7 +135,14 @@ def saved_plan(native, context, rows, pace):
             if window['start_at'] < window['end_at']:
                 if not add_lunch_break(breaks, day, date, window):
                     warnings.append('В обеденном окне не осталось 30 свободных минут. Проверьте время дня и обязательные места.')
+        meal_ids = {row['poi_id'] for row in meals.get(date, {}).values()}
+        visits_rub = round(sum(row.get('price_rub') or 0 for row in visits if row['poi_id'] not in meal_ids), 2)
+        meals_rub = round(sum(row.get('price_rub') or 0 for row in visits if row['poi_id'] in meal_ids), 2)
+        transport_rub = round(sum(row.get('transport_cost_rub') or 0 for row in legs), 2)
         days.append({'date': date, 'visits': visits, 'legs': legs, 'breaks': breaks, 'pace': pace,
+                     'cost_breakdown': {'visits_rub': visits_rub, 'meals_rub': meals_rub,
+                                        'transport_rub': transport_rub,
+                                        'total_rub': round(visits_rub + meals_rub + transport_rub, 2)},
                      'start_at': min([timestamp(date, day['events'][0]['start_min']),
                                       *(item['start_at'] for item in breaks)]) if day['events'] else None,
                      'end_at': max([timestamp(date, day['events'][-1]['end_min']),
@@ -133,8 +160,17 @@ def saved_plan(native, context, rows, pace):
             'poi_snapshot_id': context['poi_snapshot_id'], 'days': days,
             'unplaced_required_poi_ids': native.get('unplaced_required_ids', []),
             'uncovered_interests': native.get('uncovered_interests', []),
-            'budget_summary': {'currency': 'RUB', 'known_total': native['summary']['total_cost_cny'], 'status': 'unknown',
-                               'unknown_transport_legs': unknown_transport_costs},
+            'budget_summary': {
+                'currency': 'RUB', 'status': 'estimated', 'known_total': native['summary']['total_cost_cny'],
+                'estimated_total': native['summary']['total_cost_cny'],
+                'budget_amount': native['summary']['budget_cny'],
+                'remaining': round(native['summary']['budget_cny'] - native['summary']['total_cost_cny'], 2),
+                'visits_total': round(sum(v['price_rub'] for d in days for v in d['visits'] if v.get('price_rub') is not None and
+                                         v['poi_id'] not in {m['poi_id'] for m in meals.get(d['date'], {}).values()}), 2),
+                'meals_total': round(sum(v['price_rub'] for d in days for v in d['visits'] if v.get('price_rub') is not None and
+                                        v['poi_id'] in {m['poi_id'] for m in meals.get(d['date'], {}).values()}), 2),
+                'transport_total': round(sum(leg['transport_cost_rub'] or 0 for d in days for leg in d['legs']), 2),
+                'unknown_transport_legs': unknown_transport_costs, 'prices_are_estimates': True},
             'constraint_checks': checks, 'native_checks': native.get('checks', {}),
             'moscow_meals': meals, 'warnings': warnings,
             'ranking': native.get('ranking', []), 'engine_days': native['days'],
@@ -216,7 +252,7 @@ def fixed_sequence(state, sequences, *, optimize=None):
             'sequences': entries, 'changed_days': changed_days,
             'day_settings': {day: settings[day] for day in changed_days if day in settings},
             'meal_times': {day: meal_times[day] for day in changed_days if meal_times[day]}}
-    options['day_settings'] = settings
+    options['day_settings'] = {**options['day_settings'], **{date: {**options['day_settings'].get(date, {}), **value} for date, value in settings.items()}}
     options['meal_times'] = meal_times
     scheduled = bridge_call(args)
     if optimize:
