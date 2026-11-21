@@ -134,7 +134,9 @@ def parse_interpretation(value, *, extra_operations=None):
         require(isinstance(op, dict) and isinstance(op.get('op'), str) and op['op'] in operations, 'UNSUPPORTED_OPERATION', path)
         exact(op, operations[op['op']], path)
         if 'day' in op:
-            require((op['day'] is None and op['op'] == 'add_poi') or nonempty(op['day']), 'INVALID_DAY', path)
+            nullable_day = op['op'] == 'add_poi' or (extra_operations is not None and
+                op['op'] in {'add_named_poi', 'add_category_poi', 'replace_any_named'} and op['op'] in extra_operations)
+            require((op['day'] is None and nullable_day) or nonempty(op['day']), 'INVALID_DAY', path)
         for field in ('poi_id', 'target_poi_id'):
             if field in op:
                 require(nonempty(op[field]), 'INVALID_POI_ID', path)

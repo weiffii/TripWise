@@ -64,11 +64,13 @@ function eventLabel(row) {
     : row.end_min - row.start_min);
   const moscow = trip.city === 'moscow';
   const cost = moscow ? row.price_rub ?? row.transport_cost_rub : row.price_cny ?? row.cost_cny ?? row.transport_cost_cny;
-  const estimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate';
+  const estimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate' || row.price_basis === 'expert_estimate' || row.transport_cost_basis === 'synthetic_fare_estimate';
   return [clock(row,'start') + '–' + clock(row,'end'), row.type === 'travel' ? mode || 'Пеший переход' :
     (meal && name ? meal + ' · ' + name : name || kind[row.type] || 'Перерыв'),
     estimate ? 'ориентировочно' : '',
-    Number.isFinite(minutes) ? minutes + ' мин' : '', cost == null ? '' : cost + (moscow ? ' ₽' : ' CNY')].filter(Boolean).join(' · ');
+    Number.isFinite(minutes) ? minutes + ' мин' : '',
+    cost == null ? (moscow && ['visit','meal','travel'].includes(row.type) ? 'стоимость неизвестна' : '') :
+      cost + (moscow ? ' ₽' : ' CNY')].filter(Boolean).join(' · ');
 }
 
 function appendText(parent, text) {
@@ -100,17 +102,18 @@ function drawMap(rows) {
         }
       }
       if (step.geometry?.type === 'LineString') return [{mode:network ? 'transit' : 'walk', network,
-        verified:!network || step.geometry_verified === true, coordinates:step.geometry.coordinates}];
+        verified:step.geometry_verified === true, coordinates:step.geometry.coordinates}];
       if (step.kind !== 'rail_estimate' || !step.from_stop_location || !step.to_stop_location) return [];
       return [{mode:'transit', network, verified:false,
         coordinates:[step.from_stop_location.coordinates, step.to_stop_location.coordinates]}];
     });
+    const hasRoad = row.geometry?.type === 'LineString'&&row.basis === 'routing_provider';
+    const segments = row.mode === 'transit'&&rail.length ? rail : row.geometry?.type === 'LineString'
+      ? [{mode:row.mode,coordinates:row.geometry.coordinates,verified:hasRoad}] : [];
     return {...row, stations, use_plan_geometry:true, planned_minutes:Math.ceil(row.duration_seconds / 60),
-      ...(row.geometry?.type === 'LineString' ? {geometry_segments:[
-        {mode:row.mode, coordinates:row.geometry.coordinates, verified:true},
-      ]} : rail.length ? {geometry_segments: rail} : {})};
+      ...(segments.length ? {geometry_segments: segments} : {})};
   });
-  routeMap.setDay({events:mappedRows}, mapPlaces);
+  routeMap.setDay({events:mappedRows}, mapPlaces, {required_ids:trip.preferences?.required_ids || []});
   const visibleStops = stops.filter(row => mapPlaces.has(row.poi_id));
   for (const button of element('route-stops').querySelectorAll('button[data-poi]')) {
     button.onclick = () => routeMap.selectStop(visibleStops.findIndex(row => row.poi_id === button.dataset.poi));
@@ -173,6 +176,10 @@ function renderDay() {
   }
   for (const tab of element('route-tabs').children) tab.setAttribute('aria-pressed', String(tab.dataset.day === element('route-day').value));
   if (!rows.length) appendText(stops,'В выбранный день не удалось запланировать посещения.');
+  if (trip.city === 'moscow' && day?.cost_breakdown) {
+    const b = day.cost_breakdown;
+    appendText(stops, `За день: посещения ≈${b.visits_rub} ₽ · питание ≈${b.meals_rub} ₽ · транспорт ≈${b.transport_rub} ₽ · всего ≈${b.total_rub} ₽`);
+  }
   for (const warning of day?.warnings || []) appendText(stops, warning);
   for (const gap of trip.plan.gap_diagnostics?.remaining || []) {
     if (gap.date === day?.date && gap.minutes > 30 && (gap.kind !== 'internal' || gap.minutes <= 60)) {
@@ -190,10 +197,13 @@ function renderTrip() {
   const total = moscow ? budget?.known_total : trip.plan.summary?.total_cost_cny;
   const currency = moscow ? 'RUB' : 'CNY';
   element('route-meta').textContent = 'Версия ' + trip.version + ' · ' + trip.plan.days.length + ' дн.';
+  const rub = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(value);
   element('route-cost').textContent = total == null ? 'Оценка недоступна' :
-    (moscow && budget.status !== 'passed' ? 'От ' : '≈ ') + new Intl.NumberFormat('ru-RU',{style:'currency',currency}).format(Number(total));
-  element('cost-note').textContent = moscow ? 'Ориентировочная сумма для всей группы с учётом запланированных заведений. Расходы без оценки и свободные перерывы на питание не включены.' :
-    'Учебная оценка на всю поездку: посещения, питание и переходы.';
+    '≈ ' + new Intl.NumberFormat('ru-RU',{style:'currency',currency}).format(Number(total));
+  element('cost-note').textContent = moscow && budget?.estimated_total != null
+    ? `Бюджет: ${rub(budget.budget_amount)} · Посещения: ≈${rub(budget.visits_total)} · Питание: ≈${rub(budget.meals_total)} · Транспорт: ≈${rub(budget.transport_total)} · Остаток: ≈${rub(budget.remaining)}. Стоимость такси и ОТ рассчитана синтетической планировочной моделью, не является тарифом или предложением перевозчика. Часть цен и часов посещений тоже оценочная.`
+    : moscow ? 'Оценка неполная. Расходы без достоверной стоимости не равны нулю.'
+    : 'Учебная оценка на всю поездку: посещения, питание и переходы.';
   const select = element('route-day');
   const selected = select.value || '0';
   select.replaceChildren();
@@ -253,11 +263,13 @@ async function load() {
   renderTrip();
   const status = await request(chatPath + 'status');
   for (const item of status.conversation || []) chatLine(item.role === 'user' ? 'Вы' : 'TripWise', item.content);
-  chatStatus.textContent = status.reason || (status.mode === 'mock' ? 'Тестовый режим: ответы подставляет проверочный сценарий, а не ИИ.' : '');
+  const namedAgent = status.agent_version ? 'Помощник Москвы: ' + status.agent_version +
+    '. Без OpenRouter: названия мест с опечатками, добавление места/категории, перенос, удаление, темп, транспорт и заполнение пауз.' : '';
+  chatStatus.textContent = [namedAgent, status.reason || (status.mode === 'mock' ? 'Тестовый режим: ответы подставляет проверочный сценарий, а не ИИ.' : '')].filter(Boolean).join(' ');
   if (!status.available) return;
   csrf = status.csrf_token;
   registration = await request(chatPath + 'register',{});
-  if (!status.reason && status.mode !== 'mock') chatStatus.textContent = 'Помощник подключён.';
+  if (!status.reason && status.mode !== 'mock') chatStatus.textContent = namedAgent || 'Помощник подключён.';
   control(false);
 }
 

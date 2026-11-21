@@ -41,12 +41,22 @@ function normalize(dataset,o){
   transport===(transportModes.length===1?transportModes[0]:'mixed'),'Неверное сочетание транспорта.');
  const byId=new Map();for(const p of dataset.pois){must(p&&typeof p.id==='string'&&!byId.has(p.id),'Повторный ID объекта.');must(['attraction','restaurant'].includes(p.kind)&&Array.isArray(p.categories),'Неверный тип объекта.');must(Number.isFinite(p.lat)&&Number.isFinite(p.lon)&&(globalCoordinates?Math.abs(p.lat)<=90&&Math.abs(p.lon)<=180:p.lat>=30&&p.lat<=32&&p.lon>=120&&p.lon<=123),'Неверные координаты.');must(p.opening&&Array.isArray(p.opening.closed_weekdays),'Отсутствуют часы работы.');byId.set(p.id,p);}
  const required=unique(o.required_ids||[]);must(required.every(id=>byId.has(id)),'Обязательное место отсутствует в каталоге.');
-  return {primary,secondary,interests,pace,days:dates(o.start_date||'2026-11-18',n),start,end,budget,group,transport,transport_modes:transportModes,required,pois:dataset.pois,byId,currency,leg_profiles:profiles,osm_tables:o.osm_tables||null,transit_router:transitRouter(dataset.transport)};
+ const tripDays=dates(o.start_date||'2026-11-18',n);
+ must(!o.day_settings||typeof o.day_settings==='object'&&!Array.isArray(o.day_settings)&&
+  Object.keys(o.day_settings).every(date=>tripDays.includes(date)), 'Недопустимые индивидуальные дни.');
+ const day_windows=tripDays.map(date=>{
+  const setting=o.day_settings?.[date]||{};
+  const first=minute(setting.day_start||o.day_start||'09:00');
+  const last=minute(setting.day_end||o.day_end||'19:00');
+  must(last-first>=60,'Индивидуальное дневное окно должно быть от 60 минут.');
+  return {date,start:first,end:last};
+ });
+ return {primary,secondary,interests,pace,days:tripDays,day_windows,start,end,budget,group,transport,transport_modes:transportModes,required,pois:dataset.pois,byId,currency,leg_profiles:profiles,osm_tables:o.osm_tables||null,transit_router:transitRouter(dataset.transport)};
 }
 function selectedModes(settings){return settings.transport_modes||(settings.transport==='mixed'?['walk','transit','taxi']:[settings.transport]);}
 function allowedActualMode(leg,settings){return Boolean(leg)&&(!settings.transport_modes||leg.mode==='start'||settings.transport_modes.includes(leg.mode));}
 function distance(a,b){if(!a||!b)return 0;const r=n=>n*Math.PI/180,dl=r(b.lat-a.lat),dn=r(b.lon-a.lon),h=Math.sin(dl/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dn/2)**2;return 12742000*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)));}
-function groupPrice(p,g){const rates={adult:1,child:p.kind==='restaurant'?.65:.5,senior:p.kind==='restaurant'?.9:.7,...(p.price_multipliers||{})};const unit=p.kind==='restaurant'&&Number.isFinite(p.avg_check_cny)&&p.avg_check_cny>=0?p.avg_check_cny:p.price_cny;return round(unit*(g.adult*rates.adult+g.child*rates.child+g.senior*rates.senior)+(p.pet_fee_cny||0)*g.pet);}
+function groupPrice(p,g){const rates={adult:1,child:p.kind==='restaurant'?.65:.5,senior:p.kind==='restaurant'?.9:.7,...(p.price_multipliers||{})};const unit=p.kind==='restaurant'&&Number.isFinite(p.avg_check_cny)&&p.avg_check_cny>=0?p.avg_check_cny:p.price_cny;if(!Number.isFinite(unit)||unit<0)return NaN;return round(unit*(g.adult*rates.adult+g.child*rates.child+g.senior*rates.senior)+(p.pet_fee_cny||0)*g.pet);}
 function flags(p,date){const d=new Date(date+'T00:00:00Z'),dow=d.getUTCDay()||7,month=d.getUTCMonth()+1,weekend=dow>=6;
  const seasonal=Array.isArray(p.season_months)&&p.season_months.length>0;
  const override=p.opening.by_date?.[date];
@@ -56,7 +66,22 @@ function flags(p,date){const d=new Date(date+'T00:00:00Z'),dow=d.getUTCDay()||7,
  return {available:!closed&&!offSeason,crowd,weekend,seasonal,offSeason,closed,open:minute(override?.open??p.opening.open),close:minute(override?.close??p.opening.close),crowdPenalty:weekend&&crowd==='high'?90:weekend&&crowd==='medium'?15:0};
 }
 function suitable(p,g){return !(g.pet&&p.pet_friendly!==true)&&!(g.child&&p.family_friendly===false)&&!(g.senior&&p.senior_friendly===false);}
-function duration(p,pace){const base=Number.isFinite(p.duration_minutes)&&p.duration_minutes>0?p.duration_minutes:60;return Math.max(20,Math.ceil(base*({relaxed:1.15,balanced:1,intensive:.9}[pace]||1)/5)*5);}
+function mealAllowed(p,kind){
+ if(!['breakfast','lunch','dinner'].includes(kind))return true;
+ if(p.meal_suitability?.[kind]==='unlikely'||p.meal_suitability?.[kind]===false)return false;
+ if(kind==='dinner'&&['coffee_shop','bakery','nightclub'].includes(p.food_type)&&p.meal_suitability?.dinner!=='likely')return false;
+ return true;
+}
+function duration(p,pace){
+ const base=Number.isFinite(p.duration_minutes)&&p.duration_minutes>0?p.duration_minutes:60;
+ // User-specified duration (Moscow questionnaire) is exact, not an estimate.
+ if(p.duration_locked===true)return Math.round(base);
+ const scaled=Math.max(20,Math.ceil(base*({relaxed:1.15,balanced:1,intensive:.9}[pace]||1)/5)*5);
+ // A Moscow mall should be a 2-3 hour stop at every pace. Preserve facts.
+ if(p.visit_type==='shopping_mall'&&p.duration_source==='synthetic')
+  return Math.max(120,Math.min(180,scaled));
+ return scaled;
+}
 function matrixCell(osm,a,b,mode){if(!osm||!a||!b)return null;const table=osm[mode==='walk'?'foot':'car'];if(!table||!Array.isArray(table.ids))return null;const i=table.ids.indexOf(a.id),j=table.ids.indexOf(b.id);if(i<0||j<0)return null;const n=table.durations?.[i]?.[j],d=table.distances?.[i]?.[j];return Number.isFinite(n)&&n>=0?{seconds:n,metres:Number.isFinite(d)&&d>=0?d:null}:null;}
 function hasLegProfile(profiles,mode){return profiles!==null&&Object.hasOwn(profiles,mode);}
 function transportLeg(a,b,transport,g,date,osm=null,router=null,departureMinute=null,maxCost=Infinity,profiles=null){
@@ -186,7 +211,7 @@ function assignDays(x,shortlist){
  }
  return days;
 }
-function mealSlots(x){const a=[];if(x.start<(x.currency==='RUB'?10*60+30:12*60))a.push({kind:'breakfast',earliest:Math.max(x.start,7*60),latest:Math.min(Math.max(10*60+30,x.start),12*60-1,x.end-50),target:Math.max(x.start,7*60),label:'Завтрак'});
+function mealSlots(x){const a=[];if(x.start<12*60)a.push({kind:'breakfast',earliest:Math.max(x.start,7*60),latest:Math.min(Math.max(10*60+30,x.start),12*60-1,x.end-50),target:Math.max(x.start,7*60),label:'Завтрак'});
  if(x.start<14*60&&x.end>=13*60)a.push({kind:'lunch',earliest:Math.max(x.start,12*60),latest:Math.min(15*60,x.end-50),target:13*60,label:'Обед'});
   if(x.end>17*60)a.push({kind:'dinner',earliest:Math.max(x.start,Math.min(18*60,x.end-50)),latest:Math.min(x.end-50,21*60+30),target:Math.min(Math.max(x.start,18*60),Math.min(x.end-50,21*60+30)),label:'Ужин'});
  if(x.interests.includes('cafes')&&!a.length)a.push({kind:'snack',earliest:x.start,latest:x.end-50,target:x.start,label:'Кафе'});
@@ -310,11 +335,45 @@ function legacyPlanTrip(dataset,options){
 /* Bounded insertion planner. All accepted moves are scheduled with exactly the
    transport legs later emitted to the UI. No DB mutation and no network calls. */
 function planTrip(dataset,options){
- const x=normalize(dataset,options),required=new Set(x.required),slots=mealSlots(x),cafesOnly=x.interests.every(c=>c==='cafes'),cost=new Map(),available=new Map(),durations=new Map();
+ const x=normalize(dataset,options),required=new Set(x.required),slotsByDay=x.day_windows.map(w=>mealSlots({...x,start:w.start,end:w.end})),slots=slotsByDay[0],cafesOnly=x.interests.every(c=>c==='cafes'),cost=new Map(),available=new Map(),durations=new Map();
  const anchors=x.days.map(date=>{const anchor=dataset.day_anchors?.[date];
   return anchor&&Number.isFinite(anchor.lat)&&Math.abs(anchor.lat)<=90&&Number.isFinite(anchor.lon)&&Math.abs(anchor.lon)<=180&&Number.isFinite(anchor.radius_m)&&anchor.radius_m>0
    ?{...anchor,id:'@day-anchor:'+date}:null;});
  const anchored=anchors.some(Boolean),anchorDistances=anchors.map(()=>new Map());
+ const groupCount=x.group.adult+x.group.child+x.group.senior;
+ const budgetPerDay=x.budget/x.days.length;
+ const lowBudget=x.currency==='RUB'&&budgetPerDay/Math.max(1,groupCount)<4000;
+ const experienceBudget=x.currency==='RUB'&&!lowBudget;
+ // Soft experience budget for *each* meal, per person, not a compulsory spend.
+ // Any money not useful for suitable venues remains unspent. Other cities keep
+ // their existing currency-specific selection and cost model.
+ const diningTargets={breakfast:Math.min(1400,budgetPerDay/groupCount*.09),
+                      lunch:Math.min(2000,budgetPerDay/groupCount*.14),
+                      dinner:Math.min(2600,budgetPerDay/groupCount*.20)};
+ function mealExperience(p,kind){
+  const venue=p.food_type||'unknown';
+  const signal=({breakfast:{bakery:3,cafe:3,coffee_shop:2,restaurant:2,canteen:1,fast_food:-3},
+                 lunch:{restaurant:4,cafe:3,canteen:1,food_court:1,fast_food:-3,coffee_shop:-6},
+                 dinner:{restaurant:5,cafe:3,food_court:0,canteen:0,fast_food:-5,coffee_shop:-8,bakery:-8}})[kind]?.[venue]||0;
+  const suitability=p.meal_suitability?.[kind]==='likely'?2:p.meal_suitability?.[kind]==='possible'?0:-1;
+  const rating=Number.isFinite(p.rating)?Math.max(-2,Math.min(2,p.rating-3.5))*6:0;
+  const reviews=Number.isFinite(p.review_count)?Math.min(2,Math.log10(1+p.review_count)*.7):0;
+  return signal*3+suitability+rating+reviews+catalogQuality(p)/85;
+ }
+ function mealPreference(p,kind){
+  if(!experienceBudget)return 0;
+  // Without a recognized venue type or evidence, a larger check does not
+  // indicate a better dinner. Keep the previous price-aware behavior rather
+  // than paying extra for an unknown restaurant's arbitrary estimate.
+  if(!p.food_type)return cost.get(p.id)*.28-(Number.isFinite(p.rating)?p.rating*2:0);
+  const pricePerPerson=cost.get(p.id)/groupCount,target=diningTargets[kind]||0;
+  // Higher price is not inherently better. Near-target price is only a small
+  // tie-breaker after food type, suitability, rating and travel distance.
+  const mismatch=Math.abs(Math.min(pricePerPerson,target*1.5)-target);
+  return mismatch*.065+Math.max(0,pricePerPerson-target)*.055-mealExperience(p,kind)*10;
+ }
+ const fallbackPriceLimit=Math.max(0,Math.min(600*groupCount,budgetPerDay*.24));
+ const optionalTicketLimit=lowBudget?Math.max(220*groupCount,budgetPerDay*.55):Infinity;
  function anchorPenalty(p,day){
   const anchor=anchors[day];if(!anchor)return 0;
   const cache=anchorDistances[day];if(!cache.has(p.id)){
@@ -325,23 +384,75 @@ function planTrip(dataset,options){
   }return cache.get(p.id);
  }
  const waitingPenalty=minutes=>Math.min(180,Math.max(0,minutes-45));
- const MAX_EVALUATIONS=6000,metrics={evaluations:0,evaluation_limit:MAX_EVALUATIONS,search_limited:false,transport_calls:0,transport_cache_hits:0,food_candidates:0};
+ // Moscow needs a small dedicated budget for late-window repair; Shanghai retains
+ // its previous evaluation limit, so a city-specific improvement cannot silently
+ // increase processing time or search behavior for the Shanghai pilot.
+ const MAX_EVALUATIONS=x.currency==='RUB'&&dataset.compact_waits?9000:6000;
+ const metrics={evaluations:0,evaluation_limit:MAX_EVALUATIONS,search_limited:false,
+  transport_calls:0,transport_cache_hits:0,food_candidates:0,late_window_insertions:0};
  for(const p of x.pois){cost.set(p.id,groupPrice(p,x.group));durations.set(p.id,p.kind==='restaurant'?Math.max(50,Math.min(60,p.duration_minutes||50)):duration(p,x.pace));available.set(p.id,x.days.map(date=>flags(p,date)));}
  const allowed=p=>suitable(p,x.group)&&Number.isFinite(cost.get(p.id))&&cost.get(p.id)>=0;
  const food=x.pois.filter(p=>p.kind==='restaurant'&&allowed(p));
  const minFood=food.length?Math.min(...food.map(p=>cost.get(p.id))):0;
- const mandatoryMinutes=sum(x.required.map(id=>durations.get(id))),availableMinutes=x.days.length*(x.end-x.start);
+ // Lower bound respects actual meal suitability: cheap coffee-to-go must not
+ // underfund dinner on subsequent days.
+ const minimumForSlot=(slot,day)=>{
+  const prices=food.filter(p=>mealAllowed(p,slot.kind)&&available.get(p.id)[day].available)
+   .map(p=>cost.get(p.id));
+  return prices.length?Math.min(...prices):0; // Missing coverage is reported, not declared free.
+ };
+ const mealMinimums=slotsByDay.map((slots,day)=>slots.map(slot=>minimumForSlot(slot,day)));
+ // If the entire trip cannot afford three full meals each day, reserving the
+ // impossible dinner for every later day blocks cheap breakfasts and lunches.
+ // Reserve a *feasible* daily meal floor across all days, oldest meal first.
+ // This is a budget policy, not a declaration that an unreserved meal is free.
+ const affordableMealMinimums=mealMinimums.map(row=>{
+  if(!lowBudget)return row;
+  let availableBudget=Math.max(0,budgetPerDay*.82);
+  return row.map(price=>{
+   if(price>0&&price<=availableBudget+.001){availableBudget-=price;return price;}
+   return 0;
+  });
+ });
+ // A generous trip should protect a decent dinner on *later* days before
+ // spending extra on early breakfasts or optional tickets. This is a planning
+ // reserve, not a mandatory purchase: when only inexpensive food is present,
+ // it never assumes a nonexistent premium restaurant.
+ const mealReserves=affordableMealMinimums.map((row,day)=>row.map((minimum,index)=>{
+  const slot=slotsByDay[day][index];
+  if(!experienceBudget||slot.kind!=='dinner')return minimum;
+  const upper=Math.max(0,...food.filter(p=>mealAllowed(p,'dinner')&&available.get(p.id)[day].available)
+   .map(p=>cost.get(p.id)));
+  return Math.max(minimum,Math.min(diningTargets.dinner*groupCount,upper));
+ }));
+ const reservedMealCost=(day,from=0)=>sum(mealReserves[day].slice(from));
+ const mandatoryMinutes=sum(x.required.map(id=>durations.get(id))),availableMinutes=sum(x.day_windows.map(w=>w.end-w.start));
  const fixedPetConflict=x.transport==='transit'&&x.group.pet>0;
  if(fixedPetConflict||mandatoryMinutes>availableMinutes&&x.required.length>12){
-  const days=x.days.map(date=>({date,events:[],visit_ids:[],meal_ids:[],total_cost_cny:0,active_minutes:0,active_limit_minutes:x.end-x.start,rest_minutes:0,starts_at:null,ends_at:null,warnings:[]}));
+  const days=x.days.map((date,i)=>({date,events:[],visit_ids:[],meal_ids:[],total_cost_cny:0,active_minutes:0,active_limit_minutes:x.day_windows[i].end-x.day_windows[i].start,rest_minutes:0,starts_at:null,ends_at:null,warnings:[]}));
   return {schema_version:'shanghai-demo-v1',model_version:'bounded-joint-insertion-v5',status:'infeasible',diagnostic_codes:fixedPetConflict?['PET_TRANSIT_UNSUPPORTED']:['REQUIRED_DURATION_LOWER_BOUND'],days,selected_ids:[],warnings:[fixedPetConflict?'Питомцы и выбранный общественный транспорт несовместимы с консервативными правилами этой модели. Выберите пеший или смешанный транспорт; перевозка питомцев в метро/автобусе не подтверждена.':'На обязательные места требуется не менее '+mandatoryMinutes+' мин посещений; доступно '+availableMinutes+' мин за '+x.days.length+' дн. Даже без транспорта и дополнительного питания все обязательные места не помещаются.','Длительности, цены, часы и рейтинги каталога демонстрационные; вывод относится к этой модели.'],ranking:rankPois(dataset,options),checks:{time:'passed',budget:'passed',opening_hours:'passed',meals:slots.length?'failed':'passed',required_places:x.required.length?'failed':'passed',interest_coverage:'failed',primary_interests:'failed',no_gaps:'passed',no_duplicates:'passed'},unplaced_required_ids:x.required.slice(),uncovered_interests:x.interests.slice(),summary:{total_cost_cny:0,budget_cny:x.budget,visit_count:0,meal_count:0,planned_travel_minutes:0,estimated_travel_minutes:0,transport_cost_cny:0,covered_interests:[],days_count:days.length,group:x.group,transport_mode:x.transport,synthetic_data:true,first_last_poi:true,skipped_filters:{},daily_visits:days.map(()=>0),osm_legs:0,stage1_selected_ids:[],stage1_count:0,clusters:days.map(d=>({date:d.date,ids:[]})),required_total:x.required.length,required_placed:0,meal_repair_count:0,optimizer:metrics}};
  }
  const eligible=x.pois.filter(p=>(p.kind==='attraction'||cafesOnly&&p.kind==='restaurant')&&allowed(p)&&available.get(p.id).some(f=>f.available));
- const utility=p=>x.primary.filter(c=>p.categories.includes(c)).length*1000+x.secondary.filter(c=>p.categories.includes(c)).length*180+Math.max(0,p.rating||0)*3+Math.min(20,Math.log2(1+(p.review_count||0)))+catalogQuality(p)-cost.get(p.id)*.03;
- const matching=eligible.filter(p=>required.has(p.id)||p.categories.some(c=>x.interests.includes(c)));
+ const utility=p=>x.primary.filter(c=>p.categories.includes(c)).length*1000+x.secondary.filter(c=>p.categories.includes(c)).length*180+Math.max(0,p.rating||0)*3+Math.min(20,Math.log2(1+(p.review_count||0)))+catalogQuality(p)-cost.get(p.id)*(x.currency==='RUB'?(lowBudget?.32:.055):.03);
+ // Under a constrained Moscow budget, affordable nature/history/viewpoints are
+ // legitimate substitutes if expensive interests would otherwise leave days empty.
+ // Other cities keep their previous relevance-only policy.
+ const matching=eligible.filter(p=>required.has(p.id)||
+  cost.get(p.id)<=optionalTicketLimit&&p.categories.some(c=>x.interests.includes(c))||
+  lowBudget&&cost.get(p.id)<=fallbackPriceLimit&&p.categories.some(c=>['nature','history','viewpoints','unusual'].includes(c)));
  matching.sort((a,b)=>utility(b)-utility(a)||a.id.localeCompare(b.id));
  const candidates=[],chosen=new Set();const include=p=>{if(p&&!chosen.has(p.id)){chosen.add(p.id);candidates.push(p);}};
  x.required.forEach(id=>include(x.byId.get(id)));
+ if(lowBudget){
+  // Seed every geographical area with affordable candidates before the ordinary
+  // high-rating shortlist consumes its fixed-size quota.
+  for(let day=0;day<x.days.length;day++){
+   matching.filter(p=>available.get(p.id)[day].available&&cost.get(p.id)<=Math.max(fallbackPriceLimit,budgetPerDay*.30))
+    .sort((a,b)=>(anchors[day]?anchorPenalty(a,day)-anchorPenalty(b,day):0)+
+      (cost.get(a.id)-cost.get(b.id))*.35||cost.get(a.id)-cost.get(b.id)||a.id.localeCompare(b.id))
+    .slice(0,Math.max(8,Math.ceil(24/x.days.length))).forEach(include);
+  }
+ }
  // Reserve alternatives per category and district; quality alone cannot fill the
  // whole shortlist with one distant district, nor replace interest relevance.
  const cells=new Map();for(const p of matching){const key=Math.floor(p.lat/.025)+':'+Math.floor(p.lon/.025);if(!cells.has(key))cells.set(key,[]);cells.get(key).push(p);}
@@ -355,7 +466,8 @@ function planTrip(dataset,options){
  for(const c of attractionCategories)matching.filter(p=>p.categories.includes(c)).slice(0,Math.max(4,x.days.length*3)).forEach(include);
  for(const list of [...cells.values()].sort((a,b)=>utility(b[0])-utility(a[0])).slice(0,20))list.slice(0,1).forEach(include);
  matching.slice(0,Math.max(24,x.days.length*12)).forEach(include);
- const shortlist=candidates.slice(0,Math.max(x.required.length,Math.min(96,24+x.days.length*12)));
+ const shortlist=candidates.slice(0,Math.max(x.required.length,
+  lowBudget?Math.min(112,32+x.days.length*16):Math.min(96,24+x.days.length*12)));
  shortlist.sort((a,b)=>(required.has(b.id)?1:0)-(required.has(a.id)?1:0)||utility(b)-utility(a)||a.id.localeCompare(b.id));
  // Grid keeps the 2000 restaurants out of the schedule branch loop. Buckets are
  // queried once per shortlisted attraction, and reused by every insertion.
@@ -364,14 +476,32 @@ function planTrip(dataset,options){
  const nearCache=new Map();function nearby(anchor){if(!anchor)return [];if(nearCache.has(anchor.id))return nearCache.get(anchor.id);const a=Math.floor(anchor.lat/cell),b=Math.floor(anchor.lon/cell),found=[];
   for(let ring=0;ring<=5;ring++){for(let i=-ring;i<=ring;i++)for(let j=-ring;j<=ring;j++){if(ring&&Math.max(Math.abs(i),Math.abs(j))!==ring)continue;for(const p of grid.get(cellKey(a+i,b+j))||[])found.push(p);}if(found.length>=24&&ring>=1)break;}
   found.sort((p,q)=>distance(anchor,p)-distance(anchor,q)||cost.get(p.id)-cost.get(q.id)||p.id.localeCompare(q.id));
-  const out=unique(found.slice(0,18).concat(found.slice().sort((a,b)=>cost.get(a.id)-cost.get(b.id)).slice(0,6)));nearCache.set(anchor.id,out);return out;
+  const cheapest=found.slice().sort((a,b)=>cost.get(a.id)-cost.get(b.id)||a.id.localeCompare(b.id)).slice(0,6);
+  const fuller=experienceBudget?found.filter(p=>['restaurant','cafe'].includes(p.food_type))
+   .sort((a,b)=>distance(anchor,a)-distance(anchor,b)||a.id.localeCompare(b.id)).slice(0,12):[];
+  const out=unique(found.slice(0,18).concat(cheapest,fuller));nearCache.set(anchor.id,out);return out;
  }
  const legModes=selectedModes(x);
  const staticLegs=legModes.every(mode=>hasLegProfile(x.leg_profiles,mode));
  const legCache=new Map();function leg(a,b,day,at,allowance=Infinity){if(allowance<-.00001)return null;const key=(a?.id||'@')+'>'+b.id+(staticLegs?'':'|'+day+'|'+at);let values;if(legCache.has(key)){metrics.transport_cache_hits++;values=legCache.get(key);}else{metrics.transport_calls++;
   values=legModes.map(mode=>transportLeg(a,b,mode,x.group,x.days[day],x.osm_tables,x.transit_router,at,Infinity,x.leg_profiles)).filter(value=>allowedActualMode(value,x));
-  if(!values.length&&x.transport==='transit'&&!x.transport_modes&&!hasLegProfile(x.leg_profiles,'transit')&&a&&distance(a,b)<=(x.group.senior||x.group.child?1200:1800)){const local=transportLeg(a,b,'walk',x.group,x.days[day],x.osm_tables,null,at,Infinity,x.leg_profiles);if(local)values.push({...local,selection_reason:'local_walking_access_in_transit_itinerary'});}legCache.set(key,values);}
-  const possible=values.filter(v=>v.transport_cost_cny<=Math.max(0,allowance)+1e-7).sort((a,b)=>a.planned_minutes-b.planned_minutes||a.transport_cost_cny-b.transport_cost_cny);return possible[0]||null;
+  // Walking is always permitted as a short connector unless the request is strictly walk-only
+  // (which already has a walk profile). Do not silently allow a long walking journey.
+  // Even a taxi/transit-only itinerary can use a very short walking connector.
+  // A mixed itinerary must also compare real walk profiles before summoning a cab.
+  const connectorLimit=legModes.includes('walk')?0:legModes.includes('taxi')&&legModes.length===1?600:1000;
+  if(a&&connectorLimit&&distance(a,b)<=connectorLimit){
+   const local=transportLeg(a,b,'walk',x.group,x.days[day],x.osm_tables,null,at,Infinity,x.leg_profiles);
+   if(local)values.push({...local,selection_reason:'short_local_walking_connector'});
+  }legCache.set(key,values);}
+  const affordable=values.filter(v=>v.transport_cost_cny<=Math.max(0,allowance)+1e-7);
+  const walk=affordable.find(v=>v.mode==='walk'&&v.planned_minutes<=(x.group.senior?11:x.group.child?14:18));
+  // Short city-centre car loops rarely compensate for pickup and boarding.
+  // Only choose a car when it saves a meaningful amount of *door-to-door* time.
+  const possible=affordable.filter(v=>!(walk&&v.mode==='taxi'&&
+    v.planned_minutes+Math.min(8,Math.max(3,walk.planned_minutes*.4))>=walk.planned_minutes))
+   .sort((a,b)=>a.planned_minutes-b.planned_minutes||a.transport_cost_cny-b.transport_cost_cny);
+  return possible[0]||null;
  }
  const sumCost=plans=>sum(plans.map(p=>p.cost));
  const proxyCache=new Map();function proxy(a,b){if(!a||!b||a.id===b.id)return 0;const key=a.id+'>'+b.id;if(proxyCache.has(key))return proxyCache.get(key);const metres=distance(a,b)*1.25,cross=a.river_bank&&b.river_bank&&a.river_bank!==b.river_bank;
@@ -389,7 +519,7 @@ function planTrip(dataset,options){
    for(let j=0;j<i;j++){
     const event=events[j];if(!event.poi_id)continue;
     shift=Math.min(shift,available.get(event.poi_id)[day].close-event.end_min);
-    const slot=slots.find(item=>item.kind===event.meal_kind);
+    const slot=slotsByDay[day].find(item=>item.kind===event.meal_kind);
     if(slot)shift=Math.min(shift,slot.latest-event.start_min);
    }
    for(const [before,after,minimum] of [['breakfast','lunch',150],['lunch','dinner',180]]){
@@ -406,57 +536,96 @@ function planTrip(dataset,options){
   }
  }
  function forecastWaiting(sequence,day){
-  let time=x.start,previous=null,wait=0;
+  let time=x.day_windows[day].start,previous=null,wait=0;
   for(const p of sequence){
    const arrival=time+proxy(previous,p),opens=available.get(p.id)[day].open;
    wait+=waitingPenalty(opens-arrival);
    time=Math.max(opens,arrival)+durations.get(p.id);previous=p;
   }return wait;
  }
- function scheduleAttempt(sequence,day,otherPlans=[],pendingRequired=[],skipMeals=false,mealStrategy='route'){if(metrics.evaluations>=MAX_EVALUATIONS){metrics.search_limited=true;return null;}metrics.evaluations++;let now=x.start,position=null,spent=0,slotIndex=0,missed=0;const events=[],used=new Set(otherPlans.flatMap(p=>p.meal_ids)),otherCost=sumCost(otherPlans),meal_ids=[],visit_ids=[];
+ function scheduleAttempt(sequence,day,otherPlans=[],pendingRequired=[],skipMeals=false,mealStrategy='route'){if(metrics.evaluations>=MAX_EVALUATIONS){metrics.search_limited=true;return null;}metrics.evaluations++;const slots=slotsByDay[day],dayStart=x.day_windows[day].start,dayEnd=x.day_windows[day].end;let now=dayStart,position=null,spent=0,slotIndex=0,missed=0;const events=[],used=new Set(otherPlans.flatMap(p=>p.meal_ids)),otherCost=sumCost(otherPlans),meal_ids=[],visit_ids=[];
   const requiredReserve=sum(pendingRequired.filter(id=>!sequence.some(p=>p.id===id)).map(id=>cost.get(id)||0));
-  const futureFood=sequence.some(p=>required.has(p.id))||pendingRequired.length?0:Math.max(0,x.days.length-1-otherPlans.length)*slots.length*minFood;
+  // Blank future-day placeholders are *not* funded days. The old test
+  // otherPlans.some(date) incorrectly skipped every future reservation during
+  // incremental construction, allowing day 1 to consume the last day's dinner.
+  const futureFood=sum(x.days.map((date,i)=>i===day||otherPlans.some(plan=>
+    plan.date===date&&(plan.sequence?.length||plan.meal_ids?.length))?0:reservedMealCost(i)));
   const left=()=>x.budget-otherCost-spent-requiredReserve-futureFood;
   function mealEarliest(slot){const previous=events.findLast(e=>e.type==='meal'&&e.meal_kind===(slot.kind==='lunch'?'breakfast':slot.kind==='dinner'?'lunch':'@'));return Math.max(slot.earliest,previous?previous.end_min+(slot.kind==='lunch'?150:180):slot.earliest);}
   function add(p,type,travel,start,kind){const d=durations.get(p.id);const depart=start-travel.planned_minutes,gap=Math.max(0,depart-now),opening=available.get(p.id)[day].open;const wait=gap?{wait_before_min:gap,waiting_reason:opening>=start?'Ожидание открытия «'+p.name+'» по указанным часам.':type==='meal'?'Ожидание допустимого времени '+(kind==='lunch'?'обеда и интервала 150 минут после завтрака':kind==='dinner'?'ужина и интервала 180 минут после обеда':'приёма пищи')+'.':'Ожидание открытия следующего места; отправление отложено на время подхода.'}:{};if(travel.planned_minutes)events.push({type:'travel',from_poi_id:position.id,to_poi_id:p.id,start_min:depart,end_min:start,...travel,...wait});
    const e={type,poi_id:p.id,start_min:start,end_min:start+d,price_cny:cost.get(p.id),matched_interests:x.interests.filter(c=>p.categories.includes(c)),reason:type==='meal'?'Питание по минимальному дополнительному времени вдоль маршрута.':(required.has(p.id)?'Обязательное место. ':'')+(p.categories.some(c=>x.primary.includes(c))?'Главный интерес. ':'Дополнительный интерес. ')+'Проверены часы, группа, бюджет и переход.',...(!travel.planned_minutes?wait:{})};if(kind)e.meal_kind=kind;events.push(e);now=e.end_min;spent+=cost.get(p.id)+travel.transport_cost_cny;position=p;used.add(p.id);(type==='meal'?meal_ids:visit_ids).push(p.id);
   }
-  function meal(slot,next){if(skipMeals)return false;const anchor=position||next||shortlist[0]||food[0];if(!anchor)return false;const pool=unique(nearby(anchor).concat(next?nearby(next):[],anchors[day]?nearby(anchors[day]):[])),picks=[];const remainingMeals=(slots.length-slotIndex-1)*minFood;
+  function meal(slot,next){if(skipMeals)return false;const anchor=position||next||shortlist[0]||food[0];if(!anchor)return false;const pool=unique(nearby(anchor).concat(next?nearby(next):[],anchors[day]?nearby(anchors[day]):[])),picks=[];const remainingMeals=reservedMealCost(day,slotIndex+1);
    const remainingTickets=sum(sequence.filter(p=>!used.has(p.id)).map(p=>cost.get(p.id)));
-   const prospective=pool.filter(p=>!used.has(p.id)&&!required.has(p.id)&&!sequence.some(z=>z.id===p.id)&&available.get(p.id)[day].available&&cost.get(p.id)+remainingTickets+remainingMeals<=left()+1e-7).sort((a,b)=>{const d=p=>(position?distance(position,p):0)+(next?distance(p,next):0);return d(a)-d(b)||cost.get(a.id)-cost.get(b.id)||a.id.localeCompare(b.id);}).slice(0,24);
-   for(let candidateIndex=0;candidateIndex<prospective.length;candidateIndex++){if(candidateIndex>=8&&picks.length)break;const p=prospective[candidateIndex];metrics.food_candidates++;const f=available.get(p.id)[day];const allowance=left()-cost.get(p.id)-remainingTickets-remainingMeals;
+   const prospective=pool.filter(p=>mealAllowed(p,slot.kind)&&!used.has(p.id)&&!required.has(p.id)&&!sequence.some(z=>z.id===p.id)&&available.get(p.id)[day].available&&
+    (!lowBudget||cost.get(p.id)<=Math.max(300*groupCount,budgetPerDay*.62))&&
+    (!lowBudget||spent+cost.get(p.id)<=Math.max(350*groupCount,budgetPerDay*1.25))&&
+    cost.get(p.id)+remainingTickets+remainingMeals<=left()+1e-7).sort((a,b)=>{const d=p=>(position?distance(position,p):0)+(next?distance(p,next):0);
+    // Paying 2,400 RUB for lunch should not beat a 450 RUB canteen simply
+    // because the latter is a few streets farther away.
+    const weight=lowBudget?1.2:.14;
+    const costRank=p=>experienceBudget?mealPreference(p,slot.kind)*.8:cost.get(p.id)*weight;
+    return d(a)/10+costRank(a)-(d(b)/10+costRank(b))||d(a)-d(b)||a.id.localeCompare(b.id);
+   }).slice(0,24);
+   // The cheapest geographically reasonable fallback must remain testable.
+   // Otherwise a long rich-venue list can consume all feasibility trials,
+   // leaving the next day without a decent dinner after overspending today.
+   const testedFood=experienceBudget?unique(prospective.slice(0,7).concat(
+     prospective.slice().sort((a,b)=>cost.get(a.id)-cost.get(b.id)||a.id.localeCompare(b.id)).slice(0,3),
+     prospective.slice().sort((a,b)=>distance(anchor,a)-distance(anchor,b)||a.id.localeCompare(b.id)).slice(0,2))):prospective;
+   for(let candidateIndex=0;candidateIndex<testedFood.length;candidateIndex++){if(candidateIndex>=(experienceBudget?12:8)&&picks.length)break;const p=testedFood[candidateIndex];metrics.food_candidates++;const f=available.get(p.id)[day];const allowance=left()-cost.get(p.id)-remainingTickets-remainingMeals;
     // Delay departure rather than inventing a rest event. Re-route at the exact
     // delayed departure so graph service windows cannot be crossed silently.
     const earliest=mealEarliest(slot);let depart=now,t=leg(position,p,day,depart,allowance);if(!t)continue;let start=Math.max(now+t.planned_minutes,earliest,f.open);
     if(start>now+t.planned_minutes){depart=start-t.planned_minutes;t=leg(position,p,day,depart,allowance);if(!t)continue;start=depart+t.planned_minutes;}
-    const finish=start+durations.get(p.id);if(start<earliest||start<f.open||start>slot.latest||finish>f.close||finish>x.end)continue;
+    const finish=start+durations.get(p.id);if(start<earliest||start<f.open||start>slot.latest||finish>f.close||finish>dayEnd)continue;
     const onward=next?leg(p,next,day,finish,allowance-t.transport_cost_cny):null;if(next&&!onward)continue;
-    if(next){const nf=available.get(next.id)[day],ns=Math.max(finish+onward.planned_minutes,nf.open);if(ns+durations.get(next.id)>Math.min(nf.close,x.end))continue;}
+    if(next){const nf=available.get(next.id)[day],ns=Math.max(finish+onward.planned_minutes,nf.open);if(ns+durations.get(next.id)>Math.min(nf.close,dayEnd))continue;}
     const direct=position&&next?leg(position,next,day,now,allowance):null;
     const detour=t.planned_minutes+(onward?.planned_minutes||0)-(direct?.planned_minutes||0);
     // No hard river ban: a genuine routed bridge may win. An expensive detour
     // cannot win on synthetic stars; food is subordinate to the attractions.
     if(detour>45)continue;
     const earlyMealPenalty=mealStrategy==='early_meals'?(start-earliest)*(slot.kind==='lunch'?6:2):0;
-    picks.push({p,t,start,score:detour*12+Math.abs(start-slot.target)*.04+cost.get(p.id)*.08-(p.rating||0)*2-Math.min(2,Math.log2(1+(p.review_count||0))*.1)+(anchored?anchorPenalty(p,day)*.22+waitingPenalty(start-now-t.planned_minutes)*.45:0)+earlyMealPenalty});
+    const foodPreference=experienceBudget?mealPreference(p,slot.kind):
+      cost.get(p.id)*(lowBudget?1.4:x.currency==='RUB'?.28:.08)-(p.rating||0)*2;
+    // Keep similar comfort across all days. A high-budget trip should not
+    // spend its food allowance on lavish breakfasts in early days and leave
+    // the last evening with only fast food. The daily share is a *soft* cap:
+    // expensive mandatory tickets or lack of options can still exceed it.
+    const estimatedDayCommitment=spent+cost.get(p.id)+remainingTickets+remainingMeals+t.transport_cost_cny;
+    const fairSharePenalty=experienceBudget&&x.days.length>1?
+      Math.max(0,estimatedDayCommitment-budgetPerDay*1.04)*.55:0;
+    picks.push({p,t,start,score:detour*(experienceBudget?8:12)+Math.abs(start-slot.target)*.04+foodPreference+fairSharePenalty-Math.min(2,Math.log2(1+(p.review_count||0))*.1)+(anchored?anchorPenalty(p,day)*.22:0)+((anchored||dataset.compact_waits)?waitingPenalty(start-now-t.planned_minutes)*1.5:0)+earlyMealPenalty});
    }
    picks.sort((a,b)=>a.score-b.score||a.p.id.localeCompare(b.p.id));if(!picks.length)return false;const best=picks[0];add(best.p,'meal',best.t,best.start,slot.kind);return true;
+  }
+  // Breakfast is the first *stop* when it is in the route, not a meal
+  // inserted after the first museum. If it cannot be afforded or opened in
+  // time, report a missed breakfast instead of inventing a late breakfast.
+  if(slots[0]?.kind==='breakfast'){
+   const first=sequence[0],firstIsBreakfast=first?.kind==='restaurant'&&
+    mealAllowed(first,'breakfast')&&available.get(first.id)?.[day]?.available&&
+    Math.max(dayStart,slots[0].earliest,available.get(first.id)[day].open)<=slots[0].latest;
+   if(!firstIsBreakfast){if(!meal(slots[0],first||null))missed++;slotIndex++;}
   }
   for(let index=0;index<sequence.length;index++){const p=sequence[index],f=available.get(p.id)?.[day];if(!f?.available||!allowed(p)||used.has(p.id))return null;
    while(slotIndex<slots.length){const s=slots[slotIndex],trial=leg(position,p,day,now,left()-cost.get(p.id)),visitStart=trial?Math.max(now+trial.planned_minutes,f.open):Infinity;const visitEnd=visitStart+durations.get(p.id);
     // A required restaurant replaces the matching meal, but must not swallow
     // an earlier meal window merely because it opens much later in the day.
-    if(p.kind==='restaurant'&&visitStart>=mealEarliest(s)&&visitStart<=s.latest)break;
+    if(p.kind==='restaurant'&&mealAllowed(p,s.kind)&&visitStart>=mealEarliest(s)&&visitStart<=s.latest)break;
     if(mealStrategy==='visit_first'&&p.kind!=='restaurant'&&visitEnd+20<=s.latest)break;
     if(s.kind==='breakfast'||now>=s.target-25||visitEnd>s.latest){if(!meal(s,p)){if(visitEnd<=s.latest)break;missed++;}slotIndex++;}else break;
    }
-   const reserve=sum(sequence.slice(index+1).map(p=>cost.get(p.id)))+(skipMeals||required.has(p.id)?0:(slots.length-slotIndex)*minFood);
+   const reserve=sum(sequence.slice(index+1).map(p=>cost.get(p.id)))+(skipMeals||required.has(p.id)?0:reservedMealCost(day,slotIndex));
    let t=leg(position,p,day,now,left()-cost.get(p.id)-reserve);if(!t)return null;let start=Math.max(now+t.planned_minutes,f.open);
    if(start>now+t.planned_minutes){const depart=start-t.planned_minutes;t=leg(position,p,day,depart,left()-cost.get(p.id)-reserve);if(!t)return null;start=depart+t.planned_minutes;if(start<f.open)return null;}
-   if(start+durations.get(p.id)>Math.min(f.close,x.end)||spent+t.transport_cost_cny+cost.get(p.id)+otherCost>x.budget+1e-7)return null;
-   if(p.kind==='restaurant'){const slot=slots[slotIndex],kind=slot&&start>=mealEarliest(slot)&&start<=slot.latest?slot.kind:'snack';add(p,'meal',t,start,kind);if(kind!=='snack')slotIndex++;}else add(p,'visit',t,start);
+   if(start+durations.get(p.id)>Math.min(f.close,dayEnd)||spent+t.transport_cost_cny+cost.get(p.id)+otherCost>x.budget+1e-7)return null;
+   if(p.kind==='restaurant'){const slot=slots[slotIndex],kind=slot&&mealAllowed(p,slot.kind)&&start>=mealEarliest(slot)&&start<=slot.latest?slot.kind:'snack';add(p,'meal',t,start,kind);if(kind!=='snack')slotIndex++;}else add(p,'visit',t,start);
   }
   while(slotIndex<slots.length){if(!meal(slots[slotIndex],null))missed++;slotIndex++;}
+  const actualStops=events.filter(e=>e.poi_id);
+  if(actualStops.some(e=>e.meal_kind==='breakfast')&&actualStops[0]?.meal_kind!=='breakfast')return null;
   if(spent+otherCost>x.budget+1e-7)return null;
   compactScheduleWaits(events,day);
   const crossings=events.filter(e=>e.type==='travel'&&x.byId.get(e.from_poi_id)?.river_bank&&x.byId.get(e.to_poi_id)?.river_bank&&x.byId.get(e.from_poi_id).river_bank!==x.byId.get(e.to_poi_id).river_bank).length;
@@ -467,7 +636,7 @@ function planTrip(dataset,options){
    for(let i=2;i<stops.length;i++){
     const [a,b,c]=[stops[i-2],stops[i-1],stops[i]];
     if(dataset.compact_waits&&staticLegs){
-     const before=routeLegs[i-2],after=routeLegs[i-1],direct=leg(a,c,day,x.start);
+     const before=routeLegs[i-2],after=routeLegs[i-1],direct=leg(a,c,day,dayStart);
      if([before,after,direct].every(item=>item?.basis==='routing_provider'||item?.source==='OSM_OSRM'))
       preferencePenalty+=Math.min(90,Math.max(0,before.planned_minutes+after.planned_minutes-direct.planned_minutes-8)*2.2);
     }else if(anchored){
@@ -475,11 +644,11 @@ function planTrip(dataset,options){
     }
    }
    preferencePenalty+=sum(sequence.map(p=>anchorPenalty(p,day)))+sum(meal_ids.map(id=>anchorPenalty(x.byId.get(id),day)))*.22;
-   preferencePenalty+=sum(events.map(e=>waitingPenalty(e.wait_before_min||0)))*2.5;
+   preferencePenalty+=sum(events.map(e=>waitingPenalty(e.wait_before_min||0)))*(dataset.compact_waits?7:2.5);
    if(anchors[day]&&sequence.length)preferencePenalty-=190;
   }
   if(dataset.compact_waits){
-   const dayMinutes=x.end-x.start;
+   const dayMinutes=dayEnd-dayStart;
    const active=sum(events.filter(event=>event.type==='visit'||event.type==='travel')
                           .map(event=>event.end_min-event.start_min));
    const travel=sum(events.filter(event=>event.type==='travel').map(event=>event.planned_minutes));
@@ -491,20 +660,44 @@ function planTrip(dataset,options){
   return {date:x.days[day],sequence,events,visit_ids,meal_ids,cost:round(spent),missed,travel:sum(events.filter(e=>e.type==='travel').map(e=>e.planned_minutes)),idle:sum(events.map(e=>e.wait_before_min||0)),active:sum(events.map(e=>e.end_min-e.start_min)),crossings,preferencePenalty};
  }
  function schedule(sequence,day,otherPlans=[],pendingRequired=[]){return scheduleAttempt(sequence,day,otherPlans,pendingRequired)||scheduleAttempt(sequence,day,otherPlans,pendingRequired,true);}
- const blank=day=>({date:x.days[day],sequence:[],events:[],visit_ids:[],meal_ids:[],cost:0,missed:slots.length,travel:0});
+ const blank=day=>({date:x.days[day],sequence:[],events:[],visit_ids:[],meal_ids:[],cost:0,missed:slotsByDay[day].length,travel:0});
  const score=plans=>{const visited=plans.flatMap(p=>p.sequence),covered=new Set(visited.flatMap(p=>p.categories));
   const meanActive=sum(plans.map(plan=>plan.active||0))/plans.length;
-  const minUseful=Math.min(x.pace==='intensive'?4:3,Math.max(...plans.map(plan=>plan.visit_ids.length)));
-  const imbalance=dataset.compact_waits?sum(plans.map(plan=>Math.min(180,Math.abs((plan.active||0)-meanActive))**2/120+
-    (x.pace==='relaxed'?0:Math.max(0,minUseful-plan.visit_ids.length)**2*500))):0;
-  return visited.filter(p=>required.has(p.id)).length*1e7-plans.reduce((s,p)=>s+p.missed,0)*20000+x.primary.filter(c=>c!=='cafes'&&covered.has(c)).length*12000+x.secondary.filter(c=>c!=='cafes'&&covered.has(c)).length*3000+sum(visited.map(utility))-sum(plans.map(p=>p.travel))*9-sum(plans.map(p=>p.sequence.length*p.sequence.length))*65-sum(plans.map(p=>p.idle||0))*.5-sum(plans.map(p=>p.crossings||0))*.1-sum(plans.map(p=>p.preferencePenalty||0))-imbalance;};
+  // Prevent a single profitable day from hoarding the entire trip budget.
+  // An affordable visit in an empty day is worth more than adding a fourth
+  // attraction to a day already containing three. This is not a hard visit
+  // quota: an objectively impossible day remains partial with an explanation.
+  const balancedCoverage=x.currency==='RUB'?sum(plans.map(plan=>{
+   const n=plan.visit_ids.length;
+   const first=lowBudget?17000:9500;
+   return n>0?first+(n>1?3800:0)+(n>2?1300:0)+
+    (x.pace!=='relaxed'&&n>3?1100:0)+(x.pace!=='relaxed'&&n>4?750:0):0;
+  })):0;
+  const overBudgetDay=lowBudget?sum(plans.map(p=>Math.max(0,p.cost-budgetPerDay*1.30)))*.5:0;
+  const unnecessaryTravel=x.currency==='RUB'?sum(plans.flatMap(p=>p.events||[]).filter(e=>e.type==='travel').map(e=>{
+   const from=x.byId.get(e.from_poi_id),to=x.byId.get(e.to_poi_id);
+   if(!from||!to)return 0;
+   const direct=distance(from,to),routed=Number.isFinite(e.distance_m)?e.distance_m:direct;
+   // Detours are sometimes necessary (rivers/railways). Penalize instead of
+   // invalidating valid routed transfers; only distrust *large* excesses.
+   const ratio=direct>150?routed/direct:1;
+   return Math.max(0,ratio-2.2)*Math.min(95,e.planned_minutes*2)+
+    (e.mode==='taxi'?e.transport_cost_cny*(lowBudget?.22:.045):0);
+  })):0;
+  const imbalance=dataset.compact_waits?sum(plans.map(plan=>Math.min(180,Math.abs((plan.active||0)-meanActive))**2/120)):0;
+  const diningValue=experienceBudget?sum(plans.flatMap(p=>p.events||[])
+    .filter(e=>e.type==='meal'&&e.meal_kind&&e.meal_kind!=='snack')
+    .map(e=>{const restaurant=x.byId.get(e.poi_id);
+      return restaurant?mealExperience(restaurant,e.meal_kind)*12-
+        Math.abs(cost.get(restaurant.id)/groupCount-(diningTargets[e.meal_kind]||0))*.07:0;})):0;
+  return diningValue+balancedCoverage-overBudgetDay-unnecessaryTravel+visited.filter(p=>required.has(p.id)).length*1e7-plans.reduce((s,p)=>s+p.missed,0)*(lowBudget?12000:20000)+x.primary.filter(c=>c!=='cafes'&&covered.has(c)).length*12000+x.secondary.filter(c=>c!=='cafes'&&covered.has(c)).length*3000+sum(visited.map(utility))-sum(plans.map(p=>p.travel))*9-sum(plans.map(p=>p.sequence.length*p.sequence.length))*65-sum(plans.map(p=>p.idle||0))*.5-sum(plans.map(p=>p.crossings||0))*.1-sum(plans.map(p=>p.preferencePenalty||0))-imbalance;};
  function insertions(plans,p,pending){const results=[];let dayOrder=x.days.map((_,i)=>i);if(!required.has(p.id)&&dayOrder.length>3)dayOrder.sort((a,b)=>{const proxy=i=>plans[i].sequence.length*1200+(plans[i].sequence.length?Math.min(...plans[i].sequence.map(z=>distance(z,p))):0);return proxy(a)-proxy(b)||a-b;}).splice(3);
   for(const day of dayOrder){if(!available.get(p.id)?.[day]?.available)continue;const old=plans[day],other=plans.filter((_,i)=>i!==day);let positions=Array.from({length:old.sequence.length+1},(_,i)=>i);
    if(!required.has(p.id)&&positions.length>4)positions.sort((a,b)=>{const detour=i=>(i?distance(old.sequence[i-1],p):0)+(i<old.sequence.length?distance(p,old.sequence[i]):0)-(i&&i<old.sequence.length?distance(old.sequence[i-1],old.sequence[i]):0);return detour(a)-detour(b)||a-b;}).splice(4);
    for(const pos of positions){const seq=old.sequence.slice();seq.splice(pos,0,p);const candidate=schedule(seq,day,other,pending);if(candidate){const moved=plans.slice();moved[day]=candidate;results.push(moved);}}
   }return results;
  }
- function optionalMoves(plans,p,coverage){const out=[];for(let day=0;day<plans.length;day++){if(!available.get(p.id)?.[day]?.available)continue;const seq=plans[day].sequence;for(let pos=0;pos<=seq.length;pos++){const detour=insertionProxy(seq,p,pos),emptyBonus=seq.length?0:plans[day].missed*20000+(anchors[day]?190:0);out.push({p,day,pos,priority:utility(p)+coverage*2000+emptyBonus-detour*9-65*(2*seq.length+1)-anchorPenalty(p,day)});}}return out;}
+ function optionalMoves(plans,p,coverage){const out=[];for(let day=0;day<plans.length;day++){if(!available.get(p.id)?.[day]?.available)continue;const seq=plans[day].sequence;for(let pos=0;pos<=seq.length;pos++){const detour=insertionProxy(seq,p,pos),emptyBonus=seq.length?0:plans[day].missed*20000+(anchors[day]?190:0);out.push({p,day,pos,priority:utility(p)+coverage*2000+emptyBonus-detour*9-65*(2*seq.length+1)-anchorPenalty(p,day)-(lowBudget?cost.get(p.id)*.9:0)});}}return out;}
  function applyMove(plans,move){const seq=plans[move.day].sequence.slice();seq.splice(move.pos,0,move.p);const candidate=schedule(seq,move.day,plans.filter((_,i)=>i!==move.day),[]);if(!candidate)return null;const moved=plans.slice();moved[move.day]=candidate;return moved;}
  let beam=[x.days.map((_,i)=>blank(i))];const mandatory=shortlist.filter(p=>required.has(p.id));
  // Protect mandatory objects before any optional visits. Keeping alternative
@@ -515,11 +708,16 @@ function planTrip(dataset,options){
  const optional=shortlist.filter(p=>!required.has(p.id));
  // Spatial seeds plus category reserve. Each round evaluates bounded alternative
  // insertions and chooses the best whole-trip move, rather than filling day 1.
- for(let roundIndex=0;roundIndex<40&&!metrics.search_limited;roundIndex++){let best=null,bestValue=value;
+ for(let roundIndex=0;roundIndex<40&&!metrics.search_limited&&
+      metrics.evaluations<MAX_EVALUATIONS-(x.currency==='RUB'&&dataset.compact_waits?1600:0);roundIndex++){
+  let best=null,bestValue=value;
   const uncovered=x.primary.concat(x.secondary).filter(c=>c!=='cafes'&&!plans.some(d=>d.sequence.some(p=>p.categories.includes(c))));
-  const choices=optional.filter(p=>!selected.has(p.id)).map(p=>{const nearest=selected.size?Math.min(...plans.flatMap(d=>d.sequence).map(a=>distance(a,p))):0;
+  const priorityChoices=optional.filter(p=>!selected.has(p.id)).map(p=>{const nearest=selected.size?Math.min(...plans.flatMap(d=>d.sequence).map(a=>distance(a,p))):0;
    const geographic=anchored?Math.min(...x.days.map((_,i)=>available.get(p.id)[i].available?anchorPenalty(p,i)-(anchors[i]&&!plans[i].sequence.length?190:0):400)):nearest*.025;
-   return {p,priority:utility(p)+uncovered.filter(c=>p.categories.includes(c)).length*2000-geographic};}).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)).slice(0,8);
+   return {p,priority:utility(p)+uncovered.filter(c=>p.categories.includes(c)).length*2000-geographic};}).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id));
+  const affordable=lowBudget?priorityChoices.filter(item=>cost.get(item.p.id)<=Math.max(fallbackPriceLimit,budgetPerDay*.3))
+    .sort((a,b)=>cost.get(a.p.id)-cost.get(b.p.id)||b.priority-a.priority).slice(0,12):[];
+  const choices=unique(priorityChoices.slice(0,lowBudget?7:8).concat(affordable)).slice(0,lowBudget?19:8);
   const moves=choices.flatMap(({p})=>optionalMoves(plans,p,uncovered.filter(c=>p.categories.includes(c)).length)).sort((a,b)=>b.priority-a.priority||a.p.id.localeCompare(b.p.id)||a.day-b.day||a.pos-b.pos);
   // Cheap proxy ranks proposals, never accepts them. Expand the exact schedule
   // neighborhood only if the first block yields no improving feasible move.
@@ -530,6 +728,40 @@ function planTrip(dataset,options){
  // whole-trip objective improvement. Mandatory membership cannot change.
  for(let pass=0;pass<2;pass++){let best=null,bestValue=value;const moves=[];for(let day=0;day<plans.length;day++){const seq=plans[day].sequence,before=sequenceProxy(seq),wait=anchored?forecastWaiting(seq,day):0;for(let i=0;i<seq.length-1;i++)for(let j=i+1;j<seq.length;j++){const revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),saving=before-sequenceProxy(revised)+(anchored?(wait-forecastWaiting(revised,day))*.3:0);moves.push({day,i,j,saving});}}
   moves.sort((a,b)=>b.saving-a.saving||a.day-b.day||a.i-b.i||a.j-b.j);for(const move of moves.slice(0,12)){const {day,i,j}=move,seq=plans[day].sequence,revised=seq.slice(0,i).concat(seq.slice(i,j+1).reverse(),seq.slice(j+1)),candidate=schedule(revised,day,plans.filter((_,k)=>k!==day),[]);if(!candidate)continue;const moved=plans.slice();moved[day]=candidate;const v=score(moved);if(v>bestValue+.0001){best=moved;bestValue=v;}}if(!best)break;plans=best;value=bestValue;
+ }
+ // Intra-day relocate completes the local-search neighborhood: 2-opt alone
+ // cannot move one poorly positioned museum without reversing its neighbors.
+ // Proxy time only ranks candidates; *every* accepted move is replayed through
+ // the actual matrix, meal windows, opening hours and trip budget.
+ if(dataset.compact_waits&&!metrics.search_limited){
+  for(let pass=0;pass<2&&!metrics.search_limited;pass++){
+   const candidates=[];
+   for(let day=0;day<plans.length;day++){
+    const sequence=plans[day].sequence;
+    if(sequence.length<3)continue;
+    const originalProxy=sequenceProxy(sequence),originalWait=forecastWaiting(sequence,day);
+    for(let from=0;from<sequence.length;from++)for(let to=0;to<sequence.length;to++){
+     if(from===to)continue;
+     const changed=sequence.slice(),[poi]=changed.splice(from,1);changed.splice(to,0,poi);
+     const gain=originalProxy-sequenceProxy(changed)+(originalWait-forecastWaiting(changed,day))*.4;
+     candidates.push({day,from,to,changed,gain});
+    }
+   }
+   candidates.sort((a,b)=>b.gain-a.gain||a.day-b.day||a.from-b.from||a.to-b.to);
+   let best=null,bestValue=value;
+   for(const move of candidates.slice(0,28)){
+    if(metrics.search_limited)break;
+    const others=plans.filter((_,i)=>i!==move.day),replayed=schedule(move.changed,move.day,others,[]);
+    if(!replayed||replayed.missed>plans[move.day].missed||
+       replayed.meal_ids.length<plans[move.day].meal_ids.length)continue;
+    const trial=plans.slice();trial[move.day]=replayed;
+    const quality=score(trial);
+    if(quality>bestValue+.0001){best=trial;bestValue=quality;}
+   }
+   if(!best)break;
+   plans=best;value=bestValue;
+   metrics.intraday_relocations=(metrics.intraday_relocations||0)+1;
+  }
  }
  if(plans.length>1){let best=null,bestValue=value;const moves=[];for(let from=0;from<plans.length;from++){const seq=plans[from].sequence;for(let index=0;index<seq.length;index++){const p=seq[index];if(required.has(p.id))continue;const removed=insertionProxy(seq.filter(z=>z!==p),p,index);for(let day=0;day<plans.length;day++){if(day===from||!available.get(p.id)[day].available)continue;for(let pos=0;pos<=plans[day].sequence.length;pos++){const saving=(removed-insertionProxy(plans[day].sequence,p,pos))*9+130*(seq.length-plans[day].sequence.length-1)+anchorPenalty(p,from)-anchorPenalty(p,day);moves.push({p,from,day,pos,saving});}}}}
   moves.sort((a,b)=>b.saving-a.saving||a.p.id.localeCompare(b.p.id)||a.day-b.day||a.pos-b.pos);for(const move of moves.slice(0,8)){const reduced=schedule(plans[move.from].sequence.filter(z=>z.id!==move.p.id),move.from,plans.filter((_,i)=>i!==move.from),[]);if(!reduced)continue;const base=plans.slice();base[move.from]=reduced;const candidate=applyMove(base,move);if(!candidate)continue;const v=score(candidate);if(v>bestValue+.0001){best=candidate;bestValue=v;}}if(best){plans=best;value=bestValue;}
@@ -591,17 +823,112 @@ function planTrip(dataset,options){
    if(best){plans=best;value=bestValue;}
   }
  }
+ // Last-resort budget-aware recovery for a completely empty Moscow day.
+ // Test the actual schedule, prices and transport; never insert a fake visit.
+ if(x.currency==='RUB'){
+  for(let day=0;day<plans.length&&!metrics.search_limited;day++){
+   if(plans[day].visit_ids.length||x.day_windows[day].end-x.day_windows[day].start<120)continue;
+   const others=plans.filter((_,i)=>i!==day),occupied=new Set(others.flatMap(p=>p.visit_ids.concat(p.meal_ids)));
+   const pool=shortlist.filter(p=>p.kind==='attraction'&&!occupied.has(p.id)&&available.get(p.id)[day].available)
+    .sort((a,b)=>cost.get(a.id)-cost.get(b.id)||anchorPenalty(a,day)-anchorPenalty(b,day)||a.id.localeCompare(b.id));
+   let best=null;
+   for(const p of pool.slice(0,24)){
+    const alternative=schedule([p],day,others,[]);
+    if(!alternative||!alternative.visit_ids.includes(p.id))continue;
+    const merits=[alternative.missed,-alternative.visit_ids.length,alternative.cost,alternative.travel];
+    if(!best||merits.some((v,i)=>v<best.merits[i]&&merits.slice(0,i).every((w,j)=>w===best.merits[j])))best={plan:alternative,merits};
+   }
+   if(best){plans[day]=best.plan;metrics.recovered_empty_days=(metrics.recovered_empty_days||0)+1;}
+  }
+ }
+ // A busy morning must not be treated as a finished 09:00–20:00 day.
+ // Fill genuinely usable late windows before reporting a long tail as impossible.
+ // Every candidate uses schedule(), which includes actual directed legs, opening
+ // hours, meal windows and the remaining multi-day budget. There are no fake
+ // visits, zero-cost assumptions or additions made solely for the display.
+ if(x.currency==='RUB'&&dataset.compact_waits){
+  const visitTime=plan=>sum(plan.events.filter(e=>e.type==='visit').map(e=>e.end_min-e.start_min));
+  const endTime=(plan,day)=>plan.events.at(-1)?.end_min??x.day_windows[day].start;
+  const maxGap=plan=>Math.max(0,...plan.events.slice(1).map((e,i)=>e.start_min-plan.events[i].end_min));
+  // Round-robin by least-served day: never exhaust a neighbourhood's nearby
+  // candidates on day 1 before attempting to fill days 2–5.
+  const stalled=new Set();
+  const passes=x.pace==='relaxed'?3:x.pace==='balanced'?7:9;
+  for(let pass=0;pass<passes&&!metrics.search_limited;pass++){
+   let progress=false;
+   const order=plans.map((_,i)=>i).sort((a,b)=>
+     plans[a].visit_ids.length-plans[b].visit_ids.length||
+     (x.day_windows[b].end-endTime(plans[b],b))-(x.day_windows[a].end-endTime(plans[a],a))||a-b);
+   for(const day of order){
+    if(stalled.has(day))continue;
+    const window=x.day_windows[day],durationWindow=window.end-window.start;
+    if(durationWindow<180)continue;
+    const target=x.pace==='relaxed'?2:x.pace==='balanced'?4:5;
+    const original=plans[day],late=window.end-endTime(original,day);
+    if((late<85&&original.visit_ids.length>=target)||
+       original.visit_ids.length>=(x.pace==='relaxed'?4:x.pace==='balanced'?9:12))continue;
+    const others=plans.filter((_,j)=>j!==day),occupied=new Set(others.flatMap(d=>d.visit_ids.concat(d.meal_ids)).concat(original.visit_ids,original.meal_ids));
+    const lastEvent=original.events.findLast(e=>e.poi_id),lastStop=lastEvent&&x.byId.get(lastEvent.poi_id);
+    const funds=x.budget-sumCost(plans);
+    const nearbyChoices=shortlist.filter(p=>p.kind==='attraction'&&!occupied.has(p.id)&&
+      available.get(p.id)[day].available&&cost.get(p.id)<=Math.max(0,funds)+.01&&
+      (!anchors[day]||anchorPenalty(p,day)<420));
+    const feasibility=p=>{
+     const f=available.get(p.id)[day],end=Math.min(f.close,window.end),start=Math.max(f.open,window.start);
+     if(end-start<durations.get(p.id))return Infinity;
+     const near=lastStop?proxy(lastStop,p):anchorPenalty(p,day)*.1;
+     const affordable=lowBudget?cost.get(p.id)*.16:cost.get(p.id)*.025;
+     const eveningBonus=end>=Math.min(window.end,18*60)?-35:0;
+     return near*6+affordable+anchorPenalty(p,day)*.25+eveningBonus-
+       x.primary.filter(c=>p.categories.includes(c)).length*85;
+    };
+    nearbyChoices.sort((a,b)=>feasibility(a)-feasibility(b)||a.id.localeCompare(b.id));
+    const choices=nearbyChoices.slice(0,20);
+    const beforeTail=Math.max(0,late),beforeGap=maxGap(original),beforeMinutes=visitTime(original);
+    let best=null,bestScore=-Infinity;
+    for(const p of choices){
+     const seq=original.sequence;
+     // Appending is cheapest; near meal windows try additional insertion slots.
+     const positions=unique([seq.length,Math.max(0,seq.length-1),0]).slice(0,3);
+     for(const pos of positions){
+      if(metrics.search_limited)break;
+      const proposed=seq.slice();proposed.splice(pos,0,p);
+      const revised=schedule(proposed,day,others,[]);
+      if(!revised||!revised.visit_ids.includes(p.id)||revised.missed>original.missed||
+         revised.meal_ids.length<original.meal_ids.length)continue;
+      const newTail=Math.max(0,window.end-endTime(revised,day));
+      const extraUseful=visitTime(revised)-beforeMinutes,extraTravel=revised.travel-original.travel;
+      if(extraUseful<20||extraTravel>Math.max(42,extraUseful*.85))continue;
+      const reduction=beforeTail-newTail,innerGain=beforeGap-maxGap(revised);
+      if(reduction<20&&innerGain<20&&original.visit_ids.length>=2)continue;
+      const score=extraUseful*2+reduction*7+innerGain*4-extraTravel*4-
+        Math.max(0,revised.cost-original.cost)*(lowBudget?.38:.09)-
+        Math.max(0,newTail-85)*.3;
+      if(score>bestScore){best={plan:revised,choice:p.id};bestScore=score;}
+     }
+    }
+    if(!best){stalled.add(day);continue;}
+    plans[day]=best.plan;
+    metrics.late_window_insertions++;
+    value=score(plans);
+    progress=true;
+   }
+   if(!progress)break;
+  }
+ }
  for(let i=0;i<plans.length;i++)if(!plans[i].sequence.length)plans[i]=schedule([],i,plans.filter((_,j)=>j!==i),[])||plans[i];
- const days=plans.map(p=>({date:p.date,events:p.events,visit_ids:p.visit_ids,meal_ids:p.meal_ids,total_cost_cny:p.cost,active_minutes:sum(p.events.map(e=>e.end_min-e.start_min)),active_limit_minutes:x.end-x.start,rest_minutes:0,starts_at:p.events[0]?.start_min??null,ends_at:p.events.at(-1)?.end_min??null,warnings:p.missed?['Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет.']:[]}));
+ const days=plans.map(p=>({date:p.date,events:p.events,visit_ids:p.visit_ids,meal_ids:p.meal_ids,total_cost_cny:p.cost,active_minutes:sum(p.events.map(e=>e.end_min-e.start_min)),active_limit_minutes:x.day_windows[x.days.indexOf(p.date)].end-x.day_windows[x.days.indexOf(p.date)].start,rest_minutes:0,starts_at:p.events[0]?.start_min??null,ends_at:p.events.at(-1)?.end_min??null,warnings:p.missed?['Не все приёмы пищи удалось разместить рядом с выбранными достопримечательностями в допустимые часы и бюджет.']:[]}));
  const all=days.flatMap(d=>d.events),visits=all.filter(e=>e.type==='visit'),meals=all.filter(e=>e.type==='meal'),legs=all.filter(e=>e.type==='travel'),used=all.filter(e=>e.poi_id).map(e=>e.poi_id),covered=new Set(visits.flatMap(e=>x.byId.get(e.poi_id).categories));if(meals.length)covered.add('cafes');
  const unplaced=x.required.filter(id=>!used.includes(id)),uncovered=x.interests.filter(c=>!covered.has(c)),missingPrimary=x.primary.filter(c=>!covered.has(c)),spent=round(sumCost(plans));
- const checks={time:days.every(d=>d.events.every((e,i)=>e.start_min>=x.start&&e.end_min<=x.end&&e.end_min>e.start_min&&(!i||e.start_min>=d.events[i-1].end_min)))?'passed':'failed',budget:spent<=x.budget+1e-7?'passed':'failed',opening_hours:days.every((d,i)=>d.events.filter(e=>e.poi_id).every(e=>{const f=available.get(e.poi_id)[i];return f.available&&e.start_min>=f.open&&e.end_min<=f.close;}))?'passed':'failed',meals:plans.some(p=>p.missed)?'failed':'passed',required_places:unplaced.length?'failed':'passed',interest_coverage:uncovered.length?'failed':'passed',primary_interests:missingPrimary.length?'failed':'passed',no_gaps:days.every(d=>d.events.every((e,i)=>!i||e.start_min===d.events[i-1].end_min))?'passed':'failed',no_duplicates:new Set(used).size===used.length?'passed':'failed'};
- const reasons=[];for(const id of x.required){const p=x.byId.get(id),fs=available.get(id);if(!suitable(p,x.group))reasons.push('Обязательное место «'+p.name+'» не подходит заданному составу группы по признакам каталога.');else if(!allowed(p))reasons.push('Для обязательного места «'+p.name+'» нет допустимой цены для расчёта бюджета.');if(!fs.some(f=>f.available))reasons.push('Обязательное место «'+p.name+'» закрыто или вне сезона во все выбранные даты: '+x.days.join(', ')+'.');else if(!fs.some(f=>f.available&&Math.max(x.start,f.open)+durations.get(id)<=Math.min(x.end,f.close)))reasons.push('Для обязательного места «'+p.name+'» требуется '+durations.get(id)+' мин; ни в один выбранный день окно работы не пересекается с дневным интервалом на достаточную длительность.');}
+ const checks={time:days.every((d,j)=>d.events.every((e,i)=>e.start_min>=x.day_windows[j].start&&e.end_min<=x.day_windows[j].end&&e.end_min>e.start_min&&(!i||e.start_min>=d.events[i-1].end_min)))?'passed':'failed',budget:spent<=x.budget+1e-7?'passed':'failed',opening_hours:days.every((d,i)=>d.events.filter(e=>e.poi_id).every(e=>{const f=available.get(e.poi_id)[i];return f.available&&e.start_min>=f.open&&e.end_min<=f.close;}))?'passed':'failed',meals:plans.some(p=>p.missed)?'failed':'passed',required_places:unplaced.length?'failed':'passed',interest_coverage:uncovered.length?'failed':'passed',primary_interests:missingPrimary.length?'failed':'passed',no_gaps:days.every(d=>d.events.every((e,i)=>!i||e.start_min===d.events[i-1].end_min))?'passed':'failed',no_duplicates:new Set(used).size===used.length?'passed':'failed'};
+ const reasons=[];for(const id of x.required){const p=x.byId.get(id),fs=available.get(id);if(!suitable(p,x.group))reasons.push('Обязательное место «'+p.name+'» не подходит заданному составу группы по признакам каталога.');else if(!allowed(p))reasons.push('Для обязательного места «'+p.name+'» нет допустимой цены для расчёта бюджета.');if(!fs.some(f=>f.available))reasons.push('Обязательное место «'+p.name+'» закрыто или вне сезона во все выбранные даты: '+x.days.join(', ')+'.');else if(!fs.some((f,i)=>f.available&&Math.max(x.day_windows[i].start,f.open)+durations.get(id)<=Math.min(x.day_windows[i].end,f.close)))reasons.push('Для обязательного места «'+p.name+'» требуется '+durations.get(id)+' мин; ни в один выбранный день окно работы не пересекается с дневным интервалом на достаточную длительность.');}
  const requiredTickets=sum(x.required.map(id=>cost.get(id)));if(requiredTickets>x.budget)reasons.push('Обязательные билеты и выбранные обязательные заведения для всей группы стоят не менее '+round(requiredTickets)+' '+x.currency+', бюджет '+x.budget+' '+x.currency+'; даже без транспорта и остального питания бюджет недостаточен.');if(mandatoryMinutes>availableMinutes)reasons.push('На обязательные посещения требуется '+mandatoryMinutes+' мин, доступно '+availableMinutes+' мин за все дни; даже без транспорта времени недостаточно.');const impossible=reasons.length>0;
  const warnings=['Демонстрационная модель: цены, часы, рейтинги и сезонность синтетические. Дорожные оценки и модельные времена транспорта не являются подтверждённым расписанием.',...reasons];if(metrics.search_limited)warnings.push('Достигнут детерминированный лимит '+MAX_EVALUATIONS+' проверок расписаний. Сохранён лучший найденный маршрут; полнота поиска не гарантируется.');
  if(x.transport==='transit')warnings.push('В режиме общественного транспорта короткие местные переходы могут быть пешком: до '+(x.group.senior||x.group.child?1200:1800)+' м по прямой. Дорожная доступность оценочная, источник указан у каждого перехода.');
- if(slots.length&&minFood*slots.length*x.days.length>x.budget)warnings.push('Бюджет '+x.budget+' '+x.currency+' ниже минимальной оценки питания для всей группы ('+round(minFood*slots.length*x.days.length)+' '+x.currency+'). Сохранены доступные посещения по интересам; полное питание не обеспечено.');
+ if(sum(mealMinimums.map(row=>sum(row)))>x.budget)warnings.push('Бюджет '+x.budget+' '+x.currency+' ниже минимальной оценки подходящего питания для всей группы ('+round(sum(mealMinimums.map(row=>sum(row))))+' '+x.currency+'). Сохранены доступные посещения по интересам; полное питание не обеспечено.');
  if(unplaced.length)warnings.push('Не размещены обязательные места: '+unplaced.map(id=>x.byId.get(id).name).join(', ')+(impossible?'. Выше указан подтверждённый конфликт в пределах исходной модели данных.':'. Проверены альтернативные дни и порядки; ограниченный поиск не доказывает невозможность.'));if(uncovered.length)warnings.push('Не представлены интересы: '+uncovered.map(c=>LABELS[c]).join(', ')+'.');if(plans.some(p=>p.missed))warnings.push('Завтрак, Обед или Ужин: не все необходимые приёмы пищи найдены в заданных условиях.');
+ if(lowBudget&&days.some(d=>!d.visit_ids.length))warnings.push('Некоторые дни остаются без посещений: проверенный ограниченный набор альтернатив не позволил соблюсти одновременно бюджет, часы и доступные переходы. Это не доказательство отсутствия бесплатных мест во всей Москве.');
+ if(lowBudget&&days.some(d=>d.visit_ids.length)&&x.primary.some(c=>!covered.has(c)))warnings.push('Из-за малого бюджета некоторые посещения заменены более доступными категориями, которые не совпадают с основными интересами.');
  return {schema_version:'shanghai-demo-v1',model_version:'bounded-joint-insertion-v5',status:impossible?'infeasible':(visits.length||cafesOnly&&meals.length)&&Object.entries(checks).every(([k,v])=>k==='no_gaps'||v==='passed')?'demo':'partial',days,selected_ids:used,warnings:warnings.concat(days.flatMap(d=>d.warnings)),ranking:rankPois(dataset,options),checks,unplaced_required_ids:unplaced,uncovered_interests:uncovered,summary:{total_cost_cny:spent,budget_cny:x.budget,visit_count:visits.length,meal_count:meals.length,planned_travel_minutes:sum(legs.map(e=>e.planned_minutes)),estimated_travel_minutes:sum(legs.map(e=>e.base_minutes)),transport_cost_cny:round(sum(legs.map(e=>e.transport_cost_cny))),covered_interests:[...covered],days_count:days.length,group:x.group,transport_mode:x.transport,synthetic_data:true,first_last_poi:true,skipped_filters:{},daily_visits:days.map(d=>d.visit_ids.length),osm_legs:legs.filter(e=>e.source==='OSM_OSRM').length,stage1_selected_ids:shortlist.map(p=>p.id),stage1_count:shortlist.length,clusters:plans.map(p=>({date:p.date,ids:p.visit_ids,geographic_optimization:{method:'validated_bounded_insertion_2opt',basis:'buffered_transport_time'}})),required_total:x.required.length,required_placed:x.required.length-unplaced.length,meal_repair_count:0,optimizer:metrics}};
 }
 /* Fixed-sequence editing is an additional entry point of this same engine.
@@ -618,9 +945,16 @@ function editSettings(options,date){
 function editedLeg(x,settings,a,b,date,at,maxCost,policy='fastest'){
  const modes=selectedModes(settings);
  const values=modes.map(mode=>transportLeg(a,b,mode,x.group,date,x.osm_tables,x.transit_router,at,maxCost,x.leg_profiles)).filter(value=>allowedActualMode(value,settings));
- if(!values.length&&a&&settings.transport==='transit'&&!settings.transport_modes&&!hasLegProfile(x.leg_profiles,'transit')&&!x.group.pet&&distance(a,b)<=(x.group.senior||x.group.child?1200:1800)){
-  const walk=transportLeg(a,b,'walk',x.group,date,x.osm_tables,null,at,maxCost,x.leg_profiles);if(walk)values.push({...walk,selection_reason:'local_walking_access_in_transit_itinerary'});
+ if(a&&!modes.includes('walk')&&distance(a,b)<=
+    (modes.length===1&&modes[0]==='taxi'?600:1000)){
+  const walk=transportLeg(a,b,'walk',x.group,date,x.osm_tables,null,at,maxCost,x.leg_profiles);
+  if(walk)values.push({...walk,selection_reason:'short_local_walking_connector'});
  }
+ const shortWalk=values.find(value=>value.mode==='walk'&&
+   value.planned_minutes<=(x.group.senior?11:x.group.child?14:18));
+  if(shortWalk)for(let i=values.length-1;i>=0;i--)
+   if(values[i].mode==='taxi'&&values[i].planned_minutes+
+      Math.min(8,Math.max(3,shortWalk.planned_minutes*.4))>=shortWalk.planned_minutes)values.splice(i,1);
  values.sort((a,b)=>settings.prefer_less_walking?((a.mode==='walk'?a.planned_minutes:0)-(b.mode==='walk'?b.planned_minutes:0)||a.planned_minutes-b.planned_minutes||a.transport_cost_cny-b.transport_cost_cny):policy==='cheapest'?(a.transport_cost_cny-b.transport_cost_cny||a.planned_minutes-b.planned_minutes):(a.planned_minutes-b.planned_minutes||a.transport_cost_cny-b.transport_cost_cny));
  return values[0]||null;
 }
@@ -650,9 +984,9 @@ function validateEditedTrip(dataset,options,plan){
     const target=x.byId.get(event.to_poi_id),origin=x.byId.get(event.from_poi_id);
     if(!last||origin?.id!==last.id||!target||pendingTravel){transport=false;fail('INVALID_TRAVEL_CONTINUITY',date);continue;}
     const modes=selectedModes(settings);
-    const legacyWalk=settings.transport==='transit'&&!settings.transport_modes&&!hasLegProfile(x.leg_profiles,'transit')&&event.mode==='walk'&&distance(origin,target)<=(x.group.senior||x.group.child?1200:1800);
+    const legacyWalk=settings.transport!=='walk'&&event.mode==='walk'&&distance(origin,target)<=850;
     const profile=event.leg_profile??event.mode;
-    if(!allowedActualMode(event,settings)||!modes.includes(profile)&&!legacyWalk){transport=false;fail('INVALID_TRANSPORT_MODE',date);}
+    if((!allowedActualMode(event,settings)&&!legacyWalk)||(!modes.includes(profile)&&!legacyWalk)){transport=false;fail('INVALID_TRANSPORT_MODE',date);}
     const expected=transportLeg(origin,target,profile,x.group,date,x.osm_tables,x.transit_router,event.start_min,Infinity,x.leg_profiles);
     const distanceMatches=expected?.distance_m===null?event.distance_m===null:Number.isFinite(event.distance_m)&&event.distance_m>=0&&Math.abs(expected?.distance_m-event.distance_m)<=1;
     if(!expected||expected.mode!==event.mode||expected.leg_profile!==event.leg_profile||!Number.isFinite(event.transport_cost_cny)||!Number.isFinite(event.base_minutes)||!Number.isFinite(event.buffer_minutes)||!Number.isFinite(event.planned_minutes)||!distanceMatches||event.base_minutes<0||event.transport_cost_cny<0||expected.planned_minutes!==event.planned_minutes||event.end_min-event.start_min!==expected.planned_minutes||Math.abs(expected.transport_cost_cny-event.transport_cost_cny)>.011||Math.abs(expected.base_minutes-event.base_minutes)>.000001||Math.abs(expected.buffer_minutes-event.buffer_minutes)>.000001||expected.source!==event.source){transport=false;fail('INVALID_TRAVEL_COST_OR_DURATION',date);}
@@ -660,7 +994,7 @@ function validateEditedTrip(dataset,options,plan){
    }
    const p=x.byId.get(event.poi_id);if(!p){fail('UNKNOWN_POI_ID',String(event.poi_id));continue;}
    if(seen.has(p.id)){fail('DUPLICATE_VISIT',p.id);}seen.add(p.id);
-   if((event.type==='meal')!==(p.kind==='restaurant')){fail('INVALID_EVENT_KIND',p.id);}if(event.type==='meal'&&!['breakfast','lunch','dinner','snack'].includes(event.meal_kind))fail('INVALID_MEAL_KIND',p.id);
+   if((event.type==='meal')!==(p.kind==='restaurant')){fail('INVALID_EVENT_KIND',p.id);}if(event.type==='meal'&&!['breakfast','lunch','dinner','snack'].includes(event.meal_kind))fail('INVALID_MEAL_KIND',p.id);if(event.type==='meal'&&!mealAllowed(p,event.meal_kind))fail('UNSUITABLE_MEAL',p.id);
    if(last&&(!pendingTravel||pendingTravel.to_poi_id!==p.id||pendingTravel.end_min!==event.start_min)){transport=false;fail('MISSING_TRAVEL',p.id);}if(!last&&pendingTravel){transport=false;fail('INVALID_FIRST_TRAVEL',p.id);}pendingTravel=null;
    const f=flags(p,date);if(!f.available||event.start_min<f.open||event.end_min>f.close){opening=false;fail('OUTSIDE_OPENING_HOURS',p.id);}
    if(!suitable(p,x.group)){groups=false;fail('GROUP_UNSUITABLE',p.id);}
@@ -670,6 +1004,11 @@ function validateEditedTrip(dataset,options,plan){
    last=p;
   }
   if(pendingTravel){transport=false;fail('UNFINISHED_TRAVEL',date);}
+  // Applies to existing snapshots and all assistant edits too; a breakfast
+  // after a visit is not a valid breakfast-first itinerary.
+  if(fullMeals.breakfast&&day.events.find(e=>e.poi_id)?.poi_id!==fullMeals.breakfast.poi_id){
+   spacing=false;fail('BREAKFAST_NOT_FIRST',date);
+  }
   if(fullMeals.breakfast&&fullMeals.lunch&&fullMeals.lunch.start_min-fullMeals.breakfast.end_min<150){spacing=false;fail('BREAKFAST_LUNCH_INTERVAL',date);}
   if(fullMeals.lunch&&fullMeals.dinner&&fullMeals.dinner.start_min-fullMeals.lunch.end_min<180){spacing=false;fail('LUNCH_DINNER_INTERVAL',date);}
   const slots=mealSlots({...x,start,end});if(slots.some(s=>s.kind!=='snack'&&!fullMeals[s.kind]))mealComplete=false;
@@ -690,6 +1029,13 @@ function scheduleSequences(dataset,options,editSpec){
  editRequire([...changed].every(d=>x.days.includes(d)),'UNKNOWN_DAY');
  const entriesByDate={};for(const date of x.days){const original=editEntries(base.days.find(d=>d.date===date)),originalById=new Map(original.map(e=>[e.poi_id,e]));const values=sequences[date]??original;
   editRequire(Array.isArray(values)&&values.length<=80,'INVALID_SEQUENCE');entriesByDate[date]=values.map(value=>{const entry=typeof value==='string'?{...(originalById.get(value)||{}),poi_id:value}:editClone(value);editRequire(entry&&typeof entry.poi_id==='string'&&x.byId.has(entry.poi_id),'UNKNOWN_POI_ID');const p=x.byId.get(entry.poi_id);entry.type=p.kind==='restaurant'?'meal':'visit';if(entry.type==='meal')entry.meal_kind=entry.meal_kind||originalById.get(p.id)?.meal_kind||'snack';return entry;});
+  // Upgrade old routes on the first edit: breakfast must precede all attractions.
+  // Keep the original order among the remaining stops.
+  if(changed.has(date)){
+   const entries=entriesByDate[date],breakfast=entries.findIndex(e=>e.meal_kind==='breakfast');
+   if(breakfast>0){const [first]=entries.splice(breakfast,1);entries.unshift(first);
+    for(const entry of entries)delete entry.start_min;}
+  }
  }
  const ids=x.days.flatMap(d=>entriesByDate[d].map(e=>e.poi_id));editRequire(new Set(ids).size===ids.length,'DUPLICATE_VISIT');
  const previousRequired=new Set(base.days.flatMap(d=>editEntries(d).map(e=>e.poi_id)).filter(id=>x.required.includes(id)));editRequire([...previousRequired].every(id=>ids.includes(id)),'REQUIRED_PLACE_PROTECTED');
@@ -703,7 +1049,7 @@ function scheduleSequences(dataset,options,editSpec){
    const settings=editSettings(settingsOptions,date),start=minute(settings.day_start),end=minute(settings.day_end);editRequire(end-start>=60,'INVALID_DAY_WINDOW');editRequire(!!PACES[settings.pace]&&['walk','mixed','taxi','transit'].includes(settings.transport),'INVALID_DAY_SETTINGS');editRequire(!(settings.transport==='transit'&&x.group.pet),'PET_TRANSIT_UNSUPPORTED');
    let now=start,position=null,spent=0;const events=[],fullMeals={};
    for(const entry of entriesByDate[date]){const p=x.byId.get(entry.poi_id),f=flags(p,date),durationMinutes=p.kind==='restaurant'?Math.max(50,Math.min(60,p.duration_minutes||50)):duration(p,settings.pace);editRequire(suitable(p,x.group),'GROUP_UNSUITABLE',p.name);editRequire(f.available,'OUTSIDE_OPENING_HOURS',p.name);
-    const slot=entry.type==='meal'?mealSlots({...x,start,end}).find(s=>s.kind===entry.meal_kind):null;
+    const slot=entry.type==='meal'?mealSlots({...x,start,end}).find(s=>s.kind===entry.meal_kind):null;editRequire(entry.type!=='meal'||mealAllowed(p,entry.meal_kind),'UNSUITABLE_MEAL',p.name);
     const pinned=settingsOptions.meal_times?.[date]?.[entry.meal_kind],requested=pinned!=null?minute(pinned):null;
     let earliest=Math.max(start,f.open);if(slot&&requested===null)earliest=Math.max(earliest,slot.earliest);
     const previous=entry.meal_kind==='lunch'?fullMeals.breakfast:entry.meal_kind==='dinner'?fullMeals.lunch:null;if(previous)earliest=Math.max(earliest,previous.end_min+(entry.meal_kind==='lunch'?150:180));

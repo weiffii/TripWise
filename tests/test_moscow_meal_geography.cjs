@@ -58,7 +58,9 @@ test('joint meal search reduces the reproduced 65-minute dinner wait', () => {
   assert.ok(events[dinnerIndex].start_min >= lunch.end_min + 180);
   assert.ok(events[dinnerIndex - 1].start_min - events[dinnerIndex - 2].end_min <= 60);
   assert.equal(plan.summary.visit_count, 4);
-  assert.equal(plan.summary.meal_count, 2);
+  // Full day beginning before noon now legitimately requires breakfast as well.
+  assert.equal(plan.summary.meal_count, 3);
+  assert.ok(events.some(event => event.meal_kind === 'breakfast'));
   assert.ok(api.validateEditedTrip(data, preferences, plan).valid);
 });
 

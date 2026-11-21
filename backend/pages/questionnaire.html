@@ -29,7 +29,13 @@
                 <div class="field"><label for="first-walk">Начало первой прогулки</label><input id="first-walk" name="first_walk_at" type="datetime-local" required><p class="field-hint">Когда вы уже готовы гулять, после дороги и заселения.</p></div>
                 <div class="field"><label for="last-walk">Окончание последней прогулки</label><input id="last-walk" name="last_walk_end_at" type="datetime-local" required><p class="field-hint">Когда нужно закончить гулять в день отъезда.</p></div>
               </div>
-              <p class="field-hint" id="city-note"></p><p class="field-hint">Выбранные часы применяются к каждому дню. Доступно от 1 до 5 дней.</p>
+              <p class="field-hint" id="city-note"></p>
+              <div class="form-grid">
+                <div class="field"><label for="full-day-start">Начало полного дня</label><input id="full-day-start" type="time" value="09:00" required></div>
+                <div class="field"><label for="full-day-end">Окончание полного дня</label><input id="full-day-end" type="time" value="20:00" required></div>
+              </div>
+              <p class="field-hint">Первый день начинается после прибытия, последний заканчивается до отъезда. Промежуточные дни — полноценные, по умолчанию 09:00–20:00.</p>
+              <details><summary>Настроить часы каждого дня отдельно</summary><div id="individual-day-windows" class="form-grid" aria-live="polite"></div></details>
             </section>
 
             <section class="form-section" aria-labelledby="budget-title">
@@ -49,7 +55,7 @@
                 <label class="choice"><input type="radio" name="budget_basis" value="per_person" checked><span>На человека</span></label>
                 <label class="choice"><input type="radio" name="budget_basis" value="group"><span>На всю компанию</span></label>
               </div></fieldset>
-              <p class="field-hint">Бюджет на посещения, питание и поездки по городу. Проживание и дорога до Шанхая не входят. Валюта пересчитывается в юани по демонстрационному курсу.</p>
+              <p class="field-hint">Бюджет на посещения, питание и поездки по городу. Проживание и дорога до выбранного города не входят. Для Москвы используется RUB; цены транспорта и части мест — оценки.</p>
             </section>
 
             <section class="form-section" aria-labelledby="interests-title">

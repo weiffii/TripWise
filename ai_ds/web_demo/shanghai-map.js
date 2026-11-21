@@ -87,8 +87,10 @@
    background.setAttribute('viewBox',`0 0 ${w} ${h}`);background.innerHTML=`<rect width="${w}" height="${h}" fill="#edf1f2"/><text x="12" y="${h-18}" fill="#73858a" font-size="11">Координаты WGS84</text>`;
    drawTiles(w,h,c);svg.setAttribute('viewBox',`0 0 ${w} ${h}`);let html='';
    legs.forEach((leg,index)=>{for(const seg of segments(leg)){const req=segmentRoad(seg,leg),road=req&&roadCache.get(roadKey(req.a,req.b,req.mode,req.via)),coords=road?.coordinates||seg.coordinates||[];
-    const color=({metro:'#287fa5',mcc:'#ce4242',mcd:'#b55b21',tram:'#286b55',bus:'#257693',electric_bus:'#187f91'})[seg.network]||
-      (seg.mode==='bus'?'#bd5555':seg.mode==='metro'?'#287fa5':leg.mode==='taxi'?'#c18b38':'#6b51ba');
+    const actualMode=['walk','foot'].includes(seg.mode)?'walk':
+      ['taxi','car'].includes(seg.mode)?'taxi':
+      ['transit','metro','mcc','mcd','bus','electric_bus','tram'].includes(seg.mode)||seg.network?'transit':leg.mode;
+    const color=actualMode==='walk'?'#16A34A':actualMode==='taxi'?'#F97316':'#2563EB';
     const hasStreetGeometry=Boolean(road?.coordinates||seg.verified);
     const label=seg.network?(seg.verified?'Геометрия маршрута OSM':'Схема между остановками'):seg.mode==='bus'?'Вымышленный автобус':seg.mode==='metro'?'Топология станций метро, не точный тоннель':hasStreetGeometry?'Расчёт по уличной сети':'Приблизительная связь';
     html+=`<polyline data-leg="${index}" points="${linePath(coords,project)}" fill="none" stroke="${color}" stroke-width="${selected===index?7:4}" stroke-dasharray="${hasStreetGeometry?'':'8 5'}" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:stroke;cursor:pointer"><title>${esc(label)} · нажмите для инструкции</title></polyline>`;
@@ -104,7 +106,8 @@
      const label=(station.transfer?'Пересадка · ':'')+(station.name||'Остановка');
      html+=`<circle data-leg="${station.index}" cx="${x}" cy="${y}" r="${station.transfer?6:4}" fill="white" stroke="#206379" stroke-width="${station.transfer?3:2}" style="pointer-events:all;cursor:pointer"><title>${esc(label)}</title></circle>`;
    }
-   stops.forEach((p,index)=>{const [x,y]=project(coordinate(p));html+=`<g data-stop="${index}" role="button" tabindex="0" aria-label="${esc(placeName(p))}" style="pointer-events:all;cursor:pointer"><title>${esc(placeName(p))}</title><circle cx="${x}" cy="${y}" r="13" fill="${p.kind==='restaurant'?'#db8c33':'#5b40b0'}" stroke="white" stroke-width="3"/><text x="${x}" y="${y+4}" fill="white" text-anchor="middle" font-size="12" font-weight="700">${index+1}</text></g>`;});
+   stops.forEach((p,index)=>{const [x,y]=project(coordinate(p));const meal=p.__tripMeal||p.kind==='restaurant',mandatory=p.__tripRequired;
+    html+=`<g data-stop="${index}" role="button" tabindex="0" aria-label="${esc(placeName(p)+(mandatory?' · обязательное место':''))}" style="pointer-events:all;cursor:pointer"><title>${esc(placeName(p))}</title><circle cx="${x}" cy="${y}" r="13" fill="${meal?'#FACC15':'#7C3AED'}" stroke="${mandatory?'#111827':'white'}" stroke-width="${mandatory?5:3}"/><text x="${x}" y="${y+4}" fill="${meal?'#111827':'white'}" text-anchor="middle" font-size="12" font-weight="700">${index+1}</text></g>`;});
    if(!stops.length)html=`<text x="${w/2}" y="${h/2}" text-anchor="middle" fill="#657881">Нет точек маршрута</text>`;
    svg.innerHTML=html;
    svg.querySelectorAll('[data-stop]').forEach(g=>{const show=()=>selectStop(Number(g.dataset.stop));g.addEventListener('click',show);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});});
@@ -139,7 +142,11 @@
    if(localEpoch===epoch)settings.onNetworkStatus?.('Уточнение выбранных улиц завершено. Нажмите линию или переход для пошаговой инструкции. Время метро и автобусов оценочное.');
   }
   function setDay(value,idMap,settingsForDay={}){epoch++;controller?.abort();controller=null;day=value;byId=idMap;online=settingsForDay.online!==false;
-   stops=(day.events||[]).filter(e=>e.type==='visit'||e.type==='meal').map(e=>byId.get(e.poi_id)).filter(Boolean);legs=(day.events||[]).filter(e=>e.type==='travel');selected=-1;popup.hidden=true;fit();
+   const mandatory=new Set(settingsForDay.required_ids||[]);
+   stops=(day.events||[]).filter(e=>e.type==='visit'||e.type==='meal')
+    .map(e=>byId.get(e.poi_id)?{...byId.get(e.poi_id),__tripMeal:e.type==='meal',__tripRequired:mandatory.has(e.poi_id)}:null)
+    .filter(Boolean);
+   legs=(day.events||[]).filter(e=>e.type==='travel');selected=-1;popup.hidden=true;fit();
    settings.onSelect?.('<p>Нажмите переход в расписании или линию карты: появятся станции, пересадки и доступные инструкции по улицам.</p>',-1);loadRoads(epoch,planEpoch);
   }
   function getOsmTables(){
