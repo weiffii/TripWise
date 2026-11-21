@@ -19,6 +19,7 @@ from backend.accounts import COOKIE_NAME, current_user, database, same_origin, t
 router = APIRouter(dependencies=[Depends(current_user)], tags=['Шанхай'])
 Count = Annotated[int, Field(strict=True, ge=0, le=30)]
 Interest = Literal['museums', 'history', 'nature', 'cafes', 'entertainment', 'shopping', 'viewpoints', 'unusual']
+TravelMode = Literal['walk', 'transit', 'taxi']
 FX = {'CNY': 1, 'RUB': .087, 'USD': 7.10, 'EUR': 7.75}
 
 
@@ -40,6 +41,7 @@ class ShanghaiPreferences(BaseModel):
     day_end: Annotated[str, Field(pattern=r'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$')]
     pace: Literal['relaxed', 'balanced', 'intensive']
     transport: Literal['mixed', 'walk', 'transit', 'taxi']
+    transport_modes: list[TravelMode] | None = Field(default=None, min_length=1, max_length=3)
     group: Group
     primary_interests: list[Interest] = Field(max_length=8)
     secondary_interests: list[Interest] = Field(max_length=8)
@@ -62,6 +64,10 @@ class ShanghaiPreferences(BaseModel):
             raise ValueError('Недопустимая дата поездки.')
         if self.group.pet and self.transport == 'transit':
             raise ValueError('Питомцы не поддерживаются в режиме общественного транспорта.')
+        if self.transport_modes is not None:
+            expected = self.transport_modes[0] if len(self.transport_modes) == 1 else 'mixed'
+            if len(set(self.transport_modes)) != len(self.transport_modes) or expected != self.transport:
+                raise ValueError('Проверьте сочетание выбранных способов передвижения.')
         if self.options()['budget_cny'] > 10_000_000:
             raise ValueError('Бюджет превышает предел маршрутизатора.')
         return self
@@ -71,6 +77,8 @@ class ShanghaiPreferences(BaseModel):
         people = self.group.adult + self.group.child + self.group.senior
         result['budget_cny'] = round(self.budget_amount * FX[self.budget_currency] * (people if self.budget_basis == 'per_person' else 1), 2)
         result['interests'] = self.primary_interests + self.secondary_interests
+        if self.transport_modes is None:
+            result.pop('transport_modes')
         return result
 
 

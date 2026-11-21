@@ -8,6 +8,7 @@
     "mcc": {"meters_per_second": 13, "wait_seconds": 360},
     "mcd": {"meters_per_second": 15, "wait_seconds": 480},
     "tram": {"meters_per_second": 5.5, "wait_seconds": 480},
-    "bus": {"meters_per_second": 5, "wait_seconds": 600}
+    "bus": {"meters_per_second": 5, "wait_seconds": 600},
+    "electric_bus": {"meters_per_second": 5, "wait_seconds": 600}
   }
 }

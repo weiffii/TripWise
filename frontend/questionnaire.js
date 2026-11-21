@@ -146,17 +146,16 @@ form.addEventListener('submit', async event => {
   finishButton.disabled = true;
   try {
     const days = (Date.parse(lastWalk.value.slice(0,10)) - Date.parse(firstWalk.value.slice(0,10))) / 86400000 + 1;
-    const modes = selected('transport_modes');
+    const transportModes = selected('transport_modes').map(mode => ({walking:'walk', public_transit:'transit', car:'taxi'})[mode]);
     const counts = travelerCounts();
-    if (![1,3].includes(modes.length)) throw Error('Выберите один вид транспорта или все три для смешанного режима.');
-    const transport = modes.length === 3 ? 'mixed' : {walking:'walk', public_transit:'transit', car:'taxi'}[modes[0]];
+    const transport = transportModes.length > 1 ? 'mixed' : transportModes[0];
     setStatus('Строим маршрут…');
     const response = await fetch('/api/planned-trips', {method:'POST', headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         city:isMoscow() ? 'moscow' : 'shanghai', timezone:isMoscow() ? 'Europe/Moscow' : 'Asia/Shanghai',
         ...(isMoscow() && document.querySelector('#visit-minutes').value ? {visit_minutes:Number(document.querySelector('#visit-minutes').value)} : {}),
         start_date:firstWalk.value.slice(0, 10), days, day_start:firstWalk.value.slice(11, 16),
-        day_end:lastWalk.value.slice(11, 16), pace:selected('pace')[0], transport,
+        day_end:lastWalk.value.slice(11, 16), pace:selected('pace')[0], transport, transport_modes:transportModes,
         group:{adult:counts.adults, child:counts.children, senior:counts.seniors, pet:0},
         primary_interests:selected('primary_interests'), secondary_interests:selected('secondary_interests'),
         required_ids:Array.from(placeSelect.selectedOptions, option => option.value),

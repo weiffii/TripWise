@@ -65,6 +65,28 @@ class OpenRouterTests(unittest.TestCase):
         self.assertNotIn('nested-private', json.dumps(captured))
         self.assertIn('test-id', json.dumps(captured))
 
+    def test_rich_context_includes_current_transport_without_private_fields(self):
+        captured = []
+
+        def opener(request, timeout):
+            captured.append(json.loads(request.data)['messages'][-1]['content'])
+            return io.BytesIO(json.dumps(self.response).encode())
+
+        interpreter = OpenRouterInterpreter(key='mock-secret-key', opener=opener, rich_context=True)
+        self.payload.update(transport='transit', transit_filters={
+            'avoid_transit': ['metro'], 'require_transit': ['mcc'], 'private': 'hidden-value',
+        })
+        interpreter(self.payload)
+        context = json.loads(captured[0])
+        self.assertEqual(context['transport'], 'transit')
+        self.assertEqual(context['transit_filters'], {'avoid_transit': ['metro'], 'require_transit': ['mcc']})
+        self.assertNotIn('hidden-value', captured[0])
+        self.payload['transit_filters']['require_transit'] = ['invalid-mode']
+        with self.assertRaises(OpenRouterError) as caught:
+            interpreter(self.payload)
+        self.assertEqual(caught.exception.code, 'LLM_INVALID_CONTEXT')
+        self.assertEqual(len(captured), 1)
+
     def test_no_key_makes_no_request(self):
         calls = []
         interpreter = OpenRouterInterpreter(key='', opener=lambda *args, **kw: calls.append(1))

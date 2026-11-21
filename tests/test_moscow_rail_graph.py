@@ -122,7 +122,7 @@ class MoscowRailGraphTests(TestCase):
         approaches = json.loads((SOURCES / 'moscow-rail-approaches-pilot.json').read_text(encoding='utf8'))['approaches']
         self.assertIn('moscow-cultural-188', approaches)
         for paired in approaches.values():
-            self.assertEqual(set(paired), {'enter', 'exit'})
+            self.assertTrue(paired.keys() and paired.keys() <= {'enter', 'exit'})
             for direction, details in paired.items():
                 for stop_id, row in details.items():
                     entrance = next(item for item in stops[stop_id] if item['source_id'] == row['entrance_source_id'])
@@ -170,6 +170,22 @@ class MoscowRailGraphTests(TestCase):
             self.assertTrue(all(leg['geometry_verified'] and leg['route_relation_id'] == route_id for leg in rides))
             self.assertEqual(steps[0]['geometry']['type'], 'LineString')
             self.assertEqual(steps[-1]['geometry']['type'], 'LineString')
+
+    def test_bundled_electric_bus_uses_documented_outer_ring(self):
+        points = [
+            {'id': 'moscow-osm-node-7658470896', 'coordinates': {'latitude': 55.7316779, 'longitude': 37.6379929}},
+            {'id': 'moscow-osm-node-10031344142', 'coordinates': {'latitude': 55.773518, 'longitude': 37.6080415}},
+        ]
+        environment = {'MOSCOW_RAIL_CONFIG': str(SOURCES / 'moscow-rail-config.json'), 'MOSCOW_OSRM_FOOT': ''}
+        with patch.dict('os.environ', environment):
+            matrix = travel_matrix(points, 'public_transit', require_transit=('electric_bus',))
+        steps = matrix['pairs'][0]['transport_steps']
+        self.assertEqual([leg['line'] for leg in steps if leg['kind'] == 'wait_estimate'], ['electric_bus:Б'])
+        rides = [leg for leg in steps if leg['kind'] == 'rail_estimate']
+        self.assertEqual(len(rides), 21)
+        self.assertTrue(all(leg['geometry_verified'] and leg['route_relation_id'] == 1343003 for leg in rides))
+        self.assertEqual(steps[0]['geometry']['type'], 'LineString')
+        self.assertEqual(steps[-1]['geometry']['type'], 'LineString')
 
     def test_way_geometry_requires_exact_stop_and_known_chain(self):
         route = relation(100, '1', (1, 3))

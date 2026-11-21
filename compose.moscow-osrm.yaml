@@ -1,0 +1,31 @@
+name: tripwise-moscow-osrm
+
+x-osrm: &osrm
+  image: ${MOSCOW_OSRM_IMAGE:-ghcr.io/project-osrm/osrm-backend:v5.27.1}
+  command: ["osrm-routed", "--algorithm", "mld", "/data/map.osrm"]
+  restart: unless-stopped
+
+services:
+  foot:
+    <<: *osrm
+    ports:
+      - "127.0.0.1:5001:5000"
+    volumes:
+      - type: bind
+        source: ${MOSCOW_OSRM_GRAPH_DIR:-./runtime/moscow-osrm}/foot
+        target: /data
+        read_only: true
+        bind:
+          create_host_path: false
+
+  car:
+    <<: *osrm
+    ports:
+      - "127.0.0.1:5002:5000"
+    volumes:
+      - type: bind
+        source: ${MOSCOW_OSRM_GRAPH_DIR:-./runtime/moscow-osrm}/car
+        target: /data
+        read_only: true
+        bind:
+          create_host_path: false
