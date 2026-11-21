@@ -242,7 +242,7 @@ def road_pair(endpoint, origin, target, cache_window, radii=(MAX_SNAP_METERS, MA
         return missing_pair('unknown')
 
 
-def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
+def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=(), allow_walking=True):
     endpoint = os.environ.get({'walking': 'MOSCOW_OSRM_FOOT', 'car': 'MOSCOW_OSRM_CAR',
                                'public_transit': 'MOSCOW_OSRM_FOOT'}[mode])
     rows = [(a, b) for a in pois for b in pois if a['id'] != b['id']]
@@ -258,6 +258,9 @@ def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
     def pair(row, data=None):
         a, b = row
         by_rail = rail.get((a['id'], b['id']))
+        if mode == 'public_transit' and not allow_walking:
+            data = by_rail or {'status': 'unknown', 'duration_seconds': None, 'distance_meters': None,
+                               'basis': 'geometric_estimate', 'source_id': 'osm-rail-coverage-unknown'}
         alternative = by_rail.get('required_transit_alternative') if by_rail else None
         if by_rail and (data is None or data['status'] != 'known' or
                         by_rail['duration_seconds'] < data['duration_seconds']):
@@ -277,7 +280,7 @@ def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=()):
     if mode == 'public_transit':
         rail = rail_pairs(pois, endpoint if first is not None else None, window,
                           avoid_transit=avoid_transit, require_transit=require_transit)
-    if endpoint and rows:
+    if endpoint and rows and (mode != 'public_transit' or allow_walking):
         if first is not None:
             with ThreadPoolExecutor(max_workers=8) as executor:
                 pairs = [pair(rows[0], first), *map(pair, rows[1:], executor.map(provider, rows[1:]))]

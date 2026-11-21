@@ -141,6 +141,13 @@ def _minimal_context(payload, *, rich_context=False):
             if transport not in ('walk', 'taxi', 'transit', 'mixed'):
                 raise OpenRouterError('LLM_INVALID_CONTEXT')
             safe['transport'] = transport
+        if 'transport_modes' in payload:
+            modes = payload['transport_modes']
+            if (not isinstance(modes, list) or not 1 <= len(modes) <= 3
+                    or any(mode not in ('walk', 'transit', 'taxi') for mode in modes)
+                    or len(set(modes)) != len(modes)):
+                raise OpenRouterError('LLM_INVALID_CONTEXT')
+            safe['transport_modes'] = list(modes)
         if 'transit_filters' in payload:
             filters = payload['transit_filters']
             filter_keys = ('avoid_transit', 'require_transit')

@@ -3,6 +3,7 @@ from copy import deepcopy
 from datetime import timedelta
 from functools import lru_cache
 from heapq import nsmallest
+from itertools import zip_longest
 import json
 from math import floor
 import os
@@ -12,9 +13,10 @@ import re
 from fastapi import HTTPException
 
 from ai_ds.moscow_catalog import load_moscow_v7
-from ai_ds.moscow_road import coordinates, travel_matrix
+from ai_ds.moscow_road import PILOT_RAIL_CONFIG, coordinates, rail_inputs, travel_matrix
 from ai_ds.moscow_transit import _distance
-from ai_ds.moscow_engine_adapter import fixed_sequence, plan_city
+from ai_ds.moscow_engine_adapter import MATRIX_MODES, MODES, fixed_sequence, plan_city
+from ai_ds.moscow_gap_repair import MoscowGapIndex, describe_edited_gaps, repair_gaps
 from ai_ds.openrouter import OpenRouterInterpreter, SYSTEM_PROMPT
 from ai_ds.recommendation import recommend
 from ai_ds.route_assistant import AssistantError, InMemoryRouteStore, RouteAssistant, has_failed, parse_interpretation, require, sequences_of
@@ -23,6 +25,27 @@ from ai_ds.shanghai_assistant import ShanghaiAssistantService
 BASE = Path(__file__).resolve().parents[1] / 'examples/routing/v02'
 CITY_CENTRE = {'lat': 55.752, 'lon': 37.620}
 DAY_RADIUS_METERS = 2400
+MAX_MIXED_CANDIDATES = 112
+
+
+def selected_moscow_modes(preferences):
+    if preferences.transport_modes is not None:
+        return preferences.transport_modes
+    if preferences.transport == 'mixed':
+        return ['walk', 'taxi'] if preferences.group.pet else ['walk', 'transit', 'taxi']
+    return None
+
+
+def chosen_moscow_matrix(pois, mode, selected, filters=None, *, legacy=False):
+    filters = filters or {}
+    if not selected:
+        return travel_matrix(pois, mode, **filters)
+    profiles = {
+        label: travel_matrix(pois, MATRIX_MODES[label], **(
+            {**filters, 'allow_walking': legacy} if label == 'transit' else {}))
+        for label in selected
+    }
+    return {**profiles[MODES[mode]], 'profiles': profiles}
 
 
 @lru_cache(maxsize=1)
@@ -36,12 +59,23 @@ def moscow_v7():
     return load_moscow_v7(planning=True)
 
 
+@lru_cache(maxsize=1)
+def gap_index():
+    return MoscowGapIndex(moscow_v7()[0])
+
+
 def tokens(value):
     return set(re.findall(r'\w+', value.casefold().replace('ё', 'е')))
 
 
 def cell(point):
     return floor(point['lat'] * 40), floor(point['lon'] * 25)
+
+
+@lru_cache(maxsize=1)
+def transport_cells():
+    _, _, nodes, _ = rail_inputs(str(PILOT_RAIL_CONFIG))
+    return {cell(node) for node in nodes.values()}
 
 
 @lru_cache(maxsize=1)
@@ -68,7 +102,11 @@ def nearby_places(anchor, cells, limit, excluded=()):
         rows.update(set(cells[grid]) - occupied)
         if len(rows) >= limit * 4:
             break
-    return nsmallest(limit, rows, key=lambda key: (_distance(coordinates(by_id[key]), anchor), key))
+    def relevance(key):
+        place = by_id[key]
+        signals = place['catalog_signals']
+        return (_distance(coordinates(place), anchor) - 180 * sum(signals.values()), key)
+    return nsmallest(limit, rows, key=relevance)
 
 
 def geographic_days(preferences):
@@ -83,18 +121,22 @@ def geographic_days(preferences):
     primary = preferences.primary_interests
     secondary = preferences.secondary_interests
     interests = [category for category in [*primary, *secondary] if category != 'cafes'] or ['cafes']
+    stations = transport_cells() if preferences.transport in {'mixed', 'transit'} else set()
     candidate_cells = set().union(*(categories.get(category, {}) for category in interests))
     scores = []
     for lat, lon in candidate_cells:
         point = {'lat': (lat + .5) / 40, 'lon': (lon + .5) / 25}
         distance = _distance(point, CITY_CENTRE)
-        if distance > 15_000:
+        if distance > 11_000:
             continue
         # Считаем доступные категории в ячейке и соседних кварталах с насыщением.
         neighbours = [(lat + dy, lon + dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1)]
         quality = sum((3 if category in primary else 1) * min(5, sum(
             len(categories[category].get(grid, ())) for grid in neighbours)) for category in interests)
+        quality += sum(min(4, len(categories[category].get((lat, lon), ()))) for category in interests)
         quality += min(4, len(categories.get('cafes', {}).get((lat, lon), ())))
+        if (lat, lon) in stations:
+            quality += 3
         scores.append((-quality, distance, lat, lon, point))
     if preferences.days == 1 and not anchors:
         return [CITY_CENTRE]
@@ -111,12 +153,27 @@ def geographic_shortlist(preferences, anchors):
     selected = dict.fromkeys(preferences.required_ids)
     interests = [category for category in (*preferences.primary_interests, *preferences.secondary_interests)
                  if category != 'cafes']
+    places_per_area = {'relaxed': 6, 'balanced': 8, 'intensive': 10}[preferences.pace]
+    by_day = []
     for anchor in anchors:
+        previous = set(selected)
         for category in interests:
             selected.update(dict.fromkeys(nearby_places(anchor, categories.get(category, {}), 1, selected)))
-        for category in interests[:max(0, 6 - len(interests))]:
+        for index in range(max(0, places_per_area - len(interests)) if interests else 0):
+            category = interests[index % len(interests)]
             selected.update(dict.fromkeys(nearby_places(anchor, categories.get(category, {}), 1, selected)))
-        selected.update(dict.fromkeys(nearby_places(anchor, categories.get('cafes', {}), 4, selected)))
+        attractions = [key for key in selected if key not in previous]
+        meals = nearby_places(anchor, categories.get('cafes', {}), 5, selected)
+        selected.update(dict.fromkeys(meals))
+        by_day.append([key for pair in zip_longest(attractions, meals) for key in pair if key is not None])
+    if preferences.transport == 'mixed' and len(selected) > MAX_MIXED_CANDIDATES:
+        # Сохраняем обязательные точки и распределяем оставшиеся места между днями.
+        selected = dict.fromkeys(preferences.required_ids)
+        for rank in range(max(map(len, by_day), default=0)):
+            selected.update(dict.fromkeys(day[rank] for day in by_day if rank < len(day)))
+            if len(selected) >= MAX_MIXED_CANDIDATES:
+                break
+        selected = list(selected)[:MAX_MIXED_CANDIDATES]
     return [by_id[key] for key in selected]
 
 
@@ -168,7 +225,11 @@ def shortlist(preferences, retained=(), query='', prior_query=''):
                 if count >= limit * 4:
                     break
         ids.extend(nsmallest(limit, rows, key=lambda key: (location(key), key)))
-    return [by_id[key] for key in dict.fromkeys(ids)]
+    ids = list(dict.fromkeys(ids))
+    if preferences.transport == 'mixed':
+        protected = len(set(preferences.required_ids) | set(retained))
+        ids = ids[:max(MAX_MIXED_CANDIDATES, protected)]
+    return [by_id[key] for key in ids]
 
 
 def stamp(day, clock):
@@ -201,10 +262,11 @@ def source_hours(raw, weekday):
     return windows[0] if len(windows) == 1 else None
 
 
-def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_filters=None, *, include_food=False):
+def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_filters=None, *, include_food=False, explicit_pois=None):
     if preferences.budget_currency != 'RUB':
         raise HTTPException(422, 'Для Москвы выберите бюджет в рублях.')
-    pois = shortlist(preferences, retained, query, prior_query)
+    pois = (shortlist(preferences, retained, query, prior_query) if explicit_pois is None
+            else [indexes()[0][key] for key in dict.fromkeys([*preferences.required_ids, *explicit_pois])])
     anchors = []
     if include_food:
         anchors = geographic_days(preferences)
@@ -216,7 +278,8 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
             for key in nearby_places(anchors[0], categories['cafes'], 6, selected):
                 selected[key] = by_id[key]
             pois = list(selected.values())
-    mode = {'walk': 'walking', 'taxi': 'car', 'transit': 'public_transit', 'mixed': 'public_transit'}[preferences.transport]
+    selected = selected_moscow_modes(preferences)
+    mode = MATRIX_MODES[selected[0]] if selected else MATRIX_MODES.get(preferences.transport, 'public_transit')
     people = preferences.group.adult + preferences.group.child + preferences.group.senior
     amount = preferences.budget_amount * (people if preferences.budget_basis == 'per_person' else 1)
     first = preferences.start_date
@@ -229,11 +292,8 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
     days, openings, durations, costs = [], [], [], []
     for offset in range(preferences.days):
         day = (first + timedelta(days=offset)).isoformat()
-        meal = None
-        if preferences.day_start <= '13:00' and preferences.day_end >= '14:30':
-            meal = dict(kind='meal', start_at=stamp(day, '13:15'), end_at=stamp(day, '14:00'))
         days.append(dict(date=day, day_start=stamp(day, preferences.day_start),
-                         day_end=stamp(day, preferences.day_end), meal_break=meal))
+                         day_end=stamp(day, preferences.day_end), meal_break=None))
     for poi in pois:
         key, fields, provenance = poi['id'], poi['planning'], poi['provenance']
         minutes = fields['duration_minutes']['value']
@@ -268,7 +328,10 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
                    duration_overrides=durations, opening_intervals=openings,
                    cost_context=dict(currency='RUB', coverage_complete=False, visit_costs=costs, meal_costs=[]))
     filters = transport_filters or {}
-    matrix = travel_matrix(pois, mode, **filters)
+    matrix = chosen_moscow_matrix(pois, mode, selected, filters,
+                                  legacy=preferences.transport_modes is None and bool(retained))
+    if selected:
+        context['moscow_transport_modes'] = selected
     if filters:
         context['moscow_transit_filters'] = filters
     if len(anchors) > 1:
@@ -299,7 +362,15 @@ def plan_moscow(preferences):
         if error.code in {'ROUTER_RUNTIME_UNAVAILABLE', 'ROUTER_UNAVAILABLE'}:
             raise HTTPException(503, 'Маршрутизатор недоступен. Проверьте запуск Node.js.') from error
         raise HTTPException(422, 'Маршрутизатор не смог построить план с этими параметрами.') from error
-    return plan, {'start_date': preferences.start_date.isoformat(), 'transport': preferences.transport}, plan['poi_snapshot_id']
+    def make_repair_state(ids):
+        profile, places, _, matrix, context = moscow_inputs(preferences, explicit_pois=ids)
+        return {'preferences': profile, 'pois': places, 'travel_times': matrix, 'routing_context': context}
+
+    plan = repair_gaps(plan, inputs[0], inputs[4], gap_index(), make_repair_state)
+    options = {'start_date': preferences.start_date.isoformat(), 'transport': preferences.transport}
+    if preferences.transport_modes:
+        options['transport_modes'] = preferences.transport_modes
+    return plan, options, plan['poi_snapshot_id']
 
 
 TRANSPORTS = {'walking': 'walk', 'car': 'taxi', 'public_transit': 'transit'}
@@ -308,7 +379,10 @@ TRANSPORTS = {'walking': 'walk', 'car': 'taxi', 'public_transit': 'transit'}
 class MoscowRouteAssistant(RouteAssistant):
     def _payload(self, state, text):
         result = super()._payload(state, text)
-        result['transport'] = TRANSPORTS[state['preferences']['transport']]
+        selected = state['routing_context'].get('moscow_transport_modes')
+        result['transport'] = 'mixed' if selected and len(selected) > 1 else TRANSPORTS[state['preferences']['transport']]
+        if selected:
+            result['transport_modes'] = selected
         filters = state['routing_context'].get('moscow_transit_filters')
         if filters:
             result['transit_filters'] = filters
@@ -331,12 +405,36 @@ class MoscowRouteAssistant(RouteAssistant):
 
     def _settings(self, state, day):
         return {**super()._settings(state, day), 'transport': state['preferences']['transport'],
+                'transport_modes': state['routing_context'].get('moscow_transport_modes'),
                 'meals': state['routing_context'].get('moscow_meals', {}).get(day, {}),
                 'transit_filters': state['routing_context'].get('moscow_transit_filters', {}),
                 'start_hints': state['routing_context'].get('moscow_start_hints', {}).get(day, {})}
 
     def _apply(self, state, sequences, op):
         context = state['routing_context']
+        if op['op'] == 'add_poi':
+            try:
+                return super()._apply(state, sequences, op)
+            except AssistantError as error:
+                if error.code != 'NO_FEASIBLE_INSERTION':
+                    raise
+                # Автоматическое заполнение окна уступает явному запросу.
+                # Удаление выбранной автоматически остановки видно в предпросмотре.
+                fillers = set(state['route'].get('gap_diagnostics', {}).get('inserted_poi_ids', []))
+                protected = set(state['preferences']['required_poi_ids'])
+                protected.update(slot['poi_id'] for meals in context.get('moscow_meals', {}).values()
+                                 for slot in meals.values())
+                days = [op['day']] if op['day'] else list(sequences)
+                for day in days:
+                    for key in reversed(sequences[day]):
+                        if key not in fillers or key in protected:
+                            continue
+                        reduced = {**sequences, day: [value for value in sequences[day] if value != key]}
+                        attempt = self._best_addition(state, reduced, op['poi_id'], [day])
+                        if attempt:
+                            sequences.update(attempt)
+                            return
+                raise
         if op['op'] == 'optimize_day':
             day, goal = op['day'], op['goal']
             require(day in sequences, 'UNKNOWN_DAY')
@@ -361,10 +459,19 @@ class MoscowRouteAssistant(RouteAssistant):
             avoid, required = map(set, values)
             require(not avoid & required, 'TRANSPORT_UNAVAILABLE')
             filters = {'avoid_transit': sorted(avoid), 'require_transit': sorted(required)}
-            state['preferences']['transport'] = 'public_transit'
-            state['travel_times'] = travel_matrix(state['pois'], 'public_transit', **filters)
+            mode = state['preferences']['transport']
+            selected = context.get('moscow_transport_modes')
+            if 'transit' not in (selected or [MODES[mode]]):
+                require(required, 'NO_ROUTE_CHANGE')
+                if selected:
+                    selected = [*selected, 'transit']
+                    context['moscow_transport_modes'] = selected
+                else:
+                    mode = 'public_transit'
+                    state['preferences']['transport'] = mode
+            state['travel_times'] = chosen_moscow_matrix(state['pois'], mode, selected, filters)
             context['moscow_transit_filters'] = filters
-            state['requested_transport'] = 'public_transit'
+            state['requested_transport'] = 'explicit_modes' if selected else 'public_transit'
             state['filters_only'] = True
             return
         if op['op'] == 'move_poi':
@@ -393,6 +500,20 @@ class MoscowRouteAssistant(RouteAssistant):
                 context.setdefault('moscow_meal_pins', {}).setdefault(day, {})['lunch'] = op['start_at'][11:16]
                 return
             raise AssistantError('MEAL_TIME_UNAVAILABLE')
+        if op['op'] == 'set_transport_modes':
+            selected = op['modes']
+            require(isinstance(selected, list) and 1 <= len(selected) <= 3
+                    and all(isinstance(label, str) and label in MATRIX_MODES for label in selected)
+                    and len(set(selected)) == len(selected), 'TRANSPORT_UNAVAILABLE')
+            require(not context['moscow_has_pet'] or selected != ['transit'], 'TRANSPORT_UNAVAILABLE')
+            mode = MATRIX_MODES[selected[0]]
+            state['travel_times'] = chosen_moscow_matrix(state['pois'], mode, selected)
+            state['preferences']['transport'] = mode
+            context['moscow_transport_modes'] = selected
+            context.pop('moscow_transit_filters', None)
+            state['requested_transport'] = 'explicit_modes'
+            state.pop('filters_only', None)
+            return
         if op['op'] != 'set_transport':
             return super()._apply(state, sequences, op)
         mode = op['transport']
@@ -407,6 +528,7 @@ class MoscowRouteAssistant(RouteAssistant):
         state['preferences']['transport'] = mode
         state['travel_times'] = matrix
         context.pop('moscow_transit_filters', None)
+        context.pop('moscow_transport_modes', None)
         state['requested_transport'] = mode
         state.pop('filters_only', None)
 
@@ -432,7 +554,10 @@ class MoscowRouteAssistant(RouteAssistant):
         if filters:
             required = set(filters['require_transit'])
             if not required <= transit_modes(result):
-                pairs = state['travel_times']['pairs']
+                original_matrix = state['travel_times']
+                profiles = original_matrix.get('profiles')
+                transit_matrix = profiles['transit'] if profiles else original_matrix
+                pairs = transit_matrix['pairs']
                 used_pairs = {(row['from_poi_id'], row['to_poi_id']) for day in result['days'] for row in day['legs']}
                 alternatives = [(row['required_transit_alternative']['duration_seconds'] - (row['duration_seconds'] or 0), index)
                                 for index, row in enumerate(pairs) if row.get('required_transit_alternative')
@@ -440,7 +565,16 @@ class MoscowRouteAssistant(RouteAssistant):
                 for _, index in sorted(alternatives):
                     pair = pairs[index]
                     replacement = {**pair, **pair['required_transit_alternative']}
-                    matrix = {**state['travel_times'], 'pairs': pairs[:index] + [replacement] + pairs[index + 1:]}
+                    matrix = {**transit_matrix, 'pairs': pairs[:index] + [replacement] + pairs[index + 1:]}
+                    if profiles:
+                        chosen_pair = pair['from_poi_id'], pair['to_poi_id']
+                        forced = {'transit': matrix}
+                        for label, profile in profiles.items():
+                            if label != 'transit':
+                                forced[label] = {**profile, 'pairs': [
+                                    row for row in profile['pairs']
+                                    if (row['from_poi_id'], row['to_poi_id']) != chosen_pair]}
+                        matrix = {**forced[MODES[state['preferences']['transport']]], 'profiles': forced}
                     try:
                         result = recompute({**prepared, 'travel_times': matrix})
                     except ValueError:
@@ -452,7 +586,9 @@ class MoscowRouteAssistant(RouteAssistant):
             result['moscow_transit_filters'] = filters
         if mode:
             legs = [leg for day in result['days'] for leg in day['legs']]
-            if mode == 'public_transit' and not state.get('filters_only'):
+            if mode == 'explicit_modes':
+                require(legs and all(leg['mode'] in context['moscow_transport_modes'] for leg in legs), 'TRANSPORT_UNAVAILABLE')
+            elif mode == 'public_transit' and not state.get('filters_only'):
                 require(any(leg.get('transport_steps') for leg in legs), 'TRANSPORT_UNAVAILABLE')
             elif mode != 'public_transit':
                 require(legs and all(leg['basis'] == 'routing_provider' for leg in legs), 'TRANSPORT_UNAVAILABLE')
@@ -460,6 +596,7 @@ class MoscowRouteAssistant(RouteAssistant):
             result['moscow_meal_pins'] = context['moscow_meal_pins']
         for day, (goal, before) in context.get('moscow_optimization_checks', {}).items():
             require(day_metric(result, day, goal) < before, 'NO_ROUTE_IMPROVEMENT')
+        result['gap_diagnostics'] = describe_edited_gaps(result, context, state['route'])
         return result
 
 
@@ -479,6 +616,7 @@ def day_metric(plan, date, goal):
 def moscow_interpretation(value):
     return parse_interpretation(value, extra_operations={
         'set_transport': {'op', 'transport'}, 'move_poi': {'op', 'poi_id', 'day'},
+        'set_transport_modes': {'op', 'modes'},
         'set_transit_preferences': {'op', 'avoid', 'require'},
         'optimize_day': {'op', 'day', 'goal'},
     })
@@ -489,6 +627,7 @@ class MoscowAssistant(ShanghaiAssistantService):
         prompt = SYSTEM_PROMPT.replace('город, transport, бюджет или required.',
             'город, бюджет или required. Для явной смены транспорта используй set_transport: '
             'op, transport (walking|car|public_transit). Для явного запрета или включения отдельных '
+            'сочетаний транспорта используй set_transport_modes: op, modes (массив walk, transit, taxi). Для отдельных '
             'видов транспорта используй set_transit_preferences: op, avoid, require. '
             'Два массива содержат значения metro, mcc, mcd, tram, bus, electric_bus. '
             'Поля transport и transit_filters описывают текущий выбор. Чтобы снять фильтры, передай два пустых массива. '
@@ -509,7 +648,8 @@ class MoscowAssistant(ShanghaiAssistantService):
             session['moscow_preferences'] = MoscowPreferences.model_validate(body['preferences'])
             transport = session['route_options'].get('transport')
             if transport in TRANSPORTS.values() or transport == 'mixed':
-                session['moscow_preferences'] = session['moscow_preferences'].model_copy(update={'transport': transport})
+                session['moscow_preferences'] = session['moscow_preferences'].model_copy(update={
+                    'transport': transport, 'transport_modes': session['route_options'].get('transport_modes')})
             session['moscow_route'] = body['plan']
             session['moscow_route_id'] = body['route_id']
             session['moscow_version'] = body['version']
@@ -569,11 +709,20 @@ class MoscowAssistant(ShanghaiAssistantService):
                      'after': day_metric(result['candidate_route'], op['day'], op['goal'])}
                     for op in result['operations'] if op['op'] == 'optimize_day'
                 ]
-            move = next((op['transport'] for op in reversed(result['operations']) if op['op'] == 'set_transport'), None)
+            move = next((op for op in reversed(result['operations'])
+                         if op['op'] in {'set_transport', 'set_transport_modes', 'set_transit_preferences'}), None)
+            chosen_modes = result['candidate_route'].get('moscow_transport_modes')
             if result['candidate_route'].get('moscow_transit_filters'):
-                move = 'public_transit'
                 changes['transit_filters'] = result['candidate_route']['moscow_transit_filters']
-            session['moscow_proposed_transport'] = TRANSPORTS.get(move)
+            proposed = None
+            if move:
+                if chosen_modes:
+                    proposed = 'mixed' if len(chosen_modes) > 1 else chosen_modes[0]
+                    changes['transport_modes'] = chosen_modes
+                else:
+                    proposed = TRANSPORTS.get(move.get('transport', 'public_transit'))
+            session['moscow_proposed_transport'] = proposed
+            session['moscow_proposed_modes'] = chosen_modes if move else None
             changes['transport'] = session['moscow_proposed_transport']
             return {'type': 'proposal', 'plan': result['candidate_route'], 'message': message, 'diff': changes,
                     'proposal_id': result['proposal_id'], 'base_version': result['base_version']}
@@ -586,8 +735,9 @@ class MoscowAssistant(ShanghaiAssistantService):
                 session.update(moscow_route=result['route'], moscow_version=result['version'])
                 transport = session['moscow_proposed_transport']
                 if transport:
-                    session['route_options'] = {**session['route_options'], 'transport': transport}
-                    session['moscow_preferences'] = session['moscow_preferences'].model_copy(update={'transport': transport})
+                    update = {'transport': transport, 'transport_modes': session['moscow_proposed_modes']}
+                    session['route_options'] = {**session['route_options'], **update}
+                    session['moscow_preferences'] = session['moscow_preferences'].model_copy(update=update)
             return {'type': 'confirmed' if confirmed else 'rejected', 'version': result['version'],
                     'message': 'Маршрут обновлён.' if confirmed else 'Исходный маршрут сохранён.',
                     **({'plan': result['route'], 'options': session['route_options']} if confirmed else {})}

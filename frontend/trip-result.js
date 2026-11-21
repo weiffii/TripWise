@@ -18,10 +18,13 @@ async function request(path, body) {
 function events(day, plan = trip.plan) {
   if (day.events) return day.events.filter(showScheduleEvent);
   const meals = new Map(Object.entries(plan.moscow_meals?.[day.date] || {}).map(([kind, slot]) => [slot.poi_id, kind]));
+  const diagnostics = new Map((plan.gap_diagnostics?.remaining || []).filter(gap => gap.date === day.date)
+    .map(gap => [gap.start_at + '/' + gap.end_at, gap.reason]));
   return [...day.visits.map(item => ({...item, type:meals.has(item.poi_id) ? 'meal' : 'visit', meal_kind:meals.get(item.poi_id)})),
-    ...day.legs.map(item => ({...item, type:'travel', mode:item.transport_steps?.length ? 'transit' :
-      (trip.options.transport === 'taxi' ? 'taxi' : 'walk')})),
-    ...day.breaks.map(item => ({...item, type:item.kind}))].filter(showScheduleEvent)
+    ...day.legs.map(item => ({...item, type:'travel', mode:item.mode || (item.transport_steps?.length ? 'transit' :
+      (trip.options.transport === 'taxi' ? 'taxi' : 'walk'))})),
+    ...day.breaks.map(item => ({...item, type:item.kind,
+      reason:diagnostics.get(item.start_at + '/' + item.end_at) || item.reason}))].filter(showScheduleEvent)
     .sort((left, right) => left.start_at.localeCompare(right.start_at));
 }
 
@@ -44,13 +47,16 @@ function eventLabel(row) {
   const kind = {visit:'Посещение', meal:'Перерыв на питание', travel:'Переход', rest:'Отдых', wait:'Ожидание', waiting:'Ожидание'};
   const mode = {walk:'Пешком',transit:'Общественный транспорт',taxi:'Такси'}[row.mode];
   const meal = {breakfast:'Завтрак', lunch:'Обед', dinner:'Ужин'}[row.meal_kind];
-  const minutes = row.planned_minutes ?? (row.duration_seconds == null ? null : Math.ceil(row.duration_seconds / 60));
-  const cost = row.price_cny ?? row.cost_cny ?? row.transport_cost_cny;
+  const minutes = row.planned_minutes ?? (row.start_at
+    ? Math.round((Date.parse(row.end_at) - Date.parse(row.start_at)) / 60000)
+    : row.end_min - row.start_min);
+  const moscow = trip.city === 'moscow';
+  const cost = moscow ? row.price_rub ?? row.transport_cost_rub : row.price_cny ?? row.cost_cny ?? row.transport_cost_cny;
   const estimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate';
   return [clock(row,'start') + '–' + clock(row,'end'), row.type === 'travel' ? mode || 'Пеший переход' :
     (meal && name ? meal + ' · ' + name : name || kind[row.type] || 'Перерыв'),
     estimate ? 'ориентировочно' : '',
-    minutes == null ? '' : minutes + ' мин', cost == null ? '' : cost + ' CNY'].filter(Boolean).join(' · ');
+    Number.isFinite(minutes) ? minutes + ' мин' : '', cost == null ? '' : cost + (moscow ? ' ₽' : ' CNY')].filter(Boolean).join(' · ');
 }
 
 function appendText(parent, text) {
@@ -104,6 +110,7 @@ function renderDay() {
   const rows = day ? events(day) : [];
   const stops = element('route-stops');
   stops.replaceChildren();
+  if (day?.start_at && day.end_at) appendText(stops, 'Начало ' + day.start_at.slice(11,16) + ' · окончание ' + day.end_at.slice(11,16));
   let legIndex = 0;
   for (const [rowIndex,row] of rows.entries()) {
     const previous = rows[rowIndex-1];
@@ -131,6 +138,11 @@ function renderDay() {
       };
     }
     card.append(title);
+    if (row.reason && ['waiting','wait','meal','rest'].includes(row.type)) {
+      const detail = document.createElement('p');
+      detail.textContent = row.reason;
+      card.append(detail);
+    }
     if (row.transport_steps) {
       const sequence = document.createElement('ol');
       for (const step of row.transport_steps) {
@@ -149,6 +161,12 @@ function renderDay() {
   }
   for (const tab of element('route-tabs').children) tab.setAttribute('aria-pressed', String(tab.dataset.day === element('route-day').value));
   if (!rows.length) appendText(stops,'В выбранный день не удалось запланировать посещения.');
+  for (const warning of day?.warnings || []) appendText(stops, warning);
+  for (const gap of trip.plan.gap_diagnostics?.remaining || []) {
+    if (gap.date === day?.date && gap.minutes > 30 && (gap.kind !== 'internal' || gap.minutes <= 60)) {
+      appendText(stops, gap.start_at.slice(11,16) + '–' + gap.end_at.slice(11,16) + ' · ' + gap.reason);
+    }
+  }
   drawMap(rows);
 }
 
@@ -190,6 +208,7 @@ function renderTrip() {
       'Уточните часы работы, цены и доступ к входам. Переходы без дорожной геометрии ориентировочны.',
       railMissing ? 'Для выбранных мест подошли только пешие переходы из доступных данных.' : '',
       uncovered.length ? 'Не удалось включить интересы: ' + uncovered.join(', ') + '.' : '',
+      ...(trip.plan.unplaced_required_poi_ids?.length ? trip.plan.warnings || [] : []),
     ].join(' ').trim() : 'Сохранённый маршрут прежнего пилота. Уточните часы и цены.')
     : ['Учебные цены и условия посещения.', ...(trip.plan.warnings || [])].join(' ');
   renderDay();

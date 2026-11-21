@@ -138,8 +138,10 @@ def bridge_call(payload):
     executable = node_executable()
     require(bool(executable), 'ROUTER_RUNTIME_UNAVAILABLE')
     try:
-        raw = json.dumps(payload, ensure_ascii=False, allow_nan=False)
-        require(len(raw.encode('utf-8')) <= 2 * 1024 * 1024, 'REQUEST_TOO_LARGE')
+        injected = 'dataset' in payload
+        raw = json.dumps(payload, ensure_ascii=False, allow_nan=False,
+                         separators=(',', ':') if injected else None)
+        require(len(raw.encode('utf-8')) <= (8 if injected else 2) * 1024 * 1024, 'REQUEST_TOO_LARGE')
         result = subprocess.run([executable, str(ROOT / 'ai_ds/web_demo/shanghai-assistant-bridge.cjs')],
                                 input=raw, text=True, encoding='utf-8', capture_output=True,
                                 timeout=30, cwd=ROOT)
