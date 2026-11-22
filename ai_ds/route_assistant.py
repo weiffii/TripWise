@@ -187,6 +187,15 @@ class RouteAssistant:
         require(not has_failed(result.get('constraint_checks', {})), 'ROUTE_CONSTRAINT_FAILED')
         require(sequences_of(result) == sequences, 'ROUTE_SEQUENCE_MISMATCH')
         return result
+
+    @staticmethod
+    def _addition_score(candidate, day):
+        travel = sum(leg['duration_seconds'] for item in candidate['days'] for leg in item.get('legs', [])
+                     if leg.get('duration_seconds') is not None)
+        end = next((item['visits'][-1].get('end_at') for item in candidate['days']
+                    if item['date'] == day and item['visits']), None) or ''
+        return travel, end
+
     def _best_addition(self, state, sequences, poi_id, days):
         choices = []
         for day in days:
@@ -197,9 +206,7 @@ class RouteAssistant:
                     candidate = self._candidate(state, attempt)
                 except (ValueError, KeyError, TypeError, OverflowError):
                     continue
-                travel = sum(leg['duration_seconds'] for d in candidate['days'] for leg in d.get('legs', []) if leg.get('duration_seconds') is not None)
-                end = next((d['visits'][-1].get('end_at') for d in candidate['days'] if d['date'] == day and d['visits']), None) or ''
-                choices.append(((travel, end, day, pos), attempt))
+                choices.append(((*self._addition_score(candidate, day), day, pos), attempt))
         return min(choices, key=lambda c: c[0])[1] if choices else None
     def _apply(self, state, sequences, op):
         name, day = op['op'], op.get('day')

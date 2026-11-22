@@ -217,11 +217,15 @@ class MoscowV7RoutingTests(unittest.TestCase):
         def fixture_matrix(pois, mode, **kwargs):
             matrix = real_travel_matrix(pois, 'walking', **kwargs)
             matrix['mode'] = mode
+            if mode == 'walking':
+                for pair in matrix['pairs']:
+                    pair['duration_seconds'] = max(16 * 60, pair['duration_seconds'])
             if mode == 'car':
                 by_id = {poi['id']: poi['coordinates'] for poi in pois}
                 for pair in matrix['pairs']:
                     coordinates = [by_id[pair[key]] for key in ('from_poi_id', 'to_poi_id')]
-                    pair.update(basis='routing_provider', source_id='test-road-provider',
+                    pair.update(basis='routing_provider', source_id='test-road-provider', distance_meters=900,
+                                duration_seconds=120,
                                 geometry={'type': 'LineString', 'coordinates': [
                                     [point['longitude'], point['latitude']] for point in coordinates]})
             return matrix

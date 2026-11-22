@@ -16,6 +16,48 @@ def poi(key, longitude, *, price=100, opened=True, category='history'):
 
 
 class MoscowGapRepairTests(TestCase):
+    @skipUnless(node_executable(), 'Для регрессии используется общий Node.js планировщик')
+    def test_two_nearby_sights_fill_the_reported_177_minute_meal_window(self):
+        points = {key: poi(key, 37.620 + i / 1000, category='history' if i in (1, 2) else 'cafes')
+                  for i, key in enumerate(('lunch', 'museum', 'gallery', 'dinner'))}
+        for key in ('lunch', 'dinner'):
+            points[key]['planning']['average_check_rub'] = {'value': 100}
+        profile = {'primary_interests': ['history'], 'secondary_interests': [], 'transport': 'walking',
+                   'date_start': DAY, 'required_poi_ids': [], 'pace': 'balanced', 'budget': {'amount': 2000}}
+        lunch = {'poi_id': 'lunch', 'start_at': timestamp(DAY, 854), 'end_at': timestamp(DAY, 914)}
+        dinner = {'poi_id': 'dinner', 'start_at': timestamp(DAY, 1094), 'end_at': timestamp(DAY, 1154)}
+        meals = {DAY: {'lunch': lunch, 'dinner': dinner}}
+        context = {'days': [{'date': DAY, 'day_start': timestamp(DAY, 720), 'day_end': timestamp(DAY, 1170)}],
+                   'moscow_group': {'adult': 1, 'child': 0, 'senior': 0},
+                   'poi_snapshot_id': '177-minute-fixture',
+                   'moscow_meal_pins': {DAY: {'lunch': '14:14', 'dinner': '18:14'}}}
+        route = {
+            'schema_version': '0.2', 'status': 'unknown', 'budget_summary': {'known_total': 200},
+            'moscow_meals': meals,
+            'days': [{'date': DAY, 'pace': 'balanced', 'visits': [lunch, dinner], 'legs': [], 'breaks': []}],
+            'engine_days': [{'date': DAY, 'total_cost_cny': 200, 'events': [
+                {'type': 'meal', 'meal_kind': 'lunch', 'poi_id': 'lunch', 'start_min': 854, 'end_min': 914},
+                {'type': 'travel', 'from_poi_id': 'lunch', 'to_poi_id': 'dinner', 'start_min': 1091, 'end_min': 1094},
+                {'type': 'meal', 'meal_kind': 'dinner', 'poi_id': 'dinner', 'start_min': 1094, 'end_min': 1154},
+            ]}],
+        }
+
+        def state(ids):
+            return {'preferences': profile, 'pois': [points[key] for key in ids],
+                    'travel_times': {'pairs': [
+                        {'from_poi_id': left, 'to_poi_id': right, 'status': 'known', 'duration_seconds': 180,
+                         'distance_meters': 125, 'source_id': 'fixture', 'basis': 'routing_provider'}
+                        for left in ids for right in ids if left != right]},
+                    'routing_context': {**context, 'opening_intervals': [],
+                                        'duration_overrides': [{'poi_id': key, 'minutes': 75} for key in ids],
+                                        'cost_context': {'visit_costs': [{'poi_id': key, 'amount': 100} for key in ids]}}}
+
+        self.assertIn(177, [gap.minutes for gap in route_gaps(route, context) if gap.kind == 'internal'])
+        result = repair_gaps(route, profile, context, MoscowGapIndex(points.values()), state)
+        self.assertEqual(set(result['gap_diagnostics']['inserted_poi_ids']), {'museum', 'gallery'})
+        self.assertEqual(result['moscow_meals'], meals)
+        self.assertFalse(any(gap.kind == 'internal' and gap.minutes > 60 for gap in route_gaps(result, context)))
+
     def test_whole_catalog_index_finds_only_local_feasible_interested_candidate(self):
         index = MoscowGapIndex([
             poi('previous', 37.62), poi('following', 37.63),

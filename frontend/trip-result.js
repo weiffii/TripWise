@@ -141,9 +141,48 @@ function appendText(parent, text) {
   parent.append(item);
 }
 
+const mapDialog = element('route-map-dialog');
+const mapPanel = element('route-map-panel');
+const expandMapButton = element('expand-route-map');
+const closeMapForm = element('close-route-map');
+const sidebarMap = window.matchMedia('(min-width: 1024px)');
+let mapOpener;
+
+function openMap(opener) {
+  if (mapDialog.open) return;
+  mapOpener = opener;
+  mapDialog.append(mapPanel);
+  expandMapButton.hidden = true;
+  closeMapForm.hidden = false;
+  mapDialog.showModal();
+}
+
+expandMapButton.addEventListener('click', () => {
+  openMap(expandMapButton);
+  routeMap.fitSelection();
+});
+
+mapDialog.addEventListener('close', () => {
+  element('route-map-sidebar').append(mapPanel);
+  expandMapButton.hidden = false;
+  closeMapForm.hidden = true;
+  routeMap.fitSelection();
+  mapOpener?.focus({preventScroll:true});
+});
+
+function revealMap(opener) {
+  if (!sidebarMap.matches) openMap(opener);
+}
+
 const routeMap = window.TripWiseMap.create({
   container:element('street-map'), svg:element('route-map'), tiles:element('map-tiles'),
-  background:element('map-background'), directTiles:true,
+  background:element('map-background'), directTiles:true, focusStopWithArrival:true,
+  allowWheelZoom:event => mapDialog.open || event.ctrlKey || event.metaKey,
+  onStopSelect:index => {
+    for (const button of element('route-stops').querySelectorAll('button[data-stop-index]')) {
+      button.setAttribute('aria-pressed', String(Number(button.dataset.stopIndex) === index));
+    }
+  },
   onSelect:html => { element('route-directions').innerHTML = html; },
   onNetworkStatus:text => { element('road-status').textContent = text; },
   onStatus:text => { element('map-status').textContent = text; },
@@ -151,7 +190,6 @@ const routeMap = window.TripWiseMap.create({
 
 function drawMap(rows) {
   element('road-status').textContent = '';
-  const stops = rows.filter(row => ['visit','meal'].includes(row.type));
   const mapPlaces = new Map([...places].filter(([,place]) => Number.isFinite(place.lat) && Number.isFinite(place.lon)));
   const mappedRows = rows.map(row => {
     if (row.type !== 'travel' || trip.city !== 'moscow') return row;
@@ -176,13 +214,10 @@ function drawMap(rows) {
       ...(segments.length ? {geometry_segments: segments} : {})};
   });
   routeMap.setDay({events:mappedRows}, mapPlaces, {required_ids:trip.preferences?.required_ids || []});
-  const visibleStops = stops.filter(row => mapPlaces.has(row.poi_id));
-  for (const button of element('route-stops').querySelectorAll('button[data-poi]')) {
-    button.onclick = () => routeMap.selectStop(visibleStops.findIndex(row => row.poi_id === button.dataset.poi));
-  }
+  expandMapButton.disabled = false;
 }
 
-function renderScheduleRow(row, legIndex) {
+function renderScheduleRow(row, legIndex, stopIndex) {
   const info = eventDetails(row);
   const item = document.createElement('li');
   item.className = `schedule-row route-event-${row.type}`;
@@ -194,11 +229,19 @@ function renderScheduleRow(row, legIndex) {
   const title = document.createElement(canMap || row.type === 'travel' ? 'button' : 'strong');
   title.textContent = info.action;
   if (title.tagName === 'BUTTON') title.type = 'button';
-  if (canMap) title.dataset.poi = row.poi_id;
+  if (canMap && stopIndex !== undefined) {
+    title.dataset.stopIndex = stopIndex;
+    title.setAttribute('aria-pressed', 'false');
+    title.setAttribute('aria-controls', 'route-map-panel');
+    title.onclick = () => {
+      revealMap(title);
+      routeMap.selectStop(stopIndex);
+    };
+  }
   if (row.type === 'travel') {
     title.onclick = () => {
+      revealMap(title);
       routeMap.selectLeg(legIndex);
-      element('street-map').scrollIntoView({block: 'nearest'});
     };
   }
   if (info.category) {
@@ -289,6 +332,10 @@ function renderDay() {
     element('schedule-note').textContent = approximate
       ? 'Без обеда или ужина разделы ориентируются на время дня. ≈ — оценка, прочерк — нет данных.'
       : 'Обед и ужин завершают предыдущий блок. ≈ — оценка, прочерк — нет данных.';
+    const stopIndexes = new Map(rows.filter(row => {
+      const place = places.get(row.poi_id);
+      return ['visit','meal'].includes(row.type) && Number.isFinite(place?.lat) && Number.isFinite(place?.lon);
+    }).map((row,index) => [row,index]));
     const legIndexes = new Map(rows.filter(row => row.type === 'travel').map((row, index) => [row, index]));
     for (const section of sections) {
       const block = document.createElement('li');
@@ -304,7 +351,7 @@ function renderDay() {
       } else {
         const list = document.createElement('ol');
         list.className = 'schedule-rows';
-        for (const row of section.rows) list.append(renderScheduleRow(row, legIndexes.get(row)));
+        for (const row of section.rows) list.append(renderScheduleRow(row, legIndexes.get(row), stopIndexes.get(row)));
         block.append(list);
       }
       stops.append(block);
@@ -388,6 +435,12 @@ function renderTrip() {
 }
 
 const chatForm = element('edit-route');
+const editor = element('route-editor');
+const editButtons = [...document.querySelectorAll('[data-route-editor]')];
+const setEditBusy = busy => editButtons.forEach(button => { button.disabled = busy; });
+function openRouteEditor() {
+  if (!editor.open) editor.showModal();
+}
 const chatPath = endpoint + '/assistant/';
 const chatStatus = element('chat-status');
 function chatLine(author, message) {
@@ -413,7 +466,10 @@ async function load() {
   const catalog = await request('/api/planned-trips/catalog/' + trip.city + (legacy ? '?include_legacy=true' : ''));
   for (const place of catalog) places.set(place.id,{...place, area:trip.city === 'moscow' ? 'Москва' : 'Шанхай'});
   renderTrip();
-  if(!isPreview){chatStatus.textContent='Нажмите «Редактировать», чтобы создать несохранённый вариант этой поездки. Изменения появятся в аккаунте только после кнопки «Сохранить поездку».';control(true);return;}
+  setEditBusy(false);
+  if (!isPreview) return;
+  if (new URLSearchParams(window.location.search).get('edit') === '1') openRouteEditor();
+  chatStatus.textContent = 'Подключаем помощника…';
   const status = await request(chatPath + 'status');
   for (const item of status.conversation || []) chatLine(item.role === 'user' ? 'Вы' : 'TripWise', item.content);
   const namedAgent = status.agent_version ? 'Помощник Москвы: ' + status.agent_version +
@@ -446,8 +502,17 @@ chatForm.addEventListener('submit',async event => {
     proposal = result;
     const preview = element('preview-stops');
     preview.replaceChildren();
-    for (const item of result.diff?.added || []) appendText(preview, '+ ' + item.name + ' · ' + item.day);
+    const namedTimes = new Map((result.diff?.named_additions || []).map(item =>
+      [JSON.stringify([item.name, item.day]), item.time]));
+    for (const item of result.diff?.added || []) {
+      const time = namedTimes.get(JSON.stringify([item.name, item.day]));
+      appendText(preview, '+ ' + item.name + ' · ' + item.day + (time ? ' · ' + time : ''));
+    }
     for (const item of result.diff?.removed || []) appendText(preview, '− ' + item.name + ' · ' + item.day);
+    for (const meal of result.diff?.meal_replacements || []) {
+      const label = {breakfast:'Завтрак', lunch:'Обед', dinner:'Ужин'}[meal.kind] || 'Питание';
+      appendText(preview, label + ' · ' + meal.day + ' · ' + meal.time + ' · ' + meal.before + ' → ' + meal.after);
+    }
     for (const window of result.diff?.day_windows || []) {
       appendText(preview, window.day + ' · время прогулки ' + window.day_start + '–' + window.day_end);
     }
@@ -469,7 +534,12 @@ chatForm.addEventListener('submit',async event => {
         if (modes.length) appendText(preview, label + ' · ' + modes.map(mode => names[mode] || mode).join(', '));
       }
     }
-    for (const day of result.plan.days) for (const row of events(day, result.plan)) appendText(preview, day.date + ' · ' + eventLabel(row));
+    const changedDays = result.diff?.changed_days;
+    const previewDays = changedDays?.length ? result.plan.days.filter(day => changedDays.includes(day.date))
+      : result.plan.days;
+    for (const day of previewDays) {
+      for (const row of events(day, result.plan)) appendText(preview, day.date + ' · ' + eventLabel(row));
+    }
     element('chat-preview').hidden = false;
   } catch (error) { chatStatus.textContent = error.message; chatLine('TripWise', error.message); }
   finally { control(false); }
@@ -487,7 +557,11 @@ async function decide(decision) {
       renderTrip();
       element('route-state').textContent='Изменения применены к предварительному маршруту. Нажмите «Сохранить поездку», чтобы записать их в аккаунт.';
     }
-    chatStatus.textContent = result.message;
+    const message = result.type === 'confirmed' && isPreview
+      ? 'Изменения применены к предпросмотру. Чтобы записать их в аккаунт, сохраните поездку.'
+      : result.message;
+    if (message) chatLine('TripWise', message);
+    chatStatus.textContent = result.type === 'confirmed' ? message : '';
     proposal = null;
     element('chat-preview').hidden = true;
   } catch (error) { chatStatus.textContent = error.message; }
@@ -530,10 +604,20 @@ element('save-trip').addEventListener('click',async()=>{
   try{const saved=await request(endpoint+'/save',{version:trip.version});if(!saved.route_id)throw Error('Сервер не подтвердил сохранение.');window.location.assign('/trip/result?route='+encodeURIComponent(saved.route_id));}
   catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
 });
-element('edit-trip').addEventListener('click',async()=>{
-  if(!trip)return;if(isPreview){element('chat-text').focus();element('edit-route').scrollIntoView({block:'center',behavior:'smooth'});return;}
-  const button=element('edit-trip');button.disabled=true;element('route-action-status').textContent='Открываем редактирование…';
-  try{const preview=await request(endpoint+'/preview',{version:trip.version});if(!preview.preview_id)throw Error('Не удалось открыть редактор.');window.location.assign('/trip/result?preview='+encodeURIComponent(preview.preview_id));}
-  catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
-});
+async function editRoute() {
+  if (!trip) return;
+  if (isPreview) { openRouteEditor(); return; }
+  setEditBusy(true);
+  const status = element('route-action-status');
+  status.textContent = 'Открываем редактирование…';
+  try {
+    const preview = await request(endpoint + '/preview', {version:trip.version});
+    if (!preview.preview_id) throw Error('Не удалось открыть редактор.');
+    window.location.assign('/trip/result?preview=' + encodeURIComponent(preview.preview_id) + '&edit=1');
+  } catch (error) {
+    status.textContent = error.message;
+    setEditBusy(false);
+  }
+}
+for (const button of editButtons) button.addEventListener('click',editRoute);
 load().catch(error => { (trip ? chatStatus : element('route-meta')).textContent = error.message; });

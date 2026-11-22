@@ -49,6 +49,24 @@ class RealCatalogNameRegression(unittest.TestCase):
     def test_planning_for_specified_day(self):
         self.assert_named('Я хочу в Уголок дедушки Дурова на 22 ноября', DATES[1])
 
+    def test_declined_adjective_resolves_exact_title(self):
+        points = {'square': {'name': 'Красная площадь'},
+                  'building': {'name': 'Красная площадь, дом 1'},
+                  'other': {'name': 'Площадь Красные Ворота'}}
+        result = named_poi_decision('Добавь Красную площадь.', DATES, points)
+        self.assertEqual(result['operations'][0]['poi_id'], 'square')
+
+    def test_number_in_park_name_is_kept_apart_from_trip_day(self):
+        parks = {'requested': {'name': 'Парк имени 50-летия Октября'},
+                 'different-number': {'name': 'Парк имени 30-летия Октября'},
+                 'different-event': {'name': 'Парк 65-летия Победы'}}
+        for suffix in ('в первый день', 'на 1-й день', 'на 2026-11-21', '21 ноября',
+                       'в первый день без удаления других мест'):
+            with self.subTest(suffix=suffix):
+                result = named_poi_decision(f'Добавь парк 50-летия Октября {suffix}', DATES, parks)
+                self.assertEqual(result['operations'][0]['poi_id'], 'requested')
+                self.assertEqual(result['operations'][0]['day'], DATES[0])
+
     def test_negative_intent_is_not_addition(self):
         self.assertIsNone(named_poi_decision('Я не хочу в Уголок дедушки Дурова', DATES, CATALOG))
 

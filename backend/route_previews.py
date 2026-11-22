@@ -111,9 +111,12 @@ def form_from_engine(route):
 
 def merge_form_windows(form, options):
     result = deepcopy(form)
+    updates = options.get('day_settings')
+    if not updates:
+        return result
     first, last = form['first_walk_at'][:10], form['last_walk_end_at'][:10]
     overrides = result.get('day_settings') or {}
-    for day, settings in (options.get('day_settings') or {}).items():
+    for day, settings in updates.items():
         if first < day < last:
             window = {key: settings[key] for key in ('day_start', 'day_end') if key in settings}
             if window and (day in overrides or window.get('day_start', '09:00') != '09:00'
