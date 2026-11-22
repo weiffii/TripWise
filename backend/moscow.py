@@ -1,6 +1,6 @@
 from collections import defaultdict
 from copy import deepcopy
-from datetime import timedelta
+from datetime import date, timedelta
 from functools import lru_cache
 from heapq import nsmallest
 from itertools import zip_longest
@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 
 from fastapi import HTTPException
+from ai_ds.day_windows import DAY_WINDOW_FIELDS, MAX_TRIP_DAYS, minutes, valid_clock
 
 from ai_ds.moscow_catalog import load_moscow_v7
 from ai_ds.moscow_road import PILOT_RAIL_CONFIG, coordinates, rail_inputs, travel_matrix
@@ -534,7 +535,7 @@ class MoscowRouteAssistant(RouteAssistant):
         The candidate is recomputed against a complete, expanded matrix. All
         edits still go through RouteAssistant preview and confirm validation.
         """
-        require(isinstance(days, list) and 1 <= len(days) <= 5 and
+        require(isinstance(days, list) and 1 <= len(days) <= MAX_TRIP_DAYS and
                 len(days) == len(set(days)) and all(day in sequences for day in days), 'UNKNOWN_DAY')
         require(self.moscow_preferences is not None, 'ROUTER_UNAVAILABLE')
         base = state['route']
@@ -625,7 +626,9 @@ class MoscowRouteAssistant(RouteAssistant):
         return result
 
     def _settings(self, state, day):
+        window = next(item for item in state['routing_context']['days'] if item['date'] == day)
         return {**super()._settings(state, day), 'transport': state['preferences']['transport'],
+                'window': (window['day_start'], window['day_end']),
                 'transport_modes': state['routing_context'].get('moscow_transport_modes'),
                 'meals': state['routing_context'].get('moscow_meals', {}).get(day, {}),
                 'transit_filters': state['routing_context'].get('moscow_transit_filters', {}),
@@ -666,6 +669,46 @@ class MoscowRouteAssistant(RouteAssistant):
         return None
 
     def _apply(self, state, sequences, op):
+        if op['op'] == 'set_day_window':
+            day = op['day']
+            require(day in list(sequences)[1:-1], 'MIDDLE_DAY_REQUIRED')
+            context = state['routing_context']
+            window = next(item for item in context['days'] if item['date'] == day)
+            start = op['start_time'] or window['day_start'][11:16]
+            end = op['end_time'] or window['day_end'][11:16]
+            require(minutes(end) - minutes(start) >= 60, 'INVALID_DAY_WINDOW')
+            if (start, end) == (window['day_start'][11:16], window['day_end'][11:16]):
+                return
+            window.update(day_start=stamp(day, start), day_end=stamp(day, end))
+            state.setdefault('reflow_days', []).append(day)
+            context.get('moscow_start_hints', {}).pop(day, None)
+            window['meal_break'] = None
+            protected = set(state['preferences']['required_poi_ids'])
+            pinned = context.get('moscow_meal_pins', {}).get(day, {})
+            protected.update(slot['poi_id'] for kind, slot in context.get('moscow_meals', {}).get(day, {}).items()
+                             if kind in pinned)
+            trial = sequences[day][:]
+            removable = [key for key in reversed(trial) if key not in protected]
+            for drop in [None, *removable]:
+                if drop is not None:
+                    trial.remove(drop)
+                if not trial and sequences[day]:
+                    break
+                trial_context = deepcopy(context)
+                meals = trial_context.get('moscow_meals', {}).get(day, {})
+                for kind, slot in list(meals.items()):
+                    if slot['poi_id'] not in trial:
+                        del meals[kind]
+                try:
+                    fixed_sequence({**state, 'routing_context': trial_context}, {**sequences, day: trial})
+                except AssistantError as error:
+                    if error.code not in {'DAY_END_EXCEEDED', 'OUTSIDE_OPENING_HOURS', 'MEAL_TIME_UNAVAILABLE',
+                                          'TRANSPORT_UNAVAILABLE', 'EDIT_CONSTRAINT_FAILED'}:
+                        raise
+                    continue
+                sequences[day] = trial
+                return
+            raise AssistantError('DAY_END_EXCEEDED')
         if op['op'] == 'add_category_poi':
             # Interpret generic attraction requests locally, but do not create
             # a second scheduler. Select existing shortlist POIs and validate
@@ -917,6 +960,9 @@ class MoscowRouteAssistant(RouteAssistant):
                 require(legs and all(leg['basis'] == 'routing_provider' for leg in legs), 'TRANSPORT_UNAVAILABLE')
         if context.get('moscow_meal_pins'):
             result['moscow_meal_pins'] = context['moscow_meal_pins']
+        result['moscow_day_windows'] = {day['date']: {
+            'day_start': day['day_start'][11:16], 'day_end': day['day_end'][11:16],
+        } for day in context['days']}
         for day, (goal, before) in context.get('moscow_optimization_checks', {}).items():
             require(day_metric(result, day, goal) < before, 'NO_ROUTE_IMPROVEMENT')
         result['gap_diagnostics'] = describe_edited_gaps(result, context, state['route'])
@@ -949,8 +995,12 @@ def moscow_interpretation(value):
                         (op.get('day') is None or isinstance(op['day'], str) and
                          re.fullmatch(r'\d{4}-\d{2}-\d{2}', op['day'])),
                         'INVALID_CATEGORY')
+            if isinstance(op, dict) and op.get('op') == 'set_day_window':
+                require(any(op.get(key) is not None for key in ('start_time', 'end_time')) and
+                        all(op.get(key) is None or valid_clock(op[key]) for key in ('start_time', 'end_time')),
+                        'INVALID_DAY_WINDOW')
             if isinstance(op, dict) and op.get('op') == 'fill_gaps':
-                require(isinstance(op.get('days'), list) and 1 <= len(op['days']) <= 5 and
+                require(isinstance(op.get('days'), list) and 1 <= len(op['days']) <= MAX_TRIP_DAYS and
                         len(op['days']) == len(set(op['days'])) and
                         all(isinstance(day, str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}', day)
                             for day in op['days']), 'INVALID_DAY')
@@ -964,6 +1014,7 @@ def moscow_interpretation(value):
         'set_transit_preferences': {'op', 'avoid', 'require'},
         'optimize_day': {'op', 'day', 'goal'},
         'fill_gaps': {'op', 'days'},
+        'set_day_window': DAY_WINDOW_FIELDS,
     })
 
 
@@ -983,6 +1034,8 @@ class MoscowAssistant(ShanghaiAssistantService):
                    'fill_gaps: op, days (список дат ISO), на существующем московском каталоге. '
                    'Не выбирай POI сам, не обещай устранить все ожидания. Учитывай бюджет, '
                    'питание и заданные виды транспорта.')
+        prompt += ('\nДля изменения дневных часов используй set_day_window: op, day (ISO только для '
+                   'промежуточного дня), start_time, end_time (HH:MM или null для сохранения одного времени).')
         prompt += ('\nprice_rub — ориентировочный чек одного человека. Для явной просьбы убрать '
                    'заведение дороже указанного порога удаляй подходящие по оценке запланированные '
                    'необязательные заведения. Если порог неоднозначен, уточни его.')
@@ -1006,6 +1059,11 @@ class MoscowAssistant(ShanghaiAssistantService):
             from backend.shanghai import MoscowPreferences
 
             session['moscow_preferences'] = MoscowPreferences.model_validate(body['preferences'])
+            saved_windows = session['route_options'].get('day_settings') or {}
+            if saved_windows:
+                settings = {**(session['moscow_preferences'].day_settings or {}),
+                            **{date.fromisoformat(day): window for day, window in saved_windows.items()}}
+                session['moscow_preferences'] = session['moscow_preferences'].model_copy(update={'day_settings': settings})
             transport = session['route_options'].get('transport')
             if transport in TRANSPORTS.values() or transport == 'mixed':
                 session['moscow_preferences'] = session['moscow_preferences'].model_copy(update={
@@ -1158,6 +1216,9 @@ class MoscowAssistant(ShanghaiAssistantService):
                                    for key in diff[first][day] if key not in diff[second][day]]
             changes['before_cost'] = route['budget_summary']['known_total']
             changes['after_cost'] = result['candidate_route']['budget_summary']['known_total']
+            windows = result['candidate_route'].get('moscow_day_windows', {})
+            changes['day_windows'] = [{'day': op['day'], **windows[op['day']]}
+                                      for op in result['operations'] if op['op'] == 'set_day_window']
             if route.get('engine_days'):
                 changes['optimization'] = [
                     {'day': op['day'], 'goal': op['goal'],
@@ -1189,6 +1250,12 @@ class MoscowAssistant(ShanghaiAssistantService):
             confirmed = result['decision'] == 'confirmed'
             if confirmed:
                 session.update(moscow_route=result['route'], moscow_version=result['version'])
+                windows = result['route'].get('moscow_day_windows')
+                if windows:
+                    session['route_options']['day_settings'] = windows
+                    session['moscow_preferences'] = session['moscow_preferences'].model_copy(update={
+                        'day_settings': {date.fromisoformat(day): window for day, window in windows.items()},
+                    })
                 transport = session['moscow_proposed_transport']
                 if transport:
                     update = {'transport': transport, 'transport_modes': session['moscow_proposed_modes']}

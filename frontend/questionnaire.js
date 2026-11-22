@@ -78,19 +78,90 @@ function syncInterestChoices() {
 }
 function travelerCounts(){return Object.fromEntries(['adults','children','seniors'].map(key=>[key,form.elements[key].value===''?NaN:Number(form.elements[key].value)]));}
 function travelerTotal(){return Object.values(travelerCounts()).reduce((sum,value)=>sum+value,0);}
+const maxTripDays = 14;
+const dayMilliseconds = 86400000;
+const middleDays = document.querySelector('#middle-days');
+const middleDayFields = document.querySelector('#middle-day-fields');
+const dayLabel = new Intl.DateTimeFormat('ru-RU', {day:'numeric', month:'long', timeZone:'UTC'});
+function tripDays() {
+  if (!firstWalk.value || !lastWalk.value) return 0;
+  return (Date.parse(lastWalk.value.slice(0,10)) - Date.parse(firstWalk.value.slice(0,10))) / dayMilliseconds + 1;
+}
+function renderMiddleDays(settings = middleDaySettings()) {
+  const days = tripDays();
+  middleDays.hidden = days < 3 || days > maxTripDays;
+  middleDayFields.replaceChildren();
+  if (middleDays.hidden) return;
+  const firstDate = Date.parse(firstWalk.value.slice(0,10));
+  for (let i = 1; i < days - 1; i++) {
+    const date = new Date(firstDate + i * dayMilliseconds);
+    const key = date.toISOString().slice(0,10);
+    const group = document.createElement('fieldset');
+    group.className = 'form-grid';
+    group.dataset.date = key;
+    const legend = document.createElement('legend');
+    legend.textContent = dayLabel.format(date);
+    group.append(legend);
+    for (const [name,title] of [['day_start','Начало'], ['day_end','Окончание']]) {
+      const label = document.createElement('label');
+      label.className = 'field';
+      const input = document.createElement('input');
+      input.type = 'time';
+      input.name = name;
+      input.value = settings[key]?.[name] || '';
+      label.append(title,input);
+      group.append(label);
+    }
+    middleDayFields.append(group);
+  }
+}
+function middleDaySettings() {
+  const result = {};
+  for (const group of middleDayFields.children) {
+    const settings = Object.fromEntries([...group.querySelectorAll('input')].filter(input => input.value)
+      .map(input => [input.name,input.value]));
+    if (Object.keys(settings).length) result[group.dataset.date] = settings;
+  }
+  return result;
+}
+function durationMinutes(start,end) {
+  const minutes = value => Number(value.slice(0,2)) * 60 + Number(value.slice(3,5));
+  return minutes(end) - minutes(start);
+}
 function validate() {
   const allowedCurrency=cityInput.value==='Москва'?['RUB']:['RUB','USD','EUR','CNY'];form.elements.budget_currency.setCustomValidity(allowedCurrency.includes(form.elements.budget_currency.value)?'':'Эта валюта пока не поддерживается для выбранного города. Выберите доступную валюту и укажите бюджет в ней. Сумма не пересчитывается автоматически.');
   const total=travelerTotal();form.elements.adults.setCustomValidity(Number.isInteger(total)&&total>=1&&total<=100?'':'Укажите от 1 до 100 путешественников в сумме.');
-  lastWalk.setCustomValidity(firstWalk.value&&lastWalk.value&&firstWalk.value>=lastWalk.value?'Окончание последней прогулки должно быть позже начала первой.':'');
+  const days = tripDays();
+  firstWalk.setCustomValidity('');
+  lastWalk.setCustomValidity('');
+  if (days > maxTripDays) lastWalk.setCustomValidity('Выберите поездку длительностью до 14 дней.');
+  else if (firstWalk.value && lastWalk.value && firstWalk.value >= lastWalk.value) {
+    lastWalk.setCustomValidity('Окончание последней прогулки должно быть позже начала первой.');
+  } else if (days === 1 && durationMinutes(firstWalk.value.slice(11,16),lastWalk.value.slice(11,16)) < 60) {
+    lastWalk.setCustomValidity('Оставьте хотя бы час на прогулку.');
+  } else if (days > 1) {
+    if (durationMinutes(firstWalk.value.slice(11,16),'21:00') < 60) firstWalk.setCustomValidity('В первый день оставьте хотя бы час до 21:00.');
+    if (durationMinutes('09:00',lastWalk.value.slice(11,16)) < 60) lastWalk.setCustomValidity('В последний день оставьте хотя бы час после 09:00.');
+  }
   form.querySelector('[name="primary_interests"]').setCustomValidity(selected('primary_interests').length?'':'Выберите хотя бы один главный интерес.');
   form.querySelector('[name="transport_modes"]').setCustomValidity(selected('transport_modes').length?'':'Выберите хотя бы один способ передвижения.');
-  const days=firstWalk.value&&lastWalk.value?(Date.parse(lastWalk.value.slice(0,10))-Date.parse(firstWalk.value.slice(0,10)))/86400000+1:0;
-  if(days>5)lastWalk.setCustomValidity('Для Москвы и Шанхая сейчас доступны поездки от одного до пяти дней.');
+  for (const group of middleDayFields.children) {
+    const [start,end] = group.querySelectorAll('input');
+    const invalid = durationMinutes(start.value || '09:00',end.value || '21:00') < 60;
+    const input = end.value ? end : start;
+    start.setCustomValidity('');
+    end.setCustomValidity('');
+    input.setCustomValidity(invalid ? 'Оставьте хотя бы час на прогулку.' : '');
+    if (invalid) middleDays.open = true;
+  }
   return form.checkValidity();
 }
-function preferences(){return {
+function preferences(){
+  const daySettings = middleDaySettings();
+  return {
   schema_version:'fullstack-draft-0.2',country_code:countryInput.value,city:cityInput.value,timezone:currentCity().timezone,
   first_walk_at:firstWalk.value,last_walk_end_at:lastWalk.value,travelers:travelerTotal(),traveler_counts:travelerCounts(),
+  ...(Object.keys(daySettings).length ? {day_settings:daySettings} : {}),
   budget_amount:form.elements.budget_amount.value,budget_currency:form.elements.budget_currency.value,budget_basis:selected('budget_basis')[0],budget_scope:'trip_food_visits_and_transport',
   primary_interests:selected('primary_interests'),secondary_interests:selected('secondary_interests'),pace:selected('pace')[0],transport_modes:selected('transport_modes'),required_poi_ids:[...requiredPlaces],
 };}
@@ -112,6 +183,8 @@ function markEdited(){
 function fillForm(data){
   countryInput.value=data.country_code;populateCities(data.city);
   firstWalk.value=data.first_walk_at.slice(0,16);lastWalk.value=data.last_walk_end_at.slice(0,16);
+  renderMiddleDays(data.day_settings || {});
+  middleDays.open = Object.keys(data.day_settings || {}).length > 0;
   const counts=data.traveler_counts||{adults:data.travelers,children:0,seniors:0};for(const key of ['adults','children','seniors'])form.elements[key].value=counts[key];
   form.elements.budget_amount.value=data.budget_amount;form.elements.budget_currency.value=data.budget_currency||'RUB';
   for(const name of ['budget_basis','pace','primary_interests','secondary_interests','transport_modes']){const values=Array.isArray(data[name])?data[name]:[data[name]];for(const input of form.querySelectorAll(`[name="${name}"]`))input.checked=values.includes(input.value);}
@@ -145,7 +218,7 @@ cityInput.addEventListener('change',()=>{
   requiredPlaces.clear();searchInput.value='';lastCity=cityInput.value;renderPlaces();updateCurrencyChoices();void loadCityPlaces();markEdited();
 });
 searchInput.addEventListener('input',()=>renderPlaces());
-form.addEventListener('input',event=>{if([searchInput,countryInput,cityInput].includes(event.target))return;markEdited();});
+form.addEventListener('input',event=>{if([searchInput,countryInput,cityInput].includes(event.target))return;if([firstWalk,lastWalk].includes(event.target))renderMiddleDays();markEdited();});
 // checkbox input происходит до change: выбранные POI обновляем в change, не отправляя запрос.
 form.addEventListener('change',event=>{if(event.target.name==='required_poi_ids'){updateSummary();}});
 form.addEventListener('submit',async event=>{

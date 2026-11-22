@@ -25,6 +25,8 @@ from ai_ds.route_assistant import (AssistantError, InMemoryRouteStore, RouteAssi
                                   fingerprint, require, sequences_of, unique_pairs,
                                   reject_constant)
 
+from ai_ds.day_windows import DAY_WINDOW_FIELDS, local_day_window, valid_clock
+
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORIES = {'museums', 'history', 'nature', 'cafes', 'entertainment', 'shopping', 'viewpoints', 'unusual'}
 FIELDS = {
@@ -36,6 +38,7 @@ FIELDS = {
     'set_meal_break': {'op', 'day', 'meal_kind', 'start_time'},
     'optimize_day': {'op', 'day', 'goal'},
     'set_day_end': {'op', 'day', 'end_time'},
+    'set_day_window': DAY_WINDOW_FIELDS,
     'set_transport': {'op', 'day', 'transport'},
     'adjust_visits': {'op', 'day', 'count_delta', 'desired_category'},
 }
@@ -58,6 +61,7 @@ set_day_pace: day ISO, pace relaxed|balanced|intensive;
 set_meal_break: day ISO, meal_kind breakfast|lunch|dinner, start_time HH:MM;
 optimize_day: day ISO или null(вся поездка), goal travel|waiting|walking;
 set_day_end: day ISO или null, end_time HH:MM;
+set_day_window: только промежуточный day ISO, start_time и end_time HH:MM либо null для сохранения одного времени;
 set_transport: day ISO или null, transport walk|taxi|transit|mixed;
 adjust_visits: day ISO, count_delta integer от -2 до 2 кроме 0, desired_category категория или null.
 Категории museums,history,nature,cafes,entertainment,shopping,viewpoints,unusual.
@@ -108,6 +112,11 @@ def parse_operations(value):
             require(type(op.get('count_delta')) is int and op['count_delta'] in (-2, -1, 1, 2), 'INVALID_VISIT_COUNT')
         if op['op'] == 'set_day_pace':
             require(op.get('pace') in ('relaxed', 'balanced', 'intensive'), 'INVALID_PACE')
+        if op['op'] == 'set_day_window':
+            require(set(op) == DAY_WINDOW_FIELDS and op['day'] is not None and
+                    any(op[key] is not None for key in ('start_time', 'end_time')) and
+                    all(op[key] is None or valid_clock(op[key]) for key in ('start_time', 'end_time')),
+                    'INVALID_DAY_WINDOW')
         if op['op'] == 'set_transport':
             require(op.get('transport') in ('walk', 'transit', 'taxi', 'mixed'), 'INVALID_TRANSPORT')
         if op['op'] == 'optimize_day':
@@ -246,6 +255,9 @@ def human_error(code):
         'LLM_NETWORK_ERROR': 'Сервер не смог связаться с OpenRouter. Проверьте подключение и попробуйте ещё раз.',
         'LLM_HTTP_ERROR': 'OpenRouter не смог обработать запрос. Возможно, бесплатная модель сейчас недоступна. Маршрут не изменён.',
         'LLM_INCOMPLETE_RESPONSE': 'OpenRouter вернул неполный ответ. Попробуйте сформулировать пожелание короче.',
+        'MIDDLE_DAY_REQUIRED': 'Менять часы здесь можно для промежуточных дней. Время первого и последнего дня задаётся в анкете.',
+        'BOUNDARY_DAY_WINDOW': 'Время первого и последнего дня задаётся в анкете.',
+        'INVALID_DAY_WINDOW': 'Окно прогулки должно длиться хотя бы час в пределах одного дня.',
         'ROUTE_NOT_FOUND': 'Этот маршрут недоступен в текущем сеансе. Постройте маршрут заново.',
         'PROPOSAL_NOT_FOUND': 'Предложение недоступно в текущем сеансе.',
     }
@@ -255,7 +267,11 @@ def human_error(code):
 class ShanghaiRouteAssistant(RouteAssistant):
     """Тот же механизм транзакций RouteAssistant, иной авторитетный scheduler."""
     def __init__(self, store, interpreter, data, *, bridge=bridge_call, history=None):
-        super().__init__(store, interpreter, proposal_ttl_seconds=15 * 60,
+        def interpret(payload):
+            local = local_day_window(payload['text'], [day['date'] for day in payload['days']])
+            return local if local is not None else interpreter(payload)
+
+        super().__init__(store, interpret, proposal_ttl_seconds=15 * 60,
                          interpretation_parser=parse_operations, allow_cost_edits=True)
         self.data, self.by_id = data, {p['id']: p for p in data['pois']}
         self.bridge, self.history = bridge, history if history is not None else []
@@ -452,7 +468,6 @@ class ShanghaiAssistantService:
         if path == 'message':
             require(set(body) == {'route_id', 'base_version', 'poi_snapshot_id', 'text', 'request_id'}, 'INVALID_FIELDS')
             require(isinstance(body['text'], str) and 0 < len(body['text'].strip()) <= 4000, 'INVALID_MESSAGE')
-            require(self.configured, 'LLM_KEY_NOT_CONFIGURED')
             request = {k: body[k] for k in ('route_id', 'base_version', 'poi_snapshot_id', 'text')}
             request['schema_version'] = '0.2'
             asks_alternative = re.search(r'\b(?:другой|другая|другое|другую|другие|альтернатив\w*|another|different)\b', body['text'], re.IGNORECASE)

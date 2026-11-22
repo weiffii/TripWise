@@ -404,6 +404,9 @@ chatForm.addEventListener('submit',async event => {
     preview.replaceChildren();
     for (const item of result.diff?.added || []) appendText(preview, '+ ' + item.name + ' · ' + item.day);
     for (const item of result.diff?.removed || []) appendText(preview, '− ' + item.name + ' · ' + item.day);
+    for (const window of result.diff?.day_windows || []) {
+      appendText(preview, window.day + ' · время прогулки ' + window.day_start + '–' + window.day_end);
+    }
     if (trip.city === 'moscow' && result.diff?.before_cost !== result.diff?.after_cost) {
       appendText(preview, 'Оценка затрат · ' + result.diff.before_cost + ' → ' + result.diff.after_cost + ' ₽');
     }

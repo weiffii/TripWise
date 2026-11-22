@@ -203,22 +203,26 @@ def missing_pair(status):
                 basis='routing_provider', source_id='moscow-osrm')
 
 
-@lru_cache(maxsize=4096)
 def road_pair(endpoint, origin, target, cache_window, radii=(MAX_SNAP_METERS, MAX_SNAP_METERS)):
+    try:
+        return _cached_road_pair(endpoint, origin, target, cache_window, radii)
+    except OSError:
+        return None
+
+
+@lru_cache(maxsize=4096)
+def _cached_road_pair(endpoint, origin, target, cache_window, radii):
     points = ';'.join(f'{point[1]},{point[0]}' for point in (origin, target))
     radius_query = ';'.join(map(str, radii))
     url = f'{endpoint.rstrip("/")}/{points}?overview=full&geometries=geojson&radiuses={radius_query}'
     try:
-        try:
-            with urlopen(url, timeout=3) as response:
-                raw = response.read(MAX_RESPONSE_BYTES + 1)
-        except HTTPError as error:
-            if error.code != 400:
-                return None
-            with error:
-                raw = error.read(MAX_RESPONSE_BYTES + 1)
-    except OSError:
-        return None
+        with urlopen(url, timeout=3) as response:
+            raw = response.read(MAX_RESPONSE_BYTES + 1)
+    except HTTPError as error:
+        if error.code != 400:
+            raise
+        with error:
+            raw = error.read(MAX_RESPONSE_BYTES + 1)
     if len(raw) > MAX_RESPONSE_BYTES:
         return missing_pair('unknown')
     try:
@@ -243,9 +247,13 @@ def road_pair(endpoint, origin, target, cache_window, radii=(MAX_SNAP_METERS, MA
         return missing_pair('unknown')
 
 
+road_pair.cache_clear = _cached_road_pair.cache_clear
+
+
 def travel_matrix(pois, mode, *, avoid_transit=(), require_transit=(), allow_walking=True, pair_cache=None):
-    endpoint = os.environ.get({'walking': 'MOSCOW_OSRM_FOOT', 'car': 'MOSCOW_OSRM_CAR',
-                               'public_transit': 'MOSCOW_OSRM_FOOT'}[mode])
+    profile, port = {'car': ('CAR', 5002), 'walking': ('FOOT', 5001),
+                     'public_transit': ('FOOT', 5001)}[mode]
+    endpoint = os.environ.get(f'MOSCOW_OSRM_{profile}', f'http://127.0.0.1:{port}/route/v1/driving')
     rows = [(a, b) for a in pois for b in pois if a['id'] != b['id']]
     keys = [(a['id'], b['id']) for a, b in rows]
     if pair_cache is not None:

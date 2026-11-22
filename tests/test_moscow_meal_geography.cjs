@@ -94,3 +94,39 @@ test('irreducible gap keeps its opening-hours explanation', () => {
   assert.match(travel.waiting_reason, /Ожидание открытия/);
   assert.ok(api.validateEditedTrip(data, preferences, plan).valid);
 });
+
+test('a verified road leg wins over an artificially fast geometric taxi fallback', () => {
+  const pois = [
+    place('first', 37.62, '12:00', '18:00', 45),
+    place('second', 37.67, '12:00', '18:00', 45),
+  ];
+  const data = streetFixture(pois, () => 30);
+  data.leg_profiles.taxi = Object.fromEntries(Object.entries(data.leg_profiles.walk).map(([from, row]) => [
+    from, Object.fromEntries(Object.entries(row).map(([to, leg]) => [to, {
+      ...leg, mode: 'taxi', source: 'moscow-straight-line-estimate', basis: 'geometric_estimate',
+      base_minutes: 2, planned_minutes: 2,
+    }])),
+  ]));
+  const preferences = { ...options, day_start: '12:00', day_end: '16:00', transport: 'mixed',
+    transport_modes: ['walk', 'taxi'], required_ids: pois.map(p => p.id) };
+  const plan = api.planTrip(data, preferences);
+  const travel = plan.days[0].events.find(event => event.type === 'travel');
+  assert.equal(travel.basis, 'routing_provider');
+  assert.equal(travel.mode, 'walk');
+});
+
+test('a 14-day route permits a partial window edit on an intermediate day only', () => {
+  const pois = [place('only', 37.62, '12:00', '19:00', 45)];
+  const data = streetFixture(pois, () => 5);
+  const preferences = { ...options, days: 14, day_start: '12:00', day_end: '18:00', required_ids: ['only'] };
+  const plan = api.planTrip(data, preferences);
+  assert.equal(plan.days.length, 14);
+  const day = plan.days[6].date;
+  const op = { op: 'set_day_window', day, start_time: null, end_time: '19:00' };
+  const edited = api.editTrip(data, preferences, plan, [op]);
+  assert.deepEqual(edited.changed_days, [day]);
+  assert.deepEqual(edited.options.day_settings[day], { day_start: '12:00', day_end: '19:00' });
+  assert.deepEqual(edited.plan.days.filter(item => item.date !== day), plan.days.filter(item => item.date !== day));
+  assert.throws(() => api.editTrip(data, preferences, plan, [{ ...op, day: plan.days[0].date }]),
+    { code: 'BOUNDARY_DAY_WINDOW' });
+});

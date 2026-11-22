@@ -1,4 +1,5 @@
 from datetime import date, time, timedelta
+from ai_ds.day_windows import MAX_TRIP_DAYS, valid_clock
 from functools import lru_cache
 import json
 import secrets
@@ -36,7 +37,7 @@ class ShanghaiPreferences(BaseModel):
     city: Literal['shanghai']
     timezone: Literal['Asia/Shanghai']
     start_date: date
-    days: Annotated[int, Field(strict=True, ge=1, le=5)]
+    days: Annotated[int, Field(strict=True, ge=1, le=MAX_TRIP_DAYS)]
     day_start: Annotated[str, Field(pattern=r'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$')]
     day_end: Annotated[str, Field(pattern=r'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$')]
     day_settings: dict[date, dict[str, str]] | None = None
@@ -69,11 +70,10 @@ class ShanghaiPreferences(BaseModel):
                 raise ValueError('Недопустимая индивидуальная настройка дня.')
             start_value = settings.get('day_start', self.day_start)
             end_value = settings.get('day_end', self.day_end)
-            try:
-                start_minutes = time.fromisoformat(start_value)
-                end_minutes = time.fromisoformat(end_value)
-            except (TypeError, ValueError):
-                raise ValueError('Неверное время индивидуального дня.') from None
+            if not valid_clock(start_value) or not valid_clock(end_value):
+                raise ValueError('Неверное время индивидуального дня.')
+            start_minutes = time.fromisoformat(start_value)
+            end_minutes = time.fromisoformat(end_value)
             if ((end_minutes.hour * 60 + end_minutes.minute) -
                     (start_minutes.hour * 60 + start_minutes.minute)) < 60:
                 raise ValueError('Индивидуальное дневное окно должно быть от 60 минут.')
@@ -235,7 +235,8 @@ def assistant_for(route):
 def assistant_status(route_id: str, request: Request, user: dict = Depends(current_user)):
     route = owned_route(route_id, user['id'], request)
     service = assistant_for(route)
-    if not service.configured:
+    local_shanghai_window = route['city'] == 'shanghai' and len(route['plan']['days']) > 2 and not service.configured
+    if not service.configured and not local_shanghai_window:
         return {'available': False, 'reason': 'Задайте OPENROUTER_API_KEY в окружении терминала, из которого запускается FastAPI, и перезапустите сервер. Без ключа маршруты работают, чат отключён.'}
     if route['poi_snapshot_id'] != service.snapshot or route['plan']['status'] == 'infeasible':
         return {'available': False, 'reason': 'Для этой версии маршрута чат недоступен. Постройте новый выполнимый маршрут.'}
@@ -245,6 +246,8 @@ def assistant_status(route_id: str, request: Request, user: dict = Depends(curre
         raise HTTPException(503, human_error(error.code)) from error
     response = {'available': True, 'csrf_token': state['csrf'], 'mode': service.mode,
                 'conversation': route['options'].get('conversation', [])}
+    if local_shanghai_window:
+        response.update(mode='local', reason='Часы промежуточных дней можно менять без OpenRouter.')
     if route['city'] == 'moscow':
         # Let the browser confirm which server-side named-POI handler is live;
         # stale FastAPI processes otherwise make fresh ZIP installs appear broken.

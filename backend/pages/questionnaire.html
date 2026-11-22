@@ -30,7 +30,12 @@
                 <div class="field"><label for="first-walk">Начало первой прогулки</label><input id="first-walk" name="first_walk_at" type="datetime-local" required><p class="field-hint">Когда вы уже готовы гулять, после дороги и заселения.</p></div>
                 <div class="field"><label for="last-walk">Окончание последней прогулки</label><input id="last-walk" name="last_walk_end_at" type="datetime-local" required><p class="field-hint">Когда нужно закончить гулять в день отъезда.</p></div>
               </div>
-              <p class="field-hint"><span id="timezone-note">Выберите город — время указывается по местному часовому поясу.</span> Для маршрута доступны 1–5 дней. Не более 30 человек в каждой возрастной группе. Промежуточные дни: 09:00–21:00; первый и последний день ограничены указанным вами временем. Каждый день должен оставлять хотя бы час на прогулку.</p>
+              <p class="field-hint"><span id="timezone-note">Выберите город — время указывается по местному часовому поясу.</span> Для маршрута доступны 1–14 дней. Не более 30 человек в каждой возрастной группе. Первый и последний день ограничены указанным вами временем. Каждый день должен оставлять хотя бы час на прогулку.</p>
+              <details id="middle-days" hidden>
+                <summary>Настроить время прогулок по дням</summary>
+                <p class="field-hint">Пустые поля используют 09:00 для начала и 21:00 для окончания.</p>
+                <div id="middle-day-fields"></div>
+              </details>
             </section>
 
             <section class="form-section" aria-labelledby="budget-title"><div class="section-art"><img src="/assets/card-budget.svg" alt="" loading="lazy"><div><p class="eyebrow">КОМПАНИЯ И БЮДЖЕТ</p><p>Разные люди. Общие впечатления.</p></div></div>

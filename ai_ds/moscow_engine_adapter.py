@@ -242,11 +242,26 @@ def fixed_sequence(state, sequences, *, optimize=None):
             entries[date].append(entry)
         base_days.append(originals.get(date, {'date': date, 'events': []}))
         old_meals = state['route'].get('moscow_meals', {}).get(date, {})
-        if (date not in originals or date in context.get('moscow_start_hints', {})
+        if (date not in originals or date in state.get('reflow_days', ()) or date in context.get('moscow_start_hints', {})
                 or list(old_visits) != sequences[date] or meals != old_meals
                 or settings.get(date, {}).get('pace', profile['pace']) != day.get('pace')
                 or state.get('requested_transport')):
             changed_days.append(date)
+        elif optimize is None:
+            # Unedited days retain their saved legs even when OSRM recovers or
+            # becomes unavailable between booking and the next chat message.
+            saved_legs = {(leg['from_poi_id'], leg['to_poi_id']): leg for leg in day['legs']}
+            fields = ('base_minutes', 'planned_minutes', 'buffer_minutes', 'mode', 'distance_m',
+                      'transport_cost_cny', 'transport_cost_basis', 'source', 'basis')
+            for event in originals[date]['events']:
+                if event['type'] != 'travel':
+                    continue
+                a, b = event['from_poi_id'], event['to_poi_id']
+                profile_name = event.get('leg_profile', event['mode'])
+                if (a, b) in saved_legs and profile_name in dataset['leg_profiles']:
+                    dataset['leg_profiles'][profile_name].setdefault(a, {})[b] = {
+                        field: event[field] for field in fields if field in event}
+                    rows[a, b, profile_name] = saved_legs[a, b]
     args = {'action': 'schedule', 'dataset': dataset, 'options': options,
             'base_plan': {'schema_version': 'shanghai-demo-v1', 'days': base_days},
             'sequences': entries, 'changed_days': changed_days,

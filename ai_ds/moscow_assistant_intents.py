@@ -36,17 +36,17 @@ def gap_fill_decision(text, dates):
     if re.search(r'замен[а-я]*\s+\S+|удал[а-я]*\s+\S+|перенес[а-я]*|измени\s+транспорт|только\s+такси|только\s+метро|[0-9]+\s*(?:руб|₽)', lower):
         return None
     # e.g. "в 2, 3, 4 день", "во 2 и 3 днях", "дни 2-4".
-    numeric = re.findall(r'(?:\b(?:в|во|на|за)\s+)?((?:[1-5]\s*(?:,|и|и?\s*[-–])\s*)*[1-5])\s*(?:-?й|-?м|-?х)?\s*(?:день|дня|дней|дни|днях|дне)\b', lower)
-    numeric += re.findall(r'\bдн(?:и|ях|ей|я)\s+([1-5](?:\s*[-–,и]\s*[1-5])*)', lower)
+    numeric = re.findall(r'\b((?:\d{1,2}\s*[,и–-]\s*)*\d{1,2})\s*(?:-?й|-?м|-?х)?\s*(?:день|дня|дней|дни|днях|дне)\b', lower)
+    numeric += re.findall(r'\bдн(?:и|ях|ей|я)\s+(\d{1,2}(?:\s*[-–,и]\s*\d{1,2})*)', lower)
     requested = set()
     for block in numeric:
-        span = re.search(r'([1-5])\s*[-–]\s*([1-5])', block)
+        span = re.search(r'(\d{1,2})\s*[-–]\s*(\d{1,2})', block)
         if span:
             a, b = map(int, span.groups())
             if b < a:
                 return None
             requested.update(range(a, b + 1))
-        requested.update(map(int, re.findall(r'[1-5]', block)))
+        requested.update(map(int, re.findall(r'\d{1,2}', block)))
     # Plural ordinal names: "во второй, третий и четвертый дни".
     words = re.findall(r'\b[а-я]+\b', lower)
     for word in words:
@@ -58,7 +58,7 @@ def gap_fill_decision(text, dates):
     if not requested:
         # Missing days: do not ask a redundant question: the request is global.
         requested = set(range(1, len(dates)+1))
-    if max(requested) > len(dates):
+    if min(requested) < 1 or max(requested) > len(dates):
         return {'action': 'needs_clarification', 'operations': [],
                 'clarification': f'В поездке {len(dates)} дн. Укажите существующие дни для заполнения пауз.'}
     return {'action': 'propose', 'operations': [{'op': 'fill_gaps',
