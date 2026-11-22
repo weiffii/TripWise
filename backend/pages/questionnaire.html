@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Новая поездка — TripWise</title>
     <script src="/theme.js?v=20261122-unified2"></script>
-    <link rel="stylesheet" href="/styles.css?v=20261122-editor1">
+    <link rel="stylesheet" href="/styles.css?v=20261122-steps1">
     <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
-    <script src="/questionnaire.js?v=20261122-editor1" defer></script>
+    <script src="/questionnaire.js?v=20261122-steps1" defer></script>
   </head>
   <body class="questionnaire-page">
     <header class="header">
@@ -18,10 +18,14 @@
       <section class="page-hero questionnaire-hero"><div class="hero-content"><p class="eyebrow">ВАШЕ ПУТЕШЕСТВИЕ НАЧИНАЕТСЯ ЗДЕСЬ</p><h1 class="trips-heading">Новый город.<br><em>Ваши впечатления.</em></h1><p class="form-intro">Немного о ваших планах — и путешествие станет ближе.</p></div><span class="hero-location">ВАША НОВАЯ ИСТОРИЯ ↗</span></section>
       <div class="form-progress" aria-label="Этап планирования"><span class="active"><b>01</b> Ваша анкета</span><span><b>02</b> Создание маршрута</span><span><b>03</b> Сохранение</span></div>
       <div class="questionnaire-layout">
-        <form id="trip-form">
+        <form id="trip-form" novalidate>
           <fieldset id="trip-fields" disabled>
             <legend class="visually-hidden">Анкета путешественника</legend>
-            <section class="form-section" aria-labelledby="where-title"><div class="section-art"><img src="/assets/card-destination.svg" alt="" loading="lazy"><div><p class="eyebrow">НАПРАВЛЕНИЕ И ВРЕМЯ</p><p>Москва и Шанхай доступны сейчас. Другие города — в разработке.</p></div></div>
+            <div id="questionnaire-steps" class="questionnaire-steps">
+              <p id="questionnaire-step-label">Шаг 1 из 5 · Направление и время</p>
+              <progress id="questionnaire-progress" value="1" max="5" aria-labelledby="questionnaire-step-label"></progress>
+            </div>
+            <section class="form-section" data-step="Направление и время" aria-labelledby="where-title"><div class="section-art"><img src="/assets/card-destination.svg" alt="" loading="lazy"><div><p class="eyebrow">НАПРАВЛЕНИЕ И ВРЕМЯ</p><p>Москва и Шанхай доступны сейчас. Другие города — в разработке.</p></div></div>
               <span class="section-number">01 / НАПРАВЛЕНИЕ И ВРЕМЯ</span>
               <h2 id="where-title">Куда и когда?</h2>
               <div class="form-grid">
@@ -38,7 +42,7 @@
               </details>
             </section>
 
-            <section class="form-section" aria-labelledby="budget-title"><div class="section-art"><img src="/assets/card-budget.svg" alt="" loading="lazy"><div><p class="eyebrow">КОМПАНИЯ И БЮДЖЕТ</p><p>Разные люди. Общие впечатления.</p></div></div>
+            <section class="form-section" data-step="Компания и бюджет" aria-labelledby="budget-title" hidden><div class="section-art"><img src="/assets/card-budget.svg" alt="" loading="lazy"><div><p class="eyebrow">КОМПАНИЯ И БЮДЖЕТ</p><p>Разные люди. Общие впечатления.</p></div></div>
               <span class="section-number">02 / КОМПАНИЯ И БЮДЖЕТ</span>
               <h2 id="budget-title">С кем и с каким бюджетом?</h2>
               <div class="form-grid">
@@ -58,14 +62,14 @@
               <p id="currency-note" class="field-hint"></p><p class="field-hint">Бюджет включает питание, посещения и транспорт по городу. Проживание и дорога до города не входят.</p><p class="field-hint">Выбор валюты не пересчитывает сумму по курсу. Бюджет «на человека» одинаков для всех путешественников; возрастные скидки не рассчитываются.</p>
             </section>
 
-            <section class="form-section" aria-labelledby="interests-title"><div class="section-art"><img src="/assets/card-unusual.svg" alt="" loading="lazy"><div><p class="eyebrow">ВАШИ ИНТЕРЕСЫ</p><p>Соберите свою палитру впечатлений.</p></div></div>
+            <section class="form-section" data-step="Интересы" aria-labelledby="interests-title" hidden><div class="section-art"><img src="/assets/card-unusual.svg" alt="" loading="lazy"><div><p class="eyebrow">ВАШИ ИНТЕРЕСЫ</p><p>Соберите свою палитру впечатлений.</p></div></div>
               <span class="section-number">03 / ВАШИ ИНТЕРЕСЫ</span>
               <h2 id="interests-title">Что хочется увидеть?</h2>
               <fieldset class="choice-group"><legend>Главные интересы <span class="legend-hint">Выберите всё, что нравится</span></legend><div id="primary-interests" class="interest-grid"></div></fieldset>
               <fieldset class="choice-group"><legend>Дополнительные интересы <span class="legend-hint">По желанию</span></legend><div id="secondary-interests" class="interest-grid"></div></fieldset>
             </section>
 
-            <section class="form-section" aria-labelledby="pace-title"><div class="section-art"><img src="/assets/card-walking.svg" alt="" loading="lazy"><div><p class="eyebrow">ВАШ РИТМ</p><p>Проживите путешествие в своём темпе.</p></div></div>
+            <section class="form-section" data-step="Темп и транспорт" aria-labelledby="pace-title" hidden><div class="section-art"><img src="/assets/card-walking.svg" alt="" loading="lazy"><div><p class="eyebrow">ВАШ РИТМ</p><p>Проживите путешествие в своём темпе.</p></div></div>
               <span class="section-number">04 / ВАШ РИТМ</span>
               <h2 id="pace-title">Как будем отдыхать?</h2>
               <fieldset class="choice-group"><legend>Темп отдыха</legend><div class="pace-options">
@@ -89,21 +93,25 @@
               </div>
             </section>
 
-            <section class="form-section" aria-labelledby="places-title"><div class="section-art"><img src="/assets/card-places.svg" alt="" loading="lazy"><div><p class="eyebrow">ОБЯЗАТЕЛЬНЫЕ МЕСТА</p><p>Сохраните место для того самого места.</p></div></div>
+            <section class="form-section" data-step="Обязательные места" aria-labelledby="places-title" hidden><div class="section-art"><img src="/assets/card-places.svg" alt="" loading="lazy"><div><p class="eyebrow">ОБЯЗАТЕЛЬНЫЕ МЕСТА</p><p>Сохраните место для того самого места.</p></div></div>
               <span class="section-number">05 / ОБЯЗАТЕЛЬНЫЕ МЕСТА</span>
               <h2 id="places-title">Есть что-то особенное?</h2>
               <label for="required-search">Найти достопримечательность</label>
               <input id="required-search" type="search" placeholder="Введите название места" aria-describedby="places-note">
               <p id="places-note" class="field-hint">Можно выбрать несколько мест.</p><p id="places-load-status" class="field-hint" role="status"></p><p id="poi-count" class="field-hint"></p><div id="selected-places" class="selected-places" aria-label="Выбранные места"></div><div id="poi-options" class="poi-options"></div><p id="poi-empty" class="field-hint" hidden>Места не найдены. Попробуйте другое название.</p>
             </section>
-            <button id="finish-questionnaire" class="submit-button" type="submit"><span>Создать маршрут</span><span aria-hidden="true">↗</span></button>
+            <div class="questionnaire-step-actions">
+              <button id="questionnaire-back" class="outline-button" type="button" hidden>← Назад</button>
+              <button id="questionnaire-next" class="submit-button" type="submit">Далее →</button>
+              <button id="finish-questionnaire" class="submit-button" type="submit" hidden>Создать маршрут ↗</button>
+            </div>
           </fieldset>
+          <p id="save-status" class="save-status" role="status">Загружаем анкету…</p>
         </form>
         <aside class="trip-summary" aria-labelledby="summary-title">
           <div class="summary-cover" aria-hidden="true"></div><span class="section-number">ВАША ПОЕЗДКА</span>
           <h2 id="summary-title">Ваша поездка</h2>
           <dl><dt>Время прогулок</dt><dd id="summary-dates">Выберите даты и время</dd><dt>Компания</dt><dd id="summary-people">1 человек</dd><dt>Бюджет на компанию</dt><dd id="summary-budget">Укажите сумму</dd><dt>Главные интересы</dt><dd id="summary-interests">Выберите хотя бы один интерес</dd></dl>
-          <p id="save-status" class="save-status" role="status" aria-live="polite">Загружаем анкету…</p>
           <p class="field-hint">Сначала создайте маршрут. Посмотрите расписание и карту, при необходимости отредактируйте и нажмите «Сохранить поездку».</p>
         </aside>
       </div>

@@ -3,6 +3,32 @@ const form = document.querySelector('#trip-form');
 const fields = document.querySelector('#trip-fields');
 const statusText = document.querySelector('#save-status');
 const finishButton = document.querySelector('#finish-questionnaire');
+const steps = [...fields.querySelectorAll('[data-step]')];
+const nextStep = document.querySelector('#questionnaire-next');
+const previousStep = document.querySelector('#questionnaire-back');
+const progress = document.querySelector('#questionnaire-progress');
+const stepLabel = document.querySelector('#questionnaire-step-label');
+let stepIndex = 0;
+
+function showStep(index) {
+  stepIndex = index;
+  steps.forEach((section, i) => { section.hidden = i !== index; });
+  previousStep.hidden = index === 0;
+  nextStep.hidden = index === steps.length - 1;
+  finishButton.hidden = !nextStep.hidden;
+  progress.value = index + 1;
+  stepLabel.textContent = `Шаг ${index + 1} из ${steps.length} · ${steps[index].dataset.step}`;
+  const heading = steps[index].querySelector('h2');
+  heading.tabIndex = -1;
+  heading.focus({preventScroll:true});
+  document.querySelector('#questionnaire-steps').scrollIntoView({block:'start'});
+}
+
+function firstInvalid(section) {
+  return [...section.querySelectorAll('input, select, textarea')].find(input => input.willValidate && !input.validity.valid);
+}
+
+previousStep.addEventListener('click',()=>{ if (!saving && stepIndex > 0) showStep(stepIndex - 1); });
 const firstWalk = document.querySelector('#first-walk');
 const lastWalk = document.querySelector('#last-walk');
 const countryInput = document.querySelector('#country');
@@ -155,7 +181,6 @@ function validate() {
     input.setCustomValidity(invalid ? 'Оставьте хотя бы час на прогулку.' : '');
     if (invalid) middleDays.open = true;
   }
-  return form.checkValidity();
 }
 function preferences(){
   const daySettings = middleDaySettings();
@@ -181,7 +206,7 @@ function updateSummary(){
 }
 function markEdited(){
   if(!loaded)return;editVersion+=1;syncInterestChoices();updateSummary();validate();
-  if(!blocked)setStatus(saving?'Есть новые правки. Сохраните их отдельным нажатием после завершения запроса.':'Изменения не сохранены. Нажмите «Создать маршрут». ');
+  if(!blocked)setStatus(saving?'Есть новые правки. Сохраните их отдельным нажатием после завершения запроса.':'Изменения пока в этой вкладке.');
 }
 function fillForm(data){
   countryInput.value=data.country_code;populateCities(data.city);
@@ -226,10 +251,25 @@ form.addEventListener('input',event=>{if([searchInput,countryInput,cityInput].in
 // checkbox input происходит до change: выбранные POI обновляем в change, не отправляя запрос.
 form.addEventListener('change',event=>{if(event.target.name==='required_poi_ids'){updateSummary();}});
 form.addEventListener('submit',async event=>{
-  event.preventDefault();if(saving||!loaded||!validate()||!form.reportValidity())return;
+  event.preventDefault();
+  if (saving || !loaded) return;
+  validate();
+  if (stepIndex < steps.length - 1) {
+    const invalid = firstInvalid(steps[stepIndex]);
+    if (invalid) invalid.reportValidity();
+    else showStep(stepIndex + 1);
+    return;
+  }
+  for (const [index, section] of steps.entries()) {
+    const invalid = firstInvalid(section);
+    if (!invalid) continue;
+    if (index !== stepIndex) showStep(index);
+    invalid.reportValidity();
+    return;
+  }
   if(!currentCity()||!availableCity(currentCity())){setStatus('Это направление пока в разработке. Выберите Москву или Шанхай.','error');return;}
   if(blocked&&!['account_changed','reauth_required'].includes(blocked))return;
-  const version=editVersion;const snapshot=preferences();saving=true;finishButton.disabled=true;
+  const version=editVersion;const snapshot=preferences();saving=true;finishButton.disabled=true;previousStep.disabled=true;
   setStatus('Создаём маршрут. Подбор мест может занять некоторое время…','saving');
   const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),180000);
   try{
@@ -241,7 +281,7 @@ form.addEventListener('submit',async event=>{
     if(editVersion!==version){setStatus('Маршрут создан по прежним параметрам. Новые правки остались в анкете. Нажмите «Создать маршрут» ещё раз, чтобы учесть их.');return;}
     savedVersion=version;blocked=false;window.location.assign('/trip/result?preview='+encodeURIComponent(result.preview_id));
   }catch{setStatus('Не удалось получить маршрут. Поля сохранены в этой вкладке. Повторите создание; в «Мои поездки» ничего не добавлено.','error');}
-  finally{clearTimeout(timeout);saving=false;finishButton.disabled=false;}
+  finally{clearTimeout(timeout);saving=false;finishButton.disabled=false;previousStep.disabled=false;}
 });
 window.addEventListener('beforeunload',event=>{if(loaded&&editVersion>savedVersion){event.preventDefault();event.returnValue='';}});
 loadDraft();

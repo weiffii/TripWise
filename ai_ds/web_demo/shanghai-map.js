@@ -10,7 +10,7 @@
   const box=settings.container,svg=settings.svg,tiles=settings.tiles,background=settings.background;
   const placeName=p=>settings.getName?settings.getName(p):p.name;
   let day=null,byId=new Map(),stops=[],legs=[],zoom=13,center=[121.48,31.23],online=false;
-  let selected=-1,epoch=0,planEpoch=0,calls=0,loaded=0,failed=0,lastRequest=0,controller=null,drag=null,drawPending=false;
+  let selected=-1,selectedStop=-1,epoch=0,planEpoch=0,calls=0,loaded=0,failed=0,lastRequest=0,controller=null,drag=null,drawPending=false;
   let tileGeneration='',tileTimeout=null,tilesTimedOut=false;const tileNodes=new Map(),roadCache=new Map();
   const localProxy=!settings.directTiles&&location.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname);
   let proxyState=localProxy?'checking':'external';
@@ -52,20 +52,39 @@
   }
   function instructions(index){const leg=legs[index];if(!leg)return '';
    let html='<strong>Переход '+(index+1)+'</strong><p>В плане '+Math.round(leg.planned_minutes||leg.end_min-leg.start_min)+' мин. Время карты не заменяет расписание автоматически.</p>';
+   if(settings.focusStopWithArrival){
+    const from=byId.get(leg.from_poi_id),to=byId.get(leg.to_poi_id);
+    const distance=leg.distance_meters??leg.distance_m;
+    const verified=leg.basis==='routing_provider'||leg.source==='OSRM';
+    if(from&&to)html+='<p>'+esc(placeName(from))+' → '+esc(placeName(to))+'</p>';
+    if(Number.isFinite(distance)&&distance>0)html+='<p>Расстояние: '+(verified?'':'≈ ')+Math.round(distance).toLocaleString('ru-RU')+' м</p>';
+   }
    if(leg.instructions?.length)html+='<ol>'+leg.instructions.map(s=>'<li>'+esc(transitText(s))+'</li>').join('')+'</ol>';
    if(leg.source==='SYNTHETIC_BUS'||leg.geometry_segments?.some(s=>s.mode==='bus'))html+='<p class="tw-map-caution">DEMO-BUS — вымышленные автобусные маршруты. Не использовать как инструкции для настоящей поездки.</p>';
    let streetFound=false,streetMinutes=0;for(const seg of segments(leg)){const req=segmentRoad(seg,leg);if(!req)continue;const road=roadCache.get(roadKey(req.a,req.b,req.mode,req.via));if(road?.coordinates){streetFound=true;if(!req.synthetic_bus)streetMinutes+=Math.ceil(road.duration_seconds/60);html+='<p><b>'+(req.synthetic_bus?'Учебный автобус: форма пути по автомобильным дорогам':req.mode==='foot'?'Пешком по улицам':'По автомобильной дороге')+'</b> · автомобильный/пеший расчёт провайдера '+Math.ceil(road.duration_seconds/60)+' мин, '+Math.round(road.distance_meters)+' м'+(req.synthetic_bus?'; это не действующий рейс и не проверка автобусной проходимости':'')+'</p><ol>'+road.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>';}}
    if(streetMinutes>leg.planned_minutes)html+='<p class="tw-map-caution"><b>Уличный расчёт занимает больше времени, чем отведено в плане.</b> Предусмотрите дополнительный запас.</p>';
-   if(leg.use_plan_geometry&&leg.geometry?.type==='LineString')html+='<p>Линия и время рассчитаны по дорожной сети OpenStreetMap. Время включает резерв на задержки.</p>';
+   if(leg.use_plan_geometry&&leg.basis==='routing_provider'&&leg.geometry?.type==='LineString')html+='<p>Линия и время рассчитаны по дорожной сети OpenStreetMap. Время включает резерв на задержки.</p>';
    else if(!streetFound)html+='<p>Пошаговые указания пока недоступны. Пунктир — условная связь, не проверенный путь.</p>';
    return html;
   }
-  function selectLeg(index){selected=index;popup.hidden=true;settings.onSelect?.(instructions(index),index);
+  function selectLeg(index, stopCoordinate){selectedStop=-1;settings.onStopSelect?.(-1);selected=index;popup.hidden=true;settings.onSelect?.(instructions(index),index);
    const leg=legs[index];if(!leg){draw();return;}
    const points=segments(leg).flatMap(seg=>{const req=segmentRoad(seg,leg),road=req&&roadCache.get(roadKey(req.a,req.b,req.mode,req.via));return road?.coordinates||seg.coordinates||[];}).filter(validCoord);
-   if(points.length)fit(points);else draw();
+   if(points.length)fit(stopCoordinate ? [...points,stopCoordinate] : points);else draw();
+   return points.length > 0;
   }
-  function selectStop(index){const p=stops[index];if(!p)return;center=coordinate(p);draw();popup.innerHTML='<b>'+esc(placeName(p))+'</b><br><small>'+esc(p.area||'Шанхай')+' · координата места, вход не проверен</small>';popup.hidden=false;}
+  function selectStop(index){const p=stops[index];if(!p)return;
+   if(settings.focusStopWithArrival){
+    const arrival=p.__tripArrival;
+    if(arrival>=0){if(!selectLeg(arrival, coordinate(p))){center=coordinate(p);zoom=Math.max(16,zoom);}}
+    else {
+     selected=-1;
+     settings.onSelect?.('<p>К этой точке нет отдельного перехода. Выберите линию на карте, чтобы посмотреть путь.</p>',-1);
+     center=coordinate(p);zoom=Math.max(16,zoom);
+    }
+    selectedStop=index;settings.onStopSelect?.(index);
+   }else center=coordinate(p);
+   draw();popup.innerHTML='<b>'+esc(placeName(p))+'</b><br><small>'+esc(p.area||'Шанхай')+' · координата места, вход не проверен</small>';popup.hidden=false;}
   function tileStatus(){const mode=settings.mode;
    if(online&&proxyState==='old'){if(mode)mode.textContent='Нужен перезапуск сервера';return 'Локальный сервер устарел и не поддерживает карту. Запустите START_SHANGHAI_MAP.bat и откройте новый адрес, который он откроет. Точки маршрута доступны.';}
    if(online&&proxyState==='checking'){if(mode)mode.textContent='Проверка локальной карты…';return 'Проверяется локальный сервер карты.';}
@@ -106,8 +125,16 @@
      const label=(station.transfer?'Пересадка · ':'')+(station.name||'Остановка');
      html+=`<circle data-leg="${station.index}" cx="${x}" cy="${y}" r="${station.transfer?6:4}" fill="white" stroke="#206379" stroke-width="${station.transfer?3:2}" style="pointer-events:all;cursor:pointer"><title>${esc(label)}</title></circle>`;
    }
+   let activeMarker='';
    stops.forEach((p,index)=>{const [x,y]=project(coordinate(p));const meal=p.__tripMeal||p.kind==='restaurant',mandatory=p.__tripRequired;
+    if(index===selectedStop){
+     activeMarker=`<g data-stop="${index}" role="button" tabindex="0" aria-label="${esc(placeName(p)+' · выбрано')}" aria-pressed="true" style="pointer-events:all;cursor:pointer">
+      <path transform="translate(${x},${y})" d="M0 4C-6-3-15-11-15-21a15 15 0 0 1 30 0C15-11 6-3 0 4Z" fill="#15803d" stroke="white" stroke-width="2"/>
+      <path transform="translate(${x},${y-19})" d="m-6 0 4 4 8-9" fill="none" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+     </g>`;return;
+    }
     html+=`<g data-stop="${index}" role="button" tabindex="0" aria-label="${esc(placeName(p)+(mandatory?' · обязательное место':''))}" style="pointer-events:all;cursor:pointer"><title>${esc(placeName(p))}</title><circle cx="${x}" cy="${y}" r="13" fill="${meal?'#FACC15':'#7C3AED'}" stroke="${mandatory?'#111827':'white'}" stroke-width="${mandatory?5:3}"/><text x="${x}" y="${y+4}" fill="${meal?'#111827':'white'}" text-anchor="middle" font-size="12" font-weight="700">${index+1}</text></g>`;});
+   html+=activeMarker;
    if(!stops.length)html=`<text x="${w/2}" y="${h/2}" text-anchor="middle" fill="#657881">Нет точек маршрута</text>`;
    svg.innerHTML=html;
    svg.querySelectorAll('[data-stop]').forEach(g=>{const show=()=>selectStop(Number(g.dataset.stop));g.addEventListener('click',show);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});});
@@ -115,15 +142,15 @@
   }
   function requestDraw(){if(!drawPending){drawPending=true;requestAnimationFrame(draw);}}
   function zoomTo(delta,anchor){const next=Math.max(7,Math.min(19,zoom+delta));if(next===zoom)return;const {w,h}=dimensions();if(anchor){const c=merc(...center,zoom),world=unmerc(c[0]+anchor[0]-w/2,c[1]+anchor[1]-h/2,zoom),n=merc(...world,next);center=unmerc(n[0]-anchor[0]+w/2,n[1]-anchor[1]+h/2,next);}zoom=next;popup.hidden=true;draw();}
-  controls.addEventListener('click',e=>{e.stopPropagation();const a=e.target.dataset.action;if(a==='fit')fit();else if(a)zoomTo(a==='in'?1:-1);});
-  box.addEventListener('wheel',e=>{e.preventDefault();const rect=box.getBoundingClientRect();zoomTo(e.deltaY<0?1:-1,[e.clientX-rect.left,e.clientY-rect.top]);},{passive:false});
+  controls.addEventListener('click',e=>{e.stopPropagation();const a=e.target.dataset.action;if(a==='fit'){if(settings.focusStopWithArrival){selectedStop=-1;selected=-1;popup.hidden=true;settings.onStopSelect?.(-1);settings.onSelect?.('<p>Выберите место или переход на карте.</p>',-1);}fit();}else if(a)zoomTo(a==='in'?1:-1);});
+  box.addEventListener('wheel',e=>{if(settings.allowWheelZoom&&!settings.allowWheelZoom(e))return;e.preventDefault();const rect=box.getBoundingClientRect();zoomTo(e.deltaY<0?1:-1,[e.clientX-rect.left,e.clientY-rect.top]);},{passive:false});
   box.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('button,a,.tw-map-popup'))return;drag={x:e.clientX,y:e.clientY,center:merc(...center,zoom),moved:false};});
   box.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>4){if(!drag.moved)box.setPointerCapture(e.pointerId);drag.moved=true;popup.hidden=true;center=unmerc(drag.center[0]-dx,drag.center[1]-dy,zoom);requestDraw();}});
   box.addEventListener('pointerup',()=>{if(drag?.moved)draw();drag=null;});box.addEventListener('pointercancel',()=>{drag=null;});
   if(typeof ResizeObserver!=='undefined')new ResizeObserver(()=>requestDraw()).observe(box);
   function probeProxy(){if(!localProxy)return;proxyState='checking';fetch('/health',{cache:'no-store',signal:AbortSignal.timeout(4000)}).then(r=>r.ok?r.json():null).then(info=>{proxyState=info?.service==='tripwise-shanghai'&&info.tile_proxy===true?'ready':'old';tileGeneration='';draw();}).catch(()=>{proxyState='old';draw();});}
   probeProxy();
-  function beginPlan(){planEpoch++;epoch++;calls=0;controller?.abort();controller=null;selected=-1;popup.hidden=true;}
+  function beginPlan(){planEpoch++;epoch++;calls=0;controller?.abort();controller=null;selected=-1;selectedStop=-1;popup.hidden=true;}
   async function loadRoads(localEpoch,localPlan){
    if(!online||settings.fetchRoads===false)return;const requests=[];
    for(const leg of legs)for(const seg of segments(leg)){const req=segmentRoad(seg,leg);if(req&&validCoord(req.a)&&validCoord(req.b))requests.push(req);}
@@ -143,17 +170,24 @@
   }
   function setDay(value,idMap,settingsForDay={}){epoch++;controller?.abort();controller=null;day=value;byId=idMap;online=settingsForDay.online!==false;
    const mandatory=new Set(settingsForDay.required_ids||[]);
-   stops=(day.events||[]).filter(e=>e.type==='visit'||e.type==='meal')
-    .map(e=>byId.get(e.poi_id)?{...byId.get(e.poi_id),__tripMeal:e.type==='meal',__tripRequired:mandatory.has(e.poi_id)}:null)
-    .filter(Boolean);
-   legs=(day.events||[]).filter(e=>e.type==='travel');selected=-1;popup.hidden=true;fit();
+   let legIndex=-1,lastDestination;
+   stops=[];
+   for(const event of day.events||[]){
+    if(event.type==='travel'){legIndex++;lastDestination=event.to_poi_id;continue;}
+    if(event.type!=='visit'&&event.type!=='meal')continue;
+    const place=byId.get(event.poi_id);
+    if(place)stops.push({...place,__tripMeal:event.type==='meal',__tripRequired:mandatory.has(event.poi_id),__tripArrival:lastDestination===event.poi_id?legIndex:-1});
+   }
+   legs=(day.events||[]).filter(e=>e.type==='travel');selected=-1;selectedStop=-1;popup.hidden=true;fit();
    settings.onSelect?.('<p>Нажмите переход в расписании или линию карты: появятся станции, пересадки и доступные инструкции по улицам.</p>',-1);loadRoads(epoch,planEpoch);
   }
   function getOsmTables(){
    const at=new Map(),xy=p=>p.map(n=>n.toFixed(6)).join(',');for(const p of byId.values()){const key=xy(coordinate(p));if(!at.has(key))at.set(key,[]);at.get(key).push(p.id);}
    const result={};for(const mode of ['foot','car']){const pairs=[];for(const value of roadCache.values()){if(!value.request||value.request.synthetic_bus||value.request.mode!==mode||!value.coordinates)continue;const starts=at.get(xy(value.request.a))||[],ends=at.get(xy(value.request.b))||[];for(const from of starts)for(const to of ends)pairs.push({from,to,seconds:value.duration_seconds,metres:value.distance_meters});}if(!pairs.length)continue;const ids=[...new Set(pairs.flatMap(p=>[p.from,p.to]))],index=new Map(ids.map((id,i)=>[id,i])),durations=ids.map(()=>ids.map(()=>null)),distances=ids.map(()=>ids.map(()=>null));for(const p of pairs){durations[index.get(p.from)][index.get(p.to)]=p.seconds;distances[index.get(p.from)][index.get(p.to)]=p.metres;}result[mode]={ids,durations,distances};}return result;
   }
-  return {setDay,beginPlan,fit,selectLeg,selectStop,getOsmTables,retry(){for(const [key,value] of roadCache)if(value.error)roadCache.delete(key);tileGeneration='';for(const img of tileNodes.values())img.remove();tileNodes.clear();if(proxyState==='old')probeProxy();draw();epoch++;loadRoads(epoch,planEpoch);},debug(){return {center:center.slice(),zoom,request_count:calls,stop_count:stops.length,leg_count:legs.length,tile_proxy:proxyState};}};
+  return {setDay,beginPlan,fit,selectLeg,selectStop,fitSelection(){
+   if(selectedStop>=0)selectStop(selectedStop);else if(selected>=0)selectLeg(selected);else fit();
+  },getOsmTables,retry(){for(const [key,value] of roadCache)if(value.error)roadCache.delete(key);tileGeneration='';for(const img of tileNodes.values())img.remove();tileNodes.clear();if(proxyState==='old')probeProxy();draw();epoch++;loadRoads(epoch,planEpoch);},debug(){return {center:center.slice(),zoom,request_count:calls,stop_count:stops.length,leg_count:legs.length,tile_proxy:proxyState};}};
  }
  root.TripWiseMap={create};
 })(globalThis);

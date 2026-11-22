@@ -141,9 +141,48 @@ function appendText(parent, text) {
   parent.append(item);
 }
 
+const mapDialog = element('route-map-dialog');
+const mapPanel = element('route-map-panel');
+const expandMapButton = element('expand-route-map');
+const closeMapForm = element('close-route-map');
+const sidebarMap = window.matchMedia('(min-width: 1024px)');
+let mapOpener;
+
+function openMap(opener) {
+  if (mapDialog.open) return;
+  mapOpener = opener;
+  mapDialog.append(mapPanel);
+  expandMapButton.hidden = true;
+  closeMapForm.hidden = false;
+  mapDialog.showModal();
+}
+
+expandMapButton.addEventListener('click', () => {
+  openMap(expandMapButton);
+  routeMap.fitSelection();
+});
+
+mapDialog.addEventListener('close', () => {
+  element('route-map-sidebar').append(mapPanel);
+  expandMapButton.hidden = false;
+  closeMapForm.hidden = true;
+  routeMap.fitSelection();
+  mapOpener?.focus({preventScroll:true});
+});
+
+function revealMap(opener) {
+  if (!sidebarMap.matches) openMap(opener);
+}
+
 const routeMap = window.TripWiseMap.create({
   container:element('street-map'), svg:element('route-map'), tiles:element('map-tiles'),
-  background:element('map-background'), directTiles:true,
+  background:element('map-background'), directTiles:true, focusStopWithArrival:true,
+  allowWheelZoom:event => mapDialog.open || event.ctrlKey || event.metaKey,
+  onStopSelect:index => {
+    for (const button of element('route-stops').querySelectorAll('button[data-stop-index]')) {
+      button.setAttribute('aria-pressed', String(Number(button.dataset.stopIndex) === index));
+    }
+  },
   onSelect:html => { element('route-directions').innerHTML = html; },
   onNetworkStatus:text => { element('road-status').textContent = text; },
   onStatus:text => { element('map-status').textContent = text; },
@@ -151,7 +190,6 @@ const routeMap = window.TripWiseMap.create({
 
 function drawMap(rows) {
   element('road-status').textContent = '';
-  const stops = rows.filter(row => ['visit','meal'].includes(row.type));
   const mapPlaces = new Map([...places].filter(([,place]) => Number.isFinite(place.lat) && Number.isFinite(place.lon)));
   const mappedRows = rows.map(row => {
     if (row.type !== 'travel' || trip.city !== 'moscow') return row;
@@ -176,13 +214,10 @@ function drawMap(rows) {
       ...(segments.length ? {geometry_segments: segments} : {})};
   });
   routeMap.setDay({events:mappedRows}, mapPlaces, {required_ids:trip.preferences?.required_ids || []});
-  const visibleStops = stops.filter(row => mapPlaces.has(row.poi_id));
-  for (const button of element('route-stops').querySelectorAll('button[data-poi]')) {
-    button.onclick = () => routeMap.selectStop(visibleStops.findIndex(row => row.poi_id === button.dataset.poi));
-  }
+  expandMapButton.disabled = false;
 }
 
-function renderScheduleRow(row, legIndex) {
+function renderScheduleRow(row, legIndex, stopIndex) {
   const info = eventDetails(row);
   const item = document.createElement('li');
   item.className = `schedule-row route-event-${row.type}`;
@@ -194,11 +229,19 @@ function renderScheduleRow(row, legIndex) {
   const title = document.createElement(canMap || row.type === 'travel' ? 'button' : 'strong');
   title.textContent = info.action;
   if (title.tagName === 'BUTTON') title.type = 'button';
-  if (canMap) title.dataset.poi = row.poi_id;
+  if (canMap && stopIndex !== undefined) {
+    title.dataset.stopIndex = stopIndex;
+    title.setAttribute('aria-pressed', 'false');
+    title.setAttribute('aria-controls', 'route-map-panel');
+    title.onclick = () => {
+      revealMap(title);
+      routeMap.selectStop(stopIndex);
+    };
+  }
   if (row.type === 'travel') {
     title.onclick = () => {
+      revealMap(title);
       routeMap.selectLeg(legIndex);
-      element('street-map').scrollIntoView({block: 'nearest'});
     };
   }
   if (info.category) {
@@ -289,6 +332,10 @@ function renderDay() {
     element('schedule-note').textContent = approximate
       ? 'Без обеда или ужина разделы ориентируются на время дня. ≈ — оценка, прочерк — нет данных.'
       : 'Обед и ужин завершают предыдущий блок. ≈ — оценка, прочерк — нет данных.';
+    const stopIndexes = new Map(rows.filter(row => {
+      const place = places.get(row.poi_id);
+      return ['visit','meal'].includes(row.type) && Number.isFinite(place?.lat) && Number.isFinite(place?.lon);
+    }).map((row,index) => [row,index]));
     const legIndexes = new Map(rows.filter(row => row.type === 'travel').map((row, index) => [row, index]));
     for (const section of sections) {
       const block = document.createElement('li');
@@ -304,7 +351,7 @@ function renderDay() {
       } else {
         const list = document.createElement('ol');
         list.className = 'schedule-rows';
-        for (const row of section.rows) list.append(renderScheduleRow(row, legIndexes.get(row)));
+        for (const row of section.rows) list.append(renderScheduleRow(row, legIndexes.get(row), stopIndexes.get(row)));
         block.append(list);
       }
       stops.append(block);

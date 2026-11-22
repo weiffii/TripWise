@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
   <script src="/theme.js?v=20261122-unified2"></script>
-  <link rel="stylesheet" href="/styles.css?v=20261122-editor1">
+  <link rel="stylesheet" href="/styles.css?v=20261122-map1">
   <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
-  <script src="/route-map.js" defer></script>
-  <script src="/trip-result.js?v=20261122-meals" defer></script>
+  <script src="/route-map.js?v=20261122-map1" defer></script>
+  <script src="/trip-result.js?v=20261122-map1" defer></script>
 </head>
 <body class="questionnaire-page">
   <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
@@ -16,7 +16,7 @@
   </header>
   <main class="questionnaire-main">
     <section class="page-hero questionnaire-hero route-result-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
-    <div class="preview-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
+    <div class="preview-actions result-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
     <details id="route-comparison" class="preview-note" hidden>
       <summary>Сравнить варианты маршрута</summary>
       <form id="route-comparison-form" class="preview-actions">
@@ -33,7 +33,7 @@
       <ul id="comparison-metrics"></ul>
       <a id="comparison-link" class="back-link" href="/trip/result" hidden>Открыть вариант</a>
     </details>
-    <div class="questionnaire-layout result-layout">
+    <div class="result-layout">
       <div>
         <section class="form-section"><h2>Планируемые затраты</h2><strong id="route-cost">—</strong><p id="cost-note" class="field-hint"></p></section>
         <section class="form-section"><h2>Расписание по дням</h2><div id="route-tabs" role="group" aria-label="День поездки"></div><select id="route-day" hidden aria-label="День поездки"></select>
@@ -42,7 +42,14 @@
           <ol id="route-stops" aria-label="План дня"></ol><p id="route-warnings" class="field-hint"></p>
           <section hidden><h3>Рекомендованные места</h3><ul id="route-suggestions"></ul></section>
         </section>
-        <section class="form-section"><h2>Карта остановок</h2>
+      </div>
+      <aside id="route-map-sidebar" aria-labelledby="route-map-title">
+        <section id="route-map-panel" class="form-section">
+          <div class="route-map-heading">
+            <h2 id="route-map-title">Карта дня</h2>
+            <button id="expand-route-map" type="button" class="outline-button" aria-haspopup="dialog" aria-controls="route-map-dialog" disabled>⛶ На весь экран</button>
+            <form id="close-route-map" method="dialog" hidden><button type="submit" class="outline-button" autofocus>Закрыть карту</button></form>
+          </div>
           <div id="street-map" aria-label="Карта маршрута">
             <svg id="map-background" aria-hidden="true"></svg><div id="map-tiles" aria-hidden="true"></div>
             <svg id="route-map" aria-label="Точки и линии маршрута"></svg>
@@ -55,14 +62,16 @@
             <span><i style="background:#16A34A"></i> Пешком</span>
             <span><i style="background:#2563EB"></i> ОТ</span>
             <span><i style="background:#F97316"></i> Такси</span>
-            <span>Пунктир — приблизительная геометрия</span>
+            <span><i style="background:#15803d"></i> Выбранное место</span>
+            <span>Пунктир — приблизительный путь</span>
           </div>
           <p id="map-status" class="field-hint"></p>
           <p id="road-status" class="field-hint" role="status"></p>
           <div id="route-directions" aria-live="polite"></div>
         </section>
-      </div>
+      </aside>
     </div>
+    <dialog id="route-map-dialog" aria-label="Карта маршрута на весь экран"></dialog>
     <section class="route-edit-footer" aria-label="Редактирование поездки">
       <div><h2>Хотите изменить план?</h2><p>Попросите помощника скорректировать маршрут.</p></div>
       <button id="edit-trip-bottom" type="button" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button>

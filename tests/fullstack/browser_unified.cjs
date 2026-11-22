@@ -46,6 +46,35 @@ async function main(){
  for(const [country,city,currency,budget] of [['RU','Москва','RUB','6000'],['CN','Шанхай','CNY','1000']]){
   if(generated.length){await page.goto(base+'/trip/new?new=1');await readyForm(page);assert.equal(await page.locator('#city').inputValue(),'');}
   await page.locator('#country').selectOption(country);await page.locator('#city').selectOption(city);
+  const next = page.locator('#questionnaire-next');
+  const back = page.locator('#questionnaire-back');
+  const step = page.locator('#questionnaire-step-label');
+  assert.match(await step.textContent(), /Шаг 1 из 5/);
+  assert.equal(await page.locator('#finish-questionnaire').isVisible(), false);
+  await next.click();
+  assert.match(await step.textContent(), /Шаг 1 из 5/, 'empty dates stop Next');
+  await page.locator('#first-walk').fill('2026-12-01T09:00');
+  await page.locator('#last-walk').fill('2026-12-01T19:00');
+  await next.click();
+  await page.locator('#budget').fill(budget);
+  await page.locator('[name=budget_currency]').selectOption(currency);
+  await next.click();
+  await next.click();
+  assert.match(await step.textContent(), /Шаг 3 из 5/, 'interests are validated on their own step');
+  for (const name of ['История','Музеи','Природа']) await page.locator('#primary-interests').getByRole('checkbox',{name,exact:true}).check();
+  await back.click();
+  assert.equal(await page.locator('#budget').inputValue(), budget);
+  await next.click();
+  assert.equal(await page.locator('#primary-interests input:checked').count(), 3);
+  assert.ok(await page.locator('.interest-image').first().evaluate(img => img.width <= 52 && img.getBoundingClientRect().right < img.parentElement.querySelector('span').getBoundingClientRect().left));
+  await next.click();
+  const transport = await page.locator('.transport-image').evaluateAll(images => images.map(img => img.getBoundingClientRect().top));
+  assert.ok(transport.every((top,index) => !index || top > transport[index-1]));
+  assert.ok((await page.locator('html').evaluate(html => html.style.getPropertyValue('--destination-image'))).includes(country === 'RU' ? 'moscow-skyline.svg' : 'shanghai-skyline.svg'));
+  assert.ok(await page.locator('.transport-image').first().evaluate(img => img.width <= 52 && img.getBoundingClientRect().right < img.parentElement.querySelector('span').getBoundingClientRect().left));
+  await next.click();
+  assert.match(await step.textContent(), /Шаг 5 из 5/);
+  assert.equal(await next.isVisible(), false);
   await page.waitForFunction(() => document.querySelectorAll('#poi-options input').length === 5);
   const placeRows = page.locator('#poi-options label');
   const names = await placeRows.locator('span').allTextContents();
@@ -60,15 +89,6 @@ async function main(){
   assert.equal(await page.locator('#selected-places button').count(), 2);
   while (await page.locator('#selected-places button').count()) await page.locator('#selected-places button').first().click();
   await page.locator('#required-search').fill('');
-  for (const selector of ['.interest-image', '.transport-image']) {
-    assert.ok(await page.locator(selector).first().evaluate(img => img.width <= 52 && img.getBoundingClientRect().right < img.parentElement.querySelector('span').getBoundingClientRect().left));
-  }
-  const transport = await page.locator('.transport-image').evaluateAll(images => images.map(img => img.getBoundingClientRect().top));
-  assert.ok(transport.every((top,index) => !index || top > transport[index-1]));
-  assert.ok((await page.locator('html').evaluate(html => html.style.getPropertyValue('--destination-image'))).includes(country === 'RU' ? 'moscow-skyline.svg' : 'shanghai-skyline.svg'));
-  await page.locator('#first-walk').fill('2026-12-01T09:00');await page.locator('#last-walk').fill('2026-12-01T19:00');
-  await page.locator('#budget').fill(budget);await page.locator('[name=budget_currency]').selectOption(currency);
-  for(const name of ['История','Музеи','Природа'])await page.locator('#primary-interests').getByRole('checkbox',{name,exact:true}).check();
   await page.locator('#finish-questionnaire').click();await page.waitForURL('**/trip/result?preview=*',{timeout:180000});
   await page.waitForFunction(()=>/Моск|Шанх/.test(document.querySelector('#route-title')?.textContent||''),null,{timeout:60000});
   await page.locator('#save-trip').waitFor({state:'visible'});
@@ -81,6 +101,26 @@ async function main(){
   assert.equal(await scheduleRow.locator('.schedule-cell').count(), 3);
   assert.equal(await scheduleRow.locator('.schedule-action').count(), 1);
   assert.ok(await page.locator('#route-map').count(),'map DOM exists');
+  const mapPanel = page.locator('#route-map-panel');
+  const mapDialog = page.locator('#route-map-dialog');
+  const stop = page.locator('#route-stops button[data-stop-index]').nth(1);
+  const scheduleBox = await page.locator('#route-stops').boundingBox();
+  assert.ok((await mapPanel.boundingBox()).x > scheduleBox.x + scheduleBox.width);
+  const actionRects = await page.locator('.result-actions > :visible').evaluateAll(items => items.map(item => {
+    const rect = item.getBoundingClientRect(); return [rect.top,rect.height];
+  }));
+  assert.ok(actionRects.every(([top,height]) => top === actionRects[0][0] && height === actionRects[0][1]));
+  await stop.click();
+  assert.equal(await stop.getAttribute('aria-pressed'), 'true');
+  assert.equal(await mapPanel.locator('[data-stop][aria-pressed=true]').count(),1);
+  assert.ok(await mapPanel.locator('polyline[stroke-width="7"]').count(), 'arrival leg highlighted');
+  assert.equal(await mapDialog.isVisible(),false);
+  await page.locator('#expand-route-map').click();
+  await mapDialog.waitFor({state:'visible'});
+  assert.equal((await mapDialog.boundingBox()).width,1440);
+  assert.equal(await mapDialog.locator('[data-stop][aria-pressed=true]').count(),1);
+  await page.keyboard.press('Escape');
+  await page.locator('#route-map-sidebar #route-map-panel').waitFor();
   const editor = page.locator('#route-editor');
   assert.equal(await editor.isVisible(), false);
   for (const button of ['#edit-trip', '#edit-trip-bottom']) {
@@ -100,6 +140,13 @@ async function main(){
     await page.screenshot({path:path.join(artifacts, 'schedule-desktop.png')});
     await page.setViewportSize({width: 375, height: 812});
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), 375);
+    await stop.click();
+    await mapDialog.waitFor({state:'visible'});
+    assert.equal((await mapDialog.boundingBox()).width,375);
+    assert.equal(await mapDialog.locator('[data-stop][aria-pressed=true]').count(),1);
+    await page.getByRole('button',{name:'Закрыть карту'}).click();
+    await page.locator('#route-map-sidebar #route-map-panel').waitFor();
+    assert.equal(await stop.evaluate(node => node === document.activeElement),true);
     await page.setViewportSize({width: 1440, height: 1000});
   }
   await page.locator('#save-trip').click();await page.waitForURL('**/trip/result?route=*',{timeout:15000});
@@ -119,7 +166,9 @@ async function main(){
  await page.waitForURL('**/trip/result?preview=*');await page.locator('#save-trip').waitFor({state:'visible'});assert.equal(counts().planned_trips,2);
  const editPreview=new URL(page.url()).searchParams.get('preview');const before=await json(await context.request.get(base+'/api/planned-trips/'+first.routeId));
  await page.locator('#change-preferences').click();await readyForm(page);
- await page.locator('#budget').fill('7000');await page.locator('#finish-questionnaire').click();await page.waitForURL('**/trip/result?preview=*',{timeout:180000});
+ await page.locator('#questionnaire-next').click();await page.locator('#budget').fill('7000');
+ for(let step=0;step<3;step++)await page.locator('#questionnaire-next').click();
+await page.locator('#finish-questionnaire').click();await page.waitForURL('**/trip/result?preview=*',{timeout:180000});
  await page.locator('#save-trip').waitFor({state:'visible'});const still=await json(await context.request.get(base+'/api/planned-trips/'+first.routeId));assert.deepEqual(still,before,'regenerate edit must leave saved route untouched');
  await page.locator('#save-trip').click();await page.waitForURL('**/trip/result?route=*');assert.equal(new URL(page.url()).searchParams.get('route'),first.routeId);
  const updated=await json(await context.request.get(base+'/api/planned-trips/'+first.routeId));assert.equal(updated.version,before.version+1);assert.equal(counts().planned_trips,2);
@@ -131,7 +180,7 @@ async function main(){
  const theme=await page.locator('html').getAttribute('data-theme');await page.locator('[data-theme-toggle]').click();assert.notEqual(await page.locator('html').getAttribute('data-theme'),theme);
  await page.screenshot({path:path.join(artifacts,'mobile-home.png'),fullPage:false});
  assert.deepEqual(errors,[],'no page JS errors');
- const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow','five results with full-catalog search and persistent selections','two edit buttons, dialog close, saved route fork'],externalNetwork:'blocked',screenshots:artifacts};
+ const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow','five results with full-catalog search and persistent selections','two edit buttons, dialog close, saved route fork','five wizard steps with validation and Back','aligned actions, side map and full-screen selection on mobile'],externalNetwork:'blocked',screenshots:artifacts};
  fs.writeFileSync(path.join(artifacts,'result.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }
 main().catch(error=>{console.error(error.stack);console.error('QA temp server log:',path.join(work,'server.log'));process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();if(server&&server.exitCode===null){server.kill('SIGTERM');await new Promise(resolve=>{server.once('exit',resolve);setTimeout(resolve,5000);});}if(log!==undefined)fs.closeSync(log);});
