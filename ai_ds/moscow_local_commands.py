@@ -7,6 +7,7 @@ resulting operations go through the same route recomputation and confirmation.
 from __future__ import annotations
 
 import re
+from ai_ds.day_windows import local_day_window
 
 from ai_ds.moscow_assistant_intents import gap_fill_decision
 from ai_ds.moscow_named_poi import _day_from_text, named_poi_decision, normalize, resolve_name
@@ -20,7 +21,7 @@ _DAY_SUFFIX = re.compile(
     r'\s+(?:на|в|во)\s+(?:\d{4}-\d{2}-\d{2}|'
     r'\d{1,2}\s+(?:января|февраля|марта|апреля|мая|июня|июля|августа|'
     r'сентября|октября|ноября|декабря)|'
-    r'[1-5]\s*(?:-?й|-?м)?\s*(?:день|дня|дне)|'
+    r'\d{1,2}\s*(?:-?й|-?м)?\s*(?:день|дня|дне)|'
     r'(?:первый|второй|третий|четвертый|пятый)\s+день)\s*$', re.I)
 _SPLIT = re.compile(r'\s+(?:и|а\s+также)\s+(?=(?:добавь|вставь|убери|удали|исключи|'
                     r'перенеси|перемести|передвинь|сделай|измени|поменяй|поставь|заполни|сократи)\b)', re.I)
@@ -87,6 +88,9 @@ def _single(text, dates, catalog, current, history, selected_modes):
     # Explicit existing-stop moves/removals are never confused with adding a
     # similarly named place elsewhere in the city.
     lower = normalize(text)
+    window = local_day_window(text, dates)
+    if window is not None:
+        return window
     # Handle transport/idle-time requests before the generic "remove place"
     # grammar ("убери такси" and "убери длинные перерывы" are not POI names).
     direct_gap = gap_fill_decision(text, dates)

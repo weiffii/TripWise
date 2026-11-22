@@ -1,14 +1,19 @@
 const element = id => document.getElementById(id);
-const routeId = new URLSearchParams(location.search).get('route');
-const endpoint = '/api/planned-trips/' + encodeURIComponent(routeId);
+const resultParams = new URLSearchParams(location.search);
+const previewId = resultParams.get('preview');
+const routeId = resultParams.get('route');
+const isPreview = Boolean(previewId);
+const endpoint = isPreview ? '/api/route-previews/' + encodeURIComponent(previewId) : '/api/planned-trips/' + encodeURIComponent(routeId || '');
+let ownerContext = null;
 const places = new Map();
+const refreshedLegs = new Map();
 let trip, registration, csrf, proposal;
 
 async function request(path, body) {
   const response = await fetch(path, body ? {
-    method: 'POST', headers: {'Content-Type':'application/json', 'X-TripWise-CSRF':csrf || ''},
-    body: JSON.stringify({...body, request_id:crypto.randomUUID()}),
-  } : undefined);
+    method: 'POST', credentials:'same-origin', headers: {'Content-Type':'application/json', 'X-TripWise-CSRF':csrf || '', 'X-TripWise-Draft-Owner':ownerContext || ''},
+    body: JSON.stringify(path.includes('/assistant/') ? {...body, request_id:crypto.randomUUID()} : body),
+  } : {cache:'no-store',credentials:'same-origin'});
   if (response.status === 401) location.assign('/');
   const result = await response.json();
   if (!response.ok || ['error','unavailable'].includes(result.type)) throw Error(result.detail || result.message || 'Запрос не выполнен.');
@@ -33,8 +38,11 @@ function events(day, plan = trip.plan) {
   const diagnostics = new Map((plan.gap_diagnostics?.remaining || []).filter(gap => gap.date === day.date)
     .map(gap => [gap.start_at + '/' + gap.end_at, gapExplanation(gap)]));
   return [...day.visits.map(item => ({...item, type:meals.has(item.poi_id) ? 'meal' : 'visit', meal_kind:meals.get(item.poi_id)})),
-    ...day.legs.map(item => ({...item, type:'travel', mode:item.mode || (item.transport_steps?.length ? 'transit' :
-      (trip.options.transport === 'taxi' ? 'taxi' : 'walk'))})),
+    ...day.legs.map((item, index) => {
+      const geometry = plan === trip.plan && refreshedLegs.get(day.date + '/' + index);
+      return {...item, ...(geometry || {}), leg_index:index, day_date:day.date, type:'travel', mode:item.mode || (item.transport_steps?.length ? 'transit' :
+        (trip.options.transport === 'taxi' ? 'taxi' : 'walk'))};
+    }),
     ...day.breaks.map(item => ({...item, type:item.kind,
       reason:diagnostics.get(item.start_at + '/' + item.end_at) || item.reason}))].filter(showScheduleEvent)
     .sort((left, right) => left.start_at.localeCompare(right.start_at));
@@ -54,7 +62,7 @@ function clock(row, key) {
   return Number.isFinite(value) ? String(Math.floor(value / 60)).padStart(2,'0') + ':' + String(value % 60).padStart(2,'0') : '';
 }
 
-function eventLabel(row) {
+function eventDetails(row) {
   const name = places.get(row.poi_id)?.name;
   const kind = {visit:'Посещение', meal:'Перерыв на питание', travel:'Переход', rest:'Отдых', wait:'Ожидание', waiting:'Ожидание'};
   const mode = {walk:'Пешком',transit:'Общественный транспорт',taxi:'Такси'}[row.mode];
@@ -64,13 +72,67 @@ function eventLabel(row) {
     : row.end_min - row.start_min);
   const moscow = trip.city === 'moscow';
   const cost = moscow ? row.price_rub ?? row.transport_cost_rub : row.price_cny ?? row.cost_cny ?? row.transport_cost_cny;
-  const estimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate' || row.price_basis === 'expert_estimate' || row.transport_cost_basis === 'synthetic_fare_estimate';
-  return [clock(row,'start') + '–' + clock(row,'end'), row.type === 'travel' ? mode || 'Пеший переход' :
-    (meal && name ? meal + ' · ' + name : name || kind[row.type] || 'Перерыв'),
-    estimate ? 'ориентировочно' : '',
-    Number.isFinite(minutes) ? minutes + ' мин' : '',
-    cost == null ? (moscow && ['visit','meal','travel'].includes(row.type) ? 'стоимость неизвестна' : '') :
-      cost + (moscow ? ' ₽' : ' CNY')].filter(Boolean).join(' · ');
+  const durationEstimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate';
+  const costEstimate = row.price_basis === 'expert_estimate' || row.transport_cost_basis === 'synthetic_fare_estimate';
+  const action = row.type === 'travel' ? mode || 'Переход' : name || meal || kind[row.type] || 'Перерыв';
+  return {action, category: name ? meal || kind[row.type] : '', minutes, cost, durationEstimate, costEstimate,
+    currency: moscow ? '₽' : 'CNY'};
+}
+
+function eventLabel(row) {
+  const info = eventDetails(row);
+  return [`${clock(row, 'start')}–${clock(row, 'end')}`, info.category, info.action,
+    Number.isFinite(info.minutes) ? `${info.durationEstimate ? '≈' : ''}${info.minutes} мин` : '',
+    info.cost == null ? '' : `${info.costEstimate ? '≈' : ''}${info.cost} ${info.currency}`]
+    .filter(Boolean).join(' · ');
+}
+
+function scheduleMinute(row, edge) {
+  const value = clock(row, edge);
+  if (!value) return NaN;
+  const [hours, minutes] = value.split(':').map(Number);
+  return hours * 60 + minutes;
+}
+
+function scheduleWithWaiting(rows) {
+  return rows.flatMap((row, index) => {
+    const previous = rows[index - 1];
+    const wait = row.wait_before_min ?? (previous ? row.start_min - previous.end_min : 0);
+    if (wait > 60 && !['wait', 'waiting'].includes(previous?.type) && !['wait', 'waiting'].includes(row.type)) {
+      const end = scheduleMinute(row, 'start');
+      return [{type: 'waiting', start_min: end - wait, end_min: end, reason: row.waiting_reason}, row];
+    }
+    return [row];
+  });
+}
+
+function daySections(rows) {
+  const mealEnd = kind => {
+    const meal = rows.find(row => row.type === 'meal' && row.meal_kind === kind);
+    return meal ? scheduleMinute(meal, 'end') : NaN;
+  };
+  const lunch = mealEnd('lunch');
+  const dinner = mealEnd('dinner');
+  const afternoon = Number.isFinite(lunch) ? lunch : Math.min(14 * 60, dinner || Infinity);
+  const evening = Number.isFinite(dinner) ? Math.max(afternoon, dinner) : Math.max(afternoon, 19 * 60);
+  const sections = [
+    {title: 'До обеда', tone: 'morning', rows: []},
+    {title: 'После обеда', tone: 'afternoon', rows: []},
+    {title: 'После ужина', tone: 'evening', rows: []},
+  ];
+  for (const row of rows) {
+    const time = scheduleMinute(row, 'start');
+    sections[time >= evening ? 2 : time >= afternoon ? 1 : 0].rows.push(row);
+  }
+  return {sections, approximate: !Number.isFinite(lunch) || !Number.isFinite(dinner)};
+}
+
+function scheduleCell(label, text, extraClass = '') {
+  const cell = document.createElement('span');
+  cell.className = `schedule-cell ${extraClass}`;
+  cell.dataset.label = label;
+  cell.textContent = text;
+  return cell;
 }
 
 function appendText(parent, text) {
@@ -120,59 +182,135 @@ function drawMap(rows) {
   }
 }
 
+function renderScheduleRow(row, legIndex) {
+  const info = eventDetails(row);
+  const item = document.createElement('li');
+  item.className = `schedule-row route-event-${row.type}`;
+
+  const action = document.createElement('div');
+  action.className = 'schedule-action';
+  const place = places.get(row.poi_id);
+  const canMap = place && Number.isFinite(place.lat) && Number.isFinite(place.lon);
+  const title = document.createElement(canMap || row.type === 'travel' ? 'button' : 'strong');
+  title.textContent = info.action;
+  if (title.tagName === 'BUTTON') title.type = 'button';
+  if (canMap) title.dataset.poi = row.poi_id;
+  if (row.type === 'travel') {
+    title.onclick = () => {
+      routeMap.selectLeg(legIndex);
+      element('street-map').scrollIntoView({block: 'nearest'});
+    };
+  }
+  if (info.category) {
+    const category = document.createElement('small');
+    category.className = 'schedule-category';
+    category.textContent = info.category;
+    action.append(category);
+  }
+  action.append(title);
+  const pinned = row.pinned_start_time || trip.plan.visit_times?.[row.start_at?.slice(0,10)]?.[row.poi_id];
+  if (pinned && row.type === 'visit') {
+    const value = document.createElement('small');
+    value.textContent = 'Закреплено в ' + (typeof pinned === 'string' ? pinned : clock(row, 'start'));
+    action.append(value);
+  }
+  const approximate = row.mode === 'transit'
+    ? row.transport_steps?.some(step => ['walk_access','walk_egress','walk_transfer','rail_estimate'].includes(step.kind) && !step.geometry_verified)
+    : !row.geometry || row.basis !== 'routing_provider';
+  if (row.type === 'travel' && approximate && trip.city === 'moscow' &&
+      trip.poi_snapshot_id.startsWith('moscow-v7:') && Number.isInteger(row.leg_index)) {
+    const retry = document.createElement('button');
+    retry.type = 'button';
+    retry.textContent = 'Проверить геометрию';
+    const status = document.createElement('small');
+    status.setAttribute('role', 'status');
+    retry.onclick = async () => {
+      retry.disabled = true;
+      status.textContent = 'Проверяем участок…';
+      try {
+        const version = trip.version;
+        const {duration_seconds, ...geometry} = await request(endpoint + '/leg-geometry', {
+          version, day:row.day_date, leg_index:row.leg_index,
+        });
+        if (trip.version !== version) return;
+        refreshedLegs.set(row.day_date + '/' + row.leg_index, geometry);
+        renderDay();
+        element('route-action-status').textContent =
+          'Линия участка обновлена на карте. Оценка дороги после проверки — ' + Math.ceil(duration_seconds / 60) +
+          ' мин. Расписание поездки сохранено.';
+      } catch (error) { status.textContent = error.message; }
+      finally { retry.disabled = false; }
+    };
+    action.append(retry, status);
+  }
+  if (row.reason && ['waiting', 'wait', 'meal', 'rest'].includes(row.type)) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Подробности';
+    const reason = document.createElement('p');
+    reason.textContent = row.reason;
+    details.append(summary, reason);
+    action.append(details);
+  }
+  if (row.transport_steps?.length) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Как добраться';
+    const steps = document.createElement('ol');
+    for (const step of row.transport_steps) {
+      const label = {walk_access:'Подход', walk_egress:'Выход к месту', walk_transfer:'Пересадка',
+        wait_estimate:'Ожидание', rail_estimate:'Поездка', alight:'Выход со станции'}[step.kind];
+      const stop = step.to_stop_location || step.from_stop_location;
+      const [mode, line] = (step.line || '').split(':');
+      const service = {metro:'Метро', mcc:'МЦК', mcd:'МЦД', tram:'Трамвай', bus:'Автобус',
+        electric_bus:'Электробус', trolleybus:'Троллейбус'}[mode];
+      const duration = Number.isFinite(step.duration_seconds) ? `${Math.ceil(step.duration_seconds / 60)} мин` : '';
+      appendText(steps, [label, service && [service, line].filter(Boolean).join(' '), stop?.name, duration].filter(Boolean).join(' · '));
+    }
+    details.append(summary, steps);
+    action.append(details);
+  }
+  const minutes = Number.isFinite(info.minutes) ? `${info.durationEstimate ? '≈' : ''}${info.minutes} мин` : '—';
+  const cost = Number.isFinite(info.cost)
+    ? `${info.costEstimate ? '≈' : ''}${new Intl.NumberFormat('ru-RU').format(info.cost)} ${info.currency}`
+    : '—';
+  item.append(scheduleCell('Время', `${clock(row, 'start')}–${clock(row, 'end')}`, 'schedule-time'),
+    action, scheduleCell('Длительность', minutes), scheduleCell('Стоимость', cost));
+  return item;
+}
+
 function renderDay() {
   const day = trip.plan.days[Number(element('route-day').value)];
   const rows = day ? events(day) : [];
   const stops = element('route-stops');
   stops.replaceChildren();
-  if (day?.start_at && day.end_at) appendText(stops, 'Начало ' + day.start_at.slice(11,16) + ' · окончание ' + day.end_at.slice(11,16));
-  let legIndex = 0;
-  for (const [rowIndex,row] of rows.entries()) {
-    const previous = rows[rowIndex-1];
-    const wait = row.wait_before_min ?? (previous && Number.isFinite(row.start_min) ? row.start_min - previous.end_min : 0);
-    if (wait > 60 && !['wait', 'waiting'].includes(row.type) && !['wait', 'waiting'].includes(previous?.type)) {
-      appendText(stops, 'Ожидание · ' + wait + ' мин' + (row.waiting_reason ? ' · ' + row.waiting_reason : ''));
-    }
-    const item = document.createElement('li');
-    item.className = 'route-event route-event-' + row.type;
-    const time = document.createElement('span');
-    time.className = 'route-event-time';
-    time.textContent = clock(row,'start') + '–' + clock(row,'end');
-    const card = document.createElement('div');
-    const place = places.get(row.poi_id);
-    const canMap = place && Number.isFinite(place.lat) && Number.isFinite(place.lon);
-    const title = document.createElement(canMap || row.type === 'travel' ? 'button' : 'strong');
-    title.textContent = eventLabel(row).split(' · ').slice(1).join(' · ');
-    if (canMap) { title.type = 'button'; title.dataset.poi = row.poi_id; }
-    if (row.type === 'travel') {
-      const index = legIndex++;
-      title.type = 'button';
-      title.onclick = () => {
-        routeMap.selectLeg(index);
-        element('street-map').scrollIntoView({block:'nearest'});
-      };
-    }
-    card.append(title);
-    if (row.reason && ['waiting','wait','meal','rest'].includes(row.type)) {
-      const detail = document.createElement('p');
-      detail.textContent = row.reason;
-      card.append(detail);
-    }
-    if (row.transport_steps) {
-      const sequence = document.createElement('ol');
-      for (const step of row.transport_steps) {
-        const label = {walk_access:'Подход', walk_egress:'Выход к месту', walk_transfer:'Пересадка',
-          wait_estimate:'Ожидание', rail_estimate:'Поездка', alight:'Выход со станции'}[step.kind];
-        const stop = step.to_stop_location || step.from_stop_location;
-        const [mode, line] = (step.line || '').split(':');
-        const service = {metro:'Метро', mcc:'МЦК', mcd:'МЦД', tram:'Трамвай', bus:'Автобус',
-          electric_bus:'Электробус', trolleybus:'Троллейбус'}[mode];
-        appendText(sequence, [label, service && service + ' ' + line, stop?.name, Math.ceil(step.duration_seconds / 60) + ' мин'].filter(Boolean).join(' · '));
+  if (rows.length) {
+    const {sections, approximate} = daySections(scheduleWithWaiting(rows));
+    element('schedule-note').textContent = approximate
+      ? 'Без обеда или ужина разделы ориентируются на время дня. ≈ — оценка, прочерк — нет данных.'
+      : 'Обед и ужин завершают предыдущий блок. ≈ — оценка, прочерк — нет данных.';
+    const legIndexes = new Map(rows.filter(row => row.type === 'travel').map((row, index) => [row, index]));
+    for (const section of sections) {
+      const block = document.createElement('li');
+      block.className = `schedule-block schedule-${section.tone}`;
+      const heading = document.createElement('h3');
+      heading.textContent = section.title;
+      block.append(heading);
+      if (!section.rows.length) {
+        const empty = document.createElement('p');
+        empty.className = 'schedule-empty';
+        empty.textContent = 'Нет запланированных действий';
+        block.append(empty);
+      } else {
+        const list = document.createElement('ol');
+        list.className = 'schedule-rows';
+        for (const row of section.rows) list.append(renderScheduleRow(row, legIndexes.get(row)));
+        block.append(list);
       }
-      card.append(sequence);
+      stops.append(block);
     }
-    item.append(time,card);
-    stops.append(item);
+  } else {
+    element('schedule-note').textContent = '';
   }
   for (const tab of element('route-tabs').children) tab.setAttribute('aria-pressed', String(tab.dataset.day === element('route-day').value));
   if (!rows.length) appendText(stops,'В выбранный день не удалось запланировать посещения.');
@@ -191,12 +329,21 @@ function renderDay() {
 
 function renderTrip() {
   routeMap.beginPlan();
+  refreshedLegs.clear();
   const moscow = trip.city === 'moscow';
   element('route-title').textContent = moscow ? 'Москва' : 'Шанхай';
   const budget = trip.plan.budget_summary;
   const total = moscow ? budget?.known_total : trip.plan.summary?.total_cost_cny;
   const currency = moscow ? 'RUB' : 'CNY';
-  element('route-meta').textContent = 'Версия ' + trip.version + ' · ' + trip.plan.days.length + ' дн.';
+  element('route-meta').textContent = (isPreview ? 'Предварительный маршрут · ещё не сохранён' : 'Сохранённая поездка') + ' · ' + trip.plan.days.length + ' дн.';
+  element('route-state').textContent=isPreview?'Маршрут пока виден только вам в этом сеансе. Сохраните поездку, чтобы открыть её позднее.':'Поездка сохранена. Для изменений сначала нажмите «Редактировать». ';
+  element('save-trip').hidden=!isPreview;
+  element('change-preferences').hidden=!isPreview;
+  element('route-comparison').hidden = !isPreview || !moscow;
+  element('comparison-metrics').replaceChildren();
+  element('comparison-link').hidden = true;
+  element('comparison-status').textContent = '';
+  if(isPreview)element('change-preferences').href='/trip/new?preview='+encodeURIComponent(previewId);
   const rub = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(value);
   element('route-cost').textContent = total == null ? 'Оценка недоступна' :
     '≈ ' + new Intl.NumberFormat('ru-RU',{style:'currency',currency}).format(Number(total));
@@ -252,19 +399,25 @@ function chatLine(author, message) {
   log.scrollTop = log.scrollHeight;
 }
 const control = busy => {
+  element('save-trip').disabled=busy||Boolean(proposal);
   for (const button of [chatForm.querySelector('button'),element('confirm-edit'),element('reject-edit')]) button.disabled = busy;
 };
 
 async function load() {
+  if(!previewId&&!routeId)throw Error('Выберите поездку в разделе «Мои поездки» или создайте новый маршрут.');
   trip = await request(endpoint);
+  if(typeof trip.owner_context!=='string'||!trip.owner_context)throw Error('Не удалось проверить аккаунт. Обновите страницу.');
+  ownerContext=trip.owner_context;
+  window.setDestinationVisual(trip.city==='moscow'?'Москва':'Шанхай');
   const legacy = trip.city === 'moscow' && !trip.poi_snapshot_id.startsWith('moscow-v7:');
   const catalog = await request('/api/planned-trips/catalog/' + trip.city + (legacy ? '?include_legacy=true' : ''));
   for (const place of catalog) places.set(place.id,{...place, area:trip.city === 'moscow' ? 'Москва' : 'Шанхай'});
   renderTrip();
+  if(!isPreview){chatStatus.textContent='Нажмите «Редактировать», чтобы создать несохранённый вариант этой поездки. Изменения появятся в аккаунте только после кнопки «Сохранить поездку».';control(true);return;}
   const status = await request(chatPath + 'status');
   for (const item of status.conversation || []) chatLine(item.role === 'user' ? 'Вы' : 'TripWise', item.content);
   const namedAgent = status.agent_version ? 'Помощник Москвы: ' + status.agent_version +
-    '. Без OpenRouter: названия мест с опечатками, добавление места/категории, перенос, удаление, темп, транспорт и заполнение пауз.' : '';
+    '. Попробуйте «Закрепи название места в 14:30». Команда работает без OpenRouter.' : '';
   chatStatus.textContent = [namedAgent, status.reason || (status.mode === 'mock' ? 'Тестовый режим: ответы подставляет проверочный сценарий, а не ИИ.' : '')].filter(Boolean).join(' ');
   if (!status.available) return;
   csrf = status.csrf_token;
@@ -295,6 +448,12 @@ chatForm.addEventListener('submit',async event => {
     preview.replaceChildren();
     for (const item of result.diff?.added || []) appendText(preview, '+ ' + item.name + ' · ' + item.day);
     for (const item of result.diff?.removed || []) appendText(preview, '− ' + item.name + ' · ' + item.day);
+    for (const window of result.diff?.day_windows || []) {
+      appendText(preview, window.day + ' · время прогулки ' + window.day_start + '–' + window.day_end);
+    }
+    for (const pin of result.diff?.visit_times || []) {
+      appendText(preview, pin.day + ' · ' + pin.name + ' · закреплено в ' + pin.start_time);
+    }
     if (trip.city === 'moscow' && result.diff?.before_cost !== result.diff?.after_cost) {
       appendText(preview, 'Оценка затрат · ' + result.diff.before_cost + ' → ' + result.diff.after_cost + ' ₽');
     }
@@ -326,6 +485,7 @@ async function decide(decision) {
       registration.version = result.version;
       trip = await request(endpoint);
       renderTrip();
+      element('route-state').textContent='Изменения применены к предварительному маршруту. Нажмите «Сохранить поездку», чтобы записать их в аккаунт.';
     }
     chatStatus.textContent = result.message;
     proposal = null;
@@ -335,4 +495,45 @@ async function decide(decision) {
 }
 element('confirm-edit').addEventListener('click',() => void decide('confirm'));
 element('reject-edit').addEventListener('click',() => void decide('reject'));
+element('route-comparison-form').addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = event.submitter;
+  const status = element('comparison-status');
+  const metrics = element('comparison-metrics');
+  const link = element('comparison-link');
+  const version = trip.version;
+  status.textContent = 'Рассчитываем вариант с теми же параметрами поездки…';
+  button.disabled = true;
+  metrics.replaceChildren();
+  link.hidden = true;
+  try {
+    const {base,variant,preview_id,improved} = await request(endpoint+'/compare', {
+      expected_version:version, route_priority:element('comparison-priority').value,
+    });
+    if (trip.version !== version) return;
+    const walking = row => row.walking_complete ? String(row.walk_minutes) : row.walk_minutes + ' (частичные данные)';
+    for (const [label,before,after] of [
+      ['Пешком, мин',walking(base),walking(variant)],
+      ['Пересадки',base.transfers,variant.transfers],
+      ['Расходы, ₽',base.cost_rub,variant.cost_rub],
+      ['Посещения',base.visit_count,variant.visit_count],
+    ]) appendText(metrics, label + ' · ' + before + ' → ' + after);
+    status.textContent = improved === false ? 'Исходный маршрут → новый вариант. Выбранный показатель не улучшился.'
+      : 'Исходный маршрут → новый вариант';
+    link.href = '/trip/result?preview='+encodeURIComponent(preview_id);
+    link.hidden = false;
+  } catch (error) { status.textContent = error.message; }
+  finally { button.disabled = false; }
+});
+element('save-trip').addEventListener('click',async()=>{
+  if(!trip||!isPreview)return;const button=element('save-trip');button.disabled=true;element('route-action-status').textContent='Сохраняем поездку…';
+  try{const saved=await request(endpoint+'/save',{version:trip.version});if(!saved.route_id)throw Error('Сервер не подтвердил сохранение.');window.location.assign('/trip/result?route='+encodeURIComponent(saved.route_id));}
+  catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
+});
+element('edit-trip').addEventListener('click',async()=>{
+  if(!trip)return;if(isPreview){element('chat-text').focus();element('edit-route').scrollIntoView({block:'center',behavior:'smooth'});return;}
+  const button=element('edit-trip');button.disabled=true;element('route-action-status').textContent='Открываем редактирование…';
+  try{const preview=await request(endpoint+'/preview',{version:trip.version});if(!preview.preview_id)throw Error('Не удалось открыть редактор.');window.location.assign('/trip/result?preview='+encodeURIComponent(preview.preview_id));}
+  catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
+});
 load().catch(error => { (trip ? chatStatus : element('route-meta')).textContent = error.message; });

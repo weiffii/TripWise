@@ -51,7 +51,8 @@ def validate_preferences(profile):
               'budget', 'required_poi_ids', 'top_k')
     for field in fields:
         check(field in profile, field, 'MISSING_FIELD')
-    check(profile.get('schema_version') == '0.1', 'schema_version')
+    version = profile.get('schema_version')
+    check(version in ('0.1', '0.2'), 'schema_version')
     destination = profile.get('destination')
     check(isinstance(destination, dict) and nonempty(destination.get('city')) and
           isinstance(destination.get('country_code'), str) and
@@ -86,8 +87,9 @@ def validate_preferences(profile):
         check(valid, field)
         interests.append(set(value) if valid else set())
     primary = profile.get('primary_interests')
-    check(isinstance(primary, list) and 1 <= len(primary) <= 2,
-          'primary_interests', 'EXPECTED_ONE_OR_TWO_CATEGORIES')
+    primary_limit = len(CATEGORIES) if version == '0.2' else 2
+    check(isinstance(primary, list) and 1 <= len(primary) <= primary_limit,
+          'primary_interests', 'INVALID_PRIMARY_INTERESTS' if version == '0.2' else 'EXPECTED_ONE_OR_TWO_CATEGORIES')
     check(not interests[0] & interests[1], 'secondary_interests', 'INTERESTS_OVERLAP')
     check(profile.get('pace') in ('relaxed', 'balanced', 'intensive'), 'pace')
     check(profile.get('transport') in ('walking', 'car', 'public_transit'), 'transport')

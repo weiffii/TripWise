@@ -21,6 +21,15 @@ _NUMBER_WORDS = {
     'третий': 3, 'третьем': 3, 'третьего': 3,
     'четвертый': 4, 'четвертом': 4, 'четвертого': 4,
     'пятый': 5, 'пятом': 5, 'пятого': 5,
+    'шестой': 6, 'шестом': 6, 'шестого': 6,
+    'седьмой': 7, 'седьмом': 7, 'седьмого': 7,
+    'восьмой': 8, 'восьмом': 8, 'восьмого': 8,
+    'девятый': 9, 'девятом': 9, 'девятого': 9,
+    'десятый': 10, 'десятом': 10, 'десятого': 10,
+    'одиннадцатый': 11, 'одиннадцатом': 11, 'одиннадцатого': 11,
+    'двенадцатый': 12, 'двенадцатом': 12, 'двенадцатого': 12,
+    'тринадцатый': 13, 'тринадцатом': 13, 'тринадцатого': 13,
+    'четырнадцатый': 14, 'четырнадцатом': 14, 'четырнадцатого': 14,
 }
 # Search variants are ONLY queries into existing V7 names, not fabricated POI IDs.
 _COMMON_ALIASES = {
@@ -80,9 +89,9 @@ def _day_from_text(text, dates):
         matches = [d for d in dates if date.fromisoformat(d).day == int(m[1])
                    and date.fromisoformat(d).month == int(m[2])]
         return matches[0] if len(matches) == 1 else False
-    m = re.search(r'\b([1-5])\s*(?:-?(?:й|м)|)\s*(?:день|дня|дне|дни)\b', low)
+    m = re.search(r'\b(\d{1,2})\s*(?:-?(?:й|м)|)\s*(?:день|дня|дне|дни)\b', low)
     if not m:
-        m = re.search(r'\b(?:день|дня|дне)\s+([1-5])\b', low)
+        m = re.search(r'\b(?:день|дня|дне)\s+(\d{1,2})\b', low)
     if m:
         return dates[int(m[1])-1] if 1 <= int(m[1]) <= len(dates) else False
     words = low.split()

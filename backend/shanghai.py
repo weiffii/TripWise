@@ -1,4 +1,5 @@
 from datetime import date, time, timedelta
+from ai_ds.day_windows import MAX_TRIP_DAYS, valid_clock
 from functools import lru_cache
 import json
 import secrets
@@ -8,6 +9,7 @@ from typing import Annotated, Literal
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Request
+from ai_ds.route_priorities import RoutePriority
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from starlette.concurrency import run_in_threadpool
@@ -36,7 +38,7 @@ class ShanghaiPreferences(BaseModel):
     city: Literal['shanghai']
     timezone: Literal['Asia/Shanghai']
     start_date: date
-    days: Annotated[int, Field(strict=True, ge=1, le=5)]
+    days: Annotated[int, Field(strict=True, ge=1, le=MAX_TRIP_DAYS)]
     day_start: Annotated[str, Field(pattern=r'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$')]
     day_end: Annotated[str, Field(pattern=r'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$')]
     day_settings: dict[date, dict[str, str]] | None = None
@@ -69,11 +71,10 @@ class ShanghaiPreferences(BaseModel):
                 raise ValueError('Недопустимая индивидуальная настройка дня.')
             start_value = settings.get('day_start', self.day_start)
             end_value = settings.get('day_end', self.day_end)
-            try:
-                start_minutes = time.fromisoformat(start_value)
-                end_minutes = time.fromisoformat(end_value)
-            except (TypeError, ValueError):
-                raise ValueError('Неверное время индивидуального дня.') from None
+            if not valid_clock(start_value) or not valid_clock(end_value):
+                raise ValueError('Неверное время индивидуального дня.')
+            start_minutes = time.fromisoformat(start_value)
+            end_minutes = time.fromisoformat(end_value)
             if ((end_minutes.hour * 60 + end_minutes.minute) -
                     (start_minutes.hour * 60 + start_minutes.minute)) < 60:
                 raise ValueError('Индивидуальное дневное окно должно быть от 60 минут.')
@@ -106,6 +107,7 @@ class MoscowPreferences(ShanghaiPreferences):
     city: Literal['moscow']
     timezone: Literal['Europe/Moscow']
     visit_minutes: Annotated[int, Field(strict=True, ge=15, le=480)] | None = None
+    route_priority: RoutePriority = 'balanced'
 
 
 def init_routes():
@@ -119,7 +121,10 @@ def init_routes():
         db.execute('CREATE INDEX IF NOT EXISTS planned_trips_owner ON planned_trips(owner_id, updated_at)')
 
 
-def owned_route(route_id, owner_id):
+def owned_route(route_id, owner_id, request=None):
+    if route_id.startswith('preview-') and request is not None:
+        from backend.route_previews import preview_owned
+        return preview_owned(route_id, owner_id, request)
     with database() as db:
         row = db.execute('SELECT * FROM planned_trips WHERE route_id=? AND owner_id=?', (route_id, owner_id)).fetchone()
     if row is None:
@@ -134,21 +139,35 @@ def trips(user: dict = Depends(current_user)):
         rows = db.execute('''SELECT route_id, city, version, created_at, updated_at,
                             json_extract(options, '$.start_date') AS start_date
                             FROM planned_trips WHERE owner_id=? ORDER BY updated_at DESC, route_id''', (user['id'],))
-        return {'trips': [dict(row) for row in rows]}
+        return {'owner_context': str(user['id']), 'trips': [dict(row) for row in rows]}
 
 
 @router.get('/api/planned-trips/{route_id}')
 def read_trip(route_id: str, user: dict = Depends(current_user)):
-    return owned_route(route_id, user['id'])
+    from backend.route_previews import form_from_engine
+    route = owned_route(route_id, user['id'])
+    # Старый маршрут должен оставаться доступным для просмотра, даже если его
+    # параметры ещё не представлены в новой анкете (например, питомец).
+    try:
+        form = form_from_engine(route)
+    except HTTPException:
+        form = None
+    return {**route, 'owner_context': str(user['id']), 'is_preview': False, 'form_preferences': form}
 
 
 @router.post('/api/planned-trips', status_code=201, dependencies=[Depends(same_origin)])
 def plan_trip(preferences: Annotated[ShanghaiPreferences | MoscowPreferences, Field(discriminator='city')],
               user: dict = Depends(current_user)):
+    plan, options, snapshot = build_plan(preferences)
+    return store_trip(preferences, user, plan, options, snapshot)
+
+
+def build_plan(preferences):
+    """Existing AI/DS generators, shared by legacy persistence and new preview."""
     if preferences.city == 'moscow':
         from backend.moscow import plan_moscow
         plan, options, snapshot = plan_moscow(preferences)
-        return store_trip(preferences, user, plan, options, snapshot)
+        return plan, options, snapshot
     service = assistant()
     options = preferences.options()
     known = {poi['id'] for poi in service.data['pois']}
@@ -158,7 +177,7 @@ def plan_trip(preferences: Annotated[ShanghaiPreferences | MoscowPreferences, Fi
         plan = bridge_call({'action': 'plan', 'options': options})
     except AssistantError as error:
         raise HTTPException(503 if 'UNAVAILABLE' in error.code else 422, human_error(error.code)) from error
-    return store_trip(preferences, user, plan, options, service.snapshot)
+    return plan, options, service.snapshot
 
 
 def store_trip(preferences, user, plan, options, snapshot):
@@ -213,11 +232,13 @@ def assistant_for(route):
     return assistant()
 
 
+@router.get('/api/route-previews/{route_id}/assistant/status')
 @router.get('/api/planned-trips/{route_id}/assistant/status')
 def assistant_status(route_id: str, request: Request, user: dict = Depends(current_user)):
-    route = owned_route(route_id, user['id'])
+    route = owned_route(route_id, user['id'], request)
     service = assistant_for(route)
-    if not service.configured:
+    local_shanghai = route['city'] == 'shanghai' and not service.configured
+    if not service.configured and not local_shanghai:
         return {'available': False, 'reason': 'Задайте OPENROUTER_API_KEY в окружении терминала, из которого запускается FastAPI, и перезапустите сервер. Без ключа маршруты работают, чат отключён.'}
     if route['poi_snapshot_id'] != service.snapshot or route['plan']['status'] == 'infeasible':
         return {'available': False, 'reason': 'Для этой версии маршрута чат недоступен. Постройте новый выполнимый маршрут.'}
@@ -227,6 +248,8 @@ def assistant_status(route_id: str, request: Request, user: dict = Depends(curre
         raise HTTPException(503, human_error(error.code)) from error
     response = {'available': True, 'csrf_token': state['csrf'], 'mode': service.mode,
                 'conversation': route['options'].get('conversation', [])}
+    if local_shanghai:
+        response.update(mode='local', reason='Без OpenRouter доступны закрепление времени посещения и изменение часов промежуточных дней.')
     if route['city'] == 'moscow':
         # Let the browser confirm which server-side named-POI handler is live;
         # stale FastAPI processes otherwise make fresh ZIP installs appear broken.
@@ -235,6 +258,7 @@ def assistant_status(route_id: str, request: Request, user: dict = Depends(curre
     return response
 
 
+@router.post('/api/route-previews/{route_id}/assistant/{action}', dependencies=[Depends(same_origin)])
 @router.post('/api/planned-trips/{route_id}/assistant/{action}', dependencies=[Depends(same_origin)])
 async def assistant_action(route_id: str, action: Literal['register', 'message', 'decide'], request: Request,
                            user: dict = Depends(current_user)):
@@ -255,7 +279,7 @@ async def assistant_action(route_id: str, action: Literal['register', 'message',
 
 
 def apply_assistant(route_id, action, request, user, body):
-    route = owned_route(route_id, user['id'])
+    route = owned_route(route_id, user['id'], request)
     service = assistant_for(route)
     if route['poi_snapshot_id'] != service.snapshot:
         raise HTTPException(409, 'Каталог изменился. Постройте новый маршрут.')
@@ -265,7 +289,7 @@ def apply_assistant(route_id, action, request, user, body):
             csrf = request.headers.get('X-TripWise-CSRF', '')
             if not secrets.compare_digest(state['csrf'].encode(), csrf.encode()):
                 raise AssistantError('CSRF_REJECTED')
-            current = owned_route(route_id, user['id'])
+            current = owned_route(route_id, user['id'], request)
             if current['version'] != route['version']:
                 raise HTTPException(409, 'Маршрут уже изменён. Откройте поездку заново.')
             if action == 'register':
@@ -281,7 +305,11 @@ def apply_assistant(route_id, action, request, user, body):
             if (route['city'] == 'moscow' and action == 'message' and isinstance(body.get('text'), str)
                     and body.get('route_id') == route_id and body.get('base_version') == route['version']
                     and 0 < len(body['text'].strip()) <= 3000 and result.get('message')):
-                append_moscow_conversation(route_id, user['id'], route['version'], body, result['message'])
+                if route.get('is_preview'):
+                    from backend.route_previews import append_preview_conversation
+                    append_preview_conversation(route_id, user['id'], request, route['version'], body, result['message'])
+                else:
+                    append_moscow_conversation(route_id, user['id'], route['version'], body, result['message'])
             if result['type'] == 'registered':
                 state['registration'] = {field: result[field] for field in ('type', 'route_id', 'version', 'poi_snapshot_id')}
                 return state['registration']
@@ -291,15 +319,20 @@ def apply_assistant(route_id, action, request, user, body):
                 return result
             if result['type'] == 'confirmed':
                 plan = {**result['plan'], 'ranking': route['plan'].get('ranking', [])}
-                with database() as db:
-                    changed = db.execute('''UPDATE planned_trips SET version=version+1, plan=?,
+                if route.get('is_preview'):
+                    from backend.route_previews import apply_preview_change
+                    apply_preview_change(route_id, user, request, route['version'], plan, result['options'])
+                    changed = 1
+                else:
+                    with database() as db:
+                        changed = db.execute('''UPDATE planned_trips SET version=version+1, plan=?,
                                             options=CASE WHEN city='moscow' THEN json_set(?, '$.conversation',
                                               json(COALESCE(json_extract(options, '$.conversation'), '[]'))) ELSE ? END,
                                             updated_at=?
                                             WHERE route_id=? AND owner_id=? AND version=?''', (
                         json.dumps(plan), json.dumps(result['options']), json.dumps(result['options']),
                         int(timestamp()), route_id, user['id'], route['version'],
-                    )).rowcount
+                        )).rowcount
                 if not changed:
                     raise HTTPException(409, 'Маршрут уже изменён. Откройте поездку заново.')
                 state['registration']['version'] = result['version']

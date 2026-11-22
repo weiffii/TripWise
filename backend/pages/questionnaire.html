@@ -4,102 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Новая поездка — TripWise</title>
-    <script src="/theme.js"></script>
-    <link rel="stylesheet" href="/styles.css">
-    <script src="/questionnaire.js" defer></script>
+    <script src="/theme.js?v=20261122-unified2"></script>
+    <link rel="stylesheet" href="/styles.css?v=20261122-unified2">
+    <script src="/destination-visuals.js?v=20261122-unified2" defer></script>
+    <script src="/questionnaire.js?v=20261122-meals" defer></script>
   </head>
   <body class="questionnaire-page">
     <header class="header">
-      <a class="brand" href="/trips" aria-label="TripWise — мои поездки"><span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span></a>
+      <a class="brand" href="/" aria-label="TripWise — главная"><span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span></a>
       <div class="header-actions"><a class="back-link" href="/trips">← Мои поездки</a><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button></div>
     </header>
     <main class="questionnaire-main">
-      <section class="page-hero questionnaire-hero"><div class="hero-content"><p class="eyebrow">СЛЕДУЮЩАЯ ОСТАНОВКА — ШАНХАЙ</p><h1 class="trips-heading">Город один.<br><em>Впечатления — ваши.</em></h1><p class="form-intro">Немного о ваших планах — и путешествие станет ближе.</p></div><span class="hero-location">ВАША НОВАЯ ИСТОРИЯ ↗</span></section>
-      <div class="form-progress" aria-label="Этап планирования"><span class="active"><b>01</b> Ваша анкета</span><span><b>02</b> Маршрут · впереди</span><span><b>03</b> Впечатления</span></div>
+      <section class="page-hero questionnaire-hero"><div class="hero-content"><p class="eyebrow">ВАШЕ ПУТЕШЕСТВИЕ НАЧИНАЕТСЯ ЗДЕСЬ</p><h1 class="trips-heading">Новый город.<br><em>Ваши впечатления.</em></h1><p class="form-intro">Немного о ваших планах — и путешествие станет ближе.</p></div><span class="hero-location">ВАША НОВАЯ ИСТОРИЯ ↗</span></section>
+      <div class="form-progress" aria-label="Этап планирования"><span class="active"><b>01</b> Ваша анкета</span><span><b>02</b> Создание маршрута</span><span><b>03</b> Сохранение</span></div>
       <div class="questionnaire-layout">
         <form id="trip-form">
           <fieldset id="trip-fields" disabled>
             <legend class="visually-hidden">Анкета путешественника</legend>
-            <section class="form-section" aria-labelledby="where-title">
+            <section class="form-section" aria-labelledby="where-title"><div class="section-art"><img src="/assets/card-destination.svg" alt="" loading="lazy"><div><p class="eyebrow">НАПРАВЛЕНИЕ И ВРЕМЯ</p><p>Москва и Шанхай доступны сейчас. Другие города — в разработке.</p></div></div>
               <span class="section-number">01 / НАПРАВЛЕНИЕ И ВРЕМЯ</span>
               <h2 id="where-title">Куда и когда?</h2>
               <div class="form-grid">
-                <div class="field"><label for="country">Страна</label><select id="country" name="country_code"><option value="CN">Китай</option></select></div>
-                <div class="field"><label for="city">Город</label><select id="city" name="city"><option value="Шанхай">Шанхай</option><option value="Москва">Москва — ограниченный пилот</option></select></div>
+                <div class="field"><label for="country">Страна</label><select id="country" name="country_code" required><option value="">Выберите страну</option></select></div>
+                <div class="field"><label for="city">Город</label><select id="city" name="city" required><option value="">Выберите город</option></select></div>
                 <div class="field"><label for="first-walk">Начало первой прогулки</label><input id="first-walk" name="first_walk_at" type="datetime-local" required><p class="field-hint">Когда вы уже готовы гулять, после дороги и заселения.</p></div>
                 <div class="field"><label for="last-walk">Окончание последней прогулки</label><input id="last-walk" name="last_walk_end_at" type="datetime-local" required><p class="field-hint">Когда нужно закончить гулять в день отъезда.</p></div>
               </div>
-              <p class="field-hint" id="city-note"></p>
-              <div class="form-grid">
-                <div class="field"><label for="full-day-start">Начало полного дня</label><input id="full-day-start" type="time" value="09:00" required></div>
-                <div class="field"><label for="full-day-end">Окончание полного дня</label><input id="full-day-end" type="time" value="20:00" required></div>
-              </div>
-              <p class="field-hint">Первый день начинается после прибытия, последний заканчивается до отъезда. Промежуточные дни — полноценные, по умолчанию 09:00–20:00.</p>
-              <details><summary>Настроить часы каждого дня отдельно</summary><div id="individual-day-windows" class="form-grid" aria-live="polite"></div></details>
+              <p class="field-hint"><span id="timezone-note">Выберите город — время указывается по местному часовому поясу.</span> Для маршрута доступны 1–14 дней. Не более 30 человек в каждой возрастной группе. Первый и последний день ограничены указанным вами временем. Каждый день должен оставлять хотя бы час на прогулку.</p>
+              <details id="middle-days" hidden>
+                <summary>Настроить время прогулок по дням</summary>
+                <p class="field-hint">Пустые поля используют 09:00 для начала и 21:00 для окончания.</p>
+                <div id="middle-day-fields"></div>
+              </details>
             </section>
 
-            <section class="form-section" aria-labelledby="budget-title">
+            <section class="form-section" aria-labelledby="budget-title"><div class="section-art"><img src="/assets/card-budget.svg" alt="" loading="lazy"><div><p class="eyebrow">КОМПАНИЯ И БЮДЖЕТ</p><p>Разные люди. Общие впечатления.</p></div></div>
               <span class="section-number">02 / КОМПАНИЯ И БЮДЖЕТ</span>
               <h2 id="budget-title">С кем и с каким бюджетом?</h2>
               <div class="form-grid">
-                <div class="party-fields">
-                  <div class="field"><label for="adults">Взрослые</label><input id="adults" name="adults" type="number" min="0" max="30" step="1" value="1" inputmode="numeric" required></div>
-                  <div class="field"><label for="children">Дети</label><input id="children" name="children" type="number" min="0" max="30" step="1" value="0" inputmode="numeric" required></div>
-                  <div class="field"><label for="seniors">Пожилые</label><input id="seniors" name="seniors" type="number" min="0" max="30" step="1" value="0" inputmode="numeric" required></div>
+                <div class="party-fields illustrated-party">
+                  <div class="field"><img class="party-avatar" src="/assets/card-party.svg" alt=""><label for="adults">Взрослые</label><input id="adults" name="adults" type="number" min="0" max="30" step="1" value="1" inputmode="numeric" required></div>
+                  <div class="field"><img class="party-avatar" src="/assets/card-party.svg" alt=""><label for="children">Дети</label><input id="children" name="children" type="number" min="0" max="30" step="1" value="0" inputmode="numeric" required></div>
+                  <div class="field"><img class="party-avatar" src="/assets/card-party.svg" alt=""><label for="seniors">Пожилые</label><input id="seniors" name="seniors" type="number" min="0" max="30" step="1" value="0" inputmode="numeric" required></div>
                 </div>
                 <p id="party-total" class="party-total" aria-live="polite">Всего: 1 путешественник</p>
-                <div class="field"><label for="budget">Бюджет за всю поездку</label><input id="budget" name="budget_amount" type="number" min="0" max="1000000000" step="0.01" placeholder="Например, 15000" required></div>
-                <div class="field"><label for="currency">Валюта бюджета</label><select id="currency" name="budget_currency"><option value="RUB">RUB · Российский рубль ₽</option><option value="USD">USD · Доллар США $</option><option value="EUR">EUR · Евро €</option><option value="CNY" selected>CNY · Китайский юань ¥</option></select></div>
+                <div class="field"><label for="budget">Бюджет за всю поездку</label><input id="budget" name="budget_amount" type="number" min="0" max="10000000" step="0.01" placeholder="Например, 15000" required></div>
+                <div class="field"><label for="currency">Валюта бюджета</label><select id="currency" name="budget_currency"><option value="RUB">RUB · Российский рубль ₽</option><option value="USD">USD · Доллар США $</option><option value="EUR">EUR · Евро €</option><option value="CNY">CNY · Китайский юань ¥</option></select></div>
               </div>
               <fieldset class="choice-group"><legend>Как считать бюджет?</legend><div class="choice-row">
                 <label class="choice"><input type="radio" name="budget_basis" value="per_person" checked><span>На человека</span></label>
                 <label class="choice"><input type="radio" name="budget_basis" value="group"><span>На всю компанию</span></label>
               </div></fieldset>
-              <p class="field-hint">Бюджет на посещения, питание и поездки по городу. Проживание и дорога до выбранного города не входят. Для Москвы используется RUB; цены транспорта и части мест — оценки.</p>
+              <p id="currency-note" class="field-hint"></p><p class="field-hint">Бюджет включает питание, посещения и транспорт по городу. Проживание и дорога до города не входят.</p><p class="field-hint">Выбор валюты не пересчитывает сумму по курсу. Бюджет «на человека» одинаков для всех путешественников; возрастные скидки не рассчитываются.</p>
             </section>
 
-            <section class="form-section" aria-labelledby="interests-title">
+            <section class="form-section" aria-labelledby="interests-title"><div class="section-art"><img src="/assets/card-unusual.svg" alt="" loading="lazy"><div><p class="eyebrow">ВАШИ ИНТЕРЕСЫ</p><p>Соберите свою палитру впечатлений.</p></div></div>
               <span class="section-number">03 / ВАШИ ИНТЕРЕСЫ</span>
               <h2 id="interests-title">Что хочется увидеть?</h2>
-              <fieldset class="choice-group"><legend>Главные интересы <span class="legend-hint">Выберите 1–2</span></legend><div id="primary-interests" class="interest-grid"></div></fieldset>
+              <fieldset class="choice-group"><legend>Главные интересы <span class="legend-hint">Выберите всё, что нравится</span></legend><div id="primary-interests" class="interest-grid"></div></fieldset>
               <fieldset class="choice-group"><legend>Дополнительные интересы <span class="legend-hint">По желанию</span></legend><div id="secondary-interests" class="interest-grid"></div></fieldset>
             </section>
 
-            <section class="form-section" aria-labelledby="pace-title">
+            <section class="form-section" aria-labelledby="pace-title"><div class="section-art"><img src="/assets/card-walking.svg" alt="" loading="lazy"><div><p class="eyebrow">ВАШ РИТМ</p><p>Проживите путешествие в своём темпе.</p></div></div>
               <span class="section-number">04 / ВАШ РИТМ</span>
               <h2 id="pace-title">Как будем отдыхать?</h2>
               <fieldset class="choice-group"><legend>Темп отдыха</legend><div class="pace-options">
-                <label class="choice pace-choice"><input type="radio" name="pace" value="relaxed"><span><strong>Спокойный</strong><small>Больше времени на места и отдых</small></span></label>
-                <label class="choice pace-choice"><input type="radio" name="pace" value="balanced" checked><span><strong>Сбалансированный</strong><small>Прогулки чередуются с перерывами</small></span></label>
-                <label class="choice pace-choice"><input type="radio" name="pace" value="intensive"><span><strong>Насыщенный</strong><small>Больше посещений и впечатлений</small></span></label>
+                <label class="choice pace-choice"><img class="pace-image" src="/assets/pace-calm.svg" alt="" loading="lazy"><input type="radio" name="pace" value="relaxed"><span><strong>Спокойный</strong><small>Больше времени на места и отдых</small></span></label>
+                <label class="choice pace-choice"><img class="pace-image" src="/assets/pace-mixed.svg" alt="" loading="lazy"><input type="radio" name="pace" value="balanced" checked><span><strong>Смешанный</strong><small>Прогулки чередуются с перерывами</small></span></label>
+                <label class="choice pace-choice"><img class="pace-image" src="/assets/pace-active.svg" alt="" loading="lazy"><input type="radio" name="pace" value="intensive"><span><strong>Активный</strong><small>Больше посещений и впечатлений</small></span></label>
               </div></fieldset>
               <fieldset class="choice-group"><legend>Способы передвижения <span class="legend-hint">Можно несколько</span></legend><div class="choice-row">
-                <label class="choice"><input type="checkbox" name="transport_modes" value="walking" checked><span>Пешком</span></label>
-                <label class="choice"><input type="checkbox" name="transport_modes" value="public_transit"><span>Общественный транспорт</span></label>
-                <label class="choice"><input type="checkbox" name="transport_modes" value="car"><span>Такси</span></label>
+                <label class="choice"><img class="transport-image" src="/assets/card-walking.svg" alt=""><input type="checkbox" name="transport_modes" value="walking" checked><span>Пешком</span></label>
+                <label class="choice"><img class="transport-image" src="/assets/card-public_transit.svg" alt=""><input type="checkbox" name="transport_modes" value="public_transit"><span>Общественный транспорт</span></label>
+                <label class="choice"><img class="transport-image" src="/assets/card-car.svg" alt=""><input type="checkbox" name="transport_modes" value="car"><span>Автомобиль</span></label>
               </div></fieldset>
+              <div id="route-priority-field" class="field" hidden>
+                <label for="route-priority">Приоритет маршрута</label>
+                <select id="route-priority" name="route_priority">
+                  <option value="balanced">Сбалансированный маршрут</option>
+                  <option value="walking">Меньше пешком</option>
+                  <option value="transfers">Меньше пересадок</option>
+                  <option value="cost">Дешевле</option>
+                </select>
+              </div>
             </section>
 
-            <section class="form-section" aria-labelledby="places-title">
+            <section class="form-section" aria-labelledby="places-title"><div class="section-art"><img src="/assets/card-places.svg" alt="" loading="lazy"><div><p class="eyebrow">ОБЯЗАТЕЛЬНЫЕ МЕСТА</p><p>Сохраните место для того самого места.</p></div></div>
               <span class="section-number">05 / ОБЯЗАТЕЛЬНЫЕ МЕСТА</span>
               <h2 id="places-title">Есть что-то особенное?</h2>
-              <label for="route-required">Обязательные места (необязательно)</label>
-              <input id="poi-filter" type="search" placeholder="Найти место по названию">
-              <select id="route-required" multiple size="5"></select>
-              <div id="moscow-duration" hidden><label for="visit-minutes">Плановое время на каждое выбранное место, минут (необязательно)</label><input id="visit-minutes" type="number" min="15" max="480" step="1"></div>
+              <label for="required-search">Найти достопримечательность</label>
+              <input id="required-search" type="search" placeholder="Введите название места" aria-describedby="places-note">
+              <p id="places-note" class="field-hint">Выберите несколько мест из подборки города. Это обязательные пожелания для будущего маршрута.</p><p id="places-load-status" class="field-hint" role="status"></p><p id="poi-count" class="field-hint"></p><div id="selected-places" class="selected-places" aria-label="Выбранные места"></div><div id="poi-options" class="poi-options"></div><p id="poi-empty" class="field-hint" hidden>Места не найдены. Попробуйте другое название.</p>
             </section>
-            <button id="finish-questionnaire" class="submit-button" type="submit"><span>Построить маршрут</span><span aria-hidden="true">↗</span></button>
+            <button id="finish-questionnaire" class="submit-button" type="submit"><span>Создать маршрут</span><span aria-hidden="true">↗</span></button>
           </fieldset>
         </form>
         <aside class="trip-summary" aria-labelledby="summary-title">
           <div class="summary-cover" aria-hidden="true"></div><span class="section-number">ВАША ПОЕЗДКА</span>
-          <h2 id="summary-title">Шанхай <span aria-hidden="true">↗</span></h2>
-          <dl><dt>Время прогулок</dt><dd id="summary-dates">Выберите даты и время</dd><dt>Компания</dt><dd id="summary-people">1 человек</dd><dt>Бюджет на компанию</dt><dd id="summary-budget">Укажите сумму</dd><dt>Главные интересы</dt><dd id="summary-interests">Выберите 1–2 интереса</dd></dl>
+          <h2 id="summary-title">Ваша поездка</h2>
+          <dl><dt>Время прогулок</dt><dd id="summary-dates">Выберите даты и время</dd><dt>Компания</dt><dd id="summary-people">1 человек</dd><dt>Бюджет на компанию</dt><dd id="summary-budget">Укажите сумму</dd><dt>Главные интересы</dt><dd id="summary-interests">Выберите хотя бы один интерес</dd></dl>
           <p id="save-status" class="save-status" role="status" aria-live="polite">Загружаем анкету…</p>
-          <p class="field-hint">Маршрут и параметры сохраняются в разделе «Мои поездки» после построения.</p>
+          <p class="field-hint">Сначала создайте маршрут. Посмотрите расписание и карту, при необходимости отредактируйте и нажмите «Сохранить поездку».</p>
         </aside>
       </div>
     </main>
-    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span class="photo-credit">Фото: <a href="https://commons.wikimedia.org/wiki/File:Sunset_over_Moscow_City.jpg" target="_blank" rel="noopener noreferrer">Юрий Д.К.</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></footer>
+    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><a href="/assets/README.md">Авторы изображений и лицензии</a></footer>
   </body>
 </html>
