@@ -360,15 +360,10 @@ article.trip-card h2 { margin: 12px 0; }
 }
 #route-cost { font-size: 1.65rem; }
 #route-tabs { display: flex; flex-wrap: wrap; gap: .5rem; }
-#route-tabs button, .route-event button { font: inherit; color: inherit; cursor: pointer; }
+#route-tabs button { font: inherit; color: inherit; cursor: pointer; }
 #route-tabs button { background: transparent; border: 1px solid #9288b677; border-radius: 10px; padding: .65rem .8rem; }
 #route-tabs button[aria-pressed=true] { background: #594790; color: white; }
 #route-stops { list-style: none; padding: 0; }
-.route-event { display: grid; grid-template-columns: minmax(6.2rem,auto) 1fr; align-items: start; gap: .75rem; }
-.route-event-time { padding-top: .8rem; font-size: .85rem; font-variant-numeric: tabular-nums; }
-.route-event > div { padding: .75rem; border: 1px solid #9288b677; border-radius: 12px; overflow-wrap: anywhere; }
-.route-event-travel > div { border-style: dashed; }
-.route-event button { background: none; border: 0; padding: 0; text-align: left; font-weight: 700; text-decoration: underline; }
 .route-chat #chat-log { display: flex; flex-direction: column; gap: .65rem; max-height: 24rem; overflow: auto; }
 .route-chat .chat-message { margin: 0; max-width: 90%; padding: .65rem .8rem; border-radius: 12px; overflow-wrap: anywhere; white-space: pre-wrap; }
 .route-chat .chat-user { align-self: flex-end; color: white; background: #594790; }
@@ -393,4 +388,66 @@ article.trip-card h2 { margin: 12px 0; }
 .route-result-hero { min-height:220px; }
 .result-layout .route-chat { position:static; top:auto; align-self:start; }
 .saved-route-badge { color:var(--primary); font-weight:600; }
-@media(max-width:600px){.preview-actions > * { width:100%; }.result-layout .route-event {grid-template-columns:1fr;gap:0;}.result-layout .route-event-time {padding-bottom:6px;}}
+@media(max-width:600px){.preview-actions > * { width:100%; }}
+
+/* Расписание: одинаковые колонки во всех частях дня. */
+.schedule-columns, #route-stops .schedule-row {
+  display: grid;
+  grid-template-columns: 6.6rem minmax(0, 1fr) 6.7rem 6rem;
+  gap: .6rem;
+  align-items: baseline;
+  padding: .75rem .9rem;
+}
+.schedule-columns { font-size: .78rem; color: var(--muted); }
+#route-stops { margin-top: .25rem; }
+#route-stops .schedule-block {
+  --schedule-accent: #a75d24;
+  --schedule-tint: #fbe2bd;
+  --schedule-ink: #593015;
+  padding: 0;
+  margin-bottom: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+}
+#route-stops .schedule-afternoon { --schedule-accent: #3d8671; --schedule-tint: #c9f0e2; --schedule-ink: #204a3d; }
+#route-stops .schedule-evening { --schedule-accent: #845bb2; --schedule-tint: #e6d7fa; --schedule-ink: #4c3068; }
+#route-stops .schedule-block h3 {
+  margin: 0;
+  padding: .65rem .9rem;
+  border-inline-start: 5px solid var(--schedule-accent);
+  background: var(--schedule-tint);
+  color: var(--schedule-ink);
+  font-weight: 650;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.schedule-rows { list-style: none; margin: 0; padding: 0; }
+.schedule-row + .schedule-row { border-top: 1px solid var(--line); }
+.schedule-row.route-event-travel { background: var(--surface-alt); }
+.schedule-cell { font-size: .87rem; font-variant-numeric: tabular-nums; }
+.schedule-time { white-space: nowrap; font-weight: 600; }
+.schedule-action { min-width: 0; overflow-wrap: anywhere; }
+.schedule-action button {
+  border: 0; padding: 0; background: none; color: inherit;
+  font: inherit; font-weight: 650; text-align: left;
+}
+.schedule-action button:hover { text-decoration: underline; }
+.schedule-action button:focus-visible { outline-offset: 2px; }
+.schedule-category { display: block; color: var(--muted); margin-bottom: .2rem; }
+.schedule-action details { font-size: .82rem; color: var(--muted); margin-top: .35rem; }
+.schedule-action summary { cursor: pointer; }
+.schedule-empty { margin: .65rem .9rem; color: var(--muted); font-size: .9rem; }
+@media (max-width: 1050px) {
+  .schedule-columns { display: none; }
+  #route-stops .schedule-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem .65rem; }
+  .schedule-action { grid-area: 2 / 1 / auto / -1; }
+  .schedule-time { grid-column: 1 / -1; color: var(--muted); }
+  .schedule-cell:not(.schedule-time)::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--muted);
+    font-size: .72rem;
+  }
+}

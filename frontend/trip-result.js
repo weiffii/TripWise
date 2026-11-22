@@ -58,7 +58,7 @@ function clock(row, key) {
   return Number.isFinite(value) ? String(Math.floor(value / 60)).padStart(2,'0') + ':' + String(value % 60).padStart(2,'0') : '';
 }
 
-function eventLabel(row) {
+function eventDetails(row) {
   const name = places.get(row.poi_id)?.name;
   const kind = {visit:'Посещение', meal:'Перерыв на питание', travel:'Переход', rest:'Отдых', wait:'Ожидание', waiting:'Ожидание'};
   const mode = {walk:'Пешком',transit:'Общественный транспорт',taxi:'Такси'}[row.mode];
@@ -68,13 +68,67 @@ function eventLabel(row) {
     : row.end_min - row.start_min);
   const moscow = trip.city === 'moscow';
   const cost = moscow ? row.price_rub ?? row.transport_cost_rub : row.price_cny ?? row.cost_cny ?? row.transport_cost_cny;
-  const estimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate' || row.price_basis === 'expert_estimate' || row.transport_cost_basis === 'synthetic_fare_estimate';
-  return [clock(row,'start') + '–' + clock(row,'end'), row.type === 'travel' ? mode || 'Пеший переход' :
-    (meal && name ? meal + ' · ' + name : name || kind[row.type] || 'Перерыв'),
-    estimate ? 'ориентировочно' : '',
-    Number.isFinite(minutes) ? minutes + ' мин' : '',
-    cost == null ? (moscow && ['visit','meal','travel'].includes(row.type) ? 'стоимость неизвестна' : '') :
-      cost + (moscow ? ' ₽' : ' CNY')].filter(Boolean).join(' · ');
+  const durationEstimate = row.basis === 'geometric_estimate' || row.duration_basis === 'expert_estimate';
+  const costEstimate = row.price_basis === 'expert_estimate' || row.transport_cost_basis === 'synthetic_fare_estimate';
+  const action = row.type === 'travel' ? mode || 'Переход' : name || meal || kind[row.type] || 'Перерыв';
+  return {action, category: name ? meal || kind[row.type] : '', minutes, cost, durationEstimate, costEstimate,
+    currency: moscow ? '₽' : 'CNY'};
+}
+
+function eventLabel(row) {
+  const info = eventDetails(row);
+  return [`${clock(row, 'start')}–${clock(row, 'end')}`, info.category, info.action,
+    Number.isFinite(info.minutes) ? `${info.durationEstimate ? '≈' : ''}${info.minutes} мин` : '',
+    info.cost == null ? '' : `${info.costEstimate ? '≈' : ''}${info.cost} ${info.currency}`]
+    .filter(Boolean).join(' · ');
+}
+
+function scheduleMinute(row, edge) {
+  const value = clock(row, edge);
+  if (!value) return NaN;
+  const [hours, minutes] = value.split(':').map(Number);
+  return hours * 60 + minutes;
+}
+
+function scheduleWithWaiting(rows) {
+  return rows.flatMap((row, index) => {
+    const previous = rows[index - 1];
+    const wait = row.wait_before_min ?? (previous ? row.start_min - previous.end_min : 0);
+    if (wait > 60 && !['wait', 'waiting'].includes(previous?.type) && !['wait', 'waiting'].includes(row.type)) {
+      const end = scheduleMinute(row, 'start');
+      return [{type: 'waiting', start_min: end - wait, end_min: end, reason: row.waiting_reason}, row];
+    }
+    return [row];
+  });
+}
+
+function daySections(rows) {
+  const mealEnd = kind => {
+    const meal = rows.find(row => row.type === 'meal' && row.meal_kind === kind);
+    return meal ? scheduleMinute(meal, 'end') : NaN;
+  };
+  const lunch = mealEnd('lunch');
+  const dinner = mealEnd('dinner');
+  const afternoon = Number.isFinite(lunch) ? lunch : Math.min(14 * 60, dinner || Infinity);
+  const evening = Number.isFinite(dinner) ? Math.max(afternoon, dinner) : Math.max(afternoon, 19 * 60);
+  const sections = [
+    {title: 'До обеда', tone: 'morning', rows: []},
+    {title: 'После обеда', tone: 'afternoon', rows: []},
+    {title: 'После ужина', tone: 'evening', rows: []},
+  ];
+  for (const row of rows) {
+    const time = scheduleMinute(row, 'start');
+    sections[time >= evening ? 2 : time >= afternoon ? 1 : 0].rows.push(row);
+  }
+  return {sections, approximate: !Number.isFinite(lunch) || !Number.isFinite(dinner)};
+}
+
+function scheduleCell(label, text, extraClass = '') {
+  const cell = document.createElement('span');
+  cell.className = `schedule-cell ${extraClass}`;
+  cell.dataset.label = label;
+  cell.textContent = text;
+  return cell;
 }
 
 function appendText(parent, text) {
@@ -124,59 +178,100 @@ function drawMap(rows) {
   }
 }
 
+function renderScheduleRow(row, legIndex) {
+  const info = eventDetails(row);
+  const item = document.createElement('li');
+  item.className = `schedule-row route-event-${row.type}`;
+
+  const action = document.createElement('div');
+  action.className = 'schedule-action';
+  const place = places.get(row.poi_id);
+  const canMap = place && Number.isFinite(place.lat) && Number.isFinite(place.lon);
+  const title = document.createElement(canMap || row.type === 'travel' ? 'button' : 'strong');
+  title.textContent = info.action;
+  if (title.tagName === 'BUTTON') title.type = 'button';
+  if (canMap) title.dataset.poi = row.poi_id;
+  if (row.type === 'travel') {
+    title.onclick = () => {
+      routeMap.selectLeg(legIndex);
+      element('street-map').scrollIntoView({block: 'nearest'});
+    };
+  }
+  if (info.category) {
+    const category = document.createElement('small');
+    category.className = 'schedule-category';
+    category.textContent = info.category;
+    action.append(category);
+  }
+  action.append(title);
+  if (row.reason && ['waiting', 'wait', 'meal', 'rest'].includes(row.type)) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Подробности';
+    const reason = document.createElement('p');
+    reason.textContent = row.reason;
+    details.append(summary, reason);
+    action.append(details);
+  }
+  if (row.transport_steps?.length) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Как добраться';
+    const steps = document.createElement('ol');
+    for (const step of row.transport_steps) {
+      const label = {walk_access:'Подход', walk_egress:'Выход к месту', walk_transfer:'Пересадка',
+        wait_estimate:'Ожидание', rail_estimate:'Поездка', alight:'Выход со станции'}[step.kind];
+      const stop = step.to_stop_location || step.from_stop_location;
+      const [mode, line] = (step.line || '').split(':');
+      const service = {metro:'Метро', mcc:'МЦК', mcd:'МЦД', tram:'Трамвай', bus:'Автобус',
+        electric_bus:'Электробус', trolleybus:'Троллейбус'}[mode];
+      const duration = Number.isFinite(step.duration_seconds) ? `${Math.ceil(step.duration_seconds / 60)} мин` : '';
+      appendText(steps, [label, service && [service, line].filter(Boolean).join(' '), stop?.name, duration].filter(Boolean).join(' · '));
+    }
+    details.append(summary, steps);
+    action.append(details);
+  }
+  const minutes = Number.isFinite(info.minutes) ? `${info.durationEstimate ? '≈' : ''}${info.minutes} мин` : '—';
+  const cost = Number.isFinite(info.cost)
+    ? `${info.costEstimate ? '≈' : ''}${new Intl.NumberFormat('ru-RU').format(info.cost)} ${info.currency}`
+    : '—';
+  item.append(scheduleCell('Время', `${clock(row, 'start')}–${clock(row, 'end')}`, 'schedule-time'),
+    action, scheduleCell('Длительность', minutes), scheduleCell('Стоимость', cost));
+  return item;
+}
+
 function renderDay() {
   const day = trip.plan.days[Number(element('route-day').value)];
   const rows = day ? events(day) : [];
   const stops = element('route-stops');
   stops.replaceChildren();
-  if (day?.start_at && day.end_at) appendText(stops, 'Начало ' + day.start_at.slice(11,16) + ' · окончание ' + day.end_at.slice(11,16));
-  let legIndex = 0;
-  for (const [rowIndex,row] of rows.entries()) {
-    const previous = rows[rowIndex-1];
-    const wait = row.wait_before_min ?? (previous && Number.isFinite(row.start_min) ? row.start_min - previous.end_min : 0);
-    if (wait > 60 && !['wait', 'waiting'].includes(row.type) && !['wait', 'waiting'].includes(previous?.type)) {
-      appendText(stops, 'Ожидание · ' + wait + ' мин' + (row.waiting_reason ? ' · ' + row.waiting_reason : ''));
-    }
-    const item = document.createElement('li');
-    item.className = 'route-event route-event-' + row.type;
-    const time = document.createElement('span');
-    time.className = 'route-event-time';
-    time.textContent = clock(row,'start') + '–' + clock(row,'end');
-    const card = document.createElement('div');
-    const place = places.get(row.poi_id);
-    const canMap = place && Number.isFinite(place.lat) && Number.isFinite(place.lon);
-    const title = document.createElement(canMap || row.type === 'travel' ? 'button' : 'strong');
-    title.textContent = eventLabel(row).split(' · ').slice(1).join(' · ');
-    if (canMap) { title.type = 'button'; title.dataset.poi = row.poi_id; }
-    if (row.type === 'travel') {
-      const index = legIndex++;
-      title.type = 'button';
-      title.onclick = () => {
-        routeMap.selectLeg(index);
-        element('street-map').scrollIntoView({block:'nearest'});
-      };
-    }
-    card.append(title);
-    if (row.reason && ['waiting','wait','meal','rest'].includes(row.type)) {
-      const detail = document.createElement('p');
-      detail.textContent = row.reason;
-      card.append(detail);
-    }
-    if (row.transport_steps) {
-      const sequence = document.createElement('ol');
-      for (const step of row.transport_steps) {
-        const label = {walk_access:'Подход', walk_egress:'Выход к месту', walk_transfer:'Пересадка',
-          wait_estimate:'Ожидание', rail_estimate:'Поездка', alight:'Выход со станции'}[step.kind];
-        const stop = step.to_stop_location || step.from_stop_location;
-        const [mode, line] = (step.line || '').split(':');
-        const service = {metro:'Метро', mcc:'МЦК', mcd:'МЦД', tram:'Трамвай', bus:'Автобус',
-          electric_bus:'Электробус', trolleybus:'Троллейбус'}[mode];
-        appendText(sequence, [label, service && service + ' ' + line, stop?.name, Math.ceil(step.duration_seconds / 60) + ' мин'].filter(Boolean).join(' · '));
+  if (rows.length) {
+    const {sections, approximate} = daySections(scheduleWithWaiting(rows));
+    element('schedule-note').textContent = approximate
+      ? 'Без обеда или ужина разделы ориентируются на время дня. ≈ — оценка, прочерк — нет данных.'
+      : 'Обед и ужин завершают предыдущий блок. ≈ — оценка, прочерк — нет данных.';
+    const legIndexes = new Map(rows.filter(row => row.type === 'travel').map((row, index) => [row, index]));
+    for (const section of sections) {
+      const block = document.createElement('li');
+      block.className = `schedule-block schedule-${section.tone}`;
+      const heading = document.createElement('h3');
+      heading.textContent = section.title;
+      block.append(heading);
+      if (!section.rows.length) {
+        const empty = document.createElement('p');
+        empty.className = 'schedule-empty';
+        empty.textContent = 'Нет запланированных действий';
+        block.append(empty);
+      } else {
+        const list = document.createElement('ol');
+        list.className = 'schedule-rows';
+        for (const row of section.rows) list.append(renderScheduleRow(row, legIndexes.get(row)));
+        block.append(list);
       }
-      card.append(sequence);
+      stops.append(block);
     }
-    item.append(time,card);
-    stops.append(item);
+  } else {
+    element('schedule-note').textContent = '';
   }
   for (const tab of element('route-tabs').children) tab.setAttribute('aria-pressed', String(tab.dataset.day === element('route-day').value));
   if (!rows.length) appendText(stops,'В выбранный день не удалось запланировать посещения.');

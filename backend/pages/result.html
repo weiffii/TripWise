@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
   <script src="/theme.js?v=20261122-unified2"></script>
-  <link rel="stylesheet" href="/styles.css?v=20261122-unified2">
+  <link rel="stylesheet" href="/styles.css?v=20261122-schedule1">
   <script src="/destination-visuals.js?v=20261122-unified2" defer></script>
   <script src="/route-map.js" defer></script>
-  <script src="/trip-result.js?v=20261122-unified2" defer></script>
+  <script src="/trip-result.js?v=20261122-schedule1" defer></script>
 </head>
 <body class="questionnaire-page">
   <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
@@ -21,7 +21,9 @@
       <div>
         <section class="form-section"><h2>Планируемые затраты</h2><strong id="route-cost">—</strong><p id="cost-note" class="field-hint"></p></section>
         <section class="form-section"><h2>Расписание по дням</h2><div id="route-tabs" role="group" aria-label="День поездки"></div><select id="route-day" hidden aria-label="День поездки"></select>
-          <ol id="route-stops"></ol><p id="route-warnings" class="field-hint"></p>
+          <p id="schedule-note" class="field-hint"></p>
+          <div class="schedule-columns" aria-hidden="true"><span>Время</span><span>Действие</span><span>Длительность</span><span>Стоимость</span></div>
+          <ol id="route-stops" aria-label="План дня"></ol><p id="route-warnings" class="field-hint"></p>
           <section hidden><h3>Рекомендованные места</h3><ul id="route-suggestions"></ul></section>
         </section>
         <section class="form-section"><h2>Карта остановок</h2>

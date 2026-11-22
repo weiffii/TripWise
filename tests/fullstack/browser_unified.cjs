@@ -56,8 +56,22 @@ async function main(){
   assert.equal(preview.is_preview,true);assert.equal(preview.form_preferences.city,city);assert.ok(preview.plan.days.length);
   assert.ok(preview.plan.days.some(day=>(day.visits?.length||day.events?.filter(e=>e.type==='visit').length)),'real engine should provide visits');
   assert.equal(counts().saved_trips,0,'generation must not save an old questionnaire');assert.equal(counts().planned_trips,generated.length,'generation must not save a route');
-  assert.ok(await page.locator('#route-stops li').count(),'schedule rendered');assert.ok(await page.locator('#route-map').count(),'map DOM exists');
+  assert.deepEqual(await page.locator('.schedule-block h3').allTextContents(), ['До обеда', 'После обеда', 'После ужина']);
+  const scheduleRow = page.locator('.schedule-row').first();
+  assert.equal(await scheduleRow.locator('.schedule-cell').count(), 3);
+  assert.equal(await scheduleRow.locator('.schedule-action').count(), 1);
+  assert.ok(await page.locator('#route-map').count(),'map DOM exists');
   await page.screenshot({path:path.join(artifacts,preview.city+'-preview.png'),fullPage:true});
+  if (preview.city === 'moscow') {
+    const travel = page.locator('.schedule-row.route-event-travel .schedule-action').first();
+    assert.equal(await travel.evaluate(node => getComputedStyle(node).borderTopStyle), 'none');
+    await page.locator('[data-theme-toggle]').click();
+    await page.locator('.schedule-block').first().scrollIntoViewIfNeeded();
+    await page.screenshot({path:path.join(artifacts, 'schedule-desktop.png')});
+    await page.setViewportSize({width: 375, height: 812});
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), 375);
+    await page.setViewportSize({width: 1440, height: 1000});
+  }
   await page.locator('#save-trip').click();await page.waitForURL('**/trip/result?route=*',{timeout:15000});
   const routeId=new URL(page.url()).searchParams.get('route');const saved=await json(await context.request.get(base+'/api/planned-trips/'+routeId));
   assert.equal(saved.city,preview.city);generated.push({routeId,previewId,owner:preview.owner_context,version:saved.version});assert.equal(counts().planned_trips,generated.length);
