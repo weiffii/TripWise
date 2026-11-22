@@ -222,8 +222,17 @@ def fixed_sequence(state, sequences, *, optimize=None):
     profile, context, pois = (state[key] for key in ('preferences', 'routing_context', 'pois'))
     dataset, options, rows = engine_input(profile, pois, state['travel_times'],
         {**context, 'opening_intervals': context.get('moscow_original_hours', context['opening_intervals'])})
+    places = {poi['id']: poi for poi in dataset['pois']}
+    for day in state['route'].get('engine_days', []):
+        for event in day['events']:
+            place = places.get(event.get('poi_id'))
+            if (event['type'] == 'visit' and place and place.get('visit_type') == 'large_shopping_mall'
+                    and place.get('duration_source') == 'synthetic' and not place.get('duration_locked')
+                    and event['end_min'] - event['start_min'] < 180):
+                # An existing format stores the realized duration per visit.
+                # Reopening it should not retroactively expand a 2h stop.
+                place.update(duration_minutes=event['end_min'] - event['start_min'], duration_locked=True)
     if state['route'].get('moscow_meals'):
-        places = {poi['id']: poi for poi in dataset['pois']}
         old_days = {day['date']: {event.get('poi_id'): event for event in day['events'] if event['type'] == 'meal'}
                     for day in state['route'].get('engine_days', [])}
         people = sum(context['moscow_group'][key] for key in ('adult', 'child', 'senior'))

@@ -1,0 +1,1189 @@
+{
+  "label": "updated-v7",
+  "head": "2ea849f8aac66b69c2ddd8d4b83521d824004270",
+  "conditions": "Moscow V7; offline, bundled transport fixtures; mock LLM; one adult; RUB",
+  "metric_notes": "Gaps include the beginning and end of nonempty days and explicit waiting. Unexplained flags unassigned time over 30 min. Geographic returns use a distance heuristic. Unknown source hours are separate from measured violations. When an edit is refused the metrics describe the saved original plan.",
+  "results": {
+    "balanced_1": {
+      "status": "unknown",
+      "poi_count": 7,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 656.0,
+      "useful_visit_minutes": 420,
+      "travel_minutes": 56.0,
+      "waiting_minutes": 4,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 6,
+      "gap_repair": {
+        "before": 0,
+        "after": 0,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 4,
+      "uncovered_interests": [],
+      "known_cost_rub": 5650,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 6
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        7
+      ],
+      "example": {
+        "2026-11-21": [
+          [
+            "moscow-osm-node-10691274563",
+            "09:00",
+            "10:00"
+          ],
+          [
+            "moscow-cultural-p50",
+            "10:09",
+            "11:59"
+          ],
+          [
+            "moscow-cultural-272",
+            "12:05",
+            "13:45"
+          ],
+          [
+            "moscow-osm-node-4403223578",
+            "14:00",
+            "15:00"
+          ],
+          [
+            "moscow-cultural-251",
+            "15:06",
+            "16:41"
+          ],
+          [
+            "moscow-cultural-648",
+            "16:53",
+            "18:48"
+          ],
+          [
+            "moscow-osm-node-12273425606",
+            "18:56",
+            "19:56"
+          ]
+        ]
+      }
+    },
+    "balanced_3": {
+      "status": "unknown",
+      "poi_count": 21,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 1921.0,
+      "useful_visit_minutes": 1170,
+      "travel_minutes": 236.0,
+      "waiting_minutes": 59,
+      "gaps_over_minutes": {
+        "30": 1,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 16,
+      "gap_repair": {
+        "before": 0,
+        "after": 0,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 12,
+      "uncovered_interests": [],
+      "known_cost_rub": 14110,
+      "within_estimated_budget": true,
+      "meal_count": 9,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 18
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        7,
+        7,
+        7
+      ],
+      "example": {
+        "2026-11-21": [
+          [
+            "moscow-osm-node-2601648651",
+            "09:00",
+            "09:55"
+          ],
+          [
+            "moscow-osm-node-13245906709",
+            "10:04",
+            "10:49"
+          ],
+          [
+            "moscow-cultural-600",
+            "11:00",
+            "12:55"
+          ],
+          [
+            "moscow-osm-node-2260787406",
+            "12:59",
+            "13:59"
+          ],
+          [
+            "moscow-cultural-402",
+            "14:08",
+            "16:03"
+          ],
+          [
+            "moscow-cultural-330",
+            "16:19",
+            "18:19"
+          ],
+          [
+            "moscow-osm-node-7370160406",
+            "18:29",
+            "19:29"
+          ]
+        ],
+        "2026-11-22": [
+          [
+            "moscow-osm-node-6030605798",
+            "09:00",
+            "09:50"
+          ],
+          [
+            "moscow-osm-node-4331984494",
+            "10:03",
+            "11:13"
+          ],
+          [
+            "moscow-cultural-p201",
+            "11:26",
+            "13:11"
+          ],
+          [
+            "moscow-osm-node-10648723641",
+            "13:20",
+            "14:20"
+          ],
+          [
+            "moscow-cultural-p991",
+            "14:32",
+            "16:22"
+          ],
+          [
+            "moscow-cultural-492",
+            "16:43",
+            "18:43"
+          ],
+          [
+            "moscow-osm-node-5613517127",
+            "18:54",
+            "19:54"
+          ]
+        ],
+        "2026-11-23": [
+          [
+            "moscow-osm-node-10572193048",
+            "09:00",
+            "09:50"
+          ],
+          [
+            "osm-r-4633010",
+            "10:07",
+            "11:52"
+          ],
+          [
+            "moscow-cultural-61",
+            "12:13",
+            "13:48"
+          ],
+          [
+            "moscow-osm-node-4469720499",
+            "13:53",
+            "14:53"
+          ],
+          [
+            "moscow-cultural-p205",
+            "15:06",
+            "16:36"
+          ],
+          [
+            "moscow-cultural-p21",
+            "16:56",
+            "18:16"
+          ],
+          [
+            "moscow-osm-node-6372330052",
+            "18:40",
+            "19:40"
+          ]
+        ]
+      }
+    },
+    "intensive_5": {
+      "status": "unknown",
+      "poi_count": 33,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 3177.0,
+      "useful_visit_minutes": 1765,
+      "travel_minutes": 542.0,
+      "waiting_minutes": 123,
+      "gaps_over_minutes": {
+        "30": 2,
+        "45": 1,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 25,
+      "gap_repair": {
+        "before": 1,
+        "after": 1,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 18,
+      "uncovered_interests": [],
+      "known_cost_rub": 21930,
+      "within_estimated_budget": true,
+      "meal_count": 15,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 28
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        7,
+        7,
+        7,
+        6,
+        6
+      ]
+    },
+    "relaxed": {
+      "status": "unknown",
+      "poi_count": 6,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 579.0,
+      "useful_visit_minutes": 350,
+      "travel_minutes": 49.0,
+      "waiting_minutes": 81,
+      "gaps_over_minutes": {
+        "30": 2,
+        "45": 1,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 6,
+      "gap_repair": {
+        "before": 1,
+        "after": 1,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 3,
+      "uncovered_interests": [],
+      "known_cost_rub": 5100,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 5
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        6
+      ]
+    },
+    "gastronomy": {
+      "status": "unknown",
+      "poi_count": 9,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 660.0,
+      "useful_visit_minutes": 425,
+      "travel_minutes": 55.0,
+      "waiting_minutes": 0,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 9,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 5,
+        "inserted_poi_ids": [
+          "moscow-osm-node-2380290734"
+        ]
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 6,
+      "uncovered_interests": [],
+      "known_cost_rub": 6900,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 8
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        9
+      ]
+    },
+    "low_budget": {
+      "status": "unknown",
+      "poi_count": 6,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 555.0,
+      "useful_visit_minutes": 315,
+      "travel_minutes": 90.0,
+      "waiting_minutes": 105,
+      "gaps_over_minutes": {
+        "30": 2,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 5,
+      "gap_repair": {
+        "before": 0,
+        "after": 0,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 3,
+      "uncovered_interests": [],
+      "known_cost_rub": 1800,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 5
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        6
+      ]
+    },
+    "required": {
+      "status": "unknown",
+      "poi_count": 7,
+      "required_total": 2,
+      "required_placed": 2,
+      "active_minutes": 638.0,
+      "useful_visit_minutes": 350,
+      "travel_minutes": 168.0,
+      "waiting_minutes": 22,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 7,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 2,
+        "inserted_poi_ids": [
+          "moscow-osm-relation-1932724"
+        ]
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 4,
+      "uncovered_interests": [],
+      "known_cost_rub": 4500,
+      "within_estimated_budget": true,
+      "meal_count": 2,
+      "meal_checks": {
+        "meals": "failed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 6
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        7
+      ]
+    },
+    "distant_required": {
+      "status": "unknown",
+      "poi_count": 21,
+      "required_total": 2,
+      "required_placed": 2,
+      "active_minutes": 1949.0,
+      "useful_visit_minutes": 1195,
+      "travel_minutes": 239.0,
+      "waiting_minutes": 31,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 16,
+      "gap_repair": {
+        "before": 0,
+        "after": 0,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 11,
+      "uncovered_interests": [],
+      "known_cost_rub": 14820,
+      "within_estimated_budget": true,
+      "meal_count": 9,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 18
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        7,
+        7,
+        7
+      ]
+    },
+    "walking": {
+      "status": "unknown",
+      "poi_count": 8,
+      "required_total": 1,
+      "required_placed": 1,
+      "active_minutes": 641.0,
+      "useful_visit_minutes": 400,
+      "travel_minutes": 61.0,
+      "waiting_minutes": 19,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 7,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 2,
+        "inserted_poi_ids": [
+          "moscow-osm-relation-1932724"
+        ]
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 5,
+      "uncovered_interests": [],
+      "known_cost_rub": 5500,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 7
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        8
+      ]
+    },
+    "metro_transfer": {
+      "status": "unknown",
+      "poi_count": 6,
+      "required_total": 2,
+      "required_placed": 2,
+      "active_minutes": 614.0,
+      "useful_visit_minutes": 360,
+      "travel_minutes": 134.0,
+      "waiting_minutes": 46,
+      "gaps_over_minutes": {
+        "30": 1,
+        "45": 1,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 6,
+      "gap_repair": {
+        "before": 1,
+        "after": 1,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 3,
+      "uncovered_interests": [],
+      "known_cost_rub": 4675,
+      "within_estimated_budget": true,
+      "meal_count": 2,
+      "meal_checks": {
+        "meals": "failed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {
+        "mcc": 15,
+        "metro": 3
+      },
+      "transport_legs_by_mode": {
+        "transit": 1,
+        "walk": 4
+      },
+      "observed_transfer_steps": 1,
+      "visits_per_day": [
+        6
+      ],
+      "example": {
+        "2026-11-21": [
+          [
+            "moscow-cultural-188",
+            "09:00",
+            "10:30"
+          ],
+          [
+            "moscow-osm-node-5076035172",
+            "11:37",
+            "12:32"
+          ],
+          [
+            "moscow-osm-node-10782497925",
+            "12:42",
+            "13:42"
+          ],
+          [
+            "moscow-cultural-121",
+            "14:07",
+            "16:12"
+          ],
+          [
+            "osm-r-15322808",
+            "16:25",
+            "17:55"
+          ],
+          [
+            "moscow-osm-node-11362855388",
+            "18:14",
+            "19:14"
+          ]
+        ]
+      }
+    },
+    "mixed": {
+      "status": "unknown",
+      "poi_count": 21,
+      "required_total": 2,
+      "required_placed": 2,
+      "active_minutes": 1949.0,
+      "useful_visit_minutes": 1195,
+      "travel_minutes": 239.0,
+      "waiting_minutes": 31,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 16,
+      "gap_repair": {
+        "before": 0,
+        "after": 0,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 11,
+      "uncovered_interests": [],
+      "known_cost_rub": 14820,
+      "within_estimated_budget": true,
+      "meal_count": 9,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 18
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        7,
+        7,
+        7
+      ]
+    },
+    "no_metro_bus_allowed": {
+      "status": "unknown",
+      "poi_count": 6,
+      "required_total": 2,
+      "required_placed": 2,
+      "active_minutes": 614.0,
+      "useful_visit_minutes": 360,
+      "travel_minutes": 134.0,
+      "waiting_minutes": 46,
+      "gaps_over_minutes": {
+        "30": 1,
+        "45": 1,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 6,
+      "gap_repair": {
+        "before": 1,
+        "after": 1,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 3,
+      "uncovered_interests": [],
+      "known_cost_rub": 4675,
+      "within_estimated_budget": true,
+      "meal_count": 2,
+      "meal_checks": {
+        "meals": "failed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {
+        "mcc": 15,
+        "metro": 3
+      },
+      "transport_legs_by_mode": {
+        "transit": 1,
+        "walk": 4
+      },
+      "observed_transfer_steps": 1,
+      "visits_per_day": [
+        6
+      ],
+      "mock_assistant_outcome": "DAY_END_EXCEEDED"
+    },
+    "museum_history": {
+      "status": "unknown",
+      "poi_count": 8,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 650.0,
+      "useful_visit_minutes": 395,
+      "travel_minutes": 80.0,
+      "waiting_minutes": 10,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 8,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 2,
+        "inserted_poi_ids": [
+          "moscow-osm-relation-1932724"
+        ]
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 5,
+      "uncovered_interests": [],
+      "known_cost_rub": 5200,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 7
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        8
+      ]
+    },
+    "unusual_viewpoints": {
+      "status": "unknown",
+      "poi_count": 9,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 632.0,
+      "useful_visit_minutes": 340,
+      "travel_minutes": 112.0,
+      "waiting_minutes": 28,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 9,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 5,
+        "inserted_poi_ids": [
+          "moscow-osm-relation-1932724"
+        ]
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 6,
+      "uncovered_interests": [],
+      "known_cost_rub": 6750,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 8
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        9
+      ]
+    },
+    "early_late": {
+      "status": "unknown",
+      "poi_count": 8,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 778.0,
+      "useful_visit_minutes": 510,
+      "travel_minutes": 88.0,
+      "waiting_minutes": 62,
+      "gaps_over_minutes": {
+        "30": 1,
+        "45": 1,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 7,
+      "gap_repair": {
+        "before": 1,
+        "after": 1,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 5,
+      "uncovered_interests": [],
+      "known_cost_rub": 5650,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 7
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        8
+      ]
+    },
+    "unknown_hours": {
+      "status": "unknown",
+      "poi_count": 8,
+      "required_total": 1,
+      "required_placed": 1,
+      "active_minutes": 641.0,
+      "useful_visit_minutes": 400,
+      "travel_minutes": 61.0,
+      "waiting_minutes": 19,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 7,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 2,
+        "inserted_poi_ids": [
+          "moscow-osm-relation-1932724"
+        ]
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 5,
+      "uncovered_interests": [],
+      "known_cost_rub": 5500,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 7
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        8
+      ]
+    },
+    "impossible_window": {
+      "status": "infeasible",
+      "poi_count": 1,
+      "required_total": 2,
+      "required_placed": 0,
+      "active_minutes": 50.0,
+      "useful_visit_minutes": 0,
+      "travel_minutes": 0.0,
+      "waiting_minutes": 10,
+      "gaps_over_minutes": {
+        "30": 0,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 1,
+      "gap_repair": {
+        "before": 0,
+        "after": 0,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 0,
+      "uncovered_interests": [
+        "museums",
+        "nature",
+        "history"
+      ],
+      "known_cost_rub": 950,
+      "within_estimated_budget": true,
+      "meal_count": 1,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": null,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {},
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        1
+      ]
+    },
+    "assistant_edit": {
+      "status": "unknown",
+      "poi_count": 8,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 684.0,
+      "useful_visit_minutes": 415,
+      "travel_minutes": 89.0,
+      "waiting_minutes": 36,
+      "gaps_over_minutes": {
+        "30": 1,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 7,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 5,
+      "uncovered_interests": [],
+      "known_cost_rub": 5450,
+      "within_estimated_budget": true,
+      "meal_count": 3,
+      "meal_checks": {
+        "meals": "passed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 7
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        8
+      ],
+      "mock_assistant_outcome": "confirmed",
+      "target_added": true,
+      "example": {
+        "2026-11-21": [
+          [
+            "moscow-osm-node-4403223578",
+            "09:00",
+            "10:00"
+          ],
+          [
+            "moscow-cultural-p20",
+            "10:13",
+            "11:43"
+          ],
+          [
+            "moscow-cultural-p50",
+            "12:00",
+            "13:50"
+          ],
+          [
+            "moscow-osm-node-5020405212",
+            "13:57",
+            "14:57"
+          ],
+          [
+            "moscow-osm-relation-1577673",
+            "15:13",
+            "16:08"
+          ],
+          [
+            "moscow-cultural-p31",
+            "16:18",
+            "17:28"
+          ],
+          [
+            "moscow-cultural-p30",
+            "17:43",
+            "19:13"
+          ],
+          [
+            "moscow-osm-node-6680035282",
+            "19:24",
+            "20:24"
+          ]
+        ]
+      }
+    },
+    "no_repeats": {
+      "status": "unknown",
+      "poi_count": 33,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 3208.0,
+      "useful_visit_minutes": 1815,
+      "travel_minutes": 523.0,
+      "waiting_minutes": 92,
+      "gaps_over_minutes": {
+        "30": 1,
+        "45": 1,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 27,
+      "gap_repair": {
+        "before": 1,
+        "after": 1,
+        "attempts": 0,
+        "inserted_poi_ids": []
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 18,
+      "uncovered_interests": [],
+      "known_cost_rub": 21330,
+      "within_estimated_budget": true,
+      "meal_count": 15,
+      "meal_checks": {
+        "meals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 28
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        7,
+        7,
+        7,
+        6,
+        6
+      ]
+    },
+    "avoidable_gaps": {
+      "status": "unknown",
+      "poi_count": 23,
+      "required_total": 0,
+      "required_placed": 0,
+      "active_minutes": 2246.0,
+      "useful_visit_minutes": 1455,
+      "travel_minutes": 276.0,
+      "waiting_minutes": 94,
+      "gaps_over_minutes": {
+        "30": 1,
+        "45": 0,
+        "60": 0
+      },
+      "unexplained_gaps_over_30": 0,
+      "internal_gaps_over_60": 0,
+      "source_hour_violations": 0,
+      "source_hours_unknown": 17,
+      "gap_repair": {
+        "before": 1,
+        "after": 0,
+        "attempts": 2,
+        "inserted_poi_ids": [
+          "moscow-osm-node-13245906709"
+        ]
+      },
+      "time_overlaps": 0,
+      "return_heuristic_count": 0,
+      "duplicates": 0,
+      "interest_matches": 14,
+      "uncovered_interests": [],
+      "known_cost_rub": 14810,
+      "within_estimated_budget": true,
+      "meal_count": 9,
+      "meal_checks": {
+        "meals": "passed",
+        "meal_intervals": "passed"
+      },
+      "estimated_transport_share": 1.0,
+      "transit_ride_steps_by_mode": {},
+      "transport_legs_by_mode": {
+        "walk": 20
+      },
+      "observed_transfer_steps": 0,
+      "visits_per_day": [
+        8,
+        7,
+        8
+      ]
+    }
+  }
+}

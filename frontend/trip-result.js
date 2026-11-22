@@ -502,8 +502,17 @@ chatForm.addEventListener('submit',async event => {
     proposal = result;
     const preview = element('preview-stops');
     preview.replaceChildren();
-    for (const item of result.diff?.added || []) appendText(preview, '+ ' + item.name + ' · ' + item.day);
+    const namedTimes = new Map((result.diff?.named_additions || []).map(item =>
+      [JSON.stringify([item.name, item.day]), item.time]));
+    for (const item of result.diff?.added || []) {
+      const time = namedTimes.get(JSON.stringify([item.name, item.day]));
+      appendText(preview, '+ ' + item.name + ' · ' + item.day + (time ? ' · ' + time : ''));
+    }
     for (const item of result.diff?.removed || []) appendText(preview, '− ' + item.name + ' · ' + item.day);
+    for (const meal of result.diff?.meal_replacements || []) {
+      const label = {breakfast:'Завтрак', lunch:'Обед', dinner:'Ужин'}[meal.kind] || 'Питание';
+      appendText(preview, label + ' · ' + meal.day + ' · ' + meal.time + ' · ' + meal.before + ' → ' + meal.after);
+    }
     for (const window of result.diff?.day_windows || []) {
       appendText(preview, window.day + ' · время прогулки ' + window.day_start + '–' + window.day_end);
     }
@@ -525,7 +534,12 @@ chatForm.addEventListener('submit',async event => {
         if (modes.length) appendText(preview, label + ' · ' + modes.map(mode => names[mode] || mode).join(', '));
       }
     }
-    for (const day of result.plan.days) for (const row of events(day, result.plan)) appendText(preview, day.date + ' · ' + eventLabel(row));
+    const changedDays = result.diff?.changed_days;
+    const previewDays = changedDays?.length ? result.plan.days.filter(day => changedDays.includes(day.date))
+      : result.plan.days;
+    for (const day of previewDays) {
+      for (const row of events(day, result.plan)) appendText(preview, day.date + ' · ' + eventLabel(row));
+    }
     element('chat-preview').hidden = false;
   } catch (error) { chatStatus.textContent = error.message; chatLine('TripWise', error.message); }
   finally { control(false); }
@@ -543,8 +557,11 @@ async function decide(decision) {
       renderTrip();
       element('route-state').textContent='Изменения применены к предварительному маршруту. Нажмите «Сохранить поездку», чтобы записать их в аккаунт.';
     }
-    if (result.message) chatLine('TripWise', result.message);
-    chatStatus.textContent = result.type === 'confirmed' ? 'Готово. Закройте чат и нажмите «Сохранить поездку».' : '';
+    const message = result.type === 'confirmed' && isPreview
+      ? 'Изменения применены к предпросмотру. Чтобы записать их в аккаунт, сохраните поездку.'
+      : result.message;
+    if (message) chatLine('TripWise', message);
+    chatStatus.textContent = result.type === 'confirmed' ? message : '';
     proposal = null;
     element('chat-preview').hidden = true;
   } catch (error) { chatStatus.textContent = error.message; }

@@ -113,12 +113,16 @@ def _target_phrase(text):
     if not match:
         return None
     value = text[match.end():]
-    value = re.sub(r'\b(?:\d{4}-\d\d-\d\d|[12]?\d|3[01])\s*(?:'
-                   + _MONTHS_RE + r'|числа|[./]\d{1,2}|-?й\s*день|-?м\s*дне|день|дня)\b', ' ', value, flags=re.I)
-    value = re.sub(r'\b(?:в|во|на|за)\s+(?:первый|второй|третий|четвертый|пятый)\s+(?:день|дня|дне)\b', ' ', value, flags=re.I)
-    value = re.split(r'\b(?:но\s+не|если\s+|чтобы\s+|без\s+изменения)\b', value, maxsplit=1, flags=re.I)[0]
-    tokens = [w for w in normalize(value).split() if w not in _STOP and w not in _MONTHS and not w.isdigit()]
-    if not tokens or all(token in _GENERIC | _GENERIC_QUALIFIERS for token in tokens):
+    value = re.sub(r'\b\d{4}-\d\d-\d\d\b|\b\d{1,2}[./]\d{1,2}\b|\b\d{1,2}:\d{2}\b', ' ', value)
+    value = re.sub(rf'\b(?:[12]?\d|3[01])\s*(?:{_MONTHS_RE}|числа)\b', ' ', value, flags=re.I)
+    value = normalize(value)
+    ordinals = '|'.join(_NUMBER_WORDS)
+    value = re.sub(rf'\b(?:{ordinals}|\d{{1,2}}(?:\s+[йм])?)\s+(?:день|дня|дне|дни)\b'
+                   r'|\b(?:день|дня|дне)\s+\d{1,2}\b', ' ', value)
+    value = re.split(r'\b(?:но\s+не|если|чтобы|без\s+(?:замен\w*|удалени\w*|изменени\w*))\b',
+                     value, maxsplit=1)[0]
+    tokens = [w for w in value.split() if w not in _STOP and w not in _MONTHS]
+    if not tokens or all(token.isdigit() or token in _GENERIC | _GENERIC_QUALIFIERS for token in tokens):
         return None
     return ' '.join(tokens)
 
@@ -154,6 +158,17 @@ def _typo_score(phrase, name):
 def resolve_name(phrase, catalog):
     """Return (poi_id, name), ('ambiguous', names), or (None, None)."""
     variants = [normalize(phrase)]
+    query_numbers = set(re.findall(r'\b\d+\b', variants[0]))
+    words = variants[0].split()
+    # Match an accusative adjective against the exact catalog title:
+    # «Красную площадь» -> «Красная площадь». The head noun stays unchanged.
+    if len(words) > 1:
+        endings = {'ую': 'ая', 'юю': 'яя'}
+        nominative = ' '.join([*(word[:-2] + endings[word[-2:]]
+                                 if len(word) > 4 and word[-2:] in endings else word
+                                 for word in words[:-1]), words[-1]])
+        if nominative != variants[0]:
+            variants.append(nominative)
     # Prefer the actual V7 ID for an unambiguous, verified alias. Never invent
     # a record or substitute an unrelated place based on a similar surname.
     known_id = _KNOWN_V7_IDS.get(variants[0])
@@ -175,6 +190,9 @@ def resolve_name(phrase, catalog):
             if not isinstance(name, str):
                 continue
             clean = normalize(name)
+            if query_numbers and query_numbers != set(re.findall(r'\b\d+\b', clean)):
+                continue
+            name_without_title = ' '.join(word for word in clean.split() if word not in ('имени', 'им'))
             # The Durov surname occurs in other Moscow venues and monuments.
             # Do not substitute an unrelated Durov-family attraction when a
             # request specifically names Grandfather Durov's animal theatre.
@@ -196,6 +214,8 @@ def resolve_name(phrase, catalog):
                     # Prefer an exact primary name to a different record which
                     # merely lists this phrase among its alternate names.
                     candidate = 1000 if name_index == 0 else 850
+                elif clean != name_without_title and name_without_title == phrase_variant:
+                    candidate = 975 if name_index == 0 else 830
                 elif substring:
                     candidate = 900 if name_index == 0 else 780
                 elif overlap >= 2 and overlap * 3 >= len(query_words) * 2:

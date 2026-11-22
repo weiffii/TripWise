@@ -98,7 +98,7 @@ def measure(plan, prefs):
     interests = set(prefs.primary_interests + prefs.secondary_interests)
     visits, useful = [], []
     waiting, legs, meals, overlaps, returns, hours, unknown_hours = [], [], [], 0, 0, 0, 0
-    unexplained = 0
+    unexplained, internal_over_60 = 0, 0
     modes, leg_modes = Counter(), Counter()
     transfers = 0
     diagnostics = {(gap['date'], minute(gap['start_at']), minute(gap['end_at']))
@@ -113,6 +113,8 @@ def measure(plan, prefs):
                            for row in day_visits + day['legs'] + day['breaks']), key=lambda row: row[:2])
         overlaps += sum(a[1] > b[0] for a, b in zip(timeline, timeline[1:]))
         if timeline:
+            activities = [(start, end) for start, end, kind in timeline if kind != 'waiting']
+            internal_over_60 += sum(b[0] - a[1] > 60 for a, b in zip(activities, activities[1:]))
             free = [(minute('0000-00-00T' + prefs.day_start), timeline[0][0]),
                     *((a[1], b[0]) for a, b in zip(timeline, timeline[1:])),
                     (timeline[-1][1], minute('0000-00-00T' + prefs.day_end))]
@@ -151,7 +153,8 @@ def measure(plan, prefs):
             'required_placed': len(set(prefs.required_ids) & set(visits)), 'active_minutes': useful_minutes + meal_minutes + travel_minutes,
             'useful_visit_minutes': useful_minutes, 'travel_minutes': travel_minutes, 'waiting_minutes': sum(waiting),
             'gaps_over_minutes': {threshold: sum(gap > threshold for gap in waiting) for threshold in (30, 45, 60)},
-            'unexplained_gaps_over_30': unexplained, 'source_hour_violations': hours, 'source_hours_unknown': unknown_hours,
+            'unexplained_gaps_over_30': unexplained, 'internal_gaps_over_60': internal_over_60,
+            'source_hour_violations': hours, 'source_hours_unknown': unknown_hours,
             'gap_repair': {key: plan['gap_diagnostics'][key] for key in ('before','after','attempts','inserted_poi_ids')}
                           if 'gap_diagnostics' in plan else None,
             'time_overlaps': overlaps, 'return_heuristic_count': returns, 'duplicates': len(visits) - len(set(visits)),

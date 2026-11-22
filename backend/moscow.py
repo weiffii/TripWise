@@ -3,7 +3,7 @@ from copy import deepcopy
 from datetime import date, timedelta
 from functools import lru_cache
 from heapq import nsmallest
-from itertools import zip_longest
+from itertools import combinations, zip_longest
 import json
 from math import floor, isfinite
 import os
@@ -18,7 +18,7 @@ from ai_ds.moscow_road import PILOT_RAIL_CONFIG, coordinates, rail_inputs, trave
 from ai_ds.moscow_transit import _distance
 from ai_ds.moscow_engine_adapter import MATRIX_MODES, MODES, fixed_sequence, plan_city
 from ai_ds.moscow_gap_repair import MoscowGapIndex, describe_edited_gaps, repair_gaps
-from ai_ds.openrouter import OpenRouterInterpreter, SYSTEM_PROMPT
+from ai_ds.openrouter import OpenRouterError, OpenRouterInterpreter, SYSTEM_PROMPT
 from ai_ds.recommendation import recommend
 from ai_ds.route_assistant import AssistantError, InMemoryRouteStore, RouteAssistant, has_failed, parse_interpretation, require, sequences_of
 from ai_ds.shanghai_assistant import ShanghaiAssistantService
@@ -170,8 +170,12 @@ def daily_budget_per_person(preferences):
     return total / people / preferences.days
 
 
+def _budget_constrained(preferences):
+    return daily_budget_per_person(preferences) < 4000
+
+
 def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None, dining_target=None,
-                           visit_target=None):
+                           visit_target=None, near_visits=()):
     """Return nearby, affordable AND experience-oriented V7 alternatives.
 
     The old nearest-N picker often returned several expensive restaurants,
@@ -198,9 +202,12 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
                 continue
             if meal_kind in ('lunch', 'dinner') and food_type in ('coffee_shop', 'bakery', 'bar', 'pub', 'nightclub'):
                 continue
-        distance = _distance(coordinates(place), anchor)
+        location = coordinates(place)
+        anchor_distance = _distance(location, anchor)
+        distance = (.25 * anchor_distance + .75 * min(_distance(location, point) for point in near_visits)
+                    if near_visits else anchor_distance)
         price = _planning_price(place)
-        if distance <= 5000 and price != float('inf'):
+        if anchor_distance <= 5000 and price != float('inf'):
             ranked.append((key, distance, price))
     if not ranked:
         return []
@@ -260,10 +267,11 @@ def geographic_shortlist(preferences, anchors):
     interests = list(dict.fromkeys(c for c in (*preferences.primary_interests, *preferences.secondary_interests)
                                    if c != 'cafes'))
     budget_per_person_day = daily_budget_per_person(preferences)
-    constrained = budget_per_person_day < 4000
+    constrained = _budget_constrained(preferences)
     visit_target = (min(1800, budget_per_person_day * .17)
-                    if not constrained and preferences.route_priority != 'cost' else None)
+                    if not constrained and getattr(preferences, 'route_priority', 'balanced') != 'cost' else None)
     per_area = {'relaxed': 9, 'balanced': 14, 'intensive': 18}[preferences.pace]
+    required_locations = [coordinates(by_id[key]) for key in preferences.required_ids]
     by_day = []
     for anchor in anchors:
         day = []
@@ -285,13 +293,18 @@ def geographic_shortlist(preferences, anchors):
                     include(budget_friendly_places(anchor, categories.get(category, {}), 3, selected))
         # Collect meal-specific alternatives, including low-price canteens and
         # quick-service cafés, rather than only the five closest restaurants.
+        main_locations = sorted((point for point in required_locations
+                                 if _distance(point, anchor) <= DAY_RADIUS_METERS),
+                                key=lambda point: _distance(point, anchor))[:2]
+        main_locations.extend(coordinates(by_id[key]) for key in day[:3])
         food_cells = categories.get('cafes', {})
         food_choices = {}
         for meal in ('breakfast', 'lunch', 'dinner'):
             dining_target = (None if budget_per_person_day < 2800 else
                              budget_per_person_day * {'breakfast': .09, 'lunch': .14, 'dinner': .20}[meal])
             choices = budget_friendly_places(anchor, food_cells, 5, selected,
-                                             meal_kind=meal, dining_target=dining_target)
+                                             meal_kind=meal, dining_target=dining_target,
+                                             near_visits=main_locations)
             food_choices[meal] = choices
             selected.update(dict.fromkeys(choices))
         # Interleave meals and sights before the global cutoff. Previously
@@ -654,6 +667,220 @@ class MoscowRouteAssistant(RouteAssistant):
                 'transit_filters': state['routing_context'].get('moscow_transit_filters', {}),
                 'start_hints': state['routing_context'].get('moscow_start_hints', {}).get(day, {})}
 
+    @staticmethod
+    def _chat_leg_times(state):
+        matrix = state['travel_times']
+        selected = set(state['routing_context'].get('moscow_transport_modes') or
+                       [MODES[state['preferences']['transport']]])
+        profiles = matrix.get('profiles') or {next(iter(selected)): matrix}
+        times = {}
+        for label, profile in profiles.items():
+            for row in profile['pairs']:
+                seconds = row.get('duration_seconds')
+                if row.get('status') != 'known' or seconds is None:
+                    continue
+                local_walk = label == 'walk' and (row.get('distance_meters') or 0) <= (
+                    600 if selected == {'taxi'} else 1000)
+                if label not in selected and not local_walk:
+                    continue
+                pair = row['from_poi_id'], row['to_poi_id']
+                times[pair] = min(times.get(pair, float('inf')), seconds)
+        return times
+
+    def _meal_variants(self, state, sequences, dates, times, protected_id, base):
+        context = state['routing_context']
+        protected = set(state['preferences']['required_poi_ids']) | set(state.get('named_added_ids', ())) | {protected_id}
+        points = {point['id']: point.get('planning', {}) for point in state['pois']}
+        people = sum(context.get('moscow_group', {}).get(key, 0) for key in ('adult', 'child', 'senior'))
+        party_budget = state['preferences'].get('budget', {}).get('amount', 0)
+        comfortable_budget = party_budget >= 4000 * max(1, people) * len(sequences)
+        # One starting sequence and up to three local repair paths. Keep the
+        # existing sequence available for the authoritative schedule check.
+        beam = [(0, sequences, {})]
+        for date in dates:
+            existing_pairs = set(zip(base[date], base[date][1:]))
+            pins = context.get('moscow_meal_pins', {}).get(date, {})
+            for kind, slot in context.get('moscow_meals', {}).get(date, {}).items():
+                old = slot['poi_id']
+                if kind not in ('breakfast', 'lunch', 'dinner') or kind in pins or old in protected:
+                    continue
+                variants = []
+                for score, current, changes in beam:
+                    variants.append((score, current, changes))
+                    seq = current[date]
+                    if old not in seq or len(seq) <= 1:
+                        continue
+                    index = seq.index(old)
+                    before = seq[index - 1] if index else None
+                    after = seq[index + 1] if index + 1 < len(seq) else None
+                    if all(pair in existing_pairs for pair in ((before, old), (old, after)) if all(pair)):
+                        continue
+                    def edges(key):
+                        return [times.get((a, b), 7200) for a, b in ((before, key), (key, after)) if a and b]
+                    old_edges = edges(old)
+                    if max(old_edges) < 20 * 60:
+                        continue
+                    in_use = {key for ids in current.values() for key in ids}
+                    candidates = []
+                    old_type = points.get(old, {}).get('food_type', {}).get('value')
+                    for key, fields in points.items():
+                        suitability = fields.get('meal_suitability', {}).get('value') or {}
+                        food_type = fields.get('food_type', {}).get('value')
+                        if (key in in_use or suitability.get(kind) not in ('likely', 'possible', True)
+                                or kind != 'breakfast' and food_type in (
+                                    'coffee_shop', 'bakery', 'dessert', 'bar', 'pub', 'nightclub')):
+                            continue
+                        if (comfortable_budget and kind != 'breakfast' and old_type == 'restaurant'
+                                and food_type not in ('restaurant', 'cafe')):
+                            continue
+                        legs = edges(key)
+                        if max(legs) >= max(old_edges) or sum(legs) + 5 * 60 >= sum(old_edges):
+                            continue
+                        if not self._named_open_days(context, key, [date]):
+                            continue
+                        candidates.append((sum(legs), key))
+                    for seconds, key in sorted(candidates)[:3]:
+                        replaced = seq[:index] + [key] + seq[index + 1:]
+                        variants.append((score + seconds - sum(old_edges), {**current, date: replaced},
+                                         {**changes, (date, kind): {**slot, 'poi_id': key}}))
+                beam = sorted(variants, key=lambda row: row[0])[:3]
+        return [(sequences, {}), *((seq, changes) for _, seq, changes in beam if changes)]
+
+    def _best_addition(self, state, sequences, poi_id, days):
+        if not state.get('route') or not state.get('travel_times'):
+            return super()._best_addition(state, sequences, poi_id, days)
+        base = sequences_of(state['route'])
+        times = self._chat_leg_times(state)
+        choices = []
+        for day in days:
+            for position in range(len(sequences[day]) + 1):
+                seq = sequences[day]
+                trial = {**sequences, day: seq[:position] + [poi_id] + seq[position:]}
+                changed = [date for date in trial if trial[date] != base[date]]
+                for variant, meals in self._meal_variants(state, trial, changed, times, poi_id, base):
+                    trial_state = {**state, 'chat_insertion_days': changed}
+                    if meals:
+                        context = deepcopy(state['routing_context'])
+                        trial_state['routing_context'] = context
+                        for (date, kind), slot in meals.items():
+                            context['moscow_meals'][date][kind] = slot
+                            context.setdefault('moscow_start_hints', {}).setdefault(date, {})[slot['poi_id']] = minutes(
+                                slot['start_at'][11:16])
+                    try:
+                        plan = self._candidate(trial_state, variant)
+                    except (ValueError, KeyError, TypeError, OverflowError):
+                        continue
+                    choices.append(((*self._addition_score(plan, day), day, position), variant, trial_state))
+        if choices:
+            _, variant, best = min(choices, key=lambda row: row[0])
+            state['routing_context'] = best['routing_context']
+            state['chat_insertion_days'] = best['chat_insertion_days']
+            return variant
+        return None
+
+    @staticmethod
+    def _guarded_insertion_matrix(state, sequences):
+        dates = state.get('chat_insertion_days')
+        if not dates:
+            return state['travel_times']
+        base = sequences_of(state['route'])
+        extra = set()
+        for date in dates:
+            old, new = base[date], sequences[date]
+            extra.update(set(zip(new, new[1:])) - set(zip(old, old[1:])))
+        group = state['routing_context'].get('moscow_group', {})
+        factor = 1.2 if group.get('senior') else 1.12 if group.get('child') else 1
+        def allow(pair, label):
+            walk = label == 'walk' or label == 'transit' and not pair.get('transport_steps')
+            ids = pair['from_poi_id'], pair['to_poi_id']
+            return not walk or ids not in extra or (pair.get('duration_seconds') or 0) * factor <= 3600
+        matrix = state['travel_times']
+        label = MODES[state['preferences']['transport']]
+        if not matrix.get('profiles'):
+            return {**matrix, 'pairs': [row for row in matrix['pairs'] if allow(row, label)]}
+        profiles = {key: {**profile, 'pairs': [row for row in profile['pairs'] if allow(row, key)]}
+                    for key, profile in matrix['profiles'].items()}
+        return {**matrix, **profiles.get(label, {}), 'profiles': profiles}
+
+    @staticmethod
+    def _check_insertion_geography(state, plan):
+        dates = state.get('chat_insertion_days')
+        if not dates:
+            return
+        base = sequences_of(state['route'])
+        points = {p['id']: coordinates(p) for p in state['pois'] if 'coordinates' in p}
+        for day in plan['days']:
+            date = day['date']
+            if date not in dates:
+                continue
+            old = base[date]
+            previous_pairs = set(zip(old, old[1:]))
+            legs = day['legs']
+            for inbound, outbound in zip(legs, legs[1:]):
+                a, b = inbound['from_poi_id'], inbound['to_poi_id']
+                c = outbound['to_poi_id']
+                durations = inbound['duration_seconds'] or 0, outbound['duration_seconds'] or 0
+                if ((a, b) in previous_pairs or (b, c) in previous_pairs or
+                        min(durations) < 25 * 60 or sum(durations) < 75 * 60 or
+                        not {a, b, c} <= points.keys()):
+                    continue
+                direct = _distance(points[a], points[c])
+                outward = min(_distance(points[a], points[b]), _distance(points[b], points[c]))
+                # The user does not gain anything by leaving a neighbourhood
+                # and immediately returning for two neighbouring stops.
+                require(direct > outward * .45, 'CHAT_DETOUR_EXCEEDED')
+
+    @staticmethod
+    def _named_protected(state):
+        context = state['routing_context']
+        return (set(state['preferences']['required_poi_ids']) |
+                {slot['poi_id'] for meals in context.get('moscow_meals', {}).values()
+                 for slot in meals.values()} |
+                {poi_id for pins in context.get('visit_times', {}).values() for poi_id in pins} |
+                set(state.get('named_added_ids', ())))
+
+    @staticmethod
+    def _addition_score(candidate, day):
+        excess_wait = sum(max(0, gap['minutes'] - 60)
+                          for gap in candidate.get('gap_diagnostics', {}).get('remaining', [])
+                          if gap['kind'] == 'internal')
+        return (excess_wait, *RouteAssistant._addition_score(candidate, day))
+
+    @staticmethod
+    def _named_open_days(context, poi_id, days):
+        windows = {item['date']: item for item in context.get('days', [])}
+        openings = {item['date']: item['intervals'] for item in context.get('opening_intervals', [])
+                    if item['poi_id'] == poi_id}
+        return [day for day in days if day not in windows or openings.get(day) is None or any(
+            max(interval['start_at'], windows[day]['day_start']) <
+            min(interval['end_at'], windows[day]['day_end']) for interval in openings[day])]
+
+    def _replace_for_named_addition(self, state, sequences, wanted, targets, *, one_only=False):
+        protected = self._named_protected(state)
+        ranking = {row['poi_id']: i for i, row in enumerate(state.get('recommendation', {}).get('items', []))}
+        auto_filled = set(state.get('route', {}).get('gap_diagnostics', {}).get('inserted_poi_ids', []))
+        ordered = {day: sorted((key for key in sequences[day] if key not in protected),
+                               key=lambda key: (key not in auto_filled, -ranking.get(key, len(ranking)), key))
+                   for day in targets}
+        depth = min(max(map(len, ordered.values()), default=0), 1 if one_only else 4)
+        trials = 0
+        # Smallest removal sets first. Interleave days so a packed day cannot
+        # consume the entire search budget before trying the next day.
+        for count in range(1, depth + 1):
+            sets = [combinations(ordered[day], count) for day in targets]
+            for row in zip_longest(*sets):
+                for day, removed in zip(targets, row):
+                    if removed is None:
+                        continue
+                    trials += 1
+                    if trials > 40:
+                        return None
+                    reduced = {**sequences, day: [poi for poi in sequences[day] if poi not in removed]}
+                    attempt = self._best_addition(state, reduced, wanted, [day])
+                    if attempt is not None:
+                        return attempt
+        return None
+
     def _relocate_for_named_addition(self, state, sequences, wanted, targets):
         """Try moving a flexible stop to a different day before removing it.
 
@@ -663,10 +890,7 @@ class MoscowRouteAssistant(RouteAssistant):
         """
         if len(sequences) < 2:
             return None
-        context = state['routing_context']
-        protected = set(state['preferences']['required_poi_ids'])
-        protected.update(slot['poi_id'] for meals in context.get('moscow_meals', {}).values()
-                         for slot in meals.values())
+        protected = self._named_protected(state)
         trials = 0
         for day in targets:
             others = sorted((key for key in sequences if key != day),
@@ -680,11 +904,13 @@ class MoscowRouteAssistant(RouteAssistant):
                         return None
                     reduced = deepcopy(sequences)
                     reduced[day].remove(old)
-                    moved = self._best_addition(state, reduced, old, [destination])
+                    trial = {**state, 'routing_context': deepcopy(state['routing_context'])}
+                    moved = self._best_addition(trial, reduced, old, [destination])
                     if moved is None:
                         continue
-                    inserted = self._best_addition(state, moved, wanted, [day])
+                    inserted = self._best_addition(trial, moved, wanted, [day])
                     if inserted is not None:
+                        state.update(trial)
                         return inserted
         return None
 
@@ -772,42 +998,20 @@ class MoscowRouteAssistant(RouteAssistant):
         if op['op'] == 'recenter_day':
             return self._recenter_day(state, sequences, op['day'], op['poi_id'])
         if op['op'] in ('add_named_poi', 'replace_any_named'):
-            # A named request is an exact existing V7 ID, not a category suggestion.
-            # A replacement may occur only when the user explicitly authorizes it;
-            # never silently remove a mandatory POI, a meal, or the requested POI.
             key, day = op['poi_id'], op['day']
             require(key in {poi['id'] for poi in state['pois']}, 'NAMED_POI_NOT_IN_CATALOG')
             require(not any(key in seq for seq in sequences.values()), 'DUPLICATE_VISIT')
             targets = [day] if day is not None else list(sequences)
             require(all(date in sequences for date in targets), 'UNKNOWN_DAY')
+            targets = self._named_open_days(context, key, targets)
             forced = op['op'] == 'replace_any_named'
             choice = None if forced else self._best_addition(state, sequences, key, targets)
             if choice is None and not forced:
                 choice = self._relocate_for_named_addition(state, sequences, key, targets)
             if choice is None and (forced or op['replace_if_needed']):
-                protected = set(state['preferences']['required_poi_ids'])
-                protected.update(slot['poi_id'] for meals in context.get('moscow_meals', {}).values()
-                                 for slot in meals.values())
-                # Try every removable ordinary stop, and keep as much of the
-                # original itinerary as possible. No change unless the complete
-                # schedule, travel and budget validate after substitution.
-                candidates = []
-                for target_day in targets:
-                    for old in sequences[target_day]:
-                        if old in protected or old == key:
-                            continue
-                        reduced = deepcopy(sequences)
-                        reduced[target_day].remove(old)
-                        attempt = self._best_addition(state, reduced, key, [target_day])
-                        if attempt is None:
-                            continue
-                        original_score = sum(len(x) for x in sequences.values())
-                        # One-for-one replacement; stable tiebreaking by order.
-                        candidates.append(((original_score - sum(len(x) for x in attempt.values()),
-                                            targets.index(target_day), sequences[target_day].index(old)), attempt))
-                if candidates:
-                    choice = min(candidates, key=lambda row: row[0])[1]
+                choice = self._replace_for_named_addition(state, sequences, key, targets, one_only=forced)
             require(choice is not None, 'NO_FEASIBLE_NAMED_INSERTION')
+            state.setdefault('named_added_ids', []).append(key)
             sequences.clear()
             sequences.update(choice)
             return
@@ -879,6 +1083,7 @@ class MoscowRouteAssistant(RouteAssistant):
             source = next((date for date, ids in sequences.items() if key in ids), None)
             require(source is not None, 'TARGET_NOT_IN_ROUTE')
             require(source != day, 'NO_ROUTE_CHANGE')
+            require(key not in context.get('visit_times', {}).get(source, {}), 'PINNED_VISIT_PROTECTED')
             reduced = deepcopy(sequences)
             reduced[source].remove(key)
             attempt = self._best_addition(state, reduced, key, [day])
@@ -940,7 +1145,8 @@ class MoscowRouteAssistant(RouteAssistant):
                         settings = next(row for row in context['days'] if row['date'] == day)
                         settings['meal_break'] = {key: slot[key] for key in ('start_at', 'end_at')} | {'kind': 'meal'}
                     del meals[kind]
-        prepared = {**state, 'routing_context': context}
+        prepared = {**state, 'routing_context': context,
+                    'travel_times': self._guarded_insertion_matrix(state, sequences)}
         def recompute(candidate_state):
             candidate = fixed_sequence(candidate_state, sequences)
             require(sequences_of(candidate) == sequences and not candidate['unplaced_required_poi_ids']
@@ -953,7 +1159,7 @@ class MoscowRouteAssistant(RouteAssistant):
         if filters:
             required = set(filters['require_transit'])
             if not required <= transit_modes(result):
-                original_matrix = state['travel_times']
+                original_matrix = prepared['travel_times']
                 profiles = original_matrix.get('profiles')
                 transit_matrix = profiles['transit'] if profiles else original_matrix
                 pairs = transit_matrix['pairs']
@@ -991,6 +1197,7 @@ class MoscowRouteAssistant(RouteAssistant):
                 require(any(leg.get('transport_steps') for leg in legs), 'TRANSPORT_UNAVAILABLE')
             elif mode != 'public_transit':
                 require(legs and all(leg['basis'] == 'routing_provider' for leg in legs), 'TRANSPORT_UNAVAILABLE')
+        self._check_insertion_geography(state, result)
         if context.get('moscow_meal_pins'):
             result['moscow_meal_pins'] = context['moscow_meal_pins']
         if context.get('visit_times'):
@@ -1094,6 +1301,100 @@ class MoscowAssistant(ShanghaiAssistantService):
                                 'Для сложных запросов нужен доступный ИИ.')
         return token, result
 
+    @staticmethod
+    def _retain_local_meals(retained, operations, route, preferences, by_id, cells):
+        if not cells or not route.get('moscow_meals'):
+            return
+        inserted = list(dict.fromkeys(op['poi_id'] for op in operations
+            if op.get('op') in ('add_named_poi', 'add_poi', 'replace_any_named', 'move_poi')
+            and op.get('poi_id') in by_id))
+        if not inserted:
+            return
+        budget = daily_budget_per_person(preferences)
+        kinds = set().union(*(meals.keys() for meals in route['moscow_meals'].values()))
+        for key in inserted[:3]:
+            point = coordinates(by_id[key])
+            for kind, weight in (('breakfast', .09), ('lunch', .14), ('dinner', .20)):
+                if kind in kinds:
+                    target = budget * weight if budget >= 2800 else None
+                    retained.extend(budget_friendly_places(point, cells, 4, retained, meal_kind=kind,
+                                                           dining_target=target))
+
+    @staticmethod
+    def _propose_named_fallback(agent, actor, request, direct_decision, propose, dates, pois, context,
+                                retained, history_text, modes=()):
+        operations = (direct_decision or {}).get('operations', [])
+        named = operations[0] if len(operations) == 1 else {}
+        move = named.get('op') == 'move_poi'
+        can_fallback = move or named.get('op') in {'add_named_poi', 'replace_any_named'}
+        try:
+            return agent.propose(actor, request), None
+        except AssistantError as error:
+            if not can_fallback or error.code != ('NO_FEASIBLE_INSERTION' if move else 'NO_FEASIBLE_NAMED_INSERTION'):
+                raise
+        poi_id, date = named['poi_id'], named['day']
+        by_id = {poi['id']: poi for poi in pois}
+        wanted = by_id[poi_id]
+        transport_option = (' Если подходит, разрешите общественный транспорт или такси и повторите запрос.'
+                            if list(modes) == ['walk'] else '')
+        if move:
+            source = next(day['date'] for day in agent.store.get_route(actor, request['route_id'])['route']['days']
+                          if any(row['poi_id'] == poi_id for row in day['visits']))
+            others = agent._named_open_days(context, poi_id, [day for day in dates if day not in (date, source)])
+            for alternative in others:
+                result = propose({**named, 'day': alternative})
+                if result is not None:
+                    return result, 'move_other_day'
+            return {'validation_status': 'needs_clarification',
+                    'clarification': f'Перенести «{wanted["name"]}» на {date} с текущими ограничениями '
+                                     f'не получилось. Посещение осталось на {source}.{transport_option}'}, None
+        allow_removal = not re.search(
+            r'\b(?:без (?:замен\w*|удалени\w*|изменени\w*)|не (?:убира\w*|удаля\w*|заменя\w*|меня\w*))\b',
+            history_text, re.I)
+
+        def try_op(poi_id, date, replace):
+            return propose({'op': 'add_named_poi', 'poi_id': poi_id, 'day': date,
+                            'replace_if_needed': replace})
+
+        if date is not None and len(dates) > 1:
+            result = try_op(poi_id, None, False)
+            if result is not None:
+                return result, 'other_day'
+        if allow_removal and named['op'] == 'add_named_poi' and not named['replace_if_needed']:
+            result = try_op(poi_id, date, True)
+            if result is not None:
+                return result, 'remove_optional'
+        if allow_removal and named['op'] == 'add_named_poi' and date is not None and len(dates) > 1:
+            result = try_op(poi_id, None, True)
+            if result is not None:
+                return result, 'other_day'
+        categories = set(wanted.get('categories', []))
+        if date is not None:
+            alternate_days = [date]
+        else:
+            alternate_days = dates
+        alternatives = [poi for poi in pois
+                        if poi['id'] not in retained and poi['id'] != poi_id
+                        and categories.intersection(poi.get('categories', []))
+                        and 'coordinates' in poi and 'coordinates' in wanted
+                        and agent._named_open_days(context, poi['id'], alternate_days)]
+        alternatives.sort(key=lambda poi: (_distance(coordinates(wanted), coordinates(poi)), poi['id']))
+        for alternate in alternatives[:3]:
+            result = try_op(alternate['id'], date, False)
+            if result is not None:
+                return result, 'other_place'
+        name = wanted.get('name') or poi_id
+        allowed_days = agent._named_open_days(context, poi_id, dates)
+        if allowed_days:
+            suggestion = ('Могу проверить «' + name + '» на ' + ', '.join(allowed_days[:3]) +
+                          ' с более широким окном дня. Укажите новую границу прогулки или выберите другое место.')
+        else:
+            suggestion = ('Часы работы «' + name + '» не пересекаются с окнами поездки. '
+                          'Выберите другой день поездки или назовите другое место.')
+        return {'validation_status': 'needs_clarification',
+                'clarification': 'В проверенных вариантах разместить «' + name +
+                '» при текущих ограничениях не удалось. ' + suggestion + transport_option}, None
+
     def _request(self, actor, session, action, body):
         if action == 'register':
             from backend.shanghai import MoscowPreferences
@@ -1118,6 +1419,7 @@ class MoscowAssistant(ShanghaiAssistantService):
             require(isinstance(body.get('text'), str) and 0 < len(body['text'].strip()) <= 3000, 'INVALID_MESSAGE')
             require(body.get('route_id') == session['moscow_route_id'] and
                     body.get('base_version') == session['moscow_version'], 'VERSION_CONFLICT')
+            require(body.get('poi_snapshot_id') == self.snapshot, 'SNAPSHOT_CONFLICT')
             route = session['moscow_route']
             retained = [visit['poi_id'] for day in route['days'] for visit in day['visits']]
             previous = next((line['content'] for line in reversed(session['moscow_history']) if line['role'] == 'user'), '')
@@ -1181,28 +1483,31 @@ class MoscowAssistant(ShanghaiAssistantService):
                         retained.extend(nearby_places(anchor, cells.get(op['category'], {}),
                                                      8, retained))
                     retained = list(dict.fromkeys(retained))
-            profile, pois, ranking, matrix, context = moscow_inputs(
-                session['moscow_preferences'], retained, body['text'], previous, route.get('moscow_transit_filters'))
-            context['moscow_original_hours'] = deepcopy(context['opening_intervals'])
-            if direct_decision:
-                context['recenter_candidates'] = recenter_candidates
-            if route.get('moscow_meal_pins'):
-                context['moscow_meal_pins'] = deepcopy(route['moscow_meal_pins'])
-            if route.get('visit_times'):
-                context['visit_times'] = deepcopy(route['visit_times'])
-            for settings, day in zip(context['days'], route['days']):
-                meal = next((entry for entry in day['breaks'] if entry['kind'] == 'meal'), None)
-                if meal:
-                    settings['meal_break'] = meal
-                if day.get('pace') and day['pace'] != profile['pace']:
-                    context.setdefault('day_pace_overrides', {})[day['date']] = day['pace']
-                for kind, slot in route.get('moscow_meals', {}).get(day['date'], {}).items():
-                    require(fix_meal_time(context, day['date'], slot['poi_id'], kind, slot['start_at'], slot['end_at']),
-                            'MEAL_TIME_UNAVAILABLE')
+                self._retain_local_meals(retained, direct_decision['operations'], route, prefs,
+                                         by_id, cells.get('cafes', {}))
+            pair_caches = {}
+            def inputs(ids):
+                profile, pois, ranking, matrix, context = moscow_inputs(
+                    prefs, ids, body['text'], previous, route.get('moscow_transit_filters'), pair_caches=pair_caches)
+                context['moscow_original_hours'] = deepcopy(context['opening_intervals'])
+                if direct_decision:
+                    context['recenter_candidates'] = recenter_candidates
+                for key in ('moscow_meal_pins', 'visit_times'):
+                    if route.get(key):
+                        context[key] = deepcopy(route[key])
+                for settings, day in zip(context['days'], route['days']):
+                    meal = next((entry for entry in day['breaks'] if entry['kind'] == 'meal'), None)
+                    if meal:
+                        settings['meal_break'] = meal
+                    if day.get('pace') and day['pace'] != profile['pace']:
+                        context.setdefault('day_pace_overrides', {})[day['date']] = day['pace']
+                    for kind, slot in route.get('moscow_meals', {}).get(day['date'], {}).items():
+                        require(fix_meal_time(context, day['date'], slot['poi_id'], kind, slot['start_at'], slot['end_at']),
+                                'MEAL_TIME_UNAVAILABLE')
+                return profile, pois, ranking, matrix, context
+
+            profile, pois, ranking, matrix, context = inputs(retained)
             store = InMemoryRouteStore()
-            store.register_route(actor, body['route_id'], preferences=profile, pois=pois, recommendation=ranking,
-                                 travel_times=matrix, routing_context=context, poi_snapshot_id=self.snapshot,
-                                 route=route, version=body['base_version'])
             from ai_ds.moscow_assistant_intents import gap_fill_decision
             def interpret(payload):
                 from ai_ds.moscow_assistant_intents import interpret_with_retry
@@ -1218,8 +1523,53 @@ class MoscowAssistant(ShanghaiAssistantService):
                 moscow_preferences=session['moscow_preferences'],
                 proposal_ttl_seconds=300, interpretation_parser=moscow_interpretation,
                 allow_cost_edits=True)
-            result = agent.propose(actor, {'schema_version': '0.2', **{key: body.get(key) for key in
-                                    ('route_id', 'base_version', 'poi_snapshot_id', 'text')}})
+            fallback_decision = direct_decision
+            if direct_decision is None:
+                payload = agent._payload({'preferences': profile, 'pois': pois,
+                                          'routing_context': context, 'route': route}, body['text'])
+                try:
+                    decision = moscow_interpretation(interpret(payload))
+                except AssistantError:
+                    raise
+                except OpenRouterError as error:
+                    raise AssistantError(error.code) from None
+                except Exception:
+                    raise AssistantError('INTERPRETER_UNAVAILABLE') from None
+                included = {poi['id'] for poi in pois}
+                missing = list(dict.fromkeys(op['poi_id'] for op in decision.get('operations', [])
+                                             if op['op'] == 'add_poi' and op['poi_id'] in catalog
+                                             and op['poi_id'] not in included))
+                _, cells, _ = indexes()
+                self._retain_local_meals(missing, decision.get('operations', []), route, prefs,
+                                         catalog, cells.get('cafes', {}))
+                missing = [key for key in missing if key not in included]
+                if missing:
+                    retained.extend(missing)
+                    profile, pois, ranking, matrix, context = inputs(retained)
+                operations = decision.get('operations', [])
+                if len(operations) == 1 and operations[0]['op'] == 'add_poi' and operations[0]['poi_id'] in catalog:
+                    named = {**operations[0], 'op': 'add_named_poi', 'replace_if_needed': False}
+                    decision = {**decision, 'operations': [named]}
+                    fallback_decision = decision
+                agent.interpreter = lambda _: decision
+            store.register_route(actor, body['route_id'], preferences=profile, pois=pois, recommendation=ranking,
+                                 travel_times=matrix, routing_context=context, poi_snapshot_id=self.snapshot,
+                                 route=route, version=body['base_version'])
+            request = {'schema_version': '0.2', **{key: body.get(key) for key in
+                       ('route_id', 'base_version', 'poi_snapshot_id', 'text')}}
+
+            def retry_named(op):
+                agent.interpreter = lambda _: {'action': 'propose', 'operations': [op], 'clarification': None}
+                try:
+                    return agent.propose(actor, request)
+                except AssistantError as error:
+                    if error.code not in {'NO_FEASIBLE_NAMED_INSERTION', 'NO_FEASIBLE_INSERTION'}:
+                        raise
+                    return None
+
+            result, compromise = self._propose_named_fallback(
+                agent, actor, request, fallback_decision, retry_named, date_list, pois, context,
+                set(retained), body['text'], mode_choice)
             message = result.get('clarification') or 'Предложение рассчитано, но ещё не применено: проверьте изменения и подтвердите их.'
             session['moscow_history'] = [*session['moscow_history'], {'role': 'user', 'content': body['text']},
                                          {'role': 'assistant', 'content': message}][-24:]
@@ -1237,10 +1587,6 @@ class MoscowAssistant(ShanghaiAssistantService):
                 require(all(any(key in diff['after'][day] for day in diff['changed_days'])
                             for key in wanted_ids), 'NAMED_POI_NOT_ADDED')
                 wanted_names = [indexes()[0][key]['name'] for key in wanted_ids]
-                message = ('В предварительном плане найдены и размещены: ' +
-                           '; '.join('«' + name + '»' for name in wanted_names) +
-                           '. Предложение ещё НЕ сохранено. Проверьте остальные остановки, '
-                           'время и стоимость, затем подтвердите предложение.')
             requested_fill = next((op.get('days', []) for op in result['operations']
                                   if op['op'] == 'fill_gaps'), None)
             if requested_fill:
@@ -1259,16 +1605,61 @@ class MoscowAssistant(ShanghaiAssistantService):
             # shortlist. Resolve their labels from the same indexed catalog;
             # otherwise the chat crashes with KeyError after successful routing.
             expanded_catalog = indexes()[0]
-            changes = {}
+            changes = {'changed_days': sorted(set(diff['changed_days']) | {op['day_date'] for op in pins})}
             for action, first, second in [('added', 'after', 'before'), ('removed', 'before', 'after')]:
                 changes[action] = [{'name': names.get(key) or expanded_catalog.get(key, {}).get('name', key), 'day': day}
                                    for day in diff['changed_days']
                                    for key in diff[first][day] if key not in diff[second][day]]
             changes['before_cost'] = route['budget_summary']['known_total']
             changes['after_cost'] = result['candidate_route']['budget_summary']['known_total']
+            if named_ops:
+                named_details = []
+                for key, name in zip(wanted_ids, wanted_names):
+                    visit = next((row, day['date']) for day in result['candidate_route']['days']
+                                 for row in day['visits'] if row['poi_id'] == key)
+                    named_details.append({'name': name, 'day': visit[1], 'time': visit[0]['start_at'][11:16]})
+                changes['named_additions'] = named_details
+                added = ', '.join(f'«{row["name"]}» на {row["day"]} в {row["time"]}' for row in named_details)
+                original_op = ((fallback_decision or {}).get('operations') or [{}])[0]
+                original_name = names.get(original_op.get('poi_id'))
+                if compromise == 'other_place':
+                    message = f'«{original_name}» не удалось разместить. Вариант рядом: {added}.'
+                elif compromise == 'other_day' and named_details[0]['day'] != original_op.get('day'):
+                    message = f'На запрошенную дату не получилось. Вариант с другой датой: {added}.'
+                else:
+                    if compromise == 'other_day':
+                        compromise = 'keep_existing'
+                    message = f'Предлагаю добавить {added}.'
+                after_ids = {key for day in diff['after'].values() for key in day}
+                removed = [names.get(key) or expanded_catalog.get(key, {}).get('name', key)
+                           for day in diff['changed_days'] for key in diff['before'][day] if key not in after_ids]
+                if removed:
+                    message += ' Из расписания уйдут: ' + ', '.join('«' + name + '»' for name in removed) + '.'
+                message += ' Предложение ещё НЕ сохранено. Проверьте изменения и подтвердите его.'
+                changes['named_compromise'] = compromise
+            if compromise == 'move_other_day':
+                op = result['operations'][0]
+                original = fallback_decision['operations'][0]['day']
+                message = (f'Перенести «{names[op["poi_id"]]}» на {original} не получилось. '
+                           f'В выполнимом варианте посещение назначено на {op["day"]}. '
+                           'Предложение ещё НЕ сохранено.')
+            changes['meal_replacements'] = []
+            for day in diff['changed_days']:
+                for kind, slot in result['candidate_route'].get('moscow_meals', {}).get(day, {}).items():
+                    old = route.get('moscow_meals', {}).get(day, {}).get(kind)
+                    if old and old['poi_id'] != slot['poi_id']:
+                        label = lambda key: names.get(key) or expanded_catalog.get(key, {}).get('name', key)
+                        changes['meal_replacements'].append({'day': day, 'kind': kind,
+                            'before': label(old['poi_id']), 'after': label(slot['poi_id']),
+                            'time': slot['start_at'][11:16]})
+            for meal in changes['meal_replacements']:
+                label = {'breakfast': 'Завтрак', 'lunch': 'Обед', 'dinner': 'Ужин'}.get(meal['kind'], 'Приём пищи')
+                message += f' {label} {meal["day"]} в {meal["time"]} — «{meal["after"]}» рядом с остановками.'
+            session['moscow_history'][-1]['content'] = message
             windows = result['candidate_route'].get('moscow_day_windows', {})
             changes['day_windows'] = [{'day': op['day'], **windows[op['day']]}
                                       for op in result['operations'] if op['op'] == 'set_day_window']
+            session['moscow_proposed_windows'] = windows if changes['day_windows'] else None
             changes['visit_times'] = [{'name': catalog[op['poi_id']]['name'], 'day': op['day_date'],
                                        'start_time': op['start_time']} for op in pins]
             if route.get('engine_days'):
@@ -1302,7 +1693,7 @@ class MoscowAssistant(ShanghaiAssistantService):
             confirmed = result['decision'] == 'confirmed'
             if confirmed:
                 session.update(moscow_route=result['route'], moscow_version=result['version'])
-                windows = result['route'].get('moscow_day_windows')
+                windows = session.get('moscow_proposed_windows')
                 if windows:
                     session['route_options']['day_settings'] = windows
                     session['moscow_preferences'] = session['moscow_preferences'].model_copy(update={
