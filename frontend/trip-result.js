@@ -6,6 +6,7 @@ const isPreview = Boolean(previewId);
 const endpoint = isPreview ? '/api/route-previews/' + encodeURIComponent(previewId) : '/api/planned-trips/' + encodeURIComponent(routeId || '');
 let ownerContext = null;
 const places = new Map();
+const refreshedLegs = new Map();
 let trip, registration, csrf, proposal;
 
 async function request(path, body) {
@@ -37,8 +38,11 @@ function events(day, plan = trip.plan) {
   const diagnostics = new Map((plan.gap_diagnostics?.remaining || []).filter(gap => gap.date === day.date)
     .map(gap => [gap.start_at + '/' + gap.end_at, gapExplanation(gap)]));
   return [...day.visits.map(item => ({...item, type:meals.has(item.poi_id) ? 'meal' : 'visit', meal_kind:meals.get(item.poi_id)})),
-    ...day.legs.map(item => ({...item, type:'travel', mode:item.mode || (item.transport_steps?.length ? 'transit' :
-      (trip.options.transport === 'taxi' ? 'taxi' : 'walk'))})),
+    ...day.legs.map((item, index) => {
+      const geometry = plan === trip.plan && refreshedLegs.get(day.date + '/' + index);
+      return {...item, ...(geometry || {}), leg_index:index, day_date:day.date, type:'travel', mode:item.mode || (item.transport_steps?.length ? 'transit' :
+        (trip.options.transport === 'taxi' ? 'taxi' : 'walk'))};
+    }),
     ...day.breaks.map(item => ({...item, type:item.kind,
       reason:diagnostics.get(item.start_at + '/' + item.end_at) || item.reason}))].filter(showScheduleEvent)
     .sort((left, right) => left.start_at.localeCompare(right.start_at));
@@ -204,6 +208,41 @@ function renderScheduleRow(row, legIndex) {
     action.append(category);
   }
   action.append(title);
+  const pinned = row.pinned_start_time || trip.plan.visit_times?.[row.start_at?.slice(0,10)]?.[row.poi_id];
+  if (pinned && row.type === 'visit') {
+    const value = document.createElement('small');
+    value.textContent = 'Закреплено в ' + (typeof pinned === 'string' ? pinned : clock(row, 'start'));
+    action.append(value);
+  }
+  const approximate = row.mode === 'transit'
+    ? row.transport_steps?.some(step => ['walk_access','walk_egress','walk_transfer','rail_estimate'].includes(step.kind) && !step.geometry_verified)
+    : !row.geometry || row.basis !== 'routing_provider';
+  if (row.type === 'travel' && approximate && trip.city === 'moscow' &&
+      trip.poi_snapshot_id.startsWith('moscow-v7:') && Number.isInteger(row.leg_index)) {
+    const retry = document.createElement('button');
+    retry.type = 'button';
+    retry.textContent = 'Проверить геометрию';
+    const status = document.createElement('small');
+    status.setAttribute('role', 'status');
+    retry.onclick = async () => {
+      retry.disabled = true;
+      status.textContent = 'Проверяем участок…';
+      try {
+        const version = trip.version;
+        const {duration_seconds, ...geometry} = await request(endpoint + '/leg-geometry', {
+          version, day:row.day_date, leg_index:row.leg_index,
+        });
+        if (trip.version !== version) return;
+        refreshedLegs.set(row.day_date + '/' + row.leg_index, geometry);
+        renderDay();
+        element('route-action-status').textContent =
+          'Линия участка обновлена на карте. Оценка дороги после проверки — ' + Math.ceil(duration_seconds / 60) +
+          ' мин. Расписание поездки сохранено.';
+      } catch (error) { status.textContent = error.message; }
+      finally { retry.disabled = false; }
+    };
+    action.append(retry, status);
+  }
   if (row.reason && ['waiting', 'wait', 'meal', 'rest'].includes(row.type)) {
     const details = document.createElement('details');
     const summary = document.createElement('summary');
@@ -290,6 +329,7 @@ function renderDay() {
 
 function renderTrip() {
   routeMap.beginPlan();
+  refreshedLegs.clear();
   const moscow = trip.city === 'moscow';
   element('route-title').textContent = moscow ? 'Москва' : 'Шанхай';
   const budget = trip.plan.budget_summary;
@@ -299,6 +339,10 @@ function renderTrip() {
   element('route-state').textContent=isPreview?'Маршрут пока виден только вам в этом сеансе. Сохраните поездку, чтобы открыть её позднее.':'Поездка сохранена. Для изменений сначала нажмите «Редактировать». ';
   element('save-trip').hidden=!isPreview;
   element('change-preferences').hidden=!isPreview;
+  element('route-comparison').hidden = !isPreview || !moscow;
+  element('comparison-metrics').replaceChildren();
+  element('comparison-link').hidden = true;
+  element('comparison-status').textContent = '';
   if(isPreview)element('change-preferences').href='/trip/new?preview='+encodeURIComponent(previewId);
   const rub = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(value);
   element('route-cost').textContent = total == null ? 'Оценка недоступна' :
@@ -373,7 +417,7 @@ async function load() {
   const status = await request(chatPath + 'status');
   for (const item of status.conversation || []) chatLine(item.role === 'user' ? 'Вы' : 'TripWise', item.content);
   const namedAgent = status.agent_version ? 'Помощник Москвы: ' + status.agent_version +
-    '. Без OpenRouter: названия мест с опечатками, добавление места/категории, перенос, удаление, темп, транспорт и заполнение пауз.' : '';
+    '. Попробуйте «Закрепи название места в 14:30». Команда работает без OpenRouter.' : '';
   chatStatus.textContent = [namedAgent, status.reason || (status.mode === 'mock' ? 'Тестовый режим: ответы подставляет проверочный сценарий, а не ИИ.' : '')].filter(Boolean).join(' ');
   if (!status.available) return;
   csrf = status.csrf_token;
@@ -404,6 +448,12 @@ chatForm.addEventListener('submit',async event => {
     preview.replaceChildren();
     for (const item of result.diff?.added || []) appendText(preview, '+ ' + item.name + ' · ' + item.day);
     for (const item of result.diff?.removed || []) appendText(preview, '− ' + item.name + ' · ' + item.day);
+    for (const window of result.diff?.day_windows || []) {
+      appendText(preview, window.day + ' · время прогулки ' + window.day_start + '–' + window.day_end);
+    }
+    for (const pin of result.diff?.visit_times || []) {
+      appendText(preview, pin.day + ' · ' + pin.name + ' · закреплено в ' + pin.start_time);
+    }
     if (trip.city === 'moscow' && result.diff?.before_cost !== result.diff?.after_cost) {
       appendText(preview, 'Оценка затрат · ' + result.diff.before_cost + ' → ' + result.diff.after_cost + ' ₽');
     }
@@ -445,6 +495,36 @@ async function decide(decision) {
 }
 element('confirm-edit').addEventListener('click',() => void decide('confirm'));
 element('reject-edit').addEventListener('click',() => void decide('reject'));
+element('route-comparison-form').addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = event.submitter;
+  const status = element('comparison-status');
+  const metrics = element('comparison-metrics');
+  const link = element('comparison-link');
+  const version = trip.version;
+  status.textContent = 'Рассчитываем вариант с теми же параметрами поездки…';
+  button.disabled = true;
+  metrics.replaceChildren();
+  link.hidden = true;
+  try {
+    const {base,variant,preview_id,improved} = await request(endpoint+'/compare', {
+      expected_version:version, route_priority:element('comparison-priority').value,
+    });
+    if (trip.version !== version) return;
+    const walking = row => row.walking_complete ? String(row.walk_minutes) : row.walk_minutes + ' (частичные данные)';
+    for (const [label,before,after] of [
+      ['Пешком, мин',walking(base),walking(variant)],
+      ['Пересадки',base.transfers,variant.transfers],
+      ['Расходы, ₽',base.cost_rub,variant.cost_rub],
+      ['Посещения',base.visit_count,variant.visit_count],
+    ]) appendText(metrics, label + ' · ' + before + ' → ' + after);
+    status.textContent = improved === false ? 'Исходный маршрут → новый вариант. Выбранный показатель не улучшился.'
+      : 'Исходный маршрут → новый вариант';
+    link.href = '/trip/result?preview='+encodeURIComponent(preview_id);
+    link.hidden = false;
+  } catch (error) { status.textContent = error.message; }
+  finally { button.disabled = false; }
+});
 element('save-trip').addEventListener('click',async()=>{
   if(!trip||!isPreview)return;const button=element('save-trip');button.disabled=true;element('route-action-status').textContent='Сохраняем поездку…';
   try{const saved=await request(endpoint+'/save',{version:trip.version});if(!saved.route_id)throw Error('Сервер не подтвердил сохранение.');window.location.assign('/trip/result?route='+encodeURIComponent(saved.route_id));}

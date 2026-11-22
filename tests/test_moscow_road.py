@@ -52,6 +52,20 @@ class MoscowRoadTests(unittest.TestCase):
         self.assertTrue(all(pair['basis'] == 'geometric_estimate' and pair['distance_meters'] is None
                             and 'geometry' not in pair for pair in pairs))
 
+    def test_default_local_provider_recovers_without_waiting_for_cache(self):
+        geometry = {'type': 'LineString', 'coordinates': [[37.62, 55.752], [37.624, 55.7539]]}
+        valid = json.dumps({'code': 'Ok', 'routes': [{'duration': 400, 'distance': 500, 'geometry': geometry}],
+                            'waypoints': [{'distance': 3}, {'distance': 5}]}).encode()
+        with (patch.dict('os.environ', {}, clear=True),
+              patch('ai_ds.moscow_road.monotonic', return_value=100),
+              patch('ai_ds.moscow_road.urlopen', side_effect=[
+                  TimeoutError, io.BytesIO(valid), io.BytesIO(valid)]) as request):
+            offline = travel_matrix(self.pois, 'walking')
+            restored = travel_matrix(self.pois, 'walking')
+        self.assertEqual(offline['basis'], 'geometric_estimate')
+        self.assertEqual(restored['basis'], 'routing_provider')
+        self.assertTrue(request.call_args_list[1].args[0].startswith('http://127.0.0.1:5001/route/'))
+
     def test_rail_access_obeys_entrance_directions_and_preserves_geometry(self):
         nodes = {1: {'type': 'node', 'id': 1, 'lat': 55.752, 'lon': 37.621},
                  2: {'type': 'node', 'id': 2, 'lat': 55.7539, 'lon': 37.623}}

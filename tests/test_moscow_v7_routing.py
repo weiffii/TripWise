@@ -127,7 +127,7 @@ class MoscowV7RoutingTests(unittest.TestCase):
             request.headers['X-TripWise-CSRF'] = status['csrf_token']
             shanghai.apply_assistant(route_id, 'register', request, user, {'request_id': 'register-1'})
             proposed = shanghai.apply_assistant(route_id, 'message', request, user,
-                dict(request_id='message-01', route_id=route_id, base_version=1, poi_snapshot_id=snapshot, text='Убери первое место и добавь Красную площадь.'))
+                dict(request_id='message-01', route_id=route_id, base_version=1, poi_snapshot_id=snapshot, text='Пересмотри остановки этого дня по тестовому сценарию.'))
             self.assertEqual(proposed['type'], 'proposal', proposed)
             self.assertEqual(proposed['diff']['added'][0]['day'], day['date'])
             self.assertIn(added, [item['poi_id'] for item in proposed['plan']['days'][0]['visits']])
@@ -160,7 +160,8 @@ class MoscowV7RoutingTests(unittest.TestCase):
         with patch.dict('os.environ', {'MOSCOW_OSRM_FOOT': '', 'OPENROUTER_API_KEY': ''}):
             plan, options, snapshot = plan_moscow(preferences)
             service = MoscowAssistant()
-        self.assertFalse(service.status()[1]['available'])
+        self.assertTrue(service.status()[1]['available'])
+        self.assertFalse(service.llm_configured)
         self.assertEqual(len(plan['days']), 3)
         self.assertEqual(plan['engine'], 'shared-js')
         self.assertTrue(all(day['visits'] and (any(item['kind'] == 'meal' for item in day['breaks'])
@@ -169,7 +170,8 @@ class MoscowV7RoutingTests(unittest.TestCase):
         self.assertTrue(all(leg['basis'] == 'geometric_estimate' and leg['geometry'] is None
                             for day in plan['days'] for leg in day['legs']))
         day = plan['days'][0]
-        removed = day['visits'][0]['poi_id']
+        meals = {row['poi_id'] for row in plan['moscow_meals'].get(day['date'], {}).values()}
+        removed = next(visit['poi_id'] for visit in day['visits'] if visit['poi_id'] not in meals)
         service.configured = True
         service.interpreter = lambda _: {'action': 'propose', 'operations': [
             {'op': 'remove_poi', 'poi_id': removed},
@@ -182,7 +184,7 @@ class MoscowV7RoutingTests(unittest.TestCase):
         service.request(token, csrf, 'register', dict(request_id='register-1', route_id='route-1', version=1,
                         preferences=preferences.model_dump(mode='json'), plan=plan))
         proposal = service.request(token, csrf, 'message', dict(request_id='message-01', route_id='route-1',
-                                   base_version=1, poi_snapshot_id=snapshot, text='Убери место и перенеси обед.'))
+                                   base_version=1, poi_snapshot_id=snapshot, text='Пересмотри расписание по тестовому сценарию.'))
         self.assertEqual(proposal['type'], 'proposal', proposal)
         self.assertEqual(state['moscow_version'], 1)
         self.assertIn(removed, [item['poi_id'] for item in state['moscow_route']['days'][0]['visits']])
@@ -212,8 +214,8 @@ class MoscowV7RoutingTests(unittest.TestCase):
         )
         real_travel_matrix = moscow.travel_matrix
 
-        def fixture_matrix(pois, mode):
-            matrix = real_travel_matrix(pois, 'walking')
+        def fixture_matrix(pois, mode, **kwargs):
+            matrix = real_travel_matrix(pois, 'walking', **kwargs)
             matrix['mode'] = mode
             if mode == 'car':
                 by_id = {poi['id']: poi['coordinates'] for poi in pois}

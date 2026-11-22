@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/styles.css?v=20261122-schedule1">
   <script src="/destination-visuals.js?v=20261122-unified2" defer></script>
   <script src="/route-map.js" defer></script>
-  <script src="/trip-result.js?v=20261122-schedule1" defer></script>
+  <script src="/trip-result.js?v=20261122-meals" defer></script>
 </head>
 <body class="questionnaire-page">
   <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
@@ -17,6 +17,22 @@
   <main class="questionnaire-main">
     <section class="page-hero questionnaire-hero route-result-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
     <div class="preview-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="outline-button">Редактировать</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
+    <details id="route-comparison" class="preview-note" hidden>
+      <summary>Сравнить варианты маршрута</summary>
+      <form id="route-comparison-form" class="preview-actions">
+        <label for="comparison-priority">Приоритет варианта</label>
+        <select id="comparison-priority">
+          <option value="walking">Меньше пешком</option>
+          <option value="transfers">Меньше пересадок</option>
+          <option value="cost">Дешевле</option>
+          <option value="balanced">Сбалансированный</option>
+        </select>
+        <button type="submit" class="outline-button">Построить вариант по анкете</button>
+      </form>
+      <p id="comparison-status" role="status"></p>
+      <ul id="comparison-metrics"></ul>
+      <a id="comparison-link" class="back-link" href="/trip/result" hidden>Открыть вариант</a>
+    </details>
     <div class="questionnaire-layout result-layout">
       <div>
         <section class="form-section"><h2>Планируемые затраты</h2><strong id="route-cost">—</strong><p id="cost-note" class="field-hint"></p></section>

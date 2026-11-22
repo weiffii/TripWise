@@ -12,6 +12,7 @@ from backend.accounts import current_user, init_database, router
 from backend.catalog import router as catalog_router
 from backend.trips import router as trips_router
 from backend.route_previews import router as preview_router
+from backend.route_geometry import router as geometry_router
 from backend.drafts import init_drafts, router as drafts_router
 from backend.shanghai import init_routes, router as shanghai_router
 
@@ -39,6 +40,7 @@ app.include_router(shanghai_router)
 app.include_router(catalog_router)
 app.include_router(trips_router)
 app.include_router(preview_router)
+app.include_router(geometry_router)
 
 
 @app.middleware("http")

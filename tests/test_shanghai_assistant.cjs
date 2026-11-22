@@ -18,6 +18,34 @@ test('replace by category resolves an existing POI and preserves other membershi
 test('add by existing name-resolved ID uses a feasible position',()=>{const result=good(api.editTrip(data,options,base,[{op:'add_poi',day,poi_id:'unusual',desired_category:null,near_poi_id:optional}]));assert(result.plan.selected_ids.includes('unusual'));assert.deepEqual(result.plan.days[1],base.days[1]);});
 test('multiple operations are applied atomically, including cross-day move',()=>{const result=good(api.editTrip(data,options,base,[{op:'remove_poi',poi_id:other},{op:'move_poi',poi_id:optional,to_day:day2,position:null}]));assert(!result.plan.days[0].visit_ids.includes(optional));assert(result.plan.days[1].visit_ids.includes(optional));assert(!result.plan.selected_ids.includes(other));assert.deepEqual(result.changed_days.sort(),[day,day2]);});
 test('explicit meal time pins lunch and maintains full-meal intervals',()=>{const result=good(api.editTrip(data,options,base,[{op:'set_meal_break',day,meal_kind:'lunch',start_time:'14:00'}]));assert.equal(result.plan.days[0].events.find(e=>e.meal_kind==='lunch').start_min,840);assert.deepEqual(result.plan.days[1],base.days[1]);});
+test('a visit pin sets the exact time and remains in effect during later edits',()=>{
+ const time='15:15',operation={op:'pin_visit_time',day_date:day,poi_id:optional,start_time:time};
+ const pinned=good(api.editTrip(data,options,base,[operation]));
+ const check=result=>{
+  const visit=result.plan.days[0].events.find(e=>e.poi_id===optional);
+  assert.equal(visit.start_min,915);
+  assert.equal(visit.pinned_start_time,time);
+  assert.equal(result.options.visit_times[day][optional],time);
+ };
+ check(pinned);
+ assert.deepEqual(pinned.plan.days[1],base.days[1]);
+ assert.deepEqual(pinned.plan.days[0].meal_ids,base.days[0].meal_ids);
+ check(good(api.editTrip(data,pinned.options,pinned.plan,[{op:'optimize_day',day,goal:'travel'}])));
+ assert.throws(()=>api.editTrip(data,pinned.options,pinned.plan,[{op:'remove_poi',poi_id:optional}]),
+  e=>e.reason==='PINNED_VISIT_PROTECTED');
+ assert.throws(()=>api.editTrip(data,options,base,[{...operation,start_time:'24:00'}]),
+  e=>e.code==='INVALID_VISIT_TIME');
+ assert.throws(()=>api.editTrip(data,options,base,[{...operation,start_time:'23:00'}]),
+  e=>e.code==='VISIT_TIME_UNAVAILABLE');
+});
+test('fixed-sequence scheduling applies and validates visit pins independently of chat',()=>{
+ const visit=base.days[0].events.find(e=>e.poi_id===optional);
+ const time=[Math.floor(visit.start_min/60),visit.start_min%60].map(n=>String(n).padStart(2,'0')).join(':');
+ const result=good(api.scheduleSequences(data,options,{base_plan:base,visit_times:{[day]:{[optional]:time}}}));
+ assert.deepEqual(result.changed_days,[day]);
+ assert.equal(result.plan.days[0].events.find(e=>e.poi_id===optional).pinned_start_time,time);
+ assert.equal(api.validateEditedTrip(data,{...options,visit_times:{[day]:{[optional]:'19:59'}}},base).valid,false);
+});
 test('infeasible lunch time fails without changing the source route',()=>{const before=JSON.stringify(base);assert.throws(()=>api.editTrip(data,options,base,[{op:'set_meal_break',day,meal_kind:'lunch',start_time:'10:00'}]),e=>e.code==='NO_FEASIBLE_EDIT');assert.equal(JSON.stringify(base),before);});
 test('pace and visit-count edits combine rather than dropping an operation',()=>{const result=good(api.editTrip(data,options,base,[{op:'adjust_visits',day,count_delta:-1,desired_category:null},{op:'set_day_pace',day,pace:'relaxed'}]));assert.equal(result.options.day_settings[day].pace,'relaxed');assert.equal(result.plan.days[0].visit_ids.length,base.days[0].visit_ids.length-1);});
 test('cheaper restaurant is selected from stored group prices',()=>{const target=base.days[0].meal_ids.find(id=>id!=='food24');const result=good(api.editTrip(data,options,base,[{op:'replace_poi',day,target_poi_id:target,desired_category:'cafes',preference:'cheaper'}]));assert(!result.plan.selected_ids.includes(target));assert(result.plan.summary.total_cost_cny<base.summary.total_cost_cny);assert.equal(result.plan.summary.meal_count,base.summary.meal_count);});

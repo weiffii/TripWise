@@ -3,7 +3,7 @@
 import json
 import time
 from decimal import Decimal
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from typing import Literal
 from zoneinfo import ZoneInfo
 
@@ -12,6 +12,8 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validat
 
 from backend.accounts import current_user, database, same_origin
 from backend.catalog import CITIES, CURRENCY_CODES
+from ai_ds.day_windows import MAX_TRIP_DAYS, minutes, valid_clock
+from ai_ds.route_priorities import RoutePriority
 
 
 Category = Literal["museums", "history", "nature", "cafes", "entertainment", "shopping", "viewpoints", "unusual"]
@@ -35,6 +37,7 @@ class TripPreferences(BaseModel):
     timezone: str = Field(strict=True)
     first_walk_at: datetime
     last_walk_end_at: datetime
+    day_settings: dict[date, dict[Literal['day_start', 'day_end'], str]] | None = Field(default=None, max_length=12)
     travelers: int = Field(strict=True, ge=1, le=100)
     traveler_counts: TravelerCounts
     budget_amount: Decimal = Field(ge=0, le=1_000_000_000, decimal_places=2, allow_inf_nan=False)
@@ -45,6 +48,7 @@ class TripPreferences(BaseModel):
     secondary_interests: list[Category] = Field(max_length=8)
     pace: Literal["relaxed", "balanced", "intensive"]
     transport_modes: list[Literal["walking", "public_transit", "car"]] = Field(min_length=1, max_length=3)
+    route_priority: RoutePriority | None = None
     # Это локальные ID справочника интерфейса, не ID модуля AI/DS или OSM.
     required_poi_ids: list[str] = Field(max_length=20)
 
@@ -107,6 +111,14 @@ class TripPreferences(BaseModel):
             raise ValueError("Сумма взрослых, детей и пожилых должна совпадать с количеством путешественников.")
         if self.first_walk_at >= self.last_walk_end_at:
             raise ValueError("Окончание последней прогулки должно быть позже начала первой.")
+        first, last = self.first_walk_at.date(), self.last_walk_end_at.date()
+        if (last - first).days >= MAX_TRIP_DAYS:
+            raise ValueError('Поездка может длиться до 14 календарных дней.')
+        for day, settings in (self.day_settings or {}).items():
+            start, end = settings.get('day_start', '09:00'), settings.get('day_end', '21:00')
+            if (not first < day < last or not settings or not valid_clock(start) or not valid_clock(end)
+                    or minutes(end) - minutes(start) < 60):
+                raise ValueError('Укажите окно промежуточного дня длительностью не менее часа.')
         for values in [self.primary_interests, self.secondary_interests, self.transport_modes, self.required_poi_ids]:
             if len(values) != len(set(values)):
                 raise ValueError("Не повторяйте выбранные варианты.")
@@ -160,7 +172,7 @@ def serialize_trip(row):
     if row is None:
         return None
     preferences = TripPreferences.model_validate_json(row["preferences_json"])
-    return {"id": row["id"], "preferences": preferences.model_dump(mode="json"),
+    return {"id": row["id"], "preferences": preferences.model_dump(mode="json", exclude_none=True),
             "revision": row["revision"], "created_at": row["created_at"], "updated_at": row["updated_at"]}
 
 
@@ -195,7 +207,7 @@ def get_draft(user: dict = Depends(current_user)):
 @router.put("", dependencies=[Depends(same_origin)])
 def save_draft(data: DraftUpdate, user: dict = Depends(current_user),
                owner_context: str | None = Header(default=None, alias="X-TripWise-Draft-Owner")):
-    payload = data.preferences.model_dump_json()
+    payload = data.preferences.model_dump_json(exclude_none=True)
     now = int(time.time())
     with database() as db:
         db.execute("BEGIN IMMEDIATE")

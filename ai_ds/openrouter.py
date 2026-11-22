@@ -95,7 +95,7 @@ def _minimal_context(payload, *, rich_context=False):
             else:
                 allowed = ('date', 'pace', 'day_start', 'day_end')
             row = {key: value[key] for key in allowed if key in value}
-            if rich_context and field == 'days' and type(value.get('day_number')) is int and 1 <= value['day_number'] <= 5:
+            if rich_context and field == 'days' and type(value.get('day_number')) is int and 1 <= value['day_number'] <= 14:
                 row['day_number'] = value['day_number']
             if field == 'days':
                 visits = value.get('visits', [])

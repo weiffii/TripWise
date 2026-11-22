@@ -11,6 +11,8 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from backend.accounts import COOKIE_NAME, current_user, database, same_origin, token_hash
 from backend.drafts import TripPreferences, require_owner_context
+from ai_ds.day_windows import MAX_TRIP_DAYS
+from ai_ds.route_priorities import RoutePriority, comparison_metrics
 
 router = APIRouter(tags=['Предпросмотр маршрута'])
 PREVIEW_TTL = 3600
@@ -28,6 +30,12 @@ class PreviewBuild(BaseModel):
 class RouteVersion(BaseModel):
     model_config = ConfigDict(extra='forbid')
     version: int = Field(strict=True, ge=1)
+
+
+class PreviewComparison(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    expected_version: int = Field(strict=True, ge=1)
+    route_priority: RoutePriority
 
 
 def session_key(request):
@@ -75,18 +83,18 @@ def _put_preview(route, form, user, request, source=None):
 def form_from_engine(route):
     """Обратимый интерфейс старого сохранённого маршрута для новой анкеты."""
     if route['options'].get('_fullstack_preferences'):
-        return deepcopy(route['options']['_fullstack_preferences'])
+        return merge_form_windows(route['options']['_fullstack_preferences'], route['options'])
     p = route['preferences']
     if p['group'].get('pet'):
         raise HTTPException(422, 'Эта старая поездка содержит питомца. Новая анкета пока не поддерживает изменение таких поездок.')
     start = datetime.fromisoformat(p['start_date'])
     end = start + timedelta(days=p['days'] - 1)
-    settings = p.get('day_settings') or {}
+    settings = {**(p.get('day_settings') or {}), **(route['options'].get('day_settings') or {})}
     first_time = settings.get(start.date().isoformat(), {}).get('day_start', p['day_start'])
     last_time = settings.get(end.date().isoformat(), {}).get('day_end', p['day_end'])
     counts = {'adults': p['group']['adult'], 'children': p['group']['child'], 'seniors': p['group']['senior']}
     modes = p.get('transport_modes') or (['walk', 'transit', 'taxi'] if p['transport'] == 'mixed' else [p['transport']])
-    return {'schema_version': 'fullstack-draft-0.2', 'country_code': 'RU' if p['city'] == 'moscow' else 'CN',
+    form = {'schema_version': 'fullstack-draft-0.2', 'country_code': 'RU' if p['city'] == 'moscow' else 'CN',
             'city': 'Москва' if p['city'] == 'moscow' else 'Шанхай', 'timezone': p['timezone'],
             'first_walk_at': start.date().isoformat() + 'T' + first_time,
             'last_walk_end_at': end.date().isoformat() + 'T' + last_time,
@@ -96,7 +104,24 @@ def form_from_engine(route):
             'budget_scope': 'trip_food_visits_and_transport', 'primary_interests': p['primary_interests'],
             'secondary_interests': p['secondary_interests'], 'pace': p['pace'],
             'transport_modes': [{'walk': 'walking', 'transit': 'public_transit', 'taxi': 'car'}[m] for m in modes],
-            'required_poi_ids': p['required_ids']}
+            'required_poi_ids': p['required_ids'],
+            **({'route_priority': p.get('route_priority', 'balanced')} if p['city'] == 'moscow' else {})}
+    return merge_form_windows(form, {'day_settings': settings})
+
+
+def merge_form_windows(form, options):
+    result = deepcopy(form)
+    first, last = form['first_walk_at'][:10], form['last_walk_end_at'][:10]
+    overrides = result.get('day_settings') or {}
+    for day, settings in (options.get('day_settings') or {}).items():
+        if first < day < last:
+            window = {key: settings[key] for key in ('day_start', 'day_end') if key in settings}
+            if window and (day in overrides or window.get('day_start', '09:00') != '09:00'
+                           or window.get('day_end', '21:00') != '21:00'):
+                overrides[day] = {**overrides.get(day, {}), **window}
+    if overrides:
+        result['day_settings'] = overrides
+    return result
 
 
 def engine_preferences(raw):
@@ -115,8 +140,8 @@ def engine_preferences(raw):
         raise HTTPException(422, 'Для Москвы выберите рубли; для Шанхая доступны рубли, доллары, евро и юани.')
     first, last = form.first_walk_at, form.last_walk_end_at
     days = (last.date() - first.date()).days + 1
-    if not 1 <= days <= 5:
-        raise HTTPException(422, 'Сейчас маршрутизатор поддерживает поездки от 1 до 5 календарных дней.')
+    if not 1 <= days <= MAX_TRIP_DAYS:
+        raise HTTPException(422, 'Маршрутизатор поддерживает поездки от 1 до 14 календарных дней.')
     if any(value > 30 for value in form.traveler_counts.model_dump().values()):
         raise HTTPException(422, 'Сейчас маршрутизатор поддерживает до 30 человек в каждой возрастной группе.')
     # Внутренние дни 09:00–21:00; первый/последний ограничены заданными пользователем окнами.
@@ -125,8 +150,10 @@ def engine_preferences(raw):
         day = first.date() + timedelta(days=offset)
         start = first.strftime('%H:%M') if offset == 0 else '09:00'
         finish = last.strftime('%H:%M') if offset == days - 1 else '21:00'
+        override = (form.day_settings or {}).get(day, {})
+        start, finish = override.get('day_start', start), override.get('day_end', finish)
         if datetime.combine(day, time.fromisoformat(finish)) - datetime.combine(day, time.fromisoformat(start)) < timedelta(hours=1):
-            raise HTTPException(422, 'Для каждого дня нужно минимум 60 минут. Промежуточные дни планируются с 09:00 до 21:00.')
+            raise HTTPException(422, 'Для каждого дня нужно минимум 60 минут.')
         settings[day.isoformat()] = {'day_start': start, 'day_end': finish}
     modes = [{'walking': 'walk', 'public_transit': 'transit', 'car': 'taxi'}[m] for m in form.transport_modes]
     allowed = {p['id'] for p in catalog(city)}
@@ -140,11 +167,13 @@ def engine_preferences(raw):
                'primary_interests': form.primary_interests, 'secondary_interests': form.secondary_interests,
                'required_ids': form.required_poi_ids, 'budget_amount': float(form.budget_amount),
                'budget_currency': form.budget_currency, 'budget_basis': 'per_group' if form.budget_basis == 'group' else 'per_person'}
+    if city == 'moscow':
+        payload['route_priority'] = form.route_priority or 'balanced'
     try:
         preferences = (MoscowPreferences if city == 'moscow' else ShanghaiPreferences).model_validate(payload)
     except ValidationError:
         raise HTTPException(422, 'Параметры превышают ограничения маршрутизатора. Проверьте бюджет, время и компанию.') from None
-    return form.model_dump(mode='json'), preferences
+    return form.model_dump(mode='json', exclude_none=True), preferences
 
 
 @router.post('/api/route-previews', dependencies=[Depends(same_origin)], status_code=201)
@@ -171,6 +200,54 @@ def generate_preview(data: PreviewBuild, request: Request, user: dict = Depends(
 @router.get('/api/route-previews/{preview_id}')
 def read_preview(preview_id: str, request: Request, user: dict = Depends(current_user)):
     return public_route(preview_owned(preview_id, user['id'], request), user)
+
+
+@router.post('/api/route-previews/{preview_id}/compare', dependencies=[Depends(same_origin)], status_code=201)
+def compare_preview(preview_id: str, data: PreviewComparison, request: Request, user: dict = Depends(current_user),
+                    owner: str | None = Header(default=None, alias='X-TripWise-Draft-Owner')):
+    from backend.shanghai import build_plan
+
+    require_owner_context(owner, user)
+    base = preview_owned(preview_id, user['id'], request)
+    if base['city'] != 'moscow':
+        raise HTTPException(422, 'Сравнение приоритетов доступно для Москвы.')
+    if base['version'] != data.expected_version:
+        raise HTTPException(409, 'Предпросмотр уже изменён. Откройте его заново.')
+    form, preferences = engine_preferences({**base['form_preferences'], 'route_priority': data.route_priority})
+    plan, options, snapshot = build_plan(preferences)
+    visit_times = base['plan'].get('visit_times') or {}
+    if visit_times:
+        scheduled = {day['date']: {visit['poi_id']: visit['start_at'][11:16] for visit in day['visits']}
+                     for day in plan['days']}
+        if any(scheduled.get(day, {}).get(key) != clock
+               for day, pins in visit_times.items() for key, clock in pins.items()):
+            raise HTTPException(422, 'Вариант с этим приоритетом не сохраняет закреплённое время посещения.')
+        plan['visit_times'] = deepcopy(visit_times)
+    options['_fullstack_preferences'] = form
+    now = int(timestamp())
+    variant = {'city': preferences.city, 'version': 1, 'poi_snapshot_id': snapshot,
+               'preferences': preferences.model_dump(mode='json'), 'options': options, 'plan': plan,
+               'created_at': now, 'updated_at': now}
+    baseline_metrics, variant_metrics = comparison_metrics(base), comparison_metrics(variant)
+    additional_missing = (set(plan.get('unplaced_required_poi_ids', [])) -
+                          set(base['plan'].get('unplaced_required_poi_ids', [])))
+    if (additional_missing or plan.get('status') == 'infeasible' or
+            any(plan.get('native_checks', {}).get(check) == 'failed'
+                for check in ('budget', 'time', 'opening_hours', 'no_duplicates'))):
+        raise HTTPException(422, 'Вариант с этим приоритетом не удалось построить с сохранением ограничений.')
+    with _lock:
+        current = _entry(preview_id, user['id'], request)
+        if current['route']['version'] != data.expected_version:
+            raise HTTPException(409, 'Предпросмотр изменился во время сравнения. Откройте его заново.')
+        source = ({'route_id': current['saved_route_id'], 'version': current['saved_version']}
+                  if current['saved_route_id'] else current['source'])
+        created = _put_preview(variant, form, user, request, source)
+    target = {'walking': 'walk_minutes', 'transfers': 'transfers', 'cost': 'cost_rub'}.get(data.route_priority)
+    comparable = target and baseline_metrics[target] is not None and variant_metrics[target] is not None
+    if data.route_priority == 'walking':
+        comparable = comparable and baseline_metrics['walking_complete'] and variant_metrics['walking_complete']
+    return {'base': baseline_metrics, 'variant': variant_metrics, 'preview_id': created['preview_id'],
+            'improved': variant_metrics[target] < baseline_metrics[target] if comparable else None}
 
 
 @router.post('/api/planned-trips/{route_id}/preview', dependencies=[Depends(same_origin)], status_code=201)
@@ -250,6 +327,7 @@ def apply_preview_change(preview_id, user, request, version, plan, options):
             raise HTTPException(409, 'Предпросмотр уже изменён или сохранён. Откройте поездку заново.')
         # History belongs to preview memory too, never to SQL until explicit Save.
         history = route['options'].get('conversation', [])
+        route['form_preferences'] = merge_form_windows(route['form_preferences'], options)
         route.update(plan=deepcopy(plan), options={**deepcopy(options), 'conversation': history,
                      '_fullstack_preferences': route['form_preferences']}, version=version + 1, updated_at=int(timestamp()))
 
