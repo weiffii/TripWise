@@ -12,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from backend.accounts import COOKIE_NAME, current_user, database, same_origin, token_hash
 from backend.drafts import TripPreferences, require_owner_context
 from ai_ds.day_windows import MAX_TRIP_DAYS
+from ai_ds.route_priorities import RoutePriority, comparison_metrics
 
 router = APIRouter(tags=['Предпросмотр маршрута'])
 PREVIEW_TTL = 3600
@@ -29,6 +30,12 @@ class PreviewBuild(BaseModel):
 class RouteVersion(BaseModel):
     model_config = ConfigDict(extra='forbid')
     version: int = Field(strict=True, ge=1)
+
+
+class PreviewComparison(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    expected_version: int = Field(strict=True, ge=1)
+    route_priority: RoutePriority
 
 
 def session_key(request):
@@ -97,7 +104,8 @@ def form_from_engine(route):
             'budget_scope': 'trip_food_visits_and_transport', 'primary_interests': p['primary_interests'],
             'secondary_interests': p['secondary_interests'], 'pace': p['pace'],
             'transport_modes': [{'walk': 'walking', 'transit': 'public_transit', 'taxi': 'car'}[m] for m in modes],
-            'required_poi_ids': p['required_ids']}
+            'required_poi_ids': p['required_ids'],
+            **({'route_priority': p.get('route_priority', 'balanced')} if p['city'] == 'moscow' else {})}
     return merge_form_windows(form, {'day_settings': settings})
 
 
@@ -159,11 +167,13 @@ def engine_preferences(raw):
                'primary_interests': form.primary_interests, 'secondary_interests': form.secondary_interests,
                'required_ids': form.required_poi_ids, 'budget_amount': float(form.budget_amount),
                'budget_currency': form.budget_currency, 'budget_basis': 'per_group' if form.budget_basis == 'group' else 'per_person'}
+    if city == 'moscow':
+        payload['route_priority'] = form.route_priority or 'balanced'
     try:
         preferences = (MoscowPreferences if city == 'moscow' else ShanghaiPreferences).model_validate(payload)
     except ValidationError:
         raise HTTPException(422, 'Параметры превышают ограничения маршрутизатора. Проверьте бюджет, время и компанию.') from None
-    return form.model_dump(mode='json'), preferences
+    return form.model_dump(mode='json', exclude_none=True), preferences
 
 
 @router.post('/api/route-previews', dependencies=[Depends(same_origin)], status_code=201)
@@ -190,6 +200,54 @@ def generate_preview(data: PreviewBuild, request: Request, user: dict = Depends(
 @router.get('/api/route-previews/{preview_id}')
 def read_preview(preview_id: str, request: Request, user: dict = Depends(current_user)):
     return public_route(preview_owned(preview_id, user['id'], request), user)
+
+
+@router.post('/api/route-previews/{preview_id}/compare', dependencies=[Depends(same_origin)], status_code=201)
+def compare_preview(preview_id: str, data: PreviewComparison, request: Request, user: dict = Depends(current_user),
+                    owner: str | None = Header(default=None, alias='X-TripWise-Draft-Owner')):
+    from backend.shanghai import build_plan
+
+    require_owner_context(owner, user)
+    base = preview_owned(preview_id, user['id'], request)
+    if base['city'] != 'moscow':
+        raise HTTPException(422, 'Сравнение приоритетов доступно для Москвы.')
+    if base['version'] != data.expected_version:
+        raise HTTPException(409, 'Предпросмотр уже изменён. Откройте его заново.')
+    form, preferences = engine_preferences({**base['form_preferences'], 'route_priority': data.route_priority})
+    plan, options, snapshot = build_plan(preferences)
+    visit_times = base['plan'].get('visit_times') or {}
+    if visit_times:
+        scheduled = {day['date']: {visit['poi_id']: visit['start_at'][11:16] for visit in day['visits']}
+                     for day in plan['days']}
+        if any(scheduled.get(day, {}).get(key) != clock
+               for day, pins in visit_times.items() for key, clock in pins.items()):
+            raise HTTPException(422, 'Вариант с этим приоритетом не сохраняет закреплённое время посещения.')
+        plan['visit_times'] = deepcopy(visit_times)
+    options['_fullstack_preferences'] = form
+    now = int(timestamp())
+    variant = {'city': preferences.city, 'version': 1, 'poi_snapshot_id': snapshot,
+               'preferences': preferences.model_dump(mode='json'), 'options': options, 'plan': plan,
+               'created_at': now, 'updated_at': now}
+    baseline_metrics, variant_metrics = comparison_metrics(base), comparison_metrics(variant)
+    additional_missing = (set(plan.get('unplaced_required_poi_ids', [])) -
+                          set(base['plan'].get('unplaced_required_poi_ids', [])))
+    if (additional_missing or plan.get('status') == 'infeasible' or
+            any(plan.get('native_checks', {}).get(check) == 'failed'
+                for check in ('budget', 'time', 'opening_hours', 'no_duplicates'))):
+        raise HTTPException(422, 'Вариант с этим приоритетом не удалось построить с сохранением ограничений.')
+    with _lock:
+        current = _entry(preview_id, user['id'], request)
+        if current['route']['version'] != data.expected_version:
+            raise HTTPException(409, 'Предпросмотр изменился во время сравнения. Откройте его заново.')
+        source = ({'route_id': current['saved_route_id'], 'version': current['saved_version']}
+                  if current['saved_route_id'] else current['source'])
+        created = _put_preview(variant, form, user, request, source)
+    target = {'walking': 'walk_minutes', 'transfers': 'transfers', 'cost': 'cost_rub'}.get(data.route_priority)
+    comparable = target and baseline_metrics[target] is not None and variant_metrics[target] is not None
+    if data.route_priority == 'walking':
+        comparable = comparable and baseline_metrics['walking_complete'] and variant_metrics['walking_complete']
+    return {'base': baseline_metrics, 'variant': variant_metrics, 'preview_id': created['preview_id'],
+            'improved': variant_metrics[target] < baseline_metrics[target] if comparable else None}
 
 
 @router.post('/api/planned-trips/{route_id}/preview', dependencies=[Depends(same_origin)], status_code=201)

@@ -26,6 +26,7 @@ from ai_ds.route_assistant import (AssistantError, InMemoryRouteStore, RouteAssi
                                   reject_constant)
 
 from ai_ds.day_windows import DAY_WINDOW_FIELDS, local_day_window, valid_clock
+from ai_ds.visit_time_intent import PIN_FIELDS, local_visit_pin, valid_pin
 
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORIES = {'museums', 'history', 'nature', 'cafes', 'entertainment', 'shopping', 'viewpoints', 'unusual'}
@@ -39,6 +40,7 @@ FIELDS = {
     'optimize_day': {'op', 'day', 'goal'},
     'set_day_end': {'op', 'day', 'end_time'},
     'set_day_window': DAY_WINDOW_FIELDS,
+    'pin_visit_time': PIN_FIELDS,
     'set_transport': {'op', 'day', 'transport'},
     'adjust_visits': {'op', 'day', 'count_delta', 'desired_category'},
 }
@@ -62,6 +64,7 @@ set_meal_break: day ISO, meal_kind breakfast|lunch|dinner, start_time HH:MM;
 optimize_day: day ISO или null(вся поездка), goal travel|waiting|walking;
 set_day_end: day ISO или null, end_time HH:MM;
 set_day_window: только промежуточный day ISO, start_time и end_time HH:MM либо null для сохранения одного времени;
+pin_visit_time: day_date ISO, poi_id существующего посещения, start_time HH:MM;
 set_transport: day ISO или null, transport walk|taxi|transit|mixed;
 adjust_visits: day ISO, count_delta integer от -2 до 2 кроме 0, desired_category категория или null.
 Категории museums,history,nature,cafes,entertainment,shopping,viewpoints,unusual.
@@ -123,7 +126,11 @@ def parse_operations(value):
             require(op.get('goal') in ('travel', 'waiting', 'walking'), 'INVALID_GOAL')
         if op['op'] == 'set_meal_break':
             require(op.get('meal_kind') in ('breakfast', 'lunch', 'dinner'), 'INVALID_MEAL_KIND')
+        if op['op'] == 'pin_visit_time':
+            require(valid_pin(op), 'INVALID_VISIT_TIME')
         for key in ('start_time', 'end_time'):
+            if op['op'] == 'set_day_window':
+                continue
             if key in op:
                 require(isinstance(op[key], str) and re.fullmatch(r'(?:[01]\d|2[0-3]):[0-5]\d', op[key]), 'INVALID_TIME')
     fingerprint(value)
@@ -240,6 +247,11 @@ def human_error(code):
         'NO_FEASIBLE_REPLACEMENT': 'Подходящая замена в заданных условиях не найдена. Можно попробовать другой день или категорию.',
         'TRANSPORT_UNAVAILABLE': 'По имеющимся данным запрошенный транспорт недоступен для этих переходов или не укладывается в расписание. Можно сохранить прежний транспорт или выбрать другой день.',
         'MEAL_TIME_UNAVAILABLE': 'Запрошенное время не укладывается в доступное окно заведения. Попробуйте другое время обеда.',
+        'INVALID_VISIT_TIME': 'Укажите точное время посещения в формате ЧЧ:ММ.',
+        'VISIT_TIME_UNAVAILABLE': 'Посещение не помещается в указанное время с учётом часов работы, переходов и приёмов пищи.',
+        'TARGET_DAY_MISMATCH': 'Это посещение отсутствует в указанном дне маршрута.',
+        'VISIT_NOT_IN_ROUTE': 'Закрепить можно время посещения из маршрута. Для питания действует отдельная команда.',
+        'PINNED_VISIT_PROTECTED': 'Правка затрагивает посещение с закреплённым временем. Выберите другое изменение.',
         'NO_ROUTE_CHANGE': 'Запрошенное условие уже выполнено. Уточните, если нужно поменять день, время или место.',
         'NO_ROUTE_IMPROVEMENT': 'Не нашёл более короткий вариант с теми же местами и ограничениями. Попробуйте изменить время или убрать необязательную остановку.',
         'NO_FEASIBLE_GAP_FILL': 'Для указанных дней не удалось добавить выполнимые посещения: в пределах проверенного поиска мешают часы работы, бюджет, транспорт или занятое время. Прежний маршрут сохранён. Это не доказательство отсутствия подходящих мест во всём городе.',
@@ -268,7 +280,8 @@ class ShanghaiRouteAssistant(RouteAssistant):
     """Тот же механизм транзакций RouteAssistant, иной авторитетный scheduler."""
     def __init__(self, store, interpreter, data, *, bridge=bridge_call, history=None):
         def interpret(payload):
-            local = local_day_window(payload['text'], [day['date'] for day in payload['days']])
+            local = (local_visit_pin(payload['text'], payload['days']) or
+                     local_day_window(payload['text'], [day['date'] for day in payload['days']]))
             return local if local is not None else interpreter(payload)
 
         super().__init__(store, interpret, proposal_ttl_seconds=15 * 60,

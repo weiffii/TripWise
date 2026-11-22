@@ -48,7 +48,7 @@ process.stdin.on('data',chunk=>{bytes+=Buffer.byteLength(chunk);if(bytes>LIMIT){
 process.stdin.on('end',()=>{
  try{
   const request=JSON.parse(raw);if(!request||typeof request!=='object'||Array.isArray(request))throw Object.assign(Error(),{code:'INVALID_REQUEST'});
-  const allowed=new Set(['action','options','base_plan','operations','sequences','changed_days','day_settings','meal_times','edit_spec','plan','dataset']);
+  const allowed=new Set(['action','options','base_plan','operations','sequences','changed_days','day_settings','meal_times','visit_times','edit_spec','plan','dataset']);
   if(Object.keys(request).some(k=>!allowed.has(k))||!['plan','edit','schedule','validate'].includes(request.action))throw Object.assign(Error(),{code:'INVALID_REQUEST'});
   let data=request.dataset;
   if(!Object.hasOwn(request,'dataset')){
@@ -58,7 +58,7 @@ process.stdin.on('end',()=>{
   let result;
   if(request.action==='plan')result=fillWaiting(data,request.options,api.planTrip(data,request.options));
   if(request.action==='edit')result=api.editTrip(data,request.options,request.base_plan,request.operations);
-  if(request.action==='schedule')result=api.scheduleSequences(data,request.options,request.edit_spec||{base_plan:request.base_plan,sequences:request.sequences,changed_days:request.changed_days,day_settings:request.day_settings,meal_times:request.meal_times});
+  if(request.action==='schedule')result=api.scheduleSequences(data,request.options,request.edit_spec||{base_plan:request.base_plan,sequences:request.sequences,changed_days:request.changed_days,day_settings:request.day_settings,meal_times:request.meal_times,visit_times:request.visit_times});
   if(request.action==='validate')result=api.validateEditedTrip(data,request.options,request.plan||request.base_plan);
   reply(result);
  }catch(error){reply({error:{code:error.code||'INVALID_ROUTE_REQUEST',message:error.code?String(error.message).slice(0,400):'Не удалось проверить маршрут. Проверьте параметры запроса.',...(error.reason?{reason:error.reason}:{})}});}

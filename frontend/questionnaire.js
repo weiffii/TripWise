@@ -162,11 +162,13 @@ function preferences(){
   schema_version:'fullstack-draft-0.2',country_code:countryInput.value,city:cityInput.value,timezone:currentCity().timezone,
   first_walk_at:firstWalk.value,last_walk_end_at:lastWalk.value,travelers:travelerTotal(),traveler_counts:travelerCounts(),
   ...(Object.keys(daySettings).length ? {day_settings:daySettings} : {}),
+  ...(cityInput.value === 'Москва' ? {route_priority:form.elements.route_priority.value} : {}),
   budget_amount:form.elements.budget_amount.value,budget_currency:form.elements.budget_currency.value,budget_basis:selected('budget_basis')[0],budget_scope:'trip_food_visits_and_transport',
   primary_interests:selected('primary_interests'),secondary_interests:selected('secondary_interests'),pace:selected('pace')[0],transport_modes:selected('transport_modes'),required_poi_ids:[...requiredPlaces],
 };}
 function updateSummary(){
   window.setDestinationVisual(cityInput.value);
+  document.querySelector('#route-priority-field').hidden = cityInput.value !== 'Москва';
   document.querySelector('#summary-title').textContent=cityInput.value||'Ваша поездка';
   const counts=travelerCounts();const total=travelerTotal();const valid=Number.isInteger(total)&&total>=1&&total<=100&&Object.values(counts).every(n=>Number.isInteger(n)&&n>=0);
   document.querySelector('#party-total').textContent=valid?`Всего путешественников: ${total}`:'Укажите от 1 до 100 путешественников';
@@ -182,6 +184,7 @@ function markEdited(){
 }
 function fillForm(data){
   countryInput.value=data.country_code;populateCities(data.city);
+  form.elements.route_priority.value = data.route_priority || 'balanced';
   firstWalk.value=data.first_walk_at.slice(0,16);lastWalk.value=data.last_walk_end_at.slice(0,16);
   renderMiddleDays(data.day_settings || {});
   middleDays.open = Object.keys(data.day_settings || {}).length > 0;

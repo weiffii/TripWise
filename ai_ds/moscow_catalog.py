@@ -22,10 +22,16 @@ def _food_type(row):
         tags = {}
     source = str(row.get('source_type') or tags.get('amenity') or tags.get('shop') or '').lower()
     name = str(row.get('name') or '').casefold()
+    brand = str(tags.get('brand') or '').casefold()
+    if re.search(r'\b(?:дринкит|drinkit|one price coffee|cofix|кофикс|starbucks|stars coffee)\b',
+                 f'{name} {brand}'):
+        return 'coffee_shop'
+    if source in ('pastry', 'confectionery', 'ice_cream') or re.search(r'\b(?:baskin[-\s]?robbins|баскин[-\s]?роббинс)\b', name):
+        return 'dessert'
     for code, terms in (
         ('canteen', ('столовая', 'буфет', 'canteen')),
         ('food_court', ('фудкорт', 'фуд-корт', 'food court')),
-        ('bakery', ('пекарня', 'булочная', 'bakery')),
+        ('bakery', ('пекарня', 'булочная', 'хлебная мануфактура', 'bakery')),
         ('fast_food', ('fast_food', 'fast food', 'фастфуд', 'бургер', 'шаурма',
                        'burger king', 'kfc', 'ростикс', 'rostics', 'вкусно и точка',
                        'вкусно — и точка', 'вкусно - и точка')),
@@ -45,7 +51,8 @@ def _meal_suitability(kind):
     return {
         'canteen': {'breakfast': 'possible', 'lunch': 'likely', 'dinner': 'possible'},
         'food_court': {'breakfast': 'unlikely', 'lunch': 'likely', 'dinner': 'likely'},
-        'bakery': {'breakfast': 'likely', 'lunch': 'possible', 'dinner': 'unlikely'},
+        'bakery': {'breakfast': 'likely', 'lunch': 'unlikely', 'dinner': 'unlikely'},
+        'dessert': {'breakfast': 'unlikely', 'lunch': 'unlikely', 'dinner': 'unlikely'},
         'fast_food': {'breakfast': 'possible', 'lunch': 'likely', 'dinner': 'likely'},
         'coffee_shop': {'breakfast': 'possible', 'lunch': 'unlikely', 'dinner': 'unlikely'},
         'restaurant': {'breakfast': 'possible', 'lunch': 'likely', 'dinner': 'likely'},
@@ -140,7 +147,7 @@ def planning_fields(row):
     }
     food_specs = {
         'canteen': (30, 400), 'food_court': (35, 500), 'bakery': (20, 260),
-        'fast_food': (25, 400), 'coffee_shop': (25, 310), 'restaurant': (65, 1100),
+        'fast_food': (25, 400), 'coffee_shop': (25, 310), 'restaurant': (65, 1100), 'dessert': (20, 260),
         'cafe': (45, 650), 'bar': (55, 850), 'pub': (60, 850), 'nightclub': (90, 1400),
     }
     if food_kind:

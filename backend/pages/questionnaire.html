@@ -7,7 +7,7 @@
     <script src="/theme.js?v=20261122-unified2"></script>
     <link rel="stylesheet" href="/styles.css?v=20261122-unified2">
     <script src="/destination-visuals.js?v=20261122-unified2" defer></script>
-    <script src="/questionnaire.js?v=20261122-unified2" defer></script>
+    <script src="/questionnaire.js?v=20261122-meals" defer></script>
   </head>
   <body class="questionnaire-page">
     <header class="header">
@@ -78,6 +78,15 @@
                 <label class="choice"><img class="transport-image" src="/assets/card-public_transit.svg" alt=""><input type="checkbox" name="transport_modes" value="public_transit"><span>Общественный транспорт</span></label>
                 <label class="choice"><img class="transport-image" src="/assets/card-car.svg" alt=""><input type="checkbox" name="transport_modes" value="car"><span>Автомобиль</span></label>
               </div></fieldset>
+              <div id="route-priority-field" class="field" hidden>
+                <label for="route-priority">Приоритет маршрута</label>
+                <select id="route-priority" name="route_priority">
+                  <option value="balanced">Сбалансированный маршрут</option>
+                  <option value="walking">Меньше пешком</option>
+                  <option value="transfers">Меньше пересадок</option>
+                  <option value="cost">Дешевле</option>
+                </select>
+              </div>
             </section>
 
             <section class="form-section" aria-labelledby="places-title"><div class="section-art"><img src="/assets/card-places.svg" alt="" loading="lazy"><div><p class="eyebrow">ОБЯЗАТЕЛЬНЫЕ МЕСТА</p><p>Сохраните место для того самого места.</p></div></div>

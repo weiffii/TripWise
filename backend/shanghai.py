@@ -9,6 +9,7 @@ from typing import Annotated, Literal
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Request
+from ai_ds.route_priorities import RoutePriority
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from starlette.concurrency import run_in_threadpool
@@ -106,6 +107,7 @@ class MoscowPreferences(ShanghaiPreferences):
     city: Literal['moscow']
     timezone: Literal['Europe/Moscow']
     visit_minutes: Annotated[int, Field(strict=True, ge=15, le=480)] | None = None
+    route_priority: RoutePriority = 'balanced'
 
 
 def init_routes():
@@ -235,8 +237,8 @@ def assistant_for(route):
 def assistant_status(route_id: str, request: Request, user: dict = Depends(current_user)):
     route = owned_route(route_id, user['id'], request)
     service = assistant_for(route)
-    local_shanghai_window = route['city'] == 'shanghai' and len(route['plan']['days']) > 2 and not service.configured
-    if not service.configured and not local_shanghai_window:
+    local_shanghai = route['city'] == 'shanghai' and not service.configured
+    if not service.configured and not local_shanghai:
         return {'available': False, 'reason': 'Задайте OPENROUTER_API_KEY в окружении терминала, из которого запускается FastAPI, и перезапустите сервер. Без ключа маршруты работают, чат отключён.'}
     if route['poi_snapshot_id'] != service.snapshot or route['plan']['status'] == 'infeasible':
         return {'available': False, 'reason': 'Для этой версии маршрута чат недоступен. Постройте новый выполнимый маршрут.'}
@@ -246,8 +248,8 @@ def assistant_status(route_id: str, request: Request, user: dict = Depends(curre
         raise HTTPException(503, human_error(error.code)) from error
     response = {'available': True, 'csrf_token': state['csrf'], 'mode': service.mode,
                 'conversation': route['options'].get('conversation', [])}
-    if local_shanghai_window:
-        response.update(mode='local', reason='Часы промежуточных дней можно менять без OpenRouter.')
+    if local_shanghai:
+        response.update(mode='local', reason='Без OpenRouter доступны закрепление времени посещения и изменение часов промежуточных дней.')
     if route['city'] == 'moscow':
         # Let the browser confirm which server-side named-POI handler is live;
         # stale FastAPI processes otherwise make fresh ZIP installs appear broken.

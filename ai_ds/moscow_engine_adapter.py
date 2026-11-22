@@ -3,6 +3,7 @@ from math import ceil
 
 from ai_ds.shanghai_assistant import bridge_call
 from ai_ds.moscow_fares import estimate_fare
+from ai_ds.route_priorities import leg_metrics
 
 
 MODES = {'walking': 'walk', 'car': 'taxi', 'public_transit': 'transit'}
@@ -70,11 +71,13 @@ def engine_input(profile, pois, matrix, context):
                 # Unknown price is not zero: do not route through that profile.
                 if cost is not None:
                     minutes = provider_minutes + fare['additional_minutes']
+                    walking, transfers = leg_metrics(pair, actual_mode, minutes)
                     value = {'base_minutes': provider_minutes, 'planned_minutes': minutes,
                              'buffer_minutes': minutes - provider_minutes,
                              'mode': actual_mode, 'distance_m': pair.get('distance_meters'),
                              'transport_cost_cny': cost, 'source': pair['source_id'],
-                             'basis': pair['basis'], 'transport_cost_basis': fare['basis']}
+                             'basis': pair['basis'], 'transport_cost_basis': fare['basis'],
+                             'walking_minutes': walking, 'transfers': transfers}
                     rows[a, b, name] = {**pair, 'mode': actual_mode,
                                         'provider_duration_seconds': pair['duration_seconds'],
                                         'group_time_factor': group_factor,
@@ -92,6 +95,7 @@ def engine_input(profile, pois, matrix, context):
                                for entry in context['days']}
     if selected:
         options['transport_modes'] = selected
+    options['route_priority'] = context.get('route_priority', 'balanced')
     dataset = {'pois': catalog, 'leg_profiles': profiles, 'currency': 'RUB', 'compact_waits': True}
     if context.get('day_anchors'):
         dataset['day_anchors'] = context['day_anchors']
@@ -218,6 +222,29 @@ def fixed_sequence(state, sequences, *, optimize=None):
     profile, context, pois = (state[key] for key in ('preferences', 'routing_context', 'pois'))
     dataset, options, rows = engine_input(profile, pois, state['travel_times'],
         {**context, 'opening_intervals': context.get('moscow_original_hours', context['opening_intervals'])})
+    if state['route'].get('moscow_meals'):
+        places = {poi['id']: poi for poi in dataset['pois']}
+        old_days = {day['date']: {event.get('poi_id'): event for event in day['events'] if event['type'] == 'meal'}
+                    for day in state['route'].get('engine_days', [])}
+        people = sum(context['moscow_group'][key] for key in ('adult', 'child', 'senior'))
+        # A change to the catalog classification must still allow opening and
+        # editing a previously stored route. Fresh plans use the current tags.
+        for date, meals in state['route']['moscow_meals'].items():
+            for kind, slot in meals.items():
+                place = places.get(slot['poi_id'])
+                if not place or place.get('food_type') not in ('coffee_shop', 'bakery', 'dessert'):
+                    continue
+                if (place.get('meal_suitability') or {}).get(kind) == 'unlikely':
+                    place['meal_suitability'] = {**place['meal_suitability'], kind: 'likely'}
+                event = old_days.get(date, {}).get(slot['poi_id'])
+                if event and abs(place['price_cny'] * people - event['price_cny']) > .01:
+                    place.update(price_cny=event['price_cny'] / people,
+                                 duration_minutes=event['end_min'] - event['start_min'],
+                                 duration_locked=True)
+                    window = place['opening']['by_date'].get(date)
+                    if window and not window.get('closed'):
+                        window.update(open=min(window['open'], clock(slot['start_at'])),
+                                      close=max(window['close'], clock(slot['end_at'])))
     settings = {date: {'pace': pace} for date, pace in context.get('day_pace_overrides', {}).items()}
     meal_times, entries, base_days, changed_days = {}, {}, [], []
     originals = {day['date']: day for day in state['route'].get('engine_days', [])}
@@ -269,6 +296,7 @@ def fixed_sequence(state, sequences, *, optimize=None):
             'meal_times': {day: meal_times[day] for day in changed_days if meal_times[day]}}
     options['day_settings'] = {**options['day_settings'], **{date: {**options['day_settings'].get(date, {}), **value} for date, value in settings.items()}}
     options['meal_times'] = meal_times
+    options['visit_times'] = context.get('visit_times', {})
     scheduled = bridge_call(args)
     if optimize:
         scheduled = bridge_call({'action': 'edit', 'dataset': dataset, 'options': scheduled['options'],

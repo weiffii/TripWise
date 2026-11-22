@@ -13,6 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validat
 from backend.accounts import current_user, database, same_origin
 from backend.catalog import CITIES, CURRENCY_CODES
 from ai_ds.day_windows import MAX_TRIP_DAYS, minutes, valid_clock
+from ai_ds.route_priorities import RoutePriority
 
 
 Category = Literal["museums", "history", "nature", "cafes", "entertainment", "shopping", "viewpoints", "unusual"]
@@ -47,6 +48,7 @@ class TripPreferences(BaseModel):
     secondary_interests: list[Category] = Field(max_length=8)
     pace: Literal["relaxed", "balanced", "intensive"]
     transport_modes: list[Literal["walking", "public_transit", "car"]] = Field(min_length=1, max_length=3)
+    route_priority: RoutePriority | None = None
     # Это локальные ID справочника интерфейса, не ID модуля AI/DS или OSM.
     required_poi_ids: list[str] = Field(max_length=20)
 
@@ -170,7 +172,7 @@ def serialize_trip(row):
     if row is None:
         return None
     preferences = TripPreferences.model_validate_json(row["preferences_json"])
-    return {"id": row["id"], "preferences": preferences.model_dump(mode="json"),
+    return {"id": row["id"], "preferences": preferences.model_dump(mode="json", exclude_none=True),
             "revision": row["revision"], "created_at": row["created_at"], "updated_at": row["updated_at"]}
 
 
@@ -205,7 +207,7 @@ def get_draft(user: dict = Depends(current_user)):
 @router.put("", dependencies=[Depends(same_origin)])
 def save_draft(data: DraftUpdate, user: dict = Depends(current_user),
                owner_context: str | None = Header(default=None, alias="X-TripWise-Draft-Owner")):
-    payload = data.preferences.model_dump_json()
+    payload = data.preferences.model_dump_json(exclude_none=True)
     now = int(time.time())
     with database() as db:
         db.execute("BEGIN IMMEDIATE")

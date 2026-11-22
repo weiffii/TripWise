@@ -22,6 +22,7 @@ from ai_ds.openrouter import OpenRouterInterpreter, SYSTEM_PROMPT
 from ai_ds.recommendation import recommend
 from ai_ds.route_assistant import AssistantError, InMemoryRouteStore, RouteAssistant, has_failed, parse_interpretation, require, sequences_of
 from ai_ds.shanghai_assistant import ShanghaiAssistantService
+from ai_ds.visit_time_intent import PIN_FIELDS, local_visit_pin, valid_pin
 
 BASE = Path(__file__).resolve().parents[1] / 'examples/routing/v02'
 CITY_CENTRE = {'lat': 55.752, 'lon': 37.620}
@@ -157,18 +158,20 @@ def geographic_days(preferences):
 
 def _planning_price(poi):
     """Planning estimate only. Unknown is not the same as confirmed free."""
-    value = poi.get('planning', {}).get('price_rub', {}).get('value')
+    fields = poi.get('planning', {})
+    value = fields.get('average_check_rub', fields.get('price_rub', {})).get('value')
     return value if isinstance(value, (int, float)) and not isinstance(value, bool) and isfinite(value) and value >= 0 else float('inf')
 
 
-def _budget_constrained(preferences):
+def daily_budget_per_person(preferences):
     group = preferences.group
     people = max(1, group.adult + group.child + group.senior)
     total = preferences.budget_amount * (people if preferences.budget_basis == 'per_person' else 1)
-    return total / people / max(1, preferences.days) < 4000
+    return total / people / preferences.days
 
 
-def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None, dining_target=None):
+def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None, dining_target=None,
+                           visit_target=None):
     """Return nearby, affordable AND experience-oriented V7 alternatives.
 
     The old nearest-N picker often returned several expensive restaurants,
@@ -183,7 +186,7 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
         if max(abs(grid[0]-lat), abs(grid[1]-lon)) > 3:
             break
         rows.update(set(cells[grid]) - occupied)
-        if len(rows) >= max(120, limit * 18):
+        if len(rows) >= max(120, limit * 18) and meal_kind not in ('lunch', 'dinner'):
             break
     ranked = []
     for key in rows:
@@ -191,9 +194,9 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
         if meal_kind:
             kind = place.get('planning', {}).get('meal_suitability', {}).get('value', {})
             food_type = place.get('planning', {}).get('food_type', {}).get('value')
-            if not isinstance(kind, dict) or kind.get(meal_kind) in ('unlikely', False):
+            if not isinstance(kind, dict) or kind.get(meal_kind) not in ('likely', 'possible', True):
                 continue
-            if meal_kind == 'dinner' and food_type in ('coffee_shop', 'bakery') and kind.get('dinner') != 'likely':
+            if meal_kind in ('lunch', 'dinner') and food_type in ('coffee_shop', 'bakery', 'bar', 'pub', 'nightclub'):
                 continue
         distance = _distance(coordinates(place), anchor)
         price = _planning_price(place)
@@ -206,6 +209,13 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
     cheap = sorted(ranked, key=lambda v: (v[2], v[1], v[0]))
     near = sorted(ranked, key=lambda v: (v[1], v[2], v[0]))
     balanced = sorted(ranked, key=lambda v: (v[1] / 8 + v[2], v[1], v[0]))
+    if visit_target is not None:
+        # Keep nearby and inexpensive options, while admitting visits that
+        # would otherwise be excluded solely because their ticket costs more.
+        matching = sorted(ranked, key=lambda item: (
+            item[1] / 12 + abs(item[2] - visit_target), item[1], item[0]))
+        return list(dict.fromkeys([near[0][0], *(key for key, _, _ in matching[:max(1, limit // 2)]),
+                                   cheap[0][0], *(key for key, _, _ in balanced)]))[:limit]
     # A generous budget is permission to consider an enjoyable full-service
     # dinner, *not* a signal to fill the route with the cheapest fast food.
     # Price alone is not a quality claim: restaurant type, meal suitability,
@@ -231,9 +241,10 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
             return (desirable.get(venue, 0) * 3 + suitability_bonus * 2
                     - price_mismatch - metres / 350)
         recommended = sorted(ranked, key=lambda item: (-experience(item), item[1], item[0]))
-        # Preserve a cheap fallback and a geographically close option; devote
-        # the remaining slots to suitable full-service or midrange venues.
-        chosen = list(dict.fromkeys([cheap[0][0], near[0][0],
+        full_service = [key for key, _, _ in recommended if
+                        by_id[key]['planning']['food_type']['value'] == 'restaurant']
+        first = full_service[:max(1, limit - 2)] if meal_kind != 'breakfast' else []
+        chosen = list(dict.fromkeys([*first, cheap[0][0], near[0][0],
                                      *(key for key, _, _ in recommended)]))
         return chosen[:limit]
     result = dict.fromkeys([*(k for k, _, _ in cheap[:max(2, (limit + 1) // 2)]),
@@ -248,7 +259,10 @@ def geographic_shortlist(preferences, anchors):
     selected = dict.fromkeys(preferences.required_ids)
     interests = list(dict.fromkeys(c for c in (*preferences.primary_interests, *preferences.secondary_interests)
                                    if c != 'cafes'))
-    constrained = _budget_constrained(preferences)
+    budget_per_person_day = daily_budget_per_person(preferences)
+    constrained = budget_per_person_day < 4000
+    visit_target = (min(1800, budget_per_person_day * .17)
+                    if not constrained and preferences.route_priority != 'cost' else None)
     per_area = {'relaxed': 9, 'balanced': 14, 'intensive': 18}[preferences.pace]
     by_day = []
     for anchor in anchors:
@@ -261,7 +275,8 @@ def geographic_shortlist(preferences, anchors):
         if interests:
             for i, category in enumerate(interests):
                 count = max(3, per_area // len(interests) + (i < per_area % len(interests)))
-                include(budget_friendly_places(anchor, categories.get(category, {}), count, selected))
+                include(budget_friendly_places(anchor, categories.get(category, {}), count, selected,
+                                               visit_target=visit_target))
         # A tight budget is a reason to relax *nonmandatory* interest categories,
         # not a reason to leave an entire day without affordable visits.
         if constrained:
@@ -271,15 +286,19 @@ def geographic_shortlist(preferences, anchors):
         # Collect meal-specific alternatives, including low-price canteens and
         # quick-service cafés, rather than only the five closest restaurants.
         food_cells = categories.get('cafes', {})
-        travellers = max(1, preferences.group.adult + preferences.group.child + preferences.group.senior)
-        total_budget = preferences.budget_amount * (travellers if preferences.budget_basis == 'per_person' else 1)
-        budget_per_person_day = total_budget / travellers / max(1, preferences.days)
+        food_choices = {}
         for meal in ('breakfast', 'lunch', 'dinner'):
-            dining_target = (None if constrained else
+            dining_target = (None if budget_per_person_day < 2800 else
                              budget_per_person_day * {'breakfast': .09, 'lunch': .14, 'dinner': .20}[meal])
-            include(budget_friendly_places(anchor, food_cells, 5, selected,
-                                           meal_kind=meal, dining_target=dining_target))
-        by_day.append(day)
+            choices = budget_friendly_places(anchor, food_cells, 5, selected,
+                                             meal_kind=meal, dining_target=dining_target)
+            food_choices[meal] = choices
+            selected.update(dict.fromkeys(choices))
+        # Interleave meals and sights before the global cutoff. Previously
+        # distant days could exhaust the matrix before any meal was admitted.
+        lunch, dinner, breakfast = (food_choices[kind] for kind in ('lunch', 'dinner', 'breakfast'))
+        by_day.append([*lunch[:1], *dinner[:1], *day[:2], *lunch[1:2], *dinner[1:2],
+                       *breakfast[:1], *day[2:], *lunch[2:], *dinner[2:], *breakfast[1:]])
     # Round-robin preserves each day's geographic and meal choices. The matrix
     # scales quadratically; protect mandatory stops and retain a bounded pool.
     if len(selected) > MAX_MIXED_CANDIDATES:
@@ -441,6 +460,7 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
                    # An explicitly entered visit duration is a hard constraint for every pace.
                    moscow_user_duration_ids=(list(preferences.required_ids) if preferences.visit_minutes is not None else []),
                    optimize_local_order=True, moscow_has_pet=bool(preferences.group.pet), moscow_group=preferences.group.model_dump(),
+                   route_priority=preferences.route_priority,
                    duration_overrides=durations, opening_intervals=openings,
                    cost_context=dict(currency='RUB', coverage_complete=False, visit_costs=costs, meal_costs=[]))
     filters = transport_filters or {}
@@ -557,7 +577,7 @@ class MoscowRouteAssistant(RouteAssistant):
                         require(fix_meal_time(context, date, slot['poi_id'], kind,
                                               slot['start_at'], slot['end_at']), 'MEAL_TIME_UNAVAILABLE')
             for key in ('day_pace_overrides', 'day_anchors', 'moscow_meal_pins',
-                        'moscow_transit_filters', 'moscow_start_hints'):
+                        'moscow_transit_filters', 'moscow_start_hints', 'visit_times'):
                 if key in original_context:
                     context[key] = deepcopy(original_context[key])
             return {'preferences': profile, 'pois': pois, 'recommendation': ranking,
@@ -669,6 +689,18 @@ class MoscowRouteAssistant(RouteAssistant):
         return None
 
     def _apply(self, state, sequences, op):
+        if op['op'] == 'pin_visit_time':
+            day, key = op['day_date'], op['poi_id']
+            require(key in sequences.get(day, []), 'TARGET_DAY_MISMATCH')
+            optimized = fixed_sequence(state, sequences, optimize=op)
+            sequences[day] = sequences_of(optimized)[day]
+            context = state['routing_context']
+            context.setdefault('visit_times', {}).setdefault(day, {})[key] = op['start_time']
+            events = next(item['events'] for item in optimized['engine_days'] if item['date'] == day)
+            context.setdefault('moscow_start_hints', {})[day] = {
+                event['poi_id']: event['start_min'] for event in events if 'poi_id' in event
+            }
+            return
         if op['op'] == 'set_day_window':
             day = op['day']
             require(day in list(sequences)[1:-1], 'MIDDLE_DAY_REQUIRED')
@@ -684,6 +716,7 @@ class MoscowRouteAssistant(RouteAssistant):
             context.get('moscow_start_hints', {}).pop(day, None)
             window['meal_break'] = None
             protected = set(state['preferences']['required_poi_ids'])
+            protected.update(context.get('visit_times', {}).get(day, {}))
             pinned = context.get('moscow_meal_pins', {}).get(day, {})
             protected.update(slot['poi_id'] for kind, slot in context.get('moscow_meals', {}).get(day, {}).items()
                              if kind in pinned)
@@ -960,6 +993,8 @@ class MoscowRouteAssistant(RouteAssistant):
                 require(legs and all(leg['basis'] == 'routing_provider' for leg in legs), 'TRANSPORT_UNAVAILABLE')
         if context.get('moscow_meal_pins'):
             result['moscow_meal_pins'] = context['moscow_meal_pins']
+        if context.get('visit_times'):
+            result['visit_times'] = context['visit_times']
         result['moscow_day_windows'] = {day['date']: {
             'day_start': day['day_start'][11:16], 'day_end': day['day_end'][11:16],
         } for day in context['days']}
@@ -999,6 +1034,8 @@ def moscow_interpretation(value):
                 require(any(op.get(key) is not None for key in ('start_time', 'end_time')) and
                         all(op.get(key) is None or valid_clock(op[key]) for key in ('start_time', 'end_time')),
                         'INVALID_DAY_WINDOW')
+            if isinstance(op, dict) and op.get('op') == 'pin_visit_time':
+                require(valid_pin(op), 'INVALID_VISIT_TIME')
             if isinstance(op, dict) and op.get('op') == 'fill_gaps':
                 require(isinstance(op.get('days'), list) and 1 <= len(op['days']) <= MAX_TRIP_DAYS and
                         len(op['days']) == len(set(op['days'])) and
@@ -1015,6 +1052,7 @@ def moscow_interpretation(value):
         'optimize_day': {'op', 'day', 'goal'},
         'fill_gaps': {'op', 'days'},
         'set_day_window': DAY_WINDOW_FIELDS,
+        'pin_visit_time': PIN_FIELDS,
     })
 
 
@@ -1034,7 +1072,9 @@ class MoscowAssistant(ShanghaiAssistantService):
                    'fill_gaps: op, days (список дат ISO), на существующем московском каталоге. '
                    'Не выбирай POI сам, не обещай устранить все ожидания. Учитывай бюджет, '
                    'питание и заданные виды транспорта.')
-        prompt += ('\nДля изменения дневных часов используй set_day_window: op, day (ISO только для '
+        prompt += ('\nДля закрепления визита используй pin_visit_time: op, day_date (ISO), poi_id '
+                   'существующего визита и start_time HH:MM.\n'
+                   'Для изменения дневных часов используй set_day_window: op, day (ISO только для '
                    'промежуточного дня), start_time, end_time (HH:MM или null для сохранения одного времени).')
         prompt += ('\nprice_rub — ориентировочный чек одного человека. Для явной просьбы убрать '
                    'заведение дороже указанного порога удаляй подходящие по оценке запланированные '
@@ -1091,7 +1131,13 @@ class MoscowAssistant(ShanghaiAssistantService):
                                'mixed': ['walk', 'transit', 'taxi']}.get(
                                    getattr(prefs, 'transport', 'mixed'), [])
                 mode_choice = mode_choice or [prefs.transport]
-            direct_decision = local_command_decision(
+            catalog = indexes()[0]
+            pin_days = [{'date': day['date'], 'visits': [
+                {'name': catalog[row['poi_id']]['name'], 'poi_id': row['poi_id']}
+                for row in day['visits'] if row['poi_id'] in catalog and row['poi_id'] not in {
+                    meal['poi_id'] for meal in route.get('moscow_meals', {}).get(day['date'], {}).values()}]}
+                for day in route['days']]
+            direct_decision = local_visit_pin(body['text'], pin_days) or local_command_decision(
                 body['text'], date_list, indexes()[0], retained,
                 session['moscow_history'], mode_choice)
             if direct_decision and direct_decision['action'] != 'propose':
@@ -1142,6 +1188,8 @@ class MoscowAssistant(ShanghaiAssistantService):
                 context['recenter_candidates'] = recenter_candidates
             if route.get('moscow_meal_pins'):
                 context['moscow_meal_pins'] = deepcopy(route['moscow_meal_pins'])
+            if route.get('visit_times'):
+                context['visit_times'] = deepcopy(route['visit_times'])
             for settings, day in zip(context['days'], route['days']):
                 meal = next((entry for entry in day['breaks'] if entry['kind'] == 'meal'), None)
                 if meal:
@@ -1179,7 +1227,9 @@ class MoscowAssistant(ShanghaiAssistantService):
             if result['validation_status'] != 'ready_for_confirmation':
                 return {'type': 'clarification', 'message': message}
             diff = result['diff']
-            require(diff['changed_days'], 'NO_ROUTE_CHANGE')
+            pins = [op for op in result['operations'] if op['op'] == 'pin_visit_time']
+            require(diff['changed_days'] or pins and result['candidate_route'].get('visit_times') != route.get('visit_times'),
+                    'NO_ROUTE_CHANGE')
             named_ops = [op for op in result['operations'] if op['op'] in ('add_named_poi', 'replace_any_named', 'recenter_day')]
             if named_ops:
                 # Never claim success unless every requested named POI appears.
@@ -1219,6 +1269,8 @@ class MoscowAssistant(ShanghaiAssistantService):
             windows = result['candidate_route'].get('moscow_day_windows', {})
             changes['day_windows'] = [{'day': op['day'], **windows[op['day']]}
                                       for op in result['operations'] if op['op'] == 'set_day_window']
+            changes['visit_times'] = [{'name': catalog[op['poi_id']]['name'], 'day': op['day_date'],
+                                       'start_time': op['start_time']} for op in pins]
             if route.get('engine_days'):
                 changes['optimization'] = [
                     {'day': op['day'], 'goal': op['goal'],
