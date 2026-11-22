@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
-  <script src="/theme.js"></script>
-  <link rel="stylesheet" href="/styles.css">
+  <script src="/theme.js?v=20261122-unified2"></script>
+  <link rel="stylesheet" href="/styles.css?v=20261122-unified2">
+  <script src="/destination-visuals.js?v=20261122-unified2" defer></script>
   <script src="/route-map.js" defer></script>
-  <script src="/trip-result.js" defer></script>
+  <script src="/trip-result.js?v=20261122-unified2" defer></script>
 </head>
 <body class="questionnaire-page">
-  <header class="header"><a class="brand" href="/trips">TripWise<span class="brand-dot">.</span></a>
+  <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
     <div class="header-actions"><a class="back-link" href="/trips">← Мои поездки</a><button class="theme-toggle" data-theme-toggle type="button">Тема</button></div>
   </header>
   <main class="questionnaire-main">
-    <section class="page-hero questionnaire-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
+    <section class="page-hero questionnaire-hero route-result-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
+    <div class="preview-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="outline-button">Редактировать</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
     <div class="questionnaire-layout result-layout">
       <div>
         <section class="form-section"><h2>Планируемые затраты</h2><strong id="route-cost">—</strong><p id="cost-note" class="field-hint"></p></section>
@@ -43,7 +45,7 @@
         </section>
       </div>
       <section class="trip-summary form-section route-chat"><span class="section-number">ПОМОЩНИК TRIPWISE</span><h2>Изменить маршрут</h2>
-        <p class="field-hint">Опишите пожелание. Изменения сохранятся только после подтверждения.</p>
+        <p class="field-hint">Опишите пожелание. Сначала посмотрите предложение и подтвердите его. Затем нажмите «Сохранить поездку», чтобы записать маршрут в аккаунт.</p>
         <div id="chat-log" role="log"></div>
         <form id="edit-route"><label for="chat-text">Ваше пожелание</label><textarea id="chat-text" required maxlength="3000" rows="4"></textarea><button class="submit-button" disabled>Предложить изменения</button></form>
         <p id="chat-status" role="status"></p>

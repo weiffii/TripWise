@@ -395,7 +395,7 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
     people = preferences.group.adult + preferences.group.child + preferences.group.senior
     amount = preferences.budget_amount * (people if preferences.budget_basis == 'per_person' else 1)
     first = preferences.start_date
-    profile = dict(schema_version='0.1', destination={'country_code': 'RU', 'city': 'Москва'},
+    profile = dict(schema_version='0.2', destination={'country_code': 'RU', 'city': 'Москва'},
                    date_start=first.isoformat(), date_end=(first + timedelta(days=preferences.days - 1)).isoformat(),
                    timezone='Europe/Moscow', primary_interests=preferences.primary_interests,
                    secondary_interests=preferences.secondary_interests, required_poi_ids=preferences.required_ids,

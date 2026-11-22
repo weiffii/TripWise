@@ -1,14 +1,18 @@
 const element = id => document.getElementById(id);
-const routeId = new URLSearchParams(location.search).get('route');
-const endpoint = '/api/planned-trips/' + encodeURIComponent(routeId);
+const resultParams = new URLSearchParams(location.search);
+const previewId = resultParams.get('preview');
+const routeId = resultParams.get('route');
+const isPreview = Boolean(previewId);
+const endpoint = isPreview ? '/api/route-previews/' + encodeURIComponent(previewId) : '/api/planned-trips/' + encodeURIComponent(routeId || '');
+let ownerContext = null;
 const places = new Map();
 let trip, registration, csrf, proposal;
 
 async function request(path, body) {
   const response = await fetch(path, body ? {
-    method: 'POST', headers: {'Content-Type':'application/json', 'X-TripWise-CSRF':csrf || ''},
-    body: JSON.stringify({...body, request_id:crypto.randomUUID()}),
-  } : undefined);
+    method: 'POST', credentials:'same-origin', headers: {'Content-Type':'application/json', 'X-TripWise-CSRF':csrf || '', 'X-TripWise-Draft-Owner':ownerContext || ''},
+    body: JSON.stringify(path.includes('/assistant/') ? {...body, request_id:crypto.randomUUID()} : body),
+  } : {cache:'no-store',credentials:'same-origin'});
   if (response.status === 401) location.assign('/');
   const result = await response.json();
   if (!response.ok || ['error','unavailable'].includes(result.type)) throw Error(result.detail || result.message || 'Запрос не выполнен.');
@@ -196,7 +200,11 @@ function renderTrip() {
   const budget = trip.plan.budget_summary;
   const total = moscow ? budget?.known_total : trip.plan.summary?.total_cost_cny;
   const currency = moscow ? 'RUB' : 'CNY';
-  element('route-meta').textContent = 'Версия ' + trip.version + ' · ' + trip.plan.days.length + ' дн.';
+  element('route-meta').textContent = (isPreview ? 'Предварительный маршрут · ещё не сохранён' : 'Сохранённая поездка') + ' · ' + trip.plan.days.length + ' дн.';
+  element('route-state').textContent=isPreview?'Маршрут пока виден только вам в этом сеансе. Сохраните поездку, чтобы открыть её позднее.':'Поездка сохранена. Для изменений сначала нажмите «Редактировать». ';
+  element('save-trip').hidden=!isPreview;
+  element('change-preferences').hidden=!isPreview;
+  if(isPreview)element('change-preferences').href='/trip/new?preview='+encodeURIComponent(previewId);
   const rub = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(value);
   element('route-cost').textContent = total == null ? 'Оценка недоступна' :
     '≈ ' + new Intl.NumberFormat('ru-RU',{style:'currency',currency}).format(Number(total));
@@ -252,15 +260,21 @@ function chatLine(author, message) {
   log.scrollTop = log.scrollHeight;
 }
 const control = busy => {
+  element('save-trip').disabled=busy||Boolean(proposal);
   for (const button of [chatForm.querySelector('button'),element('confirm-edit'),element('reject-edit')]) button.disabled = busy;
 };
 
 async function load() {
+  if(!previewId&&!routeId)throw Error('Выберите поездку в разделе «Мои поездки» или создайте новый маршрут.');
   trip = await request(endpoint);
+  if(typeof trip.owner_context!=='string'||!trip.owner_context)throw Error('Не удалось проверить аккаунт. Обновите страницу.');
+  ownerContext=trip.owner_context;
+  window.setDestinationVisual(trip.city==='moscow'?'Москва':'Шанхай');
   const legacy = trip.city === 'moscow' && !trip.poi_snapshot_id.startsWith('moscow-v7:');
   const catalog = await request('/api/planned-trips/catalog/' + trip.city + (legacy ? '?include_legacy=true' : ''));
   for (const place of catalog) places.set(place.id,{...place, area:trip.city === 'moscow' ? 'Москва' : 'Шанхай'});
   renderTrip();
+  if(!isPreview){chatStatus.textContent='Нажмите «Редактировать», чтобы создать несохранённый вариант этой поездки. Изменения появятся в аккаунте только после кнопки «Сохранить поездку».';control(true);return;}
   const status = await request(chatPath + 'status');
   for (const item of status.conversation || []) chatLine(item.role === 'user' ? 'Вы' : 'TripWise', item.content);
   const namedAgent = status.agent_version ? 'Помощник Москвы: ' + status.agent_version +
@@ -326,6 +340,7 @@ async function decide(decision) {
       registration.version = result.version;
       trip = await request(endpoint);
       renderTrip();
+      element('route-state').textContent='Изменения применены к предварительному маршруту. Нажмите «Сохранить поездку», чтобы записать их в аккаунт.';
     }
     chatStatus.textContent = result.message;
     proposal = null;
@@ -335,4 +350,15 @@ async function decide(decision) {
 }
 element('confirm-edit').addEventListener('click',() => void decide('confirm'));
 element('reject-edit').addEventListener('click',() => void decide('reject'));
+element('save-trip').addEventListener('click',async()=>{
+  if(!trip||!isPreview)return;const button=element('save-trip');button.disabled=true;element('route-action-status').textContent='Сохраняем поездку…';
+  try{const saved=await request(endpoint+'/save',{version:trip.version});if(!saved.route_id)throw Error('Сервер не подтвердил сохранение.');window.location.assign('/trip/result?route='+encodeURIComponent(saved.route_id));}
+  catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
+});
+element('edit-trip').addEventListener('click',async()=>{
+  if(!trip)return;if(isPreview){element('chat-text').focus();element('edit-route').scrollIntoView({block:'center',behavior:'smooth'});return;}
+  const button=element('edit-trip');button.disabled=true;element('route-action-status').textContent='Открываем редактирование…';
+  try{const preview=await request(endpoint+'/preview',{version:trip.version});if(!preview.preview_id)throw Error('Не удалось открыть редактор.');window.location.assign('/trip/result?preview='+encodeURIComponent(preview.preview_id));}
+  catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
+});
 load().catch(error => { (trip ? chatStatus : element('route-meta')).textContent = error.message; });

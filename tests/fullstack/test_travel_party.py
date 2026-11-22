@@ -42,7 +42,7 @@ class TravelPartyTests(LiveServerTests):
             'adults': 3, 'children': 0, 'seniors': 0,
         })
         with test_database(self.db_path) as db:
-            raw = db.execute('SELECT preferences_json FROM trip_drafts WHERE user_id = ?',
+            raw = db.execute("SELECT preferences_json FROM saved_trips WHERE user_id = ? AND creation_key = 'legacy-v1'",
                              (self.owner_context,)).fetchone()[0]
         self.assertIn('traveler_counts', json.loads(raw))
 
@@ -50,9 +50,13 @@ class TravelPartyTests(LiveServerTests):
         preferences = valid_preferences()
         preferences.pop('traveler_counts', None)
         raw = json.dumps(preferences)
+        # Seed a genuine pre-migration archive, then run startup migration.
+        self.stop_server()
         with test_database(self.db_path) as db:
             db.execute('INSERT INTO trip_drafts VALUES (?, ?, ?, ?)',
                        (self.owner_context, raw, 7, 1795000000))
+            db.execute("DELETE FROM schema_migrations WHERE name = 'multi-trips-v1'")
+        self.start_server()
         for _ in range(2):
             status, result, _ = self.request('/api/trip-draft')
             self.assertEqual(status, 200)
@@ -64,6 +68,10 @@ class TravelPartyTests(LiveServerTests):
         with test_database(self.db_path) as db:
             self.assertEqual(db.execute(
                 'SELECT preferences_json, revision, updated_at FROM trip_drafts WHERE user_id = ?',
+                (self.owner_context,),
+            ).fetchone(), (raw, 7, 1795000000))
+            self.assertEqual(db.execute(
+                "SELECT preferences_json, revision, updated_at FROM saved_trips WHERE user_id = ? AND creation_key = 'legacy-v1'",
                 (self.owner_context,),
             ).fetchone(), (raw, 7, 1795000000))
 
@@ -103,7 +111,7 @@ class TravelPartyTests(LiveServerTests):
         self.assertEqual(self.save(preferences)[0], 200)
 
     def test_unknown_currency_rejected(self):
-        for currency in ['GBP', 'rub', '', None, 1]:
+        for currency in ['ZZZ', 'XXX', 'rub', '', None, 1]:
             preferences = self.preferences()
             preferences['budget_currency'] = currency
             with self.subTest(currency=currency):

@@ -90,7 +90,7 @@ class DraftTests(LiveServerTests):
 
     def test_interests_and_transport_constraints(self):
         for field, value in [
-            ('primary_interests', []), ('primary_interests', ['nature', 'history', 'museums']),
+            ('primary_interests', []), ('primary_interests', ['nature', 'history', 'museums', 'cafes', 'entertainment', 'shopping', 'viewpoints', 'unusual', 'nature']),
             ('primary_interests', ['history', 'history']), ('secondary_interests', ['history']),
             ('secondary_interests', ['nonexistent']), ('transport_modes', []),
             ('transport_modes', ['walking', 'walking']), ('transport_modes', ['plane']),

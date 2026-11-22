@@ -1,42 +1,10 @@
-<!doctype html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="TripWise — персональные маршруты для ваших путешествий.">
-    <title>Вход — TripWise</title>
-    <script src="/theme.js"></script>
-    <link rel="stylesheet" href="/styles.css">
-    <script src="auth.js" defer></script>
-  </head>
-  <body class="auth-page">
-    <header class="header">
-      <a class="brand" href="/" aria-label="TripWise — начало">
-        <span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span>
-      </a>
-      <div class="header-actions"><span class="header-caption">Искусство путешествовать по-своему</span><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button></div>
-    </header>
-
-    <main class="layout">
-      <section class="intro" aria-labelledby="intro-title">
-        <div class="intro-content">
-          <p class="eyebrow">НЕ ПРОСТО МЕСТА. ВАШИ ВПЕЧАТЛЕНИЯ.</p>
-          <h1 id="intro-title">Путешествия,<br>в которых<br><em>есть вы.</em></h1>
-          <p class="intro-copy">Любимые места, маленькие открытия и время для себя. Спланируйте город в своём ритме.</p>
-        </div>
-        <div class="photo-caption"><span>01 / НАЧНИТЕ С МОСКВЫ</span><span>55°45′ С. Ш. &nbsp; 37°37′ В. Д.</span></div>
-      </section>
-
-      <section class="auth-card" aria-labelledby="auth-title">
-        <span class="card-label">ВАШЕ СЛЕДУЮЩЕЕ ОТКРЫТИЕ</span>
-        <h2 id="auth-title">С возвращением!</h2>
-        <p id="auth-description" class="card-description">Войдите, чтобы планировать новые поездки и возвращаться к сохранённым.</p>
-
-        <div class="mode-switch" role="group" aria-label="Вход или регистрация">
-          <button id="login-mode" type="button" class="mode-button selected" aria-pressed="true">Вход</button>
-          <button id="register-mode" type="button" class="mode-button" aria-pressed="false">Регистрация</button>
-        </div>
-
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="TripWise — планируйте путешествия по своим интересам, времени и бюджету."><title>TripWise — путешествия по-своему</title><script src="/theme.js?v=20261122-unified2"></script><link rel="stylesheet" href="/styles.css?v=20261122-unified2"><script src="/auth.js?v=20261122-unified2" defer></script></head><body class="home-page">
+<header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a><nav class="header-actions" aria-label="Аккаунт"><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false">☾</button><button class="nav-login" data-open-auth="login" type="button">Войти</button><button class="outline-button" data-open-auth="register" type="button">Зарегистрироваться</button><a id="home-account" class="outline-button" href="/trips" hidden>Мои поездки</a></nav></header>
+<main class="home-main"><section class="landing-hero" aria-labelledby="home-title"><div class="city-scenes" aria-hidden="true"><div class="city-scene scene-shanghai"></div><div class="city-scene scene-moscow"></div></div><div class="landing-content"><p class="eyebrow">ВЕСЬ ГОРОД. ВАШ РИТМ.</p><h1 id="home-title">Меньше планов.<br><em>Больше открытий.</em></h1><p>Ваши интересы, время и бюджет — отправная точка для путешествия. Соберите пожелания к поездке в одном месте.</p><button class="hero-cta" data-create-trip type="button">Создать поездку</button><a class="hero-secondary" href="#how-it-works">Как это работает</a></div><div class="hero-bottom"><span>Москва · Шанхай</span><button id="pause-scenes" type="button" aria-pressed="false">Приостановить анимацию</button></div></section>
+<section class="home-intro" id="how-it-works"><div><p class="eyebrow">ПУТЕШЕСТВИЕ НАЧИНАЕТСЯ С ВАС</p><h2>Не искать всё подряд.<br><em>Находить своё.</em></h2></div><p>TripWise — проект персонального планировщика путешествий. Выберите город, расскажите о компании и любимом отдыхе. Создайте маршрут по дням, посмотрите места на карте и отредактируйте поездку перед сохранением.</p></section>
+<section class="feature-grid" aria-label="Как устроен TripWise"><article><span class="feature-symbol" aria-hidden="true">◎</span><h3>Ваши пожелания</h3><p>Город, даты, интересы, состав компании и бюджет — всё, что делает поездку вашей.</p></article><article><span class="feature-symbol" aria-hidden="true">◇</span><h3>Любимые места</h3><p>Отметьте несколько обязательных остановок и выберите удобный темп отдыха.</p></article><article><span class="feature-symbol" aria-hidden="true">◌</span><h3>Решаете вы</h3><p>Сначала посмотрите созданный маршрут. Отредактируйте его и сохраните, когда всё понравится.</p></article></section>
+<section class="home-banner"><div><p class="eyebrow">СЛЕДУЮЩАЯ ИСТОРИЯ — ВАША</p><h2>А куда хочется вам?</h2><p>Сейчас доступны Москва и Шанхай. Остальные направления — в разработке.</p></div><button class="hero-cta" data-create-trip type="button">Создать поездку</button></section></main>
+<dialog id="auth-dialog" aria-labelledby="auth-title"><div class="dialog-inner"><button id="close-auth" class="dialog-close" type="button" aria-label="Закрыть окно входа">×</button><p class="eyebrow">TRIPWISE / ЛИЧНЫЙ КАБИНЕТ</p><h2 id="auth-title">С возвращением!</h2><p id="auth-description" class="card-description">Войдите в свой аккаунт.</p><div class="mode-switch" role="group" aria-label="Вход или регистрация"><button id="login-mode" type="button" class="mode-button selected" aria-pressed="true">Вход</button><button id="register-mode" type="button" class="mode-button" aria-pressed="false">Регистрация</button></div>
         <form id="auth-form" method="post" action="/api/auth/login">
           <div class="field">
             <label for="email">Электронная почта</label>
@@ -58,9 +26,4 @@
           <p id="form-message" class="form-message" role="status" aria-live="polite" hidden></p>
         </form>
 
-        <div class="prototype-note"><span class="prototype-mark" aria-hidden="true">i</span><p><strong>Учебный проект.</strong> Аккаунт сохраняется на сервере TripWise. Для тестирования используйте вымышленную почту и отдельный тестовый пароль. Подтверждение почты пока не подключено.</p></div>
-      </section>
-    </main>
-    <footer class="footer"><span>TripWise · Учебный проект МАИ</span><span class="photo-credit">Фото: <a href="https://commons.wikimedia.org/wiki/File:Sunset_over_Moscow_City.jpg" target="_blank" rel="noopener noreferrer">Юрий Д.К.</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></footer>
-  </body>
-</html>
+</div></dialog><footer class="footer"><span>TripWise · Учебный проект МАИ</span><a href="/assets/README.md">Авторы изображений и лицензии</a></footer></body></html>
