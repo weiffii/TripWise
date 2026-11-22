@@ -46,6 +46,26 @@ async function main(){
  for(const [country,city,currency,budget] of [['RU','Москва','RUB','6000'],['CN','Шанхай','CNY','1000']]){
   if(generated.length){await page.goto(base+'/trip/new?new=1');await readyForm(page);assert.equal(await page.locator('#city').inputValue(),'');}
   await page.locator('#country').selectOption(country);await page.locator('#city').selectOption(city);
+  await page.waitForFunction(() => document.querySelectorAll('#poi-options input').length === 5);
+  const placeRows = page.locator('#poi-options label');
+  const names = await placeRows.locator('span').allTextContents();
+  await placeRows.nth(0).click();
+  await placeRows.nth(1).click();
+  assert.equal(await page.locator('#selected-places button').count(), 2);
+  const catalog = await json(await context.request.get(base + '/api/planned-trips/catalog/' + (country === 'RU' ? 'moscow' : 'shanghai')));
+  const otherPlace = catalog.find(place => !names.some(name => name.toLowerCase().includes(place.name.toLowerCase())));
+  assert.ok(otherPlace);
+  await page.locator('#required-search').fill(otherPlace.name);
+  await placeRows.filter({hasText: otherPlace.name}).first().waitFor();
+  assert.equal(await page.locator('#selected-places button').count(), 2);
+  while (await page.locator('#selected-places button').count()) await page.locator('#selected-places button').first().click();
+  await page.locator('#required-search').fill('');
+  for (const selector of ['.interest-image', '.transport-image']) {
+    assert.ok(await page.locator(selector).first().evaluate(img => img.width <= 52 && img.getBoundingClientRect().right < img.parentElement.querySelector('span').getBoundingClientRect().left));
+  }
+  const transport = await page.locator('.transport-image').evaluateAll(images => images.map(img => img.getBoundingClientRect().top));
+  assert.ok(transport.every((top,index) => !index || top > transport[index-1]));
+  assert.ok((await page.locator('html').evaluate(html => html.style.getPropertyValue('--destination-image'))).includes(country === 'RU' ? 'moscow-skyline.svg' : 'shanghai-skyline.svg'));
   await page.locator('#first-walk').fill('2026-12-01T09:00');await page.locator('#last-walk').fill('2026-12-01T19:00');
   await page.locator('#budget').fill(budget);await page.locator('[name=budget_currency]').selectOption(currency);
   for(const name of ['История','Музеи','Природа'])await page.locator('#primary-interests').getByRole('checkbox',{name,exact:true}).check();
@@ -61,6 +81,16 @@ async function main(){
   assert.equal(await scheduleRow.locator('.schedule-cell').count(), 3);
   assert.equal(await scheduleRow.locator('.schedule-action').count(), 1);
   assert.ok(await page.locator('#route-map').count(),'map DOM exists');
+  const editor = page.locator('#route-editor');
+  assert.equal(await editor.isVisible(), false);
+  for (const button of ['#edit-trip', '#edit-trip-bottom']) {
+    assert.equal(await page.locator(button).evaluate(node => getComputedStyle(node).backgroundColor), 'rgb(255, 255, 255)');
+    await page.mouse.move(0, 0);
+    await page.locator(button).click();
+    await editor.waitFor({state:'visible'});
+    await page.keyboard.press('Escape');
+    await editor.waitFor({state:'hidden'});
+  }
   await page.screenshot({path:path.join(artifacts,preview.city+'-preview.png'),fullPage:true});
   if (preview.city === 'moscow') {
     const travel = page.locator('.schedule-row.route-event-travel .schedule-action').first();
@@ -78,6 +108,11 @@ async function main(){
   const retry=await json(await context.request.post(base+'/api/route-previews/'+previewId+'/save',{headers:{Origin:base,'X-TripWise-Draft-Owner':preview.owner_context},data:{version:preview.version}}));
   assert.equal(retry.route_id,routeId);assert.equal(counts().planned_trips,generated.length,'save retry cannot duplicate');
  }
+ await page.locator('#edit-trip-bottom').click();
+ await page.waitForURL(url => url.searchParams.has('preview') && url.searchParams.get('edit') === '1');
+ await page.locator('#route-editor').waitFor({state:'visible'});
+ await page.getByRole('button',{name:'Закрыть чат'}).click();
+ assert.equal(counts().planned_trips,2);
  await page.goto(base+'/trips');await page.waitForFunction(()=>document.querySelectorAll('[data-route-id]').length===2);
  await page.screenshot({path:path.join(artifacts,'two-saved-routes.png'),fullPage:true});
  const first=generated[0];await page.locator(`[data-route-id="${first.routeId}"]`).getByRole('button',{name:'Редактировать',exact:true}).click();
@@ -96,7 +131,7 @@ async function main(){
  const theme=await page.locator('html').getAttribute('data-theme');await page.locator('[data-theme-toggle]').click();assert.notEqual(await page.locator('html').getAttribute('data-theme'),theme);
  await page.screenshot({path:path.join(artifacts,'mobile-home.png'),fullPage:false});
  assert.deepEqual(errors,[],'no page JS errors');
- const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow'],externalNetwork:'blocked',screenshots:artifacts};
+ const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow','five results with full-catalog search and persistent selections','two edit buttons, dialog close, saved route fork'],externalNetwork:'blocked',screenshots:artifacts};
  fs.writeFileSync(path.join(artifacts,'result.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }
 main().catch(error=>{console.error(error.stack);console.error('QA temp server log:',path.join(work,'server.log'));process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();if(server&&server.exitCode===null){server.kill('SIGTERM');await new Promise(resolve=>{server.once('exit',resolve);setTimeout(resolve,5000);});}if(log!==undefined)fs.closeSync(log);});

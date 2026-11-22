@@ -388,6 +388,12 @@ function renderTrip() {
 }
 
 const chatForm = element('edit-route');
+const editor = element('route-editor');
+const editButtons = [...document.querySelectorAll('[data-route-editor]')];
+const setEditBusy = busy => editButtons.forEach(button => { button.disabled = busy; });
+function openRouteEditor() {
+  if (!editor.open) editor.showModal();
+}
 const chatPath = endpoint + '/assistant/';
 const chatStatus = element('chat-status');
 function chatLine(author, message) {
@@ -413,7 +419,10 @@ async function load() {
   const catalog = await request('/api/planned-trips/catalog/' + trip.city + (legacy ? '?include_legacy=true' : ''));
   for (const place of catalog) places.set(place.id,{...place, area:trip.city === 'moscow' ? 'Москва' : 'Шанхай'});
   renderTrip();
-  if(!isPreview){chatStatus.textContent='Нажмите «Редактировать», чтобы создать несохранённый вариант этой поездки. Изменения появятся в аккаунте только после кнопки «Сохранить поездку».';control(true);return;}
+  setEditBusy(false);
+  if (!isPreview) return;
+  if (new URLSearchParams(window.location.search).get('edit') === '1') openRouteEditor();
+  chatStatus.textContent = 'Подключаем помощника…';
   const status = await request(chatPath + 'status');
   for (const item of status.conversation || []) chatLine(item.role === 'user' ? 'Вы' : 'TripWise', item.content);
   const namedAgent = status.agent_version ? 'Помощник Москвы: ' + status.agent_version +
@@ -487,7 +496,8 @@ async function decide(decision) {
       renderTrip();
       element('route-state').textContent='Изменения применены к предварительному маршруту. Нажмите «Сохранить поездку», чтобы записать их в аккаунт.';
     }
-    chatStatus.textContent = result.message;
+    if (result.message) chatLine('TripWise', result.message);
+    chatStatus.textContent = result.type === 'confirmed' ? 'Готово. Закройте чат и нажмите «Сохранить поездку».' : '';
     proposal = null;
     element('chat-preview').hidden = true;
   } catch (error) { chatStatus.textContent = error.message; }
@@ -530,10 +540,20 @@ element('save-trip').addEventListener('click',async()=>{
   try{const saved=await request(endpoint+'/save',{version:trip.version});if(!saved.route_id)throw Error('Сервер не подтвердил сохранение.');window.location.assign('/trip/result?route='+encodeURIComponent(saved.route_id));}
   catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
 });
-element('edit-trip').addEventListener('click',async()=>{
-  if(!trip)return;if(isPreview){element('chat-text').focus();element('edit-route').scrollIntoView({block:'center',behavior:'smooth'});return;}
-  const button=element('edit-trip');button.disabled=true;element('route-action-status').textContent='Открываем редактирование…';
-  try{const preview=await request(endpoint+'/preview',{version:trip.version});if(!preview.preview_id)throw Error('Не удалось открыть редактор.');window.location.assign('/trip/result?preview='+encodeURIComponent(preview.preview_id));}
-  catch(error){element('route-action-status').textContent=error.message;}finally{button.disabled=false;}
-});
+async function editRoute() {
+  if (!trip) return;
+  if (isPreview) { openRouteEditor(); return; }
+  setEditBusy(true);
+  const status = element('route-action-status');
+  status.textContent = 'Открываем редактирование…';
+  try {
+    const preview = await request(endpoint + '/preview', {version:trip.version});
+    if (!preview.preview_id) throw Error('Не удалось открыть редактор.');
+    window.location.assign('/trip/result?preview=' + encodeURIComponent(preview.preview_id) + '&edit=1');
+  } catch (error) {
+    status.textContent = error.message;
+    setEditBusy(false);
+  }
+}
+for (const button of editButtons) button.addEventListener('click',editRoute);
 load().catch(error => { (trip ? chatStatus : element('route-meta')).textContent = error.message; });

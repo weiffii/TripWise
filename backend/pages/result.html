@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
   <script src="/theme.js?v=20261122-unified2"></script>
-  <link rel="stylesheet" href="/styles.css?v=20261122-schedule1">
-  <script src="/destination-visuals.js?v=20261122-unified2" defer></script>
+  <link rel="stylesheet" href="/styles.css?v=20261122-editor1">
+  <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
   <script src="/route-map.js" defer></script>
   <script src="/trip-result.js?v=20261122-meals" defer></script>
 </head>
@@ -16,7 +16,7 @@
   </header>
   <main class="questionnaire-main">
     <section class="page-hero questionnaire-hero route-result-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
-    <div class="preview-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="outline-button">Редактировать</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
+    <div class="preview-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
     <details id="route-comparison" class="preview-note" hidden>
       <summary>Сравнить варианты маршрута</summary>
       <form id="route-comparison-form" class="preview-actions">
@@ -62,17 +62,27 @@
           <div id="route-directions" aria-live="polite"></div>
         </section>
       </div>
-      <section class="trip-summary form-section route-chat"><span class="section-number">ПОМОЩНИК TRIPWISE</span><h2>Изменить маршрут</h2>
-        <p class="field-hint">Опишите пожелание. Сначала посмотрите предложение и подтвердите его. Затем нажмите «Сохранить поездку», чтобы записать маршрут в аккаунт.</p>
+    </div>
+    <section class="route-edit-footer" aria-label="Редактирование поездки">
+      <div><h2>Хотите изменить план?</h2><p>Попросите помощника скорректировать маршрут.</p></div>
+      <button id="edit-trip-bottom" type="button" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button>
+    </section>
+    <dialog id="route-editor" class="route-chat" aria-labelledby="route-editor-title">
+      <div class="route-editor-content">
+        <header class="route-editor-header">
+          <div><span class="section-number">ПОМОЩНИК TRIPWISE</span><h2 id="route-editor-title">Редактировать маршрут</h2></div>
+          <form method="dialog"><button class="route-editor-close" aria-label="Закрыть чат" autofocus>×</button></form>
+        </header>
+        <p class="route-editor-tip">Что изменить? Например, «Добавь больше времени на прогулку». После применения правок сохраните поездку.</p>
         <div id="chat-log" role="log"></div>
-        <form id="edit-route"><label for="chat-text">Ваше пожелание</label><textarea id="chat-text" required maxlength="3000" rows="4"></textarea><button class="submit-button" disabled>Предложить изменения</button></form>
+        <form id="edit-route"><label for="chat-text">Ваше пожелание</label><textarea id="chat-text" required maxlength="3000" rows="3" placeholder="Например: начнём прогулку в 11:00"></textarea><button class="submit-button" disabled>Отправить</button></form>
         <p id="chat-status" role="status"></p>
         <div id="chat-preview" hidden><h3>Предлагаемый маршрут</h3><ol id="preview-stops"></ol>
           <button type="button" class="submit-button" id="confirm-edit">Применить изменения</button>
           <button type="button" class="theme-toggle" id="reject-edit">Оставить прежний</button>
         </div>
-      </section>
-    </div>
+      </div>
+    </dialog>
   </main>
 </body>
 </html>

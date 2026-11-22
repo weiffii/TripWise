@@ -42,7 +42,8 @@ function renderPlaces() {
   const pois=city?.pois||[];
   const query=searchInput.value.trim().toLocaleLowerCase('ru');
   const matches=pois.filter(poi=>poi.name.toLocaleLowerCase('ru').includes(query));
-  const visible=matches.slice(0,60);
+  const resultLimit=5;
+  const visible=matches.slice(0,resultLimit);
   const list=document.querySelector('#poi-options');list.replaceChildren();
   for(const poi of visible) {
     const label=document.createElement('label');label.className='choice poi-choice';
@@ -57,7 +58,7 @@ function renderPlaces() {
     const chip=document.createElement('button');chip.type='button';chip.className='place-chip';chip.textContent=`${poi.name} ×`;chip.setAttribute('aria-label',`Убрать ${poi.name}`);
     chip.addEventListener('click',()=>{requiredPlaces.delete(id);renderPlaces();markEdited();});chips.append(chip);
   }
-  document.querySelector('#poi-count').textContent=matches.length>60?`Показаны первые 60 из ${matches.length}. Уточните название для поиска.`:pois.length?`В каталоге: ${pois.length}. Можно выбрать несколько мест.`:'';
+  document.querySelector('#poi-count').textContent=matches.length>resultLimit?`Первые ${resultLimit} из ${matches.length}. Для других мест введите название.`:'';
   document.querySelector('#poi-empty').hidden=visible.length>0;
   document.querySelector('#poi-empty').textContent=!city?'Сначала выберите город.':pois.length?'Места не найдены. Попробуйте другое название.':'Для этого города подборка обязательных мест пока не подготовлена.';
 }

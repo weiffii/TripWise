@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#65858b"/><stop offset="1" stop-color="#f1bc9f"/></linearGradient>
+    <linearGradient id="river" x2="0" y2="1"><stop stop-color="#537680"/><stop offset="1" stop-color="#344d60"/></linearGradient>
+    <g id="dome">
+      <path d="M-23 114V68C-48 54-30 28 0 12c30 16 48 42 23 56v46z"/>
+      <path d="M0 0v27m-8-18h16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1600v900H0z"/>
+  <circle cx="1120" cy="288" r="102" fill="#fae0ad"/>
+  <path fill="#70898b" d="M0 578h80v-46h61v-35h84v42h71v-60h76v77h112v-69h87v53h107v38h204v-71h98v37h90v-68h110v56h138v-64h100v82h84v40H0z"/>
+  <g fill="#626775" color="#626775">
+    <path d="M619 644v-69h21v-30h26v30h23v-30h25v30h24v-30h26v30h24v-30h25v30h24v-30h25v30h23v-30h26v30h32v69z"/>
+    <path d="M418 641V499h17v-44l-19 3 39-51 27-97 31 97 50 52-23-4v44h14v142z"/>
+    <path d="M482 271l6 17 18 1-14 12 4 18-14-10-14 10 4-18-14-12 18-1z" fill="#b57869"/>
+    <circle cx="487" cy="482" r="17" fill="#e9bc96"/>
+    <path d="M487 472v10l7 4" fill="none" stroke="#626775" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g color="#73565f" fill="#73565f">
+    <path d="M970 640v-74h262v74zM1060 569v-92l45-103 48 103v92z"/>
+    <use href="#dome" transform="translate(1005 455)" fill="#8d626a"/>
+    <use href="#dome" transform="translate(1200 478) scale(.8)" fill="#8d626a"/>
+    <use href="#dome" transform="translate(1155 432) scale(1.2)" fill="#526f73"/>
+    <use href="#dome" transform="translate(1056 495) scale(.65)" fill="#526f73"/>
+    <path d="M1105 361v28m-9-17h18" fill="none" stroke="#73565f" stroke-width="5"/>
+  </g>
+  <path fill="url(#river)" d="M0 634q340-39 770 4t830-12v274H0z"/>
+  <g fill="none" stroke="#efc6a9" stroke-linecap="round" opacity=".35" stroke-width="3">
+    <path d="M167 700h370m340 10h380m-600 74h240m120-41h290m-970 83h280m680-15h200"/>
+  </g>
+</svg>

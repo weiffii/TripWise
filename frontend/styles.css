@@ -311,11 +311,16 @@ label.pace-choice { position: relative; display: grid; grid-template-columns: 18
 .party-avatar { width: 100%; height: 75px; object-fit: cover; border-radius: 9px; margin-bottom: 9px; }
 .illustrated-party input { min-height: 45px; }
 .interest-grid:has(.interest-card) { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
-label.interest-card { display: grid; grid-template-columns: 17px 1fr; padding: 0 14px 15px; overflow: hidden; gap: 12px 9px; }
-.interest-image { grid-column: 1/-1; width: calc(100% + 28px); margin: 0 -14px; height: 100px; object-fit: cover; }
-.choice-row:has(.transport-image) { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
-.choice-row label:has(.transport-image) { display: grid; grid-template-columns: 17px 1fr; padding: 0 12px 14px; overflow: hidden; align-content: start; }
-.transport-image { grid-column: 1/-1; width: calc(100% + 24px); margin: 0 -12px; height: 95px; object-fit: cover; }
+label.interest-card, .choice-row label:has(.transport-image) {
+  display: grid; grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: center; gap: 12px; padding: 8px 12px; min-height: 60px;
+}
+.interest-image, .transport-image {
+  grid-area: 1 / 1; width: 52px; height: 42px; border-radius: 9px; object-fit: cover;
+}
+.interest-card > span, .choice-row label:has(.transport-image) > span { grid-area: 1 / 2; }
+.interest-card > input, .choice-row label:has(.transport-image) > input { grid-area: 1 / 3; }
+.choice-row:has(.transport-image) { display: grid; grid-template-columns: 1fr; }
 label.poi-choice { background: var(--surface); border-left: 4px solid color-mix(in srgb,var(--primary) 45%,var(--surface)); padding: 17px; }
 label.poi-choice:has(input:checked) { border-left-color: var(--primary); }
 .collection-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
@@ -334,8 +339,8 @@ article.trip-card h2 { margin: 12px 0; }
 @media(max-width:500px) {
  .questionnaire-hero { min-height: 220px; padding: 25px 22px 40px; }.questionnaire-hero .trips-heading { font-size: 37px; }
  .section-art { margin: -25px -20px 24px; padding: 16px; gap: 14px; }.section-art img { width: 78px; height: 70px; }.section-art .eyebrow { font-size: 9px; letter-spacing: 1px; }.section-art p:not(.eyebrow) { font-size: 13px; }
- .illustrated-party .field { padding: 8px; }.party-avatar { height: 48px; }.party-fields { gap: 7px; }.party-fields input { padding: 10px 7px; }.interest-image { height: 80px; }.interest-card { font-size: 13px; }
- .choice-row:has(.transport-image) { grid-template-columns: 1fr; }.choice-row label:has(.transport-image) { display: grid; grid-template-columns: 70px 18px 1fr; padding: 0 14px 0 0; min-height: 75px; align-items: center; }.transport-image { grid-column: auto; width: 70px; height: 80px; margin: 0; }.collection-actions { gap: 12px; }.new-trip-button { font-size: 14px; }
+ .illustrated-party .field { padding: 8px; }.party-avatar { height: 48px; }.party-fields { gap: 7px; }.party-fields input { padding: 10px 7px; }
+ .interest-grid:has(.interest-card) { grid-template-columns: 1fr; }.collection-actions { gap: 12px; }.new-trip-button { font-size: 14px; }
 }
 
 /* Карта, расписание и помощник из интеграционной ветки. */
@@ -344,7 +349,7 @@ article.trip-card h2 { margin: 12px 0; }
 #edit-route { display: grid; gap: .75rem; }
 #chat-text { width: 100%; resize: vertical; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 12px; padding: .75rem; }
 #chat-preview { margin-top: 1rem; }
-.result-layout { max-width: 1320px; }
+.result-layout { display: block; max-width: 1080px; margin-inline: auto; }
 .result-layout > * { min-width: 0; }
 #street-map { position: relative; height: 390px; overflow: hidden; border-radius: 14px; touch-action: none; }
 #map-tiles, #map-background, #route-map { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -353,11 +358,6 @@ article.trip-card h2 { margin: 12px 0; }
 #street-map .tw-map-controls button { width: 34px; height: 34px; }
 #street-map .tw-map-popup { position: absolute; left: 10px; top: 10px; max-width: 65%; padding: .5rem; background: white; color: #222; border-radius: 8px; }
 .map-credit { position: absolute; bottom: 3px; right: 5px; padding: 2px 4px; font-size: .7rem; background: white; color: #343062; }
-@media (min-width: 761px) {
-  .result-layout { grid-template-columns: minmax(250px, 310px) minmax(0, 1fr); }
-  .result-layout .route-chat { grid-column: 1; grid-row: 1; }
-  .result-layout > div { grid-column: 2; grid-row: 1; }
-}
 #route-cost { font-size: 1.65rem; }
 #route-tabs { display: flex; flex-wrap: wrap; gap: .5rem; }
 #route-tabs button { font: inherit; color: inherit; cursor: pointer; }
@@ -386,7 +386,7 @@ article.trip-card h2 { margin: 12px 0; }
 .preview-actions .submit-button { width:auto; }
 .preview-note { padding:14px 18px; border:1px solid var(--line); border-radius:14px; background:var(--surface-alt); color:var(--muted); line-height:1.6; }
 .route-result-hero { min-height:220px; }
-.result-layout .route-chat { position:static; top:auto; align-self:start; }
+
 .saved-route-badge { color:var(--primary); font-weight:600; }
 @media(max-width:600px){.preview-actions > * { width:100%; }}
 
@@ -451,3 +451,40 @@ article.trip-card h2 { margin: 12px 0; }
     font-size: .72rem;
   }
 }
+
+/* Route editor shared by the two itinerary buttons. */
+.route-edit-button {
+  display: inline-flex; justify-content: center; align-items: center;
+  padding: 12px 20px; border-radius: 24px; border: 1px solid #c7a9ce;
+  background: #fff; color: #382748; font: inherit; font-weight: 700;
+  box-shadow: 0 4px 16px #53315b26; cursor: pointer;
+}
+.route-edit-button:hover:not(:disabled) { background: #f7eefb; }
+.route-edit-button:disabled { opacity: .65; cursor: wait; }
+.route-edit-footer {
+  max-width: 1080px; margin: 24px auto; padding: clamp(18px, 4vw, 32px);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  border-radius: 20px; border: 1px solid var(--line);
+  background: linear-gradient(115deg, color-mix(in srgb, #c69fc9 24%, var(--surface)), var(--surface));
+}
+.route-edit-footer h2, .route-edit-footer p { margin: 0; }
+.route-edit-footer p { color: var(--muted); margin-top: 6px; }
+#route-editor {
+  box-sizing: border-box; width: min(600px, calc(100% - 24px)); max-height: min(90dvh, 830px); padding: 0;
+  border: 1px solid var(--line); border-radius: 24px; background: var(--surface); color: var(--ink);
+  box-shadow: 0 24px 85px #180f29a0; overscroll-behavior: contain;
+}
+#route-editor::backdrop { background: #1b1229a8; backdrop-filter: blur(4px); }
+.route-editor-content { padding: 0 clamp(16px, 4vw, 28px) 22px; }
+.route-editor-header {
+  display: flex; justify-content: space-between; align-items: start; gap: 10px;
+  margin: 0 calc(-1 * clamp(16px, 4vw, 28px)) 18px; padding: 20px clamp(16px, 4vw, 28px);
+  background: linear-gradient(115deg, color-mix(in srgb, #c69fc9 32%, var(--surface)), color-mix(in srgb, #87bfac 22%, var(--surface)));
+}
+.route-editor-header h2 { margin: 5px 0 0; font-size: clamp(20px, 5vw, 28px); }
+.route-editor-close { border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: inherit; width: 40px; height: 40px; font-size: 24px; cursor: pointer; }
+.route-editor-tip { color: var(--muted); line-height: 1.5; }
+#route-editor #chat-log:not(:empty) { margin: 16px 0; }
+#route-editor #chat-status { color: var(--muted); font-size: .9rem; }
+#route-editor #chat-text { border-color: var(--line); background: var(--surface); }
+#route-editor #chat-preview { border-top: 1px solid var(--line); padding-top: 8px; }
