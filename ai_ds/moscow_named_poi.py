@@ -5,8 +5,10 @@ an unrelated place. This module only resolves a real ID already in Moscow V7.
 """
 from __future__ import annotations
 
+from collections import Counter
 from datetime import date
 from difflib import SequenceMatcher
+from functools import lru_cache
 import re
 
 _MONTHS = {
@@ -63,14 +65,23 @@ _GENERIC_QUALIFIERS = {'недорогой', 'недорогое', 'беспла
                        'дешевый', 'дешевое', 'любой', 'любое', 'рядом', 'поближе',
                        'интересный', 'интересное', 'новый', 'новое', 'необычный',
                        'хороший', 'хорошее', 'близкий', 'поблизости', 'вкусный'}
+_NAME_TOKEN = re.compile(r'[a-zа-я0-9]+')
+_NAME_NUMBER = re.compile(r'\b\d+\b')
+_MAX_TYPO_SCORE = 910
 
 
 def normalize(value):
-    return ' '.join(re.findall(r'[a-zа-я0-9]+', str(value).casefold().replace('ё', 'е')))
+    return ' '.join(_NAME_TOKEN.findall(str(value).casefold().replace('ё', 'е')))
 
 
-def _name_words(value):
-    return {w[:5] for w in normalize(value).split() if len(w) >= 4 and w not in _STOP}
+@lru_cache(maxsize=32_768)
+def _name_features(value):
+    clean = normalize(value)
+    tokens = clean.split()
+    distinctive = tuple(word for word in tokens if len(word) >= 4 and word not in _STOP)
+    return (clean, ' '.join(word for word in tokens if word not in ('имени', 'им')),
+            frozenset(_NAME_NUMBER.findall(clean)), distinctive,
+            frozenset(word[:5] for word in distinctive))
 
 
 def _day_from_text(text, dates):
@@ -113,36 +124,73 @@ def _target_phrase(text):
     if not match:
         return None
     value = text[match.end():]
-    value = re.sub(r'\b(?:\d{4}-\d\d-\d\d|[12]?\d|3[01])\s*(?:'
-                   + _MONTHS_RE + r'|числа|[./]\d{1,2}|-?й\s*день|-?м\s*дне|день|дня)\b', ' ', value, flags=re.I)
-    value = re.sub(r'\b(?:в|во|на|за)\s+(?:первый|второй|третий|четвертый|пятый)\s+(?:день|дня|дне)\b', ' ', value, flags=re.I)
-    value = re.split(r'\b(?:но\s+не|если\s+|чтобы\s+|без\s+изменения)\b', value, maxsplit=1, flags=re.I)[0]
-    tokens = [w for w in normalize(value).split() if w not in _STOP and w not in _MONTHS and not w.isdigit()]
-    if not tokens or all(token in _GENERIC | _GENERIC_QUALIFIERS for token in tokens):
+    value = re.sub(r'\b\d{4}-\d\d-\d\d\b|\b\d{1,2}[./]\d{1,2}\b|\b\d{1,2}:\d{2}\b', ' ', value)
+    value = re.sub(rf'\b(?:[12]?\d|3[01])\s*(?:{_MONTHS_RE}|числа)\b', ' ', value, flags=re.I)
+    value = normalize(value)
+    ordinals = '|'.join(_NUMBER_WORDS)
+    value = re.sub(rf'\b(?:{ordinals}|\d{{1,2}}(?:\s+[йм])?)\s+(?:день|дня|дне|дни)\b'
+                   r'|\b(?:день|дня|дне)\s+\d{1,2}\b', ' ', value)
+    value = re.split(r'\b(?:но\s+не|если|чтобы|без\s+(?:замен\w*|удалени\w*|изменени\w*))\b',
+                     value, maxsplit=1)[0]
+    tokens = [w for w in value.split() if w not in _STOP and w not in _MONTHS]
+    if not tokens or all(token.isdigit() or token in _GENERIC | _GENERIC_QUALIFIERS for token in tokens):
         return None
     return ' '.join(tokens)
 
 
 
-def _typo_score(phrase, name):
+@lru_cache(maxsize=32_768)
+def _character_counts(word):
+    return Counter(word)
+
+
+@lru_cache(maxsize=65_536)
+def _token_bound(query, word):
+    if query == word:
+        return 1.0
+    source, target = _character_counts(query), _character_counts(word)
+    common = sum(min(count, target[character]) for character, count in source.items())
+    return 2.0 * common / (len(query) + len(word))
+
+
+@lru_cache(maxsize=65_536)
+def _token_similarity(query, word):
+    return SequenceMatcher(None, query, word).ratio()
+
+
+def _typo_score(phrase, name, q, words):
     """Conservative typo matching for a real Moscow catalog entry.
 
     Does not treat a matching surname or one common word as a place identity.
     Use no external libraries and never invent a POI.
     """
-    q = [word for word in normalize(phrase).split() if len(word) >= 4 and word not in _STOP]
-    words = [word for word in normalize(name).split() if len(word) >= 4 and word not in _STOP]
     if not q or not words:
         return 0
     if len(q) == 1 and len(q[0]) < 7:
         return 0
+    # A sequence cannot match more occurrences than the two words share.
+    # If even those upper bounds fail, exact comparisons cannot change the result.
+    bounds = [[(_token_bound(token, word), word) for word in words] for token in q]
+    maxima = [max(bound for bound, _ in candidates) for candidates in bounds]
+    required = min(2, len(q))
+    if sum(value >= .76 for value in maxima) < required or sum(maxima) / len(q) < .82:
+        return 0
     # For multi-word names a typo in almost every token is acceptable, but
     # at least two distinct words must still agree closely.
-    strengths = [max(SequenceMatcher(None, token, item).ratio() for item in words) for token in q]
+    strengths = []
+    for token, candidates in zip(q, bounds):
+        best = 0.0
+        for bound, word in candidates:
+            if token == word:
+                best = 1.0
+                break
+            if bound > best:
+                best = max(best, _token_similarity(token, word))
+        strengths.append(best)
     strong = sum(v >= .76 for v in strengths)
-    if strong < min(2, len(q)) or sum(strengths) / len(q) < .82:
+    if strong < required or sum(strengths) / len(q) < .82:
         return 0
-    raw_similarity = SequenceMatcher(None, normalize(phrase), normalize(name)).ratio()
+    raw_similarity = SequenceMatcher(None, phrase, name).ratio()
     if raw_similarity < .50 and len(q) >= 2:
         return 0
     # Penalize names that add many unrelated words; a rough substring can
@@ -151,9 +199,41 @@ def _typo_score(phrase, name):
     return round(520 + 290 * sum(strengths) / len(q) + 100 * raw_similarity - 35 * extras)
 
 
+def _unambiguous_primary_match(catalog, phrases, numbers):
+    match = None
+    has_title_match = False
+    for poi_id, point in catalog.items():
+        name = point.get('name', '')
+        if not isinstance(name, str):
+            continue
+        clean, untitled, digits, _, _ = _name_features(name)
+        if numbers and digits != numbers:
+            continue
+        if clean in phrases:
+            if match is not None or has_title_match:
+                return None
+            match = poi_id, name
+        elif untitled in phrases:
+            if match is not None:
+                return None
+            has_title_match = True
+    return match
+
+
 def resolve_name(phrase, catalog):
     """Return (poi_id, name), ('ambiguous', names), or (None, None)."""
     variants = [normalize(phrase)]
+    query_numbers = frozenset(_NAME_NUMBER.findall(variants[0]))
+    words = variants[0].split()
+    # Match an accusative adjective against the exact catalog title:
+    # «Красную площадь» -> «Красная площадь». The head noun stays unchanged.
+    if len(words) > 1:
+        endings = {'ую': 'ая', 'юю': 'яя'}
+        nominative = ' '.join([*(word[:-2] + endings[word[-2:]]
+                                 if len(word) > 4 and word[-2:] in endings else word
+                                 for word in words[:-1]), words[-1]])
+        if nominative != variants[0]:
+            variants.append(nominative)
     # Prefer the actual V7 ID for an unambiguous, verified alias. Never invent
     # a record or substitute an unrelated place based on a similar surname.
     known_id = _KNOWN_V7_IDS.get(variants[0])
@@ -167,6 +247,13 @@ def resolve_name(phrase, catalog):
     for known, aliases in _COMMON_ALIASES.items():
         if normalize(known) in variants[0]:
             variants.extend(normalize(alias) for alias in aliases)
+    queries = [(variant, *_name_features(variant)[3:]) for variant in variants]
+    if variants[0] not in _KNOWN_V7_IDS:
+        # A primary exact hit scores 1000. Only other exact primary matches
+        # and title removal (975) can enter its <90 ambiguity window.
+        primary = _unambiguous_primary_match(catalog, {key for key, _, stems in queries if stems}, query_numbers)
+        if primary is not None:
+            return primary
     best = []
     for key, point in catalog.items():
         names = [point.get('name', ''), *(point.get('search_names') or ())]
@@ -174,7 +261,9 @@ def resolve_name(phrase, catalog):
         for name_index, name in enumerate(names):
             if not isinstance(name, str):
                 continue
-            clean = normalize(name)
+            clean, name_without_title, numbers, distinctive, words = _name_features(name)
+            if query_numbers and query_numbers != numbers:
+                continue
             # The Durov surname occurs in other Moscow venues and monuments.
             # Do not substitute an unrelated Durov-family attraction when a
             # request specifically names Grandfather Durov's animal theatre.
@@ -182,9 +271,7 @@ def resolve_name(phrase, catalog):
                 'дуров' in clean and ('уголок' in clean or
                 ('театр' in clean and 'терез' not in clean))):
                 continue
-            words = _name_words(name)
-            for phrase_variant in variants:
-                query_words = _name_words(phrase_variant)
+            for phrase_variant, query_tokens, query_words in queries:
                 if not query_words:
                     continue
                 exact = clean == phrase_variant
@@ -196,6 +283,8 @@ def resolve_name(phrase, catalog):
                     # Prefer an exact primary name to a different record which
                     # merely lists this phrase among its alternate names.
                     candidate = 1000 if name_index == 0 else 850
+                elif clean != name_without_title and name_without_title == phrase_variant:
+                    candidate = 975 if name_index == 0 else 830
                 elif substring:
                     candidate = 900 if name_index == 0 else 780
                 elif overlap >= 2 and overlap * 3 >= len(query_words) * 2:
@@ -205,8 +294,8 @@ def resolve_name(phrase, catalog):
                 else:
                     candidate = 0
                 score = max(score, candidate)
-                if not exact and not substring:
-                    score = max(score, _typo_score(phrase_variant, name))
+                if score < _MAX_TYPO_SCORE and not exact and not substring:
+                    score = max(score, _typo_score(phrase_variant, clean, query_tokens, distinctive))
         if score:
             best.append((score, str(point.get('name', key)), key))
     if not best:

@@ -10,7 +10,7 @@ from unittest.mock import Mock, patch
 from ai_ds.moscow_named_poi import named_poi_decision, resolve_name
 from ai_ds.openrouter import OpenRouterError
 from ai_ds.shanghai_assistant import node_executable
-from ai_ds.route_assistant import sequences_of
+from ai_ds.route_assistant import AssistantError, sequences_of
 from backend.moscow import MoscowAssistant
 
 REAL_V7_ID = 'moscow-cultural-0'
@@ -48,6 +48,24 @@ class RealCatalogNameRegression(unittest.TestCase):
 
     def test_planning_for_specified_day(self):
         self.assert_named('Я хочу в Уголок дедушки Дурова на 22 ноября', DATES[1])
+
+    def test_declined_adjective_resolves_exact_title(self):
+        points = {'square': {'name': 'Красная площадь'},
+                  'building': {'name': 'Красная площадь, дом 1'},
+                  'other': {'name': 'Площадь Красные Ворота'}}
+        result = named_poi_decision('Добавь Красную площадь.', DATES, points)
+        self.assertEqual(result['operations'][0]['poi_id'], 'square')
+
+    def test_number_in_park_name_is_kept_apart_from_trip_day(self):
+        parks = {'requested': {'name': 'Парк имени 50-летия Октября'},
+                 'different-number': {'name': 'Парк имени 30-летия Октября'},
+                 'different-event': {'name': 'Парк 65-летия Победы'}}
+        for suffix in ('в первый день', 'на 1-й день', 'на 2026-11-21', '21 ноября',
+                       'в первый день без удаления других мест'):
+            with self.subTest(suffix=suffix):
+                result = named_poi_decision(f'Добавь парк 50-летия Октября {suffix}', DATES, parks)
+                self.assertEqual(result['operations'][0]['poi_id'], 'requested')
+                self.assertEqual(result['operations'][0]['day'], DATES[0])
 
     def test_negative_intent_is_not_addition(self):
         self.assertIsNone(named_poi_decision('Я не хочу в Уголок дедушки Дурова', DATES, CATALOG))
@@ -119,6 +137,16 @@ class RealIdIntegration(unittest.TestCase):
                           [item['name'] for item in reply['diff']['added']])
             self.assertIn('НЕ сохранено', reply['message'])
             self.assertEqual(service.interpreter.call_count, 0)
+            pending_agent = session['moscow_assistant']
+            with patch('ai_ds.shanghai_assistant._BridgeBatch.exchange', side_effect=TimeoutError) as failed:
+                with self.assertRaises(AssistantError) as error:
+                    service._request('actor', session, 'message', {
+                        'text':'добавь уголок дедушки дурова',
+                        'route_id':'r1','base_version':1,'poi_snapshot_id':'test'})
+                self.assertEqual(error.exception.code, 'ROUTER_UNAVAILABLE')
+                failed.assert_called_once()
+            self.assertIs(session['moscow_assistant'], pending_agent)
+            self.assertEqual(session['moscow_route'], fixture.route)
             confirmed = service._request('actor', session, 'decide', {
                 'proposal_id':reply['proposal_id'], 'base_version':reply['base_version'],
                 'decision':'confirm'})

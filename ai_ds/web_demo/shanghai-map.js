@@ -59,12 +59,17 @@
     if(from&&to)html+='<p>'+esc(placeName(from))+' → '+esc(placeName(to))+'</p>';
     if(Number.isFinite(distance)&&distance>0)html+='<p>Расстояние: '+(verified?'':'≈ ')+Math.round(distance).toLocaleString('ru-RU')+' м</p>';
    }
+   if(['taxi','transit'].includes(leg.mode)&&settings.currency){
+    const fare=leg.transport_cost_rub??leg.transport_cost_cny;
+    const formatted=Number.isFinite(fare)?new Intl.NumberFormat('ru-RU',{style:'currency',currency:settings.currency()}).format(fare):null;
+    html+='<p>Стоимость для группы'+(formatted?' · '+(leg.transport_cost_basis==='synthetic_fare_estimate'||settings.currency()==='CNY'?'≈ ':'')+esc(formatted):' неизвестна')+'</p>';
+   }
    if(leg.instructions?.length)html+='<ol>'+leg.instructions.map(s=>'<li>'+esc(transitText(s))+'</li>').join('')+'</ol>';
    if(leg.source==='SYNTHETIC_BUS'||leg.geometry_segments?.some(s=>s.mode==='bus'))html+='<p class="tw-map-caution">DEMO-BUS — вымышленные автобусные маршруты. Не использовать как инструкции для настоящей поездки.</p>';
    let streetFound=false,streetMinutes=0;for(const seg of segments(leg)){const req=segmentRoad(seg,leg);if(!req)continue;const road=roadCache.get(roadKey(req.a,req.b,req.mode,req.via));if(road?.coordinates){streetFound=true;if(!req.synthetic_bus)streetMinutes+=Math.ceil(road.duration_seconds/60);html+='<p><b>'+(req.synthetic_bus?'Учебный автобус: форма пути по автомобильным дорогам':req.mode==='foot'?'Пешком по улицам':'По автомобильной дороге')+'</b> · автомобильный/пеший расчёт провайдера '+Math.ceil(road.duration_seconds/60)+' мин, '+Math.round(road.distance_meters)+' м'+(req.synthetic_bus?'; это не действующий рейс и не проверка автобусной проходимости':'')+'</p><ol>'+road.steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>';}}
    if(streetMinutes>leg.planned_minutes)html+='<p class="tw-map-caution"><b>Уличный расчёт занимает больше времени, чем отведено в плане.</b> Предусмотрите дополнительный запас.</p>';
    if(leg.use_plan_geometry&&leg.basis==='routing_provider'&&leg.geometry?.type==='LineString')html+='<p>Линия и время рассчитаны по дорожной сети OpenStreetMap. Время включает резерв на задержки.</p>';
-   else if(!streetFound)html+='<p>Пошаговые указания пока недоступны. Пунктир — условная связь, не проверенный путь.</p>';
+   else if(!streetFound&&!leg.instructions?.length)html+='<p>Пошаговые указания пока недоступны. Пунктир — условная связь, не проверенный путь.</p>';
    return html;
   }
   function selectLeg(index, stopCoordinate){selectedStop=-1;settings.onStopSelect?.(-1);selected=index;popup.hidden=true;settings.onSelect?.(instructions(index),index);
@@ -74,7 +79,10 @@
    return points.length > 0;
   }
   function selectStop(index){const p=stops[index];if(!p)return;
-   if(settings.focusStopWithArrival){
+   if(settings.focusStopDetails){
+    selected=-1;selectedStop=index;center=coordinate(p);zoom=Math.max(17,zoom);
+    settings.onSelect?.('',-1);settings.onStopSelect?.(index);
+   }else if(settings.focusStopWithArrival){
     const arrival=p.__tripArrival;
     if(arrival>=0){if(!selectLeg(arrival, coordinate(p))){center=coordinate(p);zoom=Math.max(16,zoom);}}
     else {
@@ -142,7 +150,7 @@
   }
   function requestDraw(){if(!drawPending){drawPending=true;requestAnimationFrame(draw);}}
   function zoomTo(delta,anchor){const next=Math.max(7,Math.min(19,zoom+delta));if(next===zoom)return;const {w,h}=dimensions();if(anchor){const c=merc(...center,zoom),world=unmerc(c[0]+anchor[0]-w/2,c[1]+anchor[1]-h/2,zoom),n=merc(...world,next);center=unmerc(n[0]-anchor[0]+w/2,n[1]-anchor[1]+h/2,next);}zoom=next;popup.hidden=true;draw();}
-  controls.addEventListener('click',e=>{e.stopPropagation();const a=e.target.dataset.action;if(a==='fit'){if(settings.focusStopWithArrival){selectedStop=-1;selected=-1;popup.hidden=true;settings.onStopSelect?.(-1);settings.onSelect?.('<p>Выберите место или переход на карте.</p>',-1);}fit();}else if(a)zoomTo(a==='in'?1:-1);});
+  controls.addEventListener('click',e=>{e.stopPropagation();const a=e.target.dataset.action;if(a==='fit'){if(settings.focusStopWithArrival||settings.focusStopDetails){selectedStop=-1;selected=-1;popup.hidden=true;settings.onStopSelect?.(-1);settings.onSelect?.('<p>Выберите место или переход на карте.</p>',-1);}fit();}else if(a)zoomTo(a==='in'?1:-1);});
   box.addEventListener('wheel',e=>{if(settings.allowWheelZoom&&!settings.allowWheelZoom(e))return;e.preventDefault();const rect=box.getBoundingClientRect();zoomTo(e.deltaY<0?1:-1,[e.clientX-rect.left,e.clientY-rect.top]);},{passive:false});
   box.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('button,a,.tw-map-popup'))return;drag={x:e.clientX,y:e.clientY,center:merc(...center,zoom),moved:false};});
   box.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>4){if(!drag.moved)box.setPointerCapture(e.pointerId);drag.moved=true;popup.hidden=true;center=unmerc(drag.center[0]-dx,drag.center[1]-dy,zoom);requestDraw();}});
@@ -179,6 +187,7 @@
     if(place)stops.push({...place,__tripMeal:event.type==='meal',__tripRequired:mandatory.has(event.poi_id),__tripArrival:lastDestination===event.poi_id?legIndex:-1});
    }
    legs=(day.events||[]).filter(e=>e.type==='travel');selected=-1;selectedStop=-1;popup.hidden=true;fit();
+   if(settings.focusStopDetails)settings.onStopSelect?.(-1);
    settings.onSelect?.('<p>Нажмите переход в расписании или линию карты: появятся станции, пересадки и доступные инструкции по улицам.</p>',-1);loadRoads(epoch,planEpoch);
   }
   function getOsmTables(){

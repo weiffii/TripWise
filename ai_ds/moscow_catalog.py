@@ -84,10 +84,11 @@ def _visit_type(row, category):
         r'shopping\s+(?:center|centre|mall)|department\s+store|аутлет|outlet)\b', name))
     # Some well-known centres are indexed only by their brand name. These
     # hints are used solely when a POI is already classified as shopping.
-    known_malls = bool(re.search(
-        r'\b(?:авиапарк|афимолл|метрополис|атриум|океания|саларис|мега|'
-        r'вегас|капитолий|охотный\s+ряд|цветной|цдм|европейский|ривьера|'
-        r'галерея\s+москва|хорошо!)\b', name))
+    known_large_malls = bool(re.search(
+        r'\b(?:авиапарк|афимолл|метрополис|океания|саларис|мега|вегас|'
+        r'европейский|ривьера|белая\s+дача)\b', name))
+    known_malls = known_large_malls or bool(re.search(
+        r'\b(?:атриум|капитолий|охотный\s+ряд|цветной|цдм|галерея\s+москва|хорошо)\b', name))
     museum = ('museums' in categories or category == 'museums' or
               bool(re.search(r'\b(?:музей|музея|музее|музеи|museum|галерея|gallery|'
                              r'экспозиция|выставочный\s+центр)\b', name)) or
@@ -98,6 +99,10 @@ def _visit_type(row, category):
         return 'large_museum' if major else 'museum'
     if category == 'shopping' or 'shopping' in categories:
         if mall_tags or mall_name or known_malls:
+            area = row.get('source_geometry_area_ha')
+            footprint_is_large = type(area) in (int, float) and area >= 4
+            if known_large_malls or footprint_is_large:
+                return 'large_shopping_mall'
             return 'shopping_mall'
         if re.search(r'\b(?:рынок|маркет|market|ярмарка|базар)\b', name):
             return 'market'
@@ -136,6 +141,7 @@ def planning_fields(row):
         'large_museum': (150, 10),  # 2h30-3h15, major collection
         'museum': (90, 8),         # 1h30-2h05, regular exhibition
         'shopping_mall': (140, 7), # 2h20-2h50, adjusted by pace below
+        'large_shopping_mall': (195, 7),  # 3h15-3h45, adjusted by pace below
         'market': (75, 6),
         'shop': (35, 6),
         'historic_site': (45, 7),
@@ -155,15 +161,13 @@ def planning_fields(row):
     area = row.get('source_geometry_area_ha')
     if visit_type:
         base, steps = visit_bases[visit_type]
-        # A huge mapped park merits more time. Avoid adding land area to a
-        # shopping centre: a normal mall visit should remain 2-3 hours.
         area_bonus = 20 if visit_type == 'park' and isinstance(area, (int, float)) and area >= 20 else 0
         duration = base + 5 * (seed % steps) + area_bonus
     else:
         duration = minutes + 5 * (seed % 6)
     start = (8 if category in ('nature', 'cafes') else 10) + seed % 2
     end = (22 if category in ('cafes', 'entertainment') else 19) + seed % 3
-    if visit_type == 'shopping_mall':
+    if visit_type in ('shopping_mall', 'large_shopping_mall'):
         # Synthetic opening window; do not imply that real mall hours were checked.
         start, end = 10, 22
     if food_kind == 'coffee_shop' or food_kind == 'bakery':

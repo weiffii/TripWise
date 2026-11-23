@@ -10,8 +10,8 @@ def row(name, category='shopping', **extra):
 
 
 class MoscowPaceDurations(unittest.TestCase):
-    def test_major_shopping_centre_is_two_to_three_hours(self):
-        for name in ('ТЦ Европейский', 'Торговый центр', 'ГУМ', 'Авиапарк', 'Афимолл', 'Молл', 'Shopping Mall'):
+    def test_generic_shopping_centre_is_two_to_three_hours(self):
+        for name in ('Торговый центр', 'ГУМ', 'Молл', 'Shopping Mall'):
             profile = planning_fields(row(name))
             self.assertEqual(profile['visit_type']['value'], 'shopping_mall', name)
             self.assertGreaterEqual(profile['duration_minutes']['value'], 120)
@@ -19,6 +19,16 @@ class MoscowPaceDurations(unittest.TestCase):
             self.assertEqual(profile['duration_minutes']['source_type'], 'synthetic')
             self.assertEqual(profile['opening_hours']['value'][2], ['10:00', '22:00'])
             self.assertEqual(profile['opening_hours']['source_type'], 'synthetic')
+
+    def test_large_shopping_centre_uses_three_to_four_hours(self):
+        samples = [row(name) for name in ('ТЦ Европейский', 'Авиапарк', 'Афимолл')]
+        samples.append(row('Арка', tags={'shop': 'mall'}, source_geometry_area_ha=5))
+        for sample in samples:
+            with self.subTest(name=sample['name']):
+                profile = planning_fields(sample)
+                self.assertEqual(profile['visit_type']['value'], 'large_shopping_mall')
+                self.assertTrue(180 <= profile['duration_minutes']['value'] <= 240)
+                self.assertEqual(profile['opening_hours']['value'][2], ['10:00', '22:00'])
 
     def test_osm_mall_tag_classifies_without_name_keywords(self):
         profile = planning_fields(row('Арка', tags={'shop': 'mall'}))
@@ -69,7 +79,7 @@ class MoscowPaceDurations(unittest.TestCase):
                    'primary_interests':['shopping'],'secondary_interests':[],
                    'required_poi_ids':[sample['id']],'budget':{'amount':15000}}
         dataset, options, _ = engine_input(profile,[poi],{'pairs':[]},context)
-        self.assertEqual(dataset['pois'][0]['visit_type'],'shopping_mall')
+        self.assertEqual(dataset['pois'][0]['visit_type'],'large_shopping_mall')
         self.assertEqual(dataset['pois'][0]['duration_source'],'synthetic')
         self.assertTrue(dataset['pois'][0]['duration_locked'])
         self.assertEqual(dataset['pois'][0]['duration_minutes'],150)

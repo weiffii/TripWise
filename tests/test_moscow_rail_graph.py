@@ -4,7 +4,7 @@ from unittest import TestCase
 from unittest.mock import patch
 
 from ai_ds.moscow_road import travel_matrix
-from ai_ds.moscow_transit import build_graph, route_between
+from ai_ds.moscow_transit import build_graph, build_matrix, route_between
 from scripts.build_moscow_rail_snapshot import build_approach, build_snapshot, build_station_entrances, route_way_segments
 
 
@@ -22,6 +22,23 @@ def relation(identifier, ref, stops, route='subway'):
 
 
 class MoscowRailGraphTests(TestCase):
+    def test_matrix_reuses_identical_access_without_sharing_steps(self):
+        elements = [node(1), node(2), relation(100, '1', (1, 2))]
+        graph = build_graph({'elements': elements}, {'metro': {'meters_per_second': 12, 'wait_seconds': 90}})
+        approaches = {'A': {'enter': {'1': 20}}, 'B': {'enter': {'1': 20}}, 'C': {'exit': {'2': 30}}}
+        with patch('ai_ds.moscow_transit.route_between', wraps=route_between) as search:
+            matrix = build_matrix(graph, approaches, approaches, require_transit=('metro',),
+                                  only_pairs={('A', 'C'), ('B', 'C')})
+        search.assert_called_once()
+        first, second = matrix['pairs']
+        expected_time, expected_steps = route_between(graph, {1: 20}, {2: 30}, require_transit=('metro',))
+        self.assertEqual(first['duration_seconds'], expected_time)
+        self.assertEqual(first['transport_steps'], expected_steps)
+        first['transport_steps'][0]['location'] = 'A'
+        self.assertEqual(second['transport_steps'], expected_steps)
+        avoided = build_matrix(graph, approaches, approaches, avoid_transit=('metro',), only_pairs={('A', 'C')})
+        self.assertEqual(avoided['pairs'][0]['status'], 'unknown')
+
     def test_real_metro_and_d2_topology_with_documented_transfers(self):
         snapshot = json.loads((SOURCES / 'moscow-rail-osm.json').read_text(encoding='utf8'))
         transfer_data = json.loads((SOURCES / 'moscow-rail-transfer-pilot.json').read_text(encoding='utf8'))

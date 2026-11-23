@@ -207,6 +207,46 @@ def catalog(city: Literal['moscow', 'shanghai'], include_legacy: bool = False):
              'lon': poi.get('lon', (poi.get('coordinates') or {}).get('longitude'))} for poi in places]
 
 
+@router.get('/api/planned-trips/catalog/{city}/{poi_id}')
+def place_details(city: Literal['moscow', 'shanghai'], poi_id: str, visit_date: date):
+    if city == 'moscow':
+        from backend.moscow import indexes, moscow_pois, source_hours
+
+        point = indexes()[0].get(poi_id) or next((p for p in moscow_pois() if p['id'] == poi_id), None)
+        if point is None:
+            raise HTTPException(404, 'Место отсутствует в каталоге.')
+        planning = point.get('planning', {})
+        hours = planning.get('opening_hours', {})
+        raw = hours.get('value')
+        basis = hours.get('source_type')
+        if basis == 'synthetic' and isinstance(raw, list) and len(raw) == 7:
+            window = raw[visit_date.weekday()] or ()
+        else:
+            window = source_hours(raw, visit_date.weekday())
+        return {'opening': window, 'opening_basis': basis,
+                'opening_text': raw if window is None and basis == 'source' and isinstance(raw, str) else None}
+
+    point = next((p for p in assistant().data['pois'] if p['id'] == poi_id), None)
+    if point is None:
+        raise HTTPException(404, 'Место отсутствует в каталоге.')
+    hours = point.get('opening') or {}
+    day = visit_date.isoformat()
+    overrides = (hours.get('by_date') or {}).get(day) or {}
+    closed = overrides.get('closed', visit_date.isoweekday() in hours.get('closed_weekdays', ())
+                           or day in hours.get('closed_dates', ()))
+    opens, closes = (overrides.get(key, hours.get(key)) for key in ('open', 'close'))
+    food = point.get('kind') == 'restaurant'
+    price = point.get('avg_check_cny') if food else None
+    if price is None:
+        price = point.get('price_cny')
+    multipliers = {'adult': 1, 'child': .65 if food else .5, 'senior': .9 if food else .7,
+                   **(point.get('price_multipliers') or {})}
+    return {'opening': [] if closed else [opens, closes] if opens and closes else None,
+            'opening_basis': 'synthetic',
+            'unit_prices': ({**{key: round(price * multipliers[key], 4) for key in ('adult', 'child', 'senior')},
+                             'pet': point.get('pet_fee_cny') or 0} if price is not None else None)}
+
+
 _bindings = {}
 _bindings_lock = threading.Lock()
 

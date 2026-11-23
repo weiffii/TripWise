@@ -5,6 +5,10 @@
 """
 from __future__ import annotations
 
+from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager, suppress
+from contextvars import ContextVar
 from copy import deepcopy
 from datetime import datetime, timezone
 import hashlib
@@ -29,6 +33,13 @@ from ai_ds.day_windows import DAY_WINDOW_FIELDS, local_day_window, valid_clock
 from ai_ds.visit_time_intent import PIN_FIELDS, local_visit_pin, valid_pin
 
 ROOT = Path(__file__).resolve().parents[1]
+_BRIDGE_SCRIPT = ROOT / 'ai_ds/web_demo/shanghai-assistant-bridge.cjs'
+_BRIDGE_TIMEOUT = 30
+_BRIDGE_RESPONSE_LIMIT = 4 * 1024 * 1024
+_BRIDGE_CACHE_LIMIT = 8 * 1024 * 1024
+_BRIDGE_BATCH = ContextVar('shanghai_bridge_batch', default=None)
+BRIDGE_FAILURE_CODES = frozenset({'ROUTER_RUNTIME_UNAVAILABLE', 'ROUTER_UNAVAILABLE',
+                                  'ROUTER_RESPONSE_TOO_LARGE', 'ROUTER_INVALID_RESPONSE'})
 CATEGORIES = {'museums', 'history', 'nature', 'cafes', 'entertainment', 'shopping', 'viewpoints', 'unusual'}
 FIELDS = {
     'replace_poi': {'op', 'day', 'target_poi_id', 'desired_category', 'preference'},
@@ -150,29 +161,135 @@ def node_executable():
     return executable or (str(portable) if os.name == 'nt' and portable.is_file() else None)
 
 
+class _BridgeBatch:
+    """One isolated Node process for consecutive trials of a single edit."""
+
+    def __init__(self):
+        self.process = None
+        self.failure = None
+        self.worker = ThreadPoolExecutor(max_workers=1)
+        self.cached = OrderedDict()
+        self.cached_size = 0
+
+    def cached_response(self, key):
+        entry = self.cached.get(key)
+        if entry is not None:
+            self.cached.move_to_end(key)
+            return entry[0]
+        return None
+
+    def remember(self, key, output):
+        size = len(output.encode('utf-8'))
+        if size > _BRIDGE_CACHE_LIMIT:
+            return
+        while self.cached and (self.cached_size + size > _BRIDGE_CACHE_LIMIT or len(self.cached) >= 512):
+            _, (_, evicted_size) = self.cached.popitem(last=False)
+            self.cached_size -= evicted_size
+        self.cached[key] = (output, size)
+        self.cached_size += size
+
+    @staticmethod
+    def exchange(process, raw):
+        process.stdin.write(raw + '\n')
+        process.stdin.flush()
+        return process.stdout.readline(_BRIDGE_RESPONSE_LIMIT + 2)
+
+    def call(self, raw):
+        if self.process is None:
+            executable = node_executable()
+            require(bool(executable), 'ROUTER_RUNTIME_UNAVAILABLE')
+            self.process = subprocess.Popen([executable, str(_BRIDGE_SCRIPT), '--lines'], cwd=ROOT,
+                                            stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                            stderr=subprocess.DEVNULL, text=True, encoding='utf-8')
+        try:
+            output = self.worker.submit(self.exchange, self.process, raw).result(timeout=_BRIDGE_TIMEOUT)
+            require(len(output) <= _BRIDGE_RESPONSE_LIMIT, 'ROUTER_RESPONSE_TOO_LARGE')
+            if not output.endswith('\n'):
+                raise OSError('Router response ended without a complete line')
+            return output
+        except (OSError, ValueError, TimeoutError, AssistantError):
+            self.stop()
+            raise
+
+    def stop(self):
+        if self.process is not None:
+            process, self.process = self.process, None
+            with suppress(ProcessLookupError):
+                process.kill()
+            process.wait()
+            for stream in (process.stdin, process.stdout):
+                with suppress(OSError):
+                    stream.close()
+
+    def close(self):
+        try:
+            self.stop()
+        finally:
+            self.worker.shutdown()
+
+
+@contextmanager
+def bridge_batch():
+    batch = _BridgeBatch()
+    token = _BRIDGE_BATCH.set(batch)
+    try:
+        yield
+    finally:
+        _BRIDGE_BATCH.reset(token)
+        batch.close()
+
+
 def bridge_call(payload):
-    executable = node_executable()
-    require(bool(executable), 'ROUTER_RUNTIME_UNAVAILABLE')
+    batch = _BRIDGE_BATCH.get()
+    if batch is not None and batch.failure is not None:
+        raise AssistantError(batch.failure)
     try:
         injected = 'dataset' in payload
         raw = json.dumps(payload, ensure_ascii=False, allow_nan=False,
                          separators=(',', ':') if injected else None)
-        require(len(raw.encode('utf-8')) <= (8 if injected else 2) * 1024 * 1024, 'REQUEST_TOO_LARGE')
-        result = subprocess.run([executable, str(ROOT / 'ai_ds/web_demo/shanghai-assistant-bridge.cjs')],
-                                input=raw, text=True, encoding='utf-8', capture_output=True,
-                                timeout=30, cwd=ROOT)
-        require(len(result.stdout) <= 4 * 1024 * 1024, 'ROUTER_RESPONSE_TOO_LARGE')
-        data = json.loads(result.stdout)
-    except (OSError, subprocess.TimeoutExpired, ValueError):
+        data_bytes = raw.encode('utf-8')
+        require(len(data_bytes) <= (8 if injected else 2) * 1024 * 1024, 'REQUEST_TOO_LARGE')
+        request_key = None
+        cached = None
+        if batch is None:
+            executable = node_executable()
+            require(bool(executable), 'ROUTER_RUNTIME_UNAVAILABLE')
+            result = subprocess.run([executable, str(_BRIDGE_SCRIPT)],
+                                    input=raw, text=True, encoding='utf-8', capture_output=True,
+                                    timeout=_BRIDGE_TIMEOUT, cwd=ROOT)
+            stdout, returncode = result.stdout, result.returncode
+        else:
+            # Injected fixed-sequence trials are deterministic with a fully
+            # specified dataset. Persist nothing beyond this one message.
+            if injected and payload.get('action') == 'schedule':
+                request_key = hashlib.sha256(data_bytes).digest()
+                cached = batch.cached_response(request_key)
+            stdout, returncode = cached if cached is not None else batch.call(raw), 0
+        require(len(stdout) <= _BRIDGE_RESPONSE_LIMIT, 'ROUTER_RESPONSE_TOO_LARGE')
+        data = json.loads(stdout)
+    except AssistantError as error:
+        if batch is not None and error.code in BRIDGE_FAILURE_CODES:
+            batch.failure = error.code
+        raise
+    except (OSError, subprocess.TimeoutExpired, TimeoutError, ValueError):
+        if batch is not None:
+            batch.failure = 'ROUTER_UNAVAILABLE'
         raise AssistantError('ROUTER_UNAVAILABLE') from None
-    if result.returncode or isinstance(data, dict) and data.get('error'):
+    if returncode or isinstance(data, dict) and data.get('error'):
         error = data.get('error', {}) if isinstance(data, dict) else {}
         code = error.get('code', 'ROUTE_RECOMPUTATION_FAILED') if isinstance(error, dict) else 'ROUTE_RECOMPUTATION_FAILED'
         failure = AssistantError(code if isinstance(code, str) and re.fullmatch(r'[A-Z_]+', code) else 'ROUTE_RECOMPUTATION_FAILED')
+        if request_key is not None and cached is None and failure.code not in BRIDGE_FAILURE_CODES:
+            batch.remember(request_key, stdout)
         if isinstance(error, dict) and isinstance(error.get('reason'), str) and re.fullmatch(r'[A-Z_]+', error['reason']):
             failure.reason = error['reason']
         raise failure
-    require(isinstance(data, dict), 'ROUTER_INVALID_RESPONSE')
+    if not isinstance(data, dict):
+        if batch is not None:
+            batch.failure = 'ROUTER_INVALID_RESPONSE'
+        raise AssistantError('ROUTER_INVALID_RESPONSE')
+    if request_key is not None and cached is None:
+        batch.remember(request_key, stdout)
     return data
 
 
@@ -249,24 +366,29 @@ def human_error(code):
         'MEAL_TIME_UNAVAILABLE': 'Запрошенное время не укладывается в доступное окно заведения. Попробуйте другое время обеда.',
         'INVALID_VISIT_TIME': 'Укажите точное время посещения в формате ЧЧ:ММ.',
         'VISIT_TIME_UNAVAILABLE': 'Посещение не помещается в указанное время с учётом часов работы, переходов и приёмов пищи.',
+        'DAY_END_EXCEEDED': 'С этим изменением день заканчивается позже заданного времени. Можно продлить прогулку, перенести посещение или убрать необязательную остановку.',
+        'OUTSIDE_OPENING_HOURS': 'Посещение выходит за доступные часы работы. Можно перенести его на другой день или изменить порядок остановок.',
+        'BUDGET_EXCEEDED': 'Изменение превышает бюджет поездки. Можно заменить необязательное платное место, подобрать менее дорогой способ передвижения или увеличить бюджет.',
         'TARGET_DAY_MISMATCH': 'Это посещение отсутствует в указанном дне маршрута.',
         'VISIT_NOT_IN_ROUTE': 'Закрепить можно время посещения из маршрута. Для питания действует отдельная команда.',
         'PINNED_VISIT_PROTECTED': 'Правка затрагивает посещение с закреплённым временем. Выберите другое изменение.',
         'NO_ROUTE_CHANGE': 'Запрошенное условие уже выполнено. Уточните, если нужно поменять день, время или место.',
         'NO_ROUTE_IMPROVEMENT': 'Не нашёл более короткий вариант с теми же местами и ограничениями. Попробуйте изменить время или убрать необязательную остановку.',
-        'NO_FEASIBLE_GAP_FILL': 'Для указанных дней не удалось добавить выполнимые посещения: в пределах проверенного поиска мешают часы работы, бюджет, транспорт или занятое время. Прежний маршрут сохранён. Это не доказательство отсутствия подходящих мест во всём городе.',
+        'NO_FEASIBLE_GAP_FILL': 'В эти окна не поместились новые посещения, а соседние остановки достигли предела по времени. Можно изменить настройки дня или выбрать другой вид транспорта.',
+        'SNAPSHOT_CONFLICT': 'Каталог помощника обновился. Откройте свежий маршрут, чтобы продолжить редактирование.',
+        'CHAT_DETOUR_EXCEEDED': 'Этот вариант добавляет длинную дорогу туда и обратно. Попробуйте другой день или разрешите подходящий вид транспорта.',
         'VERSION_CONFLICT': 'Маршрут уже изменился. Отправьте пожелание ещё раз для текущей версии.',
         'VERSION_OR_DATA_CONFLICT': 'Маршрут изменился во время расчёта. Исходный маршрут сохранён; повторите пожелание.',
         'INPUT_DATA_CHANGED': 'Исходные данные изменились. Нужно построить новый маршрут.',
         'PROPOSAL_EXPIRED': 'Время предложения истекло. Попросите рассчитать его заново.',
         'INTERPRETER_UNAVAILABLE': 'ИИ-помощник сейчас недоступен. Маршрут сохранён; попробуйте позже.',
         'ROUTER_UNAVAILABLE': 'Не удалось пересчитать маршрут. Исходный план сохранён.',
-        'LLM_KEY_NOT_CONFIGURED': 'На локальном сервере не настроен ключ OpenRouter. Маршрут работает, но чат пока недоступен.',
+        'LLM_KEY_NOT_CONFIGURED': 'Для разбора этого запроса нужен доступ к OpenRouter. Можно отправить одну точную команду, например «Закрепи [название места] в 14:30».',
         'LLM_RATE_LIMITED': 'OpenRouter вернул HTTP 429: лимит частоты или квоты запросов к бесплатной модели. Маршрут сохранён. Простые локальные команды (например, «добавь Уголок дедушки Дурова») доступны без ИИ.',
         'LLM_ACCESS_DENIED': 'OpenRouter отклонил запрос. Проверьте ключ и состояние аккаунта; маршрут не изменён.',
         'LLM_NETWORK_ERROR': 'Сервер не смог связаться с OpenRouter. Проверьте подключение и попробуйте ещё раз.',
         'LLM_HTTP_ERROR': 'OpenRouter не смог обработать запрос. Возможно, бесплатная модель сейчас недоступна. Маршрут не изменён.',
-        'LLM_INCOMPLETE_RESPONSE': 'OpenRouter вернул неполный ответ. Попробуйте сформулировать пожелание короче.',
+        'LLM_INCOMPLETE_RESPONSE': 'OpenRouter вернул неполный ответ. Отправьте одну правку с точным названием и днём, чтобы помощник проверил её отдельно.',
         'MIDDLE_DAY_REQUIRED': 'Менять часы здесь можно для промежуточных дней. Время первого и последнего дня задаётся в анкете.',
         'BOUNDARY_DAY_WINDOW': 'Время первого и последнего дня задаётся в анкете.',
         'INVALID_DAY_WINDOW': 'Окно прогулки должно длиться хотя бы час в пределах одного дня.',
@@ -350,12 +472,12 @@ class ShanghaiRouteAssistant(RouteAssistant):
 
     def _candidate(self, state, sequences):
         context = state['routing_context']
-        result = self.bridge({'action': 'edit', 'options': context['edit_options'],
+        result = self.bridge({'action': 'edit_checked', 'options': context['edit_options'],
                               'base_plan': context['edit_base'], 'operations': context['edit_operations']})
         require(isinstance(result.get('plan'), dict) and isinstance(result.get('options'), dict), 'INVALID_CANDIDATE_ROUTE')
         plan = compact_plan(result['plan'])
-        checked = self.bridge({'action': 'validate', 'options': result['options'], 'plan': plan})
-        require(checked.get('valid') is True, 'ROUTE_VALIDATION_FAILED')
+        checked = result.get('checked')
+        require(isinstance(checked, dict) and checked.get('valid') is True, 'ROUTE_VALIDATION_FAILED')
         plan = canonical_claims(plan, result['options'], checked, self.by_id)
         old_missing = set(context['edit_base'].get('unplaced_required_ids', []))
         require(set(plan.get('unplaced_required_ids', [])) <= old_missing, 'REQUIRED_PLACE_PROTECTED')

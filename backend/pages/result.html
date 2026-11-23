@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
   <script src="/theme.js?v=20261122-unified2"></script>
-  <link rel="stylesheet" href="/styles.css?v=20261122-map1">
+  <link rel="stylesheet" href="/styles.css?v=20261123-stop-details">
   <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
-  <script src="/route-map.js?v=20261122-map1" defer></script>
-  <script src="/trip-result.js?v=20261122-map1" defer></script>
+  <script src="/route-map.js?v=20261123-stop-details" defer></script>
+  <script src="/trip-result.js?v=20261123-stop-details" defer></script>
 </head>
 <body class="questionnaire-page">
   <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
@@ -67,6 +67,7 @@
           </div>
           <p id="map-status" class="field-hint"></p>
           <p id="road-status" class="field-hint" role="status"></p>
+          <section id="route-place-details" aria-live="polite" hidden></section>
           <div id="route-directions" aria-live="polite"></div>
         </section>
       </aside>

@@ -31,6 +31,23 @@ function streetFixture(pois, time) {
   return { pois, currency: 'RUB', compact_waits: true, leg_profiles: { walk } };
 }
 
+test('a missing matrix profile never creates an unsourced walking connector', () => {
+  const pois = [place('first', 37.62, '15:00', '18:00', 30),
+    place('second', 37.621, '15:00', '18:00', 30)];
+  const {walk} = streetFixture(pois, () => 15).leg_profiles;
+  const transit = Object.fromEntries(Object.entries(walk).map(([id, targets]) =>
+    [id, Object.fromEntries(Object.entries(targets).map(([target, leg]) =>
+      [target, {...leg, mode:'transit', source:'rail-test'}]))]));
+  const data = {pois, currency:'RUB', compact_waits:true, leg_profiles:{transit}};
+  const prefs = {...options, transport:'transit', day_start:'15:00', day_end:'17:00',
+    required_ids:pois.map(poi => poi.id)};
+  const plan = api.planTrip(data,prefs);
+  const legs = plan.days[0].events.filter(event => event.type === 'travel');
+  assert.equal(legs.length,1);
+  assert.equal(legs[0].leg_profile,'transit');
+  assert.ok(api.validateEditedTrip(data,prefs,plan).valid);
+});
+
 test('joint meal search reduces the reproduced 65-minute dinner wait', () => {
   let state = 28;
   function sample(maximum) {
@@ -184,4 +201,63 @@ test('a limited budget can still fund complete canteen meals', () => {
   assert.deepEqual(plan.days[0].meal_ids, ['canteen-lunch', 'canteen-dinner']);
   assert.equal(plan.summary.total_cost_cny, 1250);
   assert.ok(api.validateEditedTrip(data, preferences, plan).valid);
+});
+
+test('nearby visits fill a meal-constrained internal window before the final required stop', () => {
+  const lunch = { ...place('lunch', 37.62, '12:00', '14:00', 50, 700, 'restaurant'), food_type: 'restaurant' };
+  const dinner = { ...place('dinner', 37.625, '17:55', '21:00', 50, 1000, 'restaurant'), food_type: 'restaurant' };
+  const pois = [lunch, dinner, place('early', 37.62, '11:00', '12:15', 45),
+    place('late', 37.625, '19:10', '20:25', 45),
+    place('between-1', 37.621, '13:00', '16:05', 95),
+    place('between-2', 37.623, '15:00', '17:55', 100)];
+  const data = streetFixture(pois, () => 5);
+  const preferences = { ...options, day_start: '11:00', day_end: '20:30', required_ids: ['early', 'late'] };
+  const plan = api.planTrip(data, preferences);
+  const events = plan.days[0].events;
+  assert.equal(plan.checks.required_places, 'passed');
+  assert.deepEqual(plan.days[0].meal_ids, ['lunch', 'dinner']);
+  assert.ok(plan.days[0].visit_ids.includes('between-1') && plan.days[0].visit_ids.includes('between-2'),
+    JSON.stringify(events.map(event=>[event.poi_id||event.type,event.start_min,event.end_min])));
+  const maxGap = Math.max(...events.slice(1).map((event, i) => event.start_min - events[i].end_min));
+  assert.ok(maxGap <= 65, String(maxGap));
+  assert.ok(api.validateEditedTrip(data, preferences, plan).valid);
+});
+test('fixed Moscow scheduling releases a stale 177-minute post-lunch hint and keeps dinner pinned', () => {
+  const pois = [place('museum', 37.62, '12:00', '20:00', 45),
+    place('lunch', 37.62, '12:00', '16:00', 50, 600, 'restaurant'),
+    place('dinner', 37.62, '17:00', '21:00', 50, 800, 'restaurant')];
+  const data = streetFixture(pois, () => 5);
+  const preferences = { ...options, meal_times: { [date]: { lunch: '13:00', dinner: '18:00' } } };
+  const sequence = [{ poi_id: 'lunch', meal_kind: 'lunch', start_min: 780 },
+    { poi_id: 'museum', start_min: 1012 }, { poi_id: 'dinner', meal_kind: 'dinner', start_min: 1080 }];
+  const base = { schema_version: 'shanghai-demo-v1', days: [{
+    date, events: sequence.map(item => ({ ...item, type: item.meal_kind ? 'meal' : 'visit' })),
+  }] };
+  const edited = api.scheduleSequences(data, preferences, {
+    base_plan: base, sequences: { [date]: sequence }, changed_days: [date],
+  });
+  const events = edited.plan.days[0].events;
+  const lunchIndex = events.findIndex(event => event.meal_kind === 'lunch');
+  assert.ok(events[lunchIndex + 1].start_min - events[lunchIndex].end_min < 177);
+  assert.equal(events.find(event => event.meal_kind === 'dinner').start_min, 1080);
+  assert.ok(api.validateEditedTrip(data, edited.options, edited.plan).valid);
+});
+
+test('an automatic dinner uses the available visit to break up required meal spacing', () => {
+  const data = streetFixture([place('museum', 37.62, '12:00', '20:00', 70),
+    place('lunch', 37.62, '12:00', '16:00', 50, 600, 'restaurant'),
+    place('dinner', 37.62, '17:00', '21:00', 50, 800, 'restaurant')], () => 5);
+  const preferences = { ...options, meal_times: { [date]: { lunch: '14:00' } } };
+  const sequence = [{ poi_id: 'lunch', meal_kind: 'lunch', start_min: 840 },
+    { poi_id: 'museum', start_min: 895 }, { poi_id: 'dinner', meal_kind: 'dinner', start_min: 1080 }];
+  const base = { schema_version: 'shanghai-demo-v1', days: [{
+    date, events: sequence.map(item => ({ ...item, type: item.meal_kind ? 'meal' : 'visit' })),
+  }] };
+  const edited = api.scheduleSequences(data, preferences, {
+    base_plan: base, sequences: { [date]: sequence }, changed_days: [date],
+  });
+  assert.ok(api.validateEditedTrip(data, edited.options, edited.plan).valid);
+  const events = edited.plan.days[0].events;
+  const maxGap = Math.max(...events.slice(1).map((event, i) => event.start_min - events[i].end_min));
+  assert.ok(maxGap <= 60, String(maxGap));
 });

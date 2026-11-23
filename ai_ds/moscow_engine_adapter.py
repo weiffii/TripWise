@@ -129,7 +129,8 @@ def saved_plan(native, context, rows, pace):
                                     if row['poi_id'] == event['poi_id']), 'unknown')
                 visits.append({'poi_id': event['poi_id'], 'start_at': start, 'end_at': end,
                                'price_rub': event.get('price_cny'), 'price_basis': price_basis,
-                               'duration_basis': 'expert_estimate'})
+                               'duration_basis': 'expert_estimate',
+                               **({'extension_minutes': event['extension_minutes']} if 'extension_minutes' in event else {})})
                 if event.get('meal_kind'):
                     meals.setdefault(date, {})[event['meal_kind']] = {'poi_id': event['poi_id'], 'start_at': start, 'end_at': end}
         if visits and 'lunch' not in meals.get(date, {}):
@@ -214,16 +215,72 @@ def add_lunch_break(breaks, day, date, window):
 
 def plan_city(profile, pois, matrix, context):
     dataset, options, rows = engine_input(profile, pois, matrix, context)
+    dataset['defer_visit_extensions'] = True
     native = bridge_call({'action': 'plan', 'dataset': dataset, 'options': options})
     return saved_plan(native, context, rows, profile['pace'])
+
+
+def reserved_breaks(plan):
+    return {day['date']: [[minutes_from_stamp(item['start_at']), minutes_from_stamp(item['end_at'])]
+                          for item in day.get('breaks', []) if item['kind'] in ('rest', 'meal')]
+            for day in plan['days']}
+
+
+def stretch_saved_visits(plan, profile, pois, context, *, only_days=None):
+    """Apply the shared timetable pass after the wider V7 search has finished."""
+    dataset, options, _ = engine_input(profile, pois, {'pairs': []}, context)
+    dataset.update(reserved_breaks=reserved_breaks(plan), fixed_legs_for_extensions=True)
+    options['visit_times'] = plan.get('visit_times', {})
+    for day in plan['days']:
+        options['day_settings'][day['date']]['pace'] = day.get('pace', profile['pace'])
+    extended = bridge_call({'action': 'extend_visits', 'dataset': dataset, 'options': options,
+                            'changed_days': only_days,
+                            'plan': {'days': plan['engine_days']}})['days']
+    for day, native in zip(plan['days'], extended):
+        date, events = day['date'], native['events']
+        if not any(event.get('extension_minutes') for event in events):
+            continue
+        visits = {event['poi_id']: event for event in events if event.get('extension_minutes')}
+        for row in day['visits']:
+            event = visits.get(row['poi_id'])
+            if event:
+                row.update(start_at=timestamp(date, event['start_min']), end_at=timestamp(date, event['end_min']),
+                           extension_minutes=event['extension_minutes'])
+        travel_events = (event for event in events if event['type'] == 'travel')
+        for row, event in zip(day['legs'], travel_events):
+            row.update(start_at=timestamp(date, event['start_min']), end_at=timestamp(date, event['end_min']))
+        free = [(timestamp(date, left['end_min']), timestamp(date, right['start_min']))
+                for left, right in zip(events, events[1:]) if left['end_min'] < right['start_min']]
+        non_waiting = [item for item in day['breaks'] if item['kind'] != 'waiting']
+        waiting = [{**item, 'start_at': max(item['start_at'], start), 'end_at': min(item['end_at'], end)}
+                   for item in day['breaks'] if item['kind'] == 'waiting' for start, end in free
+                   if max(item['start_at'], start) < min(item['end_at'], end)]
+        day['breaks'] = sorted([*non_waiting, *waiting], key=lambda item: item['start_at'])
+    plan['engine_days'] = extended
+    if 'native_checks' in plan:
+        plan['native_checks']['no_gaps'] = ('passed' if all(
+            left['end_min'] == right['start_min'] for day in extended
+            for left, right in zip(day['events'], day['events'][1:])) else 'failed')
+    return plan
 
 
 def fixed_sequence(state, sequences, *, optimize=None):
     profile, context, pois = (state[key] for key in ('preferences', 'routing_context', 'pois'))
     dataset, options, rows = engine_input(profile, pois, state['travel_times'],
         {**context, 'opening_intervals': context.get('moscow_original_hours', context['opening_intervals'])})
+    dataset['defer_visit_extensions'] = state.get('defer_visit_extensions', False)
+    dataset['reserved_breaks'] = reserved_breaks(state['route'])
+    places = {poi['id']: poi for poi in dataset['pois']}
+    for day in state['route'].get('engine_days', []):
+        for event in day['events']:
+            place = places.get(event.get('poi_id'))
+            if (event['type'] == 'visit' and place and place.get('visit_type') == 'large_shopping_mall'
+                    and place.get('duration_source') == 'synthetic' and not place.get('duration_locked')
+                    and event['end_min'] - event['start_min'] < 180):
+                # An existing format stores the realized duration per visit.
+                # Reopening it should not retroactively expand a 2h stop.
+                place.update(duration_minutes=event['end_min'] - event['start_min'], duration_locked=True)
     if state['route'].get('moscow_meals'):
-        places = {poi['id']: poi for poi in dataset['pois']}
         old_days = {day['date']: {event.get('poi_id'): event for event in day['events'] if event['type'] == 'meal'}
                     for day in state['route'].get('engine_days', [])}
         people = sum(context['moscow_group'][key] for key in ('adult', 'child', 'senior'))
