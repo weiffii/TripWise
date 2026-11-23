@@ -33,6 +33,17 @@ async function main(){
  for(let i=0;i<150;i++){if(server.exitCode!==null)throw Error('QA server exited');try{if((await fetch(base+'/api/health')).ok)break;}catch{}if(i===149)throw Error('QA server start timeout');await sleep(100);}
  browser=await chromium.launch({headless:true,executablePath:process.env.TRIPWISE_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
  const context=await browser.newContext({viewport:{width:1440,height:1000}});
+ // Проверяем команды плеера и сохранение очереди при переключении вкладок.
+ // Наличие и качество системного русского голоса в headless Chrome не оценивается.
+ await context.addInitScript(() => {
+  const speech = {calls:[],paused:false,getVoices:()=>[],
+   speak(utterance){this.calls.push(['speak',utterance.text,utterance.rate,utterance.lang]);},
+   cancel(){this.calls.push(['cancel']);},
+   pause(){this.paused=true;this.calls.push(['pause']);},
+   resume(){this.paused=false;this.calls.push(['resume']);}};
+  Object.defineProperty(window,'speechSynthesis',{value:speech});
+  window.SpeechSynthesisUtterance = class {constructor(text){this.text=text;}};
+ });
  await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
  const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto(base);await page.getByRole('button',{name:'Создать поездку',exact:true}).first().click();
@@ -54,7 +65,7 @@ async function main(){
   await next.click();
   assert.match(await step.textContent(), /Шаг 1 из 5/, 'empty dates stop Next');
   await page.locator('#first-walk').fill('2026-12-01T09:00');
-  await page.locator('#last-walk').fill('2026-12-01T19:00');
+  await page.locator('#last-walk').fill(country === 'CN' ? '2026-12-02T19:00' : '2026-12-01T19:00');
   await next.click();
   await page.locator('#budget').fill(budget);
   await page.locator('[name=budget_currency]').selectOption(currency);
@@ -113,7 +124,10 @@ async function main(){
   await stop.click();
   assert.equal(await stop.getAttribute('aria-pressed'), 'true');
   assert.equal(await mapPanel.locator('[data-stop][aria-pressed=true]').count(),1);
-  assert.ok(await mapPanel.locator('polyline[stroke-width="7"]').count(), 'arrival leg highlighted');
+  await mapPanel.locator('#route-place-details h3').waitFor();
+  await page.locator('.route-event-travel .schedule-action button').first().click();
+  assert.ok(await mapPanel.locator('polyline[stroke-width="7"]').count(), 'selected transition highlighted');
+  await stop.click();
   assert.equal(await mapDialog.isVisible(),false);
   await page.locator('#expand-route-map').click();
   await mapDialog.waitFor({state:'visible'});
@@ -149,6 +163,85 @@ async function main(){
     assert.equal(await stop.evaluate(node => node === document.activeElement),true);
     await page.setViewportSize({width: 1440, height: 1000});
   }
+  const guide = page.getByRole('tab',{name:'Аудиогид'});
+  await guide.click();
+  assert.equal(await page.locator('#guide-days button').count(),preview.plan.days.length);
+  const rendered = await page.locator('#guide-places strong').allTextContents();
+  const firstDay = preview.plan.days[0];
+  const meals = new Set(Object.values(preview.plan.moscow_meals?.[firstDay.date] || {}).map(meal=>meal.poi_id));
+  const metadata = new Map(catalog.map(place=>[place.id,place]));
+  const expected = (firstDay.events || firstDay.visits.map(stop=>({...stop,type:'visit'})).sort((a,b)=>a.start_at.localeCompare(b.start_at)))
+    .filter(stop=>stop.type==='visit'&&!meals.has(stop.poi_id)&&metadata.has(stop.poi_id)&&metadata.get(stop.poi_id).kind!=='restaurant')
+    .map(stop=>metadata.get(stop.poi_id).name);
+  assert.deepEqual(rendered,expected,'guide follows the visit order and excludes meals');
+  if (preview.plan.days.length > 1) {
+    await page.locator('#guide-days button').nth(1).click();
+    assert.equal(await page.locator('#guide-days button').nth(1).getAttribute('aria-pressed'),'true');
+    await page.locator('#guide-days button').first().click();
+  }
+  await page.locator('.guide-card').first().click();
+  assert.equal(await page.locator('#guide-detail-title').textContent(),rendered[0]);
+  await page.locator('[data-guide-length=long]').click();
+  assert.equal(await page.locator('#guide-play').textContent(),'Пауза');
+  await page.locator('#guide-show-map').click();
+  await page.locator('#route-map [data-stop][aria-pressed=true]').waitFor();
+  assert.equal(await page.locator('#guide-play').textContent(),'Пауза');
+  assert.equal(await page.evaluate(()=>speechSynthesis.calls.filter(call=>call[0]==='cancel').length),0);
+  await page.locator('#guide-play').click();
+  assert.equal(await page.locator('#guide-play').textContent(),'Продолжить');
+  await page.locator('#guide-play').click();
+  await page.locator('#guide-speed').selectOption('1.5');
+  assert.deepEqual(await page.evaluate(()=>speechSynthesis.calls.at(-1).slice(-2)),[1.5,'ru-RU']);
+  if (rendered.length > 1) {
+    await page.locator('#guide-next').click();
+    assert.equal(await page.locator('#guide-now').textContent(),rendered[1]);
+    await page.locator('#guide-previous').click();
+    assert.equal(await page.locator('#guide-now').textContent(),rendered[0]);
+  }
+  await page.locator('#guide-dismiss-player').click();
+  const download = page.waitForEvent('download');
+  await page.locator('#download-travelbook').click();
+  const book = await download;
+  const localPdf = path.join(artifacts, preview.city+'-TravelBook.pdf');
+  await book.saveAs(localPdf);
+  const bytes = fs.readFileSync(localPdf).toString('latin1');
+  assert.match(bytes,/^%PDF-/);
+  assert.equal((bytes.match(/\/Type\s*\/Page\b/g)||[]).length,preview.plan.days.length+1);
+  if (preview.city === 'moscow') {
+    // Подставляем ответ на подтверждение, чтобы отделить проверку обновления UI
+    // от выбора конкретной операции и возможности пересобрать день маршрутизатором.
+    const updated = structuredClone(preview);
+    const removedId = firstDay.visits.find(visit=>metadata.get(visit.poi_id)?.name===rendered[0]).poi_id;
+    updated.plan.days[0].visits = updated.plan.days[0].visits.filter(visit=>visit.poi_id!==removedId);
+    updated.version++;
+    const baseUrl = base+'/api/route-previews/'+previewId;
+    const messageUrl = baseUrl+'/assistant/message';
+    const decideUrl = baseUrl+'/assistant/decide';
+    await page.route(messageUrl, route=>route.fulfill({json:{
+      type:'proposal',message:'Предложена правка',proposal_id:'test-ui-edit',
+      base_version:preview.version,plan:updated.plan,diff:{removed:[{name:rendered[0],day:firstDay.date}]},
+    }}));
+    await page.route(decideUrl, route=>route.fulfill({json:{type:'confirmed',version:updated.version}}));
+    await page.route(baseUrl, route=>route.fulfill({json:updated}));
+    await page.locator('#edit-trip').click();
+    await page.locator('#chat-text').fill('Убери первую остановку');
+    await page.locator('#edit-route button').click();
+    await page.locator('#confirm-edit').click();
+    await page.waitForFunction(()=>document.querySelector('#route-state').textContent.includes('Изменения применены'));
+    await page.keyboard.press('Escape');
+    await guide.click();
+    assert.deepEqual(await page.locator('#guide-places strong').allTextContents(),rendered.filter(name=>name!==rendered[0]));
+    await page.getByRole('tab',{name:'Маршрут',exact:true}).click();
+    const amendedDownload = page.waitForEvent('download');
+    await page.locator('#download-travelbook').click();
+    const amendedPdf = path.join(artifacts,'moscow-TravelBook-updated.pdf');
+    await (await amendedDownload).saveAs(amendedPdf);
+    assert.notDeepEqual(fs.readFileSync(amendedPdf),fs.readFileSync(localPdf),'export reflects updated itinerary');
+    for (const url of [messageUrl,decideUrl,baseUrl]) await page.unroute(url);
+    await page.reload();
+    await page.locator('#save-trip').waitFor({state:'visible'});
+  }
+
   await page.locator('#save-trip').click();await page.waitForURL('**/trip/result?route=*',{timeout:15000});
   const routeId=new URL(page.url()).searchParams.get('route');const saved=await json(await context.request.get(base+'/api/planned-trips/'+routeId));
   assert.equal(saved.city,preview.city);generated.push({routeId,previewId,owner:preview.owner_context,version:saved.version});assert.equal(counts().planned_trips,generated.length);
@@ -180,7 +273,7 @@ await page.locator('#finish-questionnaire').click();await page.waitForURL('**/tr
  const theme=await page.locator('html').getAttribute('data-theme');await page.locator('[data-theme-toggle]').click();assert.notEqual(await page.locator('html').getAttribute('data-theme'),theme);
  await page.screenshot({path:path.join(artifacts,'mobile-home.png'),fullPage:false});
  assert.deepEqual(errors,[],'no page JS errors');
- const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow','five results with full-catalog search and persistent selections','two edit buttons, dialog close, saved route fork','five wizard steps with validation and Back','aligned actions, side map and full-screen selection on mobile'],externalNetwork:'blocked',screenshots:artifacts};
+ const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow','five results with full-catalog search and persistent selections','two edit buttons, dialog close, saved route fork','five wizard steps with validation and Back','aligned actions, side map and full-screen selection on mobile','day guide order, food excluded, player persistent on map (speech mock)','real TravelBook download (cover + page per day)','guide and PDF refresh after confirmed assistant response'],externalNetwork:'blocked',screenshots:artifacts};
  fs.writeFileSync(path.join(artifacts,'result.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }
 main().catch(error=>{console.error(error.stack);console.error('QA temp server log:',path.join(work,'server.log'));process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();if(server&&server.exitCode===null){server.kill('SIGTERM');await new Promise(resolve=>{server.once('exit',resolve);setTimeout(resolve,5000);});}if(log!==undefined)fs.closeSync(log);});

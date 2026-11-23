@@ -159,6 +159,8 @@ function openMap(opener) {
   if (mapDialog.open) return;
   mapOpener = opener;
   mapDialog.append(mapPanel);
+  const audioPlayer = element('guide-player');
+  if (!audioPlayer.hidden) mapDialog.append(audioPlayer);
   expandMapButton.hidden = true;
   closeMapForm.hidden = false;
   mapDialog.showModal();
@@ -171,6 +173,8 @@ expandMapButton.addEventListener('click', () => {
 
 mapDialog.addEventListener('close', () => {
   element('route-map-sidebar').append(mapPanel);
+  const audioPlayer = element('guide-player');
+  if (audioPlayer.parentElement === mapDialog) element('route-editor').before(audioPlayer);
   expandMapButton.hidden = false;
   closeMapForm.hidden = true;
   routeMap.fitSelection();
@@ -478,6 +482,84 @@ function renderDay() {
   drawMap(rows);
 }
 
+const dayLabel = (date, index) => 'День ' + (index + 1) + ' · ' +
+  new Intl.DateTimeFormat('ru-RU', {day:'numeric',month:'long',weekday:'short',timeZone:'UTC'}).format(new Date(date));
+
+function updateGuide() {
+  window.TripWiseGuide.update({
+    city:trip.city,
+    days:trip.plan.days.map((day,index) => {
+      const occurrences = new Map();
+      let mapIndex = -1;
+      const stops = [];
+      for (const row of events(day)) {
+        const place = places.get(row.poi_id);
+        const canMap = ['visit','meal'].includes(row.type) && Number.isFinite(place?.lat) && Number.isFinite(place?.lon);
+        if (canMap) mapIndex++;
+        if (!place || row.type !== 'visit' || /^(restaurant|cafe|café|bakery|fast_food|food_court|bar|pub|ice_cream|coffee_shop)$/i.test(place.kind || '')) continue;
+        const occurrence = (occurrences.get(row.poi_id) || 0) + 1;
+        occurrences.set(row.poi_id, occurrence);
+        stops.push({id:row.poi_id,name:place.name,occurrence,canMap,mapIndex,time:clock(row,'start'),minutes:eventDetails(row).minutes});
+      }
+      return {date:day.date,label:dayLabel(day.date,index),stops};
+    }),
+    showOnMap: stop => {
+      element('route-day').value = stop.day;
+      renderDay();
+      const opener = element('route-stops').querySelector(`[data-stop-index="${stop.mapIndex}"]`) || element('trip-tab-route');
+      revealMap(opener);
+      routeMap.selectStop(stop.mapIndex);
+      if (!mapDialog.open) {
+        element('route-map-panel').scrollIntoView({block:'nearest'});
+        opener.focus({preventScroll:true});
+      }
+    },
+  });
+}
+
+const bookButton = element('download-travelbook');
+bookButton.addEventListener('click', async () => {
+  if (!trip?.plan.days.length) return;
+  const status = element('travelbook-status');
+  bookButton.disabled = true;
+  status.textContent = 'Готовим актуальный TravelBook…';
+  try {
+    const city = element('route-title').textContent;
+    const dates = trip.plan.days.map(day => day.date.split('-').reverse().join('.'));
+    await window.TripWiseTravelBook.download({
+      city, dates: dates[0] === dates.at(-1) ? dates[0] : dates[0] + ' — ' + dates.at(-1),
+      illustration:window.destinationImagePath(city),
+      cost:element('route-cost').textContent, costNote:element('cost-note').textContent,
+      days:trip.plan.days.map((day,index) => {
+        const rows = events(day);
+        const {sections} = daySections(scheduleWithWaiting(rows));
+        const amount = value => Number.isFinite(value) ? '≈ ' + displayMoney(value) : 'нет данных';
+        const b = day.cost_breakdown;
+        return {
+          label:dayLabel(day.date,index),
+          total:b ? 'За день: посещения ' + amount(b.visits_rub) + ' · Питание ' + amount(b.meals_rub) +
+            ' · Транспорт ' + amount(b.transport_rub) + ' · Всего ' + amount(b.total_rub) : 'За день: ' + amount(day.total_cost_cny),
+          warnings:['Уточните часы работы, цены и доступ к входам. Время и цены могут быть оценочными.'],
+          sections:sections.map(section => ({...section, rows:section.rows.map(row => {
+            const info = eventDetails(row);
+            return {
+              time:clock(row,'start') + '–' + clock(row,'end'),
+              action:info.action, category:info.category,
+              duration:Number.isFinite(info.minutes) ? (info.durationEstimate ? '≈ ' : '') + info.minutes + ' мин' : '—',
+              cost:Number.isFinite(info.cost) ? (info.costEstimate ? '≈ ' : '') + displayMoney(info.cost) : '—',
+            };
+          })})),
+        };
+      }),
+    });
+    status.textContent = 'TravelBook готов. Проверьте папку загрузок.';
+  } catch (error) {
+    status.textContent = error.message || 'Не удалось создать TravelBook. Повторите скачивание.';
+  } finally {
+    bookButton.disabled = false;
+  }
+});
+
 function renderTrip() {
   routeMap.beginPlan();
   refreshedLegs.clear();
@@ -508,7 +590,7 @@ function renderTrip() {
   const tabs = element('route-tabs');
   tabs.replaceChildren();
   trip.plan.days.forEach((day,index) => {
-    const label = 'День ' + (index+1) + ' · ' + new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',weekday:'short',timeZone:'UTC'}).format(new Date(day.date));
+    const label = dayLabel(day.date,index);
     select.add(new Option(label,index));
     const tab = document.createElement('button');
     tab.type = 'button';
@@ -536,6 +618,8 @@ function renderTrip() {
   suggestions.replaceChildren();
   for (const id of trip.plan.suggested_poi_ids || []) if (places.has(id)) appendText(suggestions, places.get(id).name);
   suggestions.parentElement.hidden = !suggestions.childElementCount;
+  updateGuide();
+  bookButton.disabled = !trip.plan.days.length;
 }
 
 const chatForm = element('edit-route');

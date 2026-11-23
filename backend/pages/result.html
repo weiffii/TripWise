@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
   <script src="/theme.js?v=20261122-unified2"></script>
-  <link rel="stylesheet" href="/styles.css?v=20261123-stop-details">
+  <link rel="stylesheet" href="/styles.css?v=20261124-guide1">
   <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
   <script src="/route-map.js?v=20261123-stop-details" defer></script>
-  <script src="/trip-result.js?v=20261123-stop-details" defer></script>
+  <script src="/guide-stories.js?v=1" defer></script>
+  <script src="/route-guide.js?v=1" defer></script>
+  <script src="/travelbook.js?v=1" defer></script>
+  <script src="/trip-result.js?v=20261124-guide1" defer></script>
 </head>
 <body class="questionnaire-page">
   <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
@@ -16,6 +19,11 @@
   </header>
   <main class="questionnaire-main">
     <section class="page-hero questionnaire-hero route-result-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
+    <div id="trip-result-tabs" class="trip-result-tabs" role="tablist" aria-label="Ваша поездка" hidden>
+      <button id="trip-tab-route" type="button" role="tab" aria-selected="true" aria-controls="trip-panel-route">Маршрут</button>
+      <button id="trip-tab-guide" type="button" role="tab" aria-selected="false" aria-controls="trip-panel-guide" tabindex="-1">Аудиогид</button>
+    </div>
+    <div id="trip-panel-route" role="tabpanel" aria-labelledby="trip-tab-route">
     <div class="preview-actions result-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
     <details id="route-comparison" class="preview-note" hidden>
       <summary>Сравнить варианты маршрута</summary>
@@ -77,6 +85,49 @@
       <div><h2>Хотите изменить план?</h2><p>Попросите помощника скорректировать маршрут.</p></div>
       <button id="edit-trip-bottom" type="button" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button>
     </section>
+    <section class="route-edit-footer travelbook-download" aria-labelledby="travelbook-title">
+      <div><span class="section-number">ПЛАН ПОД РУКОЙ</span><h2 id="travelbook-title">Ваш TravelBook</h2><p>Обложка, расходы и расписание каждого дня в одном PDF.</p></div>
+      <button id="download-travelbook" class="route-edit-button" type="button" disabled>Скачать TravelBook ↓</button>
+      <p id="travelbook-status" role="status"></p>
+    </section>
+    </div>
+    <section id="trip-panel-guide" class="trip-guide" role="tabpanel" aria-labelledby="trip-tab-guide" hidden>
+      <p id="guide-notice" role="status"></p>
+      <p id="guide-voice-hint" class="field-hint" hidden>В этом браузере озвучивание недоступно. Все тексты можно прочитать.</p>
+      <div id="guide-list-view">
+        <header class="guide-intro"><span class="section-number">МЕСТА И ИСТОРИИ</span><h2>Город в вашем темпе</h2><p>Выберите день, а затем остановку. В списке только места для посещения.</p></header>
+        <div id="guide-days" class="guide-days" role="group" aria-label="Дни аудиогида"></div>
+        <ol id="guide-places" class="guide-places" aria-label="Места в порядке посещения"></ol>
+        <p id="guide-empty" class="field-hint" hidden>На этот день экскурсионных остановок нет. Питание и переходы есть во вкладке «Маршрут».</p>
+      </div>
+      <article id="guide-detail" hidden>
+        <button id="guide-back-list" type="button" class="outline-button">← К списку мест</button>
+        <div class="guide-detail-cover">
+          <img id="guide-detail-art" alt="">
+          <div><p id="guide-detail-kicker" class="eyebrow"></p><h2 id="guide-detail-title" tabindex="-1"></h2></div>
+        </div>
+        <section class="guide-listen" aria-label="Формат рассказа">
+          <div><h3>Послушать рассказ</h3><p class="field-hint">Можно перейти к карте — озвучивание продолжится.</p></div>
+          <div class="guide-controls"><button type="button" class="outline-button" data-guide-length="short" aria-pressed="false">Короткий</button><button type="button" class="outline-button" data-guide-length="long" aria-pressed="false">Подробный</button></div>
+        </section>
+        <section class="guide-reading">
+          <h3 id="guide-history-title">Историческая справка</h3><p id="guide-history"></p>
+          <h3 id="guide-note-title">На что обратить внимание</h3><p id="guide-note"></p>
+          <div class="guide-controls"><a id="guide-source" class="back-link" target="_blank" rel="noopener noreferrer" hidden>Источник ↗</a><button id="guide-show-map" class="outline-button" type="button" hidden>Показать на карте</button></div>
+        </section>
+      </article>
+    </section>
+    <aside id="guide-player" class="guide-player" aria-label="Плеер аудиогида" hidden>
+      <div class="guide-player-track"><span class="section-number">АУДИОГИД</span><strong id="guide-now"></strong></div>
+      <div class="guide-controls">
+        <button id="guide-previous" type="button" class="outline-button" aria-label="Назад, предыдущее место">Назад</button>
+        <button id="guide-play" type="button" class="route-edit-button">Слушать</button>
+        <button id="guide-next" type="button" class="outline-button" aria-label="Далее, следующее место">Далее</button>
+        <label for="guide-speed" class="visually-hidden">Скорость озвучивания</label><select id="guide-speed"><option value="0.75">0,75×</option><option value="1" selected>1×</option><option value="1.25">1,25×</option><option value="1.5">1,5×</option><option value="2">2×</option></select>
+        <button id="guide-dismiss-player" type="button" class="outline-button" aria-label="Закрыть плеер">×</button>
+      </div>
+      <p id="guide-audio-status" role="status"></p>
+    </aside>
     <dialog id="route-editor" class="route-chat" aria-labelledby="route-editor-title">
       <div class="route-editor-content">
         <header class="route-editor-header">
