@@ -7,6 +7,8 @@ const endpoint = isPreview ? '/api/route-previews/' + encodeURIComponent(preview
 let ownerContext = null;
 const places = new Map();
 const refreshedLegs = new Map();
+const placeDetails = new Map();
+let mapStops = [], selectionVersion = 0;
 let trip, registration, csrf, proposal;
 
 async function request(path, body) {
@@ -15,8 +17,12 @@ async function request(path, body) {
     body: JSON.stringify(path.includes('/assistant/') ? {...body, request_id:crypto.randomUUID()} : body),
   } : {cache:'no-store',credentials:'same-origin'});
   if (response.status === 401) location.assign('/');
-  const result = await response.json();
-  if (!response.ok || ['error','unavailable'].includes(result.type)) throw Error(result.detail || result.message || 'Запрос не выполнен.');
+  const result = await response.json().catch(() => null);
+  if (!response.ok || !result || ['error','unavailable'].includes(result.type)) {
+    const detail = typeof result?.detail === 'string' ? result.detail : result?.message;
+    throw Object.assign(Error(detail || 'Сервер не вернул ответ для этого запроса. Попробуйте ещё раз.'),
+      {status:response.status});
+  }
   return result;
 }
 
@@ -83,6 +89,7 @@ function eventLabel(row) {
   const info = eventDetails(row);
   return [`${clock(row, 'start')}–${clock(row, 'end')}`, info.category, info.action,
     Number.isFinite(info.minutes) ? `${info.durationEstimate ? '≈' : ''}${info.minutes} мин` : '',
+    row.extension_minutes > 0 ? '+' + row.extension_minutes + ' мин на посещение' : '',
     info.cost == null ? '' : `${info.costEstimate ? '≈' : ''}${info.cost} ${info.currency}`]
     .filter(Boolean).join(' · ');
 }
@@ -174,14 +181,104 @@ function revealMap(opener) {
   if (!sidebarMap.matches) openMap(opener);
 }
 
+function moscowTransitInstructions(steps) {
+  const names = {metro:'Метро, линия', mcc:'МЦК', mcd:'МЦД', tram:'Трамвай',
+    bus:'Автобус', electric_bus:'Электробус', trolleybus:'Троллейбус'};
+  const instructions = [];
+  let ride;
+  for (const step of steps) {
+    const origin = step.from_stop_location?.name;
+    const destination = step.to_stop_location?.name;
+    if (step.kind === 'rail_estimate') {
+      const [mode, line] = (step.line || '').split(':');
+      const label = [names[mode] || 'Общественный транспорт', line].filter(Boolean).join(' ');
+      if (ride && ride.line === step.line && ride.to === origin) ride.to = destination;
+      else {
+        ride = {line:step.line, label, from:origin, to:destination};
+        instructions.push(ride);
+      }
+    } else {
+      ride = null;
+      const label = {walk_access:'Пешком до остановки', walk_egress:'Пешком от остановки',
+        walk_transfer:'Пересадка'}[step.kind];
+      if (label) instructions.push({label, from:origin, to:destination});
+    }
+  }
+  return instructions.map(({label, from, to}) => ({text:[label, [...new Set([from,to].filter(Boolean))].join(' → ')].filter(Boolean).join(' · ')}));
+}
+
+function displayMoney(value) {
+  return new Intl.NumberFormat('ru-RU', {style:'currency', currency:trip.city === 'moscow' ? 'RUB' : 'CNY',
+    maximumFractionDigits:2}).format(value);
+}
+
+async function showPlaceDetails(index) {
+  const version = ++selectionVersion;
+  const panel = element('route-place-details');
+  panel.replaceChildren();
+  const row = mapStops[index];
+  panel.hidden = !row;
+  if (!row) return;
+  const place = places.get(row.poi_id);
+  const date = trip.plan.days[Number(element('route-day').value)].date;
+  const heading = document.createElement('h3');
+  heading.textContent = place.name;
+  const hours = document.createElement('p');
+  hours.textContent = 'Часы работы · загружаем…';
+  const costs = document.createElement('ul');
+  panel.append(heading, hours, costs);
+  const total = trip.city === 'moscow' ? row.price_rub : row.price_cny;
+  const group = trip.preferences?.group || trip.options?.group || trip.plan.summary?.group || {};
+  const people = (group.adult || 0) + (group.child || 0) + (group.senior || 0);
+  const priceLabel = row.type === 'meal' ? 'Оценка за приём пищи' : 'Стоимость посещения по плану';
+  if (Number.isFinite(total)) appendText(costs, priceLabel + ' · ' +
+    (row.price_basis === 'source' && trip.city === 'moscow' ? '' : '≈ ') + displayMoney(total));
+  else appendText(costs, priceLabel + ' · нет данных');
+  const key = JSON.stringify([trip.city,row.poi_id,date]);
+  try {
+    if (!placeDetails.has(key)) {
+      placeDetails.set(key, request('/api/planned-trips/catalog/' + trip.city + '/' +
+        encodeURIComponent(row.poi_id) + '?visit_date=' + encodeURIComponent(date)).catch(error => {
+        placeDetails.delete(key);
+        throw error;
+      }));
+    }
+    const details = await placeDetails.get(key);
+    if (version !== selectionVersion) return;
+    const window = details.opening;
+    hours.textContent = 'Часы работы на ' + date.split('-').reverse().join('.') + ' · ' +
+      (window?.length ? window.join('–') : Array.isArray(window) ? 'закрыто' : details.opening_text || 'нет данных') +
+      (Array.isArray(window) && details.opening_basis === 'synthetic' ? ' (оценка)' : '');
+    if (!Number.isFinite(total)) return;
+    const entries = {adult:'Взрослые', child:'Дети', senior:'Пожилые', pet:'Питомцы'};
+    const unit = trip.city === 'moscow' && people ? total / people : null;
+    for (const [category, label] of Object.entries(entries)) {
+      const count = group[category];
+      if (!count) continue;
+      const price = trip.city === 'moscow' ? (category === 'pet' ? null : unit) : details.unit_prices?.[category];
+      const estimate = trip.city === 'moscow' && row.price_basis === 'source' && category === 'adult' ? '' : '≈ ';
+      appendText(costs, label + ' · ' + (Number.isFinite(price)
+        ? estimate + displayMoney(price) + ' × ' + count + ' = ' + displayMoney(price*count)
+        : 'тариф неизвестен'));
+    }
+    if (trip.city === 'moscow' && people && (group.child || group.senior)) {
+      appendText(costs, 'План использует одинаковый расчёт на человека. Льготные цены отдельно не подтверждены.');
+    }
+  } catch {
+    if (version === selectionVersion) hours.textContent = 'Часы работы · сведения недоступны';
+  }
+}
+
 const routeMap = window.TripWiseMap.create({
   container:element('street-map'), svg:element('route-map'), tiles:element('map-tiles'),
   background:element('map-background'), directTiles:true, focusStopWithArrival:true,
+  focusStopDetails:true, currency:() => trip.city === 'moscow' ? 'RUB' : 'CNY',
   allowWheelZoom:event => mapDialog.open || event.ctrlKey || event.metaKey,
   onStopSelect:index => {
     for (const button of element('route-stops').querySelectorAll('button[data-stop-index]')) {
       button.setAttribute('aria-pressed', String(Number(button.dataset.stopIndex) === index));
     }
+    void showPlaceDetails(index);
   },
   onSelect:html => { element('route-directions').innerHTML = html; },
   onNetworkStatus:text => { element('road-status').textContent = text; },
@@ -191,6 +288,7 @@ const routeMap = window.TripWiseMap.create({
 function drawMap(rows) {
   element('road-status').textContent = '';
   const mapPlaces = new Map([...places].filter(([,place]) => Number.isFinite(place.lat) && Number.isFinite(place.lon)));
+  mapStops = rows.filter(row => ['visit','meal'].includes(row.type) && mapPlaces.has(row.poi_id));
   const mappedRows = rows.map(row => {
     if (row.type !== 'travel' || trip.city !== 'moscow') return row;
     const stations = [];
@@ -211,6 +309,7 @@ function drawMap(rows) {
     const segments = row.mode === 'transit'&&rail.length ? rail : row.geometry?.type === 'LineString'
       ? [{mode:row.mode,coordinates:row.geometry.coordinates,verified:hasRoad}] : [];
     return {...row, stations, use_plan_geometry:true, planned_minutes:Math.ceil(row.duration_seconds / 60),
+      instructions:moscowTransitInstructions(row.transport_steps || []),
       ...(segments.length ? {geometry_segments: segments} : {})};
   });
   routeMap.setDay({events:mappedRows}, mapPlaces, {required_ids:trip.preferences?.required_ids || []});
@@ -251,6 +350,11 @@ function renderScheduleRow(row, legIndex, stopIndex) {
     action.append(category);
   }
   action.append(title);
+  if (row.type === 'visit' && row.extension_minutes > 0) {
+    const extra = document.createElement('small');
+    extra.textContent = '+' + row.extension_minutes + ' мин на посещение';
+    action.append(extra);
+  }
   const pinned = row.pinned_start_time || trip.plan.visit_times?.[row.start_at?.slice(0,10)]?.[row.poi_id];
   if (pinned && row.type === 'visit') {
     const value = document.createElement('small');
@@ -456,6 +560,32 @@ const control = busy => {
   for (const button of [chatForm.querySelector('button'),element('confirm-edit'),element('reject-edit')]) button.disabled = busy;
 };
 
+async function connectAssistant(status = null) {
+  status ||= await request(chatPath + 'status');
+  if (!status.available) throw Error(status.reason || 'Помощник недоступен для этого маршрута.');
+  csrf = status.csrf_token;
+  registration = await request(chatPath + 'register',{});
+}
+
+async function sendChatMessage(text) {
+  const version = registration.version;
+  const send = () => request(chatPath + 'message', {route_id:registration.route_id,base_version:registration.version,
+    poi_snapshot_id:registration.poi_snapshot_id,text});
+  try {
+    return await send();
+  } catch (error) {
+    if (![403,409].includes(error.status)) throw error;
+    const latest = await request(endpoint);
+    await connectAssistant();
+    if (latest.version !== version || registration.version !== version) {
+      trip = latest.version === registration.version ? latest : await request(endpoint);
+      renderTrip();
+      throw Error('Маршрут изменился в другой вкладке. Проверьте обновлённый план и отправьте пожелание снова.');
+    }
+    return send();
+  }
+}
+
 async function load() {
   if(!previewId&&!routeId)throw Error('Выберите поездку в разделе «Мои поездки» или создайте новый маршрут.');
   trip = await request(endpoint);
@@ -476,8 +606,7 @@ async function load() {
     '. Попробуйте «Закрепи название места в 14:30». Команда работает без OpenRouter.' : '';
   chatStatus.textContent = [namedAgent, status.reason || (status.mode === 'mock' ? 'Тестовый режим: ответы подставляет проверочный сценарий, а не ИИ.' : '')].filter(Boolean).join(' ');
   if (!status.available) return;
-  csrf = status.csrf_token;
-  registration = await request(chatPath + 'register',{});
+  await connectAssistant(status);
   if (!status.reason && status.mode !== 'mock') chatStatus.textContent = namedAgent || 'Помощник подключён.';
   control(false);
 }
@@ -493,8 +622,7 @@ chatForm.addEventListener('submit',async event => {
   chatStatus.textContent = 'Готовим предложение…';
   try {
     chatLine('Вы', input.value.trim());
-    const result = await request(chatPath + 'message', {route_id:registration.route_id,base_version:registration.version,
-      poi_snapshot_id:registration.poi_snapshot_id,text:input.value.trim()});
+    const result = await sendChatMessage(input.value.trim());
     input.value = '';
     if (result.message) chatLine('TripWise', result.message);
     chatStatus.textContent = result.message || '';

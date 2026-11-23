@@ -516,7 +516,9 @@ article.trip-card h2 { margin: 12px 0; }
   background: #fff; color: #243141; border: 1px solid #c5cbd0;
   border-radius: 8px; box-shadow: 0 2px 8px #151c3729; font-size: 18px; cursor: pointer;
 }
-#route-directions { overflow-wrap: anywhere; }
+#route-directions, #route-place-details { overflow-wrap: anywhere; }
+#route-place-details h3 { margin: 0 0 .5rem; }
+#route-place-details ul { padding-inline-start: 1.2rem; margin: .5rem 0 0; }
 #route-directions > :last-child { margin-bottom: 0; }
 .schedule-action button[aria-pressed="true"] {
   color: var(--route-selected, #156743);
@@ -530,7 +532,7 @@ article.trip-card h2 { margin: 12px 0; }
   #route-map-sidebar { position: sticky; top: 16px; }
   #route-map-sidebar #route-map-panel { padding: 18px; }
   #route-map-sidebar #street-map { height: clamp(240px, 46vh, 540px); }
-  #route-map-sidebar #route-directions { max-height: 16vh; overflow: auto; }
+  #route-map-sidebar :is(#route-directions, #route-place-details) { max-height: 22vh; overflow: auto; }
 }
 @container (max-width: 670px) {
   .schedule-columns, #route-stops .schedule-row { grid-template-columns: 5.6rem minmax(0, 1fr) 5.6rem 4.8rem; gap: .35rem; padding-inline: .55rem; }

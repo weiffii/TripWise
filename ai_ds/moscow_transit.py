@@ -110,6 +110,8 @@ def route_between(graph, entrances, exits, *, avoid_transit=(), require_transit=
     start, finish = (None, 'start'), (None, 'finish')
     head = {(stop, None): ('walk_access', _duration(seconds)) for stop, seconds in entrances.items() if (stop, None) in graph}
     tail = {(stop, None): ('walk_egress', _duration(seconds)) for stop, seconds in exits.items()}
+    if not head or not tail:
+        return None
     avoided = set(avoid_transit)
     required = {mode: 1 << (index + 1) for index, mode in enumerate(sorted(set(require_transit)))}
     if avoided & required.keys():
@@ -159,19 +161,32 @@ def route_between(graph, entrances, exits, *, avoid_transit=(), require_transit=
 
 
 def build_matrix(graph, poi_ids, approaches, *, avoid_transit=(), require_transit=(), only_pairs=None):
+    poi_ids = tuple(poi_ids)
     pairs = []
+    # Several places can share the same station access times. Preserve station
+    # order for ties and keep the result local to this graph and these filters.
+    access = {}
+    routes = {}
+    for key in poi_ids:
+        directions = approaches.get(key, {})
+        entrance = {int(stop): seconds for stop, seconds in directions.get('enter', {}).items()}
+        exit_times = {int(stop): seconds for stop, seconds in directions.get('exit', {}).items()}
+        access[key] = (
+            tuple((stop, _duration(seconds)) for stop, seconds in entrance.items() if (stop, None) in graph),
+            tuple((stop, _duration(seconds)) for stop, seconds in exit_times.items()),
+        )
     for origin in poi_ids:
         for target in poi_ids:
             if origin == target or only_pairs is not None and (origin, target) not in only_pairs:
                 continue
-            entrance = approaches.get(origin, {}).get('enter', {})
-            exit = approaches.get(target, {}).get('exit', {})
-            route = route_between(graph, {int(stop): seconds for stop, seconds in entrance.items()},
-                                  {int(stop): seconds for stop, seconds in exit.items()},
-                                  avoid_transit=avoid_transit, require_transit=require_transit)
+            route_key = access[origin][0], access[target][1]
+            if route_key not in routes:
+                routes[route_key] = route_between(graph, dict(route_key[0]), dict(route_key[1]),
+                                                  avoid_transit=avoid_transit, require_transit=require_transit)
+            route = routes[route_key]
             pairs.append({'from_poi_id': origin, 'to_poi_id': target,
                           'status': 'known' if route is not None else 'unknown',
                           'duration_seconds': None if route is None else route[0], 'distance_meters': None,
-                          'transport_steps': [] if route is None else route[1]})
+                          'transport_steps': [] if route is None else [dict(step) for step in route[1]]})
     return {'schema_version': '0.2', 'mode': 'public_transit', 'basis': 'geometric_estimate',
             'source_id': 'osm_rail_topology_with_estimated_time', 'pairs': pairs}

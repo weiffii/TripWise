@@ -33,7 +33,10 @@ function createRouter(data){
   const group={adult:1,child:0,senior:0,pet:0,...options.group};if(group.pet)return null;
   if(!from||!to||![from.lat,from.lon,to.lat,to.lon].every(Number.isFinite))return null;
   const cacheKey=[from.id,from.lat,from.lon,to.id,to.lat,to.lon,JSON.stringify(group),options.allow_synthetic_bus!==false,options.departure_min??'unknown'].join('|');
-  if(cache.has(cacheKey))return structuredCopy(cache.get(cacheKey));
+  if(cache.has(cacheKey)){
+   const cached=cache.get(cacheKey);
+   return cached===null?null:JSON.parse(cached);
+  }
   const speed=group.senior?2800:group.child?3200:4200,maxWalk=group.senior?1200:1800;
   const allowed=n=>options.allow_synthetic_bus!==false||n.mode!=='bus';
   const busOpen=(n,elapsed)=>{if(n.mode!=='bus'||!Number.isFinite(options.departure_min))return true;const parse=t=>t.split(':').reduce((h,m)=>h*60+Number(m),0);const t=options.departure_min+elapsed;return t>=parse(n.line.service_start||'06:00')&&t<=parse(n.line.service_end||'22:00');};
@@ -77,10 +80,14 @@ function createRouter(data){
   walk(winner.exit.p,to,winner.exit.distance*1.25/speed*60+3,label(winner.exit.p),label(to),'estimated_access');
   instructions.forEach(i=>i.base_minutes=Math.ceil(i.base_minutes));const base=Math.ceil(total),planned=Math.ceil((base*1.18+4)/5)*5;
   const result={base_minutes:base,planned_minutes:planned,buffer_minutes:planned-base,distance_m:Math.round(metres),transport_cost_cny:Math.round(cost*100)/100,mode:'transit',source:hasBus?(hasMetro?'MIXED_TRANSIT_ESTIMATED':'SYNTHETIC_BUS'):'REAL_METRO_TOPOLOGY_ESTIMATED_TIMES',instructions,geometry_segments:geometry,reason:'Локальный граф: опубликованная топология метро; DEMO-BUS — вымышленные автобусы. Время, доступ к станциям, ожидание и тарифы оценочные, движение и выходы не проверены.',fare_basis:'synthetic',time_basis:'planning_estimate',service_verified:false};
-  if(cache.size>5000)cache.clear();cache.set(cacheKey,result);return structuredCopy(result);
+  // Keep the serialized snapshot so every caller gets a fresh deep copy,
+  // without re-serializing instructions and geometry on cache hits.
+  const snapshot=JSON.stringify(result);
+  if(cache.size>5000)cache.clear();
+  cache.set(cacheKey,snapshot);
+  return JSON.parse(snapshot);
  }
  return {route,stats:{stations:rail.length,bus_stops:bus.length,states:nodes.size,edges:[...adj.values()].reduce((n,a)=>n+a.length,0),get nearest_cache_size(){return nearestCache.size;}}};
 }
-function structuredCopy(x){return x===null?null:JSON.parse(JSON.stringify(x));}
 return {createRouter};
 });

@@ -18,8 +18,15 @@ test('Line 2 crosses the river using two published station segments',()=>{
  assert(route.geometry_segments.filter(s=>s.mode==='metro').every(s=>s.tracks_schematic&&s.source==='real_topology_schematic'));
 });
 test('cache results are isolated from callers',()=>{
- const a=station('peoples-square'),b=station('lujiazui'),first=router.route(a,b,{});first.instructions.length=0;
- assert(router.route(a,b,{}).instructions.length>0);
+ const a=station('peoples-square'),b=station('lujiazui'),options={departure_min:625};
+ const first=router.route(a,b,options),expected=structuredClone(first);
+ first.instructions[0].from_name='modified';
+ first.geometry_segments[0].coordinates[0][0]=0;
+ const cached=router.route(a,b,options);
+ assert.deepEqual(cached,expected);
+ cached.instructions.length=0;
+ cached.geometry_segments[0].coordinates.length=0;
+ assert.deepEqual(router.route(a,b,options),expected);
 });
 test('inaccessible and unsupported transit is not fabricated',()=>{
  assert.equal(router.route(station('peoples-square'),station('lujiazui'),{group:{adult:1,pet:1}}),null);

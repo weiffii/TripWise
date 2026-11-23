@@ -10,7 +10,7 @@ from unittest.mock import Mock, patch
 from ai_ds.moscow_named_poi import named_poi_decision, resolve_name
 from ai_ds.openrouter import OpenRouterError
 from ai_ds.shanghai_assistant import node_executable
-from ai_ds.route_assistant import sequences_of
+from ai_ds.route_assistant import AssistantError, sequences_of
 from backend.moscow import MoscowAssistant
 
 REAL_V7_ID = 'moscow-cultural-0'
@@ -137,6 +137,16 @@ class RealIdIntegration(unittest.TestCase):
                           [item['name'] for item in reply['diff']['added']])
             self.assertIn('НЕ сохранено', reply['message'])
             self.assertEqual(service.interpreter.call_count, 0)
+            pending_agent = session['moscow_assistant']
+            with patch('ai_ds.shanghai_assistant._BridgeBatch.exchange', side_effect=TimeoutError) as failed:
+                with self.assertRaises(AssistantError) as error:
+                    service._request('actor', session, 'message', {
+                        'text':'добавь уголок дедушки дурова',
+                        'route_id':'r1','base_version':1,'poi_snapshot_id':'test'})
+                self.assertEqual(error.exception.code, 'ROUTER_UNAVAILABLE')
+                failed.assert_called_once()
+            self.assertIs(session['moscow_assistant'], pending_agent)
+            self.assertEqual(session['moscow_route'], fixture.route)
             confirmed = service._request('actor', session, 'decide', {
                 'proposal_id':reply['proposal_id'], 'base_version':reply['base_version'],
                 'decision':'confirm'})

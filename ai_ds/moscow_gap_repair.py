@@ -389,6 +389,23 @@ def describe_edited_gaps(plan, context, previous):
     }
 
 
+def refresh_gap_report(plan, context, *, only_days=None):
+    """Keep the search evidence when the final timing pass shortens a gap."""
+    report = plan['gap_diagnostics']
+    previous = report['remaining']
+    gaps = [gap for gap in route_gaps(plan, context) if only_days is None or gap.day in only_days]
+    remaining = []
+    for gap in gaps:
+        current = _description(gap, _observed_reason(gap) or 'search_limit')
+        prior = next((item for item in previous if item['date'] == gap.day and item['kind'] == gap.kind
+                      and item['start_at'] <= current['start_at'] < current['end_at'] <= item['end_at']), None)
+        if prior:
+            current = {**prior, **{key: current[key] for key in ('start_at', 'end_at', 'minutes')}}
+        remaining.append(current)
+    report.update(after=sum(gap.minutes > LONG_GAP for gap in gaps),
+                  after_over_60=sum(gap.minutes > 60 for gap in gaps), remaining=remaining)
+
+
 def _observed_reason(gap):
     text = (gap.observed_reason or '').casefold()
     if 'закрепл' in text or 'выбранного пользователем' in text:
@@ -401,7 +418,7 @@ def _observed_reason(gap):
 
 
 def _try_schedule(state, current, context, trial, gap, profile, *, reflow=False):
-    requested = {**state, 'route': current, 'routing_context': context}
+    requested = {**state, 'route': current, 'routing_context': context, 'defer_visit_extensions': True}
     if reflow:
         requested['reflow_days'] = {gap.day}
     try:

@@ -1,0 +1,308 @@
+{
+  "notes": "Actual Moscow V7 POIs. No live OSRM or LLM; reconstructed profile.",
+  "profile": {
+    "city": "moscow",
+    "timezone": "Europe/Moscow",
+    "start_date": "2026-11-24",
+    "days": 1,
+    "day_start": "09:00",
+    "day_end": "21:00",
+    "day_settings": null,
+    "pace": "balanced",
+    "transport": "walk",
+    "transport_modes": [
+      "walk"
+    ],
+    "group": {
+      "adult": 1,
+      "child": 0,
+      "senior": 0,
+      "pet": 0
+    },
+    "primary_interests": [
+      "history",
+      "museums",
+      "nature"
+    ],
+    "secondary_interests": [
+      "cafes"
+    ],
+    "required_ids": [
+      "moscow-cultural-609"
+    ],
+    "budget_amount": 8500.0,
+    "budget_currency": "RUB",
+    "budget_basis": "per_group",
+    "visit_minutes": null,
+    "route_priority": "balanced"
+  },
+  "offline_chat": {
+    "quoted": {
+      "type": "clarification",
+      "message": "В проверенных вариантах разместить «Парк имени 50-летия Октября» при текущих ограничениях не удалось. Могу проверить «Парк имени 50-летия Октября» на 2026-11-24 с более широким окном дня. Укажите новую границу прогулки или выберите другое место. Если подходит, разрешите общественный транспорт или такси и повторите запрос."
+    },
+    "short_name": {
+      "type": "clarification",
+      "message": "В проверенных вариантах разместить «Парк имени 50-летия Октября» при текущих ограничениях не удалось. Могу проверить «Парк имени 50-летия Октября» на 2026-11-24 с более широким окном дня. Укажите новую границу прогулки или выберите другое место. Если подходит, разрешите общественный транспорт или такси и повторите запрос."
+    }
+  },
+  "variants": {
+    "walk_low_budget": {
+      "max_walk_minutes": 38,
+      "max_internal_idle_minutes": 66,
+      "max_meal_to_meal_minutes": 280,
+      "meal_intervals": [
+        {
+          "date": "2026-11-24",
+          "meal_ids": [
+            "moscow-osm-node-11470176183",
+            "moscow-osm-node-2776317228"
+          ],
+          "elapsed_minutes": 150,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel"
+          ]
+        },
+        {
+          "date": "2026-11-24",
+          "meal_ids": [
+            "moscow-osm-node-2776317228",
+            "moscow-osm-node-13256127284"
+          ],
+          "elapsed_minutes": 280,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel"
+          ]
+        }
+      ],
+      "unplaced_required": [],
+      "cost_rub": 2960,
+      "days": 1
+    },
+    "mixed_with_two_required": {
+      "max_walk_minutes": 31,
+      "max_internal_idle_minutes": 0,
+      "max_meal_to_meal_minutes": 260,
+      "meal_intervals": [
+        {
+          "date": "2026-11-24",
+          "meal_ids": [
+            "moscow-osm-node-3810092936",
+            "moscow-osm-node-10722898485"
+          ],
+          "elapsed_minutes": 260,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel",
+            "visit",
+            "travel"
+          ]
+        },
+        {
+          "date": "2026-11-24",
+          "meal_ids": [
+            "moscow-osm-node-10722898485",
+            "moscow-osm-node-2562767934"
+          ],
+          "elapsed_minutes": 213,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel",
+            "visit",
+            "travel"
+          ]
+        }
+      ],
+      "unplaced_required": [
+        "moscow-cultural-p415"
+      ],
+      "cost_rub": 4510,
+      "days": 1
+    },
+    "two_days_walk_four_required": {
+      "max_walk_minutes": 43,
+      "max_internal_idle_minutes": 45,
+      "max_meal_to_meal_minutes": 272,
+      "meal_intervals": [
+        {
+          "date": "2026-11-24",
+          "meal_ids": [
+            "moscow-osm-node-3723970384",
+            "moscow-osm-node-13256127284"
+          ],
+          "elapsed_minutes": 130,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel"
+          ]
+        },
+        {
+          "date": "2026-11-24",
+          "meal_ids": [
+            "moscow-osm-node-13256127284",
+            "moscow-osm-node-3478472276"
+          ],
+          "elapsed_minutes": 19,
+          "activities_in_between": [
+            "travel"
+          ]
+        },
+        {
+          "date": "2026-11-24",
+          "meal_ids": [
+            "moscow-osm-node-3478472276",
+            "moscow-osm-node-2776317228"
+          ],
+          "elapsed_minutes": 221,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel"
+          ]
+        },
+        {
+          "date": "2026-11-25",
+          "meal_ids": [
+            "moscow-osm-node-9394664167",
+            "moscow-osm-node-3700832933"
+          ],
+          "elapsed_minutes": 272,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel",
+            "visit",
+            "travel"
+          ]
+        },
+        {
+          "date": "2026-11-25",
+          "meal_ids": [
+            "moscow-osm-node-3700832933",
+            "moscow-osm-node-2128683879"
+          ],
+          "elapsed_minutes": 180,
+          "activities_in_between": [
+            "travel",
+            "visit",
+            "travel"
+          ]
+        }
+      ],
+      "unplaced_required": [],
+      "cost_rub": 8320,
+      "days": 2
+    }
+  },
+  "exact_poi_pair_estimates": [
+    {
+      "from_id": "moscow-cultural-609",
+      "to_id": "moscow-cultural-p415",
+      "walk_minutes": 187.7,
+      "basis": "geometric_estimate"
+    },
+    {
+      "from_id": "moscow-osm-node-3478472276",
+      "to_id": "moscow-cultural-p415",
+      "walk_minutes": 176.5,
+      "basis": "geometric_estimate"
+    },
+    {
+      "from_id": "moscow-cultural-p415",
+      "to_id": "moscow-osm-node-12086701012",
+      "walk_minutes": 201.7,
+      "basis": "geometric_estimate"
+    },
+    {
+      "from_id": "moscow-cultural-p415",
+      "to_id": "moscow-osm-node-13256127284",
+      "walk_minutes": 192.0,
+      "basis": "geometric_estimate"
+    }
+  ],
+  "requested_museum": {
+    "max_walk_minutes": 31,
+    "max_internal_idle_minutes": 0,
+    "max_meal_to_meal_minutes": 260,
+    "meal_intervals": [
+      {
+        "date": "2026-11-24",
+        "meal_ids": [
+          "moscow-osm-node-3810092936",
+          "moscow-osm-node-10722898485"
+        ],
+        "elapsed_minutes": 260,
+        "activities_in_between": [
+          "travel",
+          "visit",
+          "travel",
+          "visit",
+          "travel"
+        ]
+      },
+      {
+        "date": "2026-11-24",
+        "meal_ids": [
+          "moscow-osm-node-10722898485",
+          "moscow-osm-node-2562767934"
+        ],
+        "elapsed_minutes": 213,
+        "activities_in_between": [
+          "travel",
+          "visit",
+          "travel",
+          "visit",
+          "travel"
+        ]
+      }
+    ],
+    "unplaced_required": []
+  },
+  "requested_museum_and_park": {
+    "max_walk_minutes": 31,
+    "max_internal_idle_minutes": 0,
+    "max_meal_to_meal_minutes": 260,
+    "meal_intervals": [
+      {
+        "date": "2026-11-24",
+        "meal_ids": [
+          "moscow-osm-node-3810092936",
+          "moscow-osm-node-10722898485"
+        ],
+        "elapsed_minutes": 260,
+        "activities_in_between": [
+          "travel",
+          "visit",
+          "travel",
+          "visit",
+          "travel"
+        ]
+      },
+      {
+        "date": "2026-11-24",
+        "meal_ids": [
+          "moscow-osm-node-10722898485",
+          "moscow-osm-node-2562767934"
+        ],
+        "elapsed_minutes": 213,
+        "activities_in_between": [
+          "travel",
+          "visit",
+          "travel",
+          "visit",
+          "travel"
+        ]
+      }
+    ],
+    "unplaced_required": [
+      "moscow-cultural-p415"
+    ]
+  }
+}

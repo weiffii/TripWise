@@ -83,6 +83,8 @@ class OfflineIntentsV9(unittest.TestCase):
         pace = self.local('сделай второй день спокойным')
         self.assertEqual(pace['operations'], [{'op':'set_day_pace','day':DATES[1],
                                                'pace':'relaxed'}])
+        self.assertEqual(self.local('сделай темп помедленнее')['operations'],
+                         [{'op': 'set_day_pace', 'day': day, 'pace': 'relaxed'} for day in DATES])
         self.assertEqual(self.local('только пешком')['operations'][0]['modes'], ['walk'])
         self.assertEqual(self.local('убери такси')['operations'][0]['modes'], ['walk'])
         self.assertEqual(self.local('без такси', modes=('taxi',))['action'], 'needs_clarification')
