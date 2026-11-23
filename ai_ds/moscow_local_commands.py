@@ -13,7 +13,7 @@ from ai_ds.moscow_assistant_intents import gap_fill_decision
 from ai_ds.moscow_named_poi import _day_from_text, named_poi_decision, normalize, resolve_name
 
 _PACES = (
-    ('relaxed', re.compile(r'\b(?:спокойн\w*|нетороплив\w*|медленн\w*|не\s+спеша)\b')),
+    ('relaxed', re.compile(r'\b(?:спокойн\w*|нетороплив\w*|медленн\w*|помедленнее|не\s+спеша)\b')),
     ('balanced', re.compile(r'\b(?:сбалансированн\w*|умеренн\w*)\b')),
     ('intensive', re.compile(r'\b(?:насыщенн\w*|интенсивн\w*|быстр\w*)\b')),
 )

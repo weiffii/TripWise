@@ -16,12 +16,12 @@ from ai_ds.day_windows import DAY_WINDOW_FIELDS, MAX_TRIP_DAYS, minutes, valid_c
 from ai_ds.moscow_catalog import load_moscow_v7
 from ai_ds.moscow_road import PILOT_RAIL_CONFIG, coordinates, rail_inputs, travel_matrix
 from ai_ds.moscow_transit import _distance
-from ai_ds.moscow_engine_adapter import MATRIX_MODES, MODES, fixed_sequence, plan_city
-from ai_ds.moscow_gap_repair import MoscowGapIndex, describe_edited_gaps, repair_gaps
+from ai_ds.moscow_engine_adapter import MATRIX_MODES, MODES, fixed_sequence, plan_city, stretch_saved_visits
+from ai_ds.moscow_gap_repair import MoscowGapIndex, describe_edited_gaps, repair_gaps, refresh_gap_report
 from ai_ds.openrouter import OpenRouterError, OpenRouterInterpreter, SYSTEM_PROMPT
 from ai_ds.recommendation import recommend
 from ai_ds.route_assistant import AssistantError, InMemoryRouteStore, RouteAssistant, has_failed, parse_interpretation, require, sequences_of
-from ai_ds.shanghai_assistant import ShanghaiAssistantService
+from ai_ds.shanghai_assistant import BRIDGE_FAILURE_CODES, ShanghaiAssistantService, bridge_batch
 from ai_ds.visit_time_intent import PIN_FIELDS, local_visit_pin, valid_pin
 
 BASE = Path(__file__).resolve().parents[1] / 'examples/routing/v02'
@@ -175,7 +175,7 @@ def _budget_constrained(preferences):
 
 
 def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None, dining_target=None,
-                           visit_target=None, near_visits=()):
+                           visit_target=None, near_visits=(), meal_distances=None):
     """Return nearby, affordable AND experience-oriented V7 alternatives.
 
     The old nearest-N picker often returned several expensive restaurants,
@@ -202,27 +202,46 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
                 continue
             if meal_kind in ('lunch', 'dinner') and food_type in ('coffee_shop', 'bakery', 'bar', 'pub', 'nightclub'):
                 continue
-        location = coordinates(place)
-        anchor_distance = _distance(location, anchor)
-        distance = (.25 * anchor_distance + .75 * min(_distance(location, point) for point in near_visits)
-                    if near_visits else anchor_distance)
         price = _planning_price(place)
-        if anchor_distance <= 5000 and price != float('inf'):
+        if price == float('inf'):
+            continue
+        # The three meal searches share an anchor and the same main visits.
+        if meal_distances is not None and key in meal_distances:
+            distance = meal_distances[key]
+        else:
+            location = coordinates(place)
+            anchor_distance = _distance(location, anchor)
+            distance = None
+            if anchor_distance <= 5000:
+                distance = (.25 * anchor_distance + .75 * min(_distance(location, point) for point in near_visits)
+                            if near_visits else anchor_distance)
+            if meal_distances is not None:
+                meal_distances[key] = distance
+        if distance is not None:
             ranked.append((key, distance, price))
     if not ranked:
         return []
     # Reserve cheapest, closest, and affordable close-by choices. Cost is per
     # person; number of travellers is accounted for by the engine later.
-    cheap = sorted(ranked, key=lambda v: (v[2], v[1], v[0]))
-    near = sorted(ranked, key=lambda v: (v[1], v[2], v[0]))
-    balanced = sorted(ranked, key=lambda v: (v[1] / 8 + v[2], v[1], v[0]))
+    def cheap_key(item):
+        key, distance, price = item
+        return price, distance, key
+
+    def near_key(item):
+        key, distance, price = item
+        return distance, price, key
+
+    def balanced_key(item):
+        key, distance, price = item
+        return distance / 8 + price, distance, key
     if visit_target is not None:
         # Keep nearby and inexpensive options, while admitting visits that
         # would otherwise be excluded solely because their ticket costs more.
-        matching = sorted(ranked, key=lambda item: (
+        matching = nsmallest(max(1, limit // 2), ranked, key=lambda item: (
             item[1] / 12 + abs(item[2] - visit_target), item[1], item[0]))
-        return list(dict.fromkeys([near[0][0], *(key for key, _, _ in matching[:max(1, limit // 2)]),
-                                   cheap[0][0], *(key for key, _, _ in balanced)]))[:limit]
+        return list(dict.fromkeys([min(ranked, key=near_key)[0], *(key for key, _, _ in matching),
+                                   min(ranked, key=cheap_key)[0],
+                                   *(key for key, _, _ in nsmallest(limit, ranked, key=balanced_key))]))[:limit]
     # A generous budget is permission to consider an enjoyable full-service
     # dinner, *not* a signal to fill the route with the cheapest fast food.
     # Price alone is not a quality claim: restaurant type, meal suitability,
@@ -234,6 +253,8 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
                                'food_court': 1, 'fast_food': -2},
                      'dinner': {'restaurant': 5, 'cafe': 3, 'food_court': 0,
                                 'canteen': 0, 'fast_food': -4}}.get(meal_kind, {})
+        target = min(dining_target, {'breakfast': 1400, 'lunch': 2000, 'dinner': 2600}.get(meal_kind, 2000))
+
         def experience(item):
             key, metres, price = item
             poi = by_id[key]
@@ -243,7 +264,6 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
             suitability_bonus = 1 if suitability.get(meal_kind) == 'likely' else 0
             # Spending target is a soft, capped preference, never a minimum
             # purchase and never proof that the venue is good.
-            target = min(dining_target, {'breakfast': 1400, 'lunch': 2000, 'dinner': 2600}.get(meal_kind, 2000))
             price_mismatch = abs(min(price, target * 1.5) - target) / 260
             return (desirable.get(venue, 0) * 3 + suitability_bonus * 2
                     - price_mismatch - metres / 350)
@@ -251,12 +271,15 @@ def budget_friendly_places(anchor, cells, limit, excluded=(), *, meal_kind=None,
         full_service = [key for key, _, _ in recommended if
                         by_id[key]['planning']['food_type']['value'] == 'restaurant']
         first = full_service[:max(1, limit - 2)] if meal_kind != 'breakfast' else []
-        chosen = list(dict.fromkeys([*first, cheap[0][0], near[0][0],
+        chosen = list(dict.fromkeys([*first, min(ranked, key=cheap_key)[0], min(ranked, key=near_key)[0],
                                      *(key for key, _, _ in recommended)]))
         return chosen[:limit]
-    result = dict.fromkeys([*(k for k, _, _ in cheap[:max(2, (limit + 1) // 2)]),
-                             *(k for k, _, _ in near[:max(2, limit // 3)]),
-                             *(k for k, _, _ in balanced[:limit])])
+    cheap = nsmallest(max(2, (limit + 1) // 2), ranked, key=cheap_key)
+    near = nsmallest(max(2, limit // 3), ranked, key=near_key)
+    balanced = nsmallest(limit, ranked, key=balanced_key)
+    result = dict.fromkeys([*(k for k, _, _ in cheap),
+                             *(k for k, _, _ in near),
+                             *(k for k, _, _ in balanced)])
     return list(result)[:limit]
 
 
@@ -299,12 +322,13 @@ def geographic_shortlist(preferences, anchors):
         main_locations.extend(coordinates(by_id[key]) for key in day[:3])
         food_cells = categories.get('cafes', {})
         food_choices = {}
+        meal_distances = {}
         for meal in ('breakfast', 'lunch', 'dinner'):
             dining_target = (None if budget_per_person_day < 2800 else
                              budget_per_person_day * {'breakfast': .09, 'lunch': .14, 'dinner': .20}[meal])
             choices = budget_friendly_places(anchor, food_cells, 5, selected,
                                              meal_kind=meal, dining_target=dining_target,
-                                             near_visits=main_locations)
+                                             near_visits=main_locations, meal_distances=meal_distances)
             food_choices[meal] = choices
             selected.update(dict.fromkeys(choices))
         # Interleave meals and sights before the global cutoff. Previously
@@ -414,7 +438,7 @@ def source_hours(raw, weekday):
 
 
 def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_filters=None, *,
-                  include_food=False, explicit_pois=None, pair_caches=None):
+                  include_food=False, explicit_pois=None, pair_caches=None, timetable_only=False):
     if preferences.budget_currency != 'RUB':
         raise HTTPException(422, 'Для Москвы выберите бюджет в рублях.')
     pois = (shortlist(preferences, retained, query, prior_query) if explicit_pois is None
@@ -477,8 +501,9 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
                    duration_overrides=durations, opening_intervals=openings,
                    cost_context=dict(currency='RUB', coverage_complete=False, visit_costs=costs, meal_costs=[]))
     filters = transport_filters or {}
-    matrix = chosen_moscow_matrix(pois, mode, selected, filters, pair_caches=pair_caches,
-                                  legacy=preferences.transport_modes is None and bool(retained))
+    matrix = None if timetable_only else chosen_moscow_matrix(
+        pois, mode, selected, filters, pair_caches=pair_caches,
+        legacy=preferences.transport_modes is None and bool(retained))
     if selected:
         context['moscow_transport_modes'] = selected
     if filters:
@@ -486,7 +511,7 @@ def moscow_inputs(preferences, retained=(), query='', prior_query='', transport_
     if len(anchors) > 1:
         context['day_anchors'] = {day['date']: {**point, 'radius_m': DAY_RADIUS_METERS}
                                   for day, point in zip(days, anchors)}
-    return profile, pois, recommend(profile, pois), matrix, context
+    return profile, pois, None if timetable_only else recommend(profile, pois), matrix, context
 
 
 def fix_meal_time(context, date, key, kind, start, end):
@@ -517,6 +542,16 @@ def plan_moscow(preferences):
         return {'preferences': profile, 'pois': places, 'travel_times': matrix, 'routing_context': context}
 
     plan = repair_gaps(plan, inputs[0], inputs[4], gap_index(), make_repair_state)
+    if any(gap['kind'] == 'internal' and gap['minutes'] > 60
+           for gap in plan['gap_diagnostics']['remaining']):
+        ids = [row['poi_id'] for day in plan['days'] for row in day['visits']]
+        profile, places, _, _, context = moscow_inputs(preferences, explicit_pois=ids, timetable_only=True)
+        try:
+            plan = stretch_saved_visits(plan, profile, places, context)
+            refresh_gap_report(plan, context)
+        except AssistantError as error:
+            if error.code not in {'ROUTER_RUNTIME_UNAVAILABLE', 'ROUTER_UNAVAILABLE'}:
+                raise
     options = {'start_date': preferences.start_date.isoformat(), 'transport': preferences.transport}
     if preferences.transport_modes:
         options['transport_modes'] = preferences.transport_modes
@@ -622,8 +657,12 @@ class MoscowRouteAssistant(RouteAssistant):
             'remaining': per_day,
         }
         updated = sequences_of(result)
-        require(updated != sequences, 'NO_FEASIBLE_GAP_FILL')
-        expanded = make_state(tuple(dict.fromkeys(k for seq in updated.values() for k in seq)))
+        expanded = make_state(tuple(dict.fromkeys(k for seq in updated.values() for k in seq))) if updated != sequences else state
+        if any(gap['kind'] == 'internal' and gap['minutes'] > 60 for gap in per_day):
+            result = stretch_saved_visits(deepcopy(result), expanded['preferences'], expanded['pois'],
+                                           expanded['routing_context'], only_days=days)
+            refresh_gap_report(result, original_context, only_days=days)
+        require(result['days'] != base['days'], 'NO_FEASIBLE_GAP_FILL')
         state.update({key: deepcopy(expanded[key]) for key in
                       ('preferences', 'pois', 'recommendation', 'travel_times', 'routing_context')})
         # Full route stays in memory for the deterministic revalidation and
@@ -768,6 +807,10 @@ class MoscowRouteAssistant(RouteAssistant):
                                 slot['start_at'][11:16])
                     try:
                         plan = self._candidate(trial_state, variant)
+                    except AssistantError as error:
+                        if error.code in BRIDGE_FAILURE_CODES:
+                            raise
+                        continue
                     except (ValueError, KeyError, TypeError, OverflowError):
                         continue
                     choices.append(((*self._addition_score(plan, day), day, position), variant, trial_state))
@@ -1182,6 +1225,10 @@ class MoscowRouteAssistant(RouteAssistant):
                         matrix = {**forced[MODES[state['preferences']['transport']]], 'profiles': forced}
                     try:
                         result = recompute({**prepared, 'travel_times': matrix})
+                    except AssistantError as error:
+                        if error.code in BRIDGE_FAILURE_CODES:
+                            raise
+                        continue
                     except ValueError:
                         continue
                     if required <= transit_modes(result):
@@ -1567,9 +1614,10 @@ class MoscowAssistant(ShanghaiAssistantService):
                         raise
                     return None
 
-            result, compromise = self._propose_named_fallback(
-                agent, actor, request, fallback_decision, retry_named, date_list, pois, context,
-                set(retained), body['text'], mode_choice)
+            with bridge_batch():
+                result, compromise = self._propose_named_fallback(
+                    agent, actor, request, fallback_decision, retry_named, date_list, pois, context,
+                    set(retained), body['text'], mode_choice)
             message = result.get('clarification') or 'Предложение рассчитано, но ещё не применено: проверьте изменения и подтвердите их.'
             session['moscow_history'] = [*session['moscow_history'], {'role': 'user', 'content': body['text']},
                                          {'role': 'assistant', 'content': message}][-24:]
@@ -1577,6 +1625,12 @@ class MoscowAssistant(ShanghaiAssistantService):
             if result['validation_status'] != 'ready_for_confirmation':
                 return {'type': 'clarification', 'message': message}
             diff = result['diff']
+            requested_fill = next((op['days'] for op in result['operations'] if op['op'] == 'fill_gaps'), None)
+            if requested_fill:
+                previous_days = {day['date']: day for day in route['days']}
+                timing_changes = [day['date'] for day in result['candidate_route']['days']
+                                  if day['date'] in requested_fill and day != previous_days[day['date']]]
+                diff['changed_days'] = list(dict.fromkeys([*diff['changed_days'], *timing_changes]))
             pins = [op for op in result['operations'] if op['op'] == 'pin_visit_time']
             require(diff['changed_days'] or pins and result['candidate_route'].get('visit_times') != route.get('visit_times'),
                     'NO_ROUTE_CHANGE')
@@ -1587,18 +1641,16 @@ class MoscowAssistant(ShanghaiAssistantService):
                 require(all(any(key in diff['after'][day] for day in diff['changed_days'])
                             for key in wanted_ids), 'NAMED_POI_NOT_ADDED')
                 wanted_names = [indexes()[0][key]['name'] for key in wanted_ids]
-            requested_fill = next((op.get('days', []) for op in result['operations']
-                                  if op['op'] == 'fill_gaps'), None)
             if requested_fill:
                 improved = [date for date in requested_fill if date in diff['changed_days']]
                 remaining = [date for date in requested_fill if date not in diff['changed_days']]
-                message = ('Подобраны дополнительные посещения с проверкой бюджета, '
-                           'питания и переходов. Дни с изменениями: ' +
-                           ', '.join(improved) + '.')
+                has_new_visits = any(set(diff['after'][day]) - set(diff['before'][day]) for day in improved)
+                message = ('Проверены дополнительные посещения и время остановок. ' if has_new_visits
+                           else 'Скорректировано время запланированных посещений. ')
+                message += 'Дни с изменениями: ' + ', '.join(improved) + '.'
                 if remaining:
                     message += (' Для дней ' + ', '.join(remaining) +
-                                ' в ограниченном поиске не удалось подтвердить выполнимую вставку; '
-                                'прежние посещения сохранены. Проверьте предварительный просмотр.')
+                                ' не нашлось выполнимого способа сократить паузы. Проверьте предпросмотр.')
             session['moscow_assistant'] = agent
             names = {poi['id']: poi['name'] for poi in pois}
             # A gap-fill proposal may insert V7 candidates outside the initial

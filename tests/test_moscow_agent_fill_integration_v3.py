@@ -6,11 +6,11 @@ from copy import deepcopy
 import unittest
 from unittest.mock import patch
 
-from ai_ds.moscow_engine_adapter import timestamp
-from ai_ds.moscow_gap_repair import MoscowGapIndex, route_gaps
+from ai_ds.moscow_engine_adapter import fixed_sequence, timestamp
+from ai_ds.moscow_gap_repair import MoscowGapIndex, describe_edited_gaps, route_gaps
 from ai_ds.route_assistant import InMemoryRouteStore, sequences_of
 from ai_ds.shanghai_assistant import node_executable
-from backend.moscow import MoscowRouteAssistant, moscow_interpretation
+from backend.moscow import MoscowAssistant, MoscowRouteAssistant, moscow_interpretation
 
 DAY='2026-11-21'
 
@@ -86,5 +86,37 @@ class AssistantFillIntegrationTests(unittest.TestCase):
             self.assertEqual(confirmed['route']['native_checks']['time'],'passed')
             self.assertEqual(confirmed['route']['native_checks']['budget'],'passed')
             self.assertEqual(confirmed['route']['unplaced_required_poi_ids'],[])
+
+    def test_time_only_gap_repair_can_be_previewed_and_confirmed(self):
+        self.original_context['days'][0]['day_start'] = timestamp(DAY, 900)
+        key = self.additions[0]['id']
+        order = {DAY: [key, 'closing']}
+        profile, points, ranking, matrix, context = self.source(order[DAY])
+        context['opening_intervals'] = [{'poi_id': 'closing', 'date': DAY, 'intervals': [
+            {'start_at': timestamp(DAY, 1110), 'end_at': timestamp(DAY, 1215)}]}]
+        base = fixed_sequence({'preferences': profile, 'pois': points, 'travel_times': matrix,
+                               'routing_context': context, 'defer_visit_extensions': True,
+                               'route': {'days': [{'date': DAY, 'pace': 'balanced', 'visits': [], 'breaks': []}]}}, order)
+        self.assertTrue(any(gap.minutes > 60 and gap.kind == 'internal' for gap in route_gaps(base, context)))
+        service = MoscowAssistant.__new__(MoscowAssistant)
+        service.configured, service.snapshot = True, 'test'
+        session = {'moscow_route': deepcopy(base), 'moscow_route_id': 'r1', 'moscow_version': 1,
+                   'moscow_history': [], 'moscow_preferences': object(),
+                   'route_options': {'transport': 'walk', 'conversation': []}}
+        unchanged = {**base, 'gap_diagnostics': describe_edited_gaps(base, context, base)}
+        with patch('backend.moscow.indexes', return_value=(self.points, {}, {})), \
+             patch('backend.moscow.moscow_inputs', return_value=(profile, points, ranking, matrix, context)), \
+             patch('backend.moscow.repair_gaps', return_value=unchanged):
+            preview = service._request('actor', session, 'message', {
+                'text': 'Убери длинные перерывы', 'route_id': 'r1', 'base_version': 1, 'poi_snapshot_id': 'test'})
+            self.assertEqual(preview['type'], 'proposal', preview)
+            self.assertEqual(preview['diff']['changed_days'], [DAY])
+            self.assertEqual(sequences_of(preview['plan']), order)
+            self.assertEqual(preview['plan']['days'][0]['visits'][0]['extension_minutes'], 60)
+            self.assertEqual(session['moscow_route'], base)
+            confirmed = service._request('actor', session, 'decide', {
+                'proposal_id': preview['proposal_id'], 'base_version': 1, 'decision': 'confirm'})
+            self.assertEqual(confirmed['type'], 'confirmed')
+            self.assertEqual(confirmed['plan']['days'][0]['visits'][0]['extension_minutes'], 60)
 
 if __name__=='__main__':unittest.main()
