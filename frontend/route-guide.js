@@ -10,6 +10,8 @@
   const rail = el('guide-days');
   const list = el('guide-places');
   const player = el('guide-player');
+  const playerSlot = el('guide-player-slot');
+  const dismiss = el('guide-dismiss-player');
   const toggle = el('guide-play');
   const speed = el('guide-speed');
   const previous = el('guide-previous');
@@ -27,6 +29,7 @@
       tab.setAttribute('aria-selected', String(active));
       tab.tabIndex = active ? 0 : -1;
     }
+    updatePlayer();
     if (focus) (isGuide ? guideTab : routeTab).focus();
   }
   for (const [tab, isGuide] of [[routeTab, false], [guideTab, true]]) {
@@ -39,7 +42,9 @@
   }
 
   const all = () => days.flatMap(day => day.stops);
-  const audioStop = () => all().find(stop => stop.key === audioKey);
+  const stopByKey = key => key && all().find(stop => stop.key === key);
+  const audioStop = () => stopByKey(audioKey);
+  const detailStop = () => stopByKey(detailKey);
   const number = index => String(index + 1).padStart(2, '0');
   const artwork = stop => '/assets/card-' + (stop.story?.art || (
     /музей|галере|выставк/i.test(stop.name) ? 'museums' :
@@ -63,18 +68,31 @@
     if (reset) { segmentIndex = 0; segments = []; }
   }
   function updatePlayer() {
-    const stop = audioStop();
+    const map = el('route-map-dialog');
+    const inline = !guidePanel.hidden && !detail.hidden && !map.open;
+    const active = audioStop();
+    const stop = active || (inline ? detailStop() : null);
+    const mount = inline ? playerSlot : map.open ? map : el('route-editor').parentElement;
+    if (player.parentElement !== mount) {
+      if (inline || map.open) mount.append(player);
+      else el('route-editor').before(player);
+    }
+    player.classList.toggle('is-inline', inline);
+    player.dataset.state = state;
     player.hidden = !stop;
-    document.body.classList.toggle('has-guide-player', Boolean(stop));
+    dismiss.hidden = inline && !active;
+    dismiss.setAttribute('aria-label', inline ? 'Остановить рассказ' : 'Закрыть плеер');
+    document.body.classList.toggle('has-guide-player', Boolean(active) && !inline);
     if (!stop) return;
     el('guide-now').textContent = stop.name;
     toggle.textContent = state === 'playing' ? 'Пауза' : state === 'paused' ? 'Продолжить' : 'Слушать';
     toggle.disabled = !supported;
-    const position = all().findIndex(item => item.key === audioKey);
+    const stops = all();
+    const position = stops.findIndex(item => item.key === stop.key);
     previous.disabled = position <= 0;
-    next.disabled = position < 0 || position >= all().length - 1;
+    next.disabled = position < 0 || position >= stops.length - 1;
     for (const button of document.querySelectorAll('[data-guide-length]')) {
-      button.setAttribute('aria-pressed', String(audioKey === detailKey && button.dataset.guideLength === length));
+      button.setAttribute('aria-pressed', String((!active || audioKey === detailKey) && button.dataset.guideLength === length));
     }
   }
   function speak() {
@@ -117,6 +135,7 @@
     if (!supported) return;
     if (state === 'playing') { synth.pause(); state = 'paused'; updatePlayer(); }
     else if (state === 'paused') { synth.resume(); state = 'playing'; updatePlayer(); }
+    else if (!audioKey && detailStop()) chooseAudio(detailStop(), length);
     else speak();
   });
   speed.addEventListener('change', () => {
@@ -158,6 +177,7 @@
       rail.append(tab);
     });
     showDay();
+    updatePlayer();
     if (focus) (lastCard && list.querySelector('[data-guide-key="' + CSS.escape(lastCard) + '"]') || rail.children[dayIndex])?.focus();
   }
 
@@ -217,15 +237,17 @@
       showOnMap(stop);
     };
     if (!supported) el('guide-voice-hint').hidden = false;
+    updatePlayer();
     if (focus) el('guide-detail-title').focus();
   }
   function move(delta) {
     const stops = all();
-    const target = stops[stops.findIndex(stop => stop.key === audioKey) + delta];
+    const current = audioKey || detailKey;
+    const target = stops[stops.findIndex(stop => stop.key === current) + delta];
     if (!target) return;
     const wasPlaying = state === 'playing';
     stopSpeech();
-    audioKey = target.key;
+    if (audioKey) audioKey = target.key;
     notification.textContent = '';
     if (!guidePanel.hidden) {
       dayIndex = target.day;
@@ -238,9 +260,10 @@
   previous.onclick = () => move(-1);
   next.onclick = () => move(1);
   el('guide-back-list').onclick = () => renderList(true);
-  el('guide-dismiss-player').onclick = () => {
+  dismiss.onclick = () => {
     stopSpeech();
     audioKey = '';
+    notification.textContent = '';
     updatePlayer();
     if (!guidePanel.hidden && !detail.hidden) el('guide-detail-title').focus();
     else routeTab.focus();
@@ -249,6 +272,7 @@
   el('guide-voice-hint').hidden = supported;
 
   window.TripWiseGuide = {
+    syncPlayer:updatePlayer,
     update(model) {
       city = model.city;
       showOnMap = model.showOnMap;

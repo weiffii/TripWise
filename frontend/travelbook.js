@@ -34,7 +34,7 @@
     const result = [];
     for (const paragraph of string(value).split('\n')) {
       let line = '';
-      for (const word of paragraph.split(/\s+/).filter(Boolean)) {
+      for (const word of paragraph.split(/[ \t]+/).filter(Boolean)) {
         if (ctx.measureText((line ? line + ' ' : '') + word).width <= width) { line += (line ? ' ' : '') + word; continue; }
         if (line) { result.push(line); line = ''; }
         for (const character of word) {
@@ -69,8 +69,8 @@
       });
     } catch { return null; }
   }
-  function drawImage(ctx, image, x, y, width, height) {
-    ctx.save(); ctx.beginPath(); ctx.roundRect(x, y, width, height, 28); ctx.clip();
+  function drawImage(ctx, image, x, y, width, height, radius = 28) {
+    ctx.save(); ctx.beginPath(); ctx.roundRect(x, y, width, height, radius); ctx.clip();
     if (image) {
       const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
       const iw = image.naturalWidth * scale, ih = image.naturalHeight * scale;
@@ -88,36 +88,54 @@
   }
   function cover(data, image, totalPages) {
     const {sheet, ctx} = canvas();
-    text(ctx, 'TRIPWISE  /  ЛИЧНАЯ КОЛЛЕКЦИЯ ПУТЕШЕСТВИЙ', M, 84, 17, MUTED);
-    text(ctx, 'Ваш TravelBook', M, 158, 87, INK, SERIF);
-    const cityLines = wrap(ctx, data.city, W - M * 2, 43, SERIF);
-    block(ctx, cityLines, M, 277, 43, INK, SERIF);
-    const dateY = 286 + cityLines.length * 54;
-    const dateLines = wrap(ctx, datesLabel(data.dates), W - M * 2, 23);
-    block(ctx, dateLines, M, dateY, 23, MUTED);
-    const imageY = dateY + dateLines.length * 31 + 31;
-    drawImage(ctx, image, M, imageY, W - M * 2, 430);
-    const cardY = imageY + 465, gap = 20, cardW = (W - M * 2 - gap) / 2;
-    const costLines = wrap(ctx, data.cost || 'Не подтверждён', cardW - 50, 32, SERIF);
-    const cardH = Math.max(156, 85 + costLines.length * 44);
-    rounded(ctx, M, cardY, cardW, cardH, 22, '#eee8f3');
-    rounded(ctx, M + cardW + gap, cardY, cardW, cardH, 22, '#f9ebd9');
-    text(ctx, 'ВАШ РИТМ', M + 25, cardY + 23, 16, MUTED);
-    text(ctx, `${data.days.length} ${dayWord(data.days.length)}`, M + 25, cardY + 62, 42, INK, SERIF);
-    text(ctx, 'Маршрут по дням, собранный для вас', M + 25, cardY + 118, 16, MUTED);
-    text(ctx, 'БЮДЖЕТ ПО ПЛАНУ', M + cardW + gap + 25, cardY + 23, 16, MUTED);
-    block(ctx, costLines, M + cardW + gap + 25, cardY + 63, 32, INK, SERIF);
-    let noteY = cardY + cardH + 34;
-    if (noteY > H - 130) throw new Error('Описание поездки слишком длинное для обложки. Сократите название или итог стоимости.');
+    const imageH = 765;
+    drawImage(ctx, image, 0, 0, W, imageH, 0);
+    const shade = ctx.createLinearGradient(0, 0, 0, imageH);
+    shade.addColorStop(0, '#241b3d8c');
+    shade.addColorStop(.34, '#241b3d12');
+    shade.addColorStop(1, '#20192fed');
+    ctx.fillStyle = shade; ctx.fillRect(0, 0, W, imageH);
+    text(ctx, 'TRIPWISE  /  ПЕРСОНАЛЬНЫЙ ПЛАН ПУТЕШЕСТВИЯ', M, 72, 19, '#fff8ef', SANS, '600');
+    text(ctx, 'Ваш TravelBook', M, 456, 102, '#fffdf9', SERIF);
+    text(ctx, data.city, M + 5, 595, 47, '#fffdf9', SERIF);
+    text(ctx, datesLabel(data.dates), M + 5, 667, 26, '#f3e7ec');
+
+    text(ctx, 'В ЭТОЙ ПОЕЗДКЕ', M, 822, 19, '#775975', SANS, '600');
+    text(ctx, 'Ваш маршрут в деталях', M, 857, 48, INK, SERIF);
+    const gap = 20, cardW = (W - M * 2 - gap) / 2;
+    const card = (column, y, tint, heading, value, hint) => {
+      const x = M + (cardW + gap) * column;
+      rounded(ctx, x, y, cardW, 164, 23, tint);
+      text(ctx, heading, x + 29, y + 23, 16, MUTED, SANS, '600');
+      const lines = wrap(ctx, value, cardW - 58, 36, SERIF);
+      block(ctx, lines, x + 29, y + 55, 36, INK, SERIF, '400', 1.05);
+      if (hint && lines.length < 2) text(ctx, hint, x + 29, y + 117, 18, MUTED);
+    };
+    card(0, 937, '#eee8f3', 'ДЛИТЕЛЬНОСТЬ', `${data.days.length} ${dayWord(data.days.length)}`, 'От первого до последнего дня');
+    card(1, 937, '#f9ebd9', 'РАСХОДЫ ПО ПЛАНУ', data.cost || 'Не подтверждены', 'Ориентир на всю поездку');
+    card(0, 1121, '#e6eee8', 'ПОСЕЩЕНИЯ', String(data.visits ?? '—'), 'Места для знакомства с городом');
+    card(1, 1121, '#f4e6e8', 'ПЕРЕХОДЫ И ПОЕЗДКИ', String(data.transfers ?? '—'), 'Связи между остановками');
+
     const note = [data.costNote, ...(data.warnings || [])].filter(Boolean).join('\n');
+    let bottom = 1321;
     if (note) {
-      const lines = wrap(ctx, note, W - M * 2 - 44, 20);
-      if (noteY + lines.length * 27 + 50 > H - 130) throw new Error('Предупреждения обложки слишком длинные для одной страницы. Сократите описание перед экспортом.');
-      rounded(ctx, M, noteY, W - M * 2, lines.length * 27 + 44, 18, '#f3eff2');
-      block(ctx, lines, M + 22, noteY + 21, 20, MUTED);
-      noteY += lines.length * 27 + 75;
+      let size = 23;
+      let lines = wrap(ctx, note, W - M * 2 - 60, size);
+      while (lines.length * size * 1.35 > 198 && size > 17) {
+        size--;
+        lines = wrap(ctx, note, W - M * 2 - 60, size);
+      }
+      const height = lines.length * size * 1.35 + 61;
+      if (bottom + height > H - 110) throw new Error('Детали бюджета не помещаются на обложке.');
+      rounded(ctx, M, bottom, W - M * 2, height, 19, '#f3eff2');
+      text(ctx, 'ДЕТАЛИ БЮДЖЕТА', M + 30, bottom + 16, 16, MUTED, SANS, '600');
+      block(ctx, lines, M + 30, bottom + 43, size, INK);
+      bottom += height + 32;
     }
-    if (noteY < H - 210) text(ctx, 'Для маленьких открытий и больших воспоминаний.', M, noteY + 13, 26, MUTED, SERIF);
+    if (bottom < H - 176) {
+      rule(ctx, bottom);
+      text(ctx, 'Дальше — расписание и расходы на каждый день', M, bottom + 24, 28, MUTED, SERIF);
+    }
     footer(ctx, 1, totalPages);
     return sheet;
   }

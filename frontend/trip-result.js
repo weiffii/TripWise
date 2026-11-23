@@ -159,11 +159,10 @@ function openMap(opener) {
   if (mapDialog.open) return;
   mapOpener = opener;
   mapDialog.append(mapPanel);
-  const audioPlayer = element('guide-player');
-  if (!audioPlayer.hidden) mapDialog.append(audioPlayer);
   expandMapButton.hidden = true;
   closeMapForm.hidden = false;
   mapDialog.showModal();
+  window.TripWiseGuide.syncPlayer();
 }
 
 expandMapButton.addEventListener('click', () => {
@@ -173,8 +172,7 @@ expandMapButton.addEventListener('click', () => {
 
 mapDialog.addEventListener('close', () => {
   element('route-map-sidebar').append(mapPanel);
-  const audioPlayer = element('guide-player');
-  if (audioPlayer.parentElement === mapDialog) element('route-editor').before(audioPlayer);
+  window.TripWiseGuide.syncPlayer();
   expandMapButton.hidden = false;
   closeMapForm.hidden = true;
   routeMap.fitSelection();
@@ -526,9 +524,12 @@ bookButton.addEventListener('click', async () => {
   try {
     const city = element('route-title').textContent;
     const dates = trip.plan.days.map(day => day.date.split('-').reverse().join('.'));
+    const allRows = trip.plan.days.flatMap(day => events(day));
     await window.TripWiseTravelBook.download({
       city, dates: dates[0] === dates.at(-1) ? dates[0] : dates[0] + ' — ' + dates.at(-1),
       illustration:window.destinationImagePath(city),
+      visits:allRows.filter(row => row.type === 'visit').length,
+      transfers:allRows.filter(row => row.type === 'travel').length,
       cost:element('route-cost').textContent, costNote:element('cost-note').textContent,
       days:trip.plan.days.map((day,index) => {
         const rows = events(day);
@@ -581,7 +582,7 @@ function renderTrip() {
   element('route-cost').textContent = total == null ? 'Оценка недоступна' :
     '≈ ' + new Intl.NumberFormat('ru-RU',{style:'currency',currency}).format(Number(total));
   element('cost-note').textContent = moscow && budget?.estimated_total != null
-    ? `Бюджет: ${rub(budget.budget_amount)} · Посещения: ≈${rub(budget.visits_total)} · Питание: ≈${rub(budget.meals_total)} · Транспорт: ≈${rub(budget.transport_total)} · Остаток: ≈${rub(budget.remaining)}. Стоимость такси и ОТ рассчитана синтетической планировочной моделью, не является тарифом или предложением перевозчика. Часть цен и часов посещений тоже оценочная.`
+    ? `Бюджет: ${rub(budget.budget_amount)} · Посещения: ≈${rub(budget.visits_total)} · Питание: ≈${rub(budget.meals_total)} · Транспорт: ≈${rub(budget.transport_total)} · Остаток: ≈${rub(budget.remaining)}.`
     : moscow ? 'Оценка неполная. Расходы без достоверной стоимости не равны нулю.'
     : 'Учебная оценка на всю поездку: посещения, питание и переходы.';
   const select = element('route-day');

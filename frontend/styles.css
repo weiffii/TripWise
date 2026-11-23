@@ -621,3 +621,33 @@ body.has-guide-player { padding-bottom: 140px; }
   .guide-detail-cover { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
 }
 body.has-guide-player #route-map-dialog #route-map-panel { padding-bottom: 150px; }
+
+.guide-listen {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px;
+  align-items: center; padding: clamp(16px, 3vw, 24px);
+}
+.guide-listen h3 { font: 600 clamp(21px, 3vw, 28px)/1.2 Georgia, serif; margin-bottom: 4px; }
+.guide-formats { padding: 4px; border-radius: 26px; background: var(--surface-alt); }
+.guide-formats button { padding-inline: 13px; }
+#guide-player-slot { grid-column: 1 / -1; min-width: 0; }
+.guide-player-speed { display: flex; align-items: center; gap: 7px; color: var(--muted); }
+.guide-player-speed span { display: none; }
+.guide-player.is-inline {
+  position: static; transform: none; width: 100%; padding: clamp(14px, 3vw, 24px);
+  border-radius: 18px; gap: 14px 18px; box-shadow: none;
+  background: linear-gradient(125deg, var(--accent), var(--surface-alt));
+}
+.guide-player.is-inline .guide-player-track { flex-basis: 100%; }
+.guide-player.is-inline .guide-player-track strong { white-space: normal; overflow-wrap: anywhere; font-size: clamp(16px, 3vw, 22px); }
+.guide-player.is-inline .guide-controls { width: 100%; gap: 8px; }
+.guide-player.is-inline .guide-controls button, .guide-player.is-inline #guide-speed { min-height: 46px; padding: 8px 12px; font-size: .9rem; }
+.guide-player.is-inline #guide-play { min-height: 52px; padding-inline: clamp(14px, 4vw, 25px); }
+.guide-player.is-inline #guide-play::before { content: '▶'; margin-inline-end: 6px; font-size: .8em; }
+.guide-player.is-inline[data-state="playing"] #guide-play::before { content: 'Ⅱ'; }
+.guide-player.is-inline .guide-player-speed { margin-inline-start: auto; }
+.guide-player.is-inline .guide-player-speed span { display: inline; }
+@media (max-width: 580px) {
+  .guide-listen { grid-template-columns: minmax(0, 1fr); }
+  .guide-formats { justify-self: start; }
+  .guide-player.is-inline .guide-player-speed { margin-inline-start: 0; }
+}

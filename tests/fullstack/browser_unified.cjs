@@ -181,9 +181,14 @@ async function main(){
   }
   await page.locator('.guide-card').first().click();
   assert.equal(await page.locator('#guide-detail-title').textContent(),rendered[0]);
+  await page.locator('#guide-player-slot #guide-player.is-inline').waitFor({state:'visible'});
+  assert.equal(await page.locator('#guide-play').textContent(),'Слушать');
+  assert.ok((await page.locator('#guide-play').boundingBox()).height >= 52);
+  await page.screenshot({path:path.join(artifacts,preview.city+'-inline-player.png')});
   await page.locator('[data-guide-length=long]').click();
   assert.equal(await page.locator('#guide-play').textContent(),'Пауза');
   await page.locator('#guide-show-map').click();
+  await page.locator('#guide-player:not(.is-inline)').waitFor({state:'visible'});
   await page.locator('#route-map [data-stop][aria-pressed=true]').waitFor();
   assert.equal(await page.locator('#guide-play').textContent(),'Пауза');
   assert.equal(await page.evaluate(()=>speechSynthesis.calls.filter(call=>call[0]==='cancel').length),0);
@@ -199,6 +204,7 @@ async function main(){
     assert.equal(await page.locator('#guide-now').textContent(),rendered[0]);
   }
   await page.locator('#guide-dismiss-player').click();
+  assert.doesNotMatch(await page.locator('#cost-note').textContent(), /синтетической планировочной моделью/);
   const download = page.waitForEvent('download');
   await page.locator('#download-travelbook').click();
   const book = await download;
