@@ -39,7 +39,11 @@ function gapExplanation(gap) {
 }
 
 function events(day, plan = trip.plan) {
-  if (day.events) return day.events.filter(showScheduleEvent);
+  if (day.events) {
+    let legIndex = 0;
+    return day.events.map(row => row.type === 'travel'
+      ? {...row, leg_index:legIndex++, day_date:day.date} : row).filter(showScheduleEvent);
+  }
   const meals = new Map(Object.entries(plan.moscow_meals?.[day.date] || {}).map(([kind, slot]) => [slot.poi_id, kind]));
   const diagnostics = new Map((plan.gap_diagnostics?.remaining || []).filter(gap => gap.date === day.date)
     .map(gap => [gap.start_at + '/' + gap.end_at, gapExplanation(gap)]));
@@ -366,31 +370,57 @@ function renderScheduleRow(row, legIndex, stopIndex) {
   const approximate = row.mode === 'transit'
     ? row.transport_steps?.some(step => ['walk_access','walk_egress','walk_transfer','rail_estimate'].includes(step.kind) && !step.geometry_verified)
     : !row.geometry || row.basis !== 'routing_provider';
-  if (row.type === 'travel' && approximate && trip.city === 'moscow' &&
-      trip.poi_snapshot_id.startsWith('moscow-v7:') && Number.isInteger(row.leg_index)) {
-    const retry = document.createElement('button');
-    retry.type = 'button';
-    retry.textContent = 'Проверить геометрию';
-    const status = document.createElement('small');
-    status.setAttribute('role', 'status');
-    retry.onclick = async () => {
-      retry.disabled = true;
-      status.textContent = 'Проверяем участок…';
+  if (row.type === 'travel') {
+    const controls = document.createElement('div');
+    controls.className = 'geometry-check-row';
+    const check = document.createElement('button');
+    check.type = 'button';
+    check.textContent = 'Проверить геометрию';
+    check.className = 'geometry-check';
+    check.onclick = async () => {
+      const originalDay = element('route-day').value;
+      const status = element('geometry-status');
+      openMap(check);
+      routeMap.selectLeg(legIndex);
+      status.hidden = true;
+      if (!approximate || trip.city !== 'moscow' || !trip.poi_snapshot_id.startsWith('moscow-v7:') || !Number.isInteger(row.leg_index)) return;
+      status.hidden = false;
+      status.textContent = 'Проверяем путь по улицам…';
+      check.disabled = true;
       try {
         const version = trip.version;
         const {duration_seconds, ...geometry} = await request(endpoint + '/leg-geometry', {
           version, day:row.day_date, leg_index:row.leg_index,
         });
-        if (trip.version !== version) return;
+        if (trip.version !== version || originalDay !== element('route-day').value) return;
         refreshedLegs.set(row.day_date + '/' + row.leg_index, geometry);
         renderDay();
-        element('route-action-status').textContent =
-          'Линия участка обновлена на карте. Оценка дороги после проверки — ' + Math.ceil(duration_seconds / 60) +
-          ' мин. Расписание поездки сохранено.';
+        if (mapDialog.open) {
+          mapOpener = element('route-stops').querySelector(`[data-geometry-index="${legIndex}"]`);
+          routeMap.selectLeg(legIndex);
+        }
+        status.hidden = !mapDialog.open;
+        status.textContent = 'Путь уточнён · ≈' + Math.ceil(duration_seconds / 60) + ' мин. Расписание не изменилось.';
       } catch (error) { status.textContent = error.message; }
-      finally { retry.disabled = false; }
+      finally { check.disabled = false; }
     };
-    action.append(retry, status);
+    check.dataset.geometryIndex = legIndex;
+    controls.append(check);
+    const destination = places.get(row.to_poi_id);
+    if (Number.isFinite(destination?.lat) && Number.isFinite(destination?.lon) && Number.isInteger(row.leg_index)) {
+      const go = document.createElement('button');
+      go.type = 'button';
+      go.className = 'navigation-start';
+      go.textContent = 'В путь ↗';
+      go.setAttribute('aria-haspopup', 'dialog');
+      go.onclick = () => window.TripWiseNavigation.open({destination, places, opener:go,
+        mode:['car','taxi'].includes(row.mode) ? 'car' : 'walking',
+        build:(origin, mode) => request(endpoint + '/navigate', {
+          version:trip.version, day:row.day_date, leg_index:row.leg_index, origin, mode,
+        })});
+      controls.append(go);
+    }
+    action.append(controls);
   }
   if (row.reason && ['waiting', 'wait', 'meal', 'rest'].includes(row.type)) {
     const details = document.createElement('details');
@@ -429,6 +459,7 @@ function renderScheduleRow(row, legIndex, stopIndex) {
 }
 
 function renderDay() {
+  element('geometry-status').hidden = true;
   const day = trip.plan.days[Number(element('route-day').value)];
   const rows = day ? events(day) : [];
   const stops = element('route-stops');

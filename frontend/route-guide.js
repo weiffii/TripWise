@@ -2,9 +2,9 @@
   'use strict';
   const el = id => document.getElementById(id);
   const routeTab = el('trip-tab-route');
-  const guideTab = el('trip-tab-guide');
-  const routePanel = el('trip-panel-route');
   const guidePanel = el('trip-panel-guide');
+  const tabs = [routeTab, el('trip-tab-guide'), el('trip-tab-tips')];
+  const panels = tabs.map(tab => el(tab.getAttribute('aria-controls')));
   const listView = el('guide-list-view');
   const detail = el('guide-detail');
   const rail = el('guide-days');
@@ -22,24 +22,26 @@
   let days = [], city = '', showOnMap, dayIndex = 0, detailKey = '', audioKey = '', lastCard;
   let length = 'short', state = 'idle', segmentIndex = 0, segments = [], utterance, generation = 0;
 
-  function switchTab(isGuide, focus = false) {
-    routePanel.hidden = isGuide;
-    guidePanel.hidden = !isGuide;
-    for (const [tab, active] of [[routeTab, !isGuide], [guideTab, isGuide]]) {
+  function switchTab(index, focus = false) {
+    tabs.forEach((tab, position) => {
+      const active = position === index;
+      panels[position].hidden = !active;
       tab.setAttribute('aria-selected', String(active));
       tab.tabIndex = active ? 0 : -1;
-    }
+    });
     updatePlayer();
-    if (focus) (isGuide ? guideTab : routeTab).focus();
+    if (focus) tabs[index].focus();
   }
-  for (const [tab, isGuide] of [[routeTab, false], [guideTab, true]]) {
-    tab.addEventListener('click', () => switchTab(isGuide));
+  tabs.forEach((tab,index) => {
+    tab.addEventListener('click', () => switchTab(index));
     tab.addEventListener('keydown', event => {
       if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
       event.preventDefault();
-      switchTab(event.key === 'Home' ? false : event.key === 'End' ? true : !isGuide, true);
+      const offset = event.key === 'ArrowRight' ? 1 : -1;
+      switchTab(event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 :
+        (index + offset + tabs.length) % tabs.length, true);
     });
-  }
+  });
 
   const all = () => days.flatMap(day => day.stops);
   const stopByKey = key => key && all().find(stop => stop.key === key);
@@ -233,7 +235,7 @@
     }
     el('guide-show-map').hidden = !stop.canMap;
     el('guide-show-map').onclick = () => {
-      switchTab(false);
+      switchTab(0);
       showOnMap(stop);
     };
     if (!supported) el('guide-voice-hint').hidden = false;

@@ -1,0 +1,32 @@
+#trip-navigation {
+  position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+  margin: 0; padding: clamp(14px, 3vw, 36px); border: 0; background: var(--bg); color: var(--ink);
+}
+body:has(#trip-navigation[open]) { overflow: hidden; }
+.navigation-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 20px; }
+.navigation-header h2 { font-size: clamp(2rem, 4vw, 3.4rem); margin: .25rem 0 0; }
+.navigation-layout { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(0, 2.4fr); gap: 18px; align-items: start; }
+.navigation-settings { padding: clamp(12px, 2.5vw, 24px); border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+.navigation-settings form { display: grid; gap: 8px; }
+.navigation-settings input, .navigation-settings select { width: 100%; min-width: 0; }
+.navigation-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.navigation-actions button { font-size: .84rem; padding: 6px 10px; }
+#navigation-pick[aria-pressed='true'] { background: var(--primary); color: var(--primary-ink, #241333); }
+#navigation-status { min-height: 1.5em; color: var(--muted); }
+#navigation-steps ol { padding-inline-start: 25px; max-height: 44dvh; overflow: auto; }
+#navigation-steps li { padding: 8px 4px; border-bottom: 1px solid var(--line); }
+#navigation-map { position: sticky; top: 0; height: max(300px, calc(100dvh - 140px)); overflow: hidden; border-radius: 16px; touch-action: none; background: #edf1ed; }
+#navigation-map.picking { cursor: crosshair; outline: 2px solid #7765c4; outline-offset: -2px; }
+#navigation-map :is(.navigation-background, .navigation-lines, .navigation-tiles) { position: absolute; inset: 0; width: 100%; height: 100%; }
+.navigation-tiles img { position: absolute; width: 256px; height: 256px; max-width: none; }
+#navigation-map .tw-map-controls { position: absolute; top: 12px; right: 12px; display: grid; gap: 5px; }
+#navigation-map .tw-map-controls button { width: 38px; height: 38px; border-radius: 8px; border: 1px solid #aab6b0; background: #fff; color: #25372e; font-size: 1.25rem; }
+#navigation-map .tw-map-popup { position: absolute; top: 12px; left: 12px; max-width: 65%; color: #21262a; background: white; border-radius: 8px; padding: 8px; }
+.schedule-action .navigation-start { width: auto; min-height: 29px; border-radius: 999px; padding: 4px 11px; background: #d5f3df; color: #174631; border: 1px solid #98cdb1; font-size: .78rem; font-weight: 750; }
+.schedule-action .navigation-start:hover { text-decoration: none; background: #b7e7cc; }
+@media (max-width: 760px) {
+  .navigation-layout { display: flex; flex-direction: column-reverse; }
+  .navigation-layout > * { width: 100%; }
+  #navigation-map { position: relative; height: clamp(255px, 44dvh, 420px); }
+  #navigation-steps ol { max-height: none; }
+}

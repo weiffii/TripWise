@@ -5,23 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
   <script src="/theme.js?v=20261122-unified2"></script>
-  <link rel="stylesheet" href="/styles.css?v=20261124-guide2">
+  <link rel="stylesheet" href="/styles.css?v=20261124-tips1">
   <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
   <script src="/route-map.js?v=20261123-stop-details" defer></script>
   <script src="/guide-stories.js?v=1" defer></script>
-  <script src="/route-guide.js?v=2" defer></script>
+  <script src="/route-guide.js?v=3" defer></script>
   <script src="/travelbook.js?v=2" defer></script>
-  <script src="/trip-result.js?v=20261124-guide2" defer></script>
+  <link rel="stylesheet" href="/trip-navigation.css?v=1">
+  <script src="/trip-navigation.js?v=1" defer></script>
+  <script src="/trip-result.js?v=20261124-navigation1" defer></script>
 </head>
 <body class="questionnaire-page">
   <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
-    <div class="header-actions"><a class="back-link" href="/trips">← Мои поездки</a><button class="theme-toggle" data-theme-toggle type="button">Тема</button></div>
+    <div class="header-actions"><a class="outline-button" href="/trips?view=profile">Мой профиль</a><button class="theme-toggle" data-theme-toggle type="button">Тема</button></div>
   </header>
   <main class="questionnaire-main">
     <section class="page-hero questionnaire-hero route-result-hero"><div class="hero-content"><p class="eyebrow">ВАША ПОЕЗДКА</p><h1 class="trips-heading" id="route-title">Ваш маршрут</h1><p id="route-meta" class="form-intro" role="status">Загружаем поездку…</p></div></section>
     <div id="trip-result-tabs" class="trip-result-tabs" role="tablist" aria-label="Ваша поездка" hidden>
       <button id="trip-tab-route" type="button" role="tab" aria-selected="true" aria-controls="trip-panel-route">Маршрут</button>
       <button id="trip-tab-guide" type="button" role="tab" aria-selected="false" aria-controls="trip-panel-guide" tabindex="-1">Аудиогид</button>
+      <button id="trip-tab-tips" type="button" role="tab" aria-selected="false" aria-controls="trip-panel-tips" tabindex="-1">Полезные советы</button>
     </div>
     <div id="trip-panel-route" role="tabpanel" aria-labelledby="trip-tab-route">
     <div class="preview-actions result-actions" aria-label="Действия с поездкой"><button type="button" id="edit-trip" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button><button type="button" id="save-trip" class="submit-button" hidden>Сохранить поездку</button><a id="change-preferences" class="back-link" href="/trip/new" hidden>Изменить анкету</a><a class="back-link" href="/trips">Мои поездки</a></div><p id="route-state" class="preview-note" role="status">Загружаем состояние поездки…</p><p id="route-action-status" class="field-hint" role="status" aria-live="polite"></p>
@@ -74,6 +77,7 @@
             <span>Пунктир — приблизительный путь</span>
           </div>
           <p id="map-status" class="field-hint"></p>
+          <p id="geometry-status" class="field-hint" role="status" hidden></p>
           <p id="road-status" class="field-hint" role="status"></p>
           <section id="route-place-details" aria-live="polite" hidden></section>
           <div id="route-directions" aria-live="polite"></div>
@@ -81,6 +85,30 @@
       </aside>
     </div>
     <dialog id="route-map-dialog" aria-label="Карта маршрута на весь экран"></dialog>
+    <dialog id="trip-navigation" aria-labelledby="navigation-title">
+      <header class="navigation-header"><div><span class="section-number">НАВИГАЦИЯ TRIPWISE</span><h2 id="navigation-title">В путь</h2></div><form method="dialog"><button class="outline-button" aria-label="Закрыть навигацию">Закрыть</button></form></header>
+      <div class="navigation-layout">
+        <section class="navigation-settings" aria-label="Настройки навигации">
+          <p>Куда: <strong id="navigation-destination"></strong></p>
+          <form id="navigation-form">
+            <label for="navigation-origin">Откуда</label>
+            <input id="navigation-origin" list="navigation-places" placeholder="Название места или широта, долгота" required autocomplete="off">
+            <datalist id="navigation-places"></datalist>
+            <div class="navigation-actions"><button id="navigation-locate" class="outline-button" type="button">Моя геопозиция</button><button id="navigation-pick" class="outline-button" type="button" aria-pressed="false">Точка на карте</button></div>
+            <label for="navigation-mode">Способ передвижения</label>
+            <select id="navigation-mode"><option value="walking">Пешком</option><option value="car">На автомобиле</option></select>
+            <button class="submit-button" id="navigation-build">Построить маршрут</button>
+          </form>
+          <p id="navigation-status" role="status"></p>
+          <section id="navigation-steps" hidden><h3 id="navigation-summary"></h3><ol id="navigation-instructions"></ol></section>
+        </section>
+        <div id="navigation-map" aria-label="Карта пути к следующему месту">
+          <svg class="navigation-background" aria-hidden="true"></svg><div class="navigation-tiles" aria-hidden="true"></div>
+          <svg class="navigation-lines" aria-label="Начало, цель и линия пути"></svg>
+          <a class="map-credit" href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" target="_blank">© OpenStreetMap</a>
+        </div>
+      </div>
+    </dialog>
     <section class="route-edit-footer" aria-label="Редактирование поездки">
       <div><h2>Хотите изменить план?</h2><p>Попросите помощника скорректировать маршрут.</p></div>
       <button id="edit-trip-bottom" type="button" class="route-edit-button" data-route-editor aria-haspopup="dialog" disabled>Редактировать маршрут</button>
@@ -117,6 +145,9 @@
           <div class="guide-controls"><a id="guide-source" class="back-link" target="_blank" rel="noopener noreferrer" hidden>Источник ↗</a><button id="guide-show-map" class="outline-button" type="button" hidden>Показать на карте</button></div>
         </section>
       </article>
+    </section>
+    <section id="trip-panel-tips" class="guide-intro trip-guide" role="tabpanel" aria-labelledby="trip-tab-tips" hidden>
+      <h2>Рекомендованные приложения</h2>
     </section>
     <aside id="guide-player" class="guide-player" aria-label="Плеер аудиогида" hidden>
       <div class="guide-player-track"><span class="section-number">АУДИОГИД</span><strong id="guide-now"></strong></div>
