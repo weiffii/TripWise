@@ -23,6 +23,8 @@
   const notification = el('guide-audio-status');
   const synth = window.speechSynthesis;
   const supported = Boolean(synth && window.SpeechSynthesisUtterance);
+  const enhancedVoice = /\b(?:natural|neural|premium|enhanced|wavenet)\b|естествен|нейрон|улучшенн/iu;
+  const speechChunkLength = 220;
   const statuses = new Map();
   const stories = new Map();
   const requests = new Map();
@@ -223,6 +225,50 @@
       button.setAttribute('aria-pressed', String(!audioFact && (!active || audioKey === detailKey) && button.dataset.guideLength === length));
     }
   }
+
+  function pickVoice(language) {
+    const locale = value => value.replace(/_/g, '-').toLowerCase();
+    const wanted = locale(language);
+    const base = wanted.split('-')[0];
+    const matching = synth.getVoices().filter(voice => locale(voice.lang).split('-')[0] === base);
+    const score = voice => Number(enhancedVoice.test(voice.name + ' ' + voice.voiceURI)) * 8
+      + Number(locale(voice.lang) === wanted) * 4 + (voice.default ? 2 : 0) + (voice.localService ? 1 : 0);
+    return matching.sort((a, b) => score(b) - score(a))[0];
+  }
+
+  function speechChunks(text, language) {
+    const chunks = [];
+    const segmenter = typeof Intl.Segmenter === 'function'
+      ? new Intl.Segmenter(language.split('-')[0], {granularity:'sentence'}) : null;
+    for (const paragraph of text.trim().split(/\n\s*\n/)) {
+      const parts = segmenter ? Array.from(segmenter.segment(paragraph), item => item.segment) : [paragraph];
+      let chunk = '';
+      for (const part of parts) {
+        const sentence = part.trim();
+        if (!sentence) continue;
+        if (chunk && chunk.length + sentence.length + 1 > speechChunkLength) {
+          chunks.push(chunk);
+          chunk = '';
+        }
+        if (sentence.length <= speechChunkLength) {
+          chunk = chunk ? chunk + ' ' + sentence : sentence;
+          continue;
+        }
+        // Leave ordinary sentences intact. Split unusually long sentences at
+        // word boundaries so all browsers can finish the utterance.
+        for (const word of sentence.split(/\s+/)) {
+          if (chunk && chunk.length + word.length + 1 > speechChunkLength) {
+            chunks.push(chunk);
+            chunk = '';
+          }
+          chunk = chunk ? chunk + ' ' + word : word;
+        }
+      }
+      if (chunk) chunks.push(chunk);
+    }
+    return chunks;
+  }
+
   function speak() {
     const stop = audioStop();
     if (!stop || !supported) return;
@@ -230,18 +276,18 @@
     if (!story || story.status !== 'available') return;
     audioStory = story;
     const language = /^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(story.language || '') ? story.language : 'ru';
-    const voices = synth.getVoices().filter(voice => voice.lang.split(/[-_]/)[0].toLowerCase() === language.split('-')[0].toLowerCase());
+    const locale = language.toLowerCase() === 'ru' ? 'ru-RU' : language;
     if (!segments.length) {
       const text = audioFact ? audioFact.text : length === 'long' ? story.full_text || story.short_text : story.short_text || story.full_text;
       if (typeof text !== 'string' || !text.trim()) return;
-      segments = text.match(/[^.!?]+[.!?]*/g) || [text];
+      segments = speechChunks(text, locale);
     }
     const token = ++generation;
-    const sentence = new SpeechSynthesisUtterance(segments[segmentIndex]);
+    const sentence = new window.SpeechSynthesisUtterance(segments[segmentIndex]);
     utterance = sentence;
-    sentence.lang = language === 'ru' ? 'ru-RU' : language;
-    sentence.rate = Number(speed.value);
-    const voice = voices.find(voice => voice.localService) || voices[0];
+    sentence.lang = locale;
+    sentence.rate = 0.94 * (Number(speed.value) || 1);
+    const voice = pickVoice(locale);
     if (voice) sentence.voice = voice;
     sentence.onend = () => {
       if (token !== generation) return;
@@ -416,7 +462,10 @@
         button.textContent = 'Озвучить факт';
         button.setAttribute('aria-label', 'Озвучить факт: ' + fact.title);
         button.onclick = () => chooseAudio(stop, 'short', {title:fact.title,
-          text:[fact.title, fact.text, fact.detail].filter(Boolean).join('. ')});
+          text:[fact.title, fact.text, fact.detail].filter(Boolean).map(part => {
+            const text = part.trim();
+            return /[.!?…][»”"]?$/.test(text) ? text : text + '.';
+          }).join(' ')});
         section.append(button);
       }
       root.append(section);

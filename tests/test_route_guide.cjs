@@ -9,7 +9,7 @@ const source = readFileSync(path.join(root, 'frontend/route-guide.js'), 'utf8');
 const localStories = readFileSync(path.join(root, 'frontend/guide-stories.js'), 'utf8');
 const template = readFileSync(path.join(root, 'backend/pages/result.html'), 'utf8');
 
-function setup({voice = true} = {}) {
+function setup({voice = true, voices = []} = {}) {
   let document;
   class Element {
     children = [];
@@ -59,7 +59,7 @@ function setup({voice = true} = {}) {
   document = {body, getElementById:get, createElement:() => new Element(), querySelectorAll:() => formats};
   const spoken = [];
   const synth = {
-    getVoices:() => [], paused:false,
+    getVoices:() => voices, paused:false,
     speak:utterance => spoken.push(utterance),
     pause() { this.paused = true; }, resume() { this.paused = false; }, cancel() { spoken.push('cancelled'); },
   };
@@ -148,7 +148,7 @@ test('selected guide lazily renders facts, image attribution and safe sources', 
   const fact = get('guide-fact-list').children[0];
   assert.equal(fact.children[1].textContent,'Проверенный факт.');
   fact.children.at(-1).click();
-  assert.equal(spoken[0].text, 'Факт.');
+  assert.equal(spoken[0].text, 'Факт. Проверенный факт. Подробности.');
   assert.equal(spoken[0].lang, 'ru-RU');
   get('guide-show-map').click();
   assert.equal(show[0].mapIndex, 0);
@@ -293,7 +293,7 @@ test('catalog guide opens immediately and a detailed story does not replace acti
   await settle();
   cards(get('guide-places'))[0].click();
   assert.equal(requests[1].url, '/api/guide/poi/a?city=moscow&quick=true');
-  const catalog = story('a', {coverage:'catalog',research_status:'pending',short_text:'Краткий гид. Вторая фраза каталога.'});
+  const catalog = story('a', {coverage:'catalog',research_status:'pending',short_text:'Краткий гид.\n\nВторая фраза каталога.'});
   requests[1].resolve(catalog);
   await settle();
   assert.equal(get('guide-catalog-label').hidden, false);
@@ -315,6 +315,29 @@ test('catalog guide opens immediately and a detailed story does not replace acti
   spoken[1].onend();
   get('guide-play').click();
   assert.equal(spoken[2].text, 'Подробная история.');
+});
+
+test('speech prefers an enhanced voice in the story language and preserves phrasing and speed', async () => {
+  const local = {name:'Обычный русский', lang:'ru-RU', localService:true, default:true};
+  const natural = {name:'Natural Russian', lang:'ru-RU', localService:false};
+  const foreign = {name:'Neural English', lang:'en-US', localService:true, default:true};
+  const {get, guide, requests, spoken, model} = setup({voices:[foreign, local, natural]});
+  const text = 'Музей им. А. С. Пушкина открылся в 1912 г. Посмотрите на здание.\n\nТеперь обратите внимание на вход.';
+  guide.update(model(['a']));
+  get('trip-tab-guide').click();
+  requests[0].resolve(statuses([['a','available']]));
+  await settle();
+  cards(get('guide-places'))[0].click();
+  requests[1].resolve(story('a', {short_text:text}));
+  await settle();
+  get('guide-speed').value = '1.25';
+  get('guide-play').click();
+  assert.equal(spoken[0].text, text.split('\n\n')[0]);
+  assert.equal(spoken[0].voice, natural);
+  assert.equal(spoken[0].lang, 'ru-RU');
+  assert.equal(spoken[0].rate, 0.94 * 1.25);
+  spoken[0].onend();
+  assert.equal(spoken[1].text, text.split('\n\n')[1]);
 });
 
 test('catalog guide stays usable and retry is available when a detailed source fails', async () => {
