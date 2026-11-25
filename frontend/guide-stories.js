@@ -1,25 +1,6 @@
-// Проверенные истории привязаны к конкретным местам, а не сгенерированным названиям каталога.
-window.tripWiseGuideStory = (city, place) => {
-  const name = place.name.toLocaleLowerCase('ru');
-  if (city === 'moscow' && name.startsWith('патриарший мост')) return {
-    art:'viewpoints',
-    history:'Патриарший мост расположен у храма Христа Спасителя. Он соединяет Пречистенскую и Берсеневскую набережные Москвы-реки.',
-    detail:'Начните прогулку со стороны храма. Остановитесь по пути и посмотрите, как меняется вид на набережные. Сравните этот переход с Парящим мостом в Зарядье: здесь мост действительно связывает два берега.',
-    source:'https://www.mos.ru/upload/documents/files/3020/KartagorodaMoskviformataZ.pdf',
-  };
-  if (city === 'moscow' && (name.startsWith('парящий мост') || name === 'парк «зарядье»' || name === 'парк зарядье')) return {
-    art:'nature',
-    history:'Парящий мост в парке «Зарядье» — смотровая площадка над Москвой-рекой. С неё открывается панорама центра города.',
-    detail:'Обратите внимание на форму площадки. Здесь оба конца остаются со стороны парка. Можно дойти до дальней точки, посмотреть на реку и вернуться в парк тем же путём.',
-    source:'https://www.mos.ru/upload/documents/files/2937/Moskvachtoposmotret.pdf',
-  };
-  if (city === 'moscow' && /^(государственная )?третьяковская галерея$|^третьяковская галерея.*лаврушинск/u.test(name)) return {
-    art:'museums',
-    history:'В 1856 году Павел Третьяков приобрёл первые картины для будущего собрания. Позднее семейный дом в Лаврушинском переулке вошёл в комплекс галереи.',
-    detail:'Посмотрите на фасад исторического здания, прежде чем идти в залы. При реконструкции галереи его облик сохранили. Части комплекса строились в разное время, и в их оформлении можно заметить эту разницу.',
-    source:'https://www.tretyakovgallery.ru/about/history/zdanie-v-lavrushinskom-pereulke/',
-  };
-  const shanghai = {
+// Ручные истории Шанхая привязаны к идентификаторам мест из маршрута.
+(() => {
+  const stories = {
     'shanghai-demo:bund': {
       art:'viewpoints',
       history:'Вайтань — историческая набережная Шанхая вдоль реки Хуанпу. Этот район когда-то был финансовым центром города.',
@@ -39,5 +20,11 @@ window.tripWiseGuideStory = (city, place) => {
       source:'https://english.shanghai.gov.cn/en-MuseumsGalleries/20231218/01fdd3f62d0c4877bc289ec0b1de6afa.html',
     },
   };
-  return city === 'shanghai' ? shanghai[place.id] : null;
-};
+  window.tripWiseGuideStory = (city, place) => {
+    if (city !== 'shanghai' || !Object.hasOwn(stories, place.id)) return null;
+    const story = stories[place.id];
+    return {status:'available', language:'ru', art:story.art, short_text:story.history,
+      full_text:story.history + '\n\n' + story.detail, facts:[],
+      sources:[{title:'Туристический портал Шанхая', url:story.source}]};
+  };
+})();

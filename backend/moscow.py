@@ -541,7 +541,8 @@ def plan_moscow(preferences):
         profile, places, _, matrix, context = moscow_inputs(preferences, explicit_pois=ids, pair_caches=pair_caches)
         return {'preferences': profile, 'pois': places, 'travel_times': matrix, 'routing_context': context}
 
-    plan = repair_gaps(plan, inputs[0], inputs[4], gap_index(), make_repair_state)
+    with bridge_batch():
+        plan = repair_gaps(plan, inputs[0], inputs[4], gap_index(), make_repair_state)
     if any(gap['kind'] == 'internal' and gap['minutes'] > 60
            for gap in plan['gap_diagnostics']['remaining']):
         ids = [row['poi_id'] for day in plan['days'] for row in day['visits']]

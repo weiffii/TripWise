@@ -593,10 +593,18 @@ body:has(#route-map-dialog[open]) { overflow: hidden; }
 .guide-detail-cover img { width: 100%; height: clamp(80px, 15vw, 120px); object-fit: cover; border-radius: 13px; }
 .guide-detail-cover h2 { margin: 4px 0 0; font: 500 clamp(22px, 4vw, 38px)/1.1 Georgia, serif; }
 .guide-detail-cover p { margin: 0; }
+.guide-credit { color: var(--muted); font-size: .85rem; margin: 7px 2px 14px; overflow-wrap: anywhere; }
+.guide-credit a, .guide-source-list a { color: var(--primary); }
 .guide-listen, .guide-reading { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: 18px; margin-top: 12px; }
 .guide-listen { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center; }
 .guide-listen :is(h3,p), .guide-reading h3 { margin: 0; }
 .guide-reading p { line-height: 1.65; margin: 6px 0 16px; }
+.guide-reading details { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; }
+.guide-reading summary, #guide-unchecked summary { cursor: pointer; font-weight: 600; }
+.guide-reading details button { margin-top: 4px; }
+#guide-history, #guide-note { white-space: pre-line; }
+.guide-source-list { margin: 10px 0 0; padding-inline-start: 20px; line-height: 1.6; overflow-wrap: anywhere; }
+#guide-unchecked { margin-top: 16px; }
 .guide-controls { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .guide-controls [aria-pressed="true"] { background: var(--accent); border-color: var(--primary); }
 .guide-player {
@@ -610,7 +618,7 @@ body:has(#route-map-dialog[open]) { overflow: hidden; }
 .guide-player .section-number { font-size: .63rem; }
 .guide-player .guide-controls button, #guide-speed { min-height: 39px; padding: 6px 10px; font-size: .8rem; }
 #guide-speed { width: auto; }
-:is(#guide-audio-status,#travelbook-status,#guide-notice):empty { display: none; }
+:is(#guide-audio-status,#travelbook-status,#guide-notice,#guide-detail-status,#guide-availability):empty { display: none; }
 #guide-audio-status { flex-basis: 100%; margin: 0; color: var(--muted); font-size: .8rem; }
 body.has-guide-player { padding-bottom: 140px; }
 .travelbook-download { background: linear-gradient(120deg, var(--accent), var(--surface)); }

@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ваш маршрут — TripWise</title>
   <script src="/theme.js?v=20261122-unified2"></script>
-  <link rel="stylesheet" href="/styles.css?v=20261124-tips1">
+  <link rel="stylesheet" href="/styles.css?v=20261125-guide">
   <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
   <script src="/route-map.js?v=20261123-stop-details" defer></script>
-  <script src="/guide-stories.js?v=1" defer></script>
-  <script src="/route-guide.js?v=3" defer></script>
+  <script src="/guide-stories.js?v=2" defer></script>
+  <script src="/route-guide.js?v=4" defer></script>
   <script src="/travelbook.js?v=2" defer></script>
   <link rel="stylesheet" href="/trip-navigation.css?v=1">
   <script src="/trip-navigation.js?v=1" defer></script>
-  <script src="/trip-result.js?v=20261124-navigation1" defer></script>
+  <script src="/trip-result.js?v=20261125-guide" defer></script>
 </head>
 <body class="questionnaire-page">
   <header class="header"><a class="brand" href="/" aria-label="TripWise — главная">TripWise<span class="brand-dot">.</span></a>
@@ -123,26 +123,43 @@
       <p id="guide-notice" role="status"></p>
       <p id="guide-voice-hint" class="field-hint" hidden>В этом браузере озвучивание недоступно. Все тексты можно прочитать.</p>
       <div id="guide-list-view">
-        <header class="guide-intro"><span class="section-number">МЕСТА И ИСТОРИИ</span><h2>Город в вашем темпе</h2><p>Выберите день, а затем остановку. В списке только места для посещения.</p></header>
+        <header class="guide-intro"><h2>Истории по маршруту</h2><p>Выберите день и место, чтобы прочитать или послушать рассказ.</p></header>
         <div id="guide-days" class="guide-days" role="group" aria-label="Дни аудиогида"></div>
-        <ol id="guide-places" class="guide-places" aria-label="Места в порядке посещения"></ol>
-        <p id="guide-empty" class="field-hint" hidden>На этот день экскурсионных остановок нет. Питание и переходы есть во вкладке «Маршрут».</p>
+        <p id="guide-availability" class="field-hint" role="status"></p>
+        <button id="guide-retry-list" type="button" class="outline-button" hidden>Проверить ещё раз</button>
+        <ol id="guide-places" class="guide-places" aria-label="Места с рассказами в порядке посещения"></ol>
+        <details id="guide-unchecked" hidden>
+          <summary>Места, для которых можно поискать рассказ</summary>
+          <ol id="guide-unknown-places" class="guide-places"></ol>
+        </details>
+        <p id="guide-empty" class="field-hint" hidden></p>
       </div>
       <article id="guide-detail" hidden>
         <button id="guide-back-list" type="button" class="outline-button">← К списку мест</button>
         <div class="guide-detail-cover">
-          <img id="guide-detail-art" alt="">
+          <img id="guide-detail-art" alt="" decoding="async" referrerpolicy="no-referrer">
           <div><p id="guide-detail-kicker" class="eyebrow"></p><h2 id="guide-detail-title" tabindex="-1"></h2></div>
         </div>
-        <section class="guide-listen" aria-labelledby="guide-listen-title">
+        <p id="guide-image-credit" class="guide-credit" hidden></p>
+        <p id="guide-detail-status" class="field-hint" role="status"></p>
+        <div class="guide-controls">
+          <button id="guide-retry-detail" type="button" class="outline-button" hidden>Попробовать ещё раз</button>
+          <button id="guide-show-map" class="outline-button" type="button" hidden>Показать на карте</button>
+        </div>
+        <section id="guide-listen" class="guide-listen" aria-labelledby="guide-listen-title" hidden>
           <div><h3 id="guide-listen-title">Послушать рассказ</h3><p class="field-hint">Озвучивание продолжится, если открыть карту.</p></div>
           <div class="guide-controls guide-formats" role="group" aria-label="Длина рассказа"><button type="button" class="outline-button" data-guide-length="short" aria-pressed="false">Короткий</button><button type="button" class="outline-button" data-guide-length="long" aria-pressed="false">Подробный</button></div>
           <div id="guide-player-slot"></div>
         </section>
-        <section class="guide-reading">
+        <section id="guide-reading" class="guide-reading" hidden>
           <h3 id="guide-history-title">Историческая справка</h3><p id="guide-history"></p>
-          <h3 id="guide-note-title">На что обратить внимание</h3><p id="guide-note"></p>
-          <div class="guide-controls"><a id="guide-source" class="back-link" target="_blank" rel="noopener noreferrer" hidden>Источник ↗</a><button id="guide-show-map" class="outline-button" type="button" hidden>Показать на карте</button></div>
+          <details id="guide-full-story" hidden><summary>Читать подробнее</summary><p id="guide-note"></p></details>
+        </section>
+        <section id="guide-facts" class="guide-reading" hidden>
+          <h3>Интересные факты</h3><div id="guide-fact-list"></div>
+        </section>
+        <section id="guide-sources" class="guide-reading" hidden>
+          <h3>Источники и лицензии</h3><ul id="guide-source-list" class="guide-source-list"></ul>
         </section>
       </article>
     </section>

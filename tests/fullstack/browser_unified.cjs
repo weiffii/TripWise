@@ -45,6 +45,22 @@ async function main(){
   window.SpeechSynthesisUtterance = class {constructor(text){this.text=text;}};
  });
  await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
+ const guideCalls = {availability:[], stories:[]};
+ const availabilityUrl = url => url.origin === base && url.pathname === '/api/guide/availability';
+ await context.route(availabilityUrl, route => {
+  const {poi_ids} = route.request().postDataJSON();
+  guideCalls.availability.push(poi_ids);
+  return route.fulfill({json:{items:poi_ids.map(poi_id => ({poi_id,status:'available',category:'history'}))}});
+ });
+ await context.route(url => url.origin === base && url.pathname.startsWith('/api/guide/poi/'), route => {
+  const url = new URL(route.request().url());
+  const poi_id = decodeURIComponent(url.pathname.split('/').at(-1));
+  guideCalls.stories.push(poi_id);
+  return route.fulfill({json:{poi_id,city:url.searchParams.get('city'),language:'ru',status:'available',
+   short_text:'Короткая справка для проверки интерфейса.',full_text:'Подробная справка для проверки интерфейса.',
+   facts:[{title:'Проверка факта',text:'Пример текста.'}],
+   sources:[{title:'Тестовый источник',url:'https://example.org/',license:'CC BY-SA 4.0',license_url:'https://creativecommons.org/licenses/by-sa/4.0/'}]}});
+ });
  const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto(base);await page.getByRole('button',{name:'Создать поездку',exact:true}).first().click();
  await page.locator('#email').fill('unified-browser@example.com');
@@ -243,14 +259,20 @@ async function main(){
     await page.setViewportSize({width: 1440, height: 1000});
   }
   const guide = page.getByRole('tab',{name:'Аудиогид'});
+  const detailRequests = guideCalls.stories.length;
+  const checkedAvailability = page.waitForResponse(response => availabilityUrl(new URL(response.url())));
   await guide.click();
+  await checkedAvailability;
+  await page.waitForFunction(() => !document.querySelector('#guide-availability').textContent);
+  assert.equal(guideCalls.stories.length, detailRequests, 'guide list requests no individual story');
   assert.equal(await page.locator('#guide-days button').count(),preview.plan.days.length);
   const rendered = await page.locator('#guide-places strong').allTextContents();
   const firstDay = preview.plan.days[0];
   const meals = new Set(Object.values(preview.plan.moscow_meals?.[firstDay.date] || {}).map(meal=>meal.poi_id));
   const metadata = new Map(catalog.map(place=>[place.id,place]));
   const expected = (firstDay.events || firstDay.visits.map(stop=>({...stop,type:'visit'})).sort((a,b)=>a.start_at.localeCompare(b.start_at)))
-    .filter(stop=>stop.type==='visit'&&!meals.has(stop.poi_id)&&metadata.has(stop.poi_id)&&metadata.get(stop.poi_id).kind!=='restaurant')
+    .filter(stop=>stop.type==='visit'&&!meals.has(stop.poi_id)&&metadata.has(stop.poi_id)&&
+      !/^(restaurant|cafe|café|bakery|fast_food|food_court|bar|pub|ice_cream|coffee_shop)$/i.test(metadata.get(stop.poi_id).kind||''))
     .map(stop=>metadata.get(stop.poi_id).name);
   assert.deepEqual(rendered,expected,'guide follows the visit order and excludes meals');
   if (preview.plan.days.length > 1) {
@@ -261,6 +283,12 @@ async function main(){
   await page.locator('.guide-card').first().click();
   assert.equal(await page.locator('#guide-detail-title').textContent(),rendered[0]);
   await page.locator('#guide-player-slot #guide-player.is-inline').waitFor({state:'visible'});
+  if (preview.city === 'moscow') {
+    assert.equal(guideCalls.stories.length, detailRequests + 1);
+    await page.getByText('Проверка факта', {exact:true}).click();
+    assert.equal(await page.getByRole('button',{name:'Озвучить факт: Проверка факта'}).isVisible(), true);
+    assert.equal(await page.getByRole('link',{name:'CC BY-SA 4.0'}).getAttribute('href'),'https://creativecommons.org/licenses/by-sa/4.0/');
+  }
   assert.equal(await page.locator('#guide-play').textContent(),'Слушать');
   assert.ok((await page.locator('#guide-play').boundingBox()).height >= 52);
   await page.screenshot({path:path.join(artifacts,preview.city+'-inline-player.png')});

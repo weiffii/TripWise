@@ -528,7 +528,7 @@ function updateGuide() {
         if (!place || row.type !== 'visit' || /^(restaurant|cafe|café|bakery|fast_food|food_court|bar|pub|ice_cream|coffee_shop)$/i.test(place.kind || '')) continue;
         const occurrence = (occurrences.get(row.poi_id) || 0) + 1;
         occurrences.set(row.poi_id, occurrence);
-        stops.push({id:row.poi_id,name:place.name,occurrence,canMap,mapIndex,time:clock(row,'start'),minutes:eventDetails(row).minutes});
+        stops.push({id:row.poi_id,name:place.name,occurrence,canMap,mapIndex});
       }
       return {date:day.date,label:dayLabel(day.date,index),stops};
     }),
@@ -683,6 +683,19 @@ async function connectAssistant(status = null) {
   registration = await request(chatPath + 'register',{});
 }
 
+async function hydrateTripPlaces(plan) {
+  const wanted = new Set(plan.suggested_poi_ids || []);
+  for (const day of plan.days) {
+    for (const row of day.events || day.visits || []) if (row.poi_id) wanted.add(row.poi_id);
+  }
+  const missing = [...wanted].filter(id => !places.has(id));
+  for (let start = 0; start < missing.length; start += 256) {
+    const catalog = await request('/api/planned-trips/catalog/' + trip.city + '/selection',
+      {poi_ids: missing.slice(start, start + 256)});
+    for (const place of catalog) places.set(place.id, {...place, area: trip.city === 'moscow' ? 'Москва' : 'Шанхай'});
+  }
+}
+
 async function sendChatMessage(text) {
   const version = registration.version;
   const send = () => request(chatPath + 'message', {route_id:registration.route_id,base_version:registration.version,
@@ -695,6 +708,7 @@ async function sendChatMessage(text) {
     await connectAssistant();
     if (latest.version !== version || registration.version !== version) {
       trip = latest.version === registration.version ? latest : await request(endpoint);
+      await hydrateTripPlaces(trip.plan);
       renderTrip();
       throw Error('Маршрут изменился в другой вкладке. Проверьте обновлённый план и отправьте пожелание снова.');
     }
@@ -708,9 +722,7 @@ async function load() {
   if(typeof trip.owner_context!=='string'||!trip.owner_context)throw Error('Не удалось проверить аккаунт. Обновите страницу.');
   ownerContext=trip.owner_context;
   window.setDestinationVisual(trip.city==='moscow'?'Москва':'Шанхай');
-  const legacy = trip.city === 'moscow' && !trip.poi_snapshot_id.startsWith('moscow-v7:');
-  const catalog = await request('/api/planned-trips/catalog/' + trip.city + (legacy ? '?include_legacy=true' : ''));
-  for (const place of catalog) places.set(place.id,{...place, area:trip.city === 'moscow' ? 'Москва' : 'Шанхай'});
+  await hydrateTripPlaces(trip.plan);
   renderTrip();
   setEditBusy(false);
   if (!isPreview) return;
@@ -781,6 +793,7 @@ chatForm.addEventListener('submit',async event => {
     const changedDays = result.diff?.changed_days;
     const previewDays = changedDays?.length ? result.plan.days.filter(day => changedDays.includes(day.date))
       : result.plan.days;
+    await hydrateTripPlaces(result.plan);
     for (const day of previewDays) {
       for (const row of events(day, result.plan)) appendText(preview, day.date + ' · ' + eventLabel(row));
     }
@@ -798,6 +811,7 @@ async function decide(decision) {
     if (result.type === 'confirmed') {
       registration.version = result.version;
       trip = await request(endpoint);
+      await hydrateTripPlaces(trip.plan);
       renderTrip();
       element('route-state').textContent='Изменения применены к предварительному маршруту. Нажмите «Сохранить поездку», чтобы записать их в аккаунт.';
     }

@@ -18,11 +18,11 @@ def timestamp(date, minutes):
     return f'{date}T{minutes // 60:02d}:{minutes % 60:02d}:00+03:00'
 
 
-def engine_input(profile, pois, matrix, context):
+def engine_input(profile, pois, matrix, context, *, day_pairs=None):
     durations = {row['poi_id']: row['minutes'] for row in context['duration_overrides']}
     group = context['moscow_group']
     people = group['adult'] + group['child'] + group['senior']
-    costs = {row['poi_id']: row['amount'] for row in context['cost_context']['visit_costs']}
+    costs = {row['poi_id']: row for row in context['cost_context']['visit_costs']}
     openings = {}
     for row in context['opening_intervals']:
         windows = row['intervals']
@@ -33,7 +33,8 @@ def engine_input(profile, pois, matrix, context):
     catalog = []
     for poi in pois:
         key = poi['id']
-        price = costs[key]
+        cost = costs[key]
+        price = cost['amount']
         if price is None:
             continue
         restaurant = 'average_check_rub' in poi['planning']
@@ -49,7 +50,7 @@ def engine_input(profile, pois, matrix, context):
             'duration_locked': key in context.get('moscow_user_duration_ids', ()),
             'food_type': poi['planning'].get('food_type', {}).get('value'),
             'meal_suitability': poi['planning'].get('meal_suitability', {}).get('value'),
-            'price_basis': next((c.get('basis', 'unknown') for c in context['cost_context']['visit_costs'] if c['poi_id'] == key), 'unknown'),
+            'price_basis': cost.get('basis', 'unknown'),
         })
     selected = context.get('moscow_transport_modes')
     mode = ('mixed' if len(selected) > 1 else selected[0]) if selected else MODES[profile['transport']]
@@ -60,6 +61,8 @@ def engine_input(profile, pois, matrix, context):
         profile_rows = profiles.setdefault(name, {})
         for pair in source['pairs']:
             a, b = pair['from_poi_id'], pair['to_poi_id']
+            if day_pairs is not None and (a, b) not in day_pairs:
+                continue
             actual_mode = 'walk' if name == 'transit' and not pair.get('transport_steps') else name
             value = None
             if pair['status'] == 'known':
@@ -266,8 +269,16 @@ def stretch_saved_visits(plan, profile, pois, context, *, only_days=None):
 
 def fixed_sequence(state, sequences, *, optimize=None):
     profile, context, pois = (state[key] for key in ('preferences', 'routing_context', 'pois'))
+    day_pairs = None
+    if state.get('day_local_transport') and optimize is None:
+        # Gap repair schedules fixed stops, separately for each day. Retain all
+        # within-day alternatives, including a saved day's transports.
+        day_pairs = {(a, b) for ids in sequences.values() for a in ids for b in ids if a != b}
+        day_pairs.update((leg['from_poi_id'], leg['to_poi_id'])
+                         for day in state['route']['days'] for leg in day.get('legs', ()))
     dataset, options, rows = engine_input(profile, pois, state['travel_times'],
-        {**context, 'opening_intervals': context.get('moscow_original_hours', context['opening_intervals'])})
+        {**context, 'opening_intervals': context.get('moscow_original_hours', context['opening_intervals'])},
+        day_pairs=day_pairs)
     dataset['defer_visit_extensions'] = state.get('defer_visit_extensions', False)
     dataset['reserved_breaks'] = reserved_breaks(state['route'])
     places = {poi['id']: poi for poi in dataset['pois']}
