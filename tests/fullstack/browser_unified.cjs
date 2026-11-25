@@ -33,7 +33,34 @@ async function main(){
  for(let i=0;i<150;i++){if(server.exitCode!==null)throw Error('QA server exited');try{if((await fetch(base+'/api/health')).ok)break;}catch{}if(i===149)throw Error('QA server start timeout');await sleep(100);}
  browser=await chromium.launch({headless:true,executablePath:process.env.TRIPWISE_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
  const context=await browser.newContext({viewport:{width:1440,height:1000}});
+ // Проверяем команды плеера и сохранение очереди при переключении вкладок.
+ // Наличие и качество системного русского голоса в headless Chrome не оценивается.
+ await context.addInitScript(() => {
+  const speech = {calls:[],paused:false,getVoices:()=>[],
+   speak(utterance){this.calls.push(['speak',utterance.text,utterance.rate,utterance.lang]);},
+   cancel(){this.calls.push(['cancel']);},
+   pause(){this.paused=true;this.calls.push(['pause']);},
+   resume(){this.paused=false;this.calls.push(['resume']);}};
+  Object.defineProperty(window,'speechSynthesis',{value:speech});
+  window.SpeechSynthesisUtterance = class {constructor(text){this.text=text;}};
+ });
  await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
+ const guideCalls = {availability:[], stories:[]};
+ const availabilityUrl = url => url.origin === base && url.pathname === '/api/guide/availability';
+ await context.route(availabilityUrl, route => {
+  const {poi_ids} = route.request().postDataJSON();
+  guideCalls.availability.push(poi_ids);
+  return route.fulfill({json:{items:poi_ids.map(poi_id => ({poi_id,status:'available',category:'history'}))}});
+ });
+ await context.route(url => url.origin === base && url.pathname.startsWith('/api/guide/poi/'), route => {
+  const url = new URL(route.request().url());
+  const poi_id = decodeURIComponent(url.pathname.split('/').at(-1));
+  guideCalls.stories.push(poi_id);
+  return route.fulfill({json:{poi_id,city:url.searchParams.get('city'),language:'ru',status:'available',
+   short_text:'Короткая справка для проверки интерфейса.',full_text:'Подробная справка для проверки интерфейса.',
+   facts:[{title:'Проверка факта',text:'Пример текста.'}],
+   sources:[{title:'Тестовый источник',url:'https://example.org/',license:'CC BY-SA 4.0',license_url:'https://creativecommons.org/licenses/by-sa/4.0/'}]}});
+ });
  const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto(base);await page.getByRole('button',{name:'Создать поездку',exact:true}).first().click();
  await page.locator('#email').fill('unified-browser@example.com');
@@ -53,8 +80,35 @@ async function main(){
   assert.equal(await page.locator('#finish-questionnaire').isVisible(), false);
   await next.click();
   assert.match(await step.textContent(), /Шаг 1 из 5/, 'empty dates stop Next');
+  assert.equal(await page.locator('#middle-days').evaluate(el => el.open),true);
   await page.locator('#first-walk').fill('2026-12-01T09:00');
-  await page.locator('#last-walk').fill('2026-12-01T19:00');
+  await page.locator('#last-walk').fill(country === 'CN' ? '2026-12-02T19:00' : '2026-12-01T19:00');
+  if (country === 'RU') {
+    const calendar = page.locator('#trip-calendar-dialog');
+    await page.locator('#trip-calendar-open').click();
+    assert.equal(await calendar.locator('.trip-calendar-month').count(),1);
+    assert.ok((await calendar.boundingBox()).width <= 450);
+    await calendar.locator('[data-date="2026-12-01"]').click();
+    assert.equal(await calendar.locator('[data-date="2026-12-15"]').isDisabled(),true);
+    await calendar.locator('[data-date="2026-12-02"]').click();
+    await calendar.locator('#trip-calendar-start-time').fill('10:15');
+    await calendar.locator('#trip-calendar-apply').click();
+    assert.equal(await page.locator('#first-walk').inputValue(),'2026-12-01T10:15');
+    assert.equal(await page.locator('#last-walk').inputValue(),'2026-12-02T19:00');
+    assert.equal(await page.locator('#first-walk-day').textContent(),'Первый день · 1 декабря');
+    assert.equal(await page.locator('#last-walk-day').textContent(),'Последний день · 2 декабря');
+    await page.setViewportSize({width:375,height:812});
+    await page.locator('#trip-calendar-open').click();
+    assert.equal(await calendar.locator('.trip-calendar-month').count(),1);
+    await calendar.locator('#trip-calendar-start-time').fill('11:00');
+    await page.keyboard.press('Escape');
+    assert.equal(await page.locator('#first-walk').inputValue(),'2026-12-01T10:15');
+    await page.setViewportSize({width:1440,height:1000});
+    await page.locator('#first-walk').fill('2026-12-01T09:00');
+    await page.locator('#last-walk').fill('2026-12-01T19:00');
+    assert.equal(await page.locator('#first-walk-fields input').count(),2);
+    assert.equal(await page.locator('#last-walk-group').isVisible(),false);
+  }
   await next.click();
   await page.locator('#budget').fill(budget);
   await page.locator('[name=budget_currency]').selectOption(currency);
@@ -113,7 +167,10 @@ async function main(){
   await stop.click();
   assert.equal(await stop.getAttribute('aria-pressed'), 'true');
   assert.equal(await mapPanel.locator('[data-stop][aria-pressed=true]').count(),1);
-  assert.ok(await mapPanel.locator('polyline[stroke-width="7"]').count(), 'arrival leg highlighted');
+  await mapPanel.locator('#route-place-details h3').waitFor();
+  await page.locator('.route-event-travel .schedule-action button').first().click();
+  assert.ok(await mapPanel.locator('polyline[stroke-width="7"]').count(), 'selected transition highlighted');
+  await stop.click();
   assert.equal(await mapDialog.isVisible(),false);
   await page.locator('#expand-route-map').click();
   await mapDialog.waitFor({state:'visible'});
@@ -121,6 +178,58 @@ async function main(){
   assert.equal(await mapDialog.locator('[data-stop][aria-pressed=true]').count(),1);
   await page.keyboard.press('Escape');
   await page.locator('#route-map-sidebar #route-map-panel').waitFor();
+  await page.locator('.geometry-check').first().click();
+  await mapDialog.waitFor({state:'visible'});
+  assert.equal((await mapDialog.boundingBox()).width, 1440);
+  await mapDialog.locator('polyline[stroke-width="7"]').first().waitFor({state:'attached'});
+  await page.keyboard.press('Escape');
+  await mapDialog.waitFor({state:'hidden'});
+  const navRow = page.locator('.navigation-start').first();
+  const navDialog = page.locator('#trip-navigation');
+  await navRow.click();
+  await navDialog.waitFor({state:'visible'});
+  assert.equal((await navDialog.boundingBox()).width, 1440);
+  const firstTravel = (preview.plan.days[0].events?.filter(row=>row.type==='travel') || preview.plan.days[0].legs)[0];
+  const start = catalog.find(place=>place.id===firstTravel.from_poi_id);
+  const destination = catalog.find(place=>place.id===firstTravel.to_poi_id);
+  assert.equal(await page.locator('#navigation-destination').textContent(), destination.name);
+  await page.locator('#navigation-pick').click();
+  await page.locator('#navigation-map').click({position:{x:200,y:160}});
+  assert.match(await page.locator('#navigation-origin').inputValue(), /^-?\d+\.\d+, -?\d+\.\d+$/);
+  await context.setGeolocation({latitude:start.lat, longitude:start.lon});
+  await context.grantPermissions(['geolocation'], {origin:base});
+  await page.locator('#navigation-locate').click();
+  await page.waitForFunction(value=>document.querySelector('#navigation-origin').value===value,`${start.lat.toFixed(6)}, ${start.lon.toFixed(6)}`);
+  await page.locator('#navigation-origin').fill(`${start.lat}, ${start.lon}`);
+  const navURL = base + '/api/route-previews/' + previewId + '/navigate';
+  const live = country === 'RU' && process.env.TRIPWISE_QA_LIVE_NAVIGATION === '1';
+  if (!live) await page.route(navURL, async route => {
+    const body = route.request().postDataJSON();
+    assert.equal(body.day, preview.plan.days[0].date);
+    assert.equal(body.leg_index, 0);
+    assert.deepEqual(body.origin,{lat:start.lat,lon:start.lon});
+    await route.fulfill({json:{origin:body.origin,destination,mode:body.mode,distance_meters:330,duration_seconds:250,
+      geometry:{type:'LineString',coordinates:[[start.lon,start.lat],[(start.lon+destination.lon)/2,start.lat],[destination.lon,destination.lat]]},
+      steps:['Начните движение · 330 м','Вы у места назначения']}});
+  });
+  const navigationAnswer = page.waitForResponse(response=>response.url()===navURL);
+  await page.locator('#navigation-build').click();
+  if (live) assert.equal((await json(await navigationAnswer)).source_id,'moscow-osrm');
+  else await navigationAnswer;
+  await page.locator('#navigation-steps').waitFor({timeout:20000});
+  assert.ok(await page.locator('#navigation-instructions li').count() >= 2);
+  assert.ok(await page.locator('#navigation-map polyline[stroke-width="7"]').count());
+  await page.screenshot({path:path.join(artifacts,`navigation-${city}.png`)});
+  if (!live) await page.unroute(navURL);
+  await page.keyboard.press('Escape');
+  await navDialog.waitFor({state:'hidden'});
+  const tips = page.getByRole('tab',{name:'Полезные советы'});
+  await tips.click();
+  await page.getByRole('heading',{name:'Рекомендованные приложения'}).waitFor();
+  assert.equal(await page.locator('#trip-panel-route').isVisible(),false);
+  await tips.press('ArrowLeft');
+  assert.equal(await page.getByRole('tab',{name:'Аудиогид'}).getAttribute('aria-selected'),'true');
+  await page.getByRole('tab',{name:'Маршрут'}).click();
   const editor = page.locator('#route-editor');
   assert.equal(await editor.isVisible(), false);
   for (const button of ['#edit-trip', '#edit-trip-bottom']) {
@@ -149,6 +258,103 @@ async function main(){
     assert.equal(await stop.evaluate(node => node === document.activeElement),true);
     await page.setViewportSize({width: 1440, height: 1000});
   }
+  const guide = page.getByRole('tab',{name:'Аудиогид'});
+  const detailRequests = guideCalls.stories.length;
+  const checkedAvailability = page.waitForResponse(response => availabilityUrl(new URL(response.url())));
+  await guide.click();
+  await checkedAvailability;
+  await page.waitForFunction(() => !document.querySelector('#guide-availability').textContent);
+  assert.equal(guideCalls.stories.length, detailRequests, 'guide list requests no individual story');
+  assert.equal(await page.locator('#guide-days button').count(),preview.plan.days.length);
+  const rendered = await page.locator('#guide-places strong').allTextContents();
+  const firstDay = preview.plan.days[0];
+  const meals = new Set(Object.values(preview.plan.moscow_meals?.[firstDay.date] || {}).map(meal=>meal.poi_id));
+  const metadata = new Map(catalog.map(place=>[place.id,place]));
+  const expected = (firstDay.events || firstDay.visits.map(stop=>({...stop,type:'visit'})).sort((a,b)=>a.start_at.localeCompare(b.start_at)))
+    .filter(stop=>stop.type==='visit'&&!meals.has(stop.poi_id)&&metadata.has(stop.poi_id)&&
+      !/^(restaurant|cafe|café|bakery|fast_food|food_court|bar|pub|ice_cream|coffee_shop)$/i.test(metadata.get(stop.poi_id).kind||''))
+    .map(stop=>metadata.get(stop.poi_id).name);
+  assert.deepEqual(rendered,expected,'guide follows the visit order and excludes meals');
+  if (preview.plan.days.length > 1) {
+    await page.locator('#guide-days button').nth(1).click();
+    assert.equal(await page.locator('#guide-days button').nth(1).getAttribute('aria-pressed'),'true');
+    await page.locator('#guide-days button').first().click();
+  }
+  await page.locator('.guide-card').first().click();
+  assert.equal(await page.locator('#guide-detail-title').textContent(),rendered[0]);
+  await page.locator('#guide-player-slot #guide-player.is-inline').waitFor({state:'visible'});
+  if (preview.city === 'moscow') {
+    assert.equal(guideCalls.stories.length, detailRequests + 1);
+    await page.getByText('Проверка факта', {exact:true}).click();
+    assert.equal(await page.getByRole('button',{name:'Озвучить факт: Проверка факта'}).isVisible(), true);
+    assert.equal(await page.getByRole('link',{name:'CC BY-SA 4.0'}).getAttribute('href'),'https://creativecommons.org/licenses/by-sa/4.0/');
+  }
+  assert.equal(await page.locator('#guide-play').textContent(),'Слушать');
+  assert.ok((await page.locator('#guide-play').boundingBox()).height >= 52);
+  await page.screenshot({path:path.join(artifacts,preview.city+'-inline-player.png')});
+  await page.locator('[data-guide-length=long]').click();
+  assert.equal(await page.locator('#guide-play').textContent(),'Пауза');
+  await page.locator('#guide-show-map').click();
+  await page.locator('#guide-player:not(.is-inline)').waitFor({state:'visible'});
+  await page.locator('#route-map [data-stop][aria-pressed=true]').waitFor();
+  assert.equal(await page.locator('#guide-play').textContent(),'Пауза');
+  assert.equal(await page.evaluate(()=>speechSynthesis.calls.filter(call=>call[0]==='cancel').length),0);
+  await page.locator('#guide-play').click();
+  assert.equal(await page.locator('#guide-play').textContent(),'Продолжить');
+  await page.locator('#guide-play').click();
+  await page.locator('#guide-speed').selectOption('1.5');
+  assert.deepEqual(await page.evaluate(()=>speechSynthesis.calls.at(-1).slice(-2)),[1.5,'ru-RU']);
+  if (rendered.length > 1) {
+    await page.locator('#guide-next').click();
+    assert.equal(await page.locator('#guide-now').textContent(),rendered[1]);
+    await page.locator('#guide-previous').click();
+    assert.equal(await page.locator('#guide-now').textContent(),rendered[0]);
+  }
+  await page.locator('#guide-dismiss-player').click();
+  assert.doesNotMatch(await page.locator('#cost-note').textContent(), /синтетической планировочной моделью/);
+  const download = page.waitForEvent('download');
+  await page.locator('#download-travelbook').click();
+  const book = await download;
+  const localPdf = path.join(artifacts, preview.city+'-TravelBook.pdf');
+  await book.saveAs(localPdf);
+  const bytes = fs.readFileSync(localPdf).toString('latin1');
+  assert.match(bytes,/^%PDF-/);
+  assert.equal((bytes.match(/\/Type\s*\/Page\b/g)||[]).length,preview.plan.days.length+1);
+  if (preview.city === 'moscow') {
+    // Подставляем ответ на подтверждение, чтобы отделить проверку обновления UI
+    // от выбора конкретной операции и возможности пересобрать день маршрутизатором.
+    const updated = structuredClone(preview);
+    const removedId = firstDay.visits.find(visit=>metadata.get(visit.poi_id)?.name===rendered[0]).poi_id;
+    updated.plan.days[0].visits = updated.plan.days[0].visits.filter(visit=>visit.poi_id!==removedId);
+    updated.version++;
+    const baseUrl = base+'/api/route-previews/'+previewId;
+    const messageUrl = baseUrl+'/assistant/message';
+    const decideUrl = baseUrl+'/assistant/decide';
+    await page.route(messageUrl, route=>route.fulfill({json:{
+      type:'proposal',message:'Предложена правка',proposal_id:'test-ui-edit',
+      base_version:preview.version,plan:updated.plan,diff:{removed:[{name:rendered[0],day:firstDay.date}]},
+    }}));
+    await page.route(decideUrl, route=>route.fulfill({json:{type:'confirmed',version:updated.version}}));
+    await page.route(baseUrl, route=>route.fulfill({json:updated}));
+    await page.locator('#edit-trip').click();
+    await page.locator('#chat-text').fill('Убери первую остановку');
+    await page.locator('#edit-route button').click();
+    await page.locator('#confirm-edit').click();
+    await page.waitForFunction(()=>document.querySelector('#route-state').textContent.includes('Изменения применены'));
+    await page.keyboard.press('Escape');
+    await guide.click();
+    assert.deepEqual(await page.locator('#guide-places strong').allTextContents(),rendered.filter(name=>name!==rendered[0]));
+    await page.getByRole('tab',{name:'Маршрут',exact:true}).click();
+    const amendedDownload = page.waitForEvent('download');
+    await page.locator('#download-travelbook').click();
+    const amendedPdf = path.join(artifacts,'moscow-TravelBook-updated.pdf');
+    await (await amendedDownload).saveAs(amendedPdf);
+    assert.notDeepEqual(fs.readFileSync(amendedPdf),fs.readFileSync(localPdf),'export reflects updated itinerary');
+    for (const url of [messageUrl,decideUrl,baseUrl]) await page.unroute(url);
+    await page.reload();
+    await page.locator('#save-trip').waitFor({state:'visible'});
+  }
+
   await page.locator('#save-trip').click();await page.waitForURL('**/trip/result?route=*',{timeout:15000});
   const routeId=new URL(page.url()).searchParams.get('route');const saved=await json(await context.request.get(base+'/api/planned-trips/'+routeId));
   assert.equal(saved.city,preview.city);generated.push({routeId,previewId,owner:preview.owner_context,version:saved.version});assert.equal(counts().planned_trips,generated.length);
@@ -162,6 +368,72 @@ async function main(){
  assert.equal(counts().planned_trips,2);
  await page.goto(base+'/trips');await page.waitForFunction(()=>document.querySelectorAll('[data-route-id]').length===2);
  await page.screenshot({path:path.join(artifacts,'two-saved-routes.png'),fullPage:true});
+ assert.equal(await page.locator('#profile-trips').isVisible(),true,'default /trips remains trip collection');
+ assert.equal(await page.locator('#account-profile').isVisible(),false,'profile has its own view');
+ await page.getByRole('link',{name:'Мой профиль',exact:true}).click();
+ await page.waitForURL('**/trips?view=profile');
+ await page.locator('#profile-edit-name:not([disabled])').waitFor();
+ await page.waitForFunction(()=>document.querySelector('#profile-trip-count').textContent==='2');
+ assert.equal(await page.locator('.profile-shortcuts a').count(),2);
+ assert.equal(await page.locator('#profile-trips').isVisible(),false);
+ const profileOwner=(await json(await context.request.get(base+'/api/auth/me'))).owner_context;
+ assert.equal(typeof profileOwner,'string');
+ const nameDialog=page.locator('#profile-name-dialog');
+ assert.equal(await nameDialog.isVisible(),false);
+ await page.locator('#profile-edit-name').click();
+ await page.locator('#profile-display-name').fill('Юлия Путешественница');
+ const profileSaved=page.waitForResponse(response=>response.request().method()==='PUT'&&response.url()===base+'/api/auth/profile');
+ await page.locator('#profile-save').click();
+ const profileResponse=await profileSaved;
+ assert.equal(profileResponse.status(),200);
+ assert.equal(profileResponse.request().headers()['x-tripwise-draft-owner'],profileOwner,'holds owner loaded by /me');
+ await nameDialog.waitFor({state:'hidden'});
+ await page.reload();await page.locator('#profile-edit-name:not([disabled])').waitFor();
+ assert.equal(await page.locator('#profile-display-name').inputValue(),'Юлия Путешественница');
+ assert.equal(await page.locator('#profile-name').textContent(),'Юлия Путешественница');
+ await page.screenshot({path:path.join(artifacts,'editable-profile.png'),fullPage:true});
+ await page.getByRole('link',{name:'Атлас путешествий',exact:true}).click();
+ await page.waitForURL('**/trips?view=atlas');
+ const atlas = page.locator('#atlas-svg');
+ await atlas.locator('[data-atlas-shape="RU"].atlas-highlight').waitFor();
+ await atlas.locator('[data-atlas-shape="CN"].atlas-highlight').waitFor();
+ const colors = await atlas.locator('.atlas-highlight').evaluateAll(paths=>paths.map(path=>getComputedStyle(path).fill));
+ assert.equal(new Set(colors).size,2);
+ assert.deepEqual((await atlas.locator('.atlas-country-label').allTextContents()).sort(),['Китай','Россия']);
+ assert.equal(await atlas.locator('.atlas-city-label').count(),0);
+ assert.ok((await atlas.boundingBox()).height >= 490);
+ for (const code of ['RU','CN']) {
+   assert.ok(await atlas.locator(`[data-atlas-label="${code}"]`).evaluate((label,key)=>{
+     const path=label.ownerSVGElement.querySelector(`[data-atlas-shape="${key}"]`);
+     return path.isPointInFill(new DOMPoint(Number(label.getAttribute('x')),Number(label.getAttribute('y'))));
+   },code),code+' label anchor lies inside the country outline');
+ }
+ assert.ok((await page.locator('.atlas-legend').boundingBox()).x>(await atlas.boundingBox()).x+(await atlas.boundingBox()).width);
+ await page.screenshot({path:path.join(artifacts,'wide-travel-atlas.png'),fullPage:true});
+ const worldBox=await atlas.getAttribute('viewBox');
+ await page.getByRole('button',{name:'Приблизить',exact:true}).click();
+ assert.notEqual(await atlas.getAttribute('viewBox'),worldBox);
+ await page.getByRole('button',{name:'Вернуть исходный масштаб'}).click();
+ assert.equal(await atlas.getAttribute('viewBox'),worldBox);
+ await page.locator('[data-atlas-place="RU"]').click();
+ await atlas.locator('[data-atlas-shape="moscow"].atlas-highlight').waitFor();
+ assert.equal(await atlas.locator('[data-atlas-shape="shanghai"]').count(),0);
+ assert.equal(await atlas.locator('.atlas-country-label').textContent(),'Россия');
+ assert.equal(await atlas.locator('.atlas-city-label').textContent(),'Москва');
+ assert.equal(await atlas.locator('.atlas-outline:not([data-atlas-shape=moscow])').count(),1);
+ assert.ok(await atlas.locator('[data-atlas-shape=RU]').evaluate(path=>{
+   const b=path.getBBox(), view=path.ownerSVGElement.viewBox.baseVal;
+   return b.x>view.x && b.x+b.width<view.x+view.width && b.y>view.y && b.y+b.height<view.y+view.height;
+ }),'entire Russia outline fits across the antimeridian');
+ await page.screenshot({path:path.join(artifacts,'moscow-country-atlas.png'),fullPage:true});
+ await page.locator('[data-atlas-country="CN"]').click();
+ await atlas.locator('[data-atlas-shape="shanghai"].atlas-highlight').waitFor();
+ assert.equal(await atlas.locator('[data-atlas-shape="moscow"]').count(),0);
+ assert.equal(await atlas.locator('.atlas-country-label').textContent(),'Китай');
+ assert.equal(await atlas.locator('.atlas-city-label').textContent(),'Шанхай');
+ await page.getByRole('link',{name:'Мои поездки',exact:true}).click();
+ await page.waitForURL(base+'/trips');
+ await page.waitForFunction(()=>document.querySelectorAll('[data-route-id]').length===2);
  const first=generated[0];await page.locator(`[data-route-id="${first.routeId}"]`).getByRole('button',{name:'Редактировать',exact:true}).click();
  await page.waitForURL('**/trip/result?preview=*');await page.locator('#save-trip').waitFor({state:'visible'});assert.equal(counts().planned_trips,2);
  const editPreview=new URL(page.url()).searchParams.get('preview');const before=await json(await context.request.get(base+'/api/planned-trips/'+first.routeId));
@@ -175,12 +447,35 @@ await page.locator('#finish-questionnaire').click();await page.waitForURL('**/tr
  await page.goto(base+'/trips');await page.waitForFunction(()=>document.querySelectorAll('[data-route-id]').length===2);
  page.once('dialog',dialog=>dialog.dismiss());await page.locator(`[data-route-id="${generated[1].routeId}"]`).getByRole('button',{name:/Удалить/}).click();assert.equal(counts().planned_trips,2);
  page.once('dialog',dialog=>dialog.accept());await page.locator(`[data-route-id="${generated[1].routeId}"]`).getByRole('button',{name:/Удалить/}).click();await page.waitForFunction(()=>document.querySelectorAll('[data-route-id]').length===1);assert.equal(counts().planned_trips,1);
+ await page.getByRole('link',{name:'Атлас путешествий',exact:true}).click();
+ await page.waitForURL('**/trips?view=atlas');
+ await atlas.locator('[data-atlas-shape="RU"].atlas-highlight').waitFor();
+ assert.equal(await atlas.locator('[data-atlas-shape="CN"].atlas-highlight').count(),0,'deleted route no longer colors China');
+ await page.setViewportSize({width:375,height:812});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),375,'profile fits mobile viewport');
+ await page.setViewportSize({width:1440,height:1000});
+ // Старая форма A не меняет имя B после смены общего cookie в другой вкладке.
+ await page.goto(base+'/trips?view=profile');await page.locator('#profile-edit-name:not([disabled])').waitFor();
+ await page.locator('#profile-edit-name').click();
+ await page.locator('#profile-display-name').fill('Несохранённое имя аккаунта A');
+ await json(await context.request.post(base+'/api/auth/register',{headers:{Origin:base},data:{email:'profile-owner-b@example.com',password:'TripWise-Browser-2026!',password_confirmation:'TripWise-Browser-2026!',display_name:'Аккаунт B'}}));
+ const rejectedProfile=page.waitForResponse(response=>response.request().method()==='PUT'&&response.url()===base+'/api/auth/profile');
+ await page.locator('#profile-save').click();
+ const denied=await rejectedProfile;assert.equal(denied.status(),409);
+ assert.equal(denied.request().headers()['x-tripwise-draft-owner'],profileOwner,'old profile owner is never refreshed on submit');
+ await page.waitForFunction(()=>document.querySelector('#profile-message').textContent.includes('Аккаунт изменился'));
+ assert.equal(await page.locator('#profile-display-name').inputValue(),'Несохранённое имя аккаунта A');
+ assert.equal(await page.locator('#profile-save').isDisabled(),true);
+ assert.equal((await json(await context.request.get(base+'/api/auth/me'))).user.display_name,'Аккаунт B');
+ await json(await context.request.post(base+'/api/auth/login',{headers:{Origin:base},data:{email:'unified-browser@example.com',password:'TripWise-Browser-2026!'}}));
+ await page.goto(base+'/trips?view=profile');await page.locator('#profile-edit-name:not([disabled])').waitFor();
+ assert.equal(await page.locator('#profile-display-name').inputValue(),'Юлия Путешественница');
  await page.getByRole('link',{name:'TripWise — главная',exact:true}).click();await page.waitForURL(base+'/');
  await page.setViewportSize({width:375,height:812});await page.reload();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),375);
  const theme=await page.locator('html').getAttribute('data-theme');await page.locator('[data-theme-toggle]').click();assert.notEqual(await page.locator('html').getAttribute('data-theme'),theme);
  await page.screenshot({path:path.join(artifacts,'mobile-home.png'),fullPage:false});
  assert.deepEqual(errors,[],'no page JS errors');
- const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow','five results with full-catalog search and persistent selections','two edit buttons, dialog close, saved route fork','five wizard steps with validation and Back','aligned actions, side map and full-screen selection on mobile'],externalNetwork:'blocked',screenshots:artifacts};
+ const report={status:'passed',cities:generated.map(x=>x.routeId),checks:['real Moscow+Shanghai engines','no DB persistence until explicit Save','idempotent Save','2 independent routes','edit fork + regenerate + guarded Save','delete cancel+confirm','logo home','375px theme+overflow','five results with full-catalog search and persistent selections','two edit buttons, dialog close, saved route fork','five wizard steps with validation and Back','aligned actions, side map and full-screen selection on mobile','day guide order, food excluded, player persistent on map (speech mock)','real TravelBook download (cover + page per day)','guide and PDF refresh after confirmed assistant response','calendar range, local time, 14-day limit and mobile cancel','editable profile guarded owner and persistence, separate trips/profile/atlas URLs','profile atlas countries and labeled cities on country outlines, zoom, delete refresh and mobile width','full-screen selected geometry and navigation with coordinates, geolocation and turn steps'],externalNetwork:'blocked',screenshots:artifacts};
  fs.writeFileSync(path.join(artifacts,'result.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }
 main().catch(error=>{console.error(error.stack);console.error('QA temp server log:',path.join(work,'server.log'));process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();if(server&&server.exitCode===null){server.kill('SIGTERM');await new Promise(resolve=>{server.once('exit',resolve);setTimeout(resolve,5000);});}if(log!==undefined)fs.closeSync(log);});

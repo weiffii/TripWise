@@ -109,6 +109,10 @@ const maxTripDays = 14;
 const dayMilliseconds = 86400000;
 const middleDays = document.querySelector('#middle-days');
 const middleDayFields = document.querySelector('#middle-day-fields');
+const firstWalkFields = document.querySelector('#first-walk-fields');
+const lastWalkFields = document.querySelector('#last-walk-fields');
+const lastWalkGroup = document.querySelector('#last-walk-group');
+const lastWalkField = lastWalk.closest('.field');
 const dayLabel = new Intl.DateTimeFormat('ru-RU', {day:'numeric', month:'long', timeZone:'UTC'});
 function tripDays() {
   if (!firstWalk.value || !lastWalk.value) return 0;
@@ -116,18 +120,28 @@ function tripDays() {
 }
 function renderMiddleDays(settings = middleDaySettings()) {
   const days = tripDays();
-  middleDays.hidden = days < 3 || days > maxTripDays;
+  // У однодневной поездки обе границы показываем в одной карточке.
+  const sameDay = days === 1;
+  const destination = sameDay ? firstWalkFields : lastWalkFields;
+  if (lastWalkField.parentElement !== destination) {
+    // Сохраняем фокус при переносе поля, если браузер это поддерживает.
+    destination.moveBefore ? destination.moveBefore(lastWalkField, null) : destination.append(lastWalkField);
+  }
+  lastWalkGroup.hidden = sameDay;
+  const caption = (label, value) => value ? `${label} · ${dayLabel.format(new Date(value.slice(0,10)))}` : label;
+  document.querySelector('#first-walk-day').textContent = caption(sameDay ? 'День 1' : 'Первый день',firstWalk.value);
+  document.querySelector('#last-walk-day').textContent = caption('Последний день',lastWalk.value);
   middleDayFields.replaceChildren();
-  if (middleDays.hidden) return;
+  if (days < 3 || days > maxTripDays) return;
   const firstDate = Date.parse(firstWalk.value.slice(0,10));
   for (let i = 1; i < days - 1; i++) {
     const date = new Date(firstDate + i * dayMilliseconds);
     const key = date.toISOString().slice(0,10);
     const group = document.createElement('fieldset');
-    group.className = 'form-grid';
+    group.className = 'trip-walk-day form-grid';
     group.dataset.date = key;
     const legend = document.createElement('legend');
-    legend.textContent = dayLabel.format(date);
+    legend.textContent = `День ${i + 1} · ${dayLabel.format(date)}`;
     group.append(legend);
     for (const [name,title] of [['day_start','Начало'], ['day_end','Окончание']]) {
       const label = document.createElement('label');
@@ -150,6 +164,10 @@ function middleDaySettings() {
     if (Object.keys(settings).length) result[group.dataset.date] = settings;
   }
   return result;
+}
+function reportInvalid(input) {
+  if (middleDays.contains(input)) middleDays.open = true;
+  input.reportValidity();
 }
 function durationMinutes(start,end) {
   const minutes = value => Number(value.slice(0,2)) * 60 + Number(value.slice(3,5));
@@ -256,7 +274,7 @@ form.addEventListener('submit',async event=>{
   validate();
   if (stepIndex < steps.length - 1) {
     const invalid = firstInvalid(steps[stepIndex]);
-    if (invalid) invalid.reportValidity();
+    if (invalid) reportInvalid(invalid);
     else showStep(stepIndex + 1);
     return;
   }
@@ -264,7 +282,7 @@ form.addEventListener('submit',async event=>{
     const invalid = firstInvalid(section);
     if (!invalid) continue;
     if (index !== stepIndex) showStep(index);
-    invalid.reportValidity();
+    reportInvalid(invalid);
     return;
   }
   if(!currentCity()||!availableCity(currentCity())){setStatus('Это направление пока в разработке. Выберите Москву или Шанхай.','error');return;}

@@ -418,7 +418,8 @@ def _observed_reason(gap):
 
 
 def _try_schedule(state, current, context, trial, gap, profile, *, reflow=False):
-    requested = {**state, 'route': current, 'routing_context': context, 'defer_visit_extensions': True}
+    requested = {**state, 'route': current, 'routing_context': context,
+                 'defer_visit_extensions': True, 'day_local_transport': True}
     if reflow:
         requested['reflow_days'] = {gap.day}
     try:

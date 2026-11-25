@@ -9,8 +9,9 @@ import re
 import secrets
 import sqlite3
 import time
+import unicodedata
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi import APIRouter, Depends, Header, HTTPException, Request, Response
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
@@ -56,6 +57,9 @@ def init_database():
             CREATE INDEX IF NOT EXISTS attempts_client_time
                 ON auth_attempts(client, attempted_at);
         """)
+        columns = {row['name'] for row in db.execute('PRAGMA table_info(users)')}
+        if 'display_name' not in columns:
+            db.execute("ALTER TABLE users ADD COLUMN display_name TEXT NOT NULL DEFAULT ''")
     DB_PATH.chmod(0o600)
 
 
@@ -101,9 +105,29 @@ class Credentials(BaseModel):
         return value
 
 
+class ProfileUpdate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    display_name: str = Field(strict=True, max_length=80)
+
+    @field_validator('display_name', mode='before')
+    @classmethod
+    def clean_display_name(cls, value):
+        if not isinstance(value, str):
+            return value
+        if any(unicodedata.category(char) in {'Cc', 'Cs'} for char in value):
+            raise ValueError('Имя не должно содержать управляющие символы.')
+        return ' '.join(value.split())
+
+
 class Registration(Credentials):
     password: str = Field(min_length=8, max_length=128, repr=False, json_schema_extra={"format": "password"})
     password_confirmation: str = Field(min_length=8, max_length=128, repr=False, json_schema_extra={"format": "password"})
+    display_name: str = Field(default='', strict=True, max_length=80)
+
+    @field_validator('display_name', mode='before')
+    @classmethod
+    def clean_display_name(cls, value):
+        return ProfileUpdate.clean_display_name(value)
 
     @model_validator(mode="after")
     def matching_passwords(self):
@@ -139,7 +163,7 @@ def current_user(request: Request) -> dict:
         raise HTTPException(401, "Войдите в аккаунт.")
     with database() as db:
         row = db.execute("""
-            SELECT users.id, users.email FROM sessions
+            SELECT users.id, users.email, users.display_name FROM sessions
             JOIN users ON users.id = sessions.user_id
             WHERE sessions.token_hash = ? AND sessions.expires_at > ?
         """, (token_hash(token), int(time.time()))).fetchone()
@@ -171,11 +195,11 @@ def register(data: Registration, request: Request, response: Response):
     password_hash = hash_password(data.password)
     with database() as db:
         try:
-            cursor = db.execute("INSERT INTO users(email, password_hash, created_at) VALUES (?, ?, ?)",
-                                (data.email, password_hash, int(time.time())))
+            cursor = db.execute("INSERT INTO users(email, password_hash, created_at, display_name) VALUES (?, ?, ?, ?)",
+                                (data.email, password_hash, int(time.time()), data.display_name))
         except sqlite3.IntegrityError:
             raise HTTPException(409, "Этот адрес уже зарегистрирован. Перейдите во «Вход».") from None
-        user = {"id": cursor.lastrowid, "email": data.email}
+        user = {"id": cursor.lastrowid, "email": data.email, "display_name": data.display_name}
         token = start_session(db, user["id"], request.cookies.get(COOKIE_NAME))
     set_session_cookie(response, request, token)
     return {"user": user}
@@ -184,7 +208,7 @@ def register(data: Registration, request: Request, response: Response):
 @router.post("/login", dependencies=[Depends(same_origin), Depends(limit_attempts)])
 def login(data: Credentials, request: Request, response: Response):
     with database() as db:
-        row = db.execute("SELECT id, email, password_hash FROM users WHERE email = ?", (data.email,)).fetchone()
+        row = db.execute("SELECT id, email, display_name, password_hash FROM users WHERE email = ?", (data.email,)).fetchone()
     # Для неизвестного пользователя выполняем ту же дорогую операцию.
     stored = row["password_hash"] if row else DUMMY_PASSWORD_HASH
     valid = verify_password(data.password, stored)
@@ -193,13 +217,26 @@ def login(data: Credentials, request: Request, response: Response):
     with database() as db:
         token = start_session(db, row["id"], request.cookies.get(COOKIE_NAME))
     set_session_cookie(response, request, token)
-    return {"user": {"id": row["id"], "email": row["email"]}}
+    return {"user": {"id": row["id"], "email": row["email"], "display_name": row['display_name']}}
 
 
 @router.get("/me")
 def me(response: Response, user: dict = Depends(current_user)):
     response.headers["Cache-Control"] = "no-store"
-    return {"user": user}
+    return {"user": user, "owner_context": str(user['id'])}
+
+
+@router.put('/profile', dependencies=[Depends(same_origin)])
+def update_profile(data: ProfileUpdate, response: Response, user: dict = Depends(current_user),
+                   owner_context: str | None = Header(default=None, alias='X-TripWise-Draft-Owner')):
+    # Импорт после загрузки модулей: drafts сам использует accounts.
+    from backend.drafts import require_owner_context
+    with database() as db:
+        db.execute('BEGIN IMMEDIATE')
+        require_owner_context(owner_context, user)
+        db.execute('UPDATE users SET display_name = ? WHERE id = ?', (data.display_name, user['id']))
+    response.headers['Cache-Control'] = 'no-store'
+    return {'user': {**user, 'display_name': data.display_name}}
 
 
 @router.post("/logout", dependencies=[Depends(same_origin)])

@@ -3,6 +3,7 @@ const logoutButton = document.querySelector('#logout-button');
 const tripsMessage = document.querySelector('#trips-message');
 const savedTrips = document.querySelector('#saved-trips');
 let ownerContext = null;
+let atlasRoutes = [];
 function showError(text) { tripsMessage.textContent=text;tripsMessage.hidden=false; }
 function textElement(tag,className,text){const el=document.createElement(tag);el.className=className;el.textContent=text;return el;}
 function cityName(city){return {moscow:'Москва',shanghai:'Шанхай'}[city]||city||'Поездка';}
@@ -11,6 +12,11 @@ async function removeCard(card,button,path,payload,title){
   if(!confirmDelete(title))return;button.disabled=true;
   try{const response=await fetch(path,{method:'DELETE',credentials:'same-origin',headers:{'Content-Type':'application/json','X-TripWise-Draft-Owner':ownerContext},body:JSON.stringify(payload)});
     if(!response.ok){const result=await response.json();showError(typeof result.detail==='string'?result.detail:'Не удалось удалить поездку. Обновите список.');return;}
+    if(card.dataset.routeId){
+      atlasRoutes=atlasRoutes.filter(route=>route.route_id!==card.dataset.routeId);
+      document.querySelector('#profile-trip-count').textContent = atlasRoutes.length;
+      window.TripWiseAtlas?.update(atlasRoutes);
+    }
     card.remove();document.querySelector('#empty-trips').hidden=savedTrips.children.length>0;
   }catch{showError('Не удалось подтвердить удаление. Обновите страницу, чтобы проверить список.');}finally{button.disabled=false;}
 }
@@ -18,6 +24,9 @@ function cardBase(city,label,status){
  const card=document.createElement('article');card.className='saved-draft trip-card';const image=document.createElement('img');image.className='trip-card-image';image.alt='';image.src=window.destinationImagePath(city);image.loading='lazy';card.append(image,textElement('span','section-number',label),textElement('h2','',city),textElement('span','draft-status',status));return card;
 }
 function renderTrips(drafts,routes){
+ document.querySelector('#profile-trip-count').textContent = routes.length;
+ atlasRoutes=routes;
+ window.TripWiseAtlas?.update(atlasRoutes);
  savedTrips.replaceChildren();document.querySelector('#empty-trips').hidden=drafts.length+routes.length>0;
  for(const trip of routes){
    const city=cityName(trip.city);const card=cardBase(city,'СОХРАНЁННАЯ ПОЕЗДКА','Маршрут создан');card.dataset.routeId=trip.route_id;
@@ -43,6 +52,7 @@ function renderTrips(drafts,routes){
 async function loadAccount(){
  try{
    const account=await fetch('/api/auth/me',{cache:'no-store',credentials:'same-origin'});if(account.status===401){window.location.replace('/');return;}if(!account.ok)throw Error();const user=await account.json();accountEmail.textContent=user.user.email;
+   window.TripWiseProfile?.loadUser(user.user,user.owner_context);
    const [draftResponse,routeResponse]=await Promise.all([fetch('/api/trips',{cache:'no-store',credentials:'same-origin'}),fetch('/api/planned-trips',{cache:'no-store',credentials:'same-origin'})]);
    if(!draftResponse.ok||!routeResponse.ok)throw Error();const drafts=await draftResponse.json();const routes=await routeResponse.json();if(typeof drafts.owner_context!=='string'||!drafts.owner_context||drafts.owner_context!==routes.owner_context)throw Error();ownerContext=drafts.owner_context;renderTrips(drafts.trips,routes.trips);tripsMessage.hidden=true;
  }catch{showError('Не удалось загрузить поездки. Проверьте соединение и обновите страницу.');}

@@ -140,24 +140,25 @@ def routed_station_access(pois, entrances, graph, endpoint, window, *, avoid_tra
         for poi in pois:
             location = coordinates(poi)
             origin = location['lat'], location['lon']
+            nearby = []
+            for position, source_id in by_entrance:
+                distance = _distance(location, {'lat': position[0], 'lon': position[1]})
+                if distance <= STATION_SEARCH_METERS:
+                    nearby.append((distance, position, source_id))
+            nearby.sort()
             for direction in ('enter', 'exit'):
                 reachable = board if direction == 'enter' else alight
-                nearby = [
-                    (_distance(location, {'lat': position[0], 'lon': position[1]}), position, source_id)
-                    for (position, source_id), directions in by_entrance.items() if directions[direction]
-                ]
-                nearby.sort()
-                selected = set(nearby[:MAX_STATION_ENTRANCES])
+                directional = [entry for entry in nearby if by_entrance[entry[1], entry[2]][direction]]
+                selected = set(directional[:MAX_STATION_ENTRANCES])
                 for kind in require_transit:
-                    chosen = next((entry for entry in nearby if any(
+                    chosen = next((entry for entry in directional if any(
                         kind in reachable[stop] for stop in by_entrance[entry[1], entry[2]][direction]
                     )), None)
                     if chosen is not None:
                         selected.add(chosen)
                 for distance, position, source_id in sorted(selected):
-                    if distance <= STATION_SEARCH_METERS:
-                        start, end = (origin, position) if direction == 'enter' else (position, origin)
-                        yield poi['id'], position, source_id, direction, start, end
+                    start, end = (origin, position) if direction == 'enter' else (position, origin)
+                    yield poi['id'], position, source_id, direction, start, end
 
     def resolve(request):
         poi_id, position, source_id, direction, start, end = request

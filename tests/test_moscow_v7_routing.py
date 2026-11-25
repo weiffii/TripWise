@@ -119,7 +119,7 @@ class MoscowV7RoutingTests(unittest.TestCase):
             shanghai.init_routes()
             user = {'id': 1}
             with accounts.database() as db:
-                db.execute("INSERT INTO users VALUES (1, 'test@example.test', 'fixture', 0)")
+                db.execute("INSERT INTO users (id, email, password_hash, created_at) VALUES (1, 'test@example.test', 'fixture', 0)")
             trip = shanghai.store_trip(preferences, user, plan, options, snapshot)
             route_id = trip['route_id']
             request = SimpleNamespace(cookies={accounts.COOKIE_NAME: 'fixture-session'}, headers={})

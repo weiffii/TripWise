@@ -1,0 +1,97 @@
+/* Личные страницы и атлас: отдельный слой, без изменений общего styles.css. */
+.account-nav { display:flex; align-items:center; gap:7px; margin-left:auto; }
+.account-nav a { display:inline-flex; align-items:center; min-height:42px; padding:10px 15px; border:1px solid transparent; border-radius:28px; text-decoration:none; font-size:12px; color:var(--muted); white-space:nowrap; }
+.account-nav a:hover { color:var(--ink); background:var(--surface-alt); }
+.account-nav a[aria-current="page"] { border-color:var(--line); color:var(--primary); background:var(--surface); }
+#profile-edit-name { display:inline-flex; align-items:center; gap:10px; max-width:100%; border:0; background:none; color:inherit; padding:0 0 3px; font:inherit; text-align:left; cursor:pointer; }
+#profile-edit-name:hover span { text-decoration:underline; text-underline-offset:.15em; text-decoration-thickness:1px; }
+#profile-edit-name svg { flex:none; width:20px; height:20px; }
+.profile-settings-card { width:min(450px, calc(100% - 32px)); max-width:none; padding:24px; color:var(--ink); border:1px solid var(--line); background:var(--surface); border-radius:20px; }
+.profile-settings-card::backdrop { background:#17152180; }
+.profile-settings-card h2 { font-size:27px; margin:0 0 18px; }
+.profile-edit-actions { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.profile-edit-actions button { width:auto; margin:0; }
+.collection-intro { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:25px; padding:35px 0 10px; }
+.collection-intro h1 { font-size:clamp(37px,4vw,59px); margin:16px 0; }
+.collection-intro h1 em, .atlas-header h1 em { color:var(--primary); }
+.collection-intro p:not(.eyebrow) { color:var(--muted); font-size:14px; }
+.collection-intro .new-trip-button { width:230px; margin:0; }
+[data-account-view="trips"] #profile-trips .section-heading { padding-top:20px; }
+[data-account-view="trips"] #profile-trips .section-heading .eyebrow { display:none; }
+[data-account-view="trips"] #profile-trips .section-heading h2 { font-size:28px; }
+.atlas-header { margin-bottom:22px; }
+.atlas-header h1 { font-size:clamp(34px,4vw,52px); margin:12px 0 15px; }
+.atlas-header .field-hint { max-width:650px; font-size:13px; }
+.atlas-layout { grid-template-columns:minmax(0,1fr) minmax(174px,21%); gap:16px; align-items:start; }
+.atlas-map { background:radial-gradient(ellipse at 35% 35%,#eff8fc,#d5e8ed 75%); --atlas-border:#fffdfb; border-color:#d7e6e7; border-radius:20px; }
+[data-theme="dark"] .atlas-map { background:radial-gradient(ellipse at 35% 35%,#373843,#2d2e38 75%); --atlas-border:#373843; border-color:#504b58; }
+#atlas-svg { height:clamp(490px,39vw,580px); }
+.atlas-outline { fill:var(--atlas-land-color,var(--atlas-land)); stroke-width:.65; }
+[data-theme="dark"] .atlas-outline:not(.atlas-highlight) { fill:var(--atlas-land-color); filter:brightness(.74) saturate(.35); }
+.atlas-highlight { fill:var(--atlas-color); filter:saturate(1.05); stroke-width:1.4; }
+.atlas-graticules path { fill:none; stroke:#8dabb6; stroke-width:.4; opacity:.2; vector-effect:non-scaling-stroke; }
+.atlas-city-label { fill:#392c48; font-weight:650; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; paint-order:stroke; stroke:#fffdf9; stroke-width:.65; stroke-linejoin:round; }
+.atlas-country-label { fill:#28202d; font-weight:650; text-anchor:middle; font-family:Georgia,serif; paint-order:stroke; stroke:#fffdf988; stroke-width:.35; }
+.atlas-pin-halo { fill:#fffdf9; opacity:.55; }
+.atlas-city-marker { cursor:pointer; }
+.atlas-city-marker:hover .atlas-pin-halo,.atlas-city-marker:focus .atlas-pin-halo,.atlas-city-marker.is-focused .atlas-pin-halo { opacity:.95; }
+
+.atlas-map-caption { position:absolute; left:14px; bottom:14px; display:flex; align-items:center; gap:7px; max-width:calc(100% - 28px); padding:9px 12px; background:var(--surface); border:1px solid var(--line); border-radius:30px; color:var(--muted); font-size:10px; pointer-events:none; }
+.atlas-map-caption-dot { width:7px; height:7px; background:#ad5688; border-radius:50%; }
+.atlas-legend { padding:20px 16px; }
+.atlas-legend ul { grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr)); }
+.atlas-legend .atlas-choices { margin:0 0 16px; }
+.atlas-legend h3 { font:400 25px/1.2 Georgia,serif; }
+.atlas-legend .field-hint { font-size:12px; margin:12px 0 20px; }
+.atlas-legend-row { grid-template-columns:10px 1fr; padding:13px 10px; gap:7px 10px; }
+.atlas-legend-row strong { font-size:13px; font-weight:500; }
+.atlas-legend-row small { grid-column:2; }
+.atlas-credit { margin-top:20px; line-height:1.8; }
+@media(max-width:1050px) { .trips-page .header { flex-wrap:wrap; gap:10px 16px; }.account-nav { order:3; width:100%; margin:0; justify-content:center; border-top:1px solid var(--line); padding-top:10px; }.trips-page .header-actions { margin-left:auto; } }
+@media(max-width:760px) { .atlas-layout { grid-template-columns:1fr; }.atlas-legend { display:block; }.atlas-legend ul { grid-template-columns:repeat(2,minmax(0,1fr)); }}
+@media(max-width:500px) { .account-nav { justify-content:space-between; gap:3px; }.account-nav a { font-size:10px; padding:9px 7px; min-height:38px; }.profile-hero .new-trip-button { width:100%; margin:12px 0 0; }.profile-settings-card { padding:25px 22px; }.profile-settings-card h2 { font-size:29px; }.collection-intro { padding:25px 7px 8px; gap:14px; }.collection-intro h1 { font-size:38px; }.collection-intro .new-trip-button { width:100%; }.atlas-panel { padding:20px 14px; }.atlas-header { margin-bottom:12px; }.atlas-map-caption { font-size:9px; left:9px; bottom:9px; padding:8px 10px; }.atlas-legend ul { grid-template-columns:1fr; } }
+
+.profile-hero h1 { letter-spacing:-.8px; line-height:1.25; }
+.profile-stat { margin: 15px 0 0; }
+.profile-stat div { display: flex; gap: 9px; align-items: center; }
+.profile-stat dt { color: var(--profile-muted); font-size: .86rem; letter-spacing: .045em; }
+.profile-stat dd { margin: 0; color: inherit; border-radius: 99px; padding: 3px 9px; background: var(--profile-chip); font-weight: 750; min-width: 32px; text-align: center; }
+.profile-shortcuts { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; margin-top: 20px; }
+.profile-shortcut { position: relative; isolation: isolate; overflow: hidden; display: grid; align-content: center; gap: 7px; min-height: 155px; padding: 22px 46px 22px 24px; border-radius: 22px; color: var(--shortcut-ink); text-decoration: none; border:1px solid var(--profile-edge); }
+.profile-shortcut::after { content:''; position:absolute; z-index:-1; width: 230px; height: 230px; border-radius: 50%; top: -92px; right: -92px; border: 40px solid var(--profile-chip); }
+.profile-shortcut:hover { color: var(--shortcut-ink); border-color: var(--profile-muted); }
+.profile-shortcut-trips { background: var(--profile-blue); }
+.profile-shortcut-atlas { background: var(--profile-rose); }
+.profile-shortcut > span { font-size: 1.45rem; }
+.profile-shortcut > strong { font-size: clamp(1rem,2.4vw,1.45rem); line-height:1.2; }
+.profile-shortcut > small { color: var(--shortcut-muted); }
+.profile-shortcut > b { position: absolute; top:18px; right:20px; font-size: 1.2rem; }
+@media(max-width:520px) { .profile-shortcuts { grid-template-columns:1fr; gap:12px; }.profile-shortcut { min-height:114px; padding:16px 44px 16px 20px; } }
+.profile-hero {
+  isolation: isolate; position: relative; overflow: hidden; min-height: 225px; border: 1px solid var(--profile-edge); color: var(--profile-ink);
+  background: var(--profile-cover);
+}
+.profile-hero::after {
+  content: ''; position: absolute; inset: auto -80px -185px auto; z-index: -1;
+  width: 380px; height: 380px; border: 55px solid var(--profile-chip); border-radius: 50%; box-shadow: 0 0 0 45px var(--profile-chip);
+}
+.profile-hero .eyebrow, .profile-hero .account-email { color: var(--profile-muted); }
+.profile-hero .profile-avatar { color: var(--profile-ink); background: var(--profile-avatar); border-color: var(--profile-edge); }
+.profile-hero .new-trip-button { background: var(--profile-button); color: var(--shortcut-ink); text-decoration: none; border-color: var(--profile-edge); }
+
+.account-profile {
+  --profile-cover:linear-gradient(125deg,#ede1ee,#e4e8f3);
+  --shortcut-ink:#2d2535; --shortcut-muted:#4d4354; --profile-button:#fcf8fe;
+  --profile-blue:#e0e9f0; --profile-rose:#f0e3e9; --profile-ink:#2d2535;
+  --profile-muted:#554b60; --profile-edge:#d0c3d6; --profile-avatar:#fcf8fe; --profile-chip:#7762841c;
+}
+[data-theme="dark"] .account-profile {
+  --profile-cover:linear-gradient(125deg,#41374b,#373e4e);
+  --profile-blue:#c4d5e1; --profile-rose:#e0c8d8; --profile-button:#e1d6ee; --profile-ink:#fcf7ff;
+  --profile-muted:#ddd3e4; --profile-edge:#62586c; --profile-avatar:#50445c; --profile-chip:#cab8d31e;
+}
+
+[data-theme="dark"] .atlas-map { background:radial-gradient(ellipse at 35% 35%,#454552,#353642 75%); }
+[data-theme="dark"] :is(.atlas-zoom button,.atlas-choices button,.atlas-legend-row) { background:#545161; border-color:#777082; color:#fff8ff; }
+[data-theme="dark"] .atlas-choices button[aria-pressed="true"] { background:#dfd0e5; border-color:#dfd0e5; color:#30243a; }
+@media (max-width:760px) { #atlas-svg { height:clamp(285px,65vw,490px); } }

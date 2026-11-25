@@ -5,24 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Мои поездки — TripWise</title>
     <script src="/theme.js?v=20261122-unified2"></script>
-    <link rel="stylesheet" href="/styles.css?v=20261122-editor1">
+    <link rel="stylesheet" href="/styles.css?v=20261124-profile1">
     <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
-    <script src="/trips.js?v=20261122-unified2" defer></script>
+    <link rel="stylesheet" href="/profile.css?v=20261124-profile5">
+    <script src="/profile.js?v=20261124-profile4" defer></script>
+    <script src="/travel-atlas.js?v=20261124-atlas5" defer></script>
+    <script src="/trips.js?v=20261124-profile4" defer></script>
   </head>
   <body class="trips-page">
     <header class="header">
       <a class="brand" href="/" aria-label="TripWise — главная"><span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span></a>
+      <nav class="account-nav" aria-label="Личный кабинет"><a id="profile-trips-tab" href="/trips">Мои поездки</a><a id="profile-atlas-tab" href="/trips?view=atlas">Атлас путешествий</a><a id="profile-settings-tab" href="/trips?view=profile">Мой профиль</a></nav>
       <div class="header-actions"><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button><button id="logout-button" class="outline-button" type="button">Выйти ↗</button></div>
     </header>
     <main class="trips-main">
-      <section class="page-hero trips-hero"><div class="hero-content"><p class="eyebrow">МЕСТО ДЛЯ НОВЫХ ВОСПОМИНАНИЙ</p><h1 class="trips-heading">Ваши планы.<br><em>Большие впечатления.</em></h1><p>Пусть следующее путешествие будет вашим.</p></div><span class="hero-location">ГОРОДА МЕНЯЮТСЯ. ИСТОРИИ ОСТАЮТСЯ.</span></section>
-      <div class="section-heading"><div><p class="eyebrow">ЛИЧНАЯ КОЛЛЕКЦИЯ</p><h2>Мои поездки</h2></div><div class="collection-actions"><p id="account-email" class="account-email">Проверяем аккаунт…</p><a class="submit-button new-trip-button" href="/trip/new?new=1">Создать новую поездку</a></div></div>
+      <section id="account-profile" class="account-profile" hidden>
+      <section class="profile-hero">
+        <span class="profile-avatar" id="profile-avatar" aria-hidden="true">✦</span>
+        <div><p class="eyebrow">МОЙ ПРОФИЛЬ</p><h1><button id="profile-edit-name" type="button" aria-haspopup="dialog" aria-controls="profile-name-dialog" disabled><span id="profile-name">Ваше пространство</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m15 5 4 4M4 20l4.5-1 11-11a2.8 2.8 0 0 0-4-4l-11 11L4 20Z"/></svg></button></h1><p id="account-email" class="account-email"></p><dl class="profile-stat"><div><dt>Travellings</dt><dd id="profile-trip-count">—</dd></div></dl></div>
+        <a class="submit-button new-trip-button" href="/trip/new?new=1">Создать поездку ↗</a>
+      </section>
+      <div class="profile-shortcuts" aria-label="Разделы профиля">
+        <a class="profile-shortcut profile-shortcut-trips" href="/trips"><span aria-hidden="true">✈</span><strong>Мои поездки</strong><small>Сохранённые маршруты</small><b aria-hidden="true">↗</b></a>
+        <a class="profile-shortcut profile-shortcut-atlas" href="/trips?view=atlas"><span aria-hidden="true">◎</span><strong>Карта моих путешествий</strong><small>Страны и города на карте</small><b aria-hidden="true">↗</b></a>
+      </div>
+      <dialog id="profile-name-dialog" class="profile-settings-card" aria-labelledby="profile-edit-title">
+        <h2 id="profile-edit-title">Изменить имя</h2>
+        <form id="profile-form">
+          <div class="field"><label for="profile-display-name">Ваше имя</label><input id="profile-display-name" name="display_name" type="text" autocomplete="name" maxlength="80" placeholder="Например, Юлия" autofocus disabled></div>
+          <p id="profile-message" class="form-message" role="status" hidden></p>
+          <div class="profile-edit-actions"><button id="profile-cancel" class="outline-button" type="button">Отмена</button><button id="profile-save" class="submit-button" type="submit" disabled>Сохранить</button></div>
+        </form>
+      </dialog>
+      </section>
+      <div id="profile-trips" aria-labelledby="collection-title">
+      <section class="collection-intro"><div><p class="eyebrow">ВАША ЛИЧНАЯ КОЛЛЕКЦИЯ</p><h1 id="collection-title">Планы, которые<br><em>станут воспоминаниями.</em></h1><p>Сохранённые путешествия и новые идеи — в одном месте.</p></div><a class="submit-button new-trip-button" href="/trip/new?new=1">Создать поездку ↗</a></section>
+      <div class="section-heading"><div><p class="eyebrow">ЛИЧНАЯ КОЛЛЕКЦИЯ</p><h2>Мои поездки</h2></div></div>
       <div id="saved-trips" class="saved-trips-grid" aria-label="Сохранённые поездки"></div>
       <section id="empty-trips" class="empty-trips" aria-labelledby="empty-title">
         <span class="empty-icon" aria-hidden="true">✧</span>
         <h2 id="empty-title">Каждая история начинается с идеи</h2>
         <p>Выберите город и расскажите о своих интересах.<br>Создайте маршрут и нажмите «Сохранить поездку», когда будете готовы.</p>
         <a class="submit-button create-trip-button" href="/trip/new?new=1"><span>Создать поездку</span><span aria-hidden="true">↗</span></a>
+      </section>
+      </div>
+      <section id="profile-atlas" class="atlas-panel" aria-labelledby="atlas-title" hidden>
+        <header class="atlas-header"><div><p class="eyebrow">ВАША КАРТА</p><h1 id="atlas-title">Ваш мир <em>впечатлений.</em></h1><p class="field-hint">Цветные страны, любимые города и новые горизонты. На карте — ваши сохранённые маршруты.</p></div>
+          <div class="trip-result-tabs atlas-modes" role="tablist" aria-label="Что показать на карте">
+            <button id="atlas-countries" type="button" role="tab" aria-selected="true" aria-controls="atlas-mode-panel">Страны</button>
+            <button id="atlas-cities" type="button" role="tab" aria-selected="false" aria-controls="atlas-mode-panel" tabindex="-1">Города</button>
+          </div>
+        </header>
+        <div id="atlas-mode-panel" role="tabpanel" aria-labelledby="atlas-countries">
+          <div class="atlas-layout">
+            <div class="atlas-map">
+              <svg id="atlas-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 180" aria-label="Географическая карта сохранённых поездок"></svg><div class="atlas-map-caption"><span class="atlas-map-caption-dot"></span> Сохранённые путешествия</div>
+              <div class="atlas-zoom" aria-label="Масштаб карты">
+                <button type="button" data-atlas-zoom="in" aria-label="Приблизить">+</button>
+                <button type="button" data-atlas-zoom="out" aria-label="Отдалить">−</button>
+                <button type="button" data-atlas-zoom="reset" aria-label="Вернуть исходный масштаб">⌂</button>
+              </div>
+            </div>
+            <aside class="atlas-legend"><div id="atlas-country-choices" class="atlas-choices" aria-label="Фильтр по странам" hidden></div><h3 id="atlas-legend-title">Ваши страны</h3><p id="atlas-message" class="field-hint" role="status"></p><ul id="atlas-places"></ul></aside>
+          </div>
+        </div>
+        <p class="atlas-credit">Карта мира: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>. <span id="atlas-city-credit"></span></p>
       </section>
       <p id="trips-message" class="form-message" role="status" hidden></p>
     </main>

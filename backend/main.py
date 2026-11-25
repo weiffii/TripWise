@@ -13,7 +13,9 @@ from backend.catalog import router as catalog_router
 from backend.trips import router as trips_router
 from backend.route_previews import router as preview_router
 from backend.route_geometry import router as geometry_router
+from backend.navigation import router as navigation_router
 from backend.drafts import init_drafts, router as drafts_router
+from backend.guide import init_guide, router as guide_router
 from backend.shanghai import init_routes, router as shanghai_router
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +26,7 @@ async def lifespan(app):
     init_database()
     init_drafts()
     init_routes()
+    init_guide()
     yield
 
 
@@ -41,12 +44,14 @@ app.include_router(catalog_router)
 app.include_router(trips_router)
 app.include_router(preview_router)
 app.include_router(geometry_router)
+app.include_router(navigation_router)
+app.include_router(guide_router)
 
 
 @app.middleware("http")
 async def private_responses(request: Request, call_next):
     response = await call_next(request)
-    if request.url.path.startswith(("/api/auth/", "/api/trip-draft", "/api/planned-trips", "/api/route-previews", "/api/trips")) or request.url.path in {"/trips", "/trip/new", "/trip/shanghai", "/trip/result"}:
+    if request.url.path.startswith(("/api/auth/", "/api/trip-draft", "/api/planned-trips", "/api/route-previews", "/api/trips", "/api/guide/")) or request.url.path in {"/trips", "/trip/new", "/trip/shanghai", "/trip/result"}:
         response.headers["Cache-Control"] = "no-store"
     response.headers["X-Content-Type-Options"] = "nosniff"
     return response
@@ -54,6 +59,12 @@ async def private_responses(request: Request, call_next):
 
 @app.exception_handler(RequestValidationError)
 async def invalid_request(request: Request, error: RequestValidationError):
+    if request.url.path.startswith('/api/guide/'):
+        return JSONResponse(status_code=422, content={'detail': 'Проверьте город и выбранные достопримечательности.'})
+    if request.url.path == '/api/auth/profile':
+        return JSONResponse(status_code=422, content={'detail': 'Имя должно быть строкой до 80 символов без управляющих символов.'}, headers={'Cache-Control': 'no-store'})
+    if request.url.path.endswith('/navigate'):
+        return JSONResponse(status_code=422, content={'detail': 'Проверьте начальные координаты, день, переход и версию маршрута.'}, headers={'Cache-Control': 'no-store'})
     if request.url.path.startswith(('/api/planned-trips', '/api/route-previews')):
         return JSONResponse(status_code=422, content={'detail': 'Проверьте параметры пилотной поездки: город, даты, интересы, группу, время и бюджет.'})
     # Стандартные ошибки могут содержать input с паролем. Возвращаем только текст.

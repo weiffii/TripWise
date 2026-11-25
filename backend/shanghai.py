@@ -17,6 +17,7 @@ from starlette.concurrency import run_in_threadpool
 from ai_ds.route_assistant import AssistantError, reject_constant, unique_pairs
 from ai_ds.shanghai_assistant import ROOT, ShanghaiAssistantService, bridge_call, human_error
 from backend.accounts import COOKIE_NAME, current_user, database, same_origin, token_hash
+from backend.place_catalog import city_places, legacy_places, place_summary
 
 router = APIRouter(dependencies=[Depends(current_user)], tags=['Шанхай'])
 Count = Annotated[int, Field(strict=True, ge=0, le=30)]
@@ -205,6 +206,19 @@ def catalog(city: Literal['moscow', 'shanghai'], include_legacy: bool = False):
     return [{'id': poi['id'], 'name': (poi.get('names') or {}).get('ru') or poi['name'], 'kind': poi.get('kind'),
              'lat': poi.get('lat', (poi.get('coordinates') or {}).get('latitude')),
              'lon': poi.get('lon', (poi.get('coordinates') or {}).get('longitude'))} for poi in places]
+
+
+class CatalogSelection(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    poi_ids: list[Annotated[str, Field(min_length=1, max_length=512)]] = Field(max_length=256)
+
+
+@router.post('/api/planned-trips/catalog/{city}/selection', dependencies=[Depends(same_origin)])
+def catalog_selection(city: Literal['moscow', 'shanghai'], body: CatalogSelection):
+    current = city_places(city)
+    older = legacy_places() if city == 'moscow' else {}
+    return [place_summary(point) for poi_id in dict.fromkeys(body.poi_ids)
+            if (point := current.get(poi_id) or older.get(poi_id)) is not None]
 
 
 @router.get('/api/planned-trips/catalog/{city}/{poi_id}')

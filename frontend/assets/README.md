@@ -23,3 +23,8 @@
 `shanghai-skyline.svg` — авторская декоративная иллюстрация Шанхая, созданная Frontend Agent. Не фотография и не карта. Используется в общей визуальной палитре с московской фотографией.
 
 `moscow-skyline.svg` — оригинальная векторная иллюстрация TripWise с силуэтами Кремля и собора Василия Блаженного.
+
+`travel-atlas.json` — упрощённые контуры для карты сохранённых поездок:
+- страны: [Natural Earth v5.1.2, Admin 0, 1:110m](https://github.com/nvkelso/natural-earth-vector/tree/v5.1.2/geojson), [public domain](https://www.naturalearthdata.com/about/terms-of-use/);
+- Москва и Шанхай: [geoBoundaries gbOpen, ADM1](https://www.geoboundaries.org/api.html), снимок `9469f09`; [метаданные России](https://www.geoboundaries.org/api/current/gbOpen/RUS/ADM1/) — © OpenStreetMap contributors, Wambacher, ODbL 1.0; [метаданные Китая](https://www.geoboundaries.org/api/current/gbOpen/CHN/ADM1/) — Wikimedia Commons, public domain по метаданным поставщика;
+- контуры преобразованы в SVG-пути с округлением. Карта служит для отметок поездок и не предназначена для навигации.

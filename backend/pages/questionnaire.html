@@ -6,13 +6,15 @@
     <title>Новая поездка — TripWise</title>
     <script src="/theme.js?v=20261122-unified2"></script>
     <link rel="stylesheet" href="/styles.css?v=20261122-steps1">
+    <link rel="stylesheet" href="/trip-calendar.css?v=20261124-compact2">
     <script src="/destination-visuals.js?v=20261122-editor1" defer></script>
-    <script src="/questionnaire.js?v=20261122-steps1" defer></script>
+    <script src="/questionnaire.js?v=20261124-walk-hours2" defer></script>
+    <script src="/trip-calendar.js?v=20261124-compact2" defer></script>
   </head>
   <body class="questionnaire-page">
     <header class="header">
       <a class="brand" href="/" aria-label="TripWise — главная"><span class="brand-icon" aria-hidden="true">↗</span>TripWise<span class="brand-dot">.</span></a>
-      <div class="header-actions"><a class="back-link" href="/trips">← Мои поездки</a><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button></div>
+      <div class="header-actions"><a class="outline-button" href="/trips">Мой профиль</a><button class="theme-toggle" data-theme-toggle type="button" aria-label="Включить тёмную тему" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-label">Тёмная</span></button></div>
     </header>
     <main class="questionnaire-main">
       <section class="page-hero questionnaire-hero"><div class="hero-content"><p class="eyebrow">ВАШЕ ПУТЕШЕСТВИЕ НАЧИНАЕТСЯ ЗДЕСЬ</p><h1 class="trips-heading">Новый город.<br><em>Ваши впечатления.</em></h1><p class="form-intro">Немного о ваших планах — и путешествие станет ближе.</p></div><span class="hero-location">ВАША НОВАЯ ИСТОРИЯ ↗</span></section>
@@ -27,18 +29,45 @@
             </div>
             <section class="form-section" data-step="Направление и время" aria-labelledby="where-title"><div class="section-art"><img src="/assets/card-destination.svg" alt="" loading="lazy"><div><p class="eyebrow">НАПРАВЛЕНИЕ И ВРЕМЯ</p><p>Москва и Шанхай доступны сейчас. Другие города — в разработке.</p></div></div>
               <span class="section-number">01 / НАПРАВЛЕНИЕ И ВРЕМЯ</span>
+              <p class="trip-date-rules"><span id="timezone-note">Выберите город — время указывается по местному часовому поясу.</span> Для маршрута доступны 1–14 дней. Не более 30 человек в каждой возрастной группе. Первый и последний день ограничены указанным вами временем. Каждый день должен оставлять хотя бы час на прогулку.</p>
               <h2 id="where-title">Куда и когда?</h2>
               <div class="form-grid">
                 <div class="field"><label for="country">Страна</label><select id="country" name="country_code" required><option value="">Выберите страну</option></select></div>
                 <div class="field"><label for="city">Город</label><select id="city" name="city" required><option value="">Выберите город</option></select></div>
-                <div class="field"><label for="first-walk">Начало первой прогулки</label><input id="first-walk" name="first_walk_at" type="datetime-local" required><p class="field-hint">Когда вы уже готовы гулять, после дороги и заселения.</p></div>
-                <div class="field"><label for="last-walk">Окончание последней прогулки</label><input id="last-walk" name="last_walk_end_at" type="datetime-local" required><p class="field-hint">Когда нужно закончить гулять в день отъезда.</p></div>
+                <div class="trip-calendar-field">
+                  <span class="trip-calendar-label" id="trip-calendar-label">Даты путешествия</span>
+                  <button id="trip-calendar-open" class="trip-calendar-trigger" type="button" aria-haspopup="dialog" aria-controls="trip-calendar-dialog" aria-labelledby="trip-calendar-label trip-calendar-range"><span class="trip-calendar-icon" aria-hidden="true">▦</span><span><strong id="trip-calendar-range">Выберите даты</strong><small id="trip-calendar-duration">До 14 дней в вашем ритме</small></span><span class="trip-calendar-arrow" aria-hidden="true">⌄</span></button>
+                  <p class="field-hint">Выберите даты. Время можно уточнить по дням ниже.</p>
+                </div>
               </div>
-              <p class="field-hint"><span id="timezone-note">Выберите город — время указывается по местному часовому поясу.</span> Для маршрута доступны 1–14 дней. Не более 30 человек в каждой возрастной группе. Первый и последний день ограничены указанным вами временем. Каждый день должен оставлять хотя бы час на прогулку.</p>
-              <details id="middle-days" hidden>
+
+              <dialog id="trip-calendar-dialog" class="trip-calendar-dialog" aria-labelledby="trip-calendar-title" aria-describedby="trip-calendar-help">
+                <div class="trip-calendar-heading"><div><p class="trip-calendar-kicker">ВАШЕ СЛЕДУЮЩЕЕ ПУТЕШЕСТВИЕ</p><h3 id="trip-calendar-title">Время для впечатлений</h3></div><button id="trip-calendar-close" class="trip-calendar-close" type="button" aria-label="Закрыть календарь">×</button></div>
+                <p id="trip-calendar-help" class="trip-calendar-help">Выберите начало и окончание поездки. До 14 дней, включая первый и последний.</p>
+                <div class="trip-calendar-selection"><button id="trip-calendar-start" type="button" class="trip-calendar-endpoint"><span>НАЧАЛО ПРОГУЛОК</span><strong id="trip-calendar-start-label">Выберите дату</strong></button><span aria-hidden="true">→</span><button id="trip-calendar-end" type="button" class="trip-calendar-endpoint"><span>ОКОНЧАНИЕ ПРОГУЛОК</span><strong id="trip-calendar-end-label">Выберите дату</strong></button></div>
+                <div class="trip-calendar-nav"><button id="trip-calendar-prev" type="button" aria-label="Предыдущий месяц">←</button><p id="trip-calendar-month-label" aria-live="polite"></p><button id="trip-calendar-next" type="button" aria-label="Следующий месяц">→</button></div>
+                <div id="trip-calendar-months" class="trip-calendar-months"></div>
+                <div class="trip-calendar-times"><div><label for="trip-calendar-start-time">Начало первой прогулки</label><input id="trip-calendar-start-time" type="time" value="09:00" step="60"></div><div><label for="trip-calendar-end-time">Окончание последней прогулки</label><input id="trip-calendar-end-time" type="time" value="19:00" step="60"></div></div>
+                <p id="trip-calendar-zone" class="trip-calendar-help">Время местное — для выбранного города.</p>
+                <p id="trip-calendar-message" class="trip-calendar-message" role="status" aria-live="polite">Выберите дату начала.</p>
+                <div class="trip-calendar-actions"><button id="trip-calendar-today" class="trip-calendar-today" type="button">К текущему месяцу</button><button id="trip-calendar-apply" class="submit-button" type="button" disabled>Готово · выбрать даты</button></div>
+              </dialog>
+              <details id="middle-days" class="trip-walk-hours">
                 <summary>Настроить время прогулок по дням</summary>
-                <p class="field-hint">Пустые поля используют 09:00 для начала и 21:00 для окончания.</p>
-                <div id="middle-day-fields"></div>
+                <div class="trip-walk-days">
+                  <p class="field-hint">По умолчанию прогулки идут с 09:00 до 21:00. На первый и последний день действуют ваши ограничения.</p>
+                  <fieldset class="trip-walk-day"><legend id="first-walk-day">Первый день</legend>
+                    <div class="form-grid" id="first-walk-fields">
+                      <div class="field"><label for="first-walk">Начало первой прогулки</label><input id="first-walk" name="first_walk_at" type="datetime-local" required><p class="field-hint">Когда вы уже готовы гулять, после дороги и заселения.</p></div>
+                    </div>
+                  </fieldset>
+                  <div id="middle-day-fields"></div>
+                  <fieldset class="trip-walk-day" id="last-walk-group"><legend id="last-walk-day">Последний день</legend>
+                    <div class="form-grid" id="last-walk-fields">
+                      <div class="field"><label for="last-walk">Окончание последней прогулки</label><input id="last-walk" name="last_walk_end_at" type="datetime-local" required><p class="field-hint">Когда нужно закончить гулять в день отъезда.</p></div>
+                    </div>
+                  </fieldset>
+                </div>
               </details>
             </section>
 
