@@ -12,6 +12,7 @@
   const listStatus = el('guide-availability');
   const retryList = el('guide-retry-list');
   const retryDetail = el('guide-retry-detail');
+  const researchButton = el('guide-research');
   const player = el('guide-player');
   const playerSlot = el('guide-player-slot');
   const dismiss = el('guide-dismiss-player');
@@ -30,7 +31,7 @@
   let days = [], city = '', showOnMap, dayIndex = 0, detailKey = '', audioKey = '', lastCard;
   let length = 'short', state = 'idle', segmentIndex = 0, segments = [], utterance, generation = 0;
   let availabilityRequest, availabilityError, prefetchTimer, backgroundRequest;
-  let detailVersion = 0, audioFact = null;
+  let detailVersion = 0, audioFact = null, audioStory = null;
 
   function switchTab(index, focus = false) {
     tabs.forEach((tab, position) => {
@@ -64,6 +65,7 @@
   const contentKey = (destination, id) => destination + '/' + id;
   const storyFor = stop => stop && (stop.story || stories.get(stop.contentKey));
   const statusFor = stop => storyFor(stop)?.status || statuses.get(stop.contentKey)?.status || 'unknown';
+  const researchKey = stop => stop.contentKey + '/research';
   const availableStops = () => all().filter(stop => statusFor(stop) === 'available');
   const number = index => String(index + 1).padStart(2, '0');
   const catalogServices = destination => destination === 'moscow' || destination === 'shanghai';
@@ -113,22 +115,46 @@
     availabilityError = undefined;
     checkAvailability();
   };
-  function loadStory(stop) {
+  function loadStory(stop, research = false) {
     const saved = storyFor(stop);
-    if (saved) return Promise.resolve(saved);
+    if (saved && (!research || saved.coverage !== 'catalog' || saved.research_status === 'unavailable')) return Promise.resolve(saved);
     if (!catalogServices(stop.city) || ['unavailable', 'excluded'].includes(statusFor(stop))) {
       return Promise.resolve({status:statusFor(stop) === 'excluded' ? 'excluded' : 'unavailable'});
     }
-    if (!requests.has(stop.contentKey)) {
-      const url = '/api/guide/poi/' + encodeURIComponent(stop.id) + '?city=' + encodeURIComponent(stop.city);
+    const key = research ? researchKey(stop) : stop.contentKey + '/quick';
+    if (!requests.has(key)) {
+      const url = '/api/guide/poi/' + encodeURIComponent(stop.id) + '?city=' + encodeURIComponent(stop.city) + (research ? '' : '&quick=true');
       const pending = requestJson(url).then(story => {
         if (story.poi_id !== stop.id || story.city !== stop.city) throw new Error('Unexpected guide');
-        if (story.status !== 'temporarily_unavailable') stories.set(stop.contentKey, story);
+        const current = storyFor(stop);
+        if (current?.status === 'available' && (!research || story.status !== 'available' ||
+          story.coverage === 'catalog' && current.coverage !== 'catalog')) return current;
+        if (story.status === 'available' || story.status === 'excluded' || research && story.status === 'unavailable') {
+          stories.set(stop.contentKey, story);
+        }
         return story;
-      }).catch(() => ({status:'temporarily_unavailable'})).finally(() => requests.delete(stop.contentKey));
-      requests.set(stop.contentKey, pending);
+      }).catch(() => {
+        const current = storyFor(stop);
+        if (current?.coverage === 'catalog' && research) return {...current, research_status:'temporarily_unavailable'};
+        return current || {status:'temporarily_unavailable'};
+      }).finally(() => requests.delete(key));
+      requests.set(key, pending);
     }
-    return requests.get(stop.contentKey);
+    return requests.get(key);
+  }
+  async function openStory(stop) {
+    if (!statuses.has(stop.contentKey) && availabilityRequest) await availabilityRequest;
+    if (statuses.get(stop.contentKey)?.status === 'unknown' && statusFor(stop) === 'unknown') return loadStory(stop, true);
+    const story = await loadStory(stop);
+    if (story.status === 'unavailable' && statusFor(stop) === 'unknown') return loadStory(stop, true);
+    return story;
+  }
+  function canPrefetch(stop) {
+    const availability = statuses.get(stop.contentKey);
+    const story = storyFor(stop);
+    if (requests.has(researchKey(stop)) || !availability) return false;
+    if (story) return story.coverage === 'catalog' && story.research_status === 'pending' && availability.needs_research;
+    return availability.status === 'unknown' || availability.needs_research;
   }
   function cancelPrefetch() {
     clearTimeout(prefetchTimer);
@@ -139,8 +165,7 @@
     const day = selectedDayKey();
     const attempted = prefetchedByDay.get(day) || new Set();
     if (attempted.size >= 2) return;
-    const candidate = () => selectedStops().find(stop => statuses.get(stop.contentKey)?.status === 'unknown' &&
-      statusFor(stop) === 'unknown' && !requests.has(stop.contentKey) && !attempted.has(stop.contentKey));
+    const candidate = () => selectedStops().find(stop => !attempted.has(stop.contentKey) && canPrefetch(stop));
     if (!candidate()) return;
     prefetchTimer = setTimeout(() => {
       prefetchTimer = undefined;
@@ -151,7 +176,11 @@
       prefetchedByDay.set(day, attempted);
       // A click on the same POI can share this in-flight fetch. Dropping the
       // queued work leaves no extra request when the tab or date changes.
-      backgroundRequest = loadStory(stop).finally(() => {
+      backgroundRequest = loadStory(stop, true).then(story => {
+        if (detailKey === stop.key && !guidePanel.hidden && story.status === 'available' && storyFor(stop) === story) {
+          showStory(stop, story, true);
+        }
+      }).finally(() => {
         backgroundRequest = undefined;
         if (!guidePanel.hidden && !listView.hidden) showDay();
         updatePlayer();
@@ -164,7 +193,7 @@
     if (utterance) synth.cancel();
     utterance = undefined;
     state = 'idle';
-    if (reset) { segmentIndex = 0; segments = []; }
+    if (reset) { segmentIndex = 0; segments = []; audioStory = null; }
   }
   function updatePlayer() {
     const map = el('route-map-dialog');
@@ -197,8 +226,9 @@
   function speak() {
     const stop = audioStop();
     if (!stop || !supported) return;
-    const story = storyFor(stop);
+    const story = audioStory || storyFor(stop);
     if (!story || story.status !== 'available') return;
+    audioStory = story;
     const language = /^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(story.language || '') ? story.language : 'ru';
     const voices = synth.getVoices().filter(voice => voice.lang.split(/[-_]/)[0].toLowerCase() === language.split('-')[0].toLowerCase());
     if (!segments.length) {
@@ -409,8 +439,9 @@
     }
     el('guide-sources').hidden = !list.children.length;
   }
-  function showStory(stop, story) {
+  function showStory(stop, story, preserveReading = false) {
     const available = story?.status === 'available' && Boolean(story.short_text || story.full_text);
+    const catalog = available && story.coverage === 'catalog';
     const detailStatus = el('guide-detail-status');
     const short = available ? story.short_text || story.full_text : '';
     const full = available && story.full_text !== short ? story.full_text : '';
@@ -423,7 +454,7 @@
     el('guide-history').textContent = short;
     el('guide-note').textContent = additional || '';
     more.hidden = !additional;
-    more.open = false;
+    if (!preserveReading) more.open = false;
     renderFacts(stop, available ? story.facts : []);
     renderSources(available ? story.sources : []);
     const messages = {
@@ -431,8 +462,23 @@
       unavailable:'Проверенный рассказ для этого места пока не найден.',
       excluded:'Это место не входит в аудиогид.',
     };
-    detailStatus.textContent = available ? (story.stale ? 'Показываем сохранённую версию рассказа.' : '') :
+    const researchMessages = {
+      temporarily_unavailable:'Подробный источник временно недоступен. Краткий гид можно прочитать и послушать.',
+      unavailable:'Подробную историю по проверенным источникам пока не удалось найти.',
+    };
+    detailStatus.textContent = available ? (catalog ? researchMessages[story.research_status] || '' :
+      story.stale ? 'Показываем сохранённую версию рассказа.' : '') :
       (story ? messages[story.status] || messages.unavailable : 'Загружаем рассказ…');
+    el('guide-catalog-label').hidden = !catalog;
+    researchButton.hidden = !catalog || story.research_status === 'unavailable';
+    researchButton.disabled = false;
+    researchButton.onclick = async () => {
+      const version = detailVersion;
+      researchButton.disabled = true;
+      detailStatus.textContent = 'Ищем подробную историю…';
+      const researched = await loadStory(stop, true);
+      if (version === detailVersion) showStory(stop, researched, true);
+    };
     detail.setAttribute('aria-busy', String(!story));
     retryDetail.hidden = story?.status !== 'temporarily_unavailable';
     retryDetail.onclick = () => renderDetail(stop, true);
@@ -461,7 +507,7 @@
     showStory(stop, saved);
     if (focus) el('guide-detail-title').focus();
     if (saved) return;
-    const story = await loadStory(stop);
+    const story = await openStory(stop);
     if (version === detailVersion) showStory(stop, story);
   }
   async function move(delta) {
@@ -489,7 +535,7 @@
     state = 'loading';
     updatePlayer();
     const token = generation;
-    const story = await loadStory(target);
+    const story = await openStory(target);
     if (token !== generation || audioKey !== target.key) return;
     state = 'idle';
     if (story.status !== 'available') notification.textContent = 'Рассказ не загрузился. Откройте карточку места, чтобы повторить попытку.';

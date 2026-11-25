@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 from fastapi import FastAPI, HTTPException
 
 from backend import accounts, guide
+from backend.place_catalog import city_places, legacy_places
 from backend.shanghai import router as trip_router
 
 
@@ -100,7 +101,8 @@ class GuideIntegrationTests(unittest.TestCase):
         self.assertEqual([row['poi_id'] for row in payload['items']], ['unknown', 'museum'])
         self.assertTrue(all({'poi_id', 'status', 'category'} <= row.keys() for row in payload['items']))
         self.assertEqual([(row['status'], row['category']) for row in payload['items']],
-                         [('excluded', None), ('unknown', 'museums')])
+                         [('excluded', None), ('available', 'museums')])
+        self.assertTrue(payload['items'][1]['needs_research'])
         self.wikimedia.assert_not_called()
 
     def test_unknown_details_are_404_without_external_fetch(self):
@@ -127,7 +129,7 @@ class GuideIntegrationTests(unittest.TestCase):
                                           {'poi_ids': [poi_id for poi_id, _ in places]})
                 self.assertEqual(status, 200)
                 self.assertEqual([(row['poi_id'], row['category']) for row in payload['items']], places)
-                self.assertTrue(all(row['status'] in {'available', 'unknown'} for row in payload['items']))
+                self.assertTrue(all(row['status'] == 'available' for row in payload['items']))
         self.wikimedia.assert_not_called()
 
     def test_real_catalog_food_is_excluded_in_both_cities(self):
@@ -176,7 +178,9 @@ class GuideIntegrationTests(unittest.TestCase):
             guide.save_story('moscow', 'museum', None, now-1)
             guide.save_story('shanghai', 'museum', self.story, now-1)
         with patch.object(guide, 'time', return_value=now):
-            self.assertEqual(self.availability(['museum'])[1]['items'][0]['status'], 'unknown')
+            listing = self.availability(['museum'])[1]['items'][0]
+            self.assertEqual(listing['status'], 'available')
+            self.assertTrue(listing['needs_research'])
             self.assertEqual(self.details()[1]['status'], 'available')
             self.wikimedia.side_effect = WikimediaUnavailable('offline')
             status, payload = self.details(city='shanghai')
@@ -219,9 +223,12 @@ class GuideIntegrationTests(unittest.TestCase):
             self.assertEqual(self.details()[1]['status'], 'available')
             clock.return_value += guide.STALE_TTL + 1
             self.assertEqual(self.availability(['museum', 'museum'])[1]['items'],
-                             [{'poi_id': 'museum', 'status': 'unknown', 'category': 'museums'}])
+                             [{'poi_id': 'museum', 'status': 'available', 'category': 'museums', 'needs_research': True}])
             self.wikimedia.side_effect = WikimediaUnavailable('offline')
-            self.assertEqual(self.details()[1]['status'], 'temporarily_unavailable')
+            fallback = self.details()[1]
+            self.assertEqual(fallback['status'], 'available')
+            self.assertEqual(fallback['coverage'], 'catalog')
+            self.assertEqual(fallback['research_status'], 'temporarily_unavailable')
 
     def test_cache_is_scoped_by_city_even_when_ids_overlap(self):
         self.assertEqual(self.details()[0], 200)
@@ -235,8 +242,11 @@ class GuideIntegrationTests(unittest.TestCase):
     def test_negative_result_is_cached_and_positive_result_replaces_it(self):
         self.wikimedia.return_value = None
         with patch.object(guide, 'time', return_value=1_795_564_800) as clock:
-            self.assertEqual(self.details()[1]['status'], 'unavailable')
-            self.assertEqual(self.details()[1]['status'], 'unavailable')
+            for _ in range(2):
+                story = self.details()[1]
+                self.assertEqual(story['status'], 'available')
+                self.assertEqual(story['coverage'], 'catalog')
+                self.assertEqual(story['research_status'], 'unavailable')
             self.wikimedia.assert_called_once()
             clock.return_value += guide.NEGATIVE_TTL + 1
             self.wikimedia.return_value = self.story
@@ -249,8 +259,45 @@ class GuideIntegrationTests(unittest.TestCase):
         self.wikimedia.side_effect = WikimediaUnavailable('offline')
         status, detail = self.details()
         self.assertEqual(status, 200)
-        self.assertEqual(detail['status'], 'temporarily_unavailable')
+        self.assertEqual(detail['status'], 'available')
+        self.assertEqual(detail['coverage'], 'catalog')
+        self.assertEqual(detail['research_status'], 'temporarily_unavailable')
         self.assertFalse(detail['stale'])
+
+    def test_quick_details_have_local_content_without_wikimedia_lookup(self):
+        status, detail = request(self.app, 'GET', '/api/guide/poi/museum?city=moscow&quick=true')
+        self.assertEqual(status, 200)
+        self.assertEqual(detail['status'], 'available')
+        self.assertEqual(detail['coverage'], 'catalog')
+        self.assertEqual(detail['research_status'], 'pending')
+        self.assertIn('Музей Москвы', detail['short_text'])
+        self.assertTrue(detail['full_text'])
+        self.assertIsNone(detail['image'])
+        self.wikimedia.assert_not_called()
+
+    def test_local_story_exists_for_every_eligible_catalog_museum_and_historic_place(self):
+        expected = {'moscow': 3496, 'shanghai': 18}
+        for city, minimum in expected.items():
+            count = 0
+            ids = set(city_places(city))
+            if city == 'moscow':
+                ids.update(legacy_places())
+            for poi_id in ids:
+                poi = catalog_lookup(city, poi_id)
+                if not guide.eligible(poi) or poi['category'] not in {'history', 'museums'}:
+                    continue
+                story = guide.catalog_story(poi)
+                self.assertEqual(story['coverage'], 'catalog', (city, poi_id))
+                self.assertIn(poi['name'], story['short_text'], (city, poi_id))
+                self.assertTrue(story['full_text'], (city, poi_id))
+                self.assertEqual(story['match']['method'], 'catalog_id', (city, poi_id))
+                self.assertIsNone(story['image'], (city, poi_id))
+                self.assertTrue(story['facts'], (city, poi_id))
+                self.assertTrue(all(source['url'].startswith('https://') for source in story['sources']),
+                                (city, poi_id))
+                count += 1
+            self.assertGreaterEqual(count, minimum, city)
+        self.wikimedia.assert_not_called()
 
     def test_city_is_validated_before_wikimedia_lookup(self):
         self.assertEqual(self.details(city='not-supported')[0], 422)

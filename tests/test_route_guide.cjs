@@ -93,7 +93,7 @@ function setup({voice = true} = {}) {
 }
 
 const settle = () => new Promise(resolve => setImmediate(resolve));
-const statuses = rows => ({items:rows.map(([poi_id, status]) => ({poi_id,status,category:'museums'}))});
+const statuses = rows => ({items:rows.map(([poi_id, status, needs_research]) => ({poi_id,status,category:'museums',needs_research}))});
 const cards = node => node.children.map(row => row.children[0]);
 const cardIds = node => cards(node).map(card => card.dataset.guideKey.split('/').at(-2));
 const story = (id, fields = {}) => ({poi_id:id, city:'moscow', status:'available', short_text:'История ' + id + '.',
@@ -133,7 +133,7 @@ test('selected guide lazily renders facts, image attribution and safe sources', 
   await settle();
   cards(get('guide-places'))[0].click();
   assert.match(get('guide-detail-status').textContent, /Загружаем/);
-  assert.equal(requests[1].url, '/api/guide/poi/a?city=moscow');
+  assert.equal(requests[1].url, '/api/guide/poi/a?city=moscow&quick=true');
   requests[1].resolve(story('a', {
     facts:[{title:'Факт',text:'Проверенный факт.',detail:'Подробности.'}],
     image:{url:'https://upload.wikimedia.org/photo.jpg',author:'Автор',source_url:'https://commons.wikimedia.org/image',license:'CC BY',license_url:'https://creativecommons.org/'},
@@ -283,4 +283,80 @@ test('a running background request does not start another on the previous day', 
   await settle();
   runTimers();
   assert.equal(requests.length, 4);
+});
+
+test('catalog guide opens immediately and a detailed story does not replace active speech', async () => {
+  const {get, guide, requests, spoken, model} = setup();
+  guide.update(model(['a']));
+  get('trip-tab-guide').click();
+  requests[0].resolve(statuses([['a','available',true]]));
+  await settle();
+  cards(get('guide-places'))[0].click();
+  assert.equal(requests[1].url, '/api/guide/poi/a?city=moscow&quick=true');
+  const catalog = story('a', {coverage:'catalog',research_status:'pending',short_text:'Краткий гид. Вторая фраза каталога.'});
+  requests[1].resolve(catalog);
+  await settle();
+  assert.equal(get('guide-catalog-label').hidden, false);
+  assert.equal(get('guide-research').hidden, false);
+  get('guide-play').click();
+  assert.equal(spoken[0].text, 'Краткий гид.');
+  get('guide-research').click();
+  assert.match(get('guide-detail-status').textContent, /Ищем/);
+  assert.equal(requests[2].url, '/api/guide/poi/a?city=moscow');
+  requests[2].resolve(story('a', {short_text:'Подробная история.',language:'en'}));
+  await settle();
+  assert.equal(get('guide-catalog-label').hidden, true);
+  assert.equal(get('guide-research').hidden, true);
+  assert.equal(get('guide-history').textContent, 'Подробная история.');
+  assert.equal(spoken.length, 1);
+  spoken[0].onend();
+  assert.equal(spoken[1].text.trim(), 'Вторая фраза каталога.');
+  assert.equal(spoken[1].lang, 'ru-RU');
+  spoken[1].onend();
+  get('guide-play').click();
+  assert.equal(spoken[2].text, 'Подробная история.');
+});
+
+test('catalog guide stays usable and retry is available when a detailed source fails', async () => {
+  const {get, guide, requests, model} = setup();
+  guide.update(model(['a']));
+  get('trip-tab-guide').click();
+  requests[0].resolve(statuses([['a','available',true]]));
+  await settle();
+  cards(get('guide-places'))[0].click();
+  const catalog = story('a', {coverage:'catalog',research_status:'pending'});
+  requests[1].resolve(catalog);
+  await settle();
+  get('guide-research').click();
+  requests[2].resolve({...catalog,research_status:'temporarily_unavailable'});
+  await settle();
+  assert.match(get('guide-detail-status').textContent, /временно недоступен/);
+  assert.equal(get('guide-research').hidden, false);
+  assert.equal(get('guide-listen').hidden, false);
+  get('guide-research').click();
+  requests[3].resolve({...catalog,research_status:'unavailable'});
+  await settle();
+  assert.equal(get('guide-research').hidden, true);
+  assert.equal(get('guide-listen').hidden, false);
+});
+
+test('background checks use research status and a late catalog reply cannot overwrite rich content', async () => {
+  const {get, guide, requests, model, runTimers} = setup();
+  guide.update(model(['a','b']));
+  get('trip-tab-guide').click();
+  requests[0].resolve(statuses([['a','available',true],['b','available',false]]));
+  await settle();
+  runTimers();
+  assert.equal(requests[1].url, '/api/guide/poi/a?city=moscow');
+  cards(get('guide-places'))[0].click();
+  assert.equal(requests[2].url, '/api/guide/poi/a?city=moscow&quick=true');
+  requests[1].resolve(story('a', {short_text:'Материал из источника.'}));
+  await settle();
+  requests[2].resolve(story('a', {coverage:'catalog',research_status:'pending'}));
+  await settle();
+  assert.equal(get('guide-history').textContent, 'Материал из источника.');
+  assert.equal(get('guide-catalog-label').hidden, true);
+  get('guide-back-list').click();
+  runTimers();
+  assert.equal(requests.length, 3);
 });

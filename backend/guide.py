@@ -12,6 +12,7 @@ from fastapi import APIRouter, Depends, HTTPException, Path
 from pydantic import BaseModel, ConfigDict, Field
 
 from backend.accounts import current_user, database, same_origin
+from backend.guide_catalog_story import CATALOG_CATEGORIES, catalog_context, catalog_story
 from backend.guide_stories import curated_story
 from backend.guide_wikimedia import WikimediaUnavailable, build_story
 from backend.place_catalog import city_places, legacy_places, place_summary
@@ -90,6 +91,7 @@ def get_poi(city, poi_id):
         'kind': point['kind'], 'coordinates': {'latitude': point['lat'], 'longitude': point['lon']},
         'aliases': [alias for alias in aliases if isinstance(alias, str) and alias and alias != point['name']],
         'wikidata_id': wikidata_id if isinstance(wikidata_id, str) and QID.fullmatch(wikidata_id) else None,
+        'catalog_context': catalog_context(raw, city) if category in CATALOG_CATEGORIES else None,
         'synthetic': bool(provenance.get('is_synthetic') or 'synthetic' in provenance.get('identity', '')
                           or raw.get('source_type') == 'synthetic'),
     }
@@ -114,6 +116,17 @@ def response_for(poi, status, story=None, updated=None, stale=False):
         'updated_at': datetime.fromtimestamp(updated, timezone.utc).isoformat() if updated is not None else None,
         'stale': stale,
     }
+
+
+def fallback_response(poi, research_status, updated=None):
+    backup = curated_story(poi['city'], poi['poi_id'])
+    if backup:
+        return response_for(poi, 'available', backup)
+    story = catalog_story(poi)
+    if story:
+        return response_for(poi, 'available', {**story, 'research_status': research_status}, updated)
+    return response_for(poi, 'temporarily_unavailable' if research_status == 'temporarily_unavailable'
+                        else 'unavailable', updated=updated)
 
 
 def stored_stories(city, ids, version=VERSION):
@@ -145,6 +158,7 @@ def availability(city: City, body: AvailabilityRequest):
     for poi_id in ids:
         poi = get_poi(city, poi_id)
         status = 'excluded'
+        detail = {}
         if poi and eligible(poi):
             status = 'unknown'
             if poi_id in cached or poi_id in old:
@@ -153,26 +167,42 @@ def availability(city: City, body: AvailabilityRequest):
                     status = 'available'
                 elif poi_id in cached and not story and now - updated < NEGATIVE_TTL:
                     status = 'unavailable'
-            if status != 'available' and curated_story(city, poi_id):
+            if curated_story(city, poi_id):
                 status = 'available'
-        items.append({'poi_id': poi_id, 'status': status, 'category': poi['category'] if poi else None})
+            elif poi['category'] in CATALOG_CATEGORIES:
+                detail['needs_research'] = status == 'unknown'
+                status = 'available'
+        items.append({'poi_id': poi_id, 'status': status, 'category': poi['category'] if poi else None, **detail})
     return {'items': items}
 
 
 @router.get('/poi/{poi_id}')
-def point_guide(city: City, poi_id: Annotated[str, Path(min_length=1, max_length=POI_ID_MAX)]):
+def point_guide(city: City, poi_id: Annotated[str, Path(min_length=1, max_length=POI_ID_MAX)], quick: bool = False):
     poi = get_poi(city, poi_id)
     if poi is None:
         raise HTTPException(404, 'Место отсутствует в каталоге.')
     if not eligible(poi):
         return response_for(poi, 'excluded')
+    if quick and poi['category'] in CATALOG_CATEGORIES:
+        now = time()
+        current = stored_stories(city, [poi_id]).get(poi_id)
+        if current is not None:
+            updated, story = current
+            if story and now - updated <= STALE_TTL:
+                return response_for(poi, 'available', story, updated, stale=now - updated >= POSITIVE_TTL)
+            if not story and now - updated < NEGATIVE_TTL:
+                return fallback_response(poi, 'unavailable', updated)
+        updated, story = stored_stories(city, [poi_id], PREVIOUS_VERSION).get(poi_id, (0, None))
+        if story and now - updated <= STALE_TTL:
+            return response_for(poi, 'available', story, updated, stale=True)
+        return fallback_response(poi, 'pending')
     # A repeat click or concurrent request for the same object shares the result.
     with LOOKUP_LOCKS[hash((city, poi_id)) % len(LOOKUP_LOCKS)]:
         now = time()
         updated, story = stored_stories(city, [poi_id]).get(poi_id, (0, None))
         if updated and now - updated < (POSITIVE_TTL if story else NEGATIVE_TTL):
-            backup = story or curated_story(city, poi_id)
-            return response_for(poi, 'available' if backup else 'unavailable', backup, updated)
+            return (response_for(poi, 'available', story, updated) if story
+                    else fallback_response(poi, 'unavailable', updated))
         if not story:
             updated, story = stored_stories(city, [poi_id], PREVIOUS_VERSION).get(poi_id, (0, None))
         try:
@@ -180,11 +210,8 @@ def point_guide(city: City, poi_id: Annotated[str, Path(min_length=1, max_length
         except WikimediaUnavailable:
             if story and now - updated <= STALE_TTL:
                 return response_for(poi, 'available', story, updated, stale=True)
-            backup = curated_story(city, poi_id)
-            if backup:
-                return response_for(poi, 'available', backup)
-            return response_for(poi, 'temporarily_unavailable')
+            return fallback_response(poi, 'temporarily_unavailable')
         updated = time()
         save_story(city, poi_id, refreshed, updated)
-        story = refreshed or curated_story(city, poi_id)
-        return response_for(poi, 'available' if story else 'unavailable', story, updated)
+        return (response_for(poi, 'available', refreshed, updated) if refreshed
+                else fallback_response(poi, 'unavailable', updated))
