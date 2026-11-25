@@ -53,7 +53,7 @@ function setup({voice = true} = {}) {
   const formats = ['short','long'].map(length => Object.assign(new Element(), {dataset:{guideLength:length}}));
   const body = new Element();
   body.append(get('route-editor'), get('guide-player'));
-  get('guide-list-view').append(get('guide-places'), get('guide-unknown-places'));
+  get('guide-list-view').append(get('guide-places'));
   for (const name of ['route', 'guide', 'tips']) get('trip-tab-' + name).setAttribute('aria-controls', 'trip-panel-' + name);
   get('guide-speed').value = '1';
   document = {body, getElementById:get, createElement:() => new Element(), querySelectorAll:() => formats};
@@ -67,8 +67,12 @@ function setup({voice = true} = {}) {
   const window = {addEventListener() {}};
   if (voice) Object.assign(window, {speechSynthesis:synth, SpeechSynthesisUtterance:Utterance});
   const requests = [];
+  const timers = new Map();
+  let timerId = 0;
   const context = vm.createContext({window, document, Image:Element, URL, CSS:{escape:value => value},
     SpeechSynthesisUtterance:Utterance,
+    setTimeout:callback => { timers.set(++timerId, callback); return timerId; },
+    clearTimeout:id => timers.delete(id),
     fetch:(url, options) => new Promise(resolve => requests.push({url, options, resolve:(body, ok = true) =>
       resolve({ok, json:async () => body})})),
   });
@@ -79,7 +83,13 @@ function setup({voice = true} = {}) {
   const model = (stops, city = 'moscow') => ({city, showOnMap:stop => show.push(stop), days:[
     {date:'2026-11-25',label:'День 1',stops:stops.map((id, index) => ({id,name:'Место ' + id,occurrence:1,canMap:true,mapIndex:index}))},
   ]});
-  return {get, guide, spoken, show, requests, formats, model};
+  const runTimers = () => {
+    for (const [id, callback] of [...timers]) {
+      timers.delete(id);
+      callback();
+    }
+  };
+  return {get, guide, spoken, show, requests, formats, model, runTimers};
 }
 
 const settle = () => new Promise(resolve => setImmediate(resolve));
@@ -89,7 +99,7 @@ const cardIds = node => cards(node).map(card => card.dataset.guideKey.split('/')
 const story = (id, fields = {}) => ({poi_id:id, city:'moscow', status:'available', short_text:'История ' + id + '.',
   full_text:'Подробный рассказ ' + id + '.', language:'ru', facts:[], sources:[], ...fields});
 
-test('guide requests availability lazily and keeps stop order in both lists', async () => {
+test('guide checks the visible list lazily and keeps eligible stops in route order', async () => {
   const {get, guide, requests, model} = setup();
   guide.update(model(['a','b','c','d','e']));
   assert.equal(requests.length, 0);
@@ -100,15 +110,19 @@ test('guide requests availability lazily and keeps stop order in both lists', as
   assert.deepEqual(JSON.parse(requests[0].options.body), {poi_ids:['a','b','c','d','e']});
   requests[0].resolve(statuses([['d','available'],['c','excluded'],['a','unknown'],['e','unavailable'],['b','available']]));
   await settle();
-  assert.deepEqual(cardIds(get('guide-places')), ['b','d']);
-  assert.deepEqual(cardIds(get('guide-unknown-places')), ['a']);
+  assert.deepEqual(cardIds(get('guide-places')), ['a','b','d','e']);
+  assert.match(cards(get('guide-places'))[0].textContent, /Рассказ можно поискать/);
+  assert.match(cards(get('guide-places')).at(-1).textContent, /Рассказ пока не найден/);
+  cards(get('guide-places')).at(-1).click();
+  assert.match(get('guide-detail-status').textContent, /пока не найден/);
+  assert.equal(get('guide-listen').hidden, true);
+  get('guide-back-list').click();
   assert.equal(requests.length, 1);
   guide.update(model(['d','f']));
   assert.deepEqual(JSON.parse(requests[1].options.body), {poi_ids:['f']});
   requests[1].resolve(statuses([['f','unknown']]));
   await settle();
-  assert.deepEqual(cardIds(get('guide-places')), ['d']);
-  assert.deepEqual(cardIds(get('guide-unknown-places')), ['f']);
+  assert.deepEqual(cardIds(get('guide-places')), ['d','f']);
 });
 
 test('selected guide lazily renders facts, image attribution and safe sources', async () => {
@@ -159,10 +173,10 @@ test('unavailable details do not speak a fabricated placeholder and can be retri
   get('guide-retry-list').click();
   requests[1].resolve(statuses([['a','unknown'],['b','unknown']]));
   await settle();
-  const [first] = cards(get('guide-unknown-places'));
+  const [first] = cards(get('guide-places'));
   first.click();
   get('guide-back-list').click();
-  cards(get('guide-unknown-places'))[1].click();
+  cards(get('guide-places'))[1].click();
   requests[2].resolve(story('a'));
   requests[3].resolve(story('b', {status:'temporarily_unavailable'}));
   await settle();
@@ -190,4 +204,83 @@ test('manual Shanghai guides remain usable without TTS or a detail request', asy
   assert.equal(requests.length, 1);
   requests[0].resolve(statuses([['unknown','excluded']]));
   await settle();
+});
+
+test('prefetch checks only the selected day, shares a click, and cancels a hidden queue', async () => {
+  const {get, guide, requests, model, runTimers} = setup();
+  const route = model(['a','b','c']);
+  const second = model(['d','e']).days[0];
+  route.days.push({...second,date:'2026-11-26',label:'День 2'});
+  guide.update(route);
+  get('trip-tab-guide').click();
+  assert.deepEqual(JSON.parse(requests[0].options.body), {poi_ids:['a','b','c']});
+  requests[0].resolve(statuses([['a','unknown'],['b','unknown'],['c','unknown']]));
+  await settle();
+  runTimers();
+  runTimers();
+  assert.equal(requests.length, 2);
+  assert.match(requests[1].url, /\/a\?city=moscow$/);
+  cards(get('guide-places'))[0].click();
+  assert.equal(requests.length, 2);
+  requests[1].resolve(story('a'));
+  await settle();
+  assert.equal(get('guide-history').textContent, 'История a.');
+  get('guide-back-list').click();
+  get('guide-days').children[1].click();
+  runTimers();
+  assert.equal(requests.length, 3);
+  assert.deepEqual(JSON.parse(requests[2].options.body), {poi_ids:['d','e']});
+  requests[2].resolve(statuses([['d','unknown'],['e','unknown']]));
+  await settle();
+  get('trip-tab-route').click();
+  runTimers();
+  assert.equal(requests.length, 3);
+});
+
+test('prefetch loads at most two nearby stories and leaves a failed request retryable', async () => {
+  const {get, guide, requests, model, runTimers} = setup();
+  guide.update(model(['a','b','c']));
+  get('trip-tab-guide').click();
+  requests[0].resolve(statuses([['a','unknown'],['b','unknown'],['c','unknown']]));
+  await settle();
+  runTimers();
+  requests[1].resolve(story('a', {status:'temporarily_unavailable'}));
+  await settle();
+  runTimers();
+  requests[2].resolve(story('b'));
+  await settle();
+  runTimers();
+  assert.equal(requests.length, 3);
+  assert.match(requests[2].url, /\/b\?city=moscow$/);
+  cards(get('guide-places'))[0].click();
+  assert.equal(requests.length, 4);
+  requests[3].resolve(story('a'));
+  await settle();
+  assert.equal(get('guide-history').textContent, 'История a.');
+});
+
+test('a running background request does not start another on the previous day', async () => {
+  const {get, guide, requests, model, runTimers} = setup();
+  const route = model(['a','b']);
+  route.days.push({...model(['c']).days[0],date:'2026-11-26',label:'День 2'});
+  guide.update(route);
+  get('trip-tab-guide').click();
+  requests[0].resolve(statuses([['a','unknown'],['b','unknown']]));
+  await settle();
+  runTimers();
+  get('guide-days').children[1].click();
+  requests[2].resolve(statuses([['c','unknown']]));
+  await settle();
+  runTimers();
+  assert.equal(requests.length, 3);
+  requests[1].resolve(story('a'));
+  await settle();
+  runTimers();
+  assert.equal(requests.length, 4);
+  assert.match(requests[3].url, /\/c\?city=moscow$/);
+  get('trip-tab-route').click();
+  requests[3].resolve(story('c'));
+  await settle();
+  runTimers();
+  assert.equal(requests.length, 4);
 });

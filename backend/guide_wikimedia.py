@@ -76,6 +76,10 @@ class WikimediaUnavailable(RuntimeError):
     """Wikimedia could not be consulted reliably for this request."""
 
 
+class _ArticleMismatch(RuntimeError):
+    """The Russian sitelink resolves to a different subject."""
+
+
 class _NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
@@ -191,11 +195,16 @@ def _distance(left, right):
     return 12742000 * math.asin(math.sqrt(min(1, angle)))
 
 
-def _claim_values(entity, prop):
+def _map(value):
+    return value if isinstance(value, dict) else {}
+
+
+def _claim_values(entity, prop, *, unqualified=False):
     preferred, normal = [], []
-    for statement in entity.get('claims', {}).get(prop, []):
+    for statement in _map(entity.get('claims')).get(prop, []):
         snak = statement.get('mainsnak', {})
-        if snak.get('snaktype') != 'value' or statement.get('rank') == 'deprecated':
+        if (snak.get('snaktype') != 'value' or statement.get('rank') == 'deprecated'
+                or unqualified and statement.get('qualifiers')):
             continue
         value = snak.get('datavalue', {}).get('value')
         if value is not None:
@@ -203,11 +212,14 @@ def _claim_values(entity, prop):
     return preferred or normal
 
 
-def _entity_map(ids):
+def _entity_map(ids, *, russian_labels_only=False):
+    props = ({'props': 'labels', 'languages': 'ru'} if russian_labels_only else {
+        'props': 'labels|aliases|descriptions|claims|sitelinks',
+        'languages': _LANGUAGES, 'sitefilter': 'ruwiki',
+    })
     data = _request(WIKIDATA_URL, {
         'action': 'wbgetentities', 'ids': '|'.join(ids),
-        'props': 'labels|aliases|descriptions|claims|sitelinks', 'languages': _LANGUAGES,
-        'sitefilter': 'ruwiki', 'redirects': 'no',
+        'redirects': 'no', **props,
     })
     entities = data.get('entities')
     if not isinstance(entities, dict):
@@ -219,7 +231,7 @@ def _entity_map(ids):
 
 
 def _site_title(entity):
-    title = entity.get('sitelinks', {}).get('ruwiki', {}).get('title')
+    title = _map(_map(entity.get('sitelinks')).get('ruwiki')).get('title')
     if not isinstance(title, str) or not title.strip() or len(title) > 250:
         return None
     # Article namespace only. Avoid disambiguation and lists even when the term matches.
@@ -231,17 +243,19 @@ def _site_title(entity):
 
 def _match(entity, names, coords, category, *, source=False):
     title, qid = _site_title(entity), entity.get('id')
-    if not title or not isinstance(qid, str) or not _QID.fullmatch(qid):
+    if not isinstance(qid, str) or not _QID.fullmatch(qid):
         return None
-    descriptions = [v.get('value', '') for v in entity.get('descriptions', {}).values()]
-    label_values = [v.get('value', '') for v in entity.get('labels', {}).values()]
-    alias_values = [v.get('value', '') for group in entity.get('aliases', {}).values() for v in group]
-    texts = [title, *label_values, *alias_values]
+    if not title and 'ruwiki' in _map(entity.get('sitelinks')):
+        return None
+    descriptions = [_map(v).get('value') for v in _map(entity.get('descriptions')).values()]
+    label_values = [_map(v).get('value') for v in _map(entity.get('labels')).values()]
+    alias_values = [_map(v).get('value') for group in _map(entity.get('aliases')).values() for v in group]
+    texts = [title, *label_values, *alias_values] if title else [*label_values, *alias_values]
     exact = any(_norm(value) in names for value in texts)
     base = any(_title_base(value) in names for value in texts)
-    if not (exact or base):
+    if not exact and (not title or not base):
         return None
-    description = _norm(' '.join(descriptions))
+    description = ' '.join(map(_norm, descriptions))
     if any(mark in description for mark in ('значений викимедиа', 'список викимедиа', 'disambiguation', 'wikimedia list')):
         return None
     types = {v.get('id') for v in _claim_values(entity, 'P31') if isinstance(v, dict)}
@@ -444,30 +458,32 @@ def _page(endpoint, params):
 
 
 def _article(entity):
+    title = _site_title(entity)
+    if not title:
+        return None
     page = _page(WIKIPEDIA_URL, {
-        'action': 'query', 'prop': 'extracts|pageprops|info', 'titles': _site_title(entity),
+        'action': 'query', 'prop': 'extracts|pageprops|info', 'titles': title,
         'redirects': '1', 'explaintext': '1', 'exsectionformat': 'wiki',
         'ppprop': 'disambiguation|wikibase_item',
     })
-    if not page or page.get('ns') != 0:
+    if not page:
         return None
     props = page.get('pageprops') or {}
     actual_id = props.get('wikibase_item')
-    if 'disambiguation' in props or actual_id != entity['id']:
-        return None
-    if _site_title({'sitelinks': {'ruwiki': {'title': page.get('title')}}}) is None:
-        return None
+    if (page.get('ns') != 0 or 'disambiguation' in props or actual_id != entity['id']
+            or _site_title({'sitelinks': {'ruwiki': {'title': page.get('title')}}}) is None):
+        raise _ArticleMismatch
     return page
 
 
-def _facts(entity, sections, lead_sentences):
-    result, quoted = [], set()
+def _date_facts(entity, *, unqualified=False):
+    result, used_years = [], set()
     for prop, label, wording in (
         ('P571', 'Год основания', 'Датой основания этого места считается {} год.'),
         ('P1619', 'Год официального открытия', 'Место официально открылось в {} году.'),
     ):
         years = set()
-        for stamp in _claim_values(entity, prop):
+        for stamp in _claim_values(entity, prop, unqualified=unqualified):
             if not isinstance(stamp, dict) or not stamp.get('calendarmodel', '').endswith('/Q1985727'):
                 continue
             precision = stamp.get('precision')
@@ -477,7 +493,15 @@ def _facts(entity, sections, lead_sentences):
             if match and int(match[1]) > 0:
                 years.add(str(int(match[1])))
         if len(years) == 1:
-            result.append({'title': label, 'text': wording.format(next(iter(years)))})
+            year = next(iter(years))
+            if not unqualified or year not in used_years:
+                result.append({'title': label, 'text': wording.format(year)})
+                used_years.add(year)
+    return result
+
+
+def _facts(entity, sections, lead_sentences):
+    result, quoted = _date_facts(entity), set()
     for item in sections:
         if not _norm(item['title']).startswith(_INTERESTING_SECTIONS):
             continue
@@ -500,6 +524,68 @@ def _facts(entity, sections, lead_sentences):
         if len(result) >= 4:
             break
     return result, quoted
+
+
+_RELATED_CLAIMS = {
+    'P84': ('Архитектор', 'Среди авторов проекта указан архитектор «{}».'),
+    'P149': ('Архитектура', 'Архитектурный стиль места обозначен как «{}».'),
+    'P1435': ('Охранный статус', 'Для места указан охранный статус «{}».'),
+}
+
+
+def _related_claims(entity):
+    single_ids = {}
+    for prop in _RELATED_CLAIMS:
+        ids = {
+            value['id'] for value in _claim_values(entity, prop, unqualified=True)
+            if isinstance(value, dict) and isinstance(value.get('id'), str)
+            and _QID.fullmatch(value['id']) and value['id'] != entity['id']
+        }
+        if len(ids) == 1:
+            single_ids[prop] = next(iter(ids))
+    return single_ids
+
+
+def _russian_labels(ids):
+    labels = {}
+    for row in _entity_map(list(dict.fromkeys(ids)), russian_labels_only=True):
+        target = _map(_map(row.get('labels')).get('ru')).get('value')
+        label = ' '.join(_clean_markup(target).split())
+        if 2 <= len(label) <= 130:
+            labels[row.get('id')] = label
+    return labels
+
+
+def _wikidata_story(entity, poi_name):
+    facts = _date_facts(entity, unqualified=True)
+    description = _map(_map(entity.get('descriptions')).get('ru')).get('value')
+    description = ' '.join(_clean_markup(description).split())
+    if not (65 <= len(description) <= 240 and len(_norm(description).split()) >= 9
+            and re.search(r'[А-Яа-яЁё]', description)):
+        description = ''
+    related = _related_claims(entity)
+    if related:
+        try:
+            labels = _russian_labels(related.values())
+        except WikimediaUnavailable:
+            if len(facts) < (1 if description else 2):
+                raise
+            labels = {}
+        for prop, qid in related.items():
+            if qid in labels:
+                title, wording = _RELATED_CLAIMS[prop]
+                facts.append({'title': title, 'text': wording.format(labels[qid])})
+    if len(facts) < (1 if description else 2):
+        return None
+    facts = facts[:4]
+    intro = (f'«{poi_name}». В Wikidata это место описано так: {description.rstrip(".!?")}.' if description
+             else f'«{poi_name}».')
+    return {
+        'short_text': ' '.join([intro, *(fact['text'] for fact in facts[:2])]),
+        'full_text': ' '.join([intro, *(fact['text'] for fact in facts)]),
+        'facts': facts,
+        'sources': [],
+    }
 
 
 def _verified_url(value, host, prefix):
@@ -562,13 +648,7 @@ def _image(entity):
             'license': license_name, 'license_url': license_url}
 
 
-def build_story(poi):
-    """Return a sourced text guide, None for an unverified match, or raise on source failure."""
-    matched = _identify(poi)
-    if not matched:
-        return None
-    entity, method = matched
-    page = _article(entity)
+def _wikipedia_story(entity, page):
     if not page:
         return None
     lead, *sections = _sections(page.get('extract'))
@@ -591,14 +671,9 @@ def build_story(poi):
         paragraph = _excerpt(prose(section), 600)
         if paragraph:
             narrative.append(paragraph)
-    qid = entity['id']
     wiki_url = 'https://ru.wikipedia.org/wiki/' + quote(page['title'].replace(' ', '_'), safe='')
     if type(page.get('lastrevid')) is int and page['lastrevid'] > 0:
         wiki_url += '?' + urlencode({'oldid': page['lastrevid']})
-    try:
-        image = _image(entity)
-    except WikimediaUnavailable:
-        image = None
     return {
         'short_text': short,
         'full_text': '\n\n'.join(narrative),
@@ -607,10 +682,32 @@ def build_story(poi):
             {'title': page['title'], 'url': wiki_url, 'license': 'CC BY-SA 4.0',
              'license_url': 'https://creativecommons.org/licenses/by-sa/4.0/',
              'attribution': 'Участники русской Википедии. Сокращённые выдержки из статьи.'},
-            {'title': 'Wikidata · ' + qid, 'url': 'https://www.wikidata.org/wiki/' + qid,
-             'license': 'CC0 1.0', 'license_url': 'https://creativecommons.org/publicdomain/zero/1.0/',
-             'attribution': 'Участники Wikidata. Идентификация и структурированные данные.'},
         ],
-        'match': {'wikidata_id': qid, 'confidence': 'high', 'method': method},
-        'image': image,
     }
+
+
+def build_story(poi):
+    """Return a sourced text guide, None for an unverified match, or raise on source failure."""
+    matched = _identify(poi)
+    if not matched:
+        return None
+    entity, method = matched
+    try:
+        page = _article(entity)
+    except _ArticleMismatch:
+        return None
+    story = _wikipedia_story(entity, page) or _wikidata_story(entity, poi['name'])
+    if story is None:
+        return None
+    qid = entity['id']
+    story['sources'].append(
+        {'title': 'Wikidata · ' + qid, 'url': 'https://www.wikidata.org/wiki/' + qid,
+         'license': 'CC0 1.0', 'license_url': 'https://creativecommons.org/publicdomain/zero/1.0/',
+         'attribution': 'Участники Wikidata. Идентификация и структурированные данные.'},
+    )
+    story['match'] = {'wikidata_id': qid, 'confidence': 'high', 'method': method}
+    try:
+        story['image'] = _image(entity)
+    except WikimediaUnavailable:
+        story['image'] = None
+    return story

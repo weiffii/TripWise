@@ -9,8 +9,6 @@
   const detail = el('guide-detail');
   const rail = el('guide-days');
   const list = el('guide-places');
-  const unknownList = el('guide-unknown-places');
-  const unchecked = el('guide-unchecked');
   const listStatus = el('guide-availability');
   const retryList = el('guide-retry-list');
   const retryDetail = el('guide-retry-detail');
@@ -27,10 +25,12 @@
   const statuses = new Map();
   const stories = new Map();
   const requests = new Map();
+  const prefetchedByDay = new Map();
   const localArtwork = new Set(['museums', 'nature', 'viewpoints', 'history', 'entertainment', 'shopping', 'unusual']);
   let days = [], city = '', showOnMap, dayIndex = 0, detailKey = '', audioKey = '', lastCard;
   let length = 'short', state = 'idle', segmentIndex = 0, segments = [], utterance, generation = 0;
-  let availabilityRequest, availabilityError = false, detailVersion = 0, audioFact = null;
+  let availabilityRequest, availabilityError, prefetchTimer, backgroundRequest;
+  let detailVersion = 0, audioFact = null;
 
   function switchTab(index, focus = false) {
     tabs.forEach((tab, position) => {
@@ -40,6 +40,7 @@
       tab.tabIndex = active ? 0 : -1;
     });
     if (index === 1) checkAvailability();
+    else cancelPrefetch();
     updatePlayer();
     if (focus) tabs[index].focus();
   }
@@ -55,6 +56,8 @@
   });
 
   const all = () => days.flatMap(day => day.stops);
+  const selectedStops = () => days[dayIndex]?.stops || [];
+  const selectedDayKey = () => city + '/' + days[dayIndex]?.date;
   const stopByKey = key => key && all().find(stop => stop.key === key);
   const audioStop = () => stopByKey(audioKey);
   const detailStop = () => stopByKey(detailKey);
@@ -74,11 +77,19 @@
     return response.json();
   }
   function checkAvailability() {
-    if (!catalogServices(city) || guidePanel.hidden || availabilityRequest || availabilityError) return;
+    if (!catalogServices(city) || guidePanel.hidden) return;
+    const day = selectedDayKey();
+    const failed = availabilityError === day;
+    retryList.hidden = !failed;
+    if (failed) {
+      listStatus.textContent = 'Не удалось проверить список рассказов. Можно открыть отдельное место.';
+      return;
+    }
     const destination = city;
-    const ids = [...new Set(all().filter(stop => !statuses.has(stop.contentKey) && !storyFor(stop)).map(stop => stop.id))];
-    if (!ids.length) return;
-    listStatus.textContent = 'Проверяем, для каких мест есть рассказы…';
+    const ids = [...new Set(selectedStops().filter(stop => !statuses.has(stop.contentKey) && !storyFor(stop)).map(stop => stop.id))];
+    listStatus.textContent = ids.length ? 'Проверяем, для каких мест есть рассказы…' : '';
+    if (!ids.length) { schedulePrefetch(); return; }
+    if (availabilityRequest) return;
     availabilityRequest = (async () => {
       for (let index = 0; index < ids.length; index += 256) {
         const batch = ids.slice(index, index + 256);
@@ -87,22 +98,19 @@
         });
         const items = new Map(data.items.map(item => [item.poi_id, item]));
         for (const id of batch) statuses.set(contentKey(destination, id), items.get(id) || {status:'unknown'});
-        if (city !== destination) return;
+        if (guidePanel.hidden || selectedDayKey() !== day) return;
       }
     })().catch(() => {
-      if (city === destination) availabilityError = true;
+      if (selectedDayKey() === day) availabilityError = day;
     }).finally(() => {
       availabilityRequest = undefined;
-      listStatus.textContent = availabilityError ? 'Не удалось проверить список рассказов. Поиск отдельного рассказа остаётся доступен.' : '';
-      retryList.hidden = !availabilityError;
       if (!listView.hidden) showDay();
       updatePlayer();
       checkAvailability();
     });
   }
   retryList.onclick = () => {
-    availabilityError = false;
-    retryList.hidden = true;
+    availabilityError = undefined;
     checkAvailability();
   };
   function loadStory(stop) {
@@ -121,6 +129,35 @@
       requests.set(stop.contentKey, pending);
     }
     return requests.get(stop.contentKey);
+  }
+  function cancelPrefetch() {
+    clearTimeout(prefetchTimer);
+    prefetchTimer = undefined;
+  }
+  function schedulePrefetch() {
+    if (prefetchTimer !== undefined || backgroundRequest || guidePanel.hidden || listView.hidden) return;
+    const day = selectedDayKey();
+    const attempted = prefetchedByDay.get(day) || new Set();
+    if (attempted.size >= 2) return;
+    const candidate = () => selectedStops().find(stop => statuses.get(stop.contentKey)?.status === 'unknown' &&
+      statusFor(stop) === 'unknown' && !requests.has(stop.contentKey) && !attempted.has(stop.contentKey));
+    if (!candidate()) return;
+    prefetchTimer = setTimeout(() => {
+      prefetchTimer = undefined;
+      if (guidePanel.hidden || listView.hidden || selectedDayKey() !== day) return;
+      const stop = candidate();
+      if (!stop) return;
+      attempted.add(stop.contentKey);
+      prefetchedByDay.set(day, attempted);
+      // A click on the same POI can share this in-flight fetch. Dropping the
+      // queued work leaves no extra request when the tab or date changes.
+      backgroundRequest = loadStory(stop).finally(() => {
+        backgroundRequest = undefined;
+        if (!guidePanel.hidden && !listView.hidden) showDay();
+        updatePlayer();
+        schedulePrefetch();
+      });
+    }, 400);
   }
   function stopSpeech(reset = true) {
     generation++;
@@ -240,31 +277,27 @@
       tab.textContent = day.label;
       tab.onclick = () => {
         // Сохраняем горизонтальную позицию ряда дней.
+        cancelPrefetch();
         dayIndex = index;
-        unchecked.open = false;
         showDay();
+        checkAvailability();
       };
       rail.append(tab);
     });
     showDay();
+    checkAvailability();
     updatePlayer();
     if (focus) (lastCard && listView.querySelector('[data-guide-key="' + CSS.escape(lastCard) + '"]') || rail.children[dayIndex])?.focus();
   }
 
   function showDay() {
     [...rail.children].forEach((tab, index) => tab.setAttribute('aria-pressed', String(index === dayIndex)));
-    const stops = days[dayIndex]?.stops || [];
+    const stops = selectedStops().filter(stop => statusFor(stop) !== 'excluded');
     const activeCard = document.activeElement?.dataset.guideKey;
-    const ready = stops.filter(stop => statusFor(stop) === 'available');
-    const unknown = stops.filter(stop => catalogServices(stop.city) && statusFor(stop) === 'unknown');
     const empty = el('guide-empty');
-    empty.textContent = stops.length ? 'Для остановок этого дня пока нет рассказов.' : 'На этот день экскурсионных остановок нет.';
-    empty.hidden = ready.length > 0 || unknown.length > 0;
-    list.replaceChildren();
-    unknownList.replaceChildren();
-    for (const stop of ready) list.append(placeCard(stop));
-    for (const stop of unknown) unknownList.append(placeCard(stop));
-    unchecked.hidden = !unknown.length;
+    empty.textContent = 'На этот день нет остановок для аудиогида.';
+    empty.hidden = stops.length > 0;
+    list.replaceChildren(...stops.map(placeCard));
     if (activeCard) (listView.querySelector('[data-guide-key="' + CSS.escape(activeCard) + '"]') || rail.children[dayIndex])?.focus();
   }
 
@@ -281,7 +314,8 @@
     const copy = document.createElement('span');
     const tag = document.createElement('small');
     const title = document.createElement('strong');
-    tag.textContent = 'Остановка ' + number(stop.order);
+    const label = {available:'Рассказ доступен', unavailable:'Рассказ пока не найден', unknown:'Рассказ можно поискать'};
+    tag.textContent = 'Остановка ' + number(stop.order) + ' · ' + label[statusFor(stop)];
     title.textContent = stop.name;
     copy.append(tag,title);
     const arrow = document.createElement('span');
@@ -410,6 +444,7 @@
   }
 
   async function renderDetail(stop, focus = false) {
+    cancelPrefetch();
     const version = ++detailVersion;
     detailKey = stop.key;
     listView.hidden = true;
@@ -421,7 +456,8 @@
       switchTab(0);
       showOnMap(stop);
     };
-    const saved = storyFor(stop);
+    const status = statusFor(stop);
+    const saved = storyFor(stop) || (['unavailable', 'excluded'].includes(status) ? {status} : null);
     showStory(stop, saved);
     if (focus) el('guide-detail-title').focus();
     if (saved) return;
@@ -472,14 +508,15 @@
     if (!guidePanel.hidden && !detail.hidden) el('guide-detail-title').focus();
     else routeTab.focus();
   };
-  window.addEventListener('pagehide', () => { stopSpeech(); updatePlayer(); });
+  window.addEventListener('pagehide', () => { cancelPrefetch(); stopSpeech(); updatePlayer(); });
   el('guide-voice-hint').hidden = true;
 
   window.TripWiseGuide = {
     syncPlayer:updatePlayer,
     update(model) {
+      cancelPrefetch();
       if (city !== model.city) {
-        availabilityError = false;
+        availabilityError = undefined;
         retryList.hidden = true;
         listStatus.textContent = '';
       }
@@ -503,7 +540,6 @@
         dayIndex = opened.day;
         renderDetail(opened);
       } else renderList();
-      if (!guidePanel.hidden) checkAvailability();
       updatePlayer();
       el('trip-result-tabs').hidden = false;
     }

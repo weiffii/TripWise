@@ -21,12 +21,14 @@ router = APIRouter(prefix='/api/guide', tags=['Аудиогид'], dependencies=
 City = Literal['moscow', 'shanghai']
 POI_ID_MAX = 512
 LANGUAGE = 'ru'
-VERSION = '1'
+VERSION = '2'
+PREVIOUS_VERSION = '1'
 POSITIVE_TTL = 30 * 86400
 NEGATIVE_TTL = 86400
 STALE_TTL = 180 * 86400
 LOOKUP_LOCKS = [Lock() for _ in range(32)]
 GUIDE_CATEGORIES = {'museums', 'history', 'nature', 'unusual'}
+EXCLUDED_CATEGORIES = {'cafes', 'shopping', 'viewpoints', 'entertainment'}
 EXCLUDED_KINDS = {
     'restaurant', 'cafe', 'bar', 'food_court', 'shopping_center', 'shop', 'market',
     'viewpoint', 'amusement_park', 'attraction_ride', 'entertainment', 'hotel', 'station', 'transport',
@@ -35,6 +37,11 @@ EXCLUDED_NAMES = re.compile(
     r'^(?:тц|трц|торговый (?:центр|комплекс)|смотровая площадка|колесо обозрения|'
     r'парк аттракционов|развлекательный центр|батутный центр|аквапарк|'
     r'ресторан|кофейня|кафе|бар|отель|гостиница)(?:\b|$)', re.IGNORECASE)
+MUSEUM_NAME = re.compile(r'\bмузей\b', re.IGNORECASE)
+HISTORIC_NAME = re.compile(
+    r'^(?:памятник|монумент|мемориал|усадьба|городская усадьба|собор|храм|церковь|монастырь)\b',
+    re.IGNORECASE,
+)
 QID = re.compile(r'Q[1-9][0-9]*\Z')
 
 
@@ -52,6 +59,19 @@ def init_guide():
         )''')
 
 
+def guide_category(raw):
+    categories = raw.get('categories') or ()
+    primary = raw.get('primary_category') or next(iter(categories), None)
+    if primary in EXCLUDED_CATEGORIES:
+        return primary
+    name = raw['name'].strip()
+    if raw.get('kind') == 'museum' or 'museums' in categories or MUSEUM_NAME.search(name):
+        return 'museums'
+    if raw.get('kind') == 'historic' or 'history' in categories or HISTORIC_NAME.match(name):
+        return 'history'
+    return primary
+
+
 def get_poi(city, poi_id):
     raw = city_places(city).get(poi_id)
     if raw is None and city == 'moscow':
@@ -61,7 +81,7 @@ def get_poi(city, poi_id):
     point = place_summary(raw)
     source_ids = raw.get('source_ids') or {}
     provenance = raw.get('provenance') or {}
-    category = raw.get('primary_category') or next(iter(raw.get('categories') or ()), None)
+    category = guide_category(raw)
     wikidata_id = source_ids.get('wikidata_id') or raw.get('wikidata_id') or raw.get('wikidata')
     aliases = dict.fromkeys([*(raw.get('alternative_names') or ()), *(raw.get('names') or {}).values(),
                             raw.get('name_original'), raw.get('name_ru')])
@@ -96,14 +116,14 @@ def response_for(poi, status, story=None, updated=None, stale=False):
     }
 
 
-def stored_stories(city, ids):
+def stored_stories(city, ids, version=VERSION):
     if not ids:
         return {}
     slots = ','.join('?' for _ in ids)
     with database() as db:
         rows = db.execute(f'''SELECT poi_id, updated_at, payload FROM guide_stories
             WHERE city = ? AND language = ? AND version = ? AND poi_id IN ({slots})''',
-                          (city, LANGUAGE, VERSION, *ids)).fetchall()
+                          (city, LANGUAGE, version, *ids)).fetchall()
     return {row['poi_id']: (row['updated_at'], json.loads(row['payload'])) for row in rows}
 
 
@@ -119,6 +139,7 @@ def save_story(city, poi_id, story, now):
 def availability(city: City, body: AvailabilityRequest):
     ids = list(dict.fromkeys(body.poi_ids))
     cached = stored_stories(city, ids)
+    old = stored_stories(city, [key for key in ids if key not in cached], PREVIOUS_VERSION)
     now = time()
     items = []
     for poi_id in ids:
@@ -126,11 +147,11 @@ def availability(city: City, body: AvailabilityRequest):
         status = 'excluded'
         if poi and eligible(poi):
             status = 'unknown'
-            if poi_id in cached:
-                updated, story = cached[poi_id]
+            if poi_id in cached or poi_id in old:
+                updated, story = cached.get(poi_id, old.get(poi_id))
                 if story and now - updated <= STALE_TTL:
                     status = 'available'
-                elif not story and now - updated < NEGATIVE_TTL:
+                elif poi_id in cached and not story and now - updated < NEGATIVE_TTL:
                     status = 'unavailable'
             if status != 'available' and curated_story(city, poi_id):
                 status = 'available'
@@ -152,6 +173,8 @@ def point_guide(city: City, poi_id: Annotated[str, Path(min_length=1, max_length
         if updated and now - updated < (POSITIVE_TTL if story else NEGATIVE_TTL):
             backup = story or curated_story(city, poi_id)
             return response_for(poi, 'available' if backup else 'unavailable', backup, updated)
+        if not story:
+            updated, story = stored_stories(city, [poi_id], PREVIOUS_VERSION).get(poi_id, (0, None))
         try:
             refreshed = build_story(poi)
         except WikimediaUnavailable:

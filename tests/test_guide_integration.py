@@ -14,6 +14,9 @@ from backend import accounts, guide
 from backend.shanghai import router as trip_router
 
 
+catalog_lookup = guide.get_poi
+
+
 def request(app, method, target, body=None, origin='http://testserver'):
     url = urlsplit(target)
     data = b'' if body is None else json.dumps(body).encode('utf8')
@@ -111,6 +114,76 @@ class GuideIntegrationTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(detail['status'], 'excluded')
         self.wikimedia.assert_not_called()
+
+    def test_real_catalog_museum_and_secondary_history_are_eligible_in_both_cities(self):
+        self.lookup.side_effect = catalog_lookup
+        fixture = {
+            'moscow': [('moscow-cultural-1', 'museums'), ('moscow-cultural-p21', 'history')],
+            'shanghai': [('shanghai-demo:shanghai-museum', 'museums'), ('shanghai-demo:yu-garden', 'history')],
+        }
+        for city, places in fixture.items():
+            with self.subTest(city=city):
+                status, payload = request(self.app, 'POST', '/api/guide/availability?city=' + city,
+                                          {'poi_ids': [poi_id for poi_id, _ in places]})
+                self.assertEqual(status, 200)
+                self.assertEqual([(row['poi_id'], row['category']) for row in payload['items']], places)
+                self.assertTrue(all(row['status'] in {'available', 'unknown'} for row in payload['items']))
+        self.wikimedia.assert_not_called()
+
+    def test_real_catalog_food_is_excluded_in_both_cities(self):
+        self.lookup.side_effect = catalog_lookup
+        for city, poi_id in [('moscow', 'moscow-osm-node-3478472276'), ('shanghai', 'shanghai-demo:nanxiang')]:
+            with self.subTest(city=city):
+                status, payload = self.details(poi_id, city)
+                self.assertEqual(status, 200)
+                self.assertEqual(payload['status'], 'excluded')
+        self.wikimedia.assert_not_called()
+
+    def test_real_catalog_primary_shopping_blocks_secondary_history(self):
+        self.lookup.side_effect = catalog_lookup
+        status, payload = self.details('shanghai-demo:xintiandi', 'shanghai')
+        self.assertEqual(status, 200)
+        self.assertEqual(payload['status'], 'excluded')
+        self.wikimedia.assert_not_called()
+
+    def test_editorial_moscow_story_survives_external_outage(self):
+        from backend.guide_wikimedia import WikimediaUnavailable
+
+        self.lookup.side_effect = catalog_lookup
+        self.wikimedia.side_effect = WikimediaUnavailable('offline')
+        fixtures = {'moscow-cultural-609': '1896', 'osm-r-1360641': 'крепости',
+                    'osm-n-2368886164': '1635'}
+        status, listing = self.availability(list(fixtures))
+        self.assertEqual(status, 200)
+        self.assertEqual([row['status'] for row in listing['items']], ['available'] * len(fixtures))
+        self.wikimedia.assert_not_called()
+        for poi_id, fragment in fixtures.items():
+            with self.subTest(poi_id=poi_id):
+                status, payload = self.details(poi_id)
+                self.assertEqual(status, 200)
+                self.assertEqual(payload['status'], 'available')
+                self.assertEqual(payload['match']['method'], 'editorial_catalog_id')
+                self.assertIn(fragment, payload['full_text'])
+                self.assertTrue(payload['facts'])
+                self.assertTrue(all(item['url'].startswith('https://') for item in payload['sources']))
+                self.assertIsNone(payload['image'])
+
+    def test_cache_upgrade_ignores_old_negative_and_recovers_old_positive(self):
+        from backend.guide_wikimedia import WikimediaUnavailable
+
+        now = 1_795_564_800
+        with patch.object(guide, 'VERSION', guide.PREVIOUS_VERSION):
+            guide.save_story('moscow', 'museum', None, now-1)
+            guide.save_story('shanghai', 'museum', self.story, now-1)
+        with patch.object(guide, 'time', return_value=now):
+            self.assertEqual(self.availability(['museum'])[1]['items'][0]['status'], 'unknown')
+            self.assertEqual(self.details()[1]['status'], 'available')
+            self.wikimedia.side_effect = WikimediaUnavailable('offline')
+            status, payload = self.details(city='shanghai')
+            self.assertEqual(status, 200)
+            self.assertTrue(payload['stale'])
+            self.assertEqual(payload['short_text'], self.story['short_text'])
+        self.assertEqual(self.wikimedia.call_count, 2)
 
     def test_details_contract_and_positive_cache(self):
         status, result = self.details()

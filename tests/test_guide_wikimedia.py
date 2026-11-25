@@ -19,6 +19,11 @@ def coords(lat=55.75, lon=37.61):
     return {'latitude': lat, 'longitude': lon, 'globe': 'http://www.wikidata.org/entity/Q2'}
 
 
+def opening_year(year):
+    return snak({'precision': 9, 'time': f'+{year}-00-00T00:00:00Z',
+                 'calendarmodel': 'http://www.wikidata.org/entity/Q1985727'})
+
+
 def entity(qid='Q123', *, name='Музей часов', description='исторический музей в Москве',
            geographic=None, aliases=(), image=None, types=('Q33506',)):
     item = {
@@ -158,6 +163,66 @@ class StoryTests(unittest.TestCase):
         no_coords['claims']['P625'] = []
         with self.provider({'Q123': no_article, 'Q234': no_coords}):
             self.assertIsNone(wiki.build_story(poi()))
+
+    def test_confirmed_wikidata_without_russian_article_can_provide_a_licensed_guide(self):
+        item = entity()
+        item['sitelinks'] = {'enwiki': {'title': 'Clock Museum'}}
+        item['claims']['P84'] = [snak({'id': 'Q700'})]
+        related = {'id': 'Q700', 'labels': {'ru': {'value': 'Анна Иванова'}}}
+        missing = {'id': 'Q800', 'missing': True}
+        with self.provider({'Q123': item, 'Q700': related, 'Q800': missing}) as request:
+            story = wiki.build_story(poi(wikidata_id='Q123'))
+        self.assertEqual([source['license'] for source in story['sources']], ['CC0 1.0'])
+        self.assertIn('основания этого места считается 1905 год', story['short_text'])
+        self.assertIn('Анна Иванова', story['full_text'])
+        self.assertEqual([fact['title'] for fact in story['facts']], ['Год основания', 'Архитектор'])
+        self.assertEqual([call.args[0] for call in request.call_args_list], [wiki.WIKIDATA_URL] * 2)
+        self.assertEqual(request.call_args_list[-1].args[1]['props'], 'labels')
+        self.assertEqual(request.call_args_list[-1].args[1]['languages'], 'ru')
+
+    def test_empty_matching_article_falls_back_but_conflicting_article_is_rejected(self):
+        item = entity()
+        item['claims']['P1619'] = [opening_year(1912)]
+        empty = article(extract='== Галерея ==\nТекст не проходит фильтр.')
+        with self.provider({'Q123': item}, page=empty):
+            story = wiki.build_story(poi())
+        self.assertEqual([source['license'] for source in story['sources']], ['CC0 1.0'])
+        self.assertIn('1912 году', story['short_text'])
+        with self.provider({'Q123': item}, page=article(qid='Q900')):
+            self.assertIsNone(wiki.build_story(poi()))
+
+    def test_one_claim_requires_a_substantive_russian_description(self):
+        item = entity(description='Музей, посвящённый истории часовых мастерских и хранящий '
+                                  'механизмы из архивов городских фабрик.')
+        item['sitelinks'] = []
+        with self.provider({'Q123': item}):
+            story = wiki.build_story(poi())
+        self.assertIn('из архивов городских фабрик', story['short_text'])
+        item['descriptions'] = {'en': {'value': 'Museum of historic clocks and factories'}}
+        with self.provider({'Q123': item}):
+            self.assertIsNone(wiki.build_story(poi()))
+
+    def test_wikidata_fallback_omits_conflicting_qualified_and_untranslated_facts(self):
+        item = entity()
+        item['sitelinks'] = {}
+        item['claims'].update({
+            'P1619': [opening_year(1911), opening_year(1912)],
+            'P84': [{**snak({'id': 'Q701'}), 'qualifiers': {'P518': [snak({'id': 'Q9'})]}}],
+            'P149': [snak({'id': 'Q702'})],
+        })
+        labels = {'id': 'Q702', 'labels': {'en': {'value': 'Baroque'}, 'mul': {'value': 'Baroque'}}}
+        with self.provider({'Q123': item, 'Q702': labels}) as request:
+            self.assertIsNone(wiki.build_story(poi(wikidata_id='Q123')))
+        self.assertEqual(request.call_args_list[-1].args[1]['ids'], 'Q702')
+
+    def test_no_article_exact_name_collision_is_still_ambiguous(self):
+        items = {'Q123': entity(), 'Q124': entity('Q124', geographic=coords(55.751, 37.61))}
+        for item in items.values():
+            item['claims']['P1619'] = [opening_year(1912)]
+            item['sitelinks'] = {}
+        with self.provider(items) as request:
+            self.assertIsNone(wiki.build_story(poi()))
+        self.assertTrue(all(call.args[0] == wiki.WIKIDATA_URL for call in request.call_args_list))
 
     def test_nearby_metro_with_same_name_is_not_a_park(self):
         item = entity(name='Парк Победы (станция метро, Москва)',
